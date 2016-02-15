@@ -1,0 +1,180 @@
+//-------------------------------------------------------------------------------
+// Name:        scriptTemplate.mos
+// Purpose:     Calque de script simple pour étude sous Dymola
+//
+// Author:      Gilles PLESSIS
+//
+// Created:     12/03/2013
+// Copyright:   (c) EDF 2013
+//-------------------------------------------------------------------------------
+// Ce script Modelica est un modèle de script permettant de lancer un plan d'expérience
+// simulant différents jeu de paramètres.
+// Il permet entre autres la création d'un répertoire de résultats dans ./Resources/Resultats,
+// la  création d'un fichier de rapport et l'enregistrement des fichiers .mat générés par Dymola.
+
+
+//-------------------------------------------------------------------------------
+// Nettoyage de l'environnement de travail
+clear();
+clearlog();
+
+
+//-------------------------------------------------------------------------------
+// Import des packages nécessaires. Ces packages sont "connus" de Dymola.
+
+import DataFiles; 
+// Le package "DataFiles" est maintenant présent dans le package browser de Dymola.
+// Ce package peut être utilisé pour la lecture ou l'écriture de fichier MAT ou CSV.
+
+import Modelica_LinearSystems2;
+// Le package "Modelica_LinearSystems2" est maintenant présent dans le package browser de Dymola.
+// Ce package contient des fonctions facilitant l'analyse modale (entre autre la fonction "linearize")
+
+import Modelica.Utilities.System;
+// Le package "Modelica.Utilities.System" est déjà présent dans le package browser de Dymola. En revanche l'accès aux fonctions se fait maintenant de manière direct ("System.getWorkDirectory()" au lieu de "Modelica.Utilities.System.getWorkDirectory()") 
+// Ce package contient des fonctions systèmes utiles (récupération du chemin du répertoire de travail, exécution d'une commande DOS, fermeture de Dymola...)
+
+
+//-------------------------------------------------------------------------------
+// Redirection vers le répertoire de travail
+
+// Utilisation de la fonction "getEnvironmentVariable" définie dans "Modelica.Utilities.System"
+DymolaDirectory=System.getEnvironmentVariable("DYMOLAWORK");
+// NOTE : vérifier que "DymolaDirectory" correspond bien au répertoire de travail de Dymola (C:\Users\NNI à remplacer\Documents\Dymola)
+
+// Fonction "cd" pour le changement de répertoire ou la récupération du chemin courant
+cd(DymolaDirectory);
+
+//-------------------------------------------------------------------------------
+// Import de BuildSysPro, BuildSysProStudies, ouverture du package personnel...
+
+// NOTE : Se placer dans le bon répertoire pour l'ouverture du package
+openModel("BuildSysPro.moe");
+
+//-------------------------------------------------------------------------------
+// Création de l'étude
+resultPath=DymolaDirectory+"\Resources\Resultats\MonEtude";
+
+// Création du répertoire est d'un fichier rapport.
+if Modelica.Utilities.Files.exist(resultPath)==false  then   
+    System.command("mkdir \""+resultPath+"\"");
+    // La fonction "Modelica.Utilities.System.command" permet d'utiliser les commandes windows.
+    Modelica.Utilities.Streams.print("--------------------------------------------------------------------------------\n"+
+                                    "Début de l'étude"+"\n"+
+                                    "--------------------------------------------------------------------------------\n",
+                                    resultPath+"\\"+"RapportEtude.txt");
+else
+    Modelica.Utilities.Streams.print("--------------------------------------------------------------------------------\n"+
+                                    "Début de l'étude"+"\n"+
+                                    "--------------------------------------------------------------------------------",
+                                    resultPath+"\\"+"RapportEtude.txt");
+    Modelica.Utilities.Streams.print("Les fichiers de résultats précédents sont conservés\n"+
+                                    "Uniquement les fichiers de résultats non existants seront créés\n"+
+                                    "--------------------------------------------------------------------------------\n",
+                                    resultPath+"\\"+"RapportEtude.txt");
+end if;
+
+
+//-------------------------------------------------------------------------------
+// Pré-traitement
+// NOTE : à compléter ou modifier suivant ce que l'on souhaite faire. 
+// Ici exemple d'un plan d'expérience en faisant varier 3 paramètres du modèles
+reduitVal={16,19};
+meteoVal={"trappes","nice"};
+configPlancher={"BuildSysPro.Utilities.Data.WallData.RT2012.Plancher_MTD","BuildSysPro.Utilities.Data.WallData.PlancherRecent"};
+
+// Paramètres de la simulation
+modelName="BuildSysPro.Utilities.Analysis.Examples.InconfortRelance";
+listResultName={""};
+
+tStart=0;
+tStop=31536000; //= 3600*8760[s/an]
+dt=3600;
+solver="Dassl";
+
+//-------------------------------------------------------------------------------
+// Simulation
+Modelica.Utilities.Streams.print("Lancement des simulations"+"\n",
+                                resultPath+"\\"+"RapportEtude.txt");
+nbSimu=1;
+
+// Chargement et traduction du modèle
+translateModel(modelName);
+
+// Lancement des simulations en batch
+for i in 1:size(reduitVal,1) loop
+    for j in 1:size(meteoVal,1) loop
+        for k in 1:size(configPlancher,1) loop
+            
+        
+            // Définition du modèle
+            modelStr=modelName+"("+
+            "scenarioRT1.TconsChaudInf48Red="+String(reduitVal[i])+","+
+            "meteofile.pth=\"./Resources/Donnees/Meteos/METEONORM/France/"+meteoVal[j]+".txt\","+
+            "redeclare "+configPlancher[k]+"  CaracPlanch"+
+            ")";
+            
+            // Définition du nom du fichier de résultats
+            resultName="simulation"+String(nbSimu)+
+            "_Reduit_"+String(reduitVal[i])+
+            "_Meteo_"+meteoVal[j]+
+            "_Plancher_"+configPlancher[k];
+
+            // Insertion de flags Dymola
+            OutputCPUtime=true;
+            experimentSetupOutput(events=false,equidistant=true);
+            // Evite l'écriture des événements (2 valeurs par pas de temps car discontinuité potentielle) dans le fichier de résultats. 
+            // Voir les autres arguments de dans l'aide : document("experimentSetupOutput")
+            // NOTE :  pour que ces tags fonctionnent il faut que le modèle soit le modèle courant (translateModel...)
+            
+            Modelica.Utilities.Streams.print(resultPath+"\\"+resultName);
+            
+            if Modelica.Utilities.Files.exist(resultName)==false  then
+                if simulateModel(problem=modelStr,resultFile=resultPath+"\\"+resultName,startTime=tStart,stopTime=tStop,outputInterval=dt,method=solver) then
+                    // Fichier de log
+                    s="Simulation du modele "+modelName+"     OK"+" \n"+
+                    "Resultats enregistres sous : "+resultName+".mat"+
+                    " \n";
+                else
+                    s="Simulation du modele "+modelName+"     NO"+" \n"+
+                    "Pas de resultats enregistres - Simulation impossible"+
+                    " \n";
+                end if;
+            else
+                s="Simulation du modele "+modelName+"     NO"+" \n"+
+                    "Resultats existants"+
+                    " \n";
+            end if;
+            Modelica.Utilities.Streams.print(s,resultPath+"\\"+"RapportEtude.txt");
+            
+            nbSimu=nbSimu+1;
+            listResultName=cat(1,listResultName,{resultName});
+        end for;
+    end for;
+end for;
+
+
+//-------------------------------------------------------------------------------
+// Suppression des fichiers générés par Dymola lors de la simulation
+DymFiles={"dymosim.exe","dsmodel.c","dsfinal.txt","buildlog.txt","dymosim.exp","dsin.txt","dymosim.lib","dslog.txt"};
+for i in 1:size(DymFiles,1) loop
+    System.command("del "+DymFiles[i]);
+end for;
+
+
+
+//-------------------------------------------------------------------------------
+// Sauvegarde en CSV
+cd(resultPath);
+varList={"InconfortFroid.u2", "InconfortFroid.u1","MIAvecRelance.Tairint.T", "MISansRelance.Tairint.T", "mesureInconfortAvecRelance.Presence"};
+
+for i in 2:nbSimu loop
+    n=readTrajectorySize(fileName=listResultName[i]+".mat");
+    traj=readTrajectory(fileName=listResultName[i]+".mat",signals=varList,rows=n);
+    data = transpose(traj);
+    DataFiles.writeCSVmatrix(fileName=resultPath+"/"+listResultName[i]+".csv",headers=varList, data=data);
+end for;
+
+    
+
+

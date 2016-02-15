@@ -1,0 +1,49 @@
+﻿within BuildSysPro.Systems.Solar.PV.BaseClasses.Thermal.ThermalRecordsPV;
+record TechnoCrystallineSilicon =
+    BuildSysPro.Systems.Solar.PV.BaseClasses.Thermal.ThermalRecordsPV.RecordTechnoPV
+    (
+    n=7,
+    ncell=3,
+    mat={BuildSysPro.Utilities.Records.GenericSolid(
+        lambda=1.8,
+        rho=3000,
+        c=500),BuildSysPro.Utilities.Records.GenericSolid(
+        lambda=0.35,
+        rho=960,
+        c=2090),BuildSysPro.Utilities.Data.Solids.Silicon(),
+        BuildSysPro.Utilities.Records.GenericSolid(
+        lambda=0.35,
+        rho=960,
+        c=2090),BuildSysPro.Utilities.Records.GenericSolid(
+        lambda=0.2,
+        rho=1200,
+        c=1250),BuildSysPro.Utilities.Data.Solids.Aluminium(),
+        BuildSysPro.Utilities.Records.GenericSolid(
+        lambda=0.2,
+        rho=1200,
+        c=1250)},
+    epaisseur={0.003,0.0005,0.00025,0.0005,0.0001,0.00001,0.0001},
+    m={1,2,1,2,1,1,1},
+    cp_surf=5723,
+    eps_fg=0.91,
+    eps_bg=0.85,
+    alpha_tau_n=0.9) annotation (Documentation(info="<html>
+<p><i><b>Record pour la technologie silicium cristallin</b></i></p>
+<p><u><b>Hypothèses et équations</b></u></p>
+<p>néant</p>
+<p><u><b>Bibliographie</b></u></p>
+<p>Données de la littérature :</p>
+<p>A thermal model for photovoltaic systems, A.D. Jones and C.P. Underwood, Solar Energy Vol.70, pp.349-359, 2001</p>
+<p>A thermal model for photovoltaic panels under varying atmospheric conditions, S. Armstrong and W.G. Hurley, Applied Thermal Engineering Vol.30, pp.1488-1495, 2010</p>
+<p><br><u><b>Mode d'emploi</b></u></p>
+<p>Néant</p>
+<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
+<p>Néant</p>
+<p><u><b>Validations effectuées</b></u></p>
+<p>Modèle validé - Amy Lindsay 03/2013</p>
+<p><b>--------------------------------------------------------------<br>
+Licensed by EDF under the Modelica License 2<br>
+Copyright &copy; EDF 2009 - 2016<br>
+BuildSysPro version 2015.12<br>
+Author : Amy LINDSAY, EDF (2013)<br>
+--------------------------------------------------------------</b></p></html>"));

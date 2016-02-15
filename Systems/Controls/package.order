@@ -1,0 +1,7 @@
+PIDFixed
+PIDFixedDualMode
+PIDPrescribedSingleMode
+Deadband
+PBand
+PBandHysteresisSingleMode
+Switch
