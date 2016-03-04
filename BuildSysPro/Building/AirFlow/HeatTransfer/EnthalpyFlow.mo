@@ -1,23 +1,23 @@
 ﻿within BuildSysPro.Building.AirFlow.HeatTransfer;
-model EnthalpyFlow "Flux enthalpique à masse constante"
+model EnthalpyFlow "Enthalpy flow"
 
 extends BuildSysPro.BaseClasses.HeatTransfer.Interfaces.Element1D;
 
-// Paramètres de commande
-parameter Boolean use_Qv_in=false "Débit volumique commandé"   annotation(Evaluate=true,HideResult=true,Dialog(group="Commande"),choices(choice=true "oui",
-                                                                                            choice=false
-        "non (constant)",                                                                                                    radioButtons=true));
+// Control parameters
+parameter Boolean use_Qv_in=false "Prescribed volume flow rate"   annotation(Evaluate=true,HideResult=true,Dialog(group="Ventilation/infiltration"),choices(choice=true
+        "Prescribed",                                                                       choice=false "Fixed",   radioButtons=true));
+
 parameter Real Qv=0
-    "Débit de ventilation et/ou d'infiltrations constant [m3/h]"                                                          annotation(Dialog(group="Commande",enable=not use_Qv_in));
+    "Constant volume flow rate for ventilation and/or infiltrations [m3/h]"                             annotation(Dialog(group="Ventilation/infiltration",enable=not use_Qv_in));
 
 // Propriétés de l'air
-parameter Modelica.SIunits.Density rhoair = 1.24 "Densité de l'air" annotation(Dialog(group="Propriétés de l'air"));
-parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005 "Cp de l'air" annotation(Dialog(group="Propriétés de l'air"));
+parameter Modelica.SIunits.Density rhoair = 1.24 "Air density" annotation(Dialog(group="Air properties"));
+parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005
+    "Air specific heat capacity"                                                     annotation(Dialog(group="Air properties"));
 
 // Connecteur public
   Modelica.Blocks.Interfaces.RealInput Qv_in if use_Qv_in
-    "Scénario du débit de ventilation commandé [m3/h]"
-                                       annotation (Placement(
+    "Prescribed air flow rate[m3/h]"   annotation (Placement(
         transformation(extent={{-20,-20},{20,20}},
         rotation=270,
         origin={0,44}),                           iconTransformation(
@@ -28,7 +28,7 @@ parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005 "Cp de l'air" annotation
 // Connecteur interne
 protected
   Modelica.Blocks.Interfaces.RealInput Qv_in_internal
-    "Connecteur interne requis dans le cas de connection conditionnelle";
+    "Internal connector for optional configuration";
 
 equation
 connect(Qv_in, Qv_in_internal);
@@ -41,34 +41,38 @@ Q_flow = Qv_in_internal/3600*rhoair*Cp*port_a.T;
 
   annotation (
 Documentation(info="<html>
-<h4>Modèle de flux enthalpique à masse constante tiré de CLIM 2000 (TF 101)</h4>
-<p>Ce modèle calcule un flux enthalpique entre 2 pièces à des températures différentes, en supposant un bilan de masse respecté. Un seul échange enthalpique, <u>orienté de l'amont vers l'ava</u>l, est modélisé.</p>
-<p>La valeur du débit volumique peut être commandé ou fixe durant toute la simulation.</p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Le débit enthalpique entre la zone thermique et l'extérieur est définie comme suit :</p>
+<p><i><b>Enthalpy flow due to air ventilation and infiltration</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model calculates an enthalpy flow between two rooms at different temperatures, assuming that the mass balance is met. Only one enthalpy exchange, oriented from upstream to downstream, is modelled.</p>
+<p>The volume flow rate can be prescribed or fixed throughout the simulation.</p>
+
+<p>The enthalpy flux between thermal zone and outside is defined as follows:</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/equations/Ventilation/equation-PDJSex77.png\" alt=\"Q_flow=rho*(Q_v/3600)*c_p*T_amont\"/></p>
+<p>The main assumptions are:</p>
 <ul>
-<li>les variations d'énergies potentielle et cinétique de l'air sont négligées : <img src=\"modelica://BuildSysPro/Resources/Images/equations/Ventilation/equation-Gefs5rIZ.png\"/> et <img src=\"modelica://BuildSysPro/Resources/Images/equations/Ventilation/equation-SBxQyO58.png\"/></li>
-<li>le travail mécanique échangé avec les parois solides est nul : <img src=\"modelica://BuildSysPro/Resources/Images/equations/Ventilation/equation-KzWFZkpI.png\"/></li>
-<li>la température de l'air est uniforme pour l'ensemble de la pièce : Tair uniforme</li>
-<li>la chaleur massique de l'air est considérée constante et uniforme : Cp = constante</li>
-<li>la masse volumique d'une zone d'air est constante et uniforme : rho = constante.</li>
+<li>Variations in potential and kinetic energies of the air are neglected <img src=\"modelica://BuildSysPro/Resources/Images/equations/Ventilation/equation-Gefs5rIZ.png\"/> and <img src=\"modelica://BuildSysPro/Resources/Images/equations/Ventilation/equation-SBxQyO58.png\"/></li>
+<li>mechanical work exchanged with the solid walls is zero  <img src=\"modelica://BuildSysPro/Resources/Images/equations/Ventilation/equation-KzWFZkpI.png\"/></li>
+<li>the air temperature is uniform throughout the room: Tair uniforme</li>
+<li>the air specific heat is considered constant and uniform: Cp = constant</li>
+<li>the density of an air zone is constant and uniform: rho = constant</li>
 </ul>
-<p>Le système considéré est le suivant : on fait transvaser une quantité d'air de la zone A (amont) à température port_a.T et à masse volumique rho vers la zone B (aval). La variation d'enthalpie est due uniquement à la différence de température entre ces zones.</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Note du type formel CLIM 2000. Février 2002.</p>
+<p>The model represents a quantity of air in zone A (upstream) at <b>port_a.T</b> temperature and at rho density moving to zone B (downstream). The enthalpy variation is only due to the temperature difference between these areas.</p>
+<p><u><b>Bibliography</b></u></p>
 <p>CLIM2000 : étude du renouvellement d'air, C. Rogari , Rapport de stage 3ème année ESIP-EDF. Juin1990.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>La conservation de la masse dans une zone est impérative et est laissée au soin de l'utilisateur, sinon le travail de transvasement (PdV) ne peux être considéré comme nul. Par construction, ce modèle ne peut l'assurer. A titre d'exemple, pour une zone échangant de l'air avec l'extérieur il faudrait employer 2 modèles tête-bêche. De même, ce modèle ne peut pas être utilisé seul en monozone.</p>
-<p>Pour plus d'informations voir le mode d'emploi de TF101 de CLIM2000.</p>
-<p><br><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Employer ce type de modélisation que pour des différences de température inférieure à 5&deg;C. Au delà, préférer les modèles en pression et température, qui offrent une modélisation plus juste.</p>
-<p>Précaution liée à la conservation de la masse.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Validation unitaire entre un noeud d'air et une condition limite. Gilles Plessis 02/2012.</p>
+<p>model TF 101 from CLIM2000. 02/2002</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>The conservation of mass in a thermal zone is imperative and is left to the user's care, otherwise the transfered work (PdV) can not be equal to zero. </p>
+<p>By construction, this model can not ensure it. For example, for a thermal zone exchanging air with outdoor environment, two head-to-toe models should be used. </p>
+<p>Similarly, this model can not be used alone for a single zone.</p>
+<p>For more information refer to the user manual TF101 of CLIM2000.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>Use this type of model only for temperature differences lower than 5°C. Beyond, prefer pressure and temperature models, which provide a more accurate modeling.</p>
+<p>Caution related to the conservation of mass.</p>
+<p><u><b>Validations</b></u></p>
+<p>Model validated. Gilles Plessis 02/2012.</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>

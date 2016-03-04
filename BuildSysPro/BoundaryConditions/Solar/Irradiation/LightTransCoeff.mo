@@ -1,31 +1,28 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
 model LightTransCoeff
-  "Calcul des coefficients de transmission lumineuse direct et global avec et sans protection solaire"
+  "Calculation of direct and global light transmittance throught a window"
 
-  parameter Real H=1 "Hauteur de la fenêtre";
-  parameter Real L=1 "Largeur de la fenêtre";
-  parameter Real e=0.35 "Epaisseur de la paroi considérée";
+  parameter Real H=1 "Window height";
+  parameter Real L=1 "Window width";
+  parameter Real e=0.35 "Wall thickness";
   parameter Real azimut=0
-    "Azimut de la surface (Orientation par rapport au sud) - S=0°, E=-90°, O=90°, N=180°";
-  parameter Real TLw=0.5
-    "Facteur de transmission lumineuse global de la baie sans protection";
-  parameter Real TLw_dif=0
-    "Facteur de transmission lumineuse diffus de la baie sans protection";
-  parameter Real TLws=0
-    "Facteur de transmission lumineuse global de la baie avec protection";
-  parameter Real TLws_dif=0
-    "Facteur de transmission lumineuse diffus de la baie avec protection";
-  parameter Boolean MasqueProche=false
-    annotation(choices(choice=true "Avec masque proche architectural",                                  choice=false
-        "Sans masque proche architectural",                                                                                                  radioButtons=true));
-  parameter Boolean Protection=false
-    annotation(choices(choice=true
-        "Avec protection mobile extérieure en place",                                                             choice=false
-        "Sans protection mobile extérieure en place",                                                                                                  radioButtons=true));
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°";
 
+  parameter Real TLw=0.5 "Global light transmittance without solar shading";
+  parameter Real TLw_dif=0 "Diffuse light transmittance without solar shading";
+
+  parameter Real TLws=0 "Global light transmittance with solar shading";
+  parameter Real TLws_dif=0 "Diffuse light transmittance with solar shading";
+
+  parameter Boolean MasqueProche=false
+    annotation(choices(choice=true "With architectural close mask",                                  choice=false
+        "Without architectural close mask",                                                                                              radioButtons=true));
+  parameter Boolean Protection=false
+    annotation(choices(choice=true "With external shading device in place",                                  choice=false
+        "Without external shading device in place",                                                                                                  radioButtons=true));
 protected
-  Real K "Coefficient de forme";
-  Real R_dir "Part du rayonnement total sur la baie en incidence directe";
+  Real K "Form coefficient";
+  Real R_dir "Share of the total direct incident radiation on the bay window";
   Real Fbati_dir;
   Real Fbati_dif;
   Real Friv_dir;
@@ -36,18 +33,18 @@ protected
 
 public
   Modelica.Blocks.Interfaces.RealOutput CoeffTransLum[4]
-    "Coefficients de transmission lumineuse: -global sans protection, -diffus sans, -global avec, -diffus avec"
+    "Light transmittance -global without protection,- diffuse without protection, - global with protection, -diffuse with protection"
     annotation (Placement(transformation(extent={{88,-18},{134,28}}),
         iconTransformation(extent={{60,26},{86,52}})));
-equation
 
+equation
 if (L>0 and H>0) then
 
-  //Calcul du coefficient de forme caractérisant la baie (formule 7 des Règles Th-L)
+  //Calculation of form coefficient characterizing the bay window (formula 7 of Th-L rules)
   K=L*H/(e*(L+H));
 
-  //Calcul des coefficients de correction
-  //Part du rayonnement total sur la baie en incidence directe (tableau 9 des Règles Th-L)
+  //Computation of correction coefficients
+  //Share of the total direct incident radiation on the bay window (table 9 of Th-L rules)
   if azimut==0 then
     R_dir=0.5;
   else if azimut==90 then
@@ -59,7 +56,7 @@ if (L>0 and H>0) then
   end if;
   end if;
 
-  //Coefficients de correction associés à l'intégration à l'ouvrage (tableaux 10 et 11 des Règles Th-L)
+  //Correction coefficients associated with the integration to work (Tables 10 and 11 of Th-L Rules)
 if MasqueProche==false then
     if K<=1 then
       Fbati_dif=0.5;
@@ -103,7 +100,7 @@ Fbati_dir=1;
 Fbati_dif=1;
 end if;
 
-  //Coefficients de correction lié à l'incidence variable (tableau 18 des Règles Th-L)
+  //Correction coefficients related to the variable incidence (Table 18 of Th-L Rules)
   if K<1.5 then
     k=1;
   else k=0;
@@ -120,14 +117,14 @@ end if;
     Friv_dif=0.95;
   end if;
 
-  //Coefficients de transmission lumineuse avec et sans protection solaire (formule 1,2,3 et 4 des Règles Th-L)
+  //Light transmission coefficients with and without sun protection (formula 1,2,3 and 4 of Th-L Rules)
   CoeffTransLum[1]=(R_dir*Fbati_dir*Friv_dir+(1-R_dir)*Fbati_dif*Friv_dif)*TLw;
   CoeffTransLum[2]=(R_dir*Fbati_dir*Friv_dir+(1-R_dir)*Fbati_dif*Friv_dif)*TLw_dif;
   CoeffTransLum[3]=(R_dir*Fbati_dir*Friv_dir+(1-R_dir)*Fbati_dif*Friv_dif)*TLws;
   CoeffTransLum[4]=(R_dir*Fbati_dir*Friv_dir+(1-R_dir)*Fbati_dif*Friv_dif)*TLws_dif;
 
 else
-  //La fenêtre possède des dimensions nulles
+  //Window dimensions are null
   K=0;
   Fbati_dir=0;
   Fbati_dif=0;
@@ -146,33 +143,36 @@ end if;
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics),
             Documentation(info="<html>
-<p><i><b>Modèle qui permet de calculer les coefficients de transmission lumineuse direct et diffus avec et sans protection solaire, nécessaires pour le calcul des flux lumineux transmis à travers une baie vitrée. </b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Les facteurs de transmission lumineuse global et diffus qui doivent être renseignés correspondent aux TLw, TLw_dif, TLsw et TLsw_dif qui sont calculés précisément dans la norme EN 410.</p>
-<p>Cependant, il est possible de retrouver des valeurs tabulées dans le document <i>Valeurs tabulées des caractéristiques des parois vitrées et des correctifs associés aux baies</i> du CSTB.</p>
-<p>Ainsi, par défaut:</p>
-<p><i>-pour du double vitrage sans protection solaire: TLw=0.5, TLw_dif=0</i></p>
-<p><i>-pour du double vitrage avec protection solaire opaque et sombre située à l'extérieur: TLsw=0, TLsw_dif=0</i></p>
-<p><i>-pour du double vitrage avec protection solaire non opaque et claire située à l'extérieur: TLsw=0.09, TLsw_dif=0.03</i></p>
-<p>Le vecteur output correspond aux 4 coefficients de transmission lumineuse nécessaire au minimum pour déterminer l'ensemble des coefficients de transmission lumineuse.</p>
-<p>Il correspond à: Tli_sp, Tlid_sp, Tli_ap et Tlid_ap, utilisés dans les équations (408), (409) et (410) des flux transmis direct, diffus et réfléchi dans la méthode de calcul Th-BCE 2012. </p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Règles Th-L - Caractérisation du facteur de transmission lumineuse des parois du bâtiment - CSTB Mars 2012</p>
-<p>Valeurs tabulées des parois vitrées - CSTB Mars 2012</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Il faut penser à préciser s'il existe des masques proches en amont car alors la prise en compte des ombres dues à l'architecture se fait dans le modèle de Masque.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle non validé - Laura Sudries 05/2014</p>
+<p><i><b>Computation of direct and global light transmittance trought a window with or without shading</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The global and diffuse light transmittance TLW, TLw_dif, TLsw and TLsw_dif should be specify according to EN 410 standard.</p>
+<p>However, it is possible to find values in the document \"Valeurs tabulées des caractéristiques des parois vitrées et des correctifs associés aux baies\" from CSTB.</p>
+<p>Thus, by default:</p>
+<ul>
+<li>for double glazing without sun protection: TLw=0.5, TLw_dif=0</li>
+<li>for double glazing with opaque and dark sun protection on the outside: TLsw=0, TLsw_dif=0</li>
+<li>for double glazing with non-opaque and clear sun protection on the outside: TLsw=0.09, TLsw_dif=0.03</li>
+</ul>
+<p>The output vector corresponds to the set of 4 minimum light transmittance values to compute transmitted illuminance.
+It corresponds to: Tli_sp, Tlid_sp, Tli_ap and Tlid_ap, used in direct, diffuse and reflected transmitted illuminance equations in the computation method Th-BCE 2012.</p>
+
+<p><u><b>Bibliography</b></u></p>
+<p>Règles Th-L - Caractérisation du facteur de transmission lumineuse des parois du bâtiment - CSTB March 2012.</p>
+<p>Valeurs tabulées des parois vitrées - CSTB March 2012.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>near shading must be specify ahead because then the consideration of architecture shading is done according to the type of mask.</p>
+<p><u><b>Validations</b></u></p>
+<p>Non validated model - Laura Sudries 05/2014</b></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.05<br>
+Copyright © EDF 2009 - 2016<br>
+BuildSysPro version 2015.12<br>
 Author : Laura SUDRIES, Vincent MAGNAUDEIX, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
-</html>"),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+</html>
+"), Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
         graphics={
         Polygon(
           points={{33,-5.5},{45,14.5},{45,8.5},{33,-11.5},{33,-5.5}},

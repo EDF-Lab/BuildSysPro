@@ -1,4 +1,4 @@
-﻿within BuildSysPro.Systems.Controls;
+within BuildSysPro.Systems.Controls;
 model PBand
 
   Modelica.Blocks.Interfaces.RealInput X
@@ -8,10 +8,10 @@ model PBand
   Modelica.Blocks.Interfaces.RealOutput Y
     annotation (Placement(transformation(extent={{96,-8},{112,8}})));
 
-  parameter Real Ymin=0.3 "valeur minimale du paramètre de sortie";
-  parameter Real Ymax=1 "valeur maximale du paramètre de sortie";
+  parameter Real Ymin=0.3 "Minimum value of the output parameter";
+  parameter Real Ymax=1 "Maximum value of the output parameter";
   parameter Real Range=0.5
-    "Ecart (X-X_ref) maximal avant saturation de la sortie";
+    "Maximum difference (X-X_ref) before output saturation";
 
 algorithm
     Y := max(Ymin,min(Ymax,Ymax - (X-(X_ref-Range))*(Ymax-Ymin)/(2*Range)));
@@ -92,17 +92,22 @@ algorithm
           lineColor={0,0,0},
           textString="Ymin")}),
     Documentation(info="<html>
-<p><u><b>Description</b></u></p>
-<p>Gestion en bande proportionnelle autour d'une valeur de consigne</p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Le modèle renvoie une valeur qui varie proportionnellement avec l'écart X-X-ref (valeur de consigne). Le signal est saturé à Ymin et Ymax dans les conditions extrêmes.</p>
-<p><br><u><b>Mode d'emploi</b></u></p>
-<p>Le réglage du modèle est le suivant:</p>
+<p>Proportional band management around a setpoint value.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>It returns a value that varies proportionally with the difference X - X_ref (setpoint). The signal is saturated at Ymin and Ymax in extreme conditions.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instruction for use</b></u></p>
+<p>The model setup is:</p>
 <ol>
-<li>Ymin et Ymax, valeurs de saturation (par exemple 0 et 1 pour obtenir un gain).</li>
-<li>Valeur du Range, soit la demi-largeur de la bande proportionnelle.</li>
+<li>Ymin et Ymax, saturation values (eg. 0 and 1 to obtain a gain).</li>
+<li>Value of the Range, i.e. half bandwidth size</li>
 </ol>
-<p><br><b>Note</b>: Pour Range&GT;0, la bande proportionnelle sera décroissante. Pour obtenir une fonction croissante, il suffit d'avoir Range&LT;0, en laissant les autres valeurs <u>inchangées</u>.</p>
+<p><b>Note :</b> For Range &GT; 0, the proportional band will be decreasing. For an increasing function, all you need is Range &LT; 0, leaving other values unchanged.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

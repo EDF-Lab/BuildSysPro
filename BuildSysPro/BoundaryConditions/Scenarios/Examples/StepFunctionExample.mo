@@ -78,7 +78,7 @@ equation
 <p>None</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>None</p>
-<p><u><b>Known limits / Precautions for use</b></u></p>
+<p><u><b>Known limits / Use precautions</b></u></p>
 <p>None</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Hassan Bouia 07/2012</p>        

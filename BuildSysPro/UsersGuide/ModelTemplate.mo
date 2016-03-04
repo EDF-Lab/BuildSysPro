@@ -20,7 +20,7 @@ parameter Modelica.SIunits.Length L=2 "Length";
         "Choice 2",choice=3 "Choice 3"));
   parameter BuildSysPro.Utilities.Records.GenericWall Wall
     "Choice between wall data records" annotation (Dialog(tab="Advanced", group=
-         "Drop-down menu"), __Dymola_choicesAllMatching=true);
+         "Drop-down menu"), choicesAllMatching=true);
 
 // Declaration of variables
 Modelica.SIunits.Length D "Distance";
@@ -70,7 +70,7 @@ gamma = if Bool then D else 0;
 <p><i><b>Complete the description of the model using <u>Info Editor</u> or<u> Info Source</u> views and fill in the next sections</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/example.bmp\"/></p>
-<p><i><span style=\"color: #0000ff;\">If the image does not appear while you are using a relative path, make sure that your work directory (File/Change Directory) is the one containing BuildSysPro and the Resources folder</span></i></p> You can also use hyperlink to another model : <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall\">HYPERLINK to the WALL model  </a></p>
+<p><i><span style=\"color: #0000ff;\">If the image does not appear while you are using a relative path, make sure that your work directory (File/Change Directory) is the one containing BuildSysPro and the Resources folder</span></i></p> You can also use hyperlink to another model : <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall\">HYPERLINK to the WALL model</a></p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>

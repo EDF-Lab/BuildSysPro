@@ -5,22 +5,22 @@ model ZoneEntrance
   replaceable parameter
     BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART.BuildingType
     paraMaisonRT "Réglementation thermique utilisée" annotation (
-      __Dymola_choicesAllMatching=true, dialog(group="Choix de la RT"));
+      choicesAllMatching=true, Dialog(group="Choix de la RT"));
 
   // Flux thermiques
 parameter Boolean GLOEXT=false
-    "Prise en compte de rayonnement GLO vers l'environnement et le ciel"                            annotation(dialog(tab="Flux thermiques"));
+    "Prise en compte de rayonnement GLO vers l'environnement et le ciel"                            annotation(Dialog(tab="Flux thermiques"));
 parameter Boolean QVin=false
     "True : commande du débit de renouvellement d'air ; False : débit constant"
-                                                                                                annotation(dialog(tab="Flux thermiques"));
+                                                                                                annotation(Dialog(tab="Flux thermiques"));
 
   // Parois
 parameter Modelica.SIunits.Temperature Tp=293.15
     "Température initiale des parois"
-    annotation(dialog(tab="Parois"));
+    annotation(Dialog(tab="Parois"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Initialisation en régime stationnaire dans les parois"
-    annotation (dialog(tab="Parois"));
+    annotation (Dialog(tab="Parois"));
 
   // Ponts thermiques
   parameter Modelica.SIunits.ThermalConductance G_ponts=
@@ -28,7 +28,7 @@ parameter Modelica.SIunits.Temperature Tp=293.15
       ValeursK=paraMaisonRT.ValeursK,
       LongueursPonts=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.LongueursPontsEntree,
       TauPonts=paraMaisonRT.TauPonts) "Ponts thermiques"
-    annotation (dialog(tab="Ponts thermiques"));
+    annotation (Dialog(tab="Ponts thermiques"));
 
     //Coefficients de pondération
 protected

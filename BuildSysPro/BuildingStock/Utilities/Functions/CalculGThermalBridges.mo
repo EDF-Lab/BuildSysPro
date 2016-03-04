@@ -1,4 +1,4 @@
-﻿within BuildSysPro.BuildingStock.Utilities.Functions;
+within BuildSysPro.BuildingStock.Utilities.Functions;
 function CalculGThermalBridges
   input Real ValeursK[:];
   input Real LongueursPonts[:];
@@ -13,20 +13,20 @@ algorithm
   end for;
 
     annotation (Documentation(info="<html>
-<p><i><b>Fonction calculant le G(W/K) des ponts thermiques</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Cette fonction permet le calcul des déperditions dues aux ponts thermiques (en W/K)</p>
-<p>La fonction a besoin en entrée des vecteurs contenant :</p>
-<p>- les longueurs associées aux déperditions linéiques situé dans les records &QUOT;Geometrie&QUOT;</p>
-<p>- les valeurs des coefficients de déperdition k (en W/m.K) et coefficients de pondération tau situé dans les records &QUOT;LogementType&QUOT; et caractérisant les réglementations thermiques</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
+<p><b>Function computing the thermal bridges value G (W/K)</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This function allows the calculation of losses due to thermal bridges (in W/K).</p>
+<p>As input, the function requires vectors containing:</p>
+<ul><li>The lengths associated with linear losses (per unit length) located in the records <a href=\"modelica://BuildSysPro.BuildingStock.Utilities.Records.Geometry\">Geometry</a>.</li>
+<li>Loss coefficients k values (in W/m.K) and weighting coefficients <i>tau</i> located in the records <a href=\"modelica://BuildSysPro.BuildingStock.Utilities.Records.BuildingData\">BuildingData</a> and characterizing thermal regulations.</li></ul>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

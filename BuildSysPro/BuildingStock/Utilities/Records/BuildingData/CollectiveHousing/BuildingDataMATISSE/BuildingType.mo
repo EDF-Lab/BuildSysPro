@@ -4,58 +4,58 @@ record BuildingType "Liste de paramètres physiques d'un bâtiment"
 // Parois
   // Types des parois
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall
-    PlancherMitoyen annotation (dialog(tab="Parois", group=
+    PlancherMitoyen annotation (Dialog(tab="Parois", group=
           "Parois intérieures"), choicesAllMatching=true);
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall
-    PlafondMitoyen annotation (dialog(tab="Parois", group="Parois intérieures"),
+    PlafondMitoyen annotation (Dialog(tab="Parois", group="Parois intérieures"),
       choicesAllMatching=true);
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall Porte
-    annotation (dialog(tab="Parois", group="Parois intérieures"),
+    annotation (Dialog(tab="Parois", group="Parois intérieures"),
       choicesAllMatching=true);
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall PorteInt
-    annotation (dialog(tab="Parois", group="Parois intérieures"),
+    annotation (Dialog(tab="Parois", group="Parois intérieures"),
       choicesAllMatching=true);
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall MurExt
-    annotation (dialog(tab="Parois", group="Parois extérieures"),
+    annotation (Dialog(tab="Parois", group="Parois extérieures"),
       choicesAllMatching=true);
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall MurMitoyen
-    annotation (dialog(tab="Parois", group="Parois intérieures"),
+    annotation (Dialog(tab="Parois", group="Parois intérieures"),
       choicesAllMatching=true);
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall MurPalier
-    annotation (dialog(tab="Parois", group="Parois intérieures"),
+    annotation (Dialog(tab="Parois", group="Parois intérieures"),
       choicesAllMatching=true);
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall Cloisons
-    annotation (dialog(tab="Parois", group="Parois intérieures"),
+    annotation (Dialog(tab="Parois", group="Parois intérieures"),
       choicesAllMatching=true);
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall
-    PlafondImmeuble annotation (dialog(tab="Parois", group=
+    PlafondImmeuble annotation (Dialog(tab="Parois", group=
           "Parois extérieures"), choicesAllMatching=true);
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall
-    PlancherImmeuble annotation (dialog(tab="Parois", group=
+    PlancherImmeuble annotation (Dialog(tab="Parois", group=
           "Parois extérieures"), choicesAllMatching=true);
 
   // Propriétés optiques
   parameter Real alphaExt=0.3
-    "Coefficient d'absorption des parois extérieures dans le visible" annotation(dialog(tab="Parois",group="Parois extérieures"));
+    "Coefficient d'absorption des parois extérieures dans le visible" annotation(Dialog(tab="Parois",group="Parois extérieures"));
   parameter Real eps=0
-    "Emissivité des parois extérieures en grande longueur d'onde"                     annotation(dialog(tab="Parois",group="Parois extérieures"));
+    "Emissivité des parois extérieures en grande longueur d'onde"                     annotation(Dialog(tab="Parois",group="Parois extérieures"));
 
   // Coefficients d'échange globaux (convection et rayonnement)
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hsExtVert=25
     "Coefficient d'échange surfacique sur la face extérieure des parois verticales"
-                                                                                      annotation(dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
+                                                                                      annotation(Dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hsIntVert = 7.69
     "Coefficient d'échange surfacique sur la face intérieure des parois verticales"
-                                                                                      annotation(dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
+                                                                                      annotation(Dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hsExtHor=25
     "Coefficient d'échange surfacique sur la face extérieure des parois horizontales"
-                                                                                        annotation(dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
+                                                                                        annotation(Dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hsIntHorHaut=10
     "Coefficient d'échange surfacique sur la face intérieure des parois horizontales lorsque l'échange thermique se fait vers le haut"
-                                                                                                        annotation(dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
+                                                                                                        annotation(Dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hsIntHorBas=5.88
     "Coefficient d'échange surfacique sur la face intérieure des parois horizontales lorsque l'échange thermique se fait vers le bas"
-                                                                                                        annotation(dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
+                                                                                                        annotation(Dialog(tab="Flux thermiques",group="Coefficients d'échanges surfaciques (attention à prendre en compte ou non les échanges en GLO en fonction du paramètre GLOEXT)"));
 
 // Vitrages
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UvitrageAF
@@ -71,45 +71,45 @@ record BuildingType "Liste de paramètres physiques d'un bâtiment"
   parameter Real eps_vitrage=0 "Emissivité en grande longueur d'onde" annotation (Dialog(tab="Fenêtres"));
 
 // Renouvellement d'air et infiltration
-  parameter Real renouvAir "Taux de renouvellement d'air en vol/h" annotation(dialog(tab="Flux thermiques", group="Renouvellement d'air"));
+  parameter Real renouvAir "Taux de renouvellement d'air en vol/h" annotation(Dialog(tab="Flux thermiques", group="Renouvellement d'air"));
 
 // Ponts thermiques
   parameter Real ValeursK[8]
     "Valeurs du coefficient k pour chaque déperdition linéique relative à un pont thermique en W/m²K"
-                                                                                                        annotation(dialog(tab="Ponts thermiques"));
+                                                                                                        annotation(Dialog(tab="Ponts thermiques"));
   parameter Real TauPonts[8]
-    "Coefficients tau de réduction de chaque pont thermique" annotation(dialog(tab="Ponts thermiques"));
+    "Coefficients tau de réduction de chaque pont thermique" annotation(Dialog(tab="Ponts thermiques"));
   parameter Real ValeursKPlafond[3]
     "Valeurs du coefficient k pour chaque déperdition linéique relative à un pont thermique du plafond en W/m²K"
-                                                                                                        annotation(dialog(tab="Ponts thermiques"));
+                                                                                                        annotation(Dialog(tab="Ponts thermiques"));
   parameter Real TauPontsPlafond[3]
-    "Coefficients tau de réduction de chaque pont thermique du plafond" annotation(dialog(tab="Ponts thermiques"));
+    "Coefficients tau de réduction de chaque pont thermique du plafond" annotation(Dialog(tab="Ponts thermiques"));
   parameter Real ValeursKPlancher[3]
     "Valeurs du coefficient k pour chaque déperdition linéique relative à un pont thermique du plancher en W/m²K"
-                                                                                                        annotation(dialog(tab="Ponts thermiques"));
+                                                                                                        annotation(Dialog(tab="Ponts thermiques"));
   parameter Real TauPontsPlancher[3]
-    "Coefficients tau de réduction de chaque pont thermique du plancher" annotation(dialog(tab="Ponts thermiques"));
+    "Coefficients tau de réduction de chaque pont thermique du plancher" annotation(Dialog(tab="Ponts thermiques"));
 
   replaceable parameter Real PontsTh_Generique
     "Valeur du pont thermique commun à toutes les positions possibles de l'appartement (utilisé pour assemblage LC)"
-                                                                                                        annotation(dialog(tab="Ponts thermiques"));
+                                                                                                        annotation(Dialog(tab="Ponts thermiques"));
   replaceable parameter Real PontsTh_Bas
     "Valeur du pont thermique spécifique à une position de l'appartement au rez-de-chaussée (utilisé pour assemblage LC)"
-                                                                                                        annotation(dialog(tab="Ponts thermiques"));
+                                                                                                        annotation(Dialog(tab="Ponts thermiques"));
   replaceable parameter Real PontsTh_Haut
     "Valeur du pont thermique spécifique à une position de l'appartement au dernier étage (utilisé pour assemblage LC)"
-                                                                                                        annotation(dialog(tab="Ponts thermiques"));
+                                                                                                        annotation(Dialog(tab="Ponts thermiques"));
 
 // Conditions limites
   parameter Real     bLNC=0.1
     "Coefficient de pondération des conditions limites en température pour les locaux non chauffés"
-                                                                                                       annotation(dialog(tab="CL Température"));
+                                                                                                       annotation(Dialog(tab="CL Température"));
   parameter Real     bPlancher
     "Coefficient de pondération des conditions limites en température pour le plancher"
-                                                                                          annotation(dialog(tab="CL Température"));
+                                                                                          annotation(Dialog(tab="CL Température"));
   parameter Real     bPlafond
     "Coefficient de pondération des conditions limites en température pour le plafond"
-                                                                                         annotation(dialog(tab="CL Température"));
+                                                                                         annotation(Dialog(tab="CL Température"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState;
  annotation (Documentation(info="<html>
 <p><i><b>Record pour renseigner les paramètres du LC Matisse en fonction de l'année de construction</b></i></p>

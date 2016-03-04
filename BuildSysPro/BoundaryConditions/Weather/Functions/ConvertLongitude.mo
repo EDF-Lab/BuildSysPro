@@ -1,29 +1,37 @@
 ﻿within BuildSysPro.BoundaryConditions.Weather.Functions;
-function ConvertLongitude
-  "Fonction convertissant la longitude pour les fonctions astro"
+function ConvertLongitude "Longitude conversion for astronomical functions"
 
   input Boolean Est=true
-    "Est=true : longitude en entrée donnée en °Est; sinon, en °Ouest";
-  input Real LongIn "Longitude du lieu donnée en entrée";
-  output Real LongOut "Longitude du lieu convertie en sortie";
+    "East=true: input longitude given in °East; if not, in °Ouest";
+  input Real LongIn "Input longitude of the given place";
+  output Real LongOut "Longitude of the place converted into an output";
 
 algorithm
-  // On inverse déjà la longitude si elle est donnée en °Ouest
+  //The longitude is already inversed if it is given in °Ouest
   LongOut:=if Est then LongIn else -LongIn;
-  // On remet la longitude dans l'intervalle [-180° ; 180°[
+  // The longitude is replaced in the interval [-180° ; 180°[
   LongOut:=LongOut - 360*integer(LongOut/360 + 0.5);
 
   annotation (Documentation(info="<html>
-<p>Cette fonction convertie la longitude afin qu'elle soit utilisable par les fonctions astro </p>
+<p><i><b>Function converting the longitude for astronomical application</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The conversion is performed as:</p>
 <ul>
-<li>&GT;0 a l'Est</li>
-<li>&LT;0 a l'Ouest</li>
-<li>de valeur absolue &LT;180&deg;</li>
+<li> <code>LongOut</code>&gt;0 in the East</li>
+<li> <code>LongOut</code>&lt;0 in the West</li>
+<li> <code>|LongOut|</code> &lt;180° </li>
 </ul>
-<p>Fonction validée par calculs analytiques simples - Aurélie Kaemmerlen 09/2010 </p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated function - Aurélie Kaemmerlen 09/2010 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>

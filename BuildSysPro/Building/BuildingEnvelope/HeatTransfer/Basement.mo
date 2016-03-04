@@ -1,20 +1,20 @@
-﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
-model Basement "Sous-Sol enterre"
-  import BuildSysPro.*;
-  parameter Real Hauteur=2.2 "Hauteur";
-  parameter Real Longueur=10 "Longueur";
-  parameter Real Largeur=5 "Largeur";
-  parameter Real Sgarage=2*3 "Surface du garage";
-  parameter Real hc_lat=9 "Coef. conv de la paroi latérale";
-  parameter Real hc_plancher=5 "Coef. conv du plancher";
-  parameter Real Ugarage=1/16+1/9 "Coef. transmission du garage";
-  parameter Real TauRVT=0.2 "Taux de renouvellement d'air";
+within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
+model Basement "Buried basement"
+
+  parameter Real Hauteur=2.2 "Height";
+  parameter Real Longueur=10 "Length";
+  parameter Real Largeur=5 "Width";
+  parameter Real Sgarage=2*3 "Garage surface";
+  parameter Real hc_lat=9 "Side wall convective coefficient";
+  parameter Real hc_plancher=5 "Floor convective coefficient";
+  parameter Real Ugarage=1/16+1/9 "Garage transmission coefficient";
+  parameter Real TauRVT=0.2 "Air renewal rate";
   parameter BuildSysPro.Utilities.Records.GenericSolid mat_Sol
-    annotation (__Dymola_choicesAllMatching=true);                                                               //=BuildSysPro.ModelesDeBase.Utilitaires.Materiaux.Beton;
+    annotation (choicesAllMatching=true);
   parameter BuildSysPro.Utilities.Records.GenericSolid mat_Lat
-    annotation (__Dymola_choicesAllMatching=true);                                                                  //=BuildSysPro.ModelesDeBase.Utilitaires.Materiaux.Parpaing;
+    annotation (choicesAllMatching=true);
   parameter BuildSysPro.Utilities.Records.GenericSolid mat_Pla
-    annotation (__Dymola_choicesAllMatching=true);                                                                   //=BuildSysPro.ModelesDeBase.Utilitaires.Materiaux.Beton;
+    annotation (choicesAllMatching=true);
   parameter Modelica.SIunits.Temperature Tinit=281.15;
 protected
   final parameter Real Perimetre=2*(Longueur*Largeur);
@@ -60,10 +60,10 @@ public
         rotation=90,
         origin={-70,10})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_Text
-    "Temperature exterieure" annotation (Placement(transformation(extent={{-110,
+    "Outdoor temperature" annotation (Placement(transformation(extent={{-110,
             0},{-90,20}}), iconTransformation(extent={{-110,0},{-90,20}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_NoeudAir
-    "Temperature exterieure" annotation (Placement(transformation(extent={{-110,
+    "Indoor temperature" annotation (Placement(transformation(extent={{-110,
             -24},{-90,-4}}),
                            iconTransformation(extent={{-10,0},{10,20}})));
   BaseClasses.HeatTransfer.Components.HomogeneousNLayersWall
@@ -251,9 +251,16 @@ equation
           lineColor={0,0,255},
           textString="%name")}),
     Documentation(info="<html>
-<p>Modèle validé - Hassan Bouia 09/2012</p>
-<p><u><b>Description</b></u></p>
-<p>Modèle s'un sous sol enterré.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Model of a buried basement.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hassan Bouia 09/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

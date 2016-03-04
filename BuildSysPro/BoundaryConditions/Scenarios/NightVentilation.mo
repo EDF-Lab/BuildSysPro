@@ -3,13 +3,13 @@ model NightVentilation
   "Model of overventilation by windows opening for summer comfort"
 
 parameter Modelica.SIunits.Temperature Touverture=299.15
-    "Indoor temperature beyong which windows are opened"                        annotation(dialog(group="Summer comfort"));
+    "Indoor temperature beyong which windows are opened"                        annotation(Dialog(group="Summer comfort"));
 parameter Modelica.SIunits.Temperature Tfermeture=293.15
-    "Indoor temperature beyong which windows are opened"                        annotation(dialog(group="Summer comfort"));
+    "Indoor temperature beyong which windows are opened"                        annotation(Dialog(group="Summer comfort"));
 
 parameter Modelica.SIunits.Conversions.NonSIunits.Temperature_degC deltaT=1
     "Halfband of hysteresis on the condition that indoor temperature must be higher than outdoor temperature"
-                                                                           annotation(dialog(group="Summer comfort"));
+                                                                           annotation(Dialog(group="Summer comfort"));
   Integer Hyst1 "Hysteresis on temperature";
   Integer Hyst2 "Hysteresis on temperature";
 
@@ -97,7 +97,7 @@ equation
 <p>None</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>None</p>
-<p><u><b>Known limits / Precautions for use</b></u></p>
+<p><u><b>Known limits / Use precautions</b></u></p>
 <p>None</p>
 <p><u><b>Validations</b></u></p>
 <p>Non-validated model - Vincent Magnaudeix 06/2013</p>

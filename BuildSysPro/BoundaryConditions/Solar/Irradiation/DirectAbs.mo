@@ -1,22 +1,21 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
 block DirectAbs
-  "Calcul de l'absorptivité directe d'un vitrage en fonction de l'incidence"
+  "Compute the direct solar irradiation absorbed by a glazing surface"
 extends Modelica.Blocks.Interfaces.BlockIcon;
 
-parameter Integer choix=2 "Formule utilisée" annotation(choices(
+parameter Integer choix=2 "Formula used" annotation(choices(
         choice=1 "Fauconnier",
         choice=2 "RT",
         choice=3 "Cardonnel",
-        choice=4 "Linéaire avec cosi"));
-parameter Real AbsDir
-    "Coefficient de transmission direct de la fenêtre à incidence normale";
+        choice=4 "Weighting factor of cos i"));
+parameter Real AbsDir "Direct window absorptance at normal incidence";
 
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput                                       FLUX[3]
-    "Informations de flux solaire surfacique incident 1-Flux Diffus, 2-Flux Direct 3-Cosi"
+    "Input connector for solar irradiation 1-Diffuse, 2-Direct, 3-Cos i"
     annotation (Placement(transformation(extent={{-140,-26},{-100,14}}),
         iconTransformation(extent={{-120,-6},{-100,14}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput                                       Direct
-    "Calcul du flux direct transmis par le vitrage en fonction de l'incidence"
+    "Direct irradiation absorbed in the glazing surface"
     annotation (Placement(transformation(extent={{80,-20},{120,20}}),
         iconTransformation(extent={{100,-8},{120,12}})));
 
@@ -82,18 +81,21 @@ Direct := PondAbsDir*FLUX[2];
                                  Diagram(coordinateSystem(preserveAspectRatio=true,
           extent={{-100,-100},{100,100}}), graphics),
     Documentation(info="<html>
-<p><i>Remarque : Il remplace le modèle PondTransDirect utilisé précédemment pour les vitrages</i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Relations issues de la RT2000, de Fauconnier, de Cardonnel [1983] et pondération proportionnelles au cos i.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Ce modèle permet de ressortir le flux direct en fonction du vecteur <b>FLUX</b> issu des conditions aux limites solaires.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé (Comparaison feuille excel) - Aurélie Kaemmerlen 06/2011</p>
+<html>
+<p><i><b> Compute the direct solar irradiation transmited through a glazing surface considering the incidence angle</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+
+<p><u><b>Bibliography</b></u></p>
+<p>Relations from RT2000 (french building regulation), Fauconnier, Cardonnel [1983] and proportional weighting of cos i.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>This model returns the direct irradiation according to the incident irradiation. This information is provided through the <b>FLUX</b> input connector and could be calculated by a solar preprocessing (e.g. <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.FLUXsurf\"><code>FLUXSurf</code></a> model)</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model (excel sheet comparison) - Aurélie Kaemmerlen 06/2011</b></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>

@@ -1,5 +1,5 @@
-within BuildSysPro.BoundaryConditions.Weather.Functions;
-function CalculPs
+﻿within BuildSysPro.BoundaryConditions.Weather.Functions;
+function CalculPs "Compute the saturation pressure"
   parameter Real Tmin=273.16;
   parameter Real Tmax=647.3;
   output Real ps;
@@ -33,11 +33,22 @@ algorithm
   ps:=exp(a/tk + b*log(tk) + c*tk + d);
 
   annotation (Documentation(info="<html>
+<p><i><b>Compute the water saturation pressure</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>Reference needed.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated function - 2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
-Author : EDF<br>
+Author : EDF 2010<br>
 --------------------------------------------------------------</b></p>
 </html>"));
 end CalculPs;

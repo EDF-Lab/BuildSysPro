@@ -1,11 +1,11 @@
 ﻿within BuildSysPro.Building.AirFlow.HeatTransfer;
-model AirNode "Noeud d'air à volume constant (thermique pure)"
+model AirNode "Air node"
 
-  parameter Modelica.SIunits.Volume V "volume du noeud d'air";
-  parameter Modelica.SIunits.Temperature Tair "température initiale de l'air";
+  parameter Modelica.SIunits.Volume V "Air node volume [m3]";
+  parameter Modelica.SIunits.Temperature Tair "Initial air temperature";
   constant Modelica.SIunits.SpecificHeatCapacityAtConstantVolume Cv=713
-    "capacité calorifique isochore de l'air [J/kg.K]";
-  constant Modelica.SIunits.Density rho=1.24 "masse volumique de l'air [kg/m3]";
+    "Isochoric heat capacity of air [J/kg.K]";
+  constant Modelica.SIunits.Density rho=1.24 "Air density [kg/m3]";
 
   BaseClasses.HeatTransfer.Components.HeatCapacitor VolAir(C=Cv*rho*V, T(start=
           Tair, displayUnit="degC")) annotation (Placement(transformation(
@@ -35,11 +35,24 @@ equation
           lineColor={0,0,0},
           textString="V=%V m3")}),
     Documentation(info="<html>
+<p><i><b>Air node in pure thermal modelling</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model is used to represent the thermal inertia of an air node in pure thermal modelling, meaning that no mass flow rate is considered explicitelly.</p>
+<p>This model can be used to represent a room or even multiple homogeneous thermal zone (same temperature setpoint, same boundary conditions...</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
-</html>"));
+</html>
+"));
 end AirNode;

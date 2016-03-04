@@ -8,25 +8,25 @@ model PBandHysteresisSingleMode
   Modelica.Blocks.Interfaces.RealOutput epsilon
     annotation (Placement(transformation(extent={{96,-10},{116,10}})));
 
-  parameter Real epsmin=0.3 "valeur minimale du paramètre de sortie";
-  parameter Real epsmax=1 "valeur maximale du paramètre de sortie";
+  parameter Real epsmin=0.3 "Minimum value of the output parameter";
+  parameter Real epsmax=1 "Maximum value of the output parameter";
   parameter Real Range=0.5
-    "Ecart (X-X_ref) maximal avant saturation de la sortie";
+    "Maximum difference (X-X_ref) before output saturation";
 
 protected
   Boolean preeps(start=true)
-    "Booléen qui situe la précédente valeur de epsilon: 1 si epsilon>0, 0 si epsilon=0";
+    "Boolean that characterizes the previous value of epsilon: 1 if epsilon>0, 0 if epsilon = 0";
 
 algorithm
-  if (X<X_ref-Range) then //Si X-X_ref trop négatif, espilon sature à epsmax
+  if (X<X_ref-Range) then //If X-X_ref too negative, epsilon saturates at epsmax
     epsilon:=abs(epsmax);
     preeps := true;
 
-  elseif X>X_ref+Range then     //Si X-X_ref trop positif, epsilon passe à 0"
+  elseif X>X_ref+Range then     //If X-X_ref too positive, epsilon goes to 0
     epsilon := 0;
     preeps := false;
   else
-    if preeps then       //Boucle hysteresis: Régulation linéaire si X augmente, ou à 0 si X diminue
+    if preeps then       //Hysteresis loop: Linear regulation if X increases, or at 0 if X decreases
      epsilon := min(abs(epsmax),max(abs(epsmin),abs(epsmax - (X-(X_ref-Range))*(epsmax-epsmin)/(2*Range))));
     else
       epsilon := 0;
@@ -137,17 +137,23 @@ algorithm
           color={0,0,255},
           smooth=Smooth.None)}),
     Documentation(info="<html>
-<p>Régulation propotionnel à Hysteresis</p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Le modèle renvoit une valeur entre 0 et 1 à partir d'une valeur X et d'une consigne X_ref. </p>
-<p>La régulation est de type proportionnel, avec une boucle hysteresis:</p>
+<p>Regulation proportional to hysteresis</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The model returns a value between 0 and 1 from a value X and a setpoint X_ref.></p>
+<p>The regulation is proportional, with a hysteresis loop:</p>
 <ol>
-<li>Si X-X_ref&LT; - Range, epsilon = epsmax</li>
-<li>Si X-X_ref &GT; Range, epsilon = 0</li>
-<li>Si X est dans l'intervalle [X_ref-Range;X_ref+Range], régulation proportionnelle ou epsilon = 0 selon le point d'entrée dans la zone proportionnelle.</li>
+<li>If X-X_ref &LT; - Range, epsilon = epsmax</li>
+<li>If X-X_ref &GT; Range, epsilon = 0</li>
+<li>If X belongs to [X_ref-Range; X_ref+Range], proportional regulation or epsilon = 0 according to the entry point in the proportional band.</li>
 </ol>
-<p><br><u><b>Mode d'emploi</b></u></p>
-<p>Il faut renseigner la largeur de la bande proportionnelle (Range), ainsi que les valeurs minimale et maximale de epsilon, qui détermineront la pente de la loi proportionnelle.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>The width of proportional band (Range) must be defined, as well as minimum and maximum values of epsilon, which will determine the slope of the proportional law.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Frédéric Gastiger, Sila Filfli 2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

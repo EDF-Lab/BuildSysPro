@@ -83,7 +83,7 @@ annotation(interactive=true,
 <p><br>After the successful parameterization of the function, click on <i>Execute </i>in the bottom right of the dialog window. The simulation is performed and variables are saved in the specified CSV file.</p>
 <p><br>This function normally performs a simulation without recording events (<i>saveEvents </i>variable set to <i>false</i> by default), corresponding to the <i>store variables</i> <i>at events </i>box<i> </i>shakeout<i> </i>in the <i>Output </i>tab of the <i>Setup </i>menu (see figure below).</p>
 <p><br><img src=\"modelica://BuildSysPro/Resources/Images/Simulation2CSV/StoreVariableAtEvents.png\"/></p>
-<p><br><u><b>Known limits / Precautions for use</b></u></p>
+<p><br><u><b>Known limits / Use precautions</b></u></p>
 <p>Warnings, parameters of type String are not changeable by this function. It is a limit from Dymola.</p>
 <p>It happened that Dymola crashes during the model variables selection. This error appears due to the annotation <i>importDsin</i> that must be incorporated in the record <i>Variables </i>and not at the top level in the record <a href=\"modelica://BuildSysPro.Utilities.Records.SimpleStudySetup\">SimpleStudySetup</a>.</p>
 <p><u><b>Validations</b></u></p>

@@ -1,10 +1,10 @@
 ﻿within BuildSysPro.BoundaryConditions.Weather.Functions;
 function CalculTsky_withoutRH
-  "fonction calculant la température de ciel sans connaître l'humidité relative"
-  input Modelica.SIunits.Time t "temps";
-  input Real T_seche "température extérieure [K]";
-  input Real G[10] "flux solaire";
-  output Real T_ciel "température de ciel [K]";
+  "Compute the sky temperature not knowing the relative humidity"
+  input Modelica.SIunits.Time t "Time";
+  input Real T_seche "Dry bulb temperature [K]";
+  input Real G[10] "Solar information vector";
+  output Real T_ciel "Sky tempereture [K]";
 
 protected
   constant Real d2r=Modelica.Constants.pi/180;
@@ -22,20 +22,20 @@ algorithm
   T_ciel:=-29-19.9*Kt+1.09*T_seche;
 
   annotation (Documentation(info="<html>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Cette fonction permet de calculer la température de ciel à partir du clearness index Kt et de la température sèche.</p>
+<p><i><b>This function returns the sky temperature from the clearness index Kt and the dry bulb temperature.</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This function returns the sky temperature based on the following equation:</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/equations/Tciel_sansHR.png\" alt=\"T_ciel=-29-19.9*K_t+1.09*T_seche\"/></p>
-<p>avec </p>
-<p>Kt défini comme le rapport entre le global horizontal reçu au sol et le global horizontal reçu hors atmosphère.</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Longwave sky radiation parameterizations , M. Aubinet, Solar Energy n&deg;53 (version 2) pp. 147-154, 1994 </p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Cette estimation de la température de ciel est moins précise que celle obtenue avec CalculTciel_avecHR.</p>
-<p>Bien entendu, il existe d'autres corrélations permettant de calculer la température de ciel.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 03/2014</p>
+<p>with Kt defined as the ratio between the global horizontal received to the ground and the global horizontal received outside atmosphere.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>Longwave sky radiation parameterizations ,  M. Aubinet, Solar Energy n&deg;53 (version 2) pp. 147-154, 1994 </p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Precautions for use</b></u></p>
+<p>This sky temperature estimation is less precise than the one obtained with <a href=\"modelica://BuildSysPro.BoundaryConditions.Weather.Functions.CalculTsky_withRH\">CalculTsky_withRH model</a>.</p>
+<p>Of course, there are other correlations to calculate the sky temperature.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 03/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
 model Material "Materiau discrétisé en couches d'égales épaisseurs"
   parameter BuildSysPro.Utilities.Records.GenericSolid mat "Matériau"
-    annotation (__Dymola_choicesAllMatching=true);
+    annotation (choicesAllMatching=true);
   parameter Integer m=3 "Nombre de couches dans le matériau";
   parameter Modelica.SIunits.Length e=0.20 "Epasseur en m";
   parameter Modelica.SIunits.Area S=1 "Surface en m²";

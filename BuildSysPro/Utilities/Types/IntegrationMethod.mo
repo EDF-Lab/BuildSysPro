@@ -16,7 +16,7 @@ type IntegrationMethod = enumeration(
     Cerk23 "Cerk23",
     Cerk34 "Cerk34",
     Cerk45 "Cerk45",
-    Cvode "Cvode") annotation(__Dymola_choicesAllMatching=true,
+    Cvode "Cvode") annotation(choicesAllMatching=true,
       Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>

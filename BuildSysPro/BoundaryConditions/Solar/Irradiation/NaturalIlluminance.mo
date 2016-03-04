@@ -1,31 +1,32 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
-model NaturalIlluminance "Eclairement naturel transmis à une zone thermique"
+model NaturalIlluminance "Natural illuminance transmitted to a zone"
 
-parameter Real S_gr=100 "Surface totale du groupe (m²)";
+parameter Real S_gr=100 "Total surface of the group (m²)";
 parameter Real Aecl_nat=80
-    "Surface du groupe ayant accès à la lumière naturelle (m²)";
+    "Surface of the group with access to natural light (m²)";
 protected
 Real R_gr=4.5
-    "Ratio de la surface totale des parois du groupe à la surface utile";
+    "Ratio of the total surface of the group's walls to the living surface";
+
 Real Flt1
-    "Flux lumineux transmis au groupe par l'ensemble des baies vitrées du groupe sous forme directe (lumen)";
+    "Transmitted illuminance to the group by all the group windows in direct form [lumen]";
 Real Flt2
-    "Flux lumineux transmis au groupe par l'ensemble des baies vitrées du groupe sous forme hémisférique (lumen)";
+    "Transmitted illuminance to the group by all the group windows in hemispherical form [lumen]";
 Real Flt3
-    "Flux lumineux transmis au groupe par l'ensemble des baies vitrées du groupe sous forme demi-hémisphérique (lumen)";
+    "Transmitted illuminance to the group by all the group windows in half-hemispherical form [lumen]";
 Real Flteq
-    "Flux lumineux équivalent pénétrant dans les parties du groupe ayant accès à la lumière (lumen)";
+    "Equivalent illuminance entering the group parts having access to light [lumen]";
 Real C2;
 public
-parameter Real PinstEcl=1.4 "Puissance d'éclairage conventionnelle (W/m²)";
+parameter Real PinstEcl=1.4 "Conventional power lighting [W/m²]";
 parameter Real C1=0.9
-    "Taux d'utilisation de l'éclairage en absence d'éclairage naturel";
-    parameter Real EclNatRef=200
-    "Eclairement naturel de référence pour le local considéré";
+    "Lighting utilization rates in the absence of natural lighting";
+    parameter Real EclNatRef=200 "Reference natural illuminance for the room";
+
 parameter Real C2ref=0.05;
 
   Modelica.Blocks.Interfaces.RealInput FlumPlafond[3]
-    "Flux lumineux incident venant du plafond -direct -diffus -réfléchi (lumen)"
+    "Incident illuminance coming from the ceiling -direct -diffuse -reflected [lumen]"
     annotation (Placement(transformation(extent={{19,-19},{-19,19}},
         rotation=180,
         origin={-99,67}),
@@ -33,7 +34,7 @@ parameter Real C2ref=0.05;
         rotation=180,
         origin={-90,70})));
   Modelica.Blocks.Interfaces.RealInput FlumSud[3]
-    "Flux lumineux incident de la fenêtre Sud -direct -diffus -réfléchi (lumen)"
+    "Incident illuminance coming from the South facing window -direct -diffuse -reflected [lumen]"
     annotation (Placement(transformation(extent={{19,-19},{-19,19}},
         rotation=180,
         origin={-99,3}),
@@ -41,7 +42,7 @@ parameter Real C2ref=0.05;
         rotation=180,
         origin={-90,-2})));
   Modelica.Blocks.Interfaces.RealInput FlumNord[3]
-    "Flux lumineux incident de la fenêtre Nord -direct -diffus -réfléchi (lumen)"
+    "Incident illuminance coming from the North facing window -direct -diffuse -reflected [lumen]"
     annotation (Placement(transformation(extent={{19,-19},{-19,19}},
         rotation=180,
         origin={-99,35}),
@@ -49,7 +50,7 @@ parameter Real C2ref=0.05;
         rotation=180,
         origin={-90,34})));
   Modelica.Blocks.Interfaces.RealInput FlumOuest[3]
-    "Flux lumineux incident de la fenêtre Ouest -direct -diffus -réfléchi (lumen)"
+    "Incident illuminance coming from the West facing window -direct -diffuse -reflected [lumen]"
     annotation (Placement(transformation(extent={{19,-19},{-19,19}},
         rotation=180,
         origin={-99,-63}),
@@ -57,7 +58,7 @@ parameter Real C2ref=0.05;
         rotation=180,
         origin={-90,-72})));
   Modelica.Blocks.Interfaces.RealInput FlumEst[3]
-    "Flux lumineux incident de la fenêtre Est -direct -diffus -réfléchi (lumen)"
+    "Incident illuminance coming from the East facing window -direct -diffuse -reflected [lumen]"
     annotation (Placement(transformation(extent={{19,-19},{-19,19}},
         rotation=180,
         origin={-99,-29}),
@@ -65,15 +66,14 @@ parameter Real C2ref=0.05;
         rotation=180,
         origin={-90,-38})));
   Modelica.Blocks.Interfaces.RealOutput EclNat
-    "Eclairement naturel global transmis au groupe (lux)"
+    "Global natural illuminance transmitted to the group [lux]"
                                                     annotation (Placement(
         transformation(extent={{60,-39},{94,-5}}), iconTransformation(extent={{
             97,11},{123,37}})));
-  Modelica.Blocks.Interfaces.RealOutput Pecl
-    "Puissance d'éclairage à fournir (W)"
+  Modelica.Blocks.Interfaces.RealOutput Pecl "Power lighting to supply [W]"
     annotation (Placement(transformation(extent={{60,7},{94,41}}),
         iconTransformation(extent={{97,-39},{123,-13}})));
-  Modelica.Blocks.Interfaces.RealInput Occupation "Présence 1, absence 0"
+  Modelica.Blocks.Interfaces.RealInput Occupation "1 = presence, 0 = absence"
     annotation (Placement(transformation(extent={{19,-19},{-19,19}},
         rotation=90,
         origin={-29,89}),
@@ -81,7 +81,7 @@ parameter Real C2ref=0.05;
         rotation=90,
         origin={-30,100})));
   Modelica.Blocks.Interfaces.RealInput ConsigneEclairage
-    "Consigne d'éclairage (1=fonctionnement, 0=arrêt)"
+    "Use of artificial lighting (1 = Yes, 0 = No)"
     annotation (Placement(transformation(extent={{19,-19},{-19,19}},
         rotation=90,
         origin={19,89}),
@@ -153,22 +153,22 @@ equation
           smooth=Smooth.None,
           thickness=0.5)}),
               Documentation(info="<html>
-<p>Modèle de calcul de l'éclairement naturel transmis à une zone thermique</p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>A partir des flux incidents sur chaque baie, on détermine les flux lumineux transmis sous forme directe, hémisphérique et demi-hémisphérique.</p>
-<p>On en déduit ainsi le flux lumineux équivalent transmis à la zone et l'éclairement naturel global transmis à la zone.</p>
-<p>Grâce à un seuil d'autonomie lumineuse, on arrive à déterminer la puissance en éclairage à fournir à chaque instant. </p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Méthode Th-BCE RT 2012</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b> </u></p>
-<p>Néant</p>
-<p><br><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Laura Sudries 05/2014</p>
+<p><i><b>Natural illuminance transmitted to a zone and artificial lighting demand</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>From incident illuminance from each bay window, the luminous flux transmitted in direct, hemispherical and semi-hemispherical form are determined.
+Thus the equivalent luminous flux transmitted to the zone and the global natural lighting transmitted to the zone are deduced.</p>
+<p>With a threshold of luminous autonomy, it's possible to determine the artifical lighting demand.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>Method Th-BCE RT 2012</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Laura Sudries 05/2014</b></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Laura SUDRIES, Vincent MAGNAUDEIX, EDF (2014)<br>
 --------------------------------------------------------------</b></p>

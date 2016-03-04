@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.Systems.HVAC.Emission.ElectricHeater;
-model JouleHeatingPIControlled "Convecteur électrique avec régulation PI"
+model JouleHeatingPIControlled "Electric convector with PI control"
 
-parameter Modelica.SIunits.Power Pnom=1500 "Puissance nominale du convecteur" annotation(choices(
+parameter Modelica.SIunits.Power Pnom=1500 "Nominal power of the convector" annotation(choices(
 choice=250 "250W",
 choice=500 "500W",
 choice=750 "750W",
@@ -32,9 +32,9 @@ protected
         origin={60,0})));
 
 public
- Modelica.Blocks.Interfaces.RealInput Tcons "Température de consigne"
+ Modelica.Blocks.Interfaces.RealInput Tcons "Setpoint temperature"
     annotation (Placement(transformation(extent={{-120,10},{-100,30}})));
-  Modelica.Blocks.Interfaces.RealInput Tint "Mesure température intérieure"
+  Modelica.Blocks.Interfaces.RealInput Tint "Indoor temperature measure"
     annotation (Placement(transformation(extent={{-120,-30},{-100,-10}})));
 
   Modelica.Blocks.Interfaces.RealOutput Pelec
@@ -72,23 +72,22 @@ equation
     experiment(StopTime=0.1, NumberOfIntervals=450),
     __Dymola_experimentSetupOutput,
     Documentation(info="<html>
-<p><i><b>Convecteur électrique avec régulation PI</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
+<p><u><b>Hypothesis and equations</b></u></p>
 <ul>
-<li>Régulation PI avec Gain = 1 et Temps Intégration = 900 s.</li>
-<li>Mise en chauffe de l'appareil prise en compte via un filtre 1er ordre de 60s.</li>
+<li>PI control with Gain = 1 and Integration time = 900 s.</li>
+<li>Unit heating considered via a 1st order filter of 60s.</li>
 </ul>
-<p><u><b>Bibliographie</b></u></p>
-<p>Néant.</p>
-<p><u><b>Mode d'emploi</b></u></p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
 <ul>
-<li>La température de consigne et la température mesurée doivent avoir la même unité : &deg;C ou K.</li>
-<li>La puissance à injecter dans le bâtiment est Pelec.</li>
+<li>Setpoint temperature and measured temperature must be with the same unit: °C or K</a></li>
+<li>The power to be injected into the building is Pelec.</a></li>
 </ul>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Néant.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé dans ses conditions de fonctionnement par défaut - Bernard Clémençon 06/2012.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Model validated in its default operating conditions - Bernard Clémençon 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

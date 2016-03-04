@@ -1,5 +1,6 @@
 ﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Examples;
-model DynamicTestLightedWall "Calcul du flux traversant une paroi éclairée"
+model DynamicTestLightedWall
+  "Computation of the heat flow passing through a wall"
 extends Modelica.Icons.Example;
   Wall MurSud(
     S=30.75,
@@ -49,6 +50,16 @@ equation
 <p>Gilles Plessis 03/2013 : Modification de la consigne de 20K à 20&deg;C et des paramètres de simulation : simulation sur 1 semaine avec pas de temps de 600s.</p>
 </html>",
         info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

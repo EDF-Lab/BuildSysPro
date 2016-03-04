@@ -15,17 +15,17 @@ model Radiator_EN442 "Radiator model based on the EN442 standard"
         "Radiateur en panneau acier (inertie légèrement inférieure à l'aluminium)"));*/
 
     parameter Boolean useInertia=false "Steady state modelling of dynamics"
-  annotation(dialog(group="Options",compact=true),choices(choice=false
+  annotation(Dialog(group="Options",compact=true),choices(choice=false
         "Steady state",                                                               choice=true "Dynamic",
                                                                                   radioButtons=true));
     replaceable package Medium =
       Modelica.Media.Interfaces.PartialSimpleMedium                          annotation (choicesAllMatching=true);
 
-  parameter SI.Mass MediumMass "Mass of water" annotation(dialog(tab="Dynamic"));
-  parameter SI.Mass BodyMass "Radiator mass" annotation(dialog(tab="Dynamic"));
+  parameter SI.Mass MediumMass "Mass of water" annotation(Dialog(tab="Dynamic"));
+  parameter SI.Mass BodyMass "Radiator mass" annotation(Dialog(tab="Dynamic"));
   parameter SI.SpecificHeatCapacity cpBody=500
     "Specific heat capacity of the radiator body (ex. 500J/kg/K for cast iron)"
-                                                                                annotation(dialog(tab="Dynamic"));
+                                                                                annotation(Dialog(tab="Dynamic"));
 
     // Variables
 
@@ -169,31 +169,31 @@ assert((EntreeEau[1]-Conv.T)/(SortieEau[1]-Conv.T)<3,"Arithmetic mean temperatur
           lineColor={0,0,0})}),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     Documentation(info="<html>
-<p><i><b><span style=\"font-family: MS Shell Dlg 2;\">Simple hot water radiator model for central heating system</span></b></i></p>
-<p><u><b><span style=\"font-family: MS Shell Dlg 2;\">Hypothesis and equations</span></b></u></p>
-<p><br><span style=\"font-family: MS Shell Dlg 2;\">This model is based on the characteristic equation (Qflow=Km DT<sup>N</sup>) described in the EN442 standard.</span></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">Depending on the model </span><code>options</code><span style=\"font-family: MS Shell Dlg 2;\">, DT could be considered as followed:</span></p>
+<p><i><b>Simple hot water radiator model for central heating system</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model is based on the characteristic equation (Qflow=Km DT<sup>N</sup>) described in the EN442 standard.</p>
+<p>Depending on the model <code>options</code>, DT could be considered as followed:</p>
 <ul>
 <li>DT= T_HWR - Troom where Troom = Trad+Tconv/2 if <code>radEqua</code>=<code>BuildSysPro.BaseClasses.HeatTransfer.Components.BasedCharacteristicEquation1</code></li>
-<li><span style=\"font-family: MS Shell Dlg 2;\">or 2 characteristic equations could be considered for radiative and convective heat transfers respectively : DTrad= T_HWR - Trad and DTconv= T_HWR - Tconv if </span><code>radEqua=BuildSysPro.BaseClasses.HeatTransfer.Components.BasedCharacteristicEquation2</code></li>
+<li>or 2 characteristic equations could be considered for radiative and convective heat transfers respectively : DTrad= T_HWR - Trad and DTconv= T_HWR - Tconv if <code>radEqua=BuildSysPro.BaseClasses.HeatTransfer.Components.BasedCharacteristicEquation2</code></li>
 </ul>
-<p>Otherwise the model use<span style=\"font-family: MS Shell Dlg 2;\"> common equations for energy balance and continuity equation (no mass accumulation).</span></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">Depending on the option </span><code>useInertia</code><span style=\"font-family: MS Shell Dlg 2;\">, steady state or dynamic behaviour are computed. For dynamic computation, the energy balanced is calculated as :</span></p>
+<p>Otherwise the model use common equations for energy balance and continuity equation (no mass accumulation).</p>
+<p>Depending on the option <code>useInertia</code>, steady state or dynamic behaviour are computed. For dynamic computation, the energy balanced is calculated as :</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/equation-dLvjxgIW.png\"/></p>
-<p><br><span style=\"font-family: MS Shell Dlg 2;\">This model does not considered a discretization along the fluid path.</span></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">This model relies also on an arithmetic mean temperature difference (AMTD), different from the theorical logarithmic mean temperature difference (LMTD) and should be used when the following condition is fulfilled :</span></p>
+<p>This model does not considered a discretization along the fluid path.</p>
+<p>This model relies also on an arithmetic mean temperature difference (AMTD), different from the theorical logarithmic mean temperature difference (LMTD) and should be used when the following condition is fulfilled :</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/equation-XCBkvCZD.png\"/></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">Otherwise using AMTD leads to a deviation exceeding 10&percnt;.</span></p>
-<p><u><b><span style=\"font-family: MS Shell Dlg 2;\">Bibliography</span></b></u></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">This model was implemented following the EN442 standard and considering a single element.</span></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">Nilsson, P.E. and The Commtech Group, 2003. Achieving the Desired Indoor Climate: Energy Efficiency Aspects of System Design. Studentlitteratur AB.</span></p>
-<p><br><u><b><span style=\"font-family: MS Shell Dlg 2;\">Instructions for use</span></b></u></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">Connect the model to a distribution network through the </span><span style=\"font-family: David;\">EntreeEau </span>and <code>SortieEau </code><span style=\"font-family: MS Shell Dlg 2;\">connectors.</span></p>
+<p>Otherwise using AMTD leads to a deviation exceeding 10&percnt;.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>This model was implemented following the EN442 standard and considering a single element.</p>
+<p>Nilsson, P.E. and The Commtech Group, 2003. Achieving the Desired Indoor Climate: Energy Efficiency Aspects of System Design. Studentlitteratur AB.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Connect the model to a distribution network through the <span style=\"font-family: David;\">EntreeEau and <code>SortieEau </code>connectors.</p>
 <p>Connect also the model to a thermal ambiance through the <code>Conv </code>and <code>Rad </code>heatports respectively for convective heat transfers and long wave radiation.</p>
-<p><u><b><span style=\"font-family: MS Shell Dlg 2;\">Known limits / Use precautions</span></b></u></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">The model is not discretized along the fluid path therefore in Dynamic mode, nominal operating conditions do not lead to the nominal heating power.</span></p>
-<p><u><b><span style=\"font-family: MS Shell Dlg 2;\">Validations</span></b></u></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">Simple validation based on operating point - Gilles PLESSIS 01/2016</span> </p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>The model is not discretized along the fluid path therefore in Dynamic mode, nominal operating conditions do not lead to the nominal heating power.</p>
+<p><u><b>Validations</b></u></p>
+<p>Simple validation based on operating point - Gilles PLESSIS 01/2016 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

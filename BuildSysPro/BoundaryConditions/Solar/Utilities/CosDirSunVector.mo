@@ -1,12 +1,12 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Utilities;
-function CosDirSunVector "Cosinus directeurs du vecteur solaire"
-  input Real t0=0 "Temps en secondes à t=0";
-  input Modelica.SIunits.Time t "Temps universel en secondes";
+function CosDirSunVector "Sun's direction cosines"
+  input Real t0=0 "Time in seconds at t=0";
+  input Modelica.SIunits.Time t "Universal time in seconds";
   input Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitude
-    "Longitude en degrés";
+    "Longitude in degrees";
   input Modelica.SIunits.Conversions.NonSIunits.Angle_deg latitude
-    "Latitude en degrés";
-  output Real CosDir[3] "Cosinus de l'angle d'incidence";
+    "Latitude in degrees";
+  output Real CosDir[3] "Sun's direction cosine";
 protected
   constant Real pi=Modelica.Constants.pi;
   constant Real d2r=pi/180;
@@ -16,46 +16,48 @@ protected
   Real wd1=w*d;
   Real wd2=2*wd1;
   Real wd3=3*wd1;
-  // Déclinaison du Soleil en radians
+  // Sun declination in radians
   Real delta= (0.302 - 22.93*cos(wd1) - 0.229*cos(wd2) - 0.243*cos(wd3)
                 + 3.851*sin(wd1) + 0.002*sin(wd2) - 0.055*sin(wd3))*d2r;
-  // Equation du temps en heures
+  // Equation of time in hours
   Real ET = 0.128*sin(w*(d-2)) + 0.164*sin(2*w*(d+10));
-  // TempsSolaire Vrai en heures
+  // Real solar time in radians
   Real TSV= (t+t0)/3600+longitude/15-ET;
-  // Angle horaire
+  // Hour angle
   Real AH= (TSV-12)*pi/12;
-  // Latitude en radians
+  // Latitude in radians
   Real phi=latitude*d2r;
 algorithm
   CosDir[1]:=sin(phi)*sin(delta)+cos(phi)*cos(delta)*cos(AH) "=CosV=SinH";
   CosDir[2]:=cos(delta)*sin(AH) "=CosW";
   CosDir[3]:=cos(delta)*sin(phi)*cos(AH)-sin(delta)*cos(phi) "=CosS";
   annotation (Documentation(info="<html>
-<p>Fonction calculant le cosinus directeur du Soleil à (t0+t) en fonction de la longitude et la latitude. </p>
-<p>L'année est supposée non bisextile.</p>
-<p>t : Instant de calcul en secondes.</p>
-<p>t0 : temps en secondes écoulé depuis le premier janvier à t=0s de la simulation.</p>
-<p>En sortie, le Cosinus directeur du Soleil est un vecteur CosDir[3].</p>
-<p>_________</p>
-<p><u><b>Hypothèses et équations</b></u> </p>
-<p>CosDir[1]=sin(phi)*sin(delta)+cos(phi)*cos(delta)*cos(AH) (=sinh)</p>
-<p>CosDir[2]=cos(delta)*sin(AH)</p>
-<p>CosDir[3]=cos(delta)*sin(phi)*cos(AH)-sin(delta)*cos(phi)</p>
-<p>phi : latitude convertie en radians</p>
-<p>delta : déclinaison du Soleil en radians</p>
-<p>AH : angle horaire en radians </p>
-<p><u><b>Bibliographie</b></u></p>
-<p>[1] : H. BOUIA, &QUOT;Amélioration du temps de calcul dans BuildSysPro par traitements numériques optimisés de la conduction et des calculs solaires&QUOT;, Note H-E14-2013-00715-FR, 03/2013. </p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Fonction validée - Hassan BOUIA 03/2013. </p>
+<p><i><b>Function computing the sun's direction cosines at (t0 + t) depending on longitude and latitude</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The function returns the direction cosine of solar beam as a vector <b>CosDir[3] </b></p>
+<ul>
+<li>CosDir[1]=sin(phi)*sin(delta)+cos(phi)*cos(delta)*cos(HA) (=sinh)</li>
+<li>CosDir[2]=cos(delta)*sin(HA)</li>
+<li>CosDir[3]=cos(delta)*sin(phi)*cos(HA)-sin(delta)*cos(phi)</li>
+</ul>
+<p>Where:</p>
+<ul>
+<li>phi : latitude converted in radians</li>
+<li>delta : Sun's declination in radians</li>
+<li>HA : hour angle in radians</li>
+</ul>
+<p>The year is supposed to be not bisextile.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>H. BOUIA, \"Amélioration du temps de calcul dans BuildSysPro par traitements numériques optimisés de la conduction et des calculs solaires\", Note H-E14-2013-00715-FR, 03/2013. </p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated function - Hassan BOUIA 03/2013. </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>

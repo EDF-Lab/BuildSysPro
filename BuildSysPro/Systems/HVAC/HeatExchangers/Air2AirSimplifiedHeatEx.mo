@@ -3,27 +3,26 @@ model Air2AirSimplifiedHeatEx
 
 extends BuildSysPro.BaseClasses.HeatTransfer.Interfaces.Element1D;
 
-// Paramètres de commande
-parameter Boolean use_Qv_in=false "Débit volumique commandé"
-annotation(Evaluate=true,HideResult=true,Dialog(group="Commande"),
-choices(choice=true "oui", choice=false "non (constant)", radioButtons=true));
-parameter Boolean use_Efficacite_in=false "Efficacité commandée"
-annotation(Evaluate=true,HideResult=true,Dialog(group="Commande"),
-choices(choice=true "oui", choice=false "non (constant)", radioButtons=true));
-parameter Real Qv=0 "Débit de ventilation constant [m3/h]"
-    annotation(Dialog(group="Commande",enable=not use_Qv_in));
-parameter Real Efficacite=0.5 "Efficacité de l'échangeur constante [0-1]"
-    annotation(Dialog(group="Commande",enable=not use_Efficacite_in));
+// Control parameters
+parameter Boolean use_Qv_in=false "Volume flow controlled"
+annotation(Evaluate=true,HideResult=true,Dialog(group="Control"),
+choices(choice=true "yes", choice=false "no (constant)", radioButtons=true));
+parameter Boolean use_Efficacite_in=false "Efficiency controlled"
+annotation(Evaluate=true,HideResult=true,Dialog(group="Control"),
+choices(choice=true "yes", choice=false "no (constant)", radioButtons=true));
+parameter Real Qv=0 "Constant ventilation rate [m3/h]"
+    annotation(Dialog(group="Control",enable=not use_Qv_in));
+parameter Real Efficacite=0.5 "Constant exchanger efficiency [0-1]"
+    annotation(Dialog(group="Control",enable=not use_Efficacite_in));
 
-// Propriétés de l'air
-parameter Modelica.SIunits.Density rho=1.24 "densité de l'air"
-                                                               annotation(Dialog(group="Propriétés de l'air"));
-parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005 "Cp de l'air"
-                                                                     annotation(Dialog(group="Propriétés de l'air"));
+// Air properties
+parameter Modelica.SIunits.Density rho=1.24 "Air density" annotation(Dialog(group="Air properties"));
+parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005
+    "Specific heat capacity of air"                                                    annotation(Dialog(group="Air properties"));
 
-// Connecteurs publics
+// Public connectors
   Modelica.Blocks.Interfaces.RealInput Qv_in if use_Qv_in
-    "Scénario du débit de ventilation commandé [m3/h]"
+    "Scenario of controlled ventilation rate [m3/h]"
                                      annotation (Placement(
         transformation(extent={{-20,-20},{20,20}},
         rotation=270,
@@ -32,7 +31,7 @@ parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005 "Cp de l'air"
         rotation=-90,
         origin={48,28})));
 Modelica.Blocks.Interfaces.RealInput Efficacite_in if use_Efficacite_in
-    "Scénario de l'efficacité du double flux [0-1]"
+    "Scenario of double flow efficiency [0-1]"
                                      annotation (Placement(
         transformation(extent={{-20,-20},{20,20}},
         rotation=270,
@@ -41,14 +40,14 @@ Modelica.Blocks.Interfaces.RealInput Efficacite_in if use_Efficacite_in
         rotation=-90,
         origin={-54,28})));
 
-Modelica.SIunits.Temperature Tentree "Température d'entrée de l'échangeur";
+Modelica.SIunits.Temperature Tentree "Inlet temperature of the exchanger";
 
-// Connecteurs internes
+// Internal connectors
 protected
   Modelica.Blocks.Interfaces.RealInput Qv_in_internal
-    "Connecteur interne requis dans le cas de connection conditionnelle";
+    "Internal connector required in the case of conditional connection";
 Modelica.Blocks.Interfaces.RealInput Efficacite_in_internal
-    "Connecteur interne requis dans le cas de connection conditionnelle";
+    "Internal connector required in the case of conditional connection";
 
 equation
   connect(Qv_in, Qv_in_internal);
@@ -66,16 +65,18 @@ equation
 
   annotation (
 Documentation(info="<html>
-<h4>Modèle d'échangeur simplifié en thermique pure considérant une efficacité d'échangeur et un débit de ventilation</h4>
-<p>La valeur du débit volumique peut être commandée ou fixe durant toute la simulation de même que l'efficacité de l'échangeur.</p>
-<p><i>Remarque : modification d'un ancien modèle d'échangeur dont le débit était donné en vol/h au lieu des m3/h de ce modèle.</i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p><u><b>Bibliographie</b></u></p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Le port_a est à connecter à la température extérieure et le port_b à l'intérieur</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Lou Chesne 10/2011 - Aurélie Kaemmerlen 10/2012</p>
+<p><b>Simplified model of an exchanger in pure thermal modelling considering exchanger efficiency and a ventilation rate</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The value of the volume flow can be controlled or fixed throughout the simulation as well as the exchanger efficiency.</p>
+<p>Note: modification of a former exchanger model whose rate was given in vol/h instead of m3/h like in this model.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>The port_a is to be connected to the outdoor temperature and the port_b to inside.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Lou Chesne 10/2011, Aurélie Kaemmerlen 10/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

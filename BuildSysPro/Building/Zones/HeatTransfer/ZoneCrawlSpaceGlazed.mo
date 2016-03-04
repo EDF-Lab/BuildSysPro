@@ -1,30 +1,30 @@
 ﻿within BuildSysPro.Building.Zones.HeatTransfer;
 model ZoneCrawlSpaceGlazed
-  "Modèle de zone sur vide sanitaire en thermique pure."
+  "Model of zone on crawl space with glazing, in pure thermal modelling"
 
 extends ZoneCrawlSpace(   pintDistribRad(nf=4, Sf={S1v,S2v,S3v,S4v}));
 
-parameter Boolean ensoleillement=true "Prise en compte des flux solaires";
+parameter Boolean ensoleillement=true "Consideration of solar fluxes";
 
-//Fenêtres//
-parameter Modelica.SIunits.Area S1v=1 "Surface vitrée de la paroi Sud"  annotation(Dialog(tab="Fenêtres"));
-parameter Modelica.SIunits.Area S2v=1 "Surface vitrée de la paroi Ouest"  annotation(Dialog(tab="Fenêtres"));
-parameter Modelica.SIunits.Area S3v=1 "Surface vitrée de la paroi Nord" annotation(Dialog(tab="Fenêtres"));
-parameter Modelica.SIunits.Area S4v=1 "Surface vitrée de la paroi Est" annotation(Dialog(tab="Fenêtres"));
+//Windows//
+parameter Modelica.SIunits.Area S1v=1 "South wall glazed surface"  annotation(Dialog(tab="Windows"));
+parameter Modelica.SIunits.Area S2v=1 "West wall glazed surface"  annotation(Dialog(tab="Windows"));
+parameter Modelica.SIunits.Area S3v=1 "North wall glazed surface" annotation(Dialog(tab="Windows"));
+parameter Modelica.SIunits.Area S4v=1 "East wall glazed surface" annotation(Dialog(tab="Windows"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer U
-    "Conductivité thermique des vitrages"                                                    annotation(Dialog(tab="Fenêtres"));
-parameter Real tau "Coefficient de transmission des vitrages" annotation(Dialog(tab="Fenêtres"));
+    "Glazings thermal conductivity"                                                    annotation(Dialog(tab="Windows"));
+parameter Real tau "Glazings transmission coefficient" annotation(Dialog(tab="Windows"));
 parameter Real AbsFen=0.1
-    "Coefficient d'absorption en direct et diffus de la fenêtre" annotation(Dialog(tab="Fenêtres"));
+    "Direct and diffuse absorption coefficient of windows" annotation(Dialog(tab="Windows"));
 
-// Pour ce modèle pas de distinction diffus/direct
+// No distinction diffuse/direct for this model
 protected
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hefen=21
-    "Coefficient d'échange extérieur des fenêtres";
+    "Outdoor exchange coefficient of windows";
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hifen=8.29
-    "Coefficient d'échange intérieur des fenêtres";
+    "Indoor exchange coefficient of windows";
 parameter Modelica.SIunits.CoefficientOfHeatTransfer k=1/(1/U-1/hefen-1/hifen)
-    "Coefficient de transmission surfacique des vitrages - sans convection int/ext";
+    "Windows surface transmission coefficient - without int/ext convection";
 
 protected
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window FenSud(
@@ -218,23 +218,25 @@ equation
       thickness=0.5,
       smooth=Smooth.None));
 annotation (Documentation(info="<html>
-<h4>Modèle de zone parallèpipèdique sur vide sanitaire avec vitrages modélisé en thermique pure.</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Modèle de bâtiment parallélépipédique monozone sur vide sanitaire vitré, à connecter à un modèle de conditions limites(port thermique de gauche) et realOutput de gauche pour les flux solaires. Par défaut les murs sont orientés selon les quatres points cardinaux; la modification de l'orientation est représentée par le paramètre beta. Le port thermique de droite est connecté au volume intérieur (capacité thermique). Les températures extérieures auxquelles sont soumis le plancher et le plafond sont pondérées par un coefficient b. Pour considérer le rayonnement des parois en grande longueur d'onde, les coefficients d'échange h doivent être des <b>coefficients d'échange globaux</b>. </p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Néant.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Ce modèle de bâtiment monozone est à connecter à un modèle de conditions limites météo sur la gauche (Température extérieure, données relatives à l'ensoleillement). Le port thermique de droite est connecté au volume intérieur (capacité thermique) et peut, si désiré, être relié à tout modèle utilisant un port thermique (apports internes...).</p>
-<p>Le paramètrage des parois se fait par l'intermédiaire du paramètre caracParoi, cependant on peut toujours paramétrer les parois couche par couche sans créer de type de paroi. </p>
+<p><b>Model of parallelepiped glazed zone on crawl space, in pure thermal modelling</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Parallelepiped single-zone building on crawl space with glazing model, to be connected to a boundary conditions model (left thermal port) and a left realOutput for solar fluxes. By default walls are oriented in the four cardinal points; the orientation modification is represented by the parameter beta. The right thermal port is connected to the inner volume (heat capacity). Floor and ceiling are subject to outside temperatures which are weighted by a coefficient b.</p>
+<p>This model inherits from <a href=\"modelica://BuildSysPro.Building.Zones.HeatTransfer.ZoneCrawlSpace\"><code>ZoneCrawlSpace</code></a> and superimposes on it glazings.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>This single zone building model is to be connected to a weather boundary conditions model on the left (outside temperature, sunlight-related data). The right thermal port is connected to the inner volume (heat capacity) and can, if desired, be connected to any model using a thermal port (internal heat gains...).</p>
+<p>The walls parameterization is done via the parameter caracParoi, however it still can be done layer by layer without creating any type of wall.</p>
 <ol>
-<li><i><b>Cliquer sur la petite flèche de caracParoi+ Edit</b></i></li>
-<li><i><b>Remplir les champs concernant le nombre de couches, leur épaisseur, le maillage. Le paramètre positionIsolant est optionnel</b></i></li>
-<li><i><b>Pour le paramètre mat, cliquer sur la petite flèche + Edit array, faire correspondre le nombre de case sur une colonne au nombre de couche de matériaux dans la fenêtre s'affichant puis dans chaque case effectuer un clic droit + Insert function Call et parcourir la bibliothèque pour indiquer le chemin du matériaux souhaité (dans <a href=\"modelica://BuildSysPro.Utilities.Data.Solids\">Utilities.Data.Solids</a>)</b></i></li>
+<li>Click on the small arrow of caracParoi + Edit</li>
+<li>Fill in the fields on the number of layers, their thickness, the mesh. The parameter positionIsolant is optional</li>
+<li>For the mat parameter, click on the small arrow + Edit array, match the number of boxes in a column to the number of materials layer in the window that is displayed, then, in each box, right-click + Insert function call and browse the library to specify the path of the desired material (in <a href=\"modelica://BuildSysPro.Utilities.Data.Solids\"><code>Utilities.Data.Solids</code></a>)</li>
 </ol>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Pour considérer le rayonnement des parois en grande longueur d'onde, les coefficients d'échange h doivent être des <b>coefficients d'échange globaux. </b>Les vitrages transmettent les flux solaires au plancher. </p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Ludovic Darnaud 07/2010 </p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>To consider walls radiation in long wavelength (LWR), exchange coefficients h must be <b>global exchange coefficients</b>.</p>
+<p>Glazings transmit solar fluxes to the floor.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Ludovic Darnaud 07/2010 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
@@ -243,7 +245,7 @@ Author : Ludovic DARNAUD, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",
       revisions="<html>
-<p>Gilles Plessis 02/2011: Changement du modèle de coefficient B pour vérifier la conservation d'énergie + Ajout d'une liste déroulante pour le choix des matériaux via l'annotation annotation(__Dymola_choicesAllMatching=true)</p>
+<p>Gilles Plessis 02/2011: Changement du modèle de coefficient B pour vérifier la conservation d'énergie + Ajout d'une liste déroulante pour le choix des matériaux via l'annotation annotation(choicesAllMatching=true)</p>
 <p>Aurélie Kaemmerlen 03/2011 : Remplacement des modèles de ParoiEclairee et FenetreSimple par ParoiRad et FenetreRad avec externalisation du calcul des flux solaires incidents + Modèle mis en extends du cas sans vitres (ZoneVideSanitaire)</p>
 <p>Gilles Plessis 06/2012 : </p>
 <p><ul>

@@ -1,8 +1,8 @@
 ﻿within BuildSysPro.Systems.Controls;
 model PIDFixed
-  "Modèle de régulation PID connectable au noeud d'air intérieur d'un bâtiment"
+  "PID control model connectable to an indoor air port of a building "
 
-  parameter Modelica.SIunits.Temperature Tc=293.15 "Temperature de consigne";
+  parameter Modelica.SIunits.Temperature Tc=293.15 "Setpoint temperature";
 
   parameter Modelica.Blocks.Types.SimpleController controllerType=Modelica.Blocks.Types.SimpleController.PID
     "Type of controller";
@@ -37,7 +37,7 @@ model PIDFixed
   BuildSysPro.BaseClasses.HeatTransfer.Sensors.TemperatureSensor temperatureSensor
     annotation (Placement(transformation(extent={{68,-20},{48,0}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T
-    "Température à réguler" annotation (Placement(transformation(extent={{0,
+    "Temperature to control" annotation (Placement(transformation(extent={{0,
             80},{20,100}}), iconTransformation(extent={{0,80},{20,100}})));
 
 equation
@@ -68,10 +68,18 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   annotation (Documentation(info="<html>
-<p><h4>Modèle de régulation PID à connecter au noeud de température qu'il faut réguler (TairInt par exemple)</h4></p>
-<p>- Température constante donnée en consigne</p>
-<p>- Chauffage et rafraîchissement fournis en conséquent pour assurer la consigne</p>
-<p><br>Modèle validé - Aurélie Kaemmerlen 2010</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>PID control model to be connected to the air port of the temperature that must be regulated (eg TairInt).</p>
+<p>Constant temperature given as setpoint.</p>
+<p>Heating and cooling supplied to ensure the setpoint.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Aurélie Kaemmerlen 2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

@@ -1,10 +1,11 @@
 ﻿within BuildSysPro.Systems.Controls;
-model PIDFixedDualMode "Consignes en chauffage et rafraîchissement"
-parameter Real PuissanceNom=1000 "Puissance nominale du système en kW";
+model PIDFixedDualMode "Heating and cooling setpoints"
+parameter Modelica.SIunits.Power PuissanceNom=1000
+    "Nominal power of the system";
 parameter Modelica.SIunits.Conversions.NonSIunits.Temperature_degC Tc=20
-    "Température de consigne en chauffage";
+    "Heating setpoint temperature";
 parameter Modelica.SIunits.Conversions.NonSIunits.Temperature_degC Tf=27
-    "Température de consigne en rafraîchissement";
+    "Cooling setpoint temperature";
 parameter Real k(min=0) = 1000 "Gain of controller";
 parameter Modelica.SIunits.Time Ti(min=Modelica.Constants.small, start=0.5)=0.01
     "Time constant of Integrator block";
@@ -15,7 +16,7 @@ parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
     Ni=0.1,
     yMin=0.,
     initType=Modelica.Blocks.Types.InitPID.NoInit,
-    yMax=1000*PuissanceNom,
+    yMax=PuissanceNom,
     k=k,
     Ti=Ti,
     Td=Td) if Test
@@ -30,10 +31,10 @@ parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
     annotation (Placement(transformation(extent={{80,60},{100,80}}),
         iconTransformation(extent={{80,60},{100,80}})));
   Modelica.Blocks.Math.Gain gain(k=-1)
-    "gain pour avoir un flux positif lorsqu'on chauffe"
+    "Gain to have a positive flow on heating"
     annotation (Placement(transformation(extent={{-58,-88},{-44,-74}})));
   Modelica.Blocks.Interfaces.RealOutput Besoin
-    "Flux du système de chauffage & Rafraîchissement" annotation (Placement(
+    "Flux of heating and cooling system" annotation (Placement(
         transformation(extent={{78,-92},{100,-70}}), iconTransformation(extent={
             {80,-80},{100,-60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedClimatisation if Test
@@ -43,7 +44,7 @@ parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
     initType=Modelica.Blocks.Types.InitPID.NoInit,
     yMax=0,
-    yMin=-1000*PuissanceNom,
+    yMin=-PuissanceNom,
     k=k,
     Ti=Ti,
     Td=Td) if Test
@@ -153,14 +154,17 @@ equation
           lineColor={0,0,255},
           textString="%name")}),
     Documentation(info="<html>
-<h4>Modèle simple d'une consigne de chauffage et de climatisation constantes</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p><u><b>Bibliographie</b></u></p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Ce modèle ne doit bien sûr pas être utilisé si Tc &LT; Tf / Des gardes-fous devront être ajoutés pour éviter tout bug</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé (BESTEST) - Aurélie Kaemmerlen 12/2010</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Simple model of heating and air conditioning constant setpoints.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>Of course, this model should not be used if Tc &LT; Tf.</a></p>
+<p>Safeguards should be added to prevent bug.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model (BESTEST) - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

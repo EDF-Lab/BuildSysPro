@@ -1,12 +1,12 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Utilities;
-function SineH "Sinus de la hauteur du Soleil"
-  input Real t0=0 "Temps en secondes à t=0";
-  input Modelica.SIunits.Time t "Temps universel en secondes";
+function SineH "Sine of the solar elevation angle"
+  input Real t0=0 "Time in seconds at t=0";
+  input Modelica.SIunits.Time t "Universal time in seconds";
   input Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitude
-    "Longitude en degrés";
+    "Longitude in degrees";
   input Modelica.SIunits.Conversions.NonSIunits.Angle_deg latitude
-    "Latitude en degrés";
-  output Real sinh "Sinus de la hauteur du Soleil";
+    "Latitude in degrees";
+  output Real sinh "Sine of the solar elevation angle";
 protected
   constant Real d2r=Modelica.Constants.pi/180;
   Real phi=latitude*d2r;
@@ -19,29 +19,31 @@ algorithm
   sinh:=sin(phi)*sin(delta)+cos(phi)*cos(delta)*cos(AH);
   sinh:=max(0, sinh);
   annotation (Documentation(info="<html>
-<p>Fonction calculant le sinus de la hauteur du Soleil à (t0+t) en fonction de la longitude (en degrés) et de la latitude (en degrés);</p>
-<p>l'année étant supposée non bisextile.</p>
-<p>t : Instant de calcul en secondes.</p>
-<p>t0 : temps en secondes écoulé depuis le premier janvier à t=0s de la simulation.</p>
-<p>En sortie, le sinus est un réel dans l'intervalle [0 ; 1].</p>
-<p>_________</p>
-<p><u><b>Hypothèses et équations</b></u> </p>
-<p>sin(h)=sin(phi)*sin(delta)+cos(phi)*cos(delta)*cos(AH)</p>
-<p>sin(h)=max(0, sin(h))</p>
-<p>phi : latitude convertie en radians</p>
-<p>delta : déclinaison du Soleil en radians</p>
-<p>AH : angle horaire en radians </p>
-<p><u><b>Bibliographie</b></u></p>
-<p>[1] : H. BOUIA, &QUOT;Amélioration du temps de calcul dans BuildSysPro par traitements numériques optimisés de la conduction et des calculs solaires&QUOT;, Note H-E14-2013-00715-FR, 03/2013. </p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Fonction validée - Hassan BOUIA 03/2013. </p>
+        <p><i><b>Return the sine of the solar elevation angle at (t0 + t) according to the longitude (in degrees) and the latitude (in degrees)</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The function computing the sine of the solar elevation angle at (t0 + t) according to the longitude (in degrees) and the latitude (in degrees).</p>
+<p>Output <b>sinh</b> is a real in the interval [0; 1] and computed as:</p>
+<ol>
+<li>sin(h)=sin(phi)*sin(delta)+cos(phi)*cos(delta)*cos(HA)</li>
+<li>sin(h)=max(0, sin(h))</li>
+</ol>
+<p>Where:</p>
+<ul>
+<li>phi: latitude converted in radians</li>
+<li>delta: sun declination in radians </li>
+<li>HA : hour angle in radians</li>
+</ul>
+<p><u><b>Bibliography</b></u></p>
+<p>H. BOUIA, \"Amélioration du temps de calcul dans BuildSysPro par traitements numériques optimisés de la conduction et des calculs solaires\", Note H-E14-2013-00715-FR, 03/2013. </p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated function  - Hassan BOUIA 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>

@@ -1,39 +1,34 @@
 ﻿within BuildSysPro.Building.AirFlow.HeatTransfer;
-model HeatRecoveryVentilation "Modèles de double flux avec bypass"
+model HeatRecoveryVentilation "Heat recovery ventilation with bypass"
 
-// Paramètres de commande
+// Control parameters
 
-parameter Boolean use_Qv_in=false "Débit volumique commandé"   annotation(Evaluate=true,HideResult=true,Dialog(group="Commande"),choices(choice=true "oui",
-                                                                                            choice=false
-        "non (constant)",                                                                                                    radioButtons=true));
+parameter Boolean use_Qv_in=false "Prescribed volume flow rate"   annotation(Evaluate=true,HideResult=true,Dialog(group="Ventilation/infiltration"),choices(choice=true
+        "Prescribed",                                                                       choice=false "Fixed",   radioButtons=true));
 
-parameter Boolean use_Efficacite_in=false "Efficacité commandée" annotation(Evaluate=true,HideResult=true,Dialog(group="Commande"),choices(choice=true "oui", choice=false
-        "non (constant)",                                                                                                    radioButtons=true));
-// Puissance électrique
-parameter Boolean use_Pelec=false
-    "Calcul de la puissance électrique liée à la ventilation"                                 annotation(Evaluate=true,HideResult=true,Dialog(group="Puissance électrique"),choices(choice=true "oui",
-                                                                                            choice=false "non",   radioButtons=true));
-// Paramètres
-parameter Real Qv=0 "Débit de ventilation constant [m3/h]"
-    annotation(Dialog(group="Commande",enable=not use_Qv_in));
+parameter Real Qv=0 "Constant volume flow rate for ventilation [m3/h]"                                         annotation(Dialog(group="Ventilation/infiltration",enable=not use_Qv_in));
 
-parameter Real Efficacite=0.5 "Efficacité de l'échangeur constante [0-1]"
-    annotation(Dialog(group="Commande",enable=not use_Efficacite_in));
+parameter Boolean use_Efficacite_in=false "Prescribed efficiency" annotation(Evaluate=true,HideResult=true,Dialog(group="Heat recovery"),choices(choice=true "Yes", choice=false
+        "No (constant)",                                                                                                    radioButtons=true));
+        parameter Real Efficacite=0.5 "Constant efficiency [0-1]"
+    annotation(Dialog(group="Heat recovery",enable=not use_Efficacite_in));
+ // Fan power consumption
+parameter Boolean use_Pelec=false "Compute power consumption"   annotation(Evaluate=true,HideResult=true,Dialog(group="Electric power consumption"),choices(choice=true "Yes",
+                                                                                            choice=false "No",   radioButtons=true));
+parameter Real Pelec_spe=0.667
+    "Specific power consumption for ventilation [W/m3.h]"
+    annotation(Dialog(group="Electric power consumption",enable=use_Pelec));
 
-parameter Real Pelec_spe=0.667 "Puissance électrique spécifique [W/m3.h]"
-    annotation(Dialog(group="Puissance électrique",enable=use_Pelec));
-// Propriétés de l'air
-parameter Modelica.SIunits.Density rho=1.24 "densité de l'air"
-                                                               annotation(Dialog(group="Propriétés de l'air"));
-parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005 "Cp de l'air"
-                                                                     annotation(Dialog(group="Propriétés de l'air"));
+// Air properties
+parameter Modelica.SIunits.Density rhoair = 1.24 "Air density" annotation(Dialog(group="Air properties"));
+parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005
+    "Air specific heat capacity"                                                     annotation(Dialog(group="Air properties"));
 
-  // Composants
+  // Components
 
 public
   Modelica.Blocks.Interfaces.RealInput Qv_in if use_Qv_in
-    "Scénario du débit de ventilation commandé [m3/h]"
-                                       annotation (Placement(
+    "Prescribed air flow rate[m3/h]"   annotation (Placement(
         transformation(extent={{-20,-20},{20,20}},
         rotation=270,
         origin={80,100}),                         iconTransformation(
@@ -41,8 +36,7 @@ public
         rotation=-90,
         origin={70,90})));
   Modelica.Blocks.Interfaces.RealInput Efficacite_in if use_Efficacite_in
-    "Scénario de l'efficacité du double flux [0-1]"
-                                     annotation (Placement(
+    "Prescribed efficiency [0-1]"    annotation (Placement(
         transformation(extent={{-20,-20},{20,20}},
         rotation=270,
         origin={0,100}),                          iconTransformation(
@@ -50,7 +44,7 @@ public
         rotation=-90,
         origin={0,90})));
   Modelica.Blocks.Interfaces.BooleanInput Bypass
-    "True : Bypass /  False : pas de Bypass" annotation (Placement(
+    "True : Bypass /  False : no Bypass" annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
         rotation=270,
@@ -73,9 +67,9 @@ protected
   Modelica.Blocks.Sources.Constant const1(k=0)
     annotation (Placement(transformation(extent={{-72,60},{-52,80}})));
   Modelica.Blocks.Interfaces.RealInput Qv_in_internal
-    "Connecteur interne requis dans le cas de connection conditionnelle";
+    "Internal connector for optional configuration";
   Modelica.Blocks.Interfaces.RealInput Efficacite_in_internal
-    "Connecteur interne requis dans le cas de connection conditionnelle";
+    "Internal connector for optional configuration";
   Modelica.Blocks.Math.Gain CalcPelec(k=Pelec_spe) if use_Pelec
     "Conversion du debit (m3/h) en Pelec (W)"
     annotation (Placement(transformation(extent={{46,36},{66,56}})));
@@ -198,25 +192,36 @@ equation
           fillPattern=FillPattern.Solid)}), Diagram(coordinateSystem(
           preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
     Documentation(info="<html>
-<h4>Modèle de double flux simplifié en thermique pure avec bypass</h4>
-<p>Ce modèle est une surcouche du modèle d'échangeur simplifié avec l'intégration d'une commande de bypass.</p>
-<p>La valeur du débit volumique peut être commandée ou fixe durant toute la simulation de même que l'efficacité de l'échangeur.</p>
-<p><br><u><b>Hypothèses et équations</b></u></p>
-<p>Voir modèle d'échangeur simplifié..</p>
-<p>Concernant le calcul de la puissance électrique liée à la ventilation, la valeur par défaut de la puissance électrique spécifique (0.667 W/m3.h) correspond à la puissance de deux ventilateurs (insuflation + extraction).</p>
-<p><u><b>Bibliographie</b></u></p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Le port_a est à connecter à la température extérieure et le port_b à l'intérieur</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Gilles Plessis 02/2014</p>
+<p><i><b>Heat recovery ventilation with bypass for pure thermal modelling</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The volume flow value can be prescribed or fixed throughout the simulation as well as the exchanger efficiency.</p>
+<p> The enthalpy flow is defined based on the energy balance and heat exchanges between 2 air flows.</p>
+<p>The main assumptions are:</p>
+<ul>
+<li>the air temperature is uniform in a zone: well-mixed assumption</li>
+<li>the air specific heat capacity is considered constant cp = constant</li>
+<li>the air density in a zone is constant: rho = constant</li>
+</ul>
+<p> In addition the power consumption could be calculated. The default value correspond to 0.667 W/m3.h (insufflation and extraction fan).</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>The conservation of mass in a thermal zone is imperative and is left to the user's care, otherwise the transfered work (PdV) can not be equal to zero. </p>
+<p>By construction, this model can not ensure it. For example, for a thermal zone exchanging air with outdoor environment, two head-to-toe models should be used. </p>
+<p>Similarly, this model can not be used alone for a single zone.</p>
+<p>For more information refer to the user manual TF101 of CLIM2000.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>This model describes the heat transfer corresponding to the air renewal with heat recovery. This component is particularly important during heating periods. It can represent both an air renewal between a room and outside, and an air renewal between two rooms. For large temperature differences, prefer a pressure and temperature model.
+<p><u><b>Validations</b></u></p>
+<p>Model validated. Gilles Plessis 02/2012.</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
-Author : Gilles PLESSIS, EDF (2014)<br>
+Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
-</html>", revisions="<html>
+</html>
+",        revisions="<html>
 <p>Benoît Charrier 12/2015 : Ajout du calcul de la puissance électrique liée à la ventilation, activable depuis un booléen. La puissance calculée est accessible pour les deux modes : débit commandé ou non.</p>
 </html>"));
 end HeatRecoveryVentilation;

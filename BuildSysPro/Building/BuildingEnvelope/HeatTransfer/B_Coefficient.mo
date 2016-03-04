@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
 model B_Coefficient
-  "Combinaison linéaire de température pour les conditions limites plafond/plancher"
-parameter Real b=0.1 "Coefficient de pondération";
+  "Simple boundary conditions (linear combination of temperature) for unheated space"
+parameter Real b=0.1 "Weighting coefficient";
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a port_ext
     annotation (Placement(transformation(extent={{-100,20},{-80,40}}),
         iconTransformation(extent={{-100,20},{-80,40}})));
@@ -17,12 +17,30 @@ equation
   port_ext.Q_flow=-Tponder.Q_flow;
 
 annotation (Documentation(info="<html>
-<p>Un local non chauffé peut être considéré comme une zone supplémentaire du bâtiment. Toutefois, une étude réalisée au sein du département EDF/R&D/ADEB a montré qu'une paroi (horizontale ou verticale) en contact avec un local non chauffé, pouvait être traitée comme une paroi externe possédant une couche d'isolant supplémentaire et donnant sur l'extérieur. L'épaisseur de cette couche supplémentaire se calcule en considérant l'égalité entre les déperditions de la paroi réelle et celles de la paroi fictive (i.e. avec l'isolant supplémentaire). Le coefficient thermique de la paroi ainsi obtenue permet de modéliser l'influence du local non chauffé. </p>
-<p>Pour cela, on introduit le coefficient réglementaire b de réduction de température. Ce paramètre est défini en fonction de la nature du local non chauffé comme suit : </p>
+<p>An unheated room can be considered as an additional area of the building.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>However, a study conducted in the EDF/ R&D / ADEB Department showed that a wall (horizontal or vertical) in contact with an unheated room, could be treated as an outer wall with an additional layer of insulation and overlooking outside.</p>
+<p>The thickness of this additional layer is calculated considering the equality between the real wall losses and those of the fictitious wall (ie with additional insulation).</p>
+<p>The thermal coefficient of the wall obtained is used to model the influence of unheated room.</p>
+<p>For this, the regulatory coefficient of temperature reduction <code>b</code> is introduced.<p>
+<p><u><b>Bibliography</b></u></p>
+<p>2005 French building regulation (RT2005) : Règles Th-U - Fascicule 1 : Coeffcient Ubât, Chapitre II : Coefficient Ubât p10, 11, 12</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>The regulatory coefficient of temperature reduction <code>b</code> parameter is defined according to the type of the unheated room as follows: </p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/coefficient_b2.bmp\"/></p>
-<p>Dans le cas où l'on souhaite un calcul plus précis du coefficient b on peut s'aider de la méthode suivante:</p>
+<p>In the case where a more accurate calculation of the coefficient <code>b</code> is needed, the following method can be used</p>
+<p>To define the coefficient <code>b</code>, default values are given in tables 2 to 5 according to the ratio between surfaces <code>Aiu/Aue</code> and the \"equivalent surface coefficient\" <code>Uv,ue</code>.</p>
+<ul><li><code>Aiu</code> is the total surface of coponents separating the unheated room to the heated wall, in m&sup2;</li>
+<li><code>Aue</code> is the total surface of components separating the unheated room to outdoor or to an other unheated room, in m&sup2;</li>
+<li><code>Uv,ue</code> is the equivalent of a surface coefficient of the wall between the unheated room and outdoor or an other unheated room, in W/m&sup2;.K.<br>
+It reprensents the unheated room losses by air renewal, adjusted to the wall surface unit:<br>
+<code>Uv,ue</code> = 0.33<code>que</code> where <code>que</code> is the air flow per wall square meter, in m&sup3;/h/m&sup2;</li></ul>
+<p>The table 1 shows which table needs to be used to find the right coefficient <code>b</code> :</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/Coefficient_b.png\"/></p>
-<p>Modèle validé - Gilles Plessis 02/2011</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Gilles Plessis 02/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

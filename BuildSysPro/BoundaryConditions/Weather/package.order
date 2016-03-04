@@ -1,6 +1,6 @@
 Meteofile
-SyntheticText
-SyntheticLighting
+AnalyticText
+AnalyticIrradiance
 ZoneWind
 CombiTable1Ds_ForStepMeteo
 Functions

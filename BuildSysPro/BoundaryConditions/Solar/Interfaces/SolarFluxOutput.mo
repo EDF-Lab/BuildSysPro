@@ -1,7 +1,6 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Interfaces;
 connector SolarFluxOutput =
-                      output Real
-  "Informations de flux (GLO et CLO) données en sortie"
+                      output Real "Input irradiation connector"
   annotation (defaultComponentName="Flux",
   Icon(graphics={                         Line(
         points={{-698,0},{-86,0}},
@@ -26,14 +25,23 @@ connector SolarFluxOutput =
           lineColor={255,192,1},
           textString="%name")}),
     Documentation(info="<html>
-<p>Connector with one output signal of type Real</p>
-<p>A utiliser pour transporter des flux (CLO et GLO) afin de différencier <b>graphiquement</b> les grandeurs transportées. </p>
-<p>Modèle validé - Aurélie Kaemmerlen 02/2011</p>
+<p><i><b>Solar irradiance connector</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Causal connector with one output signal of type Real.
+To be used to transport short-wave and long-wave irradiation.</p>
+<p>Can be used especially for solar irradiation.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Aurélie Kaemmerlen 02/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
-Initial model : <a href=\"Modelica.Blocks.Interfaces.RealOutput\">RealOutput</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"));

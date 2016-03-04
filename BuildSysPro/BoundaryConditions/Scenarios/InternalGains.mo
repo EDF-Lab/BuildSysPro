@@ -51,12 +51,23 @@ equation
           lineColor={0,0,255},
           textString="%name")}),
     Documentation(info="<html>
-<p>Validated model (BESTEST) - Aurélie Kaemmerlen 12/2010</p>
+<p><i><b>Fixed internal heat gains </b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>ideal internal heat gains from various sources (eg. occupancy, lighting).</p>
+<p><u><b>Bibliography</b></u></p>
+<p>IEA BESTEST procedure.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model (BESTEST) - Aurélie Kaemmerlen 12/2010</b></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
-</html>"));
+</html>
+"));
 end InternalGains;

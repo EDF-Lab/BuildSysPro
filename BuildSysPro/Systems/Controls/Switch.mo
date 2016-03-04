@@ -1,9 +1,8 @@
-﻿within BuildSysPro.Systems.Controls;
+within BuildSysPro.Systems.Controls;
 model Switch
   extends BuildSysPro.BaseClasses.HeatTransfer.Interfaces.Element1D;
 
-  parameter Boolean valeur_On=true
-    "valeur de OnOff pour laquelle le flux existe";
+  parameter Boolean valeur_On=true "OnOff value for which the flow exists";
 
   Modelica.Blocks.Interfaces.BooleanInput OnOff annotation (Placement(
         transformation(
@@ -64,20 +63,20 @@ equation
           lineColor={0,0,0},
           lineThickness=0.2)}),
     Documentation(info="<html>
-<p><i><b>Interrupteur - Régulateur tout ou rien permettant de couper la connexion entre les entrées et sorties </b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p><b>Fonctionnement :</b> </p>
-<p>Si l'interrupteur est <u>fermé</u>, il y a égalité entre les températures des ports thermiques (par défaut si OnOff=1)</p>
-<p>Si l'interrupteur est <u>ouvert</u>, aucun flux ne circule entre les deux ports (par défaut si OnOff&LT;&GT;1)</p>
-<p><br>Il est possible de changer la valeur pour laquelle l'interrupteur est fermé en changeant la valeur du paramètre valeur_On.</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 03/2013</p>
+<p><b>All-or-nothing switch-controller to cut the connection between inputs and outputs</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Operation: </p>
+<ul><li>If the switch is <u>closed</u>, there is equality between thermal ports temperatures (default if OnOff = 1)</li>
+<li>If the switch is <u>opened</u>, no flow circulates between the two ports (default if OnOff &LT;&GT; 1)</li></ul>
+<p>It is possible to change the value at which the switch is closed by changing the value of <code>valeur_On</code> parameter.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

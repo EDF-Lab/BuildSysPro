@@ -1,47 +1,46 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.SolarMasks;
 model FLUXsurfMask
-  "Flux solaire incident sur une surface possédant un masque solaire proche (vitrage notamment)"
-parameter Boolean useEclairement=false
-annotation(dialog(group="Paramètres généraux",compact=true),choices(choice=true
-        "Avec calcul de l'éclairement naturel",                                                             choice=false
-        "Sans calcul de l'éclairement naturel",                                                                                                  radioButtons=true));
+  "Solar incident irradiance and illuminance on a surface considering solar mask"
+  parameter Boolean useEclairement=false
+  annotation(choices(choice=true "With calculation of natural lighting",                                    choice=false
+        "Without calculation of natural lighting",                                                                                                  radioButtons=true), Dialog(group="Options"));
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
-    "Azimut de la surface (Orientation par rapport au sud) - S=0°, E=-90°, O=90°, N=180°"
-                                                                                              annotation(Dialog(group="Orientation de la surface"));
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"
+                                                                                              annotation(Dialog(group="Surface description"));
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
-    "Inclinaison de la surface par rapport à l'horizontale - vers le sol=180°, vers le ciel=0°, verticale=90°"
-                                                                                                        annotation(Dialog(group="Orientation de la surface"));
+    "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°"                                   annotation(Dialog(group="Surface description"));
 
-parameter Real albedo=0.2 "Albedo de l'environnement" annotation(Dialog(group="Paramètre de l'environnement"));
-parameter Integer diffus_isotrope=1
-    "1 - modèle de diffus isotrope ; 2 - modèle de diffus circumsolaire (Hay Davies Kluch Reindl)"
-    annotation (Dialog(group="Paramètre de l'environnement", compact=true), choices(
-      choice=1 "Diffus isotrope",
-      choice=0 "Diffus HDKR (prise en compte du circumsolaire)",
-      radioButtons=true));
+parameter Real albedo=0.2 "Albedo of the environment" annotation(Dialog(group="Environment description"));
+parameter Integer diffus_isotrope=1 "Model for diffuse irradiance"
+    annotation (Dialog(
+      compact=true,group="Environment description"), choices(
+      choice=1 "Isotropic",
+      choice=2 "Circumsolar diffuse model (Hay Davies Kluch Reindl))"));
+parameter Integer TypeMasque annotation(Dialog(group="Shading devices"),choices(choice=0
+        "Vertical + horizontal",                                                                                choice=1
+        "Horizontal overhang",choice=2 "No shading device", radioButtons=true));
 
-parameter Integer TypeMasque annotation(Dialog(group="Masques proches"),choices(choice=0
-        "Masque intégral",                                                                                choice=1
-        "Masque horizontal",choice=2 "Pas de masque proche", radioButtons=true));
-        parameter Modelica.SIunits.Distance Av=0.5 "Avancée" annotation(Dialog(enable=TypeMasque<>2,group="Masques proches"));
+parameter Modelica.SIunits.Distance Av=0.5 "Overhang" annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
 parameter Modelica.SIunits.Distance Ha=0.3
-    "Distance de l'auvent au rebord haut de la fenêtre"
-                                                        annotation(Dialog(enable=TypeMasque<>2,group="Masques proches"));
-parameter Modelica.SIunits.Distance Lf=1 "Largeur de la fenêtre"
-                                                                 annotation(Dialog(enable=TypeMasque<>2,group="Masques proches"));
-parameter Modelica.SIunits.Distance Hf=1 "Hauteur de la fenêtre"
-                                                                 annotation(Dialog(enable=TypeMasque<>2,group="Masques proches"));
-parameter Modelica.SIunits.Distance Dd=0.5 "Distance ou débord droit"
-                                                                      annotation(Dialog(enable=TypeMasque<>2,group="Masques proches"));
-parameter Modelica.SIunits.Distance Dg=0.5 "Distance ou débord gauche"
-                                                                       annotation(Dialog(enable=TypeMasque<>2,group="Masques proches"));
+    "Distance between the overhang and the top of the surface (window)"
+                                                                       annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+parameter Modelica.SIunits.Distance Lf=1 "Surface (window) width"
+                                                                 annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+parameter Modelica.SIunits.Distance Hf=1 "Surface (window) height"
+                                                                  annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+parameter Modelica.SIunits.Distance Dd=0.5 "Lateral overhang (right hand side)"
+                                                               annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+parameter Modelica.SIunits.Distance Dg=0.5 "Lateral overhang (left hand side)"
+                                                              annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+
 parameter Boolean MasqueLointain=false
-annotation(dialog(group="Masques lointains",compact=true),choices(choice=true
-        "Avec masque lointain vertical",                                                             choice=false
-        "Sans masque lointain vertical",                                                                                                  radioButtons=true));
+annotation(Dialog(group="Options"),choices(choice=true
+        "With vertical distant mask",                                                             choice=false
+        "Without vertical distant mask",                                                                                                  radioButtons=true));
 parameter Modelica.SIunits.Distance dE=5
-    "Distance de la paroi au masque lointain" annotation(Dialog(enable=MasqueLointain,group="Masques lointains"));
-parameter Modelica.SIunits.Distance hpE=2 "Hauteur du masque lointain" annotation(Dialog(enable=MasqueLointain,group="Masques lointains"));
+    "Distance from the surface (window) to the distant masks" annotation(Dialog(enable=MasqueLointain,group="Distant masks"));
+    parameter Modelica.SIunits.Distance hpE=2 "Height of the distant mask" annotation(Dialog(enable=MasqueLointain,group="Distant masks"));
+
   Irradiation.FLUXsurf fLUXsurf(
     azimut=azimut,
     incl=incl,
@@ -62,21 +61,22 @@ parameter Modelica.SIunits.Distance hpE=2 "Hauteur du masque lointain" annotatio
     dE=dE,
     hpE=hpE) annotation (Placement(transformation(extent={{-6,-10},{28,10}})));
   Interfaces.SolarFluxOutput FluxMasques[3]
-    "Flux solaires surfaciques incidents après prise en compte de masques solaires au vitrage 1-Flux Diffus, 2-Flux Direct et 3-Cosi"
+    "Solar irradiation for the surface considering the shading effects 1-Diffuse, 2- Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{60,-20},{100,20}}, rotation=0),
         iconTransformation(extent={{100,-12},{124,12}})));
 Modelica.Blocks.Interfaces.RealInput G[10]
-    "Résultats : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut,Hauteur}"
+    "Inputs data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], solar azimuth angle, solar elevation angle}"
     annotation (Placement(transformation(extent={{-120,-10},{-80,30}},
         rotation=0), iconTransformation(extent={{-100,10},{-80,30}})));
   Modelica.Blocks.Interfaces.RealInput Ecl[3] if useEclairement
-    "Eclairement naturel incident: direct, diffus et réfléchi " annotation (
+    "Natural incident illuminance -direct -diffuse -reflected [lumen]"     annotation (
       Placement(transformation(extent={{-120,-56},{-80,-16}}),
         iconTransformation(extent={{-100,-36},{-80,-16}})));
   Modelica.Blocks.Interfaces.RealOutput EclMasques[3] if useEclairement
-    "Eclairement naturel incident après la prise en compte des masques -direct -diffus -réfléchi (lumen)"
+    "Natural illuminance considering shading effects -direct -diffuse -reflected [lumen]"
     annotation (Placement(transformation(extent={{20,-56},{60,-16}}),
         iconTransformation(extent={{40,-36},{60,-16}})));
+
 equation
   connect(fLUXsurf.FLUX, masques.FLUX) annotation (Line(
       points={{-39,-0.1},{-29.5,-0.1},{-29.5,0},{5.9,0}},
@@ -106,35 +106,36 @@ equation
   end if;
   annotation (
     Documentation(info="<html>
-<h4>Calcul des conditions limites solaires pour la surface de dimension (Lf x Hf) représentée dans les illustrations ci-dessous</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Les masques considérés sont :</p>
-<ol>
-<li>Les masques proches</li>
-<li><ol>
-<li>Les auvents (arête horizontale)</li>
-<li>Les masques complets (arête + joue gauche et droite)</li>
-</ol></li>
-</ol>
-<p><br><img src=\"modelica://BuildSysPro/Resources/Images/MasqueHorizontal.bmp\"/> <img src=\"modelica://BuildSysPro/Resources/Images/MasqueIntegral.bmp\"/> </p>
-<ol>
-<li>Les masques lointains verticaux </li>
-</ol>
-<p><u><b>Bibliographie</b></u></p>
-<p>Norme ISO 13791</p>
-<p><i>Intégration de la protection solaire dans le logiciel PAPTER</i>, M. ABDESSELAM, AIRab Consultant, Fevrier 2000 - Corrections effectuées car modèle incorrect</p>
-<p>Norme RT2012 pour la prise en compte des masques lointains verticaux</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b> </u></p>
+<p><i><b>
+Calculation of solar boundary conditions for the (Lf x Hf)-sized surface considering near and distant mask</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p> This model relies on the <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.SolarMasks.Masks\"><code>Masks</code></a> model to estimate effects of near and distant solar masks.</p>
+Following masks are considered:
 <ul>
-<li>Ces modèles ne sont valables que pour des parois verticales</li>
-<li>Le cumul de plusieurs types de masques proches pour une même paroi est interdit</li>
+<li>Shading devices (near mask)</li>
+<ul>
+<li>Horizontal overhang such as awning</li>
+<p><img src=\"modelica://BuildSysPro/Resources/Images/MasqueHorizontal.bmp\"/></p>
+<li>Lateral fin</li>
+<li>Both overhang and lateral fin (such as egg crate)</li>
+<p><img src=\"modelica://BuildSysPro/Resources/Images/MasqueIntegral.bmp\"/> </p>
 </ul>
-<p><br><u><b>Validations effectuées</b></u></p>
-<p>Modèle non validé (issu de la fusion des modèles FLUXsurf et MasquesProches pour en simplifier la saisie mais non testé) - Aurélie Kaemmerlen 11/2013</p>
+<li>Vertical distant masks (such as building)</li>
+</ul>
+<p><u><b>Bibliography</b></u></p>
+<p>ISO 13791 standard</p>
+<p>RT2012 standard for the consideration of vertical distant masks</p>
+<p>Intégration de la protection solaire dans le logiciel PAPTER, M. ABDESSELAM, AIRab Consultant, Fevrier 2000 - Corrections effectuées car modèle incorrect</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>These models are valid only for vertical walls.</p>
+<p>The accumulation of several masks of near types for a same wall is prohibited</p>
+<p><u><b>Validations</b></u></p>
+<p>Non validated model - Aurélie Kaemmerlen 11/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
@@ -193,5 +194,5 @@ Author : Aurélie KAEMMERLEN, EDF (2013)<br>
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid)}),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}), graphics));
+            100}})));
 end FLUXsurfMask;

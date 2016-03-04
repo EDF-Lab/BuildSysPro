@@ -48,7 +48,7 @@ partial model CharacteristicEquation
           radEqua
           "Detailed   : Distinction between radiative and convective temperatures for heat transfers")),
     Placement(transformation(extent={{-10,-10},{10,10}})),
-    dialog(group="Options"));
+    Dialog(group="Options"));
 
 equation
   connect(radEqua.Rad, Rad) annotation (Line(points={{-3,7},{-3,40},{-20,40},{-20,

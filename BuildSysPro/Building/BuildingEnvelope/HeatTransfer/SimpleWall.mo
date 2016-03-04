@@ -1,78 +1,77 @@
 ﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
-model SimpleWall "Modèle de paroi simple"
+model SimpleWall "Wall simple model"
 
-// Paramètres optionnels
+// Optional parameters
 parameter Boolean RadExterne=false
-    "Prise en compte de flux absorbés sur la face extérieure"
-    annotation(dialog(group="Options",compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
+    "Inclusion of flows which are absorbed on the outer face"
+    annotation(Dialog(group="Options",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
 parameter Boolean RadInterne=false
-    "Prise en compte de flux absorbés sur la face intérieure"
-    annotation(dialog(group="Options",compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
+    "Inclusion of flows which are absorbed on the inner face"
+    annotation(Dialog(group="Options",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
 parameter Boolean GLOext=false
-    "Prise en compte du rayonnement GLO (infrarouge) entre la paroi et l'environnement et le ciel"
-    annotation(dialog(group="Options",compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
+    "Inclusion of LW radiation (infrared) between the wall and the environment and the sky"
+    annotation(Dialog(group="Options",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
 
-// Propriétés générales
-  parameter Modelica.SIunits.Area S=1 "Surface du mur sans les fenetres"
-    annotation(dialog(group="Propriétés générales de la paroi"));
+// General properties
+  parameter Modelica.SIunits.Area S=1 "Wall surface without windows"
+    annotation(Dialog(group="General properties of the wall"));
 
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=5.88
-    "Coefficient d'échange CONVECTIF surfacique sur la face extérieure"
-     annotation(dialog(group="Propriétés générales de la paroi"));
+    "Coefficient of CONVECTIVE surface exchange on the outer face"
+     annotation(Dialog(group="General properties of the wall"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=5.88
-    "Coefficient d'échange GLOBAL surfacique global sur la face intérieure"
-    annotation(dialog(group="Propriétés générales de la paroi"));
+    "Coefficient of CONVECTIVE surface exchange on the inner face"
+    annotation(Dialog(group="General properties of the wall"));
   parameter Real skyViewFactor=0
-    "Facteur de forme moyen entre les parois et le ciel (exemple: skyViewFactor(toiture terrase)=1, skyViewfactor(paroi verticale en environnement dégagé)=0.5)"
-    annotation(dialog(enable=GLOext,group="Propriétés générales de la paroi"));
-// Propriétés optiques
+    "Average sky view factor between walls and the sky (example: skyViewFactor(flat roof)=1, skyViewfactor(vertical wall in clear environment)=0.5)"
+    annotation(Dialog(enable=GLOext,group="General properties of the wall"));
+// Optical properties
   parameter Real AbsParoi=0.6
-    "Coefficient d'absorption de la parois ext. dans le visible"
-    annotation(dialog(enable=RadExterne, group="Propriétés optiques de la paroi"));
-  parameter Real eps=0.6
-    "Emissivité de la surface extérieure de la parois en GLO"
-    annotation(dialog(enable=GLOext,  group="Propriétés optiques de la paroi"));
+    "Absorption coefficient of the outer wall in the visible"
+    annotation(Dialog(enable=RadExterne, group="General properties of the wall"));
+  parameter Real eps=0.6 "Emissivity of the outer surface of the wall in LWR"
+    annotation(Dialog(enable=GLOext,  group="General properties of the wall"));
 
-// Composition de la paroi
+// Wall composition
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracParoi
-    "Caractéristiques de paroi" annotation (__Dymola_choicesAllMatching=true,
-      dialog(group="Type de paroi"));
+    "Wall characteristics" annotation (choicesAllMatching=true,
+      Dialog(group="Type of wall"));
 
 // Initialisation
   parameter Modelica.SIunits.Temperature Tp=293.15
-    "Température initiale de la paroi"
-    annotation(dialog(group="Initialisation"));
+    "Initial temperature of the wall"
+    annotation(Dialog(group="Initialisation"));
 
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    annotation (dialog(group="Initialisation"));
-// Composants publiques
+    annotation (Dialog(group="Initialisation"));
+// Public components
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
-    "Température extérieure" annotation (Placement(transformation(extent={{-100,
+    "Outdoor temperature" annotation (Placement(transformation(extent={{-100,
             -40},{-80,-20}}), iconTransformation(extent={{-100,-40},{-80,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int
-    "Température intérieure" annotation (Placement(transformation(extent={{80,
+    "Indoor temperature" annotation (Placement(transformation(extent={{80,
             -40},{100,-20}}), iconTransformation(extent={{80,-40},{100,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Ts_ext
-    "Température extérieure à la surface de la paroi" annotation (Placement(
+    "Outdoor temperature on the surface of the wall" annotation (Placement(
         transformation(extent={{-46,-40},{-26,-20}}), iconTransformation(extent=
            {{-40,-40},{-20,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_int
-    "Température intérieure à la surface de la paroi" annotation (Placement(
+    "Indoor temperature on the surface of the wall" annotation (Placement(
         transformation(extent={{30,-40},{50,-20}}), iconTransformation(extent={
             {20,-40},{40,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if GLOext
     annotation (Placement(transformation(extent={{-100,-100},{-80,-80}}),
         iconTransformation(extent={{-100,-100},{-80,-80}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt if
-    RadExterne "Flux CLO surfacique incident sur la face extérieure"
+    RadExterne "SWR incident surface flux on the outer face"
     annotation (Placement(transformation(extent={{-118,12},{-80,50}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
 Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
     RadInterne
-    "Flux GLO et/ou CLO absorbé par cette paroi sur sa face intérieure"
+    "LWR and/or SWR flows which are absorbed by this wall on its inner face"
     annotation (Placement(transformation(extent={{108,22},{70,60}}),
         iconTransformation(extent={{40,40},{20,60}})));
-// Composants internes
+// Internal components
 protected
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt if
     RadExterne annotation (Placement(transformation(
@@ -113,7 +112,7 @@ Modelica.Blocks.Math.Gain AbsMurExt(k=AbsParoi*S) if   RadExterne
         origin={60,30})));
 
 equation
-  //connection des tranches pour le cas d'une paroi classique
+  //slices connection in the case of a conventional wall
   connect(ParoiNCouchesHomogenes.port_a, Ts_ext);
   connect(ParoiNCouchesHomogenes.port_b, Ts_int);
 
@@ -193,23 +192,23 @@ equation
           fillPattern=FillPattern.Solid,
           fillColor={175,175,175})}),
     Documentation(info="<html>
-<h4>Modèle de paroi simple linéaire</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Ce modèle est un modèle de paroi simple. Un transfert de chaleur par conduction se fait dans le matériau définit par <code><span style=\"font-family: Courier New,courier;\">n </span></code>couches homogènes (chaque couche est discrétisée en mailles de même taille). Des transferts de chaleur par convection se font sur les 2 faces, externes et internes.</p>
-<p>Les flux solaires courte longueur d'onde (CLO) en entrée sont absorbés en surface moyennant le paramètre <code><span style=\"font-family: Courier New,courier;\">AbsParoi</span></code>. Il s'agit du flux global surfacique.</p>
-<p>Les échanges en grande longueur d'onde (GLO) sont linéarisés grâce au modèle <a href=\"modelica://BuildSysPro.BaseClasses.HeatTransfer.Components.LinearExtLWR\">LinearExtLWR</a>. Le paramètre <code><span style=\"font-family: Courier New,courier;\">skyViewFactor</span></code> permet de déterminer la part de rayonnement GLO de la paroi avec le ciel, considéré à <code><span style=\"font-family: Courier New,courier;\">T_cie</span></code>l, et l'environnement extérieur, considéré à <code><span style=\"font-family: Courier New,courier;\">T_ext</span></code>.</p>
-<p>Le coefficient d'échange convectif avec l'extérieur <code><span style=\"font-family: Courier New,courier;\">hs_ex</span></code>t par défaut est la valeur du coefficient intégrant uniquement la convection. Les échanges GLO étant pris en compte par ailleurs.</p>
-<p>Ce modèle conduit à un modèle linéaire invariant dans le temps qu'il est possible de réduire.</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>TF1 CLIM2000 modifié dans le but d'obtenir un modèle linéaire et invariant dans le temps pour les besoins de l'étude sur les villes.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Cette paroi peut être externe ou interne.</p>
-<p>Les ports thermiques <code><span style=\"font-family: Courier New,courier;\">T_ext</span></code> et<code><span style=\"font-family: Courier New,courier;\"> T_int</span></code> doivent être reliés à des noeuds de température (habituellement <code><span style=\"font-family: Courier New,courier;\">Tseche</span></code> et<code><span style=\"font-family: Courier New,courier;\"> Tint</span></code>). Les flux solaires incidents externes<code><span style=\"font-family: Courier New,courier;\"> FluxAbs </span></code>proviennent du modèle de conditions limites solaires <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\">SolarBC</a>.</p>
-<p>Le flux incident interne <code><span style=\"font-family: Courier New,courier;\">FluxAbsInt</span></code> peut provenir des occupants, systèmes de chauffage mais aussi de la redistribution du flux solaire à l'intérieur d'une pièce (modèles du package <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\">BoundaryConditions.Radiation</a>).</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Les limites sont essentiellement liées à la linéarisation du flux GLO. Penser à distinguer la part convective et radiatif GLO dans les coefficients de convection.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Gilles Plessis 03/2012.</p>
+<p><b>Wall simple linear model</b></p>
+<p><u><b>Hypothesis and equation</b></u></p>
+<p>This is a model of a simple wall. A conductive heat transfer occurs in the material which is defined by n homogeneous layers (each layer is discretized into equal sized meshes). Convective heat transfers occur on the two faces, internal and external.</p>
+<p>Input solar fluxes with short wavelength (SWR) are absorbed at the surface considering the parameters <code>AbsParoi</code>. This is the overall surface flux.</p>
+<p>In case of long wavelength (LWR), exchanges are linearized with the model <a href=\"modelica://BuildSysPro.BaseClasses.HeatTransfer.Components.LinearExtLWR\"><code>LinearExtLWR</code></a>. The parameter <code>skyViewFactor</code> determines the share of SW radiation of the wall with the sky, considered at <code>T_ciel</code>, and the external environment, considered at <code>T_ext</code>.</p>
+<p>The coefficient of convective heat transfer with the outside <code>hs_ext</code> default value is the value of the coefficient integrating convection only. LWR exchanges are considered elsewhere.</p>
+<p>This model leads to a linear time-invariant model that can be reduced.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>TF1 CLIM2000 modified in order to obtain a linear time-invariant model for the purposes of cities study.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>This wall can be an outer or inner wall.</p>
+<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>). The external incident flows <code>FluxAbs</code> can come from the solar boundary conditions model <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\"><code>SolarBC</code></a>.</p>
+<p>The internal incident flows <code>FluxAbsInt</code> can come from occupants, heating systems but also from the redistribution of solar flux within a room (models from <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\"><code>BoundaryConditions.Radiation</code></a> package).</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>The limitations are mainly related to the flow LWR linearization. Think of distinguish the convective and radiative LWR shares in convection coefficients.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Gilles Plessis 03/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

@@ -1,59 +1,57 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
-model SolarBC "Calcul de conditions limites solaires"
-// Paramètres
-
+model SolarBC "Calculation of solar irradiation for a building model"
+  // Parameters section
 parameter Modelica.SIunits.Area[5] SurfacesVitrees
-    "Surfaces vitrées (Plafond, Nord, Sud, Est, Ouest)"
-                                 annotation(dialog(group="Vitrage"));
-parameter Real TrDir=0.544
-    "Coefficient de transmission direct de la fenêtre à incidence normale"
-                                                                            annotation(dialog(group="Vitrage"));
-parameter Integer Choix=2 "Formule utilisée" annotation(choices(
+    "Glazed surface areas (Ceiling, North, South, East, West)"
+                                 annotation(Dialog(group="Glazing"));
+parameter Real TrDir=0.544 "Normal transmittance"                           annotation(Dialog(group="Glazing"));
+parameter Integer choix=2 "Formula used" annotation(choices(
         choice=1 "Fauconnier",
         choice=2 "RT",
         choice=3 "Cardonnel",
-        choice=4 "Linéaire avec cosi"),dialog(group="Vitrage"));
+        choice=4 "Weighting factor of cos i"),Dialog(group="Glazing"));
 parameter Modelica.SIunits.Area[5] SurfacesExterieures
-    "Surface des parois déperditives extérieures (Plafond,Nord, Sud, Est, Ouest)"
-                                 annotation(dialog(group="Parois"));
+    "Surface areas of external walls (Roof, North, South, East, West)"
+                                 annotation(Dialog(group="Wall"));
   parameter Real beta=0
-    "Correction de l'azimut des murs verticaux telle que azimut=beta+azimut, {beta=0 : N=180,S=0,E=-90,O=90})";
-  parameter Real albedo=0.2 "Albedo de l'environnement";
-// Composants publiques
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxAbsParois
-    "Flux solaire surfacique sur les parois" annotation (Placement(
+    "Zone orientation azimut=beta+azimut, (if beta=0 : azimut={N=180,S=0,E=-90,O=90})";
+  parameter Real albedo=0.2 "Albedo of the environment";
+
+  // Public components
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxIncParois
+    "Solar irradiance on external walls" annotation (Placement(
         transformation(extent={{60,50},{100,90}}), iconTransformation(extent={{
             80,-70},{100,-50}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput
-    FluxAbsVitrage "Flux solaire surfacique sur les vitrages" annotation (
+    FluxIncVitrage "irradiance on glazed surfaces" annotation (
       Placement(transformation(extent={{60,-20},{100,20}}), iconTransformation(
           extent={{80,10},{100,30}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxTrVitrage
-    "Flux solaire transmis surfacique (doit tenir compte de l'influence de l'incidence)"
+    "Transmitted irradiance through glazed surface"
     annotation (Placement(transformation(extent={{60,-90},{100,-50}}),
         iconTransformation(extent={{80,70},{100,90}})));
 
-// Composants internes
+// Internal components
 protected
   BuildSysPro.BoundaryConditions.Solar.Irradiation.FLUXzone fLUXzone(albedo=
         albedo, beta=beta)
     annotation (Placement(transformation(extent={{-90,-24},{-46,20}})));
 
   BuildSysPro.BoundaryConditions.Solar.Irradiation.DirectTrans transDirectNord(TrDir=
-        TrDir, choix=Choix)
+        TrDir, choix=choix)
     annotation (Placement(transformation(extent={{0,-68},{20,-48}})));
   BuildSysPro.BoundaryConditions.Solar.Irradiation.DirectTrans transDirectSud(TrDir=
-        TrDir, choix=Choix)
+        TrDir, choix=choix)
     annotation (Placement(transformation(extent={{0,-92},{20,-72}})));
   BuildSysPro.BoundaryConditions.Solar.Irradiation.DirectTrans transDirectEst(TrDir=
-        TrDir, choix=Choix)
+        TrDir, choix=choix)
     annotation (Placement(transformation(extent={{0,-116},{20,-96}})));
   BuildSysPro.BoundaryConditions.Solar.Irradiation.DirectTrans transDirectOuest(TrDir=
-        TrDir, choix=Choix)
+        TrDir, choix=choix)
     annotation (Placement(transformation(extent={{0,-140},{20,-120}})));
 
   BuildSysPro.BoundaryConditions.Solar.Irradiation.DirectTrans transDirectPlafond(TrDir=
-        TrDir, choix=Choix)
+        TrDir, choix=choix)
     annotation (Placement(transformation(extent={{0,-42},{20,-22}})));
 
   Modelica.Blocks.Math.Add addPlafond(k2=TrDir)
@@ -86,12 +84,12 @@ protected
     annotation (Placement(transformation(extent={{60,64},{72,76}})));
 public
 Modelica.Blocks.Interfaces.RealInput G[10]
-    "Résultats : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut,Hauteur}"
+    "Inputs data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], solar azimuth angle, solar elevation angle}"
     annotation (Placement(transformation(extent={{-119,69},{-79,109}},
         rotation=0), iconTransformation(extent={{-99,69},{-79,89}})));
 
 equation
-// Calcul des flux transmis par les vitrages
+  // Calculation of irradiance transmitted through the glazed surfaces
   connect(fLUXzone.FLUXNord, transDirectNord.FLUX) annotation (Line(
       points={{-43.8,7.24},{-24,7.24},{-24,-57.6},{-1,-57.6}},
       color={255,192,1},
@@ -182,8 +180,8 @@ equation
       points={{51,-136},{56,-136},{56,-73.36},{60,-73.36}},
       color={0,0,127},
       smooth=Smooth.None));
-// Calcul des flux absorbés par le vitrages
-  connect(multiSumAbsVitrages.y, FluxAbsVitrage)   annotation (Line(
+  // Calculation of irradiance absorbed by the glazed surfaces
+  connect(multiSumAbsVitrages.y,FluxIncVitrage)    annotation (Line(
       points={{73.02,0},{80,0}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -230,8 +228,8 @@ equation
       color={255,192,1},
       smooth=Smooth.None));
 
-// Calcul des flux absorbés par les parois
-  connect(multiSumAbsParois.y, FluxAbsParois) annotation (Line(
+      // Calculation of irradiance absorbed by external walls
+  connect(multiSumAbsParois.y,FluxIncParois)  annotation (Line(
       points={{73.02,70},{80,70}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -283,13 +281,13 @@ equation
       smooth=Smooth.None));
 
   connect(fLUXzone.G, G) annotation (Line(
-      points={{-91.98,-2.22},{-98,-2.22},{-98,68},{-58,68},{-58,89},{-99,89}},
+      points={{-90.66,-0.9},{-98,-0.9},{-98,68},{-58,68},{-58,89},{-99,89}},
       color={0,0,127},
       smooth=Smooth.None));
 
   annotation (Diagram(coordinateSystem(extent={{-100,-100},{100,100}},
-          preserveAspectRatio=false),
-                      graphics), Icon(coordinateSystem(extent={{-100,-100},{100,
+          preserveAspectRatio=false)),
+                                 Icon(coordinateSystem(extent={{-100,-100},{100,
             100}},      preserveAspectRatio=false),
                     graphics={       Ellipse(
           extent={{-95,94},{14,-16}},
@@ -361,26 +359,26 @@ equation
           origin={58.5,-45},
           rotation=90)}),
     Documentation(info="<html>
-<h4>Calcul des conditions limites solaires pour le modèle de bâtiment simplifié</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Ce modèle permet le calcul des conditions limites solaires pour le modèle simplifié de bâtiment. Le modèle simplifié ne possède que 3 entrées courte longueur d'onde (CLO) : </p>
+<p><i><b>Calculation of solar irradiation for a simplified building model</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model allows the calculation of solar boundary conditions for the simplified building model. The simplified model has only 3 short wavelength inputs (SW):</p>
 <ul>
-<li>le flux CLO pour le calcul des flux transmis par les vitrages (prend en compte l'impact de l'angle d'incidence sur le flux direct mais pas le coefficient de transmission normal du vitrage)</li>
-<li>le flux CLO absorbé par les vitrages</li>
-<li>le flux CLO absorbé par les parois.</li>
+<li>SW irradiance transmitted through the glazings. It takes into account the beam incidence on the surface</li>
+<li>SW irradiance absorbed by glazing</li>
+<li>SW irradiance absorbed by the walls</li>
 </ul>
-<p>L'impact de l'angle d'incidence sur le flux direct transmis est pris en compte grâce au paramètre <code><span style=\"font-family: Courier New,courier;\">Choix </span></code>et au modèle <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.DirectTrans\">DirectTrans</a>.</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Néant.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Le port d'entrée <code><span style=\"font-family: Courier New,courier;\">Gh</span></code> doit être relié au bloc météo.</p>
-<p>Les flux solaires<code><span style=\"font-family: Courier New,courier;\"> FluxAbsParois, FluxAbsVitrage et FluxTrVitrage</span></code> doivent être connectés à un modèle de bâtiment simplifié.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Gilles Plessis 03/2013.</p>
+<p>The impact of beam incidence on the surface for the direct irradiance is taken into account through the parameters <b>Choix</b> and the model  <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.DirectTrans\"><code>DirectTrans</code></a>.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+Validated model - Gilles Plessis 03/2013.
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>

@@ -183,8 +183,8 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
 
-  // Modele assemble
-    //Connection port extérieur
+  // Models assembling
+    //Connection outer thermal port
   connect(Plafond.T_ext, Text) annotation (Line(
       points={{-17,77},{-17,26.5},{-49,26.5},{-49,27}},
       color={191,0,0},
@@ -223,7 +223,7 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
 
-  // Connection port interieur
+  // Connection inner thermal port
   connect(SudVitrage.T_int, Tint) annotation (Line(
       points={{29,59},{28.5,59},{28.5,31},{61,31}},
       color={255,0,0},
@@ -265,24 +265,24 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
 
-  //somme flux CLO to distri
+  //Sum of SWR to distribute
   connect(pintDistribRad.RayEntrant, multiSum.y) annotation (Line(
       points={{66,1},{66,14},{65.02,14}},
       color={255,192,1},
       smooth=Smooth.None));
 
-  // Météo ext to Text
+  // Meteo data to Text
   connect(meteofile.Tseche, Text) annotation (Line(
       points={{-71,-29},{-60,-29},{-60,27},{-49,27}},
       color={255,0,0},
       smooth=Smooth.None));
-  // Connection température plancher
+  // Connection floor temperature
   connect(Plancher.Ts_ext, fixedTemperature.port) annotation (Line(
       points={{-11,-49},{-10.5,-49},{-10.5,-84},{-64,-84}},
       color={191,0,0},
       smooth=Smooth.None));
 
-  //Flux solaires murs
+  //Solar flux to walls
   connect(fLUXsurf.FLUX, Plafond.FLUX) annotation (Line(
       points={{-29.4,89.94},{-28.7,89.94},{-28.7,89},{-11,89}},
       color={255,192,1},
@@ -327,7 +327,7 @@ equation
       points={{-48.6,-10},{-62,-10},{-62,-34},{-71,-34}},
       color={0,0,127},
       smooth=Smooth.None));
-   // Flux solaire vitrage
+   // Solar flux to glazings
   connect(fLUXsurf4.FLUX, EstVitrage.FLUX) annotation (Line(
       points={{-35.4,-10.06},{8.3,-10.06},{8.3,-17},{17,-17}},
       color={255,192,1},
@@ -348,7 +348,7 @@ equation
       color={255,192,1},
       smooth=Smooth.None));
 
-  // Distri CLo to mur
+  // Distri SWR to wall
   connect(pintDistribRad.FLUXParois[1], Sud.FluxAbsInt) annotation (Line(
       points={{63.1667,-19},{32,-19},{32,57},{-5,57}},
       color={255,192,1},
@@ -373,7 +373,7 @@ equation
       points={{64.8333,-19},{34,-19},{34,85},{-5,85}},
       color={255,192,1},
       smooth=Smooth.None));
-  //Distri CLO to fen
+  //Distri SWR to glazing
   connect(pintDistribRad.FLUXFenetres[1], SudVitrage.FluxAbsInt) annotation (
       Line(
       points={{67.25,-19},{48,-19},{48,65},{23,65}},
@@ -429,8 +429,17 @@ equation
     experiment(StopTime=3.1536e+007, Interval=1800),
     __Dymola_experimentSetupOutput,
     Documentation(info="<html>
-<p>Temps de calcul 183 seconds</p>
-<p>Modèle validé Gilles PLESSIS</p>
+<p>Simulation time : 183 seconds.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Gilles PLESSIS</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

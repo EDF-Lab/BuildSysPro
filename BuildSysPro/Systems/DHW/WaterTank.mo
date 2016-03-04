@@ -3,31 +3,30 @@ model WaterTank
 
   //import SI=Modelica.SIunits;
 
-  parameter Integer nc=10 "Nombre de couches du ballon" annotation (Dialog(tab="Paramètres du ballon"));
-  parameter Integer ncInj=9
-    "Numéro de la couche d'injection de puissance élec"                         annotation (Dialog(tab="Paramètres du ballon"));
-  parameter Integer ncSol=2
-    "Numéro de la couche d'injection de puissance solaire"                      annotation (Dialog(tab="Paramètres du ballon"));
+  parameter Integer nc=10 "Number of layers of the tank" annotation (Dialog(tab="Tank parameters"));
+  parameter Integer ncInj=9 "Layer number of the electric power injection" annotation (Dialog(tab="Tank parameters"));
+  parameter Integer ncSol=2 "Layer number of the solar power injection"
+                                                                     annotation (Dialog(tab="Tank parameters"));
 
-  parameter Modelica.SIunits.Volume Volume(displayUnit="l")=0.3
-    "Capacité du ballon"                                                              annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
-  parameter Modelica.SIunits.Length Hauteur=1.8 "Hauteur du ballon"  annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
-  parameter Modelica.SIunits.Power Pmax=1500
-    "Puissance de la résistance électrique"                                            annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
-  parameter Modelica.SIunits.Temperature Tef=283.15 "Température d'eau froide"
-                                                                                 annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
-  parameter Modelica.SIunits.Temperature Tcons=337.15
-    "Température de consigne"                                                    annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
+  parameter Modelica.SIunits.Volume Volume(displayUnit="l")=0.3 "Tank capacity"
+                                                                                 annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Modelica.SIunits.Length Hauteur=1.8 "Tank height"  annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
+  parameter Modelica.SIunits.Power Pmax=1500 "Electrical resistance power"   annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Modelica.SIunits.Temperature Tef=283.15 "Cold water temperature"     annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Modelica.SIunits.Temperature Tcons=337.15 "Setpoint temperature"  annotation (Dialog(group="Thermodynamic tank characteristics"));
 
   parameter Modelica.SIunits.TemperatureDifference BP=3
-    "Hystérésis de part et d'autre Tcons"                                                     annotation (Dialog(tab="Paramètres du ballon"));
+    "Hysteresis on both sides of Tcons"                                                     annotation (Dialog(tab="Tank parameters"));
 
-  parameter Real lambda=0.62 "Conductivité de l'eau en W/(m.K)" annotation (Dialog(tab="Paramètres du ballon"));
-  parameter Real rho=1000 "Masse volumique de l'eau" annotation (Dialog(tab="Paramètres du ballon"));
-  parameter Real cp=4185 "Chaleur massique de l'eau en J/(kg.K)" annotation (Dialog(tab="Paramètres du ballon"));
-  parameter Real U=1 "Coefficient de transmission du ballon en W/(m².K)" annotation (Dialog(tab="Paramètres du ballon"));
-  parameter Real ku=1.5e6 "Coef. de convection supérieur" annotation (Dialog(tab="Paramètres du ballon"));
-  parameter Real kd=10 "Coef. de convection supérieur" annotation (Dialog(tab="Paramètres du ballon"));
+  parameter Modelica.SIunits.ThermalConductivity lambda=0.62
+    "Water conductivity"                                                          annotation (Dialog(tab="Tank parameters"));
+  parameter Modelica.SIunits.Density rho=1000 "Water density" annotation (Dialog(tab="Tank parameters"));
+  parameter Modelica.SIunits.SpecificHeatCapacity cp=4185
+    "Water specific heat capacity"                                                       annotation (Dialog(tab="Tank parameters"));
+  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer U=1
+    "Transmission coefficient of the tank"                                                               annotation (Dialog(tab="Tank parameters"));
+  parameter Real ku=1.5e6 "Higher convection coefficient" annotation (Dialog(tab="Tank parameters"));
+  parameter Real kd=10 "Higher convection coefficient" annotation (Dialog(tab="Tank parameters"));
 
   discrete Integer Hyst(start=1);
 
@@ -44,7 +43,7 @@ protected
   Real diametre=sqrt(4*Volume/(pi*Hauteur));
   Real dz=Hauteur/nc;
   //Integer ncInj=integer(hInj/dz)+1;
-    //"Numéro de la couche d'injection de puissance";
+    //""Layer number of the power injection";
   Real dv=Volume/nc;
   Real pi=Modelica.Constants.pi;
   Real sint=pi*diametre*Hauteur+2*sbase;
@@ -61,15 +60,15 @@ protected
   parameter Real coef36=1/3.6e6;
 
 public
-  Modelica.Blocks.Interfaces.RealInput debit(start=0)
-    "Debit de puisage en kg/h"                                           annotation (
+  Modelica.Blocks.Interfaces.RealInput debit(start=0) "Drawing rate in kg/h"
+                                                                     annotation (
       Placement(transformation(extent={{-120,-90},{-80,-50}}),
         iconTransformation(extent={{-100,-70},{-80,-50}})));
 public
-  Modelica.Blocks.Interfaces.RealOutput P "Puissance"
+  Modelica.Blocks.Interfaces.RealOutput P "Power"
     annotation (Placement(transformation(extent={{80,0},{100,20}}),
         iconTransformation(extent={{80,0},{100,20}})));
-  Modelica.Blocks.Interfaces.RealOutput Perte "Pertes du ballon"
+  Modelica.Blocks.Interfaces.RealOutput Perte "Tank losses"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={50,70}),
@@ -78,7 +77,7 @@ public
         origin={90,-50})));
 public
   Modelica.Blocks.Interfaces.RealInput Tamb(start=293.15)
-    "Température ambiante (K)"                                          annotation (
+    "Ambient temperature (K)"                                          annotation (
       Placement(transformation(extent={{-20,-20},{20,20}},
         rotation=270,
         origin={-30,100}),
@@ -92,7 +91,7 @@ public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a SolaireThermique
     annotation (Placement(transformation(extent={{-100,-40},{-80,-20}})));
 
-  Modelica.Blocks.Interfaces.RealOutput C "Consommation"
+  Modelica.Blocks.Interfaces.RealOutput C "Consumption"
     annotation (Placement(transformation(extent={{80,-42},{100,-22}}),
         iconTransformation(extent={{80,24},{100,44}})));
 equation
@@ -111,11 +110,11 @@ equation
       nMA=pre(nMA)+1;
   end when;
 
-// Régulation
+// Regulation
   Hyst=if T[ncInj]<=Tcons-BP then 1 else (if T[ncInj]>= Tcons+BP then 0 else pre(Hyst));
   OnOffSol=if T[ncSol]<=Tcons-0.2 then 1 else (if T[ncSol+1]>= Tcons+BP then 0 else pre(OnOffSol));
 
-// Répartition des puissances transmises à l'eau par tranche
+// Distribution of powers transferred to the water per layer
   for i in 1:nc loop
     if i==ncInj then
       puis[i]=OnOffPmax*Hyst;
@@ -126,7 +125,7 @@ equation
     end if;
   end for;
 
-// Bilan thermique sur la tranche 1 après avoir défini les échanges avec le local (perte) et avec les tranches sup et inf (conv)
+// Heat balance on the layer 1 after setting exchanges with the room (loss) and with upper and lower layers (conv)
   perte[1]=U*Slat[2]*(T[1]-Tamb);
   if nc>=2 then
     conv[1]=(if T[1]>T[2] then ku else kd)*(T[2]-T[1]);
@@ -136,28 +135,28 @@ equation
   rovcp*der(T[1]) = puis[1] - perte[1] + MCp*(Tef-T[1]) + conv[1] + (if nc==1 then 0 else cond*(T[2]-T[1]));
 
   if nc>1 then
-// Bilan thermique sur les tranches intermédiaires
+// Heat balance on intermediate layers
   for i in 2:nc-1 loop
     perte[i]=U*Slat[1]*(T[i]-Tamb);
     conv[i]=(if T[i]>T[i+1] then ku else kd)*(T[i+1]-T[i]);
     rovcp*der(T[i]) = puis[i] - perte[i] + MCp *(T[i-1]-T[i]) + conv[i]-conv[i-1] + cond*(T[i-1]+T[i+1]-2*T[i]);
   end for;
 
-// Bilan thermique sur la tranche la plus haute
+// Heat balance on the upper layer
   perte[nc]=U*Slat[2]*(T[nc]-Tamb);
   conv[nc]=0;//*(if T[nc-1]>T[nc] then ku else kd)*(T[nc-1]-T[nc]);
   rovcp*der(T[nc]) = puis[nc] - perte[nc] + MCp*(T[nc-1]-T[nc]) + 0 - conv[nc-1] + cond*(T[nc-1]-T[nc]);
 
   end if;
 
-// le fluide calorifique du capteur solaire sort du ballon à la température de la tranche ncSol
+// Heat transfer fluid of the solar sensor exits the tank with the temperature of the layer ncSol
   SolaireThermique.T=T[ncSol];
 
-// Données d'analyse
+// Analysis data
   Perte=sum(perte);
   P=puis[ncInj];
   der(Conso)=P;
-  C = Conso; // Ajout AK car oubli Hubert lors de la màj du 07/2012 !!!!
+  C = Conso;
   annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={
         Rectangle(
@@ -206,16 +205,18 @@ equation
 <p>Sila Filfli - 09/2012 : correction dv et diametre où le Volume était divisé par erreur par 1000</p>
 </html>",
         info="<html>
-<p><u><b>Description</b></u></p>
-<p>Ballon d'eau chaude électrique permettant une connection avec un capteur solaire. </p>
-<p><u><b>Modèle</b></u></p>
-<p>Ce modèle accepte un apport solaire dans les étages bas du ballon thermodynamique - il s'agit d'une modification du modèle ECS.BECSThermo</p>
-<p>Le ballon est modélisé par une discrétisation par tranches horizontales superposées. On peut indiquer à quelle tranche est injectée la puissance thermique tirée d'un capteur solaire. </p>
-<p>Ce modèle pourrait se décliné en un appoint par chaudière.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Il faut tenir à bien respecter les unités des inputs tel que le respect du débit du scénario de puisage en kg/h. </p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Hubert Blervaque & Hassan Bouia 06/2011</p>
+<p>Electric hot water tank allowing a connection with a solar sensor.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model allows a solar gain in the low floors of the thermodynamic tank.</p>
+<p>The tank is modelled by a superimposed horizontal layers discretization. It is possible to indicate in which layer the thermal power from a solar sensor is injected.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>Take care to respect the units of inputs such as the drawing scenario rate in kg/h.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hubert Blervaque, Hassan Bouia 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

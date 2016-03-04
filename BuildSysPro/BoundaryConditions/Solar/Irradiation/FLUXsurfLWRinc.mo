@@ -1,6 +1,6 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
 model FLUXsurfLWRinc
-  "Calcul de l'éclairement incident global incident au temps t sur une surface inclinée avec choix des flux donnés en entrée"
+  "Calculation of global incident irradiance on a particular surface"
 
   FLUXsurf fLUXsurf(
     albedo=albedo,
@@ -11,24 +11,22 @@ model FLUXsurfLWRinc
   Modelica.Blocks.Math.Add add
     annotation (Placement(transformation(extent={{44,-2},{58,12}})));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut
-    "Azimut de la surface (Orientation par rapport au sud) - S=0°, E=-90°, O=90°, N=180°";
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°";
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl
-    "Inclinaison de la surface par rapport à l'horizontale - vers le sol=180°, vers le ciel=0°, verticale=90°";
-  parameter Real albedo=0.2 "Albedo de l'environnement";
-  parameter Integer diffus_isotrope=1
-    "1 - modèle de diffus isotrope ; 2 - modèle de diffus circumsolaire (Hay Davies Kluch Reindl)"
-    annotation (dialog(
+    "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°";
+  parameter Real albedo=0.2 "Albedo of the environment";
+parameter Integer diffus_isotrope=1 "Model for diffuse irradiance"
+    annotation (Dialog(
       compact=true), choices(
-      choice=1 "Diffus isotrope",
-      choice=0 "Diffus HDKR (prise en compte du circumsolaire)",
-      radioButtons=true));
+      choice=1 "Isotropic",
+      choice=2 "Circumsolar diffuse model (Hay Davies Kluch Reindl))"));
 
 Modelica.Blocks.Interfaces.RealInput G[10]
-    "DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut,Hauteur"
+    "Inputs data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], solar azimuth angle, solar elevation angle}"
     annotation (Placement(transformation(extent={{-120,-18},{-80,22}},
         rotation=0), iconTransformation(extent={{-120,-10},{-100,10}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUX
-    "Flux solaire surfacique incident global" annotation (Placement(
+    "Global irradiance in [W/m²]" annotation (Placement(
         transformation(extent={{65,-12},{99,22}}, rotation=0),
         iconTransformation(extent={{100,-11},{120,9}})));
 equation
@@ -79,13 +77,33 @@ equation
 <p>Hassan Bouia 03/2013 : simplication du calcul solaire - attention nouvelle dimension du vecteur <b>Gh</b> renommé en <b>G</b></p>
 <p>Amy Lindsay 03/2013 : ajout du paramètre diffus_isotrope pour choisir entre un modèle de diffus isotrope ou le modèle de diffus HDKR</p>
 </html>", info="<html>
-<p>Modèle à intégré en option dans FLUXsurf - Aurélie</p>
-<p><b>Nouveauté !</b> Il est possible de choisir quel modèle de diffus utiliser. Le modèle diffus isotrope est considéré plus conservateur (tendance à sous-estimer le rayonnement incident sur un plan incliné) mais est plus simple d'utilisation. Le modèle diffus Hay Davies Klucher Reindl (HDKR) est à privilégier dans les applications solaires (photovolta&iuml;que, solaire thermique...).</p>
+<p><i><b>Complete the description of the model using <u>Info Editor</u> or<u> Info Source</u> views and fill in the next sections</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Model which takes as input the vector G from a weather reader to calculate the surface irradiance on a particular surface (tilt and orientation given). G contains:</p>
+<ul>
+ <li> (1) Horizontal diffuse flux</li>
+ <li>(2) Normal direct flux</li>
+ <li>(3) Horizontal direct flux</li>
+ <li>(4) Horizontal global flux</li>
+ <li>(5) Time in UTC at time t = 0 (start of the simulation)</li>
+ <li>(6-7-8) Sun's direction cosines (6-sinH, 7-cosW, 8-cosS)</li>
+ <li>(9) Solar azimuth angle</li>
+ <li>(10) Solar elevation angle</li>
+</ul>
+You can choose which diffuse model to use. The isotropic diffuse model is considered more conservative (tendency to underestimate the incident radiation on an inclined plane) but is easier to use. The diffuse model Hay Davies Klucher Reindl (HDKR) is preferred in solar applications (photovoltaic, solar thermal ...).</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>none</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
-Author : Aurélie KAEMMERLEN, EDF (2010)<br>
+Author :   Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
-</html>"));
+</html>
+"));
 end FLUXsurfLWRinc;

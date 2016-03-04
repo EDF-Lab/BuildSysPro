@@ -1,13 +1,13 @@
 ﻿within BuildSysPro.BuildingStock.RnCm;
 model R3C2 "Simplified R3C2 electric model of a building"
-  parameter Real Cres = 1/9.2178e-07 "Capacity of air" annotation(dialog(group="Modèle R3C2"));
-  parameter Real Cs =   1/7.1675e-08 "Capacity of heavy walls" annotation(dialog(group="Modèle R3C2"));
-  parameter Real Rf =   1/19.979 "Resistance Rf" annotation(dialog(group="Modèle R3C2"));
-  parameter Real Ri =   1/400.38 "Resistance Ri" annotation(dialog(group="Modèle R3C2"));
-  parameter Real Ro =   1/81.191 "Resistance Rf" annotation(dialog(group="Modèle R3C2"));
-  parameter Real S=1 "Surface of South equivalent glazing" annotation(dialog(group="Vitrage Sud équivalent"));
-  parameter Real TrDir=0.747 "Direct transmission coefficient of the glazing" annotation(dialog(group="Vitrage Sud équivalent"));
-  parameter Real TrDif=0.665 "Diffuse transmission coefficient of the glazing" annotation(dialog(group="Vitrage Sud équivalent"));
+  parameter Real Cres = 1/9.2178e-07 "Capacity of air" annotation(Dialog(group="Modèle R3C2"));
+  parameter Real Cs =   1/7.1675e-08 "Capacity of heavy walls" annotation(Dialog(group="Modèle R3C2"));
+  parameter Real Rf =   1/19.979 "Resistance Rf" annotation(Dialog(group="Modèle R3C2"));
+  parameter Real Ri =   1/400.38 "Resistance Ri" annotation(Dialog(group="Modèle R3C2"));
+  parameter Real Ro =   1/81.191 "Resistance Rf" annotation(Dialog(group="Modèle R3C2"));
+  parameter Real S=1 "Surface of South equivalent glazing" annotation(Dialog(group="Vitrage Sud équivalent"));
+  parameter Real TrDir=0.747 "Direct transmission coefficient of the glazing" annotation(Dialog(group="Vitrage Sud équivalent"));
+  parameter Real TrDif=0.665 "Diffuse transmission coefficient of the glazing" annotation(Dialog(group="Vitrage Sud équivalent"));
 
   BuildSysPro.BaseClasses.HeatTransfer.Components.HeatCapacitor Tint(C=Cres)
     annotation (Placement(transformation(

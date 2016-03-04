@@ -97,7 +97,7 @@ equation
 <p>None</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>None</p>
-<p><u><b>Known limits / Precautions for use</b></u></p>
+<p><u><b>Known limits / Use precautions</b></u></p>
 <p>Simulate and plot the two outputs of the two discomfort models  as well as indoor temperature and setpoint.</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis 06/2012</p>

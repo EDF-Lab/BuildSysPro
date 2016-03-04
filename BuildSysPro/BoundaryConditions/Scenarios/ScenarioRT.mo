@@ -512,7 +512,7 @@ Regulation 2012"),
 <li>ventilation</li>
 <li>heating and cooling</li>
 </ul>
-<p>The data being discrete and with an hourly time step, the interpolation is performed by a step function (see the block <a href=\"BuildSysPro.BoundaryConditions.Scenarios.StepFunctionMat\">BuildSysPro.BoundaryConditions.Scenarios.StepFunctionMat</a>). The scenarios are taken from the <i>ScenarioRT2012.txt</i> file in <i>./Resources/Donnees/Scenarios</i></p>
+<p>The data being discrete and with an hourly time step, the interpolation is performed by a step function (see the block <a href=\"BuildSysPro.BoundaryConditions.Scenarios.StepFunctionMat\"><code>BuildSysPro.BoundaryConditions.Scenarios.StepFunctionMat</code></a>).</p>
 <p>The model uses simulation time <i>modulo</i> 1 year (31536000s = 3600 * 8760). Therefore if the simulation is run several years, the scenario is repeated.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>Version 9 of the 2012 French Building Regulation scenarios.</p>
@@ -522,14 +522,14 @@ Regulation 2012"),
 <p><br><i><span style=\"color: #ff0000;\">Error: Singular inconsistent scalar system for scenarioRT.ApportsThOccupants.T = (scenarioRT.prescribedHeatFlow.Q_flow*(1-scenarioRT.prescribedHeatFlow.alpha*scenarioRT.prescribedHeatFlow.T_ref))/( -scenarioRT.prescribedHeatFlow.Q_flow*scenarioRT.prescribedHeatFlow.alpha) = .../-0</span></i></p>
 <p>To fix the problem change the value of concerned booleans.</p>
 <p>Right ports of the model correspond to &QUOT;controls&QUOT;. They can be connected to models such as ventilation, hot water, lighting, heating and cooling or comfort analysis.</p>
-<p><u><b>Known limits / Precautions for use</b></u></p>
+<p><u><b>Known limits / Use precautions</b></u></p>
 <p>None</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model but based on RT 2012 provisional scenarios - Gilles Plessis 02/2011 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2010 - 2015<br>
-BuildSysPro version 2015.04<br>
+BuildSysPro version 2015.12<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

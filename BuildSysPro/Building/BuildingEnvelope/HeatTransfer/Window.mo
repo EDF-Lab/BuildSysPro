@@ -1,96 +1,99 @@
 ﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
-model Window "Modèle de fenêtre déperditive générique"
-  // Option du vitrage
-parameter Boolean useVolet=false  annotation(dialog(group="Options",compact=true),choices(choice=true
-        "Avec volet",                                                                                               choice=false
-        "Sans volet",                                                                                                  radioButtons=true));
+model Window "Generic window model"
+  // Glazing options
+parameter Boolean useVolet=false  annotation(Dialog(group="Options",compact=true),choices(choice=true
+        "With shutter",                                                                                               choice=false
+        "Without shutter",                                                                                                  radioButtons=true));
 parameter Boolean useOuverture=false
- annotation(dialog(group="Options",compact=true),choices(choice=true
-        "Avec ouverture",                                                              choice=false
-        "Sans ouverture",                                                                                             radioButtons=true));
+ annotation(Dialog(group="Options",compact=true),choices(choice=true
+        "With opening",                                                              choice=false
+        "Without opening",                                                                                             radioButtons=true));
 parameter Boolean useReduction=false
-annotation(dialog(group="Options",compact=true),choices(choice=true
-        "Avec masquage, menuiserie",                                                             choice=false
-        "Sans masquage, menuiserie",                                                                                                  radioButtons=true));
+annotation(Dialog(group="Options",compact=true),choices(choice=true
+        "With masking, frame",                                                             choice=false
+        "Without masking, frame",                                                                                                  radioButtons=true));
 parameter Boolean useEclairement=false
-annotation(dialog(group="Options",compact=true),choices(choice=true
-        "Avec calcul de l'éclairement naturel",                                                             choice=false
-        "Sans calcul de l'éclairement naturel",                                                                                                  radioButtons=true));
-  // Paramètres généraux
-  parameter Modelica.SIunits.Area S=1 "Surface vitrée"
-                                                       annotation(dialog(group="Paramètres généraux"));
-  parameter Modelica.SIunits.Length H=1 "Hauteur vitre" annotation(dialog(group="Paramètres généraux"));
-  parameter Modelica.SIunits.Length L=1 "Largeur vitre" annotation(dialog(enable=useEclairement,group="Paramètres généraux"));
+annotation(Dialog(group="Options",compact=true),choices(choice=true
+        "With calculation of natural lighting",                                                             choice=false
+        "Without calculation of natural lighting",                                                                                                  radioButtons=true));
+  // General parameters
+  parameter Modelica.SIunits.Area S=1 "Glazing surface"
+                                                       annotation(Dialog(group="General parameters"));
+  parameter Modelica.SIunits.Length H=1 "Height of the window" annotation(Dialog(group="General parameters"));
+  parameter Modelica.SIunits.Length L=1 "Width of the window" annotation(Dialog(enable=useEclairement,group="General parameters"));
 
-// Coefficient de transmission et d'échanges tels que Uvitrage=3
+// Coefficient of transmission and exchanges such as Uglazing = 3
 parameter Modelica.SIunits.CoefficientOfHeatTransfer k=6.06
-    "Coefficient de transmission surfacique k du vitrage - sans échanges convectifs; par défaut, k, hs_ext et hs_int pour que Uvitrage=3"
-                                                                                                      annotation(dialog(group="Paramètres généraux"));
+    "Surface transmission coefficient k of the glazing - without convective exchanges; by default, k, hs_ext and hs_int lead to a Uvalue = 3 W/m2/K"
+                                                                                                      annotation(Dialog(group="General parameters"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=21
-    "Coefficient d'échange surfacique sur la face extérieure" annotation(dialog(group="Paramètres généraux"));
+    "Surface exchange coefficient on the outer face" annotation(Dialog(group="General parameters"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=8.29
-    "Coefficient d'échange surfacique global sur la face intérieure" annotation(dialog(group="Paramètres généraux"));
+    "Global surface exchange coefficient on the inner face" annotation(Dialog(group="General parameters"));
 parameter Modelica.SIunits.ThermalInsulance R_volet=0.2
-    "Résistance thermique additionnelle (volet fermé)"                                                          annotation(Dialog(enable=useVolet,group="Paramètres généraux"));
+    "Additional thermal resistance (shutters closed)"                                                          annotation(Dialog(enable=useVolet,group="General parameters"));
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
-    "Inclinaison de la surface par rapport à l'horizontale - vers le sol=180°, vers le ciel=0°, verticale=90°"
-                                                                                                      annotation(dialog(group="Paramètres généraux"));
+    "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°"
+                                                                                                      annotation(Dialog(group="General parameters"));
 parameter Integer choix=1
-    "Formule utilisée pour pondérer la transmission thermique du flux direct"
-                                                                                                      annotation(dialog(group="Paramètres généraux"),choices(
+    "Formula to weight the thermal transmission of direct flux depending on the angle of incidence"
+                                                                                                      annotation(Dialog(group="Optical properties"),choices(
         choice=1 "Fauconnier",
-        choice=2 "RT",
+        choice=2 "French building regulation (RT)",
         choice=3 "Cardonnel",
-        choice=4 "Linéaire avec cosi"));
+        choice=4 "Linear with cosi"));
 
-// Paramètres optiques
-parameter Real TrDir=0.747 "Coefficient de transmission direct de la fenêtre" annotation(dialog(group="Propriétés optiques"));
-parameter Real TrDif=0.665 "Coefficient de transmission diffus de la fenêtre" annotation(dialog(group="Propriétés optiques"));
-parameter Real AbsDir=0.100 "Coefficient d'absorption direct de la fenêtre" annotation(dialog(group="Propriétés optiques"));
-parameter Real AbsDif=0.108 "Coefficient d'absorption diffus de la fenêtre" annotation(dialog(group="Propriétés optiques"));
-parameter Real eps=0.9 "Emissivité du vitrage en GLO" annotation(dialog(group="Propriétés optiques"));
+// Optical parameters
+parameter Real TrDir=0.747 "Direct transmission coefficient of the window" annotation(Dialog(group="Optical properties"));
+parameter Real TrDif=0.665 "Diffuse transmission coefficient of the window" annotation(Dialog(group="Optical properties"));
+parameter Real AbsDir=0.100 "Direct absorption coefficient of the window" annotation(Dialog(group="Optical properties"));
+parameter Real AbsDif=0.108 "Diffuse absorption coefficient of the window" annotation(Dialog(group="Optical properties"));
+parameter Real eps=0.9 "Glazing emissivity in LWR" annotation(Dialog(group="Optical properties"));
 
-// Facteurs de réduction des flux direct et diffus (masquage, menuiserie,...)
-parameter Integer TypeFenetrePF=1
-    "Choix du type de fenetre ou porte-fenetre (PF)"
-    annotation (Dialog(tab="Type de vitrage",enable=useReduction,group="Paramètres"),
-    choices( choice= 1 "Je ne sais pas - pas de menuiserie",
-             choice= 2 "Battant Fenêtre Bois",
-             choice= 3 "Battant Fenêtre Métal",
-             choice= 4 "Battant PF avec soubassement Bois",
-             choice= 5 "Battant PF sans soubassement Bois",
-             choice= 6 "Battant PF sans soubassement Métal",
-             choice= 7 "Coulissant Fenêtre Bois",
-             choice= 8 "Coulissant Fenêtre Métal",
-             choice= 9 "Coulissant PF avec soubassement Bois",
-             choice= 10 "Coulissant PF sans soubassement Bois",
-             choice= 11 "Coulissant PF sans soubassement Métal"));
-parameter Real voilage=0.95 "Voilage : = 0.95 si oui et = 1 sinon"
-    annotation (Dialog(tab="Type de vitrage",enable=useReduction,group="Paramètres"));
+// Reduction factors of direct and diffuse fluxes (masking, frame, ...)
+parameter Integer TypeFenetrePF=1 "Choice of type of window or French window"
+    annotation (Dialog(tab="Type of glazing",enable=useReduction,group="Parameters"),
+    choices( choice= 1 "I do not know - no frame",
+             choice= 2 "Wood window sashes",
+             choice= 3 "Metal window sashes",
+             choice= 4 "French window sashes with wood bedrock",
+             choice= 5 "French window sashes without wood bedrock",
+             choice= 6 "French window sashes without metal bedrock",
+             choice= 7 "Wood sliding window",
+             choice= 8 "Metal sliding window",
+             choice= 9 "Sliding French window with wood bedrock",
+             choice= 10 "Sliding French window without wood bedrock",
+             choice= 11 "Sliding French window without metal bedrock"));
+parameter Real voilage=0.95
+    "Presence of net curtains : = 0.95 if yes and = 1 if not"
+    annotation (Dialog(tab="Type of glazing",enable=useReduction,group="Parameters"));
 parameter Real position=0.90
-    "Position du vitrage : = 0.9 si interieure et = 1 si exterieure"
-    annotation (Dialog(tab="Type de vitrage",enable=useReduction,group="Paramètres"));
-parameter Real rideaux=0.85 "Presence de rideaux : = 0.85 si oui et = 1 sinon"
-    annotation (Dialog(tab="Type de vitrage",enable=useReduction,group="Paramètres"));
+    "Glazing position: = 0.9 if inner and = 1 if outer"
+    annotation (Dialog(tab="Type of glazing",enable=useReduction,group="Parameters"));
+parameter Real rideaux=0.85
+    "Presence of curtains: = 0.85 if yes and = 1 if not"
+    annotation (Dialog(tab="Type of glazing",enable=useReduction,group="Parameters"));
 parameter Real ombrages=0.85
-    "Ombrage d'obstacles (vegetation, voisinage) : = 0.85 si oui et = 1 sinon"
-    annotation (Dialog(tab="Type de vitrage",enable=useReduction,group="Paramètres"));
-parameter Real r1=1 "Coef. réducteur pour le direct si useReduction = false"
-    annotation (Dialog(tab="Type de vitrage",enable=not useReduction,group="Coefficients de réduction si useReduction = false"));
-parameter Real r2=1 "Coef. réducteur pour le diffus si useReduction = false"
-    annotation (Dialog(tab="Type de vitrage",enable=not useReduction,group="Coefficients de réduction si useReduction = false"));
+    "Obstacles shading (vegetation, neighborhood): = 0.85 if yes et = 1 if not"
+    annotation (Dialog(tab="Type of glazing",enable=useReduction,group="Parameters"));
+parameter Real r1=1
+    "Reduction factor for direct radiation if useReduction = false"
+    annotation (Dialog(tab="Type of glazing",enable=not useReduction,group="Reduction factor if useReduction = false"));
+parameter Real r2=1
+    "Reduction factor for diffuse radiation if useReduction = false"
+    annotation (Dialog(tab="Type of glazing",enable=not useReduction,group="Reduction factor if useReduction = false"));
 
-    // Prise en compte de flux radiatifs à l'intérieur de la fenêtre
-parameter Boolean RadInterne=false
-    "Prise en compte de flux absorbés à l'intérieur" annotation(dialog(tab="Paramètres avancés",compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
+    // Consideration of radiative flux within the window
+parameter Boolean RadInterne=false "Consideration of flux absorbed inside"
+                                            annotation(Dialog(tab="Advanced parameters",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
 parameter Boolean DifDirOut=false
-    "Sortie des flux direct et diffus au lieu du flux total" annotation(dialog(tab="Paramètres avancés",compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
+    "Output of direct and diffuse fluxes instead of the total flux" annotation(Dialog(tab="Advanced parameters",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
 parameter Boolean GLOext=false
-    "Prise en compte de rayonnement GLO vers l'environnement et le ciel" annotation(dialog(tab="Paramètres avancés",compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
+    "Consideration of LW radiation toward the environment and the sky" annotation(Dialog(tab="Advanced parameters",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
 
 protected
   parameter Real sigma[11]={1,0.7,0.7,0.63,0.74,0.74, 0.700,0.77,0.630,0.74,0.83}
-    "Proportion de menuiserie pour chaque type de vitrage";
+    "Frame proportion for each type of glazing";
   parameter Real facteur=rideaux*sigma[TypeFenetrePF]*voilage*ombrages;
   parameter Real reduc_dir=if useReduction then facteur*position else 1;
   parameter Real reduc_dif=if useReduction then facteur else 1;
@@ -101,85 +104,83 @@ protected
   Real part_vitrage;
   Real part_vide;
 
-  //Facteurs de transmission lumineuse
+  //Light transmission factors
   Real Tlii_sp=TransLum.CoeffTransLum[1]-TransLum.CoeffTransLum[2] if useEclairement
-    "Facteur de transmission lumineuse du flux incident direct transmis sous forme directe de la baie vitrée sans protection mobile en place";
+    "Light transmission factor of direct incident flux transmitted into a direct flux through the glazing without awning or blind";
   Real Tlii_ap_dir=Tld_ap_dif-Tlid_ap_dir if useEclairement
-    "Facteur de transmission lumineuse du flux incident direct transmis sous forme directe de la baie vitrée avec protection mobile en place";
+    "Light transmission factor of direct incident flux transmitted into a direct flux through the glazing with awning or blind";
   Real Tlid_sp=TransLum.CoeffTransLum[2] if useEclairement
-    "Facteur de transmission lumineuse du flux incident direct transmis sous forme diffuse de la baie vitrée sans protection mobile en place";
+    "Light transmission factor of direct incident flux transmitted into a diffuse flux through the glazing without awning or blind";
   Real Tld_ap_dif=TransLum.CoeffTransLum[3] if useEclairement
-    "Facteur de transmission lumineuse global du flux incident diffus avec protection mobile en place";
+    "Global light transmission factor of diffuse incident flux through the glazing without awning or blind";
   Real Tld_sp=TransLum.CoeffTransLum[1] if useEclairement
-    "Facteur de transmission lumineuse global de la baie vitrée sans protection mobile en place";
+    "Global light transmission factor through the glazing without awning or blind";
   Real Tlid_ap_ref=TransLum.CoeffTransLum[4] if useEclairement
-    "Facteur de transmission lumineuse du flux incident réfléchi par le sol sous forme directe transmis sous forme diffuse avec protection mobile en place";
+    "Light transmission factor of incident flux reflected by the ground and transmitted into a diffuse flux through the glazing with awning or blind";
   Real Tlid_ap_dir=TransLum.CoeffTransLum[4] if useEclairement
-    "Facteur de transmission lumineuse du flux incident direct transmis sous forme diffuse avec protection mobile en place";
+    "Light transmission factor of direct incident flux transmitted into a diffuse flux through the glazing with awning or blind";
   Real Tlii_ap_ref=Tld_ap_dif-Tlid_ap_ref if useEclairement
-    "Facteur de transmission lumineuse du flux incident réfléchi par le sol, transmis sous forme directe de la baie vitrée avec protection mobile en place";
+    "Light transmission factor of incident flux reflected by the ground and transmitted into a direct flux through the glazing with awning or blind";
 
-// Connecteurs
+// Connectors
 public
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUX[3]
-    "Informations de flux solaire surfacique incident 1-Flux Diffus, 2-Flux Direct 3-Cosi"
+    "Incident solar surface flux information 1-Diffuse flux, 2-Direct flux, 3-Cosi"
     annotation (Placement(transformation(extent={{-120,20},{-80,60}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr if  not
-  DifDirOut "Rayonnement CLO transmis à l'intérieur" annotation (Placement(
+  DifDirOut "SW radiation transmitted inside" annotation (Placement(
         transformation(extent={{60,50},{100,90}}), iconTransformation(extent={{
             80,40},{100,60}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr2[3] if
-  DifDirOut
-    "Rayonnement CLO transmis à l'intérieur 1-Diffus, 2-Direct, 3-cosi"
+  DifDirOut "SW radiation transmitted inside 1-Diffuse, 2-Direct, 3-cosi"
     annotation (Placement(transformation(extent={{60,20},{100,60}}),
         iconTransformation(extent={{80,40},{100,60}})));
   Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
-    RadInterne
-    "Flux (GLO/CLO) absorbés par le vitrage sur sa face intérieure"
+    RadInterne "Flux (LWR/SWR) absorbed by the glazing on its inner face"
     annotation (Placement(transformation(extent={{120,-10},{82,28}}),
         iconTransformation(extent={{40,10},{20,30}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
-    "Température extérieure" annotation (Placement(transformation(
+    "Outdoor temperature" annotation (Placement(transformation(
           extent={{-100,-40},{-80,-20}}), iconTransformation(extent={{-100,
             -40},{-80,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Ts_ext
-    "Température de surface extérieure" annotation (Placement(
+    "Outer surface temperature" annotation (Placement(
         transformation(extent={{-40,-40},{-20,-20}}),
         iconTransformation(extent={{-40,-40},{-20,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_int
-    "Température de surface intérieure" annotation (Placement(
+    "Inner surface temperature" annotation (Placement(
         transformation(extent={{20,-40},{40,-20}}), iconTransformation(
           extent={{20,-40},{40,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int
-    "Température intérieure" annotation (Placement(transformation(
+    "Indoor temperature" annotation (Placement(transformation(
           extent={{80,-40},{100,-20}}), iconTransformation(extent={{80,
             -40},{100,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if         GLOext
-    "Température du ciel" annotation (Placement(transformation(extent=
+    "Sky temperature" annotation (Placement(transformation(extent=
             {{-100,-100},{-80,-80}}), iconTransformation(extent={{-100,
             -100},{-80,-80}})));
 
   Modelica.Blocks.Interfaces.RealInput fermeture_volet if      useVolet
-    "Taux de fermeture du volet (0 ouvert, 1 fermé)" annotation (Placement(
+    "Shutters closing rate (0 opened, 1 closed)" annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
         origin={2,116}), iconTransformation(extent={{-100,60},{-80,80}},
           rotation=0)));
   Modelica.Blocks.Interfaces.BooleanInput ouverture_fenetre if useOuverture
-    " Ouverture de la fenêtre (true=ouvert false=fermée)"
+    "Opening of the window (true=opened false=closed)"
     annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
         origin={-26,116}), iconTransformation(extent={{-40,-10},{-20,10}},
           rotation=0)));
   Modelica.Blocks.Interfaces.RealInput V if    useOuverture
-    "Vitesse du vent normale au vitrage (m/s)" annotation (Placement(
+    "Wind speed perpendicular to the glazing (m/s)" annotation (Placement(
         transformation(extent={{-120,60},{-80,100}}), iconTransformation(extent={{-100,
             -10},{-80,10}})));
 
-// Composants
+// Components
 
   BuildSysPro.BaseClasses.HeatTransfer.Components.ControlledThermalConductor
     conduction
@@ -267,11 +268,11 @@ protected
           rotation=0)));
 public
   Modelica.Blocks.Interfaces.RealOutput Flum[3] if useEclairement
-    "Flux lumineux transmis -direct -diffus -réfléchi (lumen)"
+    "Tranmitted luminous fluxes -direct -diffuse -reflected (lumen)"
     annotation (Placement(transformation(extent={{100,-92},{146,-46}}),
         iconTransformation(extent={{80,90},{100,110}})));
   Modelica.Blocks.Interfaces.RealInput Ecl[3] if useEclairement
-    "Eclairement incident -direct -diffus -réfléchi (lumen)"
+    "Incident illumination -direct -diffuse -reflected (lumen)"
     annotation (Placement(transformation(extent={{19,-19},{-19,19}},
         rotation=180,
         origin={-149,-37}),
@@ -291,25 +292,25 @@ public
     Protection=Protection) if useEclairement
     annotation (Placement(transformation(extent={{-78,84},{-58,104}})));
   parameter Real e=0.35
-    "Epaisseur de la paroi verticale dans laquelle s'intègre le vitrage"                     annotation(dialog(enable=useEclairement,group="Paramètres éclairement"));
+    "Thickness of the vertical wall in which the glazing is integrated"                     annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real azimut=0
-    "Azimut de la surface (Orientation par rapport au sud) - S=0°, E=-90°, O=90°, N=180°"
-                                                                                              annotation(dialog(enable=useEclairement,group="Paramètres éclairement"));
+    "Azimuth (orientation compared to the south) - S=0°, E=-90°, W=90°, N=180°"
+                                                                                              annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real TLw=0.5
-    "Facteur de transmission lumineuse global de la baie sans protection" annotation(dialog(enable=useEclairement,group="Paramètres éclairement"));
+    "Global light transmission factor of the window without protection" annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real TLw_dif=0
-    "Facteur de transmission lumineuse diffus de la baie sans protection" annotation(dialog(enable=useEclairement,group="Paramètres éclairement"));
+    "Diffuse light transmission factor of the window  without protection" annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real TLws=0
-    "Facteur de transmission lumineuse global de la baie avec protection" annotation(dialog(enable=useEclairement,group="Paramètres éclairement"));
+    "Global light transmission factor of the window  with protection" annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real TLws_dif=0
-    "Facteur de transmission lumineuse diffus de la baie avec protection" annotation(enable=useEclairement,dialog(enable=useEclairement,group="Paramètres éclairement"));
+    "Diffuse light transmission factor of the window  with protection" annotation(enable=useEclairement,Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Boolean MasqueProche=false
-    "True si modèle de masque utilisé en amont, false sinon"                                    annotation(dialog(enable=useEclairement,group="Paramètres éclairement"));
+    "True if mask model used upstream, false if not"                                    annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Boolean Protection=false
-    "True si protection mobile extérieure en place, false sinon"                                  annotation(dialog(enable=useEclairement,group="Paramètres éclairement"));
+    "True if external mobile protection in place, false if not"                                  annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
 public
   Modelica.Blocks.Interfaces.RealOutput Etp if useEclairement
-    "Eclairement total incident sur la baie (lumen)"
+    "Total incident illumination on the glazing (lumen)"
     annotation (Placement(transformation(extent={{-23,-23},{23,23}},
         rotation=270,
         origin={13,-129}),
@@ -317,7 +318,7 @@ public
         rotation=270,
         origin={1,-117})));
   Modelica.Blocks.Sources.RealExpression CalculETP(y=Ecl[1] + Ecl[2] + Ecl[3]) if useEclairement
-    "Calcul de l'éclairement total incident sur la baie"
+    "Calculation of total incident illumination on the glazing"
     annotation (Placement(transformation(extent={{-12,-110},{8,-90}})));
   Modelica.Blocks.Sources.RealExpression CalculFlum[3](y={
         if useVolet then S*(volet_internal*Tlii_ap_dir+(1-volet_internal)*Tlii_sp)*Ecl[1]
@@ -326,13 +327,13 @@ public
         else S*(Tlid_sp*Ecl[1]+Tld_sp*Ecl[2]+Tlid_sp*Ecl[3]),
         if useVolet then S*(volet_internal*Tlii_ap_ref+(1-volet_internal)*Tlii_sp)*Ecl[3]
         else S*Tlii_sp*Ecl[3]}) if useEclairement
-    "Calcul du flux lumineux transmis -direct -diffus -réfléchi"
+    "Calculation of transmitted illumination flux -direct -diffuse -reflected"
     annotation (Placement(transformation(extent={{66,-110},{86,-90}})));
   BoundaryConditions.Solar.Irradiation.DirectAbs absDirect(choix=choix, AbsDir=
         AbsDir)
     annotation (Placement(transformation(extent={{-46,32},{-30,48}})));
 equation
-  //Calcul de la conductance thermique de la fenêtre complète (vitrage+volet) hors convections
+  //Calculation of thermal conductance of the full window (glazing + shutters) excluding convection
   connect(G_internal,conduction. G) annotation (Line(
       points={{-150,0},{-76,0},{-76,-18},{-2,-18},{-2,-52}},
       color={0,0,127},
@@ -377,7 +378,7 @@ equation
       points={{30,-30},{30,-60},{41,-60}},
       color={255,0,0},
       smooth=Smooth.None));
-// Echanges CLO
+// SWR exchanges
   connect(prescribedCLOAbsExt.Q_flow, AbsFenExt.y)  annotation (Line(
       points={{-68.7,4.02},{-59.4,4.02},{-59.4,4},{-59,4}},
       color={0,0,127},
@@ -392,8 +393,8 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  //Impact des occultations sur les flux transmis et absorbés
-  //Le flux est transmis uniquement par la fenêtre (volet occultant)
+  //Impact of occultations on transmitted and absorbed fluxes
+  //The flux is transmitted only through the window (blackout shutter)
   if S>0 then
   part_vitrage=(if useOuverture then (if ouverture_internal then (if useReduction then (1-R_ouv_max) else 0) else 1) else 1)*S;
   part_vide=S-part_vitrage;
@@ -435,8 +436,8 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(FLUX[3], CLOTr2[3]) annotation (Line(
-      points={{-100,53.3333},{-56,53.3333},{-56,54},{-10,54},{-10,53.3333},{80,
-          53.3333}},
+      points={{-100,53.3333},{-56,53.3333},{-56,54},{-10,54},{-10,53.3333},
+          {80,53.3333}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(FLUX, transDirect.FLUX) annotation (Line(
@@ -444,7 +445,7 @@ equation
       color={255,192,1},
       smooth=Smooth.None));
 
-  // Echanges GLO
+  // LWR exchanges
   connect(EchangesGLOext.T_ext, T_ext) annotation (Line(
       points={{-69,-85},{-76,-85},{-76,-30},{-90,-30}},
       color={191,0,0},
@@ -458,7 +459,7 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
 
-  // Ouverture de fenêtre
+  // Opening of the window
 
   connect(V, fenetreVentilationNaturelle.V) annotation (Line(
       points={{-100,80},{-60,80},{-60,30},{-10,30},{-10,8}},
@@ -520,7 +521,7 @@ equation
       color={255,0,255},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-//Volet
+//Sutter
   connect(volet_internal, fermeture_volet) annotation (Line(
       points={{-150,80},{2,80},{2,116}},
       color={0,0,127},
@@ -530,7 +531,7 @@ equation
     volet_internal=0;
   end if;
 
-// Autres
+// Others
 
   connect(CalculETP.y, Etp) annotation (Line(
       points={{9,-100},{13,-100},{13,-129}},
@@ -568,52 +569,53 @@ equation
           smooth=Smooth.None,
           thickness=1)}),
     Documentation(info="<html>
-<p><u><b>Hypothèses et équations</b></u></p>
+<p><u><b>Hypothesis and equations</b></u></p>
 <ul>
-<li>Les flux CLO incidents sur la face externe sont séparés en diffus et direct. Ils sont obtenus par calculs séparés après considération de l'inclinaison et de l'azimuth du vitrage. </li>
-<li>Les échanges GLO avec l'environnement extérieur peuvent être pris en compte en reliant ce modèle à une température de ciel et en spécifiant l'inclinaison du vitrage </li>
-<li>La transmittivité directe du vitrage est calculée en fonction de l'angle d'incidence selon la formule de Fauconnier (formules RT et Cardonnel disponibles)</li>
+<li>SW (short wavelength) radiations for solar irradiance on the outer face are separated into diffuse and direct. They are obtained by separate calculations after consideration of the glazing tilt and azimuth.</li>
+<li>LW (long wavelength) radiations with the external environment can be taken into account by connecting this model to a sky temperature and by specifying surface tilt.</li>
+<li>The direct transmitted irradiance is calculated based on the angle of incidence according to the Fauconnier formula (French building regulation RT and Cardonnel formulas available)</li>
 </ul>
-<p><br>Concernant les volets roulants, les hypothèses retenues sont les suivantes:</p>
+<p>Regarding the rolling shutters, the assumptions are :</p>
 <ul>
-<li>Pas de flux solaire transmis par la partie occultée par le volet</li>
-<li>Flux absorbé inchangé (absorptivité du PVC proche de celle du verre)</li>
-<li>Si le volet n'est pas complètement fermé (Coeff_Fermeture &LT;95%), résistance thermique inchangée</li>
-<li>Si le volet est complètement fermé, résitance thermique augmentée d'une résistance thermique additionnelle, évaluée à 0.2 m&sup2;K/W (épaisseur de PVC de 12 mm env.)</li>
+<li>No solar flux transmitted by the part obscured by the shutters</li>
+<li>Absorbed flux unchanged (PVC absorbency similar to that of glass)</li>
+<li>If the shutter is not completely closed (<code>fermeture_volet</code> &LT; 95%), unchanged thermal resistance</li>
+<li>If the shutter is fully closed, increased thermal resistance of an additional thermal resistance, evaluated at 0.2 m&sup2;K / W (PVC thickness of 12 mm approx)</li>
 </ul>
-<p><br>Lorsque la fenêtre est ouverture, il y a &QUOT;rupture&QUOT; de la conductance à travers la vitre, et à la place un débit de renouvellement d'air par ventilation naturelle est calculé (voir <a href=\"modelica://BuildSysPro.Building.AirFlow.HeatTransfer.WindowNaturalVentilation\">WindowNaturalVentilation</a>). De plus, l'absence de vitrage se traduit par une suppression des facteurs de transmission du direct et du diffus.</p>
-<p><br>Des coefficients de réduction des flux direct et diffus peuvent également être pris en compte (si useReduction=True), en fonction de :</p>
+<p>When the window is open, the conductive heat transfer through the glass is not considered anymore, and instead of that an air renewal by natural ventilation is computed (refer to <a href=\"modelica://BuildSysPro.Building.AirFlow.HeatTransfer.WindowNaturalVentilation\"><code>WindowNaturalVentilation</code></a>). In addition, the absence of glazing results in a suppression of direct and diffuse transmission factors.</p>
+<p>Reduction coefficients of direct and diffuse fluxes may also be considered (<code>useReduction=True</code>), based on :</p>
 <ul>
-<li>type de fenêtres/ portes fenêtres (le % de menuiserie en est déduit)</li>
-<li>coefficient représentant la diminution des flux à travers les voilages</li>
-<li>coefficient représentant la diminution des flux en raison de la position de la fenêtre (intérieure ou extérieure)</li>
-<li>coefficient représentant la diminution des flux à travers les rideaux.</li>
-<li>coefficient représentant la diminution des flux en raison d'ombrages (NB: il existe aussi un modèle qui permet de calculer de façon précise les flux surfaciques sur une paroi verticale en cas de débords : <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.SolarMasks.FLUXsurfMask\">FLUXsurfMask</a>)</li>
+<li>type of windows/ window doors (the % of frame is deduced from that)</li>
+<li>coefficient representing the decrease in fluxes through net curtains</li>
+<li>coefficient representing the decrease in fluxes due to window position (inner or outer)</li>
+<li>coefficient representing the decrease in fluxes through curtains</li>
+<li>coefficient representing the decrease in fluxes due to shadows (NB: there is also a model that can calculate precisely the surface fluxes on a vertical wall in case of eaves: <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.SolarMasks.FLUXsurfMask\"><code>FLUXsurfMask</code></a>)</li>
 </ul>
-<p>Concernant le calcul de l'éclairement naturel, les facteurs de transmission lumineuse global et diffus qui doivent être renseignés correspondent aux TLw, TLw_dif, TLsw et TLsw_dif qui sont calculés précisément dans la norme EN 410. Cependant, il est possible de retrouver des valeurs tabulées dans le document <i>Valeurs tabulées des caractéristiques des parois vitrées et des correctifs associés aux baies</i> du CSTB. Ainsi, par défaut: </p>
+<p>Concerning the calculation of natural lighting, the global and diffuse light transmission factors that must be filled correspond to <code>TLW</code>, <code>TLw_dif</code>, <code>TLsw</code> and <code>TLsw_dif</code> which are calculated precisely in the EN 410 norm. However, it is possible to find tabulated values in the document <i>Valeurs tabulées des caractéristiques des parois vitrées et des correctifs associés aux baies (Tabulated values of glass walls features and patches associated with windows</i>) from CSTB. Thus, by default :</p>
 <ul>
-<li>Pour du double vitrage sans protection solaire: TLw=0.5, TLw_dif=0</li>
-<li>Pour du double vitrage avec protection solaire opaque et sombre située à l'extérieur: TLsw=0, TLsw_dif=0</li>
-<li>Pour du double vitrage avec protection solaire non opaque et claire située à l'extérieur: TLsw=0.09, TLsw_dif=0.03</li>
+<li>For double glazing without sunscreen: <code>TLW</code> = 0.5, <code>TLW dif</code> = 0</li>
+<li>For double glazing with opaque and dark sunscreen on the outside: <code>TLsw</code> = 0, <code>TLsw_dif</code> = 0</li>
+<li>For double glazing with non-opaque and clear sunscreen on the outside: <code>TLsw</code> = 0.09, <code>TLsw_dif</code> = 0.03</li>
 </ul>
-<p><br><u><b>Bibliographie</b></u></p>
+<p><u><b>Bibliography</b></u></p>
 <p>TF1 CLIM2000</p>
 <p>CSTB. 2005. Guide réglementaire RT 2005. Règle d'application Th-Bât Th-U 3/5 Parois vitrées.</p>
-<p>Eclairement naturel : Règles Th-L - Caractérisation du facteur de transmission lumineuse des parois du bâtiment - CSTB Mars 2012, Valeurs tabulées des parois vitrées - CSTB Mars 2012</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Les ports thermiques <b>T_ext</b> et <b>T_int</b> doivent être reliés à des noeuds de température (habituellement Tseche et Tint).</p>
-<p>Les flux incidents externes <b>FLUX</b> peuvent provenir des modèles de conditions limites du package <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar\">BoundaryConditions.Solar</a> qui font la liaison entre les parois et les lecteurs Météo.</p>
-<p>Le flux incident interne <b>FluxAbsInt</b> peut provenir des occupants, systèmes de chauffage mais aussi de la redistribution du flux solaire à l'intérieur d'une pièce (modèles du package <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\">BoundaryConditions.Radiation</a>).</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
+<p>Natural lighting : Règles Th-L - Caractérisation du facteur de transmission lumineuse des parois du bâtiment - CSTB Mars 2012, Valeurs tabulées des parois vitrées - CSTB Mars 2012</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>).</p>
+<p>The external incident flows <code>FLUX</code> can come from <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar\"><code>BoundaryConditions.Solar</code></a> models which are the link between walls and weather readers.</p>
+<p>The internal incident flows <code>FluxAbsInt</code> can come from occupants, heating systems but also from the redistribution of solar flux within a room (models from <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\"><code>BoundaryConditions.Radiation</code></a> package).</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>The following precautions should be considered:</p>
 <ul>
-<li>Le coefficient <b>k</b> représente la conductivité du vitrage sans prise en compte des échanges convectifs (différent du Uvitrage usuellement utilisé).</li>
-<li>Le coefficient d'échange convectif avec l'extérieur hs_ext par défaut est la valeur du coefficient combiné intégrant les échanges convectifs et radiatifs GLO. </li>
-<li><u>Si les échanges avec l'environnement sont considérés, la valeur de hs_ext doit être modifiée</u> <i>- Par défaut on pourra prendre 16W/m&sup2;.K puisque la part radiative est évaluée à 5,13W/m&sup2;.K à l'extérieur, ce qui correspond à une température de l'environnement de 10&deg;C.</i></li>
+<li>The coefficient <code>k</code> represents the conductivity of the glazing without consideration of convective exchanges (different from Uglazing usually used).</li>
+<li>The coefficient <code>hs_ext</code> of convective transfer with outside default value is the value of the combined coefficient integrating LW convective and radiative exchanges.</li>
+<li>If LWR with the environment are considered, the <code>hs_ext</code> value must be changed - <i>By default 16W / m&sup2;.K can be taken since the radiative share is estimated to 5,13W / m&sup2;.K outside, which corresponds to an environment temperature of 10 °C</i></li>
 </ul>
-<p>Dans le cas du calcul de l'éclairement il faut penser à préciser s'il existe des masques en amont car alors la prise en compte des ombres dues à l'architecture se fait dans le modèle de masque.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Procédure BESTEST de validation</p>
-<p>Modèle validé - Aurélie Kaemmerlen 12/2010</p>
+<p>For the calculation of illuminance, it is needed to clarify whether there are upstream masks because then the consideration of shadows caused by the architecture is done in the mask model.</p>
+<p><u><b>Validations</b></u></p>
+<p>BESTEST validation procedure</p>
+<p>Validated model - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

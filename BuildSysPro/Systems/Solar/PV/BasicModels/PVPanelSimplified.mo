@@ -1,123 +1,123 @@
 ﻿within BuildSysPro.Systems.Solar.PV.BasicModels;
 model PVPanelSimplified
-  "Modèle physique détaillé de panneau photovoltaïque (capacité thermique)"
+  "Detailed physical model of photovoltaic panel (thermal capacity)"
 
-  // Paramètres de l'installation PV
+  // Parameters of the PV system
 
-  parameter Modelica.SIunits.Area surface=20 "surface des panneaux PV"
-    annotation (Dialog(tab="Panneaux PV", group="L'installation PV"));
+  parameter Modelica.SIunits.Area surface=20 "PV panels surface"
+    annotation (Dialog(tab="PV panels", group="PV system"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=30
-    "inclinaison du panneau PV par rapport à l'horizontale (0° vers le haut, 180° vers le sol)"
-    annotation (Dialog(tab="Panneaux PV", group="L'installation PV"));
+    "PV panel tilt relative to the horizontal (0° upward, 180° toward the ground)"
+    annotation (Dialog(tab="PV panels", group="PV system"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
     "azimut du panneau PV - orientation par rapport au Sud (S=0°, E=-90°, O=90°, N=180°)"
-    annotation (Dialog(tab="Panneaux PV", group="L'installation PV"));
+    annotation (Dialog(tab="PV panels", group="PV system"));
 
-  // Caractéristiques des panneaux PV
+  // PV panels characteristics
 
   replaceable parameter BaseClasses.Thermal.ThermalRecordsPV.RecordTechnoPV
-    technoPV "choix de la technologie PV" annotation (
-      __Dymola_choicesAllMatching=true, dialog(
+    technoPV "Choice of PV technology" annotation (
+      choicesAllMatching=true, Dialog(
       compact=true,
-      tab="Panneaux PV",
-      group="caractéristiques des panneaux PV"));
+      tab="PV panels",
+      group="PV panels characteristics"));
   parameter Real eta_STC=0.15
-    "rendement (électrique) dans les conditions STC (1000W/m², 25°C) du panneau PV"
-    annotation (Dialog(tab="Panneaux PV", group=
-          "caractéristiques des panneaux PV"));
-  parameter Real mu_T=-0.5 "Coefficient de température sur le rendement %/K"
+    "PV panel (electric) efficiency in STC conditions (1000W/m², 25°C)"
+    annotation (Dialog(tab="PV panels", group=
+          "PV panels characteristics"));
+  parameter Real mu_T=-0.5 "Temperature coefficient on the performance %/K"
                                                       annotation (Dialog(
-        tab="Panneaux PV", group="caractéristiques des panneaux PV"));
+        tab="PV panels", group="PV panels characteristics"));
   parameter Integer salete=0
-    "0 - Panneaux propres, 1 - Panneaux peu sales, 2 - Panneaux moyennement sales, 3 - Panneaux très sales"
-    annotation (dialog(
+    "0 - Clean panels, 1 - Slightly dirt panels, 2 - Intermediately dirt panels, 3 - Very dirt panels"
+    annotation (Dialog(
       compact=true,
-      tab="Panneaux PV",
-      group="caractéristiques des panneaux PV"), choices(
-      choice=0 "Panneaux propres",
-      choice=1 "Panneaux peu sales",
-      choice=2 "Panneaux moyennement sales",
-      choice=3 "Panneaux très sales",
+      tab="PV panels",
+      group="PV panels characteristics"), choices(
+      choice=0 "Clean panels",
+      choice=1 "Slightly dirt panels",
+      choice=2 "Intermediately dirt panels",
+      choice=3 "Very dirt panels",
       radioButtons=true));
 
-  // Intégration des panneaux PV au bâti
+  // Integration of PV panels to the frame
 
   parameter Integer Integre=1
-    "intégré au bâti=1 ; non intégré au bâti (en champ)=2"
-    annotation (dialog(
+    "Integrated to the frame=1 ; Non integrated to the frame (in a field)=2"
+    annotation (Dialog(
       compact=true,
-      tab="Panneaux PV",
-      group="Intégration au bâti"), choices(
-      choice=1 "Panneaux intégrés au bâti",
-      choice=2 "Panneaux non intégrés au bâti (en plein champ)",
+      tab="PV panels",
+      group="Integration to the frame"), choices(
+      choice=1 "Panels integrated to the frame",
+      choice=2 "Panels non integrated to the frame (in a field)",
       radioButtons=true));
 
-  // Echanges thermiques
+  // Thermal exchanges
 
   parameter Integer convection_avant=2
-    "on impose un coefficient convectif=1; on utilise le modèle de convection par défaut=2"
-    annotation (dialog(
+    "A convective coefficient is imposed = 1; The convection model default is used= 2"
+    annotation (Dialog(
       compact=true,
-      tab="Echanges thermiques",
-      group="Echanges en face avant"), choices(choice=1
-        "On impose un coefficient convectif", choice=2
-        "On utilise le modèle de convection par défaut"));
+      tab="Thermal exchanges",
+      group="Exchanges on front face"), choices(choice=1
+        "A convective coefficient is imposed", choice=2
+        "The convection model default is used"));
   parameter Real h_conv_avant=8.55
-    "coefficient convectif imposé en face avant (W/m².K)" annotation (
-      dialog(
+    "Convective coefficient is imposed on front face (W/m².K)" annotation (
+      Dialog(
       compact=true,
-      tab="Echanges thermiques",
-      group="Echanges en face avant",
+      tab="Thermal exchanges",
+      group="Exchanges on front face",
       enable=convection_avant == 1));
 
   parameter Integer VitesseExt=1
-    "vitesse extérieure fiche météo =1; on impose une vitesse du vent =2; on néglige l'effet du vent=3"
-    annotation (dialog(
+    "Wind considered through a meteo file = 1; A wind speed is imposed = 2; The wind effect is neglected = 3"
+    annotation (Dialog(
       compact=true,
-      tab="Echanges thermiques",
-      group="Conditions extérieures",
+      tab="Thermal exchanges",
+      group="External conditions",
       enable=convection_avant == 2), choices(
-      choice=1 "Vent pris en compte via fichier météo",
-      choice=2 "Vent pris en compte, vitesse imposée",
-      choice=3 "Vent négligé"));
-  parameter Modelica.SIunits.Velocity vitesse=1
-    "vitesse du vent imposée en m/s" annotation (Dialog(
-      tab="Echanges thermiques",
-      group="Conditions extérieures",
+      choice=1 "Wind considered through a meteo file",
+      choice=2 "Wind considered, speed imposed",
+      choice=3 "Wind neglected"));
+  parameter Modelica.SIunits.Velocity vitesse=1 "Wind speed imposed in m/s"
+                                annotation (Dialog(
+      tab="Thermal exchanges",
+      group="External conditions",
       enable=VitesseExt == 2));
 
-  // Caractéristiques du toit
+  // Roof characteristics
 
-  parameter Real R_toit=8 "résistance thermique du toit (m²K/W)"
+  parameter Real R_toit=8 "Roof thermal resistance (m²K/W)"
     annotation (Dialog(
-      tab="Bâti",
-      group="Toit du bâti",
+      tab="Building",
+      group="Building roof",
       enable=Integre == 1));
 
-  // Caractéristiques de l'intérieur de la maison
+  // Indoors characteristics
 
   parameter Modelica.SIunits.Temperature Tint=293.15
-    "température intérieure de la maison" annotation (Dialog(
-      tab="Bâti",
-      group="Température intérieure du bâti",
+    "Indoor temperature of the building" annotation (Dialog(
+      tab="Building",
+      group="Indoor temperature of the building",
       enable=Integre == 1));
 
-  // Variables internes
+  // Internal variables
   Real flux_transmis;
   Real flux_thermique;
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel
-    "température de ciel" annotation (Placement(transformation(
+    "Sky temperature" annotation (Placement(transformation(
         extent={{-5,-5},{5,5}},
         rotation=0,
         origin={-95,61}), iconTransformation(extent={{10,60},{30,80}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
-    "température ambiante" annotation (Placement(transformation(
+    "Ambient temperature" annotation (Placement(transformation(
         extent={{-5,-5},{5,5}},
         rotation=0,
         origin={-95,81}), iconTransformation(extent={{-32,60},{-12,80}})));
   Modelica.Blocks.Interfaces.RealInput Vit[2]
-    "1- vitesse du vent (m/s) 2- direction du vent (par rapport au Sud, en °)"
+    "1- Wind speed (m/s) 2- Wind direction (relative to the South, in °)"
     annotation (Placement(transformation(
         extent={{11,-11},{-11,11}},
         rotation=180,
@@ -125,7 +125,7 @@ model PVPanelSimplified
            {-92,40})));
 public
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput G[10]
-    "Flux solaire : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut, Hauteur}"
+    "Solar flux: {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle, Solar elevation angle}"
     annotation (Placement(transformation(extent={{-116,-16},{-84,16}}),
         iconTransformation(extent={{-100,-16},{-68,16}})));
 protected
@@ -136,11 +136,11 @@ protected
     annotation (Placement(transformation(extent={{39,89},{41,91}})));
 protected
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel1
-    "Température du ciel"
+    "Sky temperature"
     annotation (Placement(transformation(extent={{51,89},{53,91}})));
 protected
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel2
-    "Température du ciel"
+    "Sky temperature"
     annotation (Placement(transformation(extent={{43,-97},{45,-95}})));
 
 public
@@ -239,7 +239,7 @@ public
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={74,-74})));
-  Modelica.Blocks.Interfaces.RealOutput Pelec "puissance elec (W)"
+  Modelica.Blocks.Interfaces.RealOutput Pelec "Elec power (W)"
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
@@ -261,11 +261,11 @@ public
         technoPV.cp_surf*surface)
     annotation (Placement(transformation(extent={{28,-4},{48,16}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_cellule
-    "température des cellules" annotation (Placement(transformation(extent={{
+    "Cells temperature" annotation (Placement(transformation(extent={{
             74,-6},{86,6}}), iconTransformation(extent={{60,-10},{80,10}})));
 protected
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int
-    "température intérieure" annotation (
+    "Indoor temperature" annotation (
     Placement(transformation(extent={{70,-96},{80,-86}}), iconTransformation(
           extent={{-10,-80},{10,-60}})),
     HideResult=true,
@@ -273,7 +273,7 @@ protected
 public
   Modelica.Blocks.Sources.RealExpression realExpression(y=flux_thermique);
 
-  Modelica.Blocks.Interfaces.RealOutput prod_kWh "production elec (kWh)"
+  Modelica.Blocks.Interfaces.RealOutput prod_kWh "Elec production (kWh)"
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
@@ -429,28 +429,28 @@ equation
           lineColor={0,0,255},
           textString="kWh")}),
     Documentation(info="<html>
-<p><i><b>Modèle physique détaillé de panneau photovolta&iuml;que (capacité thermique)</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Modèle permettant de calculer : la température du module, la puissance électrique instantanée et la production PV cumulée</p>
-<p><br>Ce modèle prend en compte :</p>
+<p><i><b>Detailed physical model of photovoltaic panel (thermal capacity)</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Model to calculate: module temperature, instantaneous electric power and cumulative PV production</p>
+<p>This model considers:</p>
 <ul>
-<li>la capacité thermique du panneau photovolta&iuml;que</li>
-<li>les échanges par convection forcée due au vent en face avant <img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/phy_capa/hconv_vent.png\" alt=\"U_L=8.55+2.56*V\"/></li>
-<li>les échanges par convection libre en face arrière s'il s'agit d'un champ photovolta&iuml;que. Il s'agit d'un modèle convectif non-linéaire et <img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/phy_capa/hconv_libre.png\" alt=\"h_conv=1.31*dT^(1/3)\"/></li>
-<li>les échanges par rayonnement en GLO avec la voûte céleste et l'environnement</li>
-<li>le rayonnement en CLO reçu par le panneau PV en provenance du soleil (prise en compte des pertes optiques par réflexion et de la conversion en électricité d'une partie de ce rayonnement incident)</li>
+<li>the photovoltaic panel thermal capacity </li>
+<li>exchanges by forced convection due to wind on front face <img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/phy_capa/hconv_vent.png\" alt=\"U_L=8.55+2.56*V\"/></li>
+<li>exchanges by free convection on the back face in the case of a photovoltaic field. This is a non-linear convective model  and <img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/phy_capa/hconv_libre.png\" alt=\"h_conv=1.31*dT^(1/3)\"/></li>
+<li>exchanges by LW radiation with the sky and the environment</li>
+<li>SW radiation received by the PV panel from the sun (consideration of optical reflexion losses and conversion into electricity of a part of this incident radiation)</li>
 </ul>
-<p>Le rendement photovolta&iuml;que est calculé par le RendementFctTemperature de la BoiteAOutils.</p>
-<p><br><u><b>Bibliographie</b></u></p>
+<p>The photovoltaic efficiency is calculated by the <a href=\"modelica://BuildSysPro.Systems.Solar.PV.BaseClasses.Thermal.EfficiencyFunctionOfTemp\"><code>EfficiencyFunctionOfTemp</code></a> model.</p>
+<p><u><b>Bibliography</b></u></p>
 <p>A thermal model for photovoltaic systems, A.D. Jones and C.P. Underwood, Solar Energy Vol.70, pp.349-359, 2001</p>
 <p>A thermal model for photovoltaic panels under varying atmospheric conditions, S. Armstrong and W.G. Hurley, Applied Thermal Engineering Vol.30, pp.1488-1495, 2010</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Ce modèle a l'avantage d'être détaillé au niveau de la réalité physique tout en diminuant le temps de calcul (en regroupant toutes les couches du panneau PV en une seule capacité thermique).</p>
-<p><b>Attention ! </b>A ce jour, ce modèle ne peut être utilisé que pour une technologie silicium cristallin. Pour les autres technologies, utiliser le modèle PVmodeleNOCT et bien lire le mode d'emploi.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 03/2013</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>This model has the advantage of being detailed in terms of physical reality while reducing the computation time (by grouping all layers of the PV panel in a single thermal capacity).</p>
+<p><b>Warning !</b> Up to now, this model can be used only for a crystalline silicon technology. For other technologies, use  PVPanelNOCT model and read the user manual.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

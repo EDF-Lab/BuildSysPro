@@ -9,7 +9,7 @@ package UsersGuide "User's Guide"
 
 annotation (DocumentationClass=true, Documentation(info="<html>
 <p>
-This package provides an overview of the BuildSysPro library's structure and models, as well as information on the developers and licence.
+This package provides an overview of the <code>BuildSysPro</code> library's structure and models, as well as information on the developers and licence.
 </p>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

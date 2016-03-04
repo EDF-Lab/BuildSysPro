@@ -1,19 +1,19 @@
-﻿within BuildSysPro.Systems.Solar.PV.BaseClasses.Thermal;
+within BuildSysPro.Systems.Solar.PV.BaseClasses.Thermal;
 model EfficiencyFunctionOfTemp
-  "Modèle de rendement photovoltaïque en fonction de la température"
+  "Photovoltaic performance model depending on temperature"
 
   parameter Real eta_STC=0.15
-    "rendement (électrique) dans les conditions STC du panneau PV";
-  parameter Real mu_T=-0.5 "Coefficient de température sur le rendement %/K";
+    "PV panel (electric) efficiency in STC conditions";
+  parameter Real mu_T=-0.5 "Temperature coefficient on the performance (% / K)";
 
-  Modelica.Blocks.Interfaces.RealInput T "température des cellules PV (K)"
+  Modelica.Blocks.Interfaces.RealInput T "PV cells temperature (K)"
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}}),
         iconTransformation(
         extent={{-20,20},{20,-20}},
         rotation=270,
         origin={0,62})));
 
-  Modelica.Blocks.Interfaces.RealOutput eta "rendement électrique réel"
+  Modelica.Blocks.Interfaces.RealOutput eta "Real electrical efficiency"
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
 
 equation
@@ -56,19 +56,18 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {100,100}}), graphics),
     Documentation(info="<html>
-<p><i><b>Modèle de rendement photovolta&iuml;que en fonction de la température</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Ce modèle utilise une équation simple pour déterminer le rendement électrique du panneau PV en fonction de la température : </p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model uses a simple equation to determine the electrical efficiency of the PV panel according to the temperature:</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/eta_T.png\" alt=\"eta_T=eta_STC+mu_T*(T_cell-T_STC)\"/></p>
-<p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/mu_T.png\" alt=\"mu_T\"/> est le coefficient de température sur la puissance (de l'ordre de -0,5%/K) et STC signifie Standard Testing Conditions.</p>
-<p><u><b>Bibliographie</b></u></p>
+<p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/mu_T.png\" alt=\"mu_T\"/> is the temperature coefficient on the power (of the order of -0.5%/K) and STC means Standard Testing Conditions.</p>
+<p><u><b>Bibliography</b></u></p>
 <p>Solar Engineering of Thermal processes, Duffie & Beckmann, Wiley, 2006, p. 757</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 03/2013</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

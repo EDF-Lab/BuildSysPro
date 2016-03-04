@@ -1,104 +1,100 @@
 ﻿within BuildSysPro.Building.Zones.HeatTransfer;
 model ZoneSlab
-  "Modèle de zone parallépipèdique sur terre plein sans vitrage modélisé en thermique pure."
+  "Model of parallelepiped zone on unglazed slab-on-grade floor, in pure thermal modelling"
 
 parameter Boolean ChoixPint=false
-    "Prise en compte d'apports radiatifs au prorata des surfaces" annotation (
-      choices(choice=true "Oui",
-      choice=false "Non",radioButtons=true));
+    "Consideration of radiative contributions in proportion to surfaces" annotation (
+      choices(choice=true "Yes",
+      choice=false "No",radioButtons=true));
 
  parameter Boolean ChoixGLOext=false
-    "Prise en compte du rayonnement GLO (infrarouge) entre les parois verticales et le ciel"
-    annotation(choices(choice=true "Oui : attention, hext purement convectifs", choice=false "Non", radioButtons=true));
+    "Consideration of LW radiation (infrared) between vertical walls and the sky"
+    annotation(choices(choice=true "Yes: warnings, hext purely convective", choice=false "No", radioButtons=true));
 
  parameter Modelica.SIunits.Volume Vair "Volume d'air intérieur";
  parameter Real beta=0
-    "correction de l'azimut des murs verticaux (azimut=azimut{0,90,180,-90}+beta)";
+    "Vertical walls azimuth correction (azimutf=azimutf{0,90,180,-90}+beta)";
 
  parameter Modelica.SIunits.Temperature Tair=293.15
-    "Température initiale de l'air intérieur" annotation(Dialog(enable = not  InitType== Utilitaires.Types.InitCond.SteadyState,group="Paramètres d'initialisation"));
- parameter Modelica.SIunits.Temperature Tp=293.15
-    "Température initiale des parois" annotation (dialog(group="Paramètres d'initialisation"));
+    "Indoor air initial temperature" annotation(Dialog(enable = not  InitType== Utilitaires.Types.InitCond.SteadyState,group="Initialisation parameters"));
+ parameter Modelica.SIunits.Temperature Tp=293.15 "Walls initial temperature"
+                                annotation (Dialog(group="Initialisation parameters"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    annotation (dialog(group="Paramètres d'initialisation"));
+    annotation (Dialog(group="Initialisation parameters"));
 
-//Parois verticales//
+//Vertical walls//
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall
-    CaracParoiVert "Caractéristiques des parois verticales" annotation (
-      __Dymola_choicesAllMatching=true, Dialog(tab="Parois Verticales"));
-parameter Modelica.SIunits.Area S1nv=1 "surface de la paroi Sud (non vitrée)"  annotation(Dialog(tab="Parois Verticales"));
-parameter Modelica.SIunits.Area S2nv=1
-    "surface de la paroi Ouest (non vitrée)"                                     annotation(Dialog(tab="Parois Verticales"));
-parameter Modelica.SIunits.Area S3nv=1 "surface de la paroi Nord (non vitrée)"
-                                                                                 annotation(Dialog(tab="Parois Verticales"));
-parameter Modelica.SIunits.Area S4nv=1 "surface de la paroi Est (non vitrée)"  annotation(Dialog(tab="Parois Verticales"));
+    CaracParoiVert "Vertical walls characteristics" annotation (
+      choicesAllMatching=true, Dialog(tab="Vertical walls"));
+parameter Modelica.SIunits.Area S1nv=1 "South wall surface (unglazed)"  annotation(Dialog(tab="Vertical walls"));
+parameter Modelica.SIunits.Area S2nv=1 "West wall surface (unglazed)"  annotation(Dialog(tab="Vertical walls"));
+parameter Modelica.SIunits.Area S3nv=1 "North wall surface (unglazed)"           annotation(Dialog(tab="Vertical walls"));
+parameter Modelica.SIunits.Area S4nv=1 "East wall surface (unglazed)"  annotation(Dialog(tab="Vertical walls"));
 
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hextv annotation(Dialog(tab="Parois Verticales"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hintv annotation(Dialog(tab="Parois Verticales"));
- parameter Real albedo=0.2 "albedo de l'environnement" annotation(Dialog(tab="Parois Verticales"));
+parameter Modelica.SIunits.CoefficientOfHeatTransfer hextv annotation(Dialog(tab="Vertical walls"));
+parameter Modelica.SIunits.CoefficientOfHeatTransfer hintv annotation(Dialog(tab="Vertical walls"));
+ parameter Real albedo=0.2 "Environment albedo" annotation(Dialog(tab="Vertical walls"));
  parameter Real alpha= 0.6
-    "coefficient d'absorption de la surface ext. dans le visible"                       annotation(Dialog(tab="Parois Verticales"));
-parameter Real eps=0.6 "Emissivité en GLO"
-    annotation(dialog(enable=ChoixGLOext, tab="Parois Verticales"));
+    "Outer surface absorption coefficient in the visible"                       annotation(Dialog(tab="Vertical walls"));
+parameter Real eps=0.6 "Emissivity in LWR"
+    annotation(Dialog(enable=ChoixGLOext, tab="Vertical walls"));
 
-//Parois Horizontales//
-//Plafond//
+//Horizontal walls//
+//Ceiling//
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall CaracPlaf
-    "Caractéristiques du plafond" annotation (__Dymola_choicesAllMatching=true,
-      Dialog(tab="Parois Horizontales", group="Plafond"));
-parameter Modelica.SIunits.Area Splaf=1 "surface du plafond" annotation(Dialog(tab="Parois Horizontales", group="Plafond"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hplaf annotation(Dialog(tab="Parois Horizontales", group="Plafond"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hintplaf annotation(Dialog(tab="Parois Horizontales", group="Plafond"));
-parameter Real b=0.5
-    "Coefficient de pondération des températures du plancher et du plafond";
+    "Ceiling characteristics" annotation (choicesAllMatching=true,
+      Dialog(tab="Horizontal walls", group="Ceiling"));
+parameter Modelica.SIunits.Area Splaf=1 "surface du plafond" annotation(Dialog(tab="Horizontal walls", group="Ceiling"));
+parameter Modelica.SIunits.CoefficientOfHeatTransfer hplaf annotation(Dialog(tab="Horizontal walls", group="Ceiling"));
+parameter Modelica.SIunits.CoefficientOfHeatTransfer hintplaf annotation(Dialog(tab="Horizontal walls", group="Ceiling"));
+parameter Real b=0.5 "Weighting coefficient of ceiling and floor temperatures";
 
-//Plancher//
+//Floor//
  parameter Integer PlancherActif=1
-      annotation(dialog(tab="Parois Horizontales", group="Plancher",compact=true),
-      choices(choice=1 "Paroi classique",
-      choice=2 "Circulation d'eau",
-      choice=3 "Résistance électrique",radioButtons=true));
- parameter Boolean CLfixe=true "Condition en température de sol fixe"
-                                            annotation(dialog(tab="Parois Horizontales", group="Plancher",compact=true),choices(radioButtons=true));
+      annotation(Dialog(tab="Horizontal walls", group="Floor",compact=true),
+      choices(choice=1 "Conventional floor",
+      choice=2 "Heating floor with water circulation",
+      choice=3 "Electric radiant floor",radioButtons=true));
+ parameter Boolean CLfixe=true
+    "Consideration of a fixed temperature for the ground"
+                                            annotation(Dialog(tab="Horizontal walls", group="Floor",compact=true),choices(radioButtons=true));
 
   parameter Boolean SurEquivalentTerre=true
-    "Prise en compte d'une couche de terre entre la paroi et Tsol"
-     annotation(dialog(tab="Parois Horizontales", group="Plancher",compact=true),choices(choice=true
-        "Oui : Paroi en contact avec un matériau équivalent à de la terre",                                                                          choice=false
-        "Non : Paroi classique",                                                                                                    radioButtons=true));
+    "Consideration of an earth layer between the wall and ground temperature"
+     annotation(Dialog(tab="Horizontal walls", group="Floor",compact=true),choices(choice=true
+        "Yes: wall in contact with a material equivalent to the earth",                                                                          choice=false
+        "No: conventional wall",                                                                                                    radioButtons=true));
 
- parameter Modelica.SIunits.Temperature Ts=293.15 "Température du sol";
+ parameter Modelica.SIunits.Temperature Ts=293.15 "Ground temperature";
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall CaracPlanch
-    "Caractéristiques du plafond" annotation (__Dymola_choicesAllMatching=true,
-      Dialog(tab="Parois Horizontales", group="Plancher"));
-  parameter Modelica.SIunits.Area Splanch=1 "surface du plancher" annotation(Dialog(tab="Parois Horizontales", group="Plancher"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hplanch annotation(Dialog(tab="Parois Horizontales", group="Plancher"));
+    "Floor characteristics" annotation (choicesAllMatching=true,
+      Dialog(tab="Horizontal walls", group="Floor"));
+  parameter Modelica.SIunits.Area Splanch=1 "Floor surface" annotation(Dialog(tab="Horizontal walls", group="Floor"));
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer hplanch annotation(Dialog(tab="Horizontal walls", group="Floor"));
 
-// Paramètre commun à la paroi active eau et au rayonnant électrique
+// Parameter common to the water active wall and the electric radiant wall
  parameter Integer nP=1
-    "Numéro de la couche dont la frontière supérieure est le lieu d'injection de la puissance - doit être strictement inférieur à n"
+    "Number of the layer whose upper border is the site of power injection - must be strictly lower than n"
     annotation (Dialog(enable=not
-                                 (PlancherActif==1), tab="Parois Horizontales", group="Plancher"));
+                                 (PlancherActif==1), tab="Horizontal walls", group="Floor"));
 
-// Paramètres propres à une paroi chauffante avec eau
-  parameter Integer nD=8
-    "Nombre de tranche de discrétisation du plancher à eau"
-    annotation(dialog(enable=PlancherActif==2, tab="Parois Horizontales", group="Plancher"));
-  parameter Modelica.SIunits.Distance Ltube=128
-    "Longueur du serpentin de chauffe du plancher"
-    annotation(dialog(enable=PlancherActif==2, tab="Parois Horizontales", group="Plancher"));
+// Parameters specific to a heating wall with water
+  parameter Integer nD=8 "Number of discretization slices of the water floor"
+    annotation(Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
+  parameter Modelica.SIunits.Distance Ltube=128 "Floor heating coil length"
+    annotation(Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
   parameter Modelica.SIunits.Distance DiametreInt=0.013
-    "Diamètre intérieure du tube"
-    annotation(dialog(enable=PlancherActif==2, tab="Parois Horizontales", group="Plancher"));
-  parameter Modelica.SIunits.Distance eT=0.0015 "Epaisseur du tube"
-    annotation (Dialog(enable=PlancherActif==2, tab="Parois Horizontales", group="Plancher"));
+    "Inner diameter of tube"
+    annotation(Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
+  parameter Modelica.SIunits.Distance eT=0.0015 "Tube thickness"
+    annotation (Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
   parameter Modelica.SIunits.ThermalConductivity lambdaT=0.35
-    "Conductivité thermique du tube"
-    annotation (Dialog(enable=PlancherActif==2, tab="Parois Horizontales", group="Plancher"));
+    "Tube thermal conductivity"
+    annotation (Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
 
-// Composants
+// Components
   Modelica.Blocks.Interfaces.RealInput Ensoleillement[10]
-    "Résultats : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut, Hauteur}"
+    "Sun data : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle, Solar elevation angle}"
     annotation (Placement(transformation(extent={{-192,-6},{-152,34}}),
         iconTransformation(extent={{-140,40},{-120,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Text annotation (
@@ -223,12 +219,11 @@ protected
 public
   BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tsol if
                                          not
-                                            (CLfixe) "Température du sol"
+                                            (CLfixe) "Ground temperature"
     annotation (Placement(transformation(extent={{-80,-120},{-60,-100}}),
         iconTransformation(extent={{-120,-10},{-100,10}})));
   Modelica.Blocks.Interfaces.RealInput PelecPRE if PlancherActif==3
-    "Puissance électrique injectée dans le plancher"
-                                                annotation (Placement(
+    "Electric power injected into the floor"    annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
@@ -239,11 +234,11 @@ public
         origin={-150,-76})));
 public
   Modelica.Blocks.Interfaces.RealInput EntreeEau[2] if PlancherActif==2
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing  1-the fluid temperature (K), 2-the flow(kg/s)"
     annotation (Placement(transformation(extent={{-130,-94},{-110,-74}}),
         iconTransformation(extent={{-160,-86},{-140,-66}})));
   Modelica.Blocks.Interfaces.RealOutput SortieEau[2] if PlancherActif==2
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing  1-the fluid temperature (K), 2-the flow(kg/s)"
     annotation (Placement(transformation(extent={{20,-100},{40,-80}}),
         iconTransformation(extent={{60,-86},{80,-66}})));
   BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if
@@ -251,7 +246,7 @@ public
         transformation(extent={{-160,-40},{-140,-20}}), iconTransformation(
           extent={{-178,60},{-158,80}})));
 Modelica.Blocks.Interfaces.RealInput      Pint if ChoixPint
-    "Apports internes radiatifs"
+    "Internal radiative heat gains"
     annotation (Placement(
         transformation(extent={{120,62},{80,102}}),iconTransformation(extent={{60,-18},
             {40,2}})));
@@ -260,7 +255,7 @@ Modelica.Blocks.Interfaces.RealInput      Pint if ChoixPint
     nf=4,
     Sp={Splaf,Splanch,S1nv,S2nv,S3nv,S4nv},
     Sf={1,1,1,1}) if         ChoixPint
-    "Distribution au prorata des surfaces d'un flux radiatif quelconque"
+    "Distribution proportionally to surfaces of any radiative flux"
     annotation (Placement(transformation(
         extent={{-18,-15},{18,15}},
         rotation=180,
@@ -411,7 +406,7 @@ equation
       thickness=0.5,
       smooth=Smooth.None));
   connect(Ensoleillement, fLUXzone.G) annotation (Line(
-      points={{-172,14},{-144.45,14},{-144.45,13.9},{-116.9,13.9}},
+      points={{-172,14},{-144.45,14},{-144.45,14.5},{-116.3,14.5}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Pint, pintDistribRad.RayEntrant) annotation (Line(
@@ -419,23 +414,23 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 annotation (Documentation(info="<html>
-<h4>Modèle de zone parallèpipèdique sur terre plein sans vitrage modélisé en thermique pure.</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Modèle de bâtiment parallélépipédique monozone sur terre plein sans vitrage, à connecter à un modèle de conditions limites(port thermique de gauche) et realOutput de gauche pour les flux solaires. Par défaut les murs sont orientés selon les quatres points cardinaux; la modification de l'orientation est représentée par le paramètre beta. Le port thermique de droite est connecté au volume intérieur (capacité thermique). Les températures extérieures auxquelles sont soumis le plancher et le plafond sont pondérées par un coefficient b. Pour considérer le rayonnement des parois en grande longueur d'onde, les coefficients d'échange h doivent être des <b>coefficients d'échange globaux</b>. </p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Néant.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Ce modèle de bâtiment monozone est à connecter à un modèle de conditions limites météo sur la gauche (Température extérieure, données relatives à l'ensoleillement). Le port thermique de droite est connecté au volume intérieur (capacité thermique) et peut, si désiré, être relié à tout modèle utilisant un port thermique (apports internes...).</p>
-<p>Le paramètrage des parois se fait par l'intermédiaire du paramètre caracParoi, cependant on peut toujours paramétrer les parois couche par couche sans créer de type de paroi. </p>
+<p><b>Model of parallelepiped unglazed zone on slab-on-grade floor, in pure thermal modelling</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Parallelepiped unglazed single-zone building on slab-on-grade floor model, to be connected to a boundary conditions model (left thermal port) and a left realOutput for solar fluxes. By default walls are oriented in the four cardinal points; the orientation modification is represented by the parameter beta. The right thermal port is connected to the inner volume (heat capacity). Floor and ceiling are subject to outside temperatures which are weighted by a coefficient b.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>This single zone building model is to be connected to a weather boundary conditions model on the left (outside temperature, sunlight-related data). The right thermal port is connected to the inner volume (heat capacity) and can, if desired, be connected to any model using a thermal port (internal heat gains...).</p>
+<p>The walls parameterization is done via the parameter caracParoi, however it still can be done layer by layer without creating any type of wall.</p>
 <ol>
-<li><i><b>Cliquer sur la petite flèche de caracParoi+ Edit</b></i></li>
-<li><i><b>Remplir les champs concernant le nombre de couches, leur épaisseur, le maillage. Le paramètre positionIsolant est optionnel</b></i></li>
-<li><i><b>Pour le paramètre mat, cliquer sur la petite flèche + Edit array, faire correspondre le nombre de case sur une colonne au nombre de couche de matériaux dans la fenêtre s'affichant puis dans chaque case effectuer un clic droit + Insert function Call et parcourir la bibliothèque pour indiquer le chemin du matériaux souhaité (dans <a href=\"modelica://BuildSysPro.Utilities.Data.Solids\">Utilities.Data.Solids</a>)</b></i></li>
+<li>Click on the small arrow of caracParoi + Edit</li>
+<li>Fill in the fields on the number of layers, their thickness, the mesh. The parameter positionIsolant is optional</li>
+<li>For the mat parameter, click on the small arrow + Edit array, match the number of boxes in a column to the number of materials layer in the window that is displayed, then, in each box, right-click + Insert function call and browse the library to specify the path of the desired material (in <a href=\"modelica://BuildSysPro.Utilities.Data.Solids\"><code>Utilities.Data.Solids</code></a>)</li>
 </ol>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Pour considérer le rayonnement des parois en grande longueur d'onde, les coefficients d'échange h doivent être des <b>coefficients d'échange globaux</b>. </p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Ludovic Darnaud 07/2010 </p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>To consider walls radiation in long wavelength (LWR), exchange coefficients h must be <b>global exchange coefficients</b>.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Ludovic Darnaud 07/2010 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
@@ -445,7 +440,7 @@ Author : Ludovic DARNAUD, EDF (2010)<br>
 </html>",                                                                    revisions="<html>
 <p>Aurélie Kaemmerlen & Gilles Plessis 03/2011 </p>
 <ul>
-<li>Changement du modèle de coefficient B pour vérifier la conservation d'énergie + Ajout d'une liste déroulante pour le choix des matériaux via l'annotation annotation(__Dymola_choicesAllMatching=true)</li>
+<li>Changement du modèle de coefficient B pour vérifier la conservation d'énergie + Ajout d'une liste déroulante pour le choix des matériaux via l'annotation annotation(choicesAllMatching=true)</li>
 <li>Remplacement des modèles de ParoiEclairee et FenetreSimple par ParoiRad et FenetreRad avec externalisation du calcul des flux solaires incidents</li>
 <li>Ajout des surfaces des parois verticales !</li>
 </ul>

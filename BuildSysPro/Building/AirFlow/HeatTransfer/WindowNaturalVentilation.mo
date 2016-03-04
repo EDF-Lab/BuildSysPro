@@ -1,32 +1,31 @@
 ﻿within BuildSysPro.Building.AirFlow.HeatTransfer;
 model WindowNaturalVentilation
 
-parameter Modelica.SIunits.Area Sfenetre = 1.5 "Surface moyenne d'une fenêtre"
-                                                                                annotation(dialog(group="Description des fenêtres"));
-parameter Modelica.SIunits.Height Hfenetre=1.25
-    "Hauteur moyenne d'une fenêtre" annotation(dialog(group="Description des fenêtres"));
-parameter Real NbFenetres = 1 "Nombre de fenêtres ouvertes"   annotation(dialog(group="Description des fenêtres"));
+parameter Modelica.SIunits.Area Sfenetre = 1.5 "Average surface of a window"    annotation(Dialog(group="Windows description"));
+parameter Modelica.SIunits.Height Hfenetre=1.25 "Average height of a window"
+                                 annotation(Dialog(group="Windows description"));
+parameter Real NbFenetres = 1 "Number of open windows"   annotation(Dialog(group="Windows description"));
 
 public
   Modelica.Blocks.Interfaces.RealInput                               T_ext
-    "température extérieure [K]"
+    "outdoor temperature [K]"
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}}),
         iconTransformation(extent={{-100,-20},{-60,20}})));
   Modelica.Blocks.Interfaces.RealInput                               T_int
-    "température intérieure [K]"
+    "indoor temperature [K]"
     annotation (Placement(transformation(extent={{120,-20},{80,20}}),
         iconTransformation(extent={{100,-20},{60,20}})));
   Modelica.Blocks.Interfaces.RealInput V
-    "vitesse du vent normale à la fenêtre (m/s)"
+    "wind speed prependicular to the window (m/s)"
     annotation (Placement(transformation(extent={{-120,60},{-80,100}})));
   Modelica.Blocks.Interfaces.BooleanInput ouverture_fenetre
-    "true si fenêtre ouverte, false sinon" annotation (Placement(
+    "true if opened window, false if not" annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
         origin={0,100})));
   Modelica.Blocks.Interfaces.RealOutput Qfenetres
-    "Flux naturel entrant par les fenêtres [m3/h]" annotation (Placement(
+    "Natural flow entering through the windows [m3/h]" annotation (Placement(
         transformation(extent={{80,-80},{120,-40}}), iconTransformation(extent={
             {60,-80},{100,-40}})));
 equation
@@ -121,25 +120,25 @@ equation
           pattern=LinePattern.Dot,
           smooth=Smooth.None)}),
     Documentation(info="<html>
-<p><i><b>Modèle de ventilation naturelle (débit d'air) par ouverture des fenêtres</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Formule de calcul du débit de renouvellement d'air par ouverture des fenêtres reprise du TF N&deg;151 de Clim 2000.</p>
-<p>debit_air = 3600 x 0.5 x Sfenetre x (0.001 x Vvent^2 + 0.0035 x Hfenetre x abs(Tint - Text) + 0.01)^(1/2)</p>
-<p><br><u><b>Bibliographie</b></u></p>
-<p>Méthode de calcul TH-BCE RT 2012 section 7.15 Calcul des débits d'air entrant liés à l'ouverture des baies</p>
-<p>FICHE DESCRIPTIVE DU TYPE FORMEL N&deg; 151 - Pertes liées à l'ouverture d'une fenêtre (Clim 2000)</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Ce modèle ne prend en compte que le débit engendré par la différence de température et le vent, et ne prend pas en compte des considérations en pression.</p>
-<p>Pas de prise en compte de l'orientation du vent</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé par rapport à Clim2000 - Vincent Magnaudeix 06/2013</p>
+<p><i><b>Natural ventilation model considering windows opening</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Calculation of renewal air flow by windows opening based on the following equation:</p>
+<p>air_flow = 3600 x 0.5 x Swindow x (0.001 x Vwind^2 + 0.0035 x Hwindow x abs(Tint - Text) + 0.01)^(1/2)</p>
+<p><u><b>Bibliography</b></u></p>
+<p>Calculation method TH-BCE RT 2012 (french building regulation) section 7.15 Calcul des débits d'air entrant liés à l'ouverture des baies</p>
+<p>Model TF N°151 of Clim 2000. FICHE DESCRIPTIVE DU TYPE FORMEL N° 151 - Pertes liées à l'ouverture d'une fenêtre (Clim 2000)</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>This model considers only the flow rate drives by the difference of temperature and the wind, it does not take into account pressure considerations.</p>
+<p>No consideration of wind direction.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model compared to Clim2000 - Vincent Magnaudeix 06/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
-Author : Vincent MAGNAUDEIX, EDF (2013)<br>
+Author : Vincent MAGNAUDEIX, EDF (2013))<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
 <p>Amy Lindsay 04/2014 : transformation de la vitesse du vent en vitesse normale à la fenêtre, pour ne pas prendre en compte la même vitesse de vent sur toutes les façades</p>

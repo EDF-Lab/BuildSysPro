@@ -1,8 +1,9 @@
 within BuildSysPro.BoundaryConditions.Scenarios;
-block StepFunctionMat "Step function for data reading"
+block StepFunctionMat
+  "Table look-up in one-dimension (matrix/file), constant-segment interpolation"
 
   Modelica.Blocks.Interfaces.RealInput u
-    "Input homogeneous to the first column values of table 1"                               annotation (Placement(transformation(
+    "Input homogeneous to the first column values of table1"                               annotation (Placement(transformation(
           extent={{-140,-20},{-100,20}}),iconTransformation(extent={{-140,-20},{
             -100,20}})));
   Modelica.Blocks.Interfaces.RealOutput y[size(columns2,1)]
@@ -28,40 +29,40 @@ block StepFunctionMat "Step function for data reading"
     annotation (Placement(transformation(extent={{-6,-20},{34,20}})));
   parameter Boolean tableOnFile1=false
     "true, if table is defined on file or in function usertab"
-          annotation(Dialog(group="table1 data definition"));
+          annotation(Dialog(group="table1 data definition: dependent variable"));
 
   parameter Real table1[:,:]=fill(0.0,0,2)
     "table matrix (grid = first column; e.g., table=[0,2])"
-      annotation(Dialog(group="table1 data definition", enable = not tableOnFile1));
+      annotation(Dialog(group="table1 data definition: dependent variable", enable = not tableOnFile1));
   parameter String tableName1="NoName"
     "table name on file or in function usertab (see docu)"
-          annotation(Dialog(group="table1 data definition", enable = tableOnFile1));
+          annotation(Dialog(group="table1 data definition: dependent variable", enable = tableOnFile1));
 
   parameter String fileName1="NoName" "file where matrix is stored"
-  annotation(Dialog(group="table1 data definition", enable = tableOnFile1,
+  annotation(Dialog(group="table1 data definition: dependent variable", enable = tableOnFile1,
                          __Dymola_loadSelector(filter="Text files (*.txt);;Text files (*.prn);;Matlab files (*.mat)",
                          caption="Open file in which table is present")));
 
   parameter Boolean tableOnFile2=false
     "true, if table is defined on file or in function usertab"
-          annotation(Dialog(group="table2 data definition"));
+          annotation(Dialog(group="table2 data definition: variables to be interpolated"));
 
   parameter Real table2[:,:]=fill(0.0,0,2)
     "table matrix (grid = first column; e.g., table=[0,2])"
-            annotation(Dialog(group="table2 data definition", enable = not tableOnFile2));
+            annotation(Dialog(group="table2 data definition: variables to be interpolated", enable = not tableOnFile2));
 
   parameter String tableName2="NoName"
     "table name on file or in function usertab (see docu)"
-          annotation(Dialog(group="table2 data definition", enable = tableOnFile2));
+          annotation(Dialog(group="table2 data definition: variables to be interpolated", enable = tableOnFile2));
 
   parameter String fileName2="NoName" "file where matrix is stored"
-        annotation(Dialog(group="table2 data definition", enable = tableOnFile2,
+        annotation(Dialog(group="table2 data definition: variables to be interpolated", enable = tableOnFile2,
                          __Dymola_loadSelector(filter="Text files (*.txt);;Text files (*.prn);;Matlab files (*.mat)",
                          caption="Open file in which table is present")));
 
   parameter Integer columns2[:]=2:size(table2, 2)
     "columns of table to be interpolated"
-          annotation(Dialog(group="table2 data definition", enable = tableOnFile2));
+          annotation(Dialog(group="table2 data definition: variables to be interpolated", enable = tableOnFile2));
 
 equation
   connect(Table1.y[1], PartieEntiere.u) annotation (Line(
@@ -81,7 +82,6 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (
-    Diagram(graphics),
     Icon(graphics={
         Rectangle(
           extent={{-60,60},{60,-60}},
@@ -149,10 +149,13 @@ equation
     Documentation(info="<html>
 <p><i><b>One-dimension step function defined from file or table.</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>Via the parameter columns, it can be defined which columns are involved in the calculation. 
-For example, if columns = {2,4}, then the model requires one input and 2 outputs. 
-The first output is the step function corresponding to the column 2 of the matrix. 
-The second output is the step function corresponding to the column 4 of the matrix.</p>
+<p>Step function in one dimension specified by 2 tables.</p>
+<p>The dependent variable (homogenous to the input) is specified in the parameter section <i>table 1 data definition</i>.</p>
+<p>The independent variable to be interpolated are defined in the parameter section <i>table 2 data definition</i>.  It can be defined how many columns of the
+table are interpolated. If, e.g., <b>columns2={2,4}</b>, it is assumed that 2 output signals are present and that the first output interpolates column 2 and the second interpolates the
+column 4 of the <b>table2</b> matrix.</p>
+<p>Choose either to specify the tables by file or by matrix in the same way as in <a href=\"modelica://Modelica.Blocks.Tables.CombiTable1Ds\">the Modelica blocks for table look-up</a>.
+
 <p>Consider a starting matrix <code>table [i, j]</code> with n rows and m columns where 
 the first column is ordered and represents the dependent variable and other columns represent the independent variables.
 This table is split into two tables: a first table <code>table1 [i, j]</code> 
@@ -162,7 +165,7 @@ with n rows and two columns and a second table <code>table2 [i, j]</code> n rows
 <p>The first column of Table 2 is equal to the second column of table 1.</p>
 <p>Columns 2 to m of table 2 are identical to the ones in the original table.</p>
 
-<p><u><b>Example:</b></u></p>
+<p><u><b>Example and instructions for use</b></u></p>
 <p>Considering the following matrix:</p>
 <pre>   table = [0,  0,  5;
             1,  1,  10;
@@ -174,27 +177,27 @@ with n rows and two columns and a second table <code>table2 [i, j]</code> n rows
              2,  3;                  3,  4,  7;
              4,  4]                  4, 16,  2]</pre>
 
-<p>If, as input, u = 2.6 and columns={3}, the output y = 7 because 2.6 belongs to [2;4[ </p>  
+<p>If, as input, u = 2.6 and columns2={3}, the output y = 7 because 2.6 belongs to [2;4[ </p>  
 
-<p>To obtain this, three steps:</p>
+<p>The process is described below:</p>
 <ol>
-<li> <code>Table 1</code> gives, by linear interpolation of the second column, <code>y1 = 3.3</code></li>
-<li> As input of table 2, the integer part of <code>[y1] = 3</code> is taken </li>
-<li> <code>Table 2</code> gives, by linear interpolation of its third column, <code>y2 = 7;</code></li>
+<li> <code>table1</code> gives, by linear interpolation of the second column, <code>y1 = 3.3</code></li>
+<li> As input of table2, the integer part of <code>[y1] = 3</code> is taken </li>
+<li> <code>table2</code> gives, by linear interpolation of its third column, <code>y2 = 7;</code></li>
 </ol>
 <p>Note also that:</p>
 <ul>
-<li>The interpolation is effcient because the search for a new interpolation starts from the last interval used for the previous interpolation</li>
-<li>If the table has only one row, its values are returned regardless of the input signal value</li>
-<li>If the value of the input signal <code>u</code> is outside the range defined by the first column of the table, for example, u&GT; Table [size (Table, 1), 1] or u &LT;table [1, 1], the corresponding value is determined by linear extrapolation from the first or last two points of the table</li>
-<li>The first column must be strictly monotonic</li>
+<li>the interpolation is effcient because the search for a new interpolation starts from the last interval used for the previous interpolation</li>
+<li>if the table has only one row, its values are returned regardless of the input signal value</li>
+<li>if the value of the input signal <code>u</code> is outside the range defined by the first column of the table, for example, u&GT; table [size (table, 1), 1] or u &LT;table [1, 1], the corresponding value is determined by linear extrapolation from the first or last two points of the table</li>
+<li>the first column must be strictly monotonic</li>
 </ul>
 <p>A table can be defined as follows:</p>
 <ol>
 <li>By explicit entry of parameter &QUOT;table&QUOT;, and other parameters must be set as follows:</li>
 <pre>   tableName = &QUOT;NoName&QUOT; or with blanks,
    fileName  = &QUOT;NoName&QUOT; or with blanks.</pre>
-   <li>By reading a file &QUOT;fileName&QUOT; where the matrix is stored with the name specified in the parameter &QUOT;tableName&QUOT;. Both ASCII and binary formats are possible. See details and additional information in the <a href=\"Modelica.Blocks.Tables.CombiTable1Ds\">Modelica.Blocks.Tables.CombiTable1Ds</a> documentation</li>
+   <li>By reading a file &QUOT;fileName&QUOT; where the matrix is stored with the name specified in the parameter &QUOT;tableName&QUOT;. Both ASCII and binary formats are possible. See details and additional information in the <a href=\"Modelica.Blocks.Tables.CombiTable1Ds\"><code>Modelica.Blocks.Tables.CombiTable1Ds</code></a> documentation</li>
 </ol>
 
 

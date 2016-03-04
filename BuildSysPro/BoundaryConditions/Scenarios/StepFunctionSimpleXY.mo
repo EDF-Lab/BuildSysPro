@@ -1,16 +1,16 @@
-﻿within BuildSysPro.BoundaryConditions.Scenarios;
+within BuildSysPro.BoundaryConditions.Scenarios;
 block StepFunctionSimpleXY
-  "Fonction en escalier simple à l'aide de 2 vecteurs (H. BOUIA - 07/2012)"
+  "Simple constant-segment interpolation defined from 2 vectors"
   parameter Real periode=24
-    "Période en unités du vecteur X. Si <=0 alors la fonction n'est pas périodique";
-  parameter Real X[:] "Vecteur X";
-  parameter Real Y[size(X,1)] "Vecteur Y";
+    "Period in vector X units. If <=0 then periodicity is not considered";
+  parameter Real X[:] "X Vector";
+  parameter Real Y[size(X,1)] "Y Vector";
 
-  Modelica.Blocks.Interfaces.RealInput x "variable dépendante" annotation (Placement(transformation(
+  Modelica.Blocks.Interfaces.RealInput x "Dependent variable" annotation (Placement(transformation(
           extent={{-140,-20},{-100,20}}),iconTransformation(extent={{-140,-20},{
             -100,20}})));
   Modelica.Blocks.Interfaces.RealOutput y=sum(Y[1:n - 1] .* u) + (if xp >= X[n] then 1 else 0)*Y[n]
-    "variable indépendante"                                                                                                 annotation (Placement(transformation(
+    "Interpolated variable"                                                                                                 annotation (Placement(transformation(
           extent={{100,-10},{120,10}}), iconTransformation(extent={{100,-10},{120,
             10}})));
 
@@ -29,20 +29,19 @@ protected
           lineColor={0,0,255},
           textString="%name")}),
                            Documentation(info="<html>
-<h4>Fonction en escalier périodique ou non y=f(x) définie par 2 vecteurs X et Y</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>X (variable dépendante) et Y(variable indépendante) sont deux vecteurs de même taille : n éléments chacun.</p>
-<p>Pour tout i de 1 à n-1, pout tout x de [Xi, X(i+1)[, on calcule y = Yi</p>
-<p>Pout tout x &GT;= Xn : y = Yn</p>
-<p>Pout tout x, on calcule xp = if periode &GT; 0 then mod(x,periode) else x et on calcule y=y(xp)</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Hassan Bouia 07/2012</p>
+<p><i><b>Periodic constant-segment interpolation.</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Constant-segment interpolation in one dimension specified by 2 vectors.</p>
+<p>It could be periodic or not.</p>
+<p>The dependent variable (homogenous to the input) is specified in the parameter <b>X vector</b>.</p>
+<p>The independent variable to be interpolated are defined in the parameter <b>Yvector</b>.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>X vector (dependent variable) et Y vector (data to be interpolated) are 2 vectors having the same size: n elements each.</p>
+<p>For all i from 1 to n-1, for any x in [Xi, X (i + 1) [, calculation of y = Yi</p>
+<p>For all x &GT;= Xn : y = Yn</p>
+<p>For all x, calculation of xp = >if period &GT; 0 then mod(x,period) else x and calculation of y=y(xp)</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hassan Bouia 07/2012 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

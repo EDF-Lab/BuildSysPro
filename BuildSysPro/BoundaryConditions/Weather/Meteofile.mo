@@ -1,53 +1,50 @@
 ﻿within BuildSysPro.BoundaryConditions.Weather;
-model Meteofile
-  "Lecteur de fichiers météo (avec Azimut et Hauteur du Soleil)"
+model Meteofile "Weather data reader"
 
 parameter Integer TypeMeteo=2 annotation(choices(
 choice=1 "Meteofrance",
-choice=2 "Météonorm France",
-choice=3 "Météos RT",
-choice=4 "Météo perso", radioButtons=true));
+choice=2 "Meteonorm",
+choice=3 "Weather RT (french building regulation)",
+choice=4 "User-defined weather file", radioButtons=true));
 
-parameter Boolean Tempciel=true
-    "true si la température de ciel est renseignée dans le fichier météo, false s'il faut la calculer"
-                                                                                                        annotation(choices(
-choice=true "Tciel renseignée dans le fichier texte", choice=false
-        "Tciel à calculer"));
-parameter Boolean HR=true
-    "true si l'humidité relative est connue, false sinon"                        annotation(choices(
-choice=true "Humidité relative (HR) renseignée dans le fichier texte", choice=false
-        "HR non connue"),Dialog(enable=Tempciel==false));
+parameter Boolean Tempciel=true "Sky temperature in data file"                                          annotation(choices(
+choice=true "Provided", choice=false "To be calculated"));
+
+parameter Boolean HR=true "Relative humidity in data file" annotation(choices(
+   choice=true "Provided in data file", choice=false "HR unknown"),
+                      Dialog(enable=Tempciel==false));
 
   parameter String pth=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/Donnees/Meteos/RT2012/H1a.txt")
-    "Chemin d'accès au fichier meteo"
+    "Path to the weather data file"
   annotation(Dialog(__Dymola_loadSelector(filter="Text files (*.txt);;Text files (*.prn);;Matlab files (*.mat)",
-                           caption="Ouverture du fichier météo")));
+                             caption="Selecting the weather file")));
 
   parameter BuildSysPro.Utilities.Records.MeteoData DonneesPerso
-    "Données à saisir lors du choix d'un fichier météo perso"
+    "Variables provided for User-defined data"
     annotation (Dialog(enable=TypeMeteo == 4));
 
 parameter Modelica.Blocks.Types.Smoothness Interpolation=Modelica.Blocks.Types.Smoothness.ContinuousDerivative
-    "Choix du type d'interpolation des données météo" annotation(Dialog(tab="Paramètres avancés"));
+    "Data interpolation method" annotation(Dialog(tab="Advanced parameters"));
 
 parameter Modelica.SIunits.Time Tbouclage=31536000
-    "Fichier météo bouclé au-delà de Tbouclage si le stop time de la simulation y est supérieur"
-    annotation(Dialog(tab="Paramètres avancés"));
+    "Weather data looped beyond Tbouclage if the simulation stop time is superior"
+    annotation(Dialog(tab="Advanced parameters"));
+
 parameter Real delta_t=3600
-    "Période en secondes si choix de fonction en escalier."
-    annotation (Dialog(tab="Paramètres avancés"));
+    "Time interval for piecewise constant interpolation method"
+    annotation (Dialog(tab="Advanced parameters"));
+
 parameter Integer table_column_number=11
-    "Nombre de colonnes du fichier de données (hors première colonne du temps)"
-                                                                                                        annotation (Dialog(tab="Paramètres avancés"));
+    "Number of column in data file (time not considered)"                                               annotation (Dialog(tab="Advanced parameters"));
 parameter Integer option[:]=fill(1, table_column_number)
-    "Nombre entier =0 pour une colonne s'il faut lui appliquer une fonction en escalier et >0 sinon."
-    annotation (Dialog(tab="Paramètres avancés"));
+    "Integer = 0 for a column if it is necessary to apply a step function on it, >0 otherwise."
+    annotation (Dialog(tab="Advanced parameters"));
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Tseche annotation (
      Placement(transformation(extent={{80,48},{100,68}}, rotation=0),
         iconTransformation(extent={{80,20},{100,40}})));
   Modelica.Blocks.Interfaces.RealOutput G[10]
-    "Résultats : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut, Hauteur}"
+    "Output data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle ,Solar elevation angle}"
     annotation (Placement(transformation(extent={{82,-52},{118,-16}},
           rotation=0), iconTransformation(extent={{10,-10},{-10,10}},
         rotation=180,
@@ -68,14 +65,14 @@ parameter Integer option[:]=fill(1, table_column_number)
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedTemperature prescribedTrosee
     annotation (Placement(transformation(extent={{26,18},{46,38}}, rotation=0)));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Trosee
-    "Température de rosée" annotation (Placement(transformation(extent={{80,
+    "Dew point temperature" annotation (Placement(transformation(extent={{80,
             18},{100,38}}, rotation=0), iconTransformation(extent={{80,50},{100,
             70}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Tciel
-    "Température du ciel" annotation (Placement(transformation(extent={{80,-14},
+    "Sky temperature" annotation (Placement(transformation(extent={{80,-14},
             {100,6}}, rotation=0), iconTransformation(extent={{80,80},{100,100}})));
   Modelica.Blocks.Interfaces.RealOutput V[2]
-    "Vitesse (m/s) et direction du vent (provenance 0° - Nord, 90° - Est, 180° - Sud, 270° - Ouest)"
+    "Wind speed (m/s) and  direction (from 0° - North, 90° - East, 180° - South, 270 ° - West)"
     annotation (Placement(transformation(extent={{82,-82},{118,-46}},
           rotation=0), iconTransformation(extent={{80,-60},{100,-40}})));
   Modelica.Thermal.HeatTransfer.Celsius.ToKelvin toKelvinTseche
@@ -83,7 +80,7 @@ parameter Integer option[:]=fill(1, table_column_number)
   Modelica.Thermal.HeatTransfer.Celsius.ToKelvin toKelvinTrosee
     annotation (Placement(transformation(extent={{-8,18},{12,38}})));
   Modelica.Blocks.Interfaces.RealOutput Hygro[3]
-    "T (en K), Pt (en Pa), Pv (en Pa)"
+    "T [K], total pressure [Pa], water vapour pressure [Pa]"
     annotation (Placement(transformation(extent={{82,-110},{118,-74}},
           rotation=0), iconTransformation(extent={{80,-90},{100,-70}})));
 protected
@@ -115,8 +112,8 @@ public
     fileName=pth)    annotation (Placement(transformation(extent={{-58,-10},{
             -38,10}},      rotation=0)));
 equation
-  // Lecture des flux solaires, latitude et longitude
-  // La longitude doit être donnée telle que Est>0 et Ouest<0 avec des valeurs absolues <180°
+  // Irradiance reading, latitude and longitude
+  // The longitude must be given in such a way that East>0 and West<0 with absolute values <180 °
 
   when initial() then
     latitude=combiTimeTable.y[10];
@@ -134,13 +131,13 @@ equation
   FluxMeteo[1]=combiTimeTable.y[1];
   FluxMeteo[2]=combiTimeTable.y[2];
 
-// Connecteur de Vent
+// Wind connector
  connect(combiTimeTable.y[8], V[1]) annotation (Line(
       points={{-37,30.3636},{-30,30.3636},{-30,-73},{100,-73}},
       color={0,0,127},
       smooth=Smooth.None));
 
-// Connecteurs de Température
+// Temperature Connectors
   connect(prescribedTseche.port, Tseche)      annotation (Line(
       points={{46,58},{90,58}},
       color={191,0,0},
@@ -169,7 +166,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  // Connecteur Hygrothermique
+  // Connector for humid air
 
   ps = BuildSysPro.BoundaryConditions.Weather.Functions.CalculPs(Hygro[1]);
 
@@ -177,7 +174,7 @@ equation
   Hygro[2]=combiTimeTable.y[6];
   Hygro[3]=combiTimeTable.y[7]*ps;
 
-  // Calcul Tciel
+  // Tciel computation
 
   if Tempciel==false then
     if HR==true then
@@ -198,7 +195,7 @@ equation
 
   Tciel.T=T_ciel;
 
-  // Calcul des Cosinus Directeurs du vecteur Solaire
+  //Calculation of sun's direction cosines
 
   (CosDir,AzHaut[1],AzHaut[2]) =
     BuildSysPro.BoundaryConditions.Solar.Utilities.CosDirSunVectorHeightAz(
@@ -207,7 +204,7 @@ equation
     latitude=latitude,
     longitude=longitude);
 
-  // Calcul des flux DIFH, DIRN, DIRH, GLOH
+  // Calculation of flux DIFH, DIRN, DIRH, GLOH
 
   if CoupleFlux<1.5 then
     GLOH = FluxMeteo[1];
@@ -304,83 +301,92 @@ equation
                           Diagram(coordinateSystem(preserveAspectRatio=false,
                   extent={{-100,-100},{100,100}}), graphics),
     Documentation(info="<html>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Ce modèle permet de venir lire des fichiers météo mis sous un format bien précis (cf tableau ci-dessous)</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<h4>Contenu des colonnes du fichier météo</h4>
-<table cellspacing=\"2\" cellpadding=\"0\" border=\"1\"><tr>
-<td><p>Temps (s) </p></td>
-<td><p>Flux solaire 1 (W/m&sup2;)</p><p>Direct normal par défaut</p></td>
-<td><p>Flux solaire 2 (W/m&sup2;)</p><p>Diffus horizontal par défaut</p></td>
-<td><p>Tsèche (&deg;C)</p><p>Température extérieure</p></td>
-<td><p>Trosée (&deg;C)</p><p>Température de rosée</p></td>
-<td><p>Tciel (&deg;C)</p><p>Température du ciel</p></td>
-<td><p>Patm (Pa)</p><p>Pression atmosphérique</p></td>
-<td><p>HR (entre 0 et 1)</p><p>Humidité relative</p></td>
-<td><p>VitVent (m/s)</p><p>Vitesse du vent</p></td>
-<td><p>DirVent (&deg;)</p><p>Direction du vent</p></td>
-<td><p>Latitude (&deg;)</p></td>
-<td><p>Longitude (&deg;)</p></td>
+<p><i><b>Weather data reader providing meteorological boundary conditions</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model reads weather data files. The files are contained in the directory <u>file://BuildSysPro\\Resources\\Donnees\\Meteos</u>.</p>
+ <p>The data format must be compliant with specifications described below (see table).</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>This model reads a data file containing the following columns:</p>
+<p><table cellspacing=\"2\" cellpadding=\"0\" border=\"1\"><tr>
+<td><p>Time [s] </p></td>
+<td><p>Solar irradiance 1 [W/m²]</p><p>Direct normal (defaut)</p></td>
+<td><p>Solar irradiance 2 [W/m²]</p><p>Diffuse horizontal (defaut)</p></td>
+<td><p>Tseche [°C]</p><p>Dry bulb temperature </p></td>
+<td><p>Trosee [°C]</p><p>Dew point temperature</p></td>
+<td><p>Tciel [°C]</p><p>Sky temperature</p></td>
+<td><p>Patm [Pa]</p><p>Atmospheric pressure</p></td>
+<td><p>HR (between 0 and 1)</p><p>Relative humidity</p></td>
+<td><p>VitVent [m/s]</p><p>Wind speed</p></td>
+<td><p>DirVent [°C]</p><p>Wind direction</p></td>
+<td><p>Latitude [°]</p></td>
+<td><p>Longitude [°]</p></td>
 </tr>
-</table>
-<p><br><h4>Contenu du vecteur G en sortie</h4></p>
-<p>(1) Flux diffus horizontal</p>
-<p>(2) Flux direct normal</p>
-<p>(3) Flux direct horizontal</p>
-<p>(4) Flux global horizontal</p>
-<p>(5) Heure en TU au temps t = 0 (début de simulation)</p>
-<p>(6-7-8) Cosinus directeurs du soleil (6-sinh, 7-cosW, 8-cosS)</p>
-<p>(9) Azimut du soleil</p>
-<p>(10) Hauteur du soleil</p>
-<h4>Contenu des autres connecteurs en sortie</h4>
-<p>Les valeurs de la vitesse et de la direction du vent sont accessibles via la sortie <b>V</b> (respectivement V[1] et V[2]).</p>
-<p>La sortie <b>Hygro</b> permet le raccordement direct aux connecteurs thermo-hygro-aérauliques et fournit les variables suivantes :</p>
+</table></p>
+
+<p>By default weather file can be given either in universal time (UTC - h0 = 0) or in local time (TL - h0 = Time zone). The scenarios should be consistent with the time given in the weather file - there is no change to summer time.</p>
+<p>The weather data are repeated periodically. By default, a one year period is used (see advanced parameter <b>Tbouclage</b>). So that one can start simulations on heating season: for example, from October 1 (start time 23587200s) to May 1 (stop time 41904000s). The advanced parameter <b>Tbouclage</b> allows to loop from a longer period so that a data file larger than a year can be used.</p>
+
+<p><b>Default settings - link to the content of the folder  <u>file://BuildSysPro\\Resources\\Donnees\\Meteos</u></p></b>
+<ol>
+<li>Irradiation data are DIRN and DIFH</li>
+<li>The beginning of the files is at 0:00 on January 1</li>
+<li>The longitude is given in ° East</li>
+<li>The pressure (in Pa) is an absolute pressure, and is assumed to be a wet air total pressure (used as such in humidity calculation functions)</li>
+<li>The relative humidity is between 0 and 1</li>
+<li>For the wind direction, the World Weather Organization assumes that a wind coming from the north is coded 360°, the wind rose is graduated clockwise (an east wind will be coded 90°) - check in all weather files -</li>
+</ol>
+
+<p><b>Available files and their differences from default values are:</p></b>
+<ol>
+<li>Meteofrance: Average irradiation [t-dt/2;t+dt/2]. h0=0</li>
+<li>Meteonorm: Irradiation determined on the last hour and assigned in the middle of the hour to better match the sun's path. Local Time (h0 = -1 in France)</li>
+<li>Weather file from the French building regulation RT2012: irradiation determined on the last hour and assigned in the middle of the hour to better match the sun's path.. h0=0 (Temps Universal)</li>
+<li>For user-defined weather data, fill in the parameters conditioning irradiation calculations thereafter. For example, for data starting May 11, at 15:30 (Universal Time) - indicate h0 = 15.5 and d0 = 135.</li>
+</ol>
+
+
+<p>This model returns as outputs:</p>
 <ul>
-<li>Hygro[1] donne la température sèche de l'air en <b>degrés K</b> ( = Tsèche + 273.15)</li>
-<li>Hygro[2] donne la pression <b>totale</b> <b>Pt </b>de l'air, supposé <b>humide</b> (=Patm)</li>
-<li>Hygro[3] donne la pression <b>partielle de vapeur</b> <b>Pv</b> (=HR*Psat(T))</li>
+<li><b>G[10]</b> vector containing information for solar irradiance computation:</li>
+<ol>
+<li>Diffus horizontal irradiance</li>
+<li>Direct normal irradiance</li>
+<li>Direct horizontal irradiance</li>
+<li>Global horizontal irradiance</li>
+<li>Time in UTC at time = 0 (beginning of the simulation)</li>
+<li>Sun's direction cosine (6-sinH, 7-cosW, 8-cosS) (6-sinH, 7-cosW, 8-cosS)</li>
+<li>Solar azimuth angle</li>
+<li>Solar elevation angle</li>
+</ol>
+<li><b>V[2]</b> vector containing information about wind</li>
+<ol>
+<li>Wind speed</li>
+<li>Wind direction (origin)</li>
+</ol>
+<li><b>Hygro[3]</b> for hygro-thermal modelling</li>
+<ol>
+<li>Dry air temperature [K]</li>
+<li>Total pressure supposed to be wet (=Patm)</li>
+<li>Water vapour pressure (Pv=HR*Psat(T))</li>
+</ol>
 </ul>
-<h4>Remarques :</h4>
-<ul>
-<li>Le couple de flux lu par le lecteur meteo est paramétré via le choix de <i>CoupleFlux</i>. Par défaut, le modèle lit le couple FDIRN/FDIFH</li>
-<li>Le temps dans le fichier météo peut être donné soit en temps universel (TU - h0=0) soit en temps local (TL - h0=Fuseau horaire). Les scénarios devront être cohérents avec le temps donné du fichier météo - il n'y a pas de passage à l'heure d'été.</li>
-<li>Le même fichier annuel météo est automatiquement reconduit à l'identique à chaque fin d'année de sorte qu'on puisse lancer des simulations sur des saisons de chauffe : exemple 1er octobre (start time 23587200s) au 1er mai(stop time 41904000s) - Le paramètre avancé Tbouclage permet de boucler à partir d'une durée plus longue de sorte qu'un fichier de donnée supérieur à une année puisse être utilisé.</li>
-</ul>
-<p><u><b>Paramètres par défaut - lien avec le contenu du dossier Resources/Donnees/Meteo</b></u></p>
-<p>Par défaut :</p>
-<ul>
-<li>Les flux donnés sont DIRN et DIFH </li>
-<li>Le début des fichiers est à 0h00 le 1er janvier</li>
-<li>La longitude est donnée en &deg;Est</li>
-<li>La pression (en Pa) est une pression absolue, et est <b>supposée</b> être une pression totale d'air <b>humide</b> (exploitée comme telle dans les fonctions de calcul d'humidité)</li>
-<li>L'humidité relative est comprise entre 0 et 1</li>
-<li>Pour la direction du vent, l'Organisation Mondiale de la Météo suppose qu'un vent <b>venant</b> du nord soit codé 360, la rose des vents étant graduée dans le sens horaire (un vent d'est sera codé 90) <i>- à vérifier sur tous les fichiers météo -</i></li>
-</ul>
-<h4>Les fichiers disponibles, et leurs différences par rapport aux valeurs par défaut, sont :</h4>
-<p>1/ <b>Meteofrance </b>: Flux moyens [t-dt/2;t+dt/2]. h0=0</p>
-<p>2/ <b>Meteonorm</b> : Flux déterminés sur l'heure écoulée, ramenés au milieu de l'heure pour mieux correspondre au parcours du soleil. Temps local (h0=-1 en France)</p>
-<p>3/ <b>Meteo réglementaire RT2012 </b>: Flux déterminés sur l'heure écoulée, ramenés au milieu de l'heure pour mieux correspondre au parcours du soleil. h0=0 (Temps Universel).</p>
-<p>Pour des météos personnelles, attention à bien renseigner les paramètres conditionnant les calculs de flux incidents par la suite. Par exemple, pour des données commençant le 11 mai, à 15h30 (temps universel) - il faudra renseigner h0=15.5 et d0=135.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Attention au format du fichier météo : un fichier csv devra être exporté en .txt (texte séparateur tabulation), et devra avoir la même allure que les exemples donnés dans la documentation :</p>
-<ul>
-<li>pas de ligne vide avant la fin du fichier / Ligne vide obligatoire en fin de fichier</li>
-<li>2 premières lignes copiées-collées des exemples (type de données (double), nom des données (data), commentaires, ...)</li>
-</ul>
-<p>Attention, la direction du vent est la <u>provenance</u> de celui-ci. De plus,<b> la convention des angles pour la direction du vent</b> (0&deg; - Nord, 90&deg; - Est, 180&deg; - Sud, 270&deg; - Ouest) <b>diffère bien de la convention des azimuts</b> pour le solaire et <b>pour les parois </b>(0&deg; - Sud, -90&deg; - Est, 90&deg; - Ouest, 180&deg; - Nord). A priori, cette convention de direction des vents est bien respectée dans le fichiers Meteonorm.</p>
-<p>Dans les fichiers météo réglementaires (RT2012) a priori la direction de vent n'est pas connue. Elle a été renseignée en prenant le fichier Meteonorm pour chaque ville correspondant à une zone thermique (Trappes pour H1a etc.).</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Aurélie Kaemmerlen 2010</p>
-<p><i><b>ATTENTION : validation du modèle uniquement et pas du contenu des fichiers météos notamment les conventions de temps / vérifier la cohérence des flux solaires incidents avec la hauteur du soleil calculé dans les modèles de rayonnement / vérifier que la direction du vent est bien donnée en cohérence avec la convention de l'OMM (0&deg; - Nord, 90&deg; - Est, 180&deg; - Sud, 270&deg; - Ouest)</b></i></p>
+
+
+
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>The irradiation couple read by the weather reader is set via the choice of CoupleFlux. By default, the model reads the couple FDIRN / FDIFH</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Aurélie Kaemmerlen 2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-<b>Copyright &copy; EDF 2009 - 2016</b><br/>
-<b>BuildSysPro version 2015.12</b><br/>
-<b>Author : Aurélie KAEMMERLEN, EDF (2010)</b><br/>
--------------------------------------------------------------- </p></html>",
-    revisions="<html>
+Copyright © EDF 2009 - 2016<br>
+BuildSysPro version 2015.12<br>
+<b>Author : Aurélie KAEMMERLEN, EDF (2010)<br>
+--------------------------------------------------------------</b></p>
+</html>
+",  revisions="<html>
 <p>Aurélie Kaemmerlen 02/2011 : Inversion des composants 1 et 2 du vecteur <b>G</b> pour garder le même ordre des flux solaires entre le fichier météo d'entrée et ce vecteur <b>G</b> en sortie du lecteur Météo - Pas d'impact sur le format des fichiers mais les modèles utilisant le vecteur <b>G</b> modifiés en conséquent </p>
 <p>Aurélie Kaemmerlen 05/2011 : Le vecteur<b> G</b> a été allongé avec 3 paramètres de plus : MoyFlux, dt et CoupleFlux permettant une plus grande réutilisabilité de ce lecteur Météo</p>
 <p>Gilles Plessis 02/2012: Modification du type du paramètre pth (<i>String</i> changé en <i>Filename</i>) permettant l'utilisation d'une fenêtre pour atteindre le fichier de données.</p>
@@ -403,12 +409,5 @@ Licensed by EDF under the Modelica License 2<br>
 <p>Hassan Bouia, Amy Lindsay 12/2014 : Ajout de la possibilité d'utiliser des fonctions en escalier.</p>
 <p>Gilles Plessis 09/2015 : Utilisation de la fonction <code>Modelica.Utilities.Files.loadResource</code> pour le chargement de fichiers, pour une meilleure compatibilité avec le standard Modelica.</p>
 <p>Benoît Charrier 01/2016 : Ajout du paramètre avancé <code>table_column_number</code> pour éviter une déclaration croisée de variables et permettre la compatibilité avec OpenModelica.</p>
-</html>"),      Placement(transformation(extent={{80,-44},{100,-24}}),
-        iconTransformation(extent={{80,-72},{100,-52}})),
-                Placement(transformation(extent={{80,-72},{100,-52}}),
-        iconTransformation(extent={{80,-100},{100,-80}})),
-                                        Line(
-      points={{90,28},{90,28}},
-      color={255,0,0},
-      smooth=Smooth.None));
+</html>"));
 end Meteofile;

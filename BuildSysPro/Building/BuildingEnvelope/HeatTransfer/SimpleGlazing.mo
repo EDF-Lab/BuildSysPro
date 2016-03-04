@@ -1,73 +1,72 @@
 ﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
-model SimpleGlazing "Modèle de vitrage simple"
+model SimpleGlazing "Simple model of glazing"
 
-// Propriétés générales
+// General properties
 
-parameter Boolean useVolet=false "Présence d'un volet" annotation(dialog(group="Options",compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
+parameter Boolean useVolet=false "Presence of a shutter" annotation(Dialog(group="Options",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
 parameter Boolean GLOext=false
-    "Prise en compte du rayonnement GLO (infrarouge) entre la paroi et l'environnement et le ciel sous forme linéarisée"
-    annotation(dialog(group="Options",compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
-parameter Modelica.SIunits.Area S=1 "Surface vitrée"
-                                                     annotation(dialog(group="Propriétés générales"));
+    "Inclusion of LW radiation (infrared) between the wall and the environment and the sky in linearized form"
+    annotation(Dialog(group="Options",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
+    parameter Modelica.SIunits.Area S=1 "Glazing surface" annotation(Dialog(group="General properties"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=16
-    "Coefficient d'échange surfacique convectif ou global sur la face extérieure en fonction du mode choisi (GLOext)"
-                                                                                                        annotation(dialog(group="Propriétés générales"));
+    "Coefficient of convective or global surface exchange on the outer face depending on the selected mode (GLOext)"
+                                                                                                        annotation(Dialog(group="General properties"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=8.29
-    "Coefficient d'échange surfacique GLOBAL sur la face intérieure" annotation(dialog(group="Propriétés générales"));
+    "Coefficient global surface exchange on the inner face" annotation(Dialog(group="General properties"));
 parameter Modelica.SIunits.ThermalInsulance R_volet=0.2
-    "Résistance thermique additionnelle (volet fermé)"                                                          annotation(Dialog(group="Propriétés générales",enable=useVolet==true));
+    "Additional thermal resistance (shutters closed)"                                                          annotation(Dialog(group="General properties",enable=useVolet==true));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer k=1.43
-    "Coefficient de transmission surfacique Ug du vitrage - sans échanges convectifs"
-                                                                                      annotation(dialog(group="Propriétés générales"));
+    "Glazing coefficient of surface transmission Ug  - without convective exchanges"
+                                                                                      annotation(Dialog(group="General properties"));
 parameter Real skyViewFactor=0
-    "Facteur de forme moyen entre les vitrages et le ciel (exemple: skyViewFactor(toiture terrase)=1, skyViewfactor(paroi verticale en environnement dégagé)=0.5)"
-                                                                                                        annotation(dialog(enable=GLOext,group="Propriétés générales"));
+    "Sky view factor between glazings and the sky (exemple: skyViewFactor(flat roof)=1, skyViewfactor(vertical wall in clear environment)=0.5)"
+                                                                                                        annotation(Dialog(enable=GLOext,group="General properties"));
 
-// Propriétés optiques
-parameter Real Tr=0.544 "Coefficient de transmission fenêtre" annotation(dialog(group="Propriétés optiques"));
-parameter Real Abs=0.1 "Coefficient d'absorption de la fenêtre" annotation(dialog(group="Propriétés optiques"));
-parameter Real eps=0.9 "Emissivité" annotation(dialog(enable=GLOext,group="Propriétés optiques"));
+// Optical properties
+parameter Real Tr=0.544 "Window transmission coefficient" annotation(Dialog(group="Optical properties"));
+parameter Real Abs=0.1 "Window absorption coefficient" annotation(Dialog(group="Optical properties"));
+parameter Real eps=0.9 "Emissivity" annotation(Dialog(enable=GLOext,group="Optical properties"));
 
-// Composants publiques
+// Public components
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxTr
-    "Informations de flux solaire global pour la transmission. Doit intégrer l'impact de l'incidence."
+    "Global solar flux information for the transmission. Must integrate the impact of incidence."
     annotation (Placement(transformation(extent={{-120,50},{-80,90}}),
         iconTransformation(extent={{-40,10},{-20,30}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt
-    "Flux CLO surfacique incident sur la face extérieure" annotation (
+    "SWR incident surface fluxes on the outer face" annotation (
       Placement(transformation(extent={{-120,20},{-80,60}}), iconTransformation(
           extent={{-40,40},{-20,60}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr
-    "Rayonnement CLO transmis à l'intérieur" annotation (Placement(
+    "SW radiation transmitted inside" annotation (Placement(
         transformation(extent={{60,50},{100,90}}), iconTransformation(extent={{
             80,40},{100,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
-    "Température extérieure" annotation (Placement(transformation(extent={{-100,
+    "Outdoor temperature" annotation (Placement(transformation(extent={{-100,
             -40},{-80,-20}}), iconTransformation(extent={{-100,-40},{-80,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Ts_ext
-    "Température de surface extérieure" annotation (Placement(transformation(
+    "Temperature of outer surface" annotation (Placement(transformation(
           extent={{-40,-40},{-20,-20}}), iconTransformation(extent={{-40,-40},{
             -20,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_int
-    "Température de surface intérieure" annotation (Placement(transformation(
+    "Temperature of inner surface" annotation (Placement(transformation(
           extent={{20,-40},{40,-20}}), iconTransformation(extent={{20,-40},{40,
             -20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int
-    "Température intérieure" annotation (Placement(transformation(extent={{80,
+    "Indoor temperature" annotation (Placement(transformation(extent={{80,
             -40},{100,-20}}), iconTransformation(extent={{80,-40},{100,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if GLOext
-    "Température de ciel pour le rayonnement GLO" annotation (Placement(
+    "Sky temperature for LW radiation" annotation (Placement(
         transformation(extent={{-100,-100},{-80,-80}}), iconTransformation(
           extent={{-100,-100},{-80,-80}})));
 public
   Modelica.Blocks.Interfaces.RealInput fermeture_volet if      useVolet==true
-    "taux de fermeture du volet" annotation (Placement(transformation(
+    "Closing rate of the shutter" annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
         origin={6,110}), iconTransformation(extent={{-100,66},{-72,94}},
           rotation=0)));
 
-// Composants internes
+// Internal components
 
 protected
   BaseClasses.HeatTransfer.Components.ControlledThermalConductor echange_a1
@@ -114,10 +113,10 @@ protected
           rotation=0)));
 equation
 
-  //Le flux est transmis uniquement par la fenêtre (volet occultant)
+  // The flux is transmitted only through the window (blackout shutter)
   FluxTransmis.u=(1-volet_internal)*FluxTr;
 
-  //Calcul de la conductance thermique de la fenêtre complète (vitrage+volet) hors convections
+  // Calculation of the full window thermal conductance (glazing + shutters) excluding convection
   if useVolet then
     if volet_internal>=0.95 then
       G_internal=S/(1/k+R_volet);
@@ -216,28 +215,28 @@ equation
           fillPattern=FillPattern.VerticalCylinder,
           fillColor={131,226,236})}),
     Documentation(info="<html>
-<h4>Modèle de vitrage simple linéaire</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Ce modèle est un modèle de fenêtre simple. Les flux courte longueur d'onde (CLO) incidents sont des flux globaux surfaciques. L'influence de l'angle d'incidence sur la transmission du flux direct (non linéaire) est externalisée et par conséquent non décrit dans ce modèle. </p>
-<p>Les échanges en grande longueur d'onde (GLO) sont linéarisés grâce au modèle <a href=\"modelica://BuildSysPro.BaseClasses.HeatTransfer.Components.LinearExtLWR\">LinearExtLWR</a>. Le paramètre <code><span style=\"font-family: Courier New,courier;\">skyViewFactor</span></code> permet de déterminer la part de rayonnement grande longueur d'onde de la paroi avec le ciel, considéré à <code><span style=\"font-family: Courier New,courier;\">T_cie</span></code>l, et l'environnement extérieur, considéré à <code><span style=\"font-family: Courier New,courier;\">T_ext</span></code>.</p>
-<p>Le coefficient <code><span style=\"font-family: Courier New,courier;\">k</span></code> représente la conductivité du vitrage sans prise en compte des échanges convectifs (différent du Ug ou Uw usuellement utilisé). Le coefficient d'échange convectif avec l'extérieur <code><span style=\"font-family: Courier New,courier;\">hs_ex</span></code>t par défaut est la valeur du coefficient intégrant uniquement la convection. Les échanges GLO étant pris en compte par ailleurs.</p>
-<p>Ce modèle conduit à un modèle linéaire invariant dans le temps qu'il est possible de réduire.</p>
-<p>Concernant les volets roulants, les hypothèses retenues sont les suivantes:</p>
+<p><b>Simple linear model of glazing</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This is a model of a simple window. Incident flows with short wavelength (SWR) are global surface flows. The influence of the angle of incidence on the direct flows transmission (non-linear) is outsourced and therefore not described in this model.</p>
+<p>Long wavelength (LW) exchanges are linearized with the model <a href=\"modelica://BuildSysPro.BaseClasses.HeatTransfer.Components.LinearExtLWR\"><code>LinearExtLWR</code></a>. The parameter <code>skyViewFactor</code> determines the share of long wavelength radiation of the wall with the sky, considered at <code>T_ciel</code>, and the external environment, considered at <code>T_ext</code>.</p>
+<p>The coefficient <code>k</code> represents the glazing conductivity without considering convective exchanges (different from Ug or Uw usually used). The coefficient of convective heat transfer with the outside <code>hs_ext</code> default value is the value of the coefficient integrating convection only. LWR exchanges are considered elsewhere.</p>
+<p>This model leads to a linear time-invariant model that can be reduced.</p>
+<p>Regarding the rolling shutters, the assumptions are:</p>
 <ul>
-<li>Pas de flux solaire transmis par la partie occultée par le volet</li>
-<li>Flux absorbé inchangé (absorptivité du PVC proche de celle du verre)</li>
-<li>Si le volet n'est pas complètement fermé (Coeff_Fermeture &LT;95%), résistance thermique inchangée</li>
-<li>Si le volet est complètement fermé, résitance thermique augmentée d'une résistance thermique additionnelle, évaluée à 0.2 m&sup2;K/W (épaisseur de PVC de 12 mm env.)</li>
+<li>No solar flux transmitted by the part obscured by the shutters</li>
+<li>Absorbed flux unchanged (PVC absorbency similar to that of glass)</li>
+<li>If the shutter is not completely closed (Coeff_Fermeture &LT;95%), unchanged thermal resistance</li>
+<li>If the shutter is fully closed, increased thermal resistance of an additional thermal resistance, evaluated at 0.2 m&sup2;K / W (PVC thickness of 12 mm approx.)</li>
 </ul>
-<p><br><u><b>Bibliographie</b></u></p>
-<p><a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window\">Modèle de vitrage de BuildSysPro</a> modifié dans le but d'obtenir un modèle linéaire et invariant dans le temps pour les besoins de l'étude sur les villes.</p>
-<p>CSTB. 2005. Guide réglementaire RT 2005. Règle d'application Th-Bât Th-U 3/5 Parois vitrées.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Les ports thermiques <code><span style=\"font-family: Courier New,courier;\">T_ext</span></code> et <code><span style=\"font-family: Courier New,courier;\">T_int</span></code> doivent être reliés à des noeuds de température (habituellement Tseche et <code><span style=\"font-family: Courier New,courier;\">Tint</span></code>). Les flux incidents externes <code><span style=\"font-family: Courier New,courier;\">FluxAbs</span></code> et <code><span style=\"font-family: Courier New,courier;\">FluxTr</span></code> proviennent du modèle de conditions limites solaires <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\">SolarBC</a>. La correspondance entre leurs paramètres doit être faite. </p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Les limites sont essentiellement liées à la linéarisation du flux GLO et à l'externalisation de l'influence de l'incidence sur les flux CLO transmis.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Gilles Plessis 03/2013</p>
+<p><u><b>Bibliography</b></u></p>
+<p><a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window\"><code>Window</code></a> model modified in order to obtain a linear time-invariant model for the purposes of cities study.</p>
+<p>CSTB. 2005. Guide réglementaire RT 2005. Règle d&apos;application Th-Bât Th-U 3/5 Parois vitrées.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>). The external incident flows <code>FluxAbs</code> and <code>FluxTr</code> come from the solar boundary conditions model <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\"><code>SolarBC</code></a>. The correspondence between their settings must be made.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>The limitations are mainly related to the LWR flows linearization and to the outsourcing of the influence of the impact on SWR transmitted fluxes.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Gilles Plessis 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

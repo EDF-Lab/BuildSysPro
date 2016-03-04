@@ -1,23 +1,20 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
-model FLUXsurf
-  "Calcul de l'éclairement incident diffus et direct incident au temps t sur une surface inclinée avec choix des flux donnés en entrée"
+model FLUXsurf "Calculation of irradiance on a particular surface"
 
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut
-    "Azimut de la surface (Orientation par rapport au sud) - S=0°, E=-90°, O=90°, N=180°";
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°";
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl
-    "Inclinaison de la surface par rapport à l'horizontale - vers le sol=180°, vers le ciel=0°, verticale=90°";
-parameter Boolean use_Albedo_in=false "Albedo variable"
-  annotation(choices(choice=true "oui", choice=false "non (constant)",radioButtons=true));
-parameter Real albedo=0.2 "Albedo de l'environnement" annotation(Dialog(enable=not use_Albedo_in));
-parameter Integer diffus_isotrope=1
-    "1 - modèle de diffus isotrope ; 2 - modèle de diffus circumsolaire (Hay Davies Kluch Reindl)"
-    annotation (dialog(
+    "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°";
+    parameter Boolean use_Albedo_in=false "Variable Albedo "
+  annotation(choices(choice=true "yes", choice=false "no (constant)",radioButtons=true));
+parameter Real albedo=0.2 "Albedo of the environment" annotation(Dialog(enable=not use_Albedo_in));
+parameter Integer diffus_isotrope=1 "Model for diffuse irradiance"
+    annotation (Dialog(
       compact=true), choices(
-      choice=1 "Diffus isotrope",
-      choice=0 "Diffus HDKR (prise en compte du circumsolaire)",
-      radioButtons=true));
+      choice=1 "Isotropic",
+      choice=2 "Circumsolar diffuse model (Hay Davies Kluch Reindl))"));
 
-// Paramétrisation du modèle : choix du type de temps, de l'intervalle temporel de mesure des flux et des flux donnés en entrée
+// Model parameterization: selection of a specific time, of time interval for measurement of fluxes and input data fluxes
 
 Modelica.SIunits.HeatFlux DIRH;
 Modelica.SIunits.HeatFlux DIRN;
@@ -25,59 +22,59 @@ Modelica.SIunits.HeatFlux GLOH;
 Modelica.SIunits.HeatFlux DIFH;
 
 Modelica.SIunits.HeatFlux DiffusSol
-    "Partie du rayonnement incident diffus provenant de la réflexion sur le sol";
+    "Part of the diffuse irradiance from the ground reflection";
 
 output Real sinh;
 output Real cosi;
 
 Modelica.Blocks.Interfaces.RealInput G[10]
-    "Résultats : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut,Hauteur}"
+    "Inputs data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], solar azimuth angle,solar elevation angle}"
     annotation (Placement(transformation(extent={{-140,-30},{-100,
         10}},
         rotation=0), iconTransformation(extent={{-120,-10},{-100,10}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUX[3]
-    "Flux solaires surfaciques incidents 1-Flux Diffus, 2-Flux Direct et 3-Cosi"
+    "Surface irradiance in [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{83,-26},{117,8}}, rotation=0),
         iconTransformation(extent={{100,-11},{120,9}})));
-  Modelica.Blocks.Interfaces.RealOutput AzHSol[3] "Azim, Haut, DiffuSol"
+
+  Modelica.Blocks.Interfaces.RealOutput AzHSol[3]
+    "Solar azimuth and elevation angle and diffuse irradiation"
     annotation (Placement(transformation(extent={{100,70},{120,90}}),
         iconTransformation(extent={{100,70},{120,90}})));
-/*Modelica.Blocks.Interfaces.RealInput AzHaut[2] "{Azimut,Hauteur} du Soleil"
-    annotation (Placement(transformation(extent={{-140,11},{-100,51}},
-        rotation=0), iconTransformation(extent={{-120,-80},{-100,-60}})));*/
-Modelica.Blocks.Interfaces.RealInput Albedo_in if use_Albedo_in "Albédo"
+
+Modelica.Blocks.Interfaces.RealInput Albedo_in if use_Albedo_in "Albedo"
     annotation (Placement(transformation(extent={{-140,60},{-100,100}},
         rotation=0), iconTransformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={0,-110})));
 
-// Connecteur interne
+// Internal connector
 protected
   Modelica.Blocks.Interfaces.RealInput Albedo_in_internal
-    "Connecteur interne requis dans le cas de connection conditionnelle";
+    "Internal connector required in the case of conditional connection";
   constant Real d2r=Modelica.Constants.pi/180;
-  constant Modelica.SIunits.HeatFlux Isc=1367 "constante solaire";
+  constant Modelica.SIunits.HeatFlux Isc=1367 "solar constant";
   final parameter Real coef1=0.5*(1 - cos(incl*d2r));
   final parameter Real coef2=0.5*(1 + cos(incl*d2r));
   final parameter Real coef3=sin(incl*d2r/2)^3;
-  final parameter Real s=incl*d2r "Inclinaison";
+  final parameter Real s=incl*d2r "Surface tilt";
   final parameter Real g=azimut*d2r "Orientation";
-  // Cosinus directeurs du plan
+  // Direction cosines of the plan
   final parameter Real l=cos(s);
   final parameter Real m=sin(s)*sin(g);
   final parameter Real n=sin(s)*cos(g);
   //cosi:=max(0,{l,m,n}*CosDir);
-  // Pour le modèle HDKR
-  Real AI "indexe d'anisotropie";
-  Real f "facteur de correction pour l'éclairement de l'horizon";
+  // For the HDKR model
+  Real AI "anisotropy index";
+  Real f "correction factor for the horizon irradiance";
   Modelica.SIunits.HeatFlux I0
-    "éclairement extraterrestre sur une surface horizontale (hors atmosphère)";
+    "extraterrestrial illumination on a horizontal surface (outside the atmosphere)";
 
 algorithm
-  // Calcul des sinh et cosi
-  sinh := G[6]; //Premier cosinus directeur du vecteur solaire
+  // sinh and cosi calculations
+  sinh := G[6]; //First sun's direction cosine
   cosi :=max(0,l*G[6]+m*G[7]+n*G[8]);
-  // Calcul des paramètres pour la modélisation du diffus selon le modèle HDKR
+  // Calculation of parameters for diffuse modelling with the model HDKR
   I0 :=max(0, Isc*(1 + 0.033*cos(360*(floor((time + G[5])/86400) + 1)/365))*
     sinh);
   AI :=if noEvent(sinh > 0) then DIRH/I0 else 0;
@@ -89,17 +86,17 @@ connect(Albedo_in, Albedo_in_internal);
   if not use_Albedo_in then
     Albedo_in_internal=albedo;
   end if;
-//// CALCUL DES FLUX
- // Calcul du flux direct : on vérifie que le soleil est couché sur la surface d'orientation choisie : si sin h est négatif, on annule les flux directs"
+  //// irradiance CALCULATION
+//Direct irradiance calculation: if sin h is negative, direct fluxes are canceled"
   {DIFH,DIRN,DIRH,GLOH}=G[1:4];
 
- // Vecteur FLUX sur une surface inclinée en sortie : diffus, direct, cosi
+ // Vector FLUX on an output inclined surface: diffuse, direct, cosi
    DiffusSol = max(0, coef1*GLOH*Albedo_in_internal);
    FLUX[1] = if diffus_isotrope == 1 then max(0, coef2*DIFH) + DiffusSol else
     max(0, coef2*(1 - AI)*(1 + f*coef3)*DIFH) + DiffusSol;
    FLUX[2] = if noEvent(sinh > 0.01) then (if diffus_isotrope == 1 then max(0,
     cosi)*max(0,DIRN) else max(0, cosi)*max(0,DIRN) + max(0, AI*cosi*DIFH/sinh)) else 0;
-   //Pour éviter les cas où le flux direct est non nul alors que le soleil est couché !
+   //To avoid cases with a non-zero direct irradiance when the sun is below the horizon
    FLUX[3] = cosi;
  //FLUX[4] = FLUX[1]+FLUX[2];
 
@@ -110,41 +107,45 @@ connect(Albedo_in, Albedo_in_internal);
   AzHSol[3] = DiffusSol;
 
 annotation (Documentation(info="<html>
-<p>Modèle qui prend en entrée le vecteur<b> G</b> issu d'un lecteur météo pour calculer l'éclairement surfacique sur une paroi inclinée (Azimuth et inclinaison données). <b>G</b> contient :</p>
-<p>(1) Flux diffus horizontal</p>
-<p>(2) Flux direct normal</p>
-<p>(3) Flux direct horizontal</p>
-<p>(4) Flux global horizontal</p>
-<p>(5) Heure en TU au temps t = 0 (début de simulation)</p>
-<p>(6-7-8) Cosinus directeurs du soleil (6-sinh, 7-cosW, 8-cosS)</p>
-<p>(9) Azimut du soleil</p>
-<p>(10) Hauteur du soleil</p>
-<p><b>Nouveauté !</b> Il est possible de choisir quel modèle de diffus utiliser. Le modèle diffus isotrope est considéré plus conservateur (tendance à sous-estimer le rayonnement incident sur un plan incliné) mais est plus simple d'utilisation. Le modèle diffus Hay Davies Klucher Reindl (HDKR) est à privilégier dans les applications solaires (photovolta&iuml;que, solaire thermique...).</p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Dans le modèle de diffus isotrope, le rayonnement total sur une surface inclinée est donné par :</p>
+<p><i><b> Calculation of diffuse and direct incident irradiance on a particular surface (tilt and azimuth given) </b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>In the diffuse isotropic model, the total irradiance on an particular surface is given by:</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/diffus_isotrope.png\" alt=\"FLUX_tot=cos(incidence)*FLUX_DIRN+(1+cos(inclinaison))/2*FLUX_DIFH+(1-cos(inclinaison))/2*albedo*FLUX_GLOH\"/></p>
-<p><br>Dans le modèle HDKR (Hay, Davies, Klucher, Reindl), le rayonnement total sur une surface inclinée est donné par :</p>
+<p>In the HDKR (Hay, Davies, Klucher, Reindl) model, the total radiation on an inclined surface is given by:</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/diffus_HDKR.png\"/></p>
-<p>où</p>
+<p>where:</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/AI_HDKR.png\"/>,</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/f_HDKR.png\"/>,</p>
-<p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/GLOH_extraterrestre.png\"/> où n est le quantième du jour et Isc la constante solaire (nous prendrons dans ce modèle Isc=1367 W/m&sup2;)</p>
-<p><u><b>Remarques : </b></u>Ce modèle remplace le modèle EclairementTouteSurfaceFDIRN avec séparation des calculs propres aux vitrages/parois (transmission et absorption notamment) avec ajout de paramétres supplémentaires permetant son utilisation dans différents cas :</p>
+<p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/GLOH_extraterrestre.png\"/>
+<p>where n is the calendar day (day number within the month) and Isc the solar constant (in this model Isc = 1367 W / m²). </p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Model which takes as input the vector G from a weather reader to calculate the surface irradiance on a particular surface (tilt and orientation given). G contains:</p>
 <ul>
-<li>En entrée, sont donnés 2 flux solaires parmi les choix suivants : &QUOT;GLOH DIFH&QUOT;, &QUOT;DIRN DIFH&QUOT;, &QUOT;DIFH DIRH&QUOT;, &QUOT;GLOH DIRH&QUOT; et &QUOT;GLOH DIRN&QUOT;.</li>
-<li>On peut ainsi indiquer si les données de flux solaires sont des moyennes sur l'heure écoulée (on prend donc le milieu de l'heure pour effectuer les calculs de hauteur du soleil, de déclinaison, etc...) et on peut modifier l'intervalle de temps correspondant (par défaut il s'agit de données horaires).</li>
+ <li> (1) Horizontal diffuse flux</li>
+ <li>(2) Normal direct flux</li>
+ <li>(3) Horizontal direct flux</li>
+ <li>(4) Horizontal global flux</li>
+ <li>(5) Time in UTC at time t = 0 (start of the simulation)</li>
+ <li>(6-7-8) Sun's direction cosines (6-sinH, 7-cosW, 8-cosS)</li>
+ <li>(9) Solar azimuth angle</li>
+ <li>(10) Solar elevation angle</li>
 </ul>
-<p><u><b>Bibliographie</b></u></p>
-<p>Solar Engineering of Thermal processes, Duffie & Beckmann, Wiley, 2006, pp. 90-93</p>
-<p>Modèle validé - Aurélie Kaemmerlen 02/2011</p>
-<ol>
-<li>Validation du modèle similaire développé pour BESTEST (temps en TSV) et les flux DIRH et GLOH en entrée : vérification avec TRNSYSv16 : lecture du TMY avec le Type89i et calcul des flux incidents avec le Type16g</li>
-<li>Validation analytique (Via calculs sous Excel) menée sur le paramétrage du modèle : type de temps, de moyenne et de flux considérés</li>
-</ol>
-<p>Amy Lindsay 03/2013 validation du modèle de diffus HDKR sur données d'ensoleillement à PV ZEN</p>
+You can choose which diffuse model to use. The isotropic diffuse model is considered more conservative (tendency to underestimate the incident radiation on an inclined plane) but is easier to use. The diffuse model Hay Davies Klucher Reindl (HDKR) is preferred in solar applications (photovoltaic, solar thermal ...).</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model: </p>
+ <ul>
+ <li> Aurélie Kaemmerlen 02/2011:
+Validation of similar model developed for BESTEST (time in RST) and DIRH and GLOH input fluxes: verification with TRNSYSv16: TMY reading with Type89i and calculation of incidents fluxes with Type16g
+Analytical Validation (Via Excel calculations) on the model parametrization: type of weather, type of average and flows considered </li>
+ <li>Amy Lindsay 03/2013: validation du modèle de diffus HDKR sur données d'ensoleillement à PV ZEN </li>
+ </ul>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>

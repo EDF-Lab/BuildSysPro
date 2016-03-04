@@ -1,14 +1,13 @@
 ﻿within BuildSysPro.BoundaryConditions.Scenarios;
-block WaterVaporMozart
-  "Scénario de vapeur d'eau pour un bâtiment Mozart (6,2kg/jour ou perso)"
+block WaterVaporMozart "Water vapour generation scenario"
 
-  parameter Integer ChoixScenario=1 "Scénario 6,2kg ou perso"                                      annotation(choices(
-choice=1 "6,2 kg/jour", choice=2 "Perso"));
+  parameter Integer ChoixScenario=1 "Scenario choice"                                      annotation(choices(
+  choice=1 "Mozart 6.2 kg/day", choice=2 "User-defined"));
 
-  parameter String tableName1="data1" annotation(Dialog(enable= ChoixScenario==2,group="A renseigner pour un scénario Perso"));
-  parameter String fileName1="Nom du fichier 1" annotation(Dialog(enable= ChoixScenario==2,group="A renseigner pour un scénario Perso"));
-  parameter String tableName2="data2" annotation(Dialog(enable= ChoixScenario==2,group="A renseigner pour un scénario Perso"));
-  parameter String fileName2="Nom du fichier 2" annotation(Dialog(enable= ChoixScenario==2,group="A renseigner pour un scénario Perso"));
+  parameter String tableName1="data1" annotation(Dialog(enable= ChoixScenario==2,group="User-defined scenario"));
+  parameter String fileName1="Nom du fichier 1" annotation(Dialog(enable= ChoixScenario==2,group="User-defined scenario"));
+  parameter String tableName2="data2" annotation(Dialog(enable= ChoixScenario==2,group="User-defined scenario"));
+  parameter String fileName2="Nom du fichier 2" annotation(Dialog(enable= ChoixScenario==2,group="User-defined scenario"));
 
 protected
   parameter String tableName1_p=if (ChoixScenario==1) then "data1" else tableName1;
@@ -29,39 +28,39 @@ public
   Modelica.Blocks.Sources.Clock clock
     annotation (Placement(transformation(extent={{-100,50},{-80,70}})));
   Modelica.Blocks.Interfaces.RealOutput SdB
-    "Debit en kg/s de vapeur d'eau dans la salle de bain"
+    "Flow of water vapor in the bathroom, in kg/s"
     annotation (Placement(transformation(extent={{-14,24},{8,46}}),
         iconTransformation(extent={{-74,40},{-54,60}})));
   Modelica.Blocks.Interfaces.RealOutput Cuisine
-    "Debit en kg/s de vapeur d'eau dans la cuisine" annotation (Placement(
+    "Flow of water vapor in the kitchen, in kg/s" annotation (Placement(
         transformation(extent={{-14,48},{8,70}}), iconTransformation(extent={{-74,
             70},{-54,90}})));
   Modelica.Blocks.Interfaces.RealOutput Chambre1
-    "Debit en kg/s de vapeur d'eau dans la chambre 1" annotation (Placement(
+    "Flow of water vapor in the bedroom 1, in kg/s" annotation (Placement(
         transformation(extent={{-14,-2},{8,20}}), iconTransformation(extent={{-74,
             0},{-54,20}})));
   Modelica.Blocks.Interfaces.RealOutput Chambre2
-    "Debit en kg/s de vapeur d'eau dans la chambre 2" annotation (Placement(
+    "Flow of water vapor in the bedroom 2, in kg/s" annotation (Placement(
         transformation(extent={{-14,-28},{8,-6}}), iconTransformation(extent={{-74,
             -30},{-54,-10}})));
   Modelica.Blocks.Interfaces.RealOutput Chambre3
-    "Debit en kg/s de vapeur d'eau dans la chambre 3" annotation (Placement(
+    "Flow of water vapor in the bedroom 3, in kg/s" annotation (Placement(
         transformation(extent={{-14,-54},{8,-32}}), iconTransformation(extent={{
             -74,-60},{-54,-40}})));
   Modelica.Blocks.Interfaces.RealOutput Sejour
-    "Debit en kg/s de vapeur d'eau dans le séjour" annotation (Placement(
+    "Flow of water vapor in the living room, in kg/s" annotation (Placement(
         transformation(extent={{-14,-80},{8,-58}}), iconTransformation(extent={{
             -74,-90},{-54,-70}})));
   Modelica.Blocks.Interfaces.RealOutput ZoneService
-    "Debit en kg/s de vapeur d'eau dans la zone de service (cuisine + sdb)"
+    "Flow of water vapor in the service zone (kitchen + bathroom), in kg/s"
     annotation (Placement(transformation(extent={{40,40},{62,62}}),
         iconTransformation(extent={{-14,50},{6,70}})));
   Modelica.Blocks.Interfaces.RealOutput ZoneVie
-    "Debit en kg/s de vapeur d'eau dans la zone de vie (3 chambres + séjour)"
+    "Flow of water vapor in the living zone (3 bedrooms + living room), in kg/s"
     annotation (Placement(transformation(extent={{40,-38},{62,-16}}),
         iconTransformation(extent={{-14,-50},{6,-30}})));
-  Modelica.Blocks.Interfaces.RealOutput Monozone
-    "Debit en kg/s de vapeur d'eau total" annotation (Placement(transformation(
+  Modelica.Blocks.Interfaces.RealOutput Monozone "Total flow of water vapor"
+                                annotation (Placement(transformation(
           extent={{88,14},{110,36}}),iconTransformation(extent={{46,10},{66,30}})));
 equation
 
@@ -194,26 +193,36 @@ equation
           color={0,128,255})}),
                 Placement(transformation(extent={{98,-10},{118,10}})),
     Documentation(info="<html>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Scénario de production interne de vapeur d'eau journalière pour la maison Mozart (3 chambres, séjour, cuisine, SdB/WC). On suppose qu'il n'y a pas de production de vapeur dans l'entrée/couloir.</p>
-<p>Il s'agit du scénario utilisé pour une production journalière de <b>6,2 kg</b> de vapeur d'eau (famille de 4 personnes : 2 adultes + 2 enfants, un adulte + 2 enfants rentrant pour déjeuner en pause méridienne, occupation intermittente l'après-midi par 1 adulte).</p>
-<p>Pour une exécution plus rapide, ce modèle lit les valeurs prédéfinies dans un fichier, y comprend pour les sommes par zone.</p>
+<p><i><b>Water vapour scenario for Mozart building (6.2 kg/day)</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Scenario of daily water vapour production for the Mozart dwelling  archetype (3 bedrooms, living room, kitchen, bathroom/ WC). It is assumed that there is no water vapour in the entrance/corridor.
+<p>It represents a daily production of 6.2 kg of water vapour assumed to be generated by a family of 4 individuals: 2 adults + 2 children. 
+In terms of occupancy , one adult and 2 children are coming back home for lunch during meridian break and it is assumed an intermittent occupancy the afternoon by 1 adult.</p>
+<p>This flow is considered into the conservation equation (for mass balance of gases) and in the energy balance equation. This water vapour flow is assumed to be produced at the temperature zone.</p>
+<p>For faster execution, this model reads the preset values in a file, including totals per zone</p>
+
 <p><u><b>Bibliographie</b></u></p>
-<p>Pour les données générales de production de vapeur d'eau <a href=\"modelica://BuildSysPro/Resources/Images/Aeraulique/Prod_vapeur_comparaison.pdf\">voir ici</a></p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Chaque sortie délivre un débit massique (en kg/s). La production de vapeur au détail de chaque pièce est disponible, ainsi que les sommes par zone (service et vie) et totale (monozone). Les sorties utiles sont à connecter avec le connecteur adéquat de la zone d'air humide correspondante. Ce débit est intégré dans l'équation de bilan de masse d'air sec et de vapeur. Dans l'équation de bilan enthalpique, ce flux de vapeur est supposé<b> être produit à la même température que celle de la zone.</b></p>
-<p>Il est également possible d'utiliser un scénario personnalisé.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>L'échelle de temps mini est la 1/2h. En dessous on utilise des fractions d'occupation (1/2 personne par exemple).</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Benoît Charrier 06/2015</p>
+<p>For general data on water vapour production <a href=\"modelica://BuildSysPro/Resources/Images/Aeraulique/Prod_vapeur_comparaison.pdf\">see here</a></p>
+
+<p><u><b>Instructions for use</b></u></p>
+<p>Each output supplies a mass flow rate in [kg/s]. Water vapour production per room is available, as well as the total flow per zone (service and life) and the total for onezone model.</p>
+<p>Useful outputs are to be connected with the appropriate connector of the corresponding air node.</p>
+<p>It is also possible to use a customized scenario.</p>
+
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>The minimum time scale is 1/2h. Below, occupancy fractions are used (1/2 person for example).</p>
+
+<p><u><b>Validations</b></u></p>
+<p>Validated model  - Benoît Charrier 06/2015</p>
+
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
-Author : Benoît CHARRIER, EDF (2015)<br>
+Author : Beno&icirc;t CHARRIER, EDF (2015)</p>
 --------------------------------------------------------------</b></p>
-</html>", revisions="<html>
+</html>
+",        revisions="<html>
 <p>Gilles Plessis 09/2015 : Utilisation de la fonction <code>Modelica.Utilities.Files.loadResource</code> pour le chargement de fichiers, pour une meilleure compatibilité avec le standard Modelica.</p>
 </html>"));
 end WaterVaporMozart;

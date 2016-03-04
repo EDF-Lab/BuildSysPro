@@ -5,7 +5,7 @@ model HomogeneousConduction "Conduction thermique 1D dans un milieu homogène"
   parameter Modelica.SIunits.Area S=1 "surface de l'élément";
   parameter BuildSysPro.Utilities.Records.GenericSolid mat
     "matériau constitutif de l'élément"
-    annotation (__Dymola_choicesAllMatching=true);
+    annotation (choicesAllMatching=true);
   parameter Modelica.SIunits.Length e=0.2
     "épaisseur de l'élément (dans la direction du gradient de T)";
 
@@ -62,6 +62,6 @@ Author : Emmanuel AMY DE LA BRETEQUE, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",
   revisions="<html>
-<p>Gilles Plessis 03/2011 - Ajout d'une liste déroulante pour le choix des matériaux via l'annotation annotation(__Dymola_choicesAllMatching=true)</p>
+<p>Gilles Plessis 03/2011 - Ajout d'une liste déroulante pour le choix des matériaux via l'annotation annotation(choicesAllMatching=true)</p>
 </html>"));
 end HomogeneousConduction;

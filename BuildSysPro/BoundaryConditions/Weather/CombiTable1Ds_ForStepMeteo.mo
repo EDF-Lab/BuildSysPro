@@ -27,8 +27,9 @@ block CombiTable1Ds_ForStepMeteo
     "Smoothness of table interpolation"
     annotation (Dialog(group="Table data interpretation"));
 
-  parameter Real delta_t=3600 "Pas de temps constant du fichier en s.";
-  parameter Integer option[nout]=fill(1,nout) "=0 si fonction en escalier";
+  parameter Real delta_t=3600 "Constant time step of the file in [s]";
+  parameter Integer option[nout]=fill(1,nout)
+    "=0 if piecewise constant function";
   Real u1=integer(u/delta_t)*delta_t+delta_t/2;
 
 protected
@@ -120,61 +121,73 @@ equation
   end if;
   annotation (
     Documentation(info="<html>
-<p><br>Modification du modèle CombiTable1Ds de Modelica afin d'avoir une fonction en escaliers qui corresponde bien à nos fichiers météo.</p>
-<p><b>Linear interpolation</b> in <b>one</b> dimension of a <b>table</b>. Via parameter <b>columns</b> it can be defined how many columns of the table are interpolated. If, e.g., icol={2,4}, it is assumed that one input and 2 output signals are present and that the first output interpolates via column 2 and the second output interpolates via column 4 of the table matrix. </p>
-<p>The grid points and function values are stored in a matrix &QUOT;table[i,j]&QUOT;, where the first column &QUOT;table[:,1]&QUOT; contains the grid points and the other columns contain the data to be interpolated. Example: </p>
-<pre><span style=\"font-family: Courier New,courier;\">   table = [0,  0;</span>
-<span style=\"font-family: Courier New,courier;\">            1,  1;</span>
-<span style=\"font-family: Courier New,courier;\">            2,  4;</span>
-<span style=\"font-family: Courier New,courier;\">            4, 16]</span>
-<span style=\"font-family: Courier New,courier;\">   If, e.g., the input u = 1.0, the output y =  1.0,</span>
-<span style=\"font-family: Courier New,courier;\">       e.g., the input u = 1.5, the output y =  2.5,</span>
-<span style=\"font-family: Courier New,courier;\">       e.g., the input u = 2.0, the output y =  4.0,</span>
-<span style=\"font-family: Courier New,courier;\">       e.g., the input u =-1.0, the output y = -1.0 (i.e., extrapolation).</span></pre>
+<p><i><b>Modification of CombiTable1Ds Modelica model in order to have a piecewise constant function adapted to meteorological data files</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p><b>Constant piecewise interpolation</b> in <b>one</b> dimension of a <b>table</b>. Via parameter <b>columns</b> it can be defined how many columns of the table are interpolated. If, e.g., icol={2,4}, it is assumed that one input and 2 output signals are present and that the first output interpolates via column 2 and the second output interpolates via column 4 of the table matrix. </p>
+<p>Notes:</p>
 <ul>
 <li>The interpolation is <b>efficient</b>, because a search for a new interpolation starts at the interval used in the last call.</li>
 <li>If the table has only <b>one row</b>, the table value is returned, independent of the value of the input signal.</li>
 <li>If the input signal <b>u</b> is <b>outside</b> of the defined <b>interval</b>, i.e., u &GT; table[size(table,1),1] or u &LT; table[1,1], the corresponding value is also determined by linear interpolation through the last or first two points of the table.</li>
 <li>The grid values (first column) have to be strictly increasing.</li>
 </ul>
+
+<p><u><b>Bibliography</b></u></p>
+<p>Derived from the <a href=\"modelica://Modelica.Blocks.Tables.CombiTable1Ds\">Modelica.Blocks.Tables.CombiTable1Ds model </a>.</p>
+<p><u><b>Instructions for use</b></u></p>
+
+<p>The grid points and function values are stored in a matrix &QUOT;table[i,j]&QUOT;, where the first column &QUOT;table[:,1]&QUOT; contains the grid points and the other columns contain the data to be interpolated. Example: </p>
+<pre>   table = [0,  0;
+            1,  1;
+            2,  4;
+            4, 16]
+   If, e.g., the input u = 1.0, the output y =  1.0,
+       e.g., the input u = 1.5, the output y =  2.5,
+       e.g., the input u = 2.0, the output y =  4.0,
+       e.g., the input u =-1.0, the output y = -1.0 (i.e., extrapolation).</pre>
+
 <p>The table matrix can be defined in the following ways: </p>
 <ol>
 <li>Explicitly supplied as <b>parameter matrix</b> &QUOT;table&QUOT;, and the other parameters have the following values: </li>
-<pre><span style=\"font-family: Courier New,courier;\">   tableName is &QUOT;NoName&QUOT; or has only blanks,</span>
-<span style=\"font-family: Courier New,courier;\">   fileName  is &QUOT;NoName&QUOT; or has only blanks.</span></pre>
-<li><b>Read</b> from a <b>file</b> &QUOT;fileName&QUOT; where the matrix is stored as &QUOT;tableName&QUOT;. Both ASCII and MAT-file format is possible. (The ASCII format is described below). The MAT-file format comes in four different versions: v4, v6, v7 and v7.3. The library supports at least v4, v6 and v7 whereas v7.3 is optional. It is most convenient to generate the MAT-file from FreeMat or MATLAB&reg; by command </li>
-<pre><span style=\"font-family: Courier New,courier;\">   save tables.mat tab1 tab2 tab3</span></pre>
+<pre>   tableName is &QUOT;NoName&QUOT; or has only blanks,
+   fileName  is &QUOT;NoName&QUOT; or has only blanks.</pre>
+<li> <b>Read</b> from a <b>file</b> &QUOT;fileName&QUOT; where the matrix is stored as &QUOT;tableName&QUOT;. Both ASCII and MAT-file format is possible. (The ASCII format is described below). The MAT-file format comes in four different versions: v4, v6, v7 and v7.3. The library supports at least v4, v6 and v7 whereas v7.3 is optional. It is most convenient to generate the MAT-file from FreeMat or MATLAB&reg; by command </li>
+<pre>   save tables.mat tab1 tab2 tab3</pre>
 <p>or Scilab by command </p>
-<pre><span style=\"font-family: Courier New,courier;\">   savematfile tables.mat tab1 tab2 tab3</span></pre>
+<pre>   savematfile tables.mat tab1 tab2 tab3</pre>
 <p>when the three tables tab1, tab2, tab3 should be used from the model.</p>
 <p>Note, a fileName can be defined as URI by using the helper function <a href=\"modelica://Modelica.Utilities.Files.loadResource\">loadResource</a>.</p>
 <li>Statically stored in function &QUOT;usertab&QUOT; in file &QUOT;usertab.c&QUOT;. The matrix is identified by &QUOT;tableName&QUOT;. Parameter fileName = &QUOT;NoName&QUOT; or has only blanks. Row-wise storage is always to be preferred as otherwise the table is reallocated and transposed. See the <a href=\"modelica://Modelica.Blocks.Tables\">Tables</a> package documentation for more details.</li>
 </ol>
+
 <p>When the constant &QUOT;NO_FILE_SYSTEM&QUOT; is defined, all file I/O related parts of the source code are removed by the C-preprocessor, such that no access to files takes place. </p>
 <p>If tables are read from an ASCII-file, the file needs to have the following structure (&QUOT;-----&QUOT; is not part of the file content): </p>
-<pre><span style=\"font-family: Courier New,courier;\">-----------------------------------------------------</span>
-<span style=\"font-family: Courier New,courier;\">#1</span>
-<span style=\"font-family: Courier New,courier;\">double tab1(5,2)   # comment line</span>
-<span style=\"font-family: Courier New,courier;\">  0   0</span>
-<span style=\"font-family: Courier New,courier;\">  1   1</span>
-<span style=\"font-family: Courier New,courier;\">  2   4</span>
-<span style=\"font-family: Courier New,courier;\">  3   9</span>
-<span style=\"font-family: Courier New,courier;\">  4  16</span>
-<span style=\"font-family: Courier New,courier;\">double tab2(5,2)   # another comment line</span>
-<span style=\"font-family: Courier New,courier;\">  0   0</span>
-<span style=\"font-family: Courier New,courier;\">  2   2</span>
-<span style=\"font-family: Courier New,courier;\">  4   8</span>
-<span style=\"font-family: Courier New,courier;\">  6  18</span>
-<span style=\"font-family: Courier New,courier;\">  8  32</span>
-<span style=\"font-family: Courier New,courier;\">-----------------------------------------------------</span></pre>
+<pre>-----------------------------------------------------
+#1
+double tab1(5,2)   # comment line
+  0   0
+  1   1
+  2   4
+  3   9
+  4  16
+double tab2(5,2)   # another comment line
+  0   0
+  2   2
+  4   8
+  6  18
+  8  32
+-----------------------------------------------------</pre>
 <p>Note, that the first two characters in the file need to be &QUOT;#1&QUOT; (a line comment defining the version number of the file format). Afterwards, the corresponding matrix has to be declared with type (= &QUOT;double&QUOT; or &QUOT;float&QUOT;), name and actual dimensions. Finally, in successive rows of the file, the elements of the matrix have to be given. The elements have to be provided as a sequence of numbers in row-wise order (therefore a matrix row can span several lines in the file and need not start at the beginning of a line). Numbers have to be given according to C syntax (such as 2.3, -2, +2.e4). Number separators are spaces, tab ( ), comma (,), or semicolon (;). Several matrices may be defined one after another. Line comments start with the hash symbol (#) and can appear everywhere. Other characters, like trailing non comments, are not allowed in the file. </p>
 <p>MATLAB is a registered trademark of The MathWorks, Inc. </p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Hassan BOUIA, Amy LINDSAY, EDF (2014)<br>
-Initial model : <a href=\"Modelica.Blocks.Tables.CombiTable1Ds\">CombiTable1Ds</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
 <p>12/2014 H. Bouia, A. Lindsay : modification du modèle CombiTable1Ds de Modelica afin que la fonction en escaliers corresponde bien à ce qu'on attend en sortie d'un fichier météo</p>

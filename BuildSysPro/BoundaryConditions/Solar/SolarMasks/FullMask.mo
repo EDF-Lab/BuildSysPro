@@ -1,30 +1,31 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.SolarMasks;
-function FullMask "Calcul de l'aire ensoleillée pour le masque intégral"
+function FullMask
+  "Calculation of the sunny area for the full mask (horizontal+vertical)"
 
-input Modelica.SIunits.Distance Av "Avancée";
+input Modelica.SIunits.Distance Av "Overhang";
 input Modelica.SIunits.Distance Ha
-    "Distance de l'auvent au rebord haut de la fenêtre";
-input Modelica.SIunits.Distance Lf "Largeur de la fenêtre";
-input Modelica.SIunits.Distance Hf "Hauteur de la fenêtre";
-input Modelica.SIunits.Distance Dd "Distance ou débord droit";
-input Modelica.SIunits.Distance Dg "Distance ou débord gauche";
+    "Distance between the overhang and the top of the surface (window)";
+input Modelica.SIunits.Distance Lf "Surface (window) width";
+input Modelica.SIunits.Distance Hf "Surface (window) height";
+input Modelica.SIunits.Distance Dd "Lateral overhang (right hand side)";
+input Modelica.SIunits.Distance Dg "Lateral overhang (left hand side)";
 input Modelica.SIunits.Conversions.NonSIunits.Angle_deg AzimutSoleil
-    "Azimut du soleil en degrés";
+    "Solar azimuth angle (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°";
 input Modelica.SIunits.Conversions.NonSIunits.Angle_deg HauteurSoleil
-    "Hauteur du soleil";
+    "Solar elevation angle";
 input Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut
-    "Azimut de la surface (Orientation par rapport au sud) - S=0°, E=-90°, O=90°, N=180°";
+    "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°";
 
-output Modelica.SIunits.Area A0 "Surface ensoleillée de la fenêtre";
+output Modelica.SIunits.Area A0 "Sunny surface of the window";
 
 protected
-Modelica.SIunits.Distance X0 "Variable intermédiaire pour le calcul de A0";
-Modelica.SIunits.Distance Y0 "Variable intermédiaire pour le calcul de A0";
+Modelica.SIunits.Distance X0 "Intermediate variable for the calculation of A0";
+Modelica.SIunits.Distance  Y0 "Intermediate variable for the calculation of A0";
 constant Real Convert=Modelica.Constants.pi/180
-    "Facteur de conversion degrés->radians";
+    "Conversion factor degrees->radians";
 
 algorithm
-  //Calcul de Y0
+  //Calculation of Y0
   Y0 := Av * tan(HauteurSoleil*Convert)/cos((azimut-AzimutSoleil)*Convert);
   if Y0 <= Ha then
     Y0 := Ha;
@@ -33,7 +34,7 @@ algorithm
     Y0 := Ha+Hf;
   end if;
 
-  //Calcul de X0
+  //Calculation of X0
   if AzimutSoleil<=azimut then
     X0 :=Av * tan((azimut-AzimutSoleil)*Convert);
     if X0 <= Dg then
@@ -55,13 +56,28 @@ algorithm
   end if;
 
   annotation (Documentation(info="<html>
-<p><br><img src=\"modelica://BuildSysPro/Resources/Images/MasqueIntegral.bmp\"/> </p>
-<p>Modèle validé (selon la norme ISO13791-2004) - Aurélie Kaemmerlen 05/2011</p>
+<p><i><b>
+Calculation of the sunny share of a surface considering shading devices</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+Shading devices (near mask) with both overhang and lateral fin (such as egg crate) are considered. See diagram below:
+<p><img src=\"modelica://BuildSysPro/Resources/Images/MasqueIntegral.bmp\"/> </p>
+<p><u><b>Bibliography</b></u></p>
+<p>ISO 13791 standard</p>
+<p>RT2012 standard for the consideration of vertical distant masks</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>These models are valid only for vertical walls.</p>
+<p>The accumulation of several masks of near types for a same wall is prohibited</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model (according to the standard ISO13791-2004) - Aurélie Kaemmerlen 05/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
-</html>"));
+</html>
+
+"));
 end FullMask;

@@ -10,7 +10,7 @@ model HomogeneousNLayersWall
 
   parameter BuildSysPro.Utilities.Records.GenericSolid mat[n]
     "matériaux constitutifs de la paroi, de l'extérieur vers l'intérieur"
-    annotation (__Dymola_choicesAllMatching=true);
+    annotation (choicesAllMatching=true);
 
   parameter Modelica.SIunits.Temperature Tinit=293.15;
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState;

@@ -4,79 +4,82 @@ model Boiler
   import SI = Modelica.SIunits;
   import BuildSysPro.BaseClasses.Media.OLD_THERMHYGAERO.AirFunctions.Psat;
 
-  parameter Real PCSI=1.11 "Ratio PCS/PCI défini suivant le combustible";
-  parameter SI.Temperature Tnom=273.15+70 "Temperature nominale"
-                           annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter Real PLRnom=100 "Taux de charge nominale (%)"         annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter SI.Power Pnom=17300 "Puissance nominale" annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter Real etaNom=97.4 "Efficacité PCI nominale (%)"        annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter SI.Temperature TInt=273.15+33 "Temperature intermédiaire"
-                                 annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter Real PLRInt=30 "Taux de charge intermédiaire (%)"     annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter SI.Power PInt=5190 "Puissance intermédiaire"           annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter Real etaInt=107.2 "Efficacité PCI intermédiaire (%)"  annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter SI.Power PertesT30K = 60 "Pertes à l'arrêt" annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter SI.VolumeFlowRate V_flow= 1.02/3600
-    "Débit volumique nominal d'eau"                               annotation(Dialog(group = "Paramètres fournis sur ATITA"));
+  parameter Real PCSI=1.11
+    "Ratio gross (high) heating value / net (low) heating value defined according to the fuel";
+  parameter SI.Temperature Tnom=273.15+70 "Nominal temperature"
+                           annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter Real PLRnom=100 "Nominal loading rate (%)"         annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter SI.Power Pnom=17300 "Nominal power" annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter Real etaNom=97.4 "Nominal net heating value efficiency (%)"        annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter SI.Temperature TInt=273.15+33 "Intermediate temperature"
+                                 annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter Real PLRInt=30 "Intermediate loading rate (%)"     annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter SI.Power PInt=5190 "Intermediate power"           annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter Real etaInt=107.2 "Intermediate net heating value efficiency (%)"  annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter SI.Power PertesT30K = 60 "Stop losses" annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter SI.VolumeFlowRate V_flow= 1.02/3600 "Volume of water in the boiler"
+                                                                  annotation(Dialog(group = "Parameters provided on ATITA basis"));
   parameter Modelica.SIunits.Volume Veau(displayUnit="l") = 2.8E-3
-    "Volume d'eau contenue dans la chaudière"                     annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter SI.Mass mSec = 35 "Masse à sec"                       annotation(Dialog(group = "Paramètres fournis sur ATITA"));
+    "Volume d'eau contenue dans la chaudière"                     annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter SI.Mass mSec = 35 "Dry weight"                       annotation(Dialog(group = "Parameters provided on ATITA basis"));
   parameter SI.Power Paux = 24
-    "Puissance électrique des auxiliaires à puissance nominale (hors ciculateur)"
-     annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter SI.Power Pveille = 5.2 "Puissance de veille (hors ciculateur)"
-     annotation(Dialog(group = "Paramètres fournis sur ATITA"));
-  parameter SI.Power Pcirculateur = 37 "Puissance électrique du ciculateur"
-     annotation(Dialog(group = "Paramètres fournis sur ATITA"));
+    "Electrical power of auxiliary on nominal power (out circulation pump)"
+     annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter SI.Power Pveille = 5.2 "Standby power (out circulation pump)"
+     annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter SI.Power Pcirculateur = 37
+    "Water circulation pump electrical power"
+     annotation(Dialog(group = "Parameters provided on ATITA basis"));
 
   parameter Real DetaPLR = 1
-    "Ecart d'efficacité à TInt entre un PLRnom et PLRInt (entre 0 et 2 pt% suivant les machines)"
-     annotation(Dialog(tab = "Autres paramètres",group="Performance"));
-  parameter Real PLRmin = PLRInt "Taux de charge minimal"
-     annotation(Dialog(tab = "Autres paramètres",group="Performance"));
-  parameter SI.Time TimePrePurge=30 "Durée de la pre-purge"
-     annotation(Dialog(tab = "Autres paramètres",group="Performance"));
+    "Efficiency gap at Tint between PLRnom (Part Load Ratio) and PLRInt (between 0 and 2% depending on the machine)"
+     annotation(Dialog(tab = "Other parameters",group="Performance"));
+  parameter Real PLRmin = PLRInt "Minimum loading rate"
+     annotation(Dialog(tab = "Other parameters",group="Performance"));
+  parameter SI.Time TimePrePurge=30 "Pre-purge duration"
+     annotation(Dialog(tab = "Other parameters",group="Performance"));
   parameter SI.Time TimeCycle(displayUnit="min")=300
-    "Durée minimale d'un cycle (anti-court cyle)"
-     annotation(Dialog(tab = "Autres paramètres",group="Performance"));
+    "Minimum duration of a cycle (anti-short cycle)"
+     annotation(Dialog(tab = "Other parameters",group="Performance"));
   parameter SI.Time TimeCirculateur(displayUnit="min")=600
-    "Durée de fonctionnemnt du circulateur après un cycle de combustion"
-     annotation(Dialog(tab = "Autres paramètres",group="Performance"));
-  parameter SI.SpecificHeatCapacity CpE = 4180 "Capacité thermique de l'eau"
-     annotation(Dialog(tab = "Autres paramètres",group="Propriétés des fluides"));
-  parameter SI.Density rhoE = 1000 "Masse volumique de l'eau"
-     annotation(Dialog(tab = "Autres paramètres",group="Propriétés des fluides"));
+    "Operating time of the circulation pump after a combustion cycle"
+     annotation(Dialog(tab = "Other parameters",group="Performance"));
+  parameter SI.SpecificHeatCapacity CpE = 4180
+    "Specific heat capacity of water"
+     annotation(Dialog(tab = "Other parameters",group="Fluids properties"));
+  parameter SI.Density rhoE = 1000 "Density of water"
+     annotation(Dialog(tab = "Other parameters",group="Fluids properties"));
   parameter SI.VolumeFlowRate V_flowAir = 6.7E-3 * (Pnom/20000)
-    "Pré-purge : Débit volumique nominal d'air (valeur nominale d'après [Kemna2007])"
-     annotation(Dialog(tab = "Autres paramètres",group="Propriétés des fluides"));
+    "Pre-purge: nominal flow rate of air (nominal value from [Kemna 2007])"
+     annotation(Dialog(tab = "Other parameters",group="Fluids properties"));
   parameter SI.SpecificHeatCapacity CpA = 1000 "Capacité thermique de l'air"
-     annotation(Dialog(tab = "Autres paramètres",group="Propriétés des fluides"));
-  parameter SI.Density rhoA = 1.2 "Masse volumique de l'air"
-     annotation(Dialog(tab = "Autres paramètres",group="Propriétés des fluides"));
+     annotation(Dialog(tab = "Other parameters",group="Fluids properties"));
+  parameter SI.Density rhoA = 1.2 "Specific heat capacity of air"
+     annotation(Dialog(tab = "Other parameters",group="Fluids properties"));
 
 protected
   parameter SI.ThermalConductance UA=PertesT30K/30
-    "Conductante à travers l'enveloppe";
-  parameter SI.Pressure Pref = 101300 "Pression de référence";
-  parameter SI.Temperature Tref = 15 + 273.15 "Temperature de référence";
+    "Conduction through the envelope";
+  parameter SI.Pressure Pref = 101300 "Reference pressure";
+  parameter SI.Temperature Tref = 15 + 273.15 "Reference temperature";
   parameter Real lambda = 0.01
-    "Variable de décalage des coefficients de pondération sigmas";
-  discrete SI.Time Time0(start=0) "Début du cycle de la chaudière";
-  discrete SI.Time TimeF(start=0) "Fin du cycle de la chaudière";
+    "Offset variable of weighting coefficients sigmas";
+  discrete SI.Time Time0(start=0) "Beginning of the boiler cycle";
+  discrete SI.Time TimeF(start=0) "End of the boiler cycle";
 
 public
-  Real etaRP "Efficacité en régime permanent à T et PLR de fonctionnement";
-  SI.Power QaFournir "Puissance thermique à fournir";
+  Real etaRP "Efficiency in steady state at T and operational PLR";
+  SI.Power QaFournir "Thermal power to provide";
   Integer NbCycle(start=0);
 
 protected
   SI.Temperature Tc
-    "Température d'intersection de la charactéristique Sensible et Latente";
+    "Temperature of Sensitive and Latent characteristic intersection";
   SI.Temperature Te=Entree[1]
-    "Température de retour d'eau (i.e. température d'entrée d'eau)";
-  //EGAL AU PORT D'ENTREE
+    "Water-return temperature (i.e. water inlet temperature)";
+  //EQUAL TO THE ENTRY PORT
   Real a1=(etaNom-100)/(Tnom-Tref)
-    "Pente de la droite charactérisant la partie sensible";
+    "Slope of the line characterizing the sensitive part";
   Real etaSens;
   Real etaCond30;
   Real etaCond;
@@ -84,7 +87,7 @@ protected
   Real sigmaCond;
   Real a;
   SI.MassFlowRate Debit
-    "Débit massique d'eau au ciculateur donc dans la chaudière";
+    "Water mass flow to the circulation pump, therefore in the boiler";
 
 public
   Modelica.Blocks.Interfaces.RealInput PLR(min=0, max=100)
@@ -96,17 +99,17 @@ public
         rotation=270,
         origin={0,90})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor ConductanceEnv(G=UA)
-    "Resistance thermique de l'enveloppe de la chaudière"
+    "Thermal resistance of the boiler casing"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=270,
         origin={0,32})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Tamb
-    "Temperature ambiante du lieu où se situe la chaudière"
+    "Ambient temperature of the place where the boiler is located"
     annotation (Placement(transformation(extent={{40,50},
             {60,70}},            rotation=0), iconTransformation(extent={{50,70},
             {70,90}})));
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor CpChau(
-      C=500*mSec) "Capacité thermique de la chaudière (masse à sec)"
+      C=500*mSec) "Boiler thermal capacity (dry weight)"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo
     annotation (Placement(transformation(
@@ -116,15 +119,15 @@ public
   Modelica.Blocks.Sources.RealExpression QaFournirExp(y=QaFournir)
     annotation (Placement(transformation(extent={{-62,-90},{-42,-70}})));
   Modelica.Blocks.Interfaces.RealOutput Pgaz
-    "Puissance thermique fournie par combustion de gaz"
+    "Thermal power provided by gas combustion"
     annotation (Placement(transformation(extent={{92,16},{112,36}}),
         iconTransformation(extent={{92,16},{112,36}})));
   Modelica.Blocks.Interfaces.RealOutput Pelec
-    "Puissance électrique consommée (auxiliaires...)"
+    "Electrical power consumed (auxiliary ...)"
     annotation (Placement(transformation(extent={{92,40},{112,60}}),
         iconTransformation(extent={{92,-16},{112,4}})));
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor CpEau(C=CpE*rhoE*Veau)
-    "Capacité thermique du volume d'eau"
+    "Heat capacity of the water volume"
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo1
     annotation (Placement(transformation(
@@ -152,62 +155,62 @@ protected
     annotation (Placement(transformation(extent={{2,2},{-2,-2}})));
 public
   Modelica.Blocks.Interfaces.RealInput Entree[2]
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing 1- the input fluid temperature (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-128,-60},{-88,-20}}),
         iconTransformation(extent={{-110,-50},{-90,-30}})));
   Modelica.Blocks.Interfaces.RealOutput Sortie[2]
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing 1- the input fluid temperature (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{92,-50},{112,-30}}),
         iconTransformation(extent={{92,-50},{112,-30}})));
 initial equation
 
 algorithm
-if SaisonChauffe then  //La chaudière est lancée pour PLR > PLRmin
-  //Détermination de l'efficacité pour la loi sans condensation
+if SaisonChauffe then  //The boiler is launched for PLR > PLRmin
+  //Determination of the efficiency for the law without condensation
   etaSens   :=etaNom + a1*(Te - Tnom);
-  //Détermination de l'efficacité pour la loi caractérisant la condensation
+  //Determination of the efficiency for the law characterizing the condensation
   etaCond30 :=etaInt + (100*PCSI - etaInt)*(1 - Psat(Te)/Psat(TInt)*TInt/Te);
   etaCond   :=etaCond30 - DetaPLR*(Tc - Te)/(Tc - TInt)*(PLR - PLRInt)/(PLRnom -
       PLRInt);
-  //Détermination de l'efficacité en régime permanent
+  //Determination of the efficiency in steady state
   sigmaSens :=1/(1 + exp(Tc - Te - lambda));
   sigmaCond :=1 - 1/(1 + exp(Tc - Te + lambda));
   etaRP     :=sigmaSens*etaSens + sigmaCond*etaCond;
   if PLR>PLRmin then
     if noEvent(time <= Time0+TimePrePurge) then
-      a:=1;//Pré-purge
+      a:=1;//Pre-purge
       Pelec:=Paux + Pcirculateur;
-      QaFournir :=V_flowAir*rhoA*CpA*(15+273.15 - CpEau.port.T);//semble négligeable, à supprimer ??? OUI d'après étude paramétrique, suppression de l'entrée T qui est fixée à 15°C
+      QaFournir :=V_flowAir*rhoA*CpA*(15+273.15 - CpEau.port.T);//seems negligible, delete ??? YES based on parametric study, delete the entry T which is set at 15°C
       Pgaz:=0;
 
     else
       a:=2;//Combustion
-      //on considère que la moité de la puissance électrique nominale dépend du ventilateur qui dépend du taux de charge (PLR)
+      //It is considered that half of the nominal electric power depends on the fan which depends on the load rate (PLR)
       Pelec:=Paux*(0.5 + 0.5*PLR/100) + Pcirculateur;
-      //Les données constructeurs intégrent déjà les déperditions à travers l'enveloppe donc en cas de marche, on ajoute le terme de déperditions par l'enveloppe
+      //Manufacturers data already integrate losses through the envelope so when running, the term corresponding to losses through the envelope is added
       QaFournir :=PInt + (PLR - PLRInt)/(PLRnom - PLRInt)*(Pnom - PInt) + abs(ConductanceEnv.Q_flow);
-      Pgaz:=QaFournir*100/etaRP;//efficacité en pourcentage
+      Pgaz:=QaFournir*100/etaRP;//Efficiency (%)
     end if;
   else
     if noEvent(time <= Time0+TimePrePurge+TimeCycle) then
-      a:=3; //Anticourtcycle à puissance minimale
+      a:=3; //Anti-short cycles at minimal power
       Pelec:=Paux*(0.5 + PLRmin/100) + Pcirculateur;
       QaFournir :=PInt + abs(ConductanceEnv.Q_flow);
-      Pgaz:=QaFournir*100/etaRP;//efficacité en pourcentage
+      Pgaz:=QaFournir*100/etaRP;//Efficiency (%)
     elseif noEvent(time < max(TimeF,Time0+TimePrePurge+TimeCycle)+TimeCirculateur) then
-        a:=4;//Bruleur éteint mais circulateur en fonctionnement
+        a:=4;//Burner off but circulator in operation
         Pelec:=Pveille + Pcirculateur;
         QaFournir:=0;
         Pgaz:=0;
     else
-        a:=5;//Bruleur éteint et circulateur coupé
+        a:=5;//Burner off and circulator cut off
         Pelec:=Pveille;
         QaFournir:=0;
         Pgaz:=0;
     end if;
   end if;
 else
-  a:=0;//Arrêt saisonnier
+  a:=0;//Seasonal shutdown
   Pelec:=0;
   QaFournir:=0;
   Pgaz:=0;
@@ -215,7 +218,7 @@ end if;
 
 equation
   Debit = if a < 1 or a > 4 then 0 else V_flow * rhoE;
-  //Détermination du point d'intersection Tc
+  //Intersection point Tc determination
   etaNom+a1*(Tc-Tnom) = etaInt+(100*PCSI-etaInt)*(1-Psat(Tc)/Psat(TInt)*TInt/Tc);
 
   when PLR >= PLRmin then
@@ -292,11 +295,11 @@ equation
         Text(
           extent={{44,28},{90,18}},
           lineColor={0,0,255},
-          textString="Conso GAZ"),
+          textString="Gas consumption"),
         Text(
           extent={{40,-2},{90,-12}},
           lineColor={0,0,255},
-          textString="Conso ELEC"),
+          textString="Elec consumption"),
         Polygon(
           points={{-58,-86},{-58,-86},{-50,-76},{-42,-86},{-44,-94},{-48,-96},{-56,
               -94},{-58,-86},{-58,-86}},
@@ -456,26 +459,28 @@ equation
           textString="Text")}),
 defaultComponentName="boi",
 Documentation(info="<html>
-<p><u><b>Description</b></u></p>
-<p>Il s'agit d'un modèle dynamique de chaudière modulante à condensation.</p>
-<p><br><u><b>Modèle</b></u></p>
-<p>Le modèle de prévision de la consommation de gaz est estimé par un modèle de boîte grise. La consommation électrique est déterminée suivant les consommations des différentes phases de fonctionnement de la chaudière (purge, circulateur, marche veille, etc). Le modèle est paramétrable à partir de données certifiées accessibles sur la base ATITA (www.rt2005-chauffage)</p>
-<p><br><u><b>Paramétrage et étude de sensibilité</b></u></p>
-<p>Ce modèle nécessite peu de données d'entrées accessibles d'après les essais normatifs.</p>
-<p>Suite à une étude de sensibilité,</p>
+<p>It is a dynamic model of modulating condensing boiler.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The gas consumption prediction model is estimated with a grey box model. Electric consumption is determined according to the consumption of the various operation phases of the boiler (purging, pump, power on/off, standby, etc).</p>
+<p>This model requires a limited amount of input data accessible from the normative tests.</p>
+<p>Following a sensitivity analysis,</p>
 <ul>
-<li>Les durées de de l'anticourt-cyle et surtout de celle du fonctionnement du circulateur après la combustion ont un impact très marqué sur la consommation et le nombre de cycle de la machine ;</li>
-<li>Le paramètre &Delta;&eta; (représentant la baisse de performances en fonction de la charge à une température de retour d'eau de 30) a un effet quasiment nulle sur les résultats pour les niveaux de température la loi d'eau considérée (entre 35 et 45 &deg;C). Dans le cas de la modélisationn d'un système nécessitant des températures d'eau supérieure à 35, l'utilisateur peut laisser la valeur proposée par défaut, d'autant plus que ce paramètre n'est pas fourni dans la base ATITA ;</li>
-<li>La considération de la purge pré-combustion durant laquelle l'air de la chambre de combustion doit être renouvelé a également un impact réduit : la sur-consommation ne dépasse pas les 0,5% et est due principalement au retard de 30 secondes avant le lancement de la chaudière qu'à la puissance thermique perdue dans les fumées.</li>
+<li>The durations of anti-short cycles (abnormally rapid start and stop cycles), and especially the duration of the pump operation after combustion have a very significant impact on consumption and the number of machine cycles;</li>
+<li>The parameter &Delta;&eta; (representing the decrease in performance depending on the load at a return of water temperature equal to 30°C) has nearly no effects on the results for the temperature levels of the water law in question (between 35 and 45°C). In the case of modelling a system requiring water temperatures higher than 35°C, the user can leave the default value, especially since this parameter is not provided in the ATITA basis;</li>
+<li>Consideration of pre-combustion purge, during which the air in combustion chamber must be renewed, has also a reduced impact: over-consumption does not exceed 0.5% and is more due to a 30 second delay before launching the boiler than to the thermal power lost in the smoke.</li>
 </ul>
-<p><br><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Il s'agit d'un modèle dynamique détaillé. Certaines phénomènes sont représentés d'une manière simple :</p>
+<p><u><b>Bibliography</b></u></p>
+<p>The model is configurable from certified data accessible in the ATITA basis (rt2012-chauffage.com).</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>This is a detailed dynamic model. Some phenomena are represented in a simple way:</p>
 <ul>
-<li>Les déperditions à travers la paroi sont intégralement transmis au milieu ambiant (la RT2012 donne des coefficients de la part qui est perdue -par exemple à travers le mur pour une chaudière murale),</li>
-<li>La consommations des auxiliaires est partiellement dégradée sous forme thermique (par exemple via la transformation de l'énergie cinétique de l'eau dans les conduites en chaleur par frottement pour la puissance fournie au circulateur), cette conservation de l'énergie n'est pas prise en compte actuellement,</li>
+<li>Heat losses through the wall are fully transmitted to the environment (RT2012 gives the lost part coefficients -for example through the wall for a wall boiler)</li>
+<li>The consumption of auxiliary is partially degraded in thermal form (e.g. via the conversion of the water kinetic energy in pipes into heat by friction for the power supplied to the pump), this energy conservation is not considered now</li>
 </ul>
-<p><br><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Hubert Blervaque- Sila Filfli 07/2013</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hubert Blervaque, Sila Filfli 07/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

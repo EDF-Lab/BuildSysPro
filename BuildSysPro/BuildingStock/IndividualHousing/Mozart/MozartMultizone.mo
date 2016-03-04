@@ -6,7 +6,7 @@ model MozartMultizone
   replaceable parameter
     BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART.BuildingType
     paraMaisonRT "Réglementation thermique utilisée" annotation (
-      __Dymola_choicesAllMatching=true, dialog(group="Choix de la RT"));
+      choicesAllMatching=true, Dialog(group="Choix de la RT"));
 
   // Orientation de la maison
 parameter Real beta=0
@@ -14,26 +14,26 @@ parameter Real beta=0
 
   // Flux thermiques
 parameter Boolean GLOEXT=false
-    "Prise en compte de rayonnement GLO vers l'environnement et le ciel"                            annotation(dialog(tab="Flux thermiques"));
+    "Prise en compte de rayonnement GLO vers l'environnement et le ciel"                            annotation(Dialog(tab="Flux thermiques"));
 parameter Boolean CLOintPlancher=true
     "True : tout le flux est absorbé par le plancher; False : le flux est absorbé par toutes les parois au prorata des surfaces"
-                                                                                                        annotation(dialog(tab="Flux thermiques"));
+                                                                                                        annotation(Dialog(tab="Flux thermiques"));
 parameter Boolean QVin=false
     "True : commande du débit de renouvellement d'air ; False : débit constant"
-                                                                                                annotation(dialog(tab="Flux thermiques"));
+                                                                                                annotation(Dialog(tab="Flux thermiques"));
 
   // Parois
 parameter Modelica.SIunits.Temperature Tp=293.15
     "Température initiale des parois"
-    annotation(dialog(tab="Parois"));
+    annotation(Dialog(tab="Parois"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Initialisation en régime stationnaire dans les parois"
-    annotation (dialog(tab="Parois"));
+    annotation (Dialog(tab="Parois"));
 
   // Fenêtres
-parameter Boolean useVolet=false "true si présence d'un volet, false sinon" annotation(dialog(tab="Fenêtres"));
+parameter Boolean useVolet=false "true si présence d'un volet, false sinon" annotation(Dialog(tab="Fenêtres"));
 parameter Boolean useOuverture=false
-    "true si l'ouverture de fenêtre peut être commandée, false sinon" annotation(dialog(tab="Fenêtres"));
+    "true si l'ouverture de fenêtre peut être commandée, false sinon" annotation(Dialog(tab="Fenêtres"));
 parameter Boolean useReduction=false
     "Prise en compte ou non des facteurs de reduction"
     annotation (Dialog(tab="Fenêtres"));
@@ -69,9 +69,9 @@ parameter Real r2=paraMaisonRT.transmissionMenuiserieFenetres
     annotation (Dialog(tab="Fenêtres",enable=not useReduction,group="Coefficients de réduction si useReduction = false"));
 
   // Portes fenêtres
-parameter Boolean useVoletPF=false "true si présence d'un volet, false sinon" annotation(dialog(tab="Portes Fenêtres"));
+parameter Boolean useVoletPF=false "true si présence d'un volet, false sinon" annotation(Dialog(tab="Portes Fenêtres"));
 parameter Boolean useOuverturePF=false
-    "true si l'ouverture de fenêtre peut être commandée, false sinon" annotation(dialog(tab="Portes Fenêtres"));
+    "true si l'ouverture de fenêtre peut être commandée, false sinon" annotation(Dialog(tab="Portes Fenêtres"));
 parameter Boolean useReduction1=false
     "Prise en compte ou non des facteurs de reduction"
     annotation (Dialog(tab="Portes Fenêtres"));

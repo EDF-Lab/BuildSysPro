@@ -1,6 +1,6 @@
 ﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Examples;
 model IlluminanceExample
-  "Exemple d'assemblage des vitrages pour le calcul de l'éclairement naturel"
+  "Example of glazings assembly to compute natural lighting"
 extends Modelica.Icons.Example;
   Window vitrageSud(useEclairement=true)
     annotation (Placement(transformation(extent={{6,-34},{26,-14}})));
@@ -38,7 +38,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(meteofile.G, fLUXzone.G) annotation (Line(
-      points={{-81,48},{-76,48},{-76,-0.1},{-70.9,-0.1}},
+      points={{-81,48},{-76,48},{-76,0.5},{-70.3,0.5}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(meteofile.G, MasqueSud.G) annotation (Line(
@@ -108,6 +108,16 @@ equation
     experiment(StopTime=3.1536e+007),
     __Dymola_experimentSetupOutput,
     Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

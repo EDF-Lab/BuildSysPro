@@ -129,8 +129,9 @@ equation
       points={{57,90},{88,90},{88,-10}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(meteofile.G, fLUXzone.G) annotation (Line(points={{-81,48},{-74,48},{-74,
-          64},{-90,64},{-90,79.86},{-81.26,79.86}}, color={0,0,127}));
+  connect(meteofile.G, fLUXzone.G) annotation (Line(points={{-81,48},{-74,
+          48},{-74,64},{-90,64},{-90,80.7},{-80.42,80.7}},
+                                                    color={0,0,127}));
   connect(meteofile.Tseche, RenouvellementAir.port_a) annotation (Line(points={
           {-81,53},{-36,53},{-36,90},{39,90}}, color={191,0,0}));
   connect(meteofile.Tseche, Plafond.T_ext) annotation (Line(points={{-81,53},{
@@ -158,30 +159,30 @@ equation
           {14,-72},{14,-77},{-7,-77}}, color={0,0,127}));
   annotation (
 Documentation(info="<html>
-<h4>Modèle d'exemple simple de zone thermique</h4>
-<p><span style=\"color: #ff0000;\">Ce modèle sert d'exemple d'un assemblage simple d'une zone thermique - il ne peut pas être utilisé tel quel et doit être paramétré, y compris avec une remontée des paramètres de chaque sous-modèle afin que ceux-ci soient accessibles de l'extérieur dans un assemblage utilisant ce modèle.</span></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Modèle de bâtiment parallélépipédique monozone vitré, à connecter à des conditions limites sur la gauche:</p>
+<p><b>Simple example of a thermal zone model</b></p>
+<p>This model is an example of a simple thermal zone assembly - it can not be used as such and must be set, including with the use of each sub-model parameters so that they are accessible to outside in an assembly using this model.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Parallelepiped single-zone glazed building model, connected to a boundary conditions model on the left hand side</p>
 <ul>
-<li>le <i>port_a</i> pour la température de d'air extérieur</li>
-<li>le <i>port_a1 </i>pour la température du sol</li>
-<li>et <i>G,</i> un realOutput pour les flux solaires. </li>
+<li><i>port_a</i> for the outdoor air temperature</li>
+<li><i>port_a1</i> for the ground temperature</li>
+<li>and <i>G</i>, a realOutput for solar fluxes.</li>
 </ul>
-<p>Le plafond est directement soumis à la température extérieure. Les murs sont orientés selon les quatres points cardinaux.</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Néant.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Ce modèle de bâtiment monozone est à connecter à un modèle de conditions limites météo sur la gauche (Température extérieure, de sol et données relatives à l'ensoleillement).</p>
-<p>Le paramètrage des parois se fait par l'intermédiaire du paramètre caracParoi, cependant on peut toujours paramétrer les parois couche par couche sans créer de type de paroi. </p>
+<p>The ceiling is directly subjected to the outdoor temperature. The walls are oriented in the four cardinal points.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>This single zone building model is to be connected to a weather boundary conditions model on the left (outside temperature, sunlight-related data).</p>
+<p>The walls parameterization is done via the parameter caracParoi, however it still can be done layer by layer without creating any type of wall.</p>
 <ol>
-<li><i><b>Cliquer sur la petite flèche de caracParoi+ Edit</b></i></li>
-<li><i><b>Remplir les champs concernant le nombre de couches, leur épaisseur, le maillage. Le paramètre positionIsolant est optionnel</b></i></li>
-<li><i><b>Pour le paramètre mat, cliquer sur la petite flèche + Edit array, faire correspondre le nombre de case sur une colonne au nombre de couche de matériaux dans la fenêtre s'affichant puis dans chaque case effectuer un clic droit + Insert function Call et parcourir la bibliothèque pour indiquer le chemin du matériaux souhaité (dans <a href=\"modelica://BuildSysPro.Utilities.Data.Solids\">Utilities.Data.Solids</a>)</b></i></li>
+<li>Click on the small arrow of caracParoi + Edit</li>
+<li>Fill in the fields on the number of layers, their thickness, the mesh. The parameter positionIsolant is optional</li>
+<li>For the matte parameter, click on the small arrow + Edit array, match the number of boxes in a column to the number of materials layer in the window that is displayed, then, in each box, right-click + Insert function call and browse the library to specify the path of the desired material (in <a href=\"modelica://BuildSysPro.Utilities.Data.Solids\"><code>Utilities.Data.Solids</code></a>)</li>
 </ol>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Pour considérer le rayonnement des parois en grande longueur d'onde, les coefficients d'échange h doivent être des <b>coefficients d'échange globaux.</b></p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Cristian Muresan 04/2010</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>To consider longwave radiation, exchange coefficients <code>h</code> must be <b>global exchange coefficients</b>.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Cristian Muresan 04/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

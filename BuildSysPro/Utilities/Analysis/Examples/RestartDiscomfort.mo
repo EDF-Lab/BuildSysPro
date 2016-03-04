@@ -302,7 +302,7 @@ Inconfort")}),
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>Simulate then plot blocks <i>inconfortChaud</i> and <i>inconfortFroid</i> outputs describing the difference between thermal discomforts. These values are to be compared to the discomfort values over the year of each system+built couples. </p>
-<p><u><b>Known limits / Precautions for use</b></u></p>
+<p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis 06/2012</p>

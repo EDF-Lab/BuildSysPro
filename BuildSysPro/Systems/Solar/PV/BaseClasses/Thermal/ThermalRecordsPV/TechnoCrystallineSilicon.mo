@@ -1,4 +1,4 @@
-﻿within BuildSysPro.Systems.Solar.PV.BaseClasses.Thermal.ThermalRecordsPV;
+within BuildSysPro.Systems.Solar.PV.BaseClasses.Thermal.ThermalRecordsPV;
 record TechnoCrystallineSilicon =
     BuildSysPro.Systems.Solar.PV.BaseClasses.Thermal.ThermalRecordsPV.RecordTechnoPV
     (
@@ -28,19 +28,19 @@ record TechnoCrystallineSilicon =
     eps_fg=0.91,
     eps_bg=0.85,
     alpha_tau_n=0.9) annotation (Documentation(info="<html>
-<p><i><b>Record pour la technologie silicium cristallin</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Données de la littérature :</p>
+<p><i><b>Record for the crystalline silicon technology</a></b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>Data from the litterature:</p>
 <p>A thermal model for photovoltaic systems, A.D. Jones and C.P. Underwood, Solar Energy Vol.70, pp.349-359, 2001</p>
 <p>A thermal model for photovoltaic panels under varying atmospheric conditions, S. Armstrong and W.G. Hurley, Applied Thermal Engineering Vol.30, pp.1488-1495, 2010</p>
-<p><br><u><b>Mode d'emploi</b></u></p>
-<p>Néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 03/2013</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>None</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>None</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

@@ -1,40 +1,39 @@
 ﻿within BuildSysPro.BoundaryConditions.Weather;
-model ZoneWind
-  "Calcul du vent incident au temps t sur un local avec ses 4 parois selon les points cardinaux"
+model ZoneWind "Wind computation for a zone model"
 
 parameter Boolean ChoixAzimuth=false
-    "Choix de rentrer soit une correction fixe d'azimuth ou directement les valeurs dans un vecteur"
-    annotation(choices(choice=true "Renseigner le vecteur azim", choice=false
-        "renseigner beta",                                                                       radioButtons=true));
+    "Choice to enter either a common azimuth correction or each azimuth values"
+    annotation(choices(choice=true "Specify each azimuth", choice=false
+        "Specify common correction",                                                                       radioButtons=true));
 parameter Real beta=0
-    "Correction de l'azimut des murs verticaux telle que azimut=beta+azimut, {beta=0 : N=180,S=0,E=-90,O=90})"
-    annotation(dialog(enable=not ChoixAzimuth));
+    "Vertical walls azimuth correction in such a way that azimuth=beta+azimuth, (beta=0 : {N=180,S=0,E=-90,O=90})"
+    annotation(Dialog(enable=not ChoixAzimuth));
 parameter Real azim[4]={beta+180,beta,beta-90,beta+90}
-    "Azimuth des parois en sortie, par défaut 1-Nord, 2-Sud, 3-Est, 4-Ouest "
-      annotation(dialog(enable=ChoixAzimuth));
+    "Output walls azimuth, by default 1-North, 2-South, 3-East, 4-West"
+      annotation(Dialog(enable=ChoixAzimuth));
   parameter Real incl[4]={90,90,90,90}
-    "Inclinaison des parois - par défaut 1-Nord, 2-Sud, 3-Est, 4-Ouest";
+    "Walls tilt, by default 1-North, 2-South, 3-East, 4-West";
 
 Modelica.Blocks.Interfaces.RealOutput VENTNord
-    "Vent incident sur la façade Nord (m/s)" annotation (Placement(
+    "Wind speed on the northern-facing wall [m/s]" annotation (Placement(
         transformation(extent={{80,31},{118,69}}, rotation=0),
         iconTransformation(extent={{100,32},{120,52}})));
 
 Modelica.Blocks.Interfaces.RealOutput VENTSud
-    "Vent incident sur la façade Sud (m/s)" annotation (Placement(
+    "Wind speed on the south-facing wall [m/s]" annotation (Placement(
         transformation(extent={{80,-9},{118,29}}, rotation=0),
         iconTransformation(extent={{100,-6},{120,14}})));
 Modelica.Blocks.Interfaces.RealOutput VENTEst
-    "Vent incident sur la façade Est (m/s)" annotation (Placement(
+    "Wind speed on the east-facing wall [m/s]"  annotation (Placement(
         transformation(extent={{81,-49},{118,-12}}, rotation=0),
         iconTransformation(extent={{100,-46},{120,-26}})));
 Modelica.Blocks.Interfaces.RealOutput VENTOuest
-    "Vent incident sur la façade Ouest (m/s)" annotation (Placement(
+    "Wind speed on the west-facing wall [m/s]"  annotation (Placement(
         transformation(extent={{80,-89},{118,-51}}, rotation=0),
         iconTransformation(extent={{100,-86},{120,-66}})));
 
 Modelica.Blocks.Interfaces.RealInput V[2]
-    "1- vitesse du vent (m/s) 2- direction du vent (0- Nord, 90 - Est, 180 - Sud, 270 - Ouest)"
+    "1- wind speed [m/s] 2- wind direction (0- North, 90 - East, 180 - South, 270 - West)"
     annotation (Placement(transformation(extent={{-139,-31},{-99,9}}, rotation=0),
         iconTransformation(extent={{-119,-11},{-99,9}})));
 
@@ -43,29 +42,34 @@ protected
   constant Real d2r=Modelica.Constants.pi/180;
 
 algorithm
-  //Calcul des vitesses de vent normales aux parois
+//  Calculation of walls normal wind speeds
 VENTNord:=max(0,cos((V[2]+180-azim_in[1])*d2r))*V[1];
 VENTSud:=max(0,cos((V[2]+180-azim_in[2])*d2r))*V[1];
 VENTEst:=max(0,cos((V[2]+180-azim_in[3])*d2r))*V[1];
 VENTOuest:=max(0,cos((V[2]+180-azim_in[4])*d2r))*V[1];
 annotation (Documentation(info="<html>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Ce modèle permet de calculer le vent incident sur quatre parois inclinées (par défaut verticales) d'un local (Nord, Sud, Est, Ouest).</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Modèle qui prend en entrée le vecteur<b> V</b> issu d'un lecteur météo, avec comme base de temps le <b>Temps Universel</b>, pour calculer le vent incident sur quatre parois inclinées (par défaut verticales) d'un local (Nord, Sud, Est, Ouest). V contient :</p>
-<p>(1) Vitesse du vent (m/s)</p>
-<p>(2) Direction du vent</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Attention il faut que les conventions choisies de direction du vent (0&deg;-Nord, 90&deg;-Est, 180&deg; - Sud, 270&deg;-Ouest ) soient respectées dans le fichier météo ! D'ailleurs <b>ce ne sont pas les mêmes conventions que pour les parois</b> (0&deg;- Sud , -90&deg; - Est, 90&deg; - Ouest, 180&deg; - Nord). </p>
-<p>Attention aussi sur la définition de la direction du vent : il s'agit du point cardinal de <u>provenance</u> du vent.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 04/2014</p>
-<p><i><b>ATTENTION : validation du modèle uniquement et pas du contenu des fichiers météos notamment les conventions de direction du vent</b></i></p>
+<p><i><b>Wind speed computation on a zone</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model calculates the wind speed on four oriented walls of a zone (North, South, East, West by default).</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Model which takes as input the vector <code>V</code> from a weather data reader, with the Universal Time (UTC) as time base to calculate the wind speed on four oriented walls (vertical by default) of a room (North, South, East, West by default).</p>
+<p><code>V</code> contains:</p>
+<ol>
+<li>Wind speed (m/s)</li>
+<li>Wind direction</li>
+</ol>
+
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>Warning, the selected convention of wind direction (0° -North, 90° -East, 180° - South, 270 ° -West) must be respected in the weather file!</p>
+<p>Moreover it is not the same convention as for the walls (0 ° - South -90 - East 90 - West 180 - North).</p>
+<p>Pay aslo attention to the wind direction definition: it is the cardinal point of the wind origin.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
@@ -138,7 +142,5 @@ Author : Amy LINDSAY, EDF (2014)<br>
           points={{-83,52},{28,-8}},
           color={0,0,255},
           smooth=Smooth.None,
-          pattern=LinePattern.Dot)}),
-              Icon(graphics),    Diagram(coordinateSystem(preserveAspectRatio=true,
-          extent={{-100,-100},{100,100}}), graphics));
+          pattern=LinePattern.Dot)}));
 end ZoneWind;

@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
 model MaterialLayer "Une couche de matériau"
   parameter BuildSysPro.Utilities.Records.GenericSolid mat "Matériau"
-    annotation (__Dymola_choicesAllMatching=true);
+    annotation (choicesAllMatching=true);
   parameter Modelica.SIunits.Length e=0.05 "Epasseur en m";
   parameter Modelica.SIunits.Area S=1 "Surface en m²";
   parameter Modelica.SIunits.Temperature Tinit=293.15 "Température initiale";

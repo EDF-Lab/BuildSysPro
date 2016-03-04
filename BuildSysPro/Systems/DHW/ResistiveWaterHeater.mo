@@ -1,68 +1,69 @@
-﻿within BuildSysPro.Systems.DHW;
-model ResistiveWaterHeater "Ballon ECS électrique homogène en température"
+within BuildSysPro.Systems.DHW;
+model ResistiveWaterHeater
+  "Electric hot water tank with homogeneous temperature"
   parameter Modelica.SIunits.Volume V=0.200 "Volume"
-    annotation(Dialog(group = "Ballon"));
-  parameter Modelica.SIunits.Length d=0.50 "Diamètre "
-    annotation(Dialog(group = "Ballon"));
-  parameter Modelica.SIunits.Power P=2500 "Puissance électrique maxi en W"
-    annotation(Dialog(group = "Régulation"));
-  parameter Modelica.SIunits.Temperature Tcons=273.15+60
-    "Température de consigne"
-    annotation(Dialog(group = "Régulation"));
-  parameter Modelica.SIunits.TemperatureDifference dT=3 "Bande d'hystérésis"
-    annotation(Dialog(group = "Régulation"));
-  parameter Modelica.SIunits.Length e=0.04 "Epaisseur"
-    annotation(Dialog(group = "Isolant",tab="Autres paramètres"));
+    annotation(Dialog(group = "Tank"));
+  parameter Modelica.SIunits.Length d=0.50 "Diameter"
+    annotation(Dialog(group = "Tank"));
+  parameter Modelica.SIunits.Power P=2500 "Max electric power"
+    annotation(Dialog(group = "Regulation"));
+  parameter Modelica.SIunits.Temperature Tcons=273.15+60 "Setpoint temperature"
+    annotation(Dialog(group = "Regulation"));
+  parameter Modelica.SIunits.TemperatureDifference dT=3 "Hysteresis band"
+    annotation(Dialog(group = "Regulation"));
+  parameter Modelica.SIunits.Length e=0.04 "Thickness"
+    annotation(Dialog(group = "Insulating",tab="Other parameters"));
   parameter Modelica.SIunits.ThermalConductivity lambda=0.04
-    "Conductivité thermique"
-    annotation(Dialog(group = "Isolant",tab="Autres paramètres"));
-  parameter Modelica.SIunits.Density rho=1000 "Masse volumique"
-    annotation(Dialog(group = "Fluide",tab="Autres paramètres"));
-  parameter Modelica.SIunits.SpecificHeatCapacity Cp=4185 "Chaleur massique"
-    annotation(Dialog(group = "Fluide",tab="Autres paramètres"));
-  //Modelica.SIunits.Temperature T "Température de l'eau dans le ballon";
-  Integer Hyst(start=0) "Hystérésis";
+    "Thermal conductivity"
+    annotation(Dialog(group = "Insulating",tab="Other parameters"));
+  parameter Modelica.SIunits.Density rho=1000 "Density"
+    annotation(Dialog(group = "Fluid",tab="Other parameters"));
+  parameter Modelica.SIunits.SpecificHeatCapacity Cp=4185
+    "Specific heat capacity"
+    annotation(Dialog(group = "Fluid",tab="Other parameters"));
+  //Modelica.SIunits.Temperature T "Water temperature in the tank";
+  Integer Hyst(start=0) "Hysteresis";
 
-  Real PertekWh "Perte Ã©nergÃ©tique par l'enveloppe du ballon en kWh";
-  Real EnergieCHkWh "Energie de chauffage de l'eau du ballon en kWh";
+  Real PertekWh "Energy loss through the tank envelope in kWh";
+  Real EnergieCHkWh "Energy of tank water heating in kWh";
 
 protected
   constant Real pi=Modelica.Constants.pi;
   constant Real coef36=1.0/3.6e6;
   constant Modelica.SIunits.CoefficientOfHeatTransfer he=10
-    "Coefficien d'échange extérieur";
+    "Outside exchange coefficient";
 
-  parameter Modelica.SIunits.Area Sb=pi*d*d/4 "surface de la base du ballon";
-  parameter Modelica.SIunits.Length H=V/Sb "Hauteur du ballon";
-  parameter Modelica.SIunits.Area St=pi*d*H+2*Sb "surface totale d'échange";
+  parameter Modelica.SIunits.Area Sb=pi*d*d/4 "Surface of the tank base";
+  parameter Modelica.SIunits.Length H=V/Sb "Tank height";
+  parameter Modelica.SIunits.Area St=pi*d*H+2*Sb "Total exchange surface";
 
   parameter Modelica.SIunits.CoefficientOfHeatTransfer h=1.0/(1/he+e/lambda)
-    "Coefficien d'échange extérieur";
+    "Outside exchange coefficient";
   parameter Modelica.SIunits.ThermalConductance KS=(1.1+0.05/V)*h*St;
   parameter Modelica.SIunits.HeatCapacity C=rho*Cp*V;
 
 public
   Modelica.Blocks.Interfaces.RealInput Tef
-    "Température d'eau froide en degré C" annotation (Placement(transformation(
+    "Cold water temperature in degrees C" annotation (Placement(transformation(
           extent={{-120,-10},{-80,30}}),iconTransformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
         origin={-40,-100})));
-  Modelica.Blocks.Interfaces.RealInput debit "débit de puisage en kg/s"
+  Modelica.Blocks.Interfaces.RealInput debit "Drawing rate in kg/s"
     annotation (Placement(transformation(extent={{-120,-84},{-80,-44}}),
         iconTransformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
         origin={40,-100})));
   Modelica.Blocks.Interfaces.RealInput OnOff
-    "Signal Marche(1)/Arrêt(0) de la résistance électrique" annotation (
+    "Signal ON(1)/OFF(0) of the electrical resistance" annotation (
       Placement(transformation(extent={{-100,40},{-60,80}}), iconTransformation(
           extent={{-100,40},{-60,80}})));
-  Modelica.Blocks.Interfaces.RealOutput Pelec
-    "Puissance électrique injectée en W" annotation (Placement(transformation(
+  Modelica.Blocks.Interfaces.RealOutput Pelec "Electric power injected in W"
+                                   annotation (Placement(transformation(
           extent={{60,60},{80,80}}), iconTransformation(extent={{60,60},{80,80}})));
-  Modelica.Blocks.Interfaces.RealOutput ConsokWh
-    "Consommation électrique en kWh" annotation (Placement(transformation(
+  Modelica.Blocks.Interfaces.RealOutput ConsokWh "Electric consumption in kWh"
+                                  annotation (Placement(transformation(
           extent={{60,40},{80,60}}), iconTransformation(extent={{60,20},{80,40}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b portAMB "Air ambiant"
     annotation (Placement(transformation(extent={{60,-10},{80,10}}),
@@ -98,8 +99,7 @@ public
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=0,
         origin={14,10})));
-  Modelica.Blocks.Interfaces.RealOutput T
-    "Température de l'eau dans le ballon [K]"
+  Modelica.Blocks.Interfaces.RealOutput T "Water temperature in the tank [K]"
                                            annotation (Placement(transformation(
           extent={{60,82},{80,102}}),iconTransformation(extent={{-10,-10},{10,
             10}},
@@ -172,41 +172,40 @@ equation
           lineColor={0,0,255},
           fillColor={255,85,85},
           fillPattern=FillPattern.Solid,
-          textString="ECS
-homogène"),
+          textString="DHW
+homogeneous"),
         Text(
           extent={{-30,74},{30,54}},
           lineColor={0,0,255},
-          textString="Teau")}),
+          textString="Twater")}),
     Documentation(info="<html>
-<h4>Ballon d'eau chaude électrique à un seul noeud de température : la température est supposée homogène (pas de stratification).</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Le ballon est supposé cylindrique : diamètre d et hauteur H.</p>
-<p>L'isolant (conductivité lambda et épaisseur e) est réparti uniformément sur la surface extérieure du ballon.</p>
-<p>La masse d'eau est supposée à température homogène T.</p>
-<p>Le stockage de chaleur dans le ballon résulte de la superposition de 3 flux de chaleur :</p>
+<p><b>Electric hot water tank with a single temperature node: the temperature is assumed to be homogeneous (no stratification).</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The tank is supposed cylindrical: diameter d and height H.</p>
+<p>The insulator (conductivity lambda and thickness e) is uniformly distributed on the outer surface of the tank.</p>
+<p>The mass of water is supposed to be at homogeneous temperature T.</p>
+<p>The heat storage in the tank results from the superposition of three heat flows:</p>
 <ul>
-<li>la puissance électrique injectée dans l'eau moyennant une résistantce de puissance P pour maintenir la consigne Tcons suivant un signal Marche/Arrêt (OnOff),</li>
-<p>- La régulation est à hystérésis avec une demie-bande dT de part et d'autre de la consigne : Hyst = if TTcons+dT then 0 else pre(Hyst)</p>
-<p>- La puissance électrique injectée dans l'eau est égale à : Pelec = OnOff.P.Hyst </p>
-<li>la puissance participant au chauffage du débit de puisage qui arrive dans le ballon avec une température Tef (eau froide) et en sort à la température T,</li>
-<p>- La puissance de chauffage de l'eau est égale à : debit.Cp.(T - Tef) </p>
-<li>les déperditions du ballon à travers son enveloppe calculées selon la référence [1] :</li>
-</ul>
-<p>- On admet une coefficient d'échane extérieur moyen he = 10 W/(m&sup2;.K)</p>
-<p>- Le coefficient de déperdition vaut en première approximation : KS = (1,1 +0,05/V).h.S avec 1/h = 1/he + e/lambda, S = pi.d.(H + d/2) et V = pi.d&sup2;.H/4 </p>
-<p><u><b>Bibliographie</b></u></p>
-<p>[1] : E.C.S. : l'eau chaude sanitaire dans les bâtiments résidentiels et tertiaires</p>
-<p>Conception et calcul des installations</p>
-<p>Collection des guides de l'AICVF, pyc édition, première édition 1991</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Voir exemple <a href=\"BuildSysPro.Systems.DHW.Examples.DHWResistiveWaterHeater\">DHWResistiveWaterHeater</a>.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Ce modèle est très simple à implémenter dans une étude et favorise un faible temps de calcul.</p>
-<p>Il est très suffisant et précis pour traiter des problèmes de consommation sur une longue durée (1 an par exemple).</p>
-<p>Cependant pour des études sur les appels de puissance, il est conseillé d'utiliser des modèles de ballon prenant en compte la stratification thermique.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Hassan Bouia 10/2012</p>
+<li>the electric power injected into the water with a P power resistance to maintain the setpoint Tcons according to an ON/OFF signal </li>
+<p>- It is a hysteresis regulation with a half-band dT on both sides of the setpoint: Hyst = if TTcons+dT then 0 else pre(Hyst)</p>
+<p>- The electric power injected into the water is equal to: Pelec = OnOff.P.Hyst </p>
+<li>the power participating in heating the drawing rate that enters in the tank with a temperature Tef (cold water) and exits at temperature T,</li>
+<p>- The water heating power is equal to: debit.Cp.(T - Tef)</p>
+<li>tank losses through its envelope are calculated by reference [1]:</li>
+<p>- An average coefficient of outside exchange is assumed: he = 10 W / (m&sup2;.K)</p>
+<p>- With a first approximation, the loss coefficient is equal  to: KS = (1,1 +0,05/V).h.S avec 1/h = 1/he + e/lambda, S = pi.d.(H + d/2) et V = pi.d&sup2;.H/4 </p></ul>
+<p><u><b>Bibliography</b></u></p>
+<p>[1] : E.C.S. : hot water in residential and tertiary buildings</p>
+<p>Design and computation of facilities</p>
+<p>Collection of AICVF guides, pyc edition, first edition 1991</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>See example <a href=\"BuildSysPro.Systems.DHW.Examples.DHWResistiveWaterHeater\">DHWResistiveWaterHeater</a>.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>This model is very simple to implement in a study and enables a low computation time.</p>
+<p>It is very sufficient and accurate to deal with consumption problems over a long period (1 year for example).</p>
+<p>But for studies on power demands, it is advisable to use tank models taking into account the thermal stratification.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hassan Bouia 10/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

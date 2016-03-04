@@ -1,4 +1,4 @@
-﻿within BuildSysPro.Systems.HVAC.Production.HeatPump.FixedSpeed.Examples;
+within BuildSysPro.Systems.HVAC.Production.HeatPump.FixedSpeed.Examples;
 model MozartAAHPHeating
 extends Modelica.Icons.Example;
 //  Modelica.SIunits.Conversions.NonSIunits.Time_day day=time/24/3600;
@@ -132,7 +132,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(pACch.Qfour, prescribedHeatFlow.Q_flow) annotation (Line(
-      points={{150,-38},{190,-38},{190,20.6},{179,20.6}},
+      points={{151.2,-38},{190,-38},{190,20.6},{179,20.6}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(temperatureSensor.T, zoneMorte.Variable) annotation (Line(
@@ -156,10 +156,17 @@ equation
     experiment(StopTime=3.1536e+007, Interval=60),
     __Dymola_experimentSetupOutput(events=false),
     Documentation(info="<html>
-<p><u><b>Description</b></u></p>
-<p>Cet assemblage décrit comment coupler la PACchDyn à un bâtiment.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Sila Filfli - Hubert Blervaque 05/2012</p>
+<p>This example describes how to connect the <a href=\"BuildSysPro.Systems.HVAC.Production.HeatPump.FixedSpeed.HPHeatingAir2Air\"><code>HPHeatingAir2Air</code></a> model to a building.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hubert Blervaque, Sila Filfli 05/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

@@ -1,5 +1,5 @@
 within BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Examples;
-model WindowExample
+model WindowExample "Example of windows assembly"
 extends Modelica.Icons.Example;
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window vitrage1(
       useOuverture=true)
@@ -82,6 +82,16 @@ equation
     experiment(StopTime=3.1536e+007, Interval=1800),
     __Dymola_experimentSetupOutput,
     Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

@@ -1,95 +1,92 @@
 ﻿within BuildSysPro.Building.Zones.HeatTransfer;
 model SimplifiedMonozone
-  "Modèle monozone simplifié à Ubat et inertie réglable."
+  "Single zone simplified model with adjustable inertia and average thermal transmission coefficient (Ubat, W/K.m²)"
 
-// Propriétés générales
+// General properties
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Ubat
-    "Ubat : Déperditions  surfacique par transmission" annotation(dialog(group="Paramètres globaux"));
-parameter Integer NbNiveau=1 "Nombre de niveaux, minimum = 1" annotation(dialog(group="Paramètres globaux"));
-parameter Modelica.SIunits.Volume Vair=240 "Volume d'air" annotation(dialog(group="Paramètres globaux"));
-parameter Modelica.SIunits.Area SH=100 "Surface habitable" annotation(dialog(group="Paramètres globaux"));
-parameter Real renouv(unit="1/h") "Débit de ventilation et/ou d'infiltrations"
-                                                                            annotation(dialog(group="Paramètres globaux"));
+    "Ubat: surface thermal losses by transmission" annotation(Dialog(group="Global parameters"));
+parameter Integer NbNiveau=1 "Number of levels, minimum = 1" annotation(Dialog(group="Global parameters"));
+parameter Modelica.SIunits.Volume Vair=240 "Air volume" annotation(Dialog(group="Global parameters"));
+parameter Modelica.SIunits.Area SH=100 "Living area" annotation(Dialog(group="Global parameters"));
+parameter Real renouv(unit="1/h") "Ventilation and/or infiltration flow"    annotation(Dialog(group="Global parameters"));
 
-// Propriétés vitrages
-parameter Modelica.SIunits.Area SurfaceVitree "Surface vitrée totale"
-                                 annotation(dialog(group="Vitrage"));
+// Glazing parameters
+parameter Modelica.SIunits.Area SurfaceVitree "Total glazed surface"
+                                 annotation(Dialog(group="Glazing"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer k
-    "Conductivité thermique du vitrage" annotation(dialog(group="Vitrage"));
+    "Glazing thermal conductivity" annotation(Dialog(group="Glazing"));
 parameter Real skyViewFactorWindows
-    "Facteur de forme moyen entre les vitrages et le ciel (exemple: skyViewFactor(toiture terrase)=1, skyViewfactor(paroi verticale en environnement dégagé)=0.5)"
-                                                                                                        annotation(dialog(group="Vitrage"));
-parameter Real Tr=0.544 "Coefficient de transmission des vitrages" annotation(dialog(group="Vitrage"));
-parameter Real AbsVitrage=0.1 "Coefficient d'absorption des vitrages" annotation(dialog(group="Vitrage"));
-parameter Real epsWindows=0.9 "Emissivité" annotation(dialog(group="Vitrage"));
+    "Average sky view factor between glazings and sky (example: skyViewFactor(flat roof)=1, skyViewfactor(vertical wall in clear environment)=0.5)"
+                                                                                                        annotation(Dialog(group="Glazing"));
+parameter Real Tr=0.544 "Glazing transmission coefficient" annotation(Dialog(group="Glazing"));
+parameter Real AbsVitrage=0.1 "Glazing absorption coefficient" annotation(Dialog(group="Glazing"));
+parameter Real epsWindows=0.9 "Emissivity" annotation(Dialog(group="Glazing"));
 
-// Paramètres des parois
+// Walls parameters
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall paraParoiExt
-    "Paramètres des parois verticales"
-    annotation (__Dymola_choicesAllMatching=true, dialog(group="Parois"));
+    "Vertical walls parameters"
+    annotation (choicesAllMatching=true, Dialog(group="Walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_paroiExt=18
-    "Coefficient d'échange surfacique CONVECTIF sur la face extérieure des parois extérieures"
-                                                                                    annotation(dialog(group="Parois"));
+    "Coefficient of CONVECTIVE surface exchange on the outer face of outer walls"
+                                                                                    annotation(Dialog(group="Walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_paroiExt=7.7
-    "Coefficient d'échange surfacique GLOBAL sur la face intérieure des parois extérieures"
-                                                                                   annotation(dialog(group="Parois"));
+    "Coefficient of GLOBAL surface exchange on the inner face of outer walls"      annotation(Dialog(group="Walls"));
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall paraPlancher
     "Paramètres du plancher"
-    annotation (__Dymola_choicesAllMatching=true, dialog(group="Parois"));
+    annotation (choicesAllMatching=true, Dialog(group="Walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_Plancher=5.88
     "Coefficient d'échange surfacique GLOBAL sur la face inférieure des planchers"
-                                                                                     annotation(dialog(group="Parois"));
+                                                                                     annotation(Dialog(group="Walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_Plancher=5.88
     "Coefficient d'échange surfacique GLOBAL sur la face supérieure des planchers"
-                                                                                   annotation(dialog(group="Parois"));
-parameter Real b=0.1
-    "Coefficient de pondération des conditions limites règlementaires" annotation(dialog(group="Parois"));
+                                                                                   annotation(Dialog(group="Walls"));
+parameter Real b=0.1 "Weighting coefficient of regulatory boundary conditions"
+                                                              annotation(Dialog(group="Walls"));
 parameter Real skyViewFactorParois
-    "Facteur de forme moyen entre les parois et le ciel (exemple: skyViewFactor(toiture terrase)=1, skyViewfactor(paroi verticale en environnement dégagé)=0.5)"
-                                                                                                        annotation(dialog(group="Parois"));
+    "Average sky view factor between walls and the sky (exemple: skyViewFactor(flat roof)=1, skyViewfactor(vertical wall in clear environment)=0.5)"
+                                                                                                        annotation(Dialog(group="Walls"));
 parameter Real AbsParois=0.6
-    "Coefficient d'absorption des parois ext. dans le visible" annotation(dialog(group="Parois"));
-parameter Real epsParois=0.7 "Emissivité des parois extérieures en GLO" annotation(dialog(group="Parois"));
+    "Absorption coefficient of outer walls in the visible" annotation(Dialog(group="Walls"));
+parameter Real epsParois=0.7 "Outer walls emissivity in LWR" annotation(Dialog(group="Walls"));
 
 // Initialisation
 parameter Modelica.SIunits.Temperature Tinit=292.15
-    "Température d'initialisation"
-                                  annotation(dialog(tab="Initialisation"));
+    "Initialisation temperature"  annotation(Dialog(tab="Initialisation"));
 
-// Paramètres internes
+// Internal parameters
 protected
 parameter Modelica.SIunits.Length hTotal=Vair*(NbNiveau/SH)
-    "Hauteur totale du bâtiment";
+    "Total building height";
 parameter Modelica.SIunits.Area Sdeper=4*hTotal*sqrt(SH/NbNiveau)+2*Splancher
-    "Surface déperditive totale";
+    "Total surface with losses";
 parameter Modelica.SIunits.Area Swin=SurfaceVitree
-    "Surface déperditive des parois vitrées";
+    "Total glazed surface with losses";
 parameter Modelica.SIunits.Area Sop=Sdeper-Swin
-    "Surface déperditive des parois opaques";
+    "Total opaque walls surface with losses";
 parameter Modelica.SIunits.Area Splancher=SH/NbNiveau
-    "Surface déperditive du plancher";
+    "Total floor surface with losses";
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Uplancher=1/(sum(paraPlancher.e./paraPlancher.mat.lambda)+1/hs_ext_Plancher+1/hs_int_Plancher)
-    "Uvalue du plancher";
+    "Floor Uvalue";
 parameter Modelica.SIunits.CoefficientOfHeatTransfer Ug= 1/(1/k+1/hs_ext_paroiExt+1/hs_int_paroiExt)
-    "Uvalue des vitrages";
+    "Glazings Uvalue";
 
-  // Résolution du système polynomiale d'ordre 1 pour trouver la valeur de alpha, coefficient multiplicateur des couches isolantes dans les parois verticales et le plafond.
+  // First order polynomial system resolution to find the value of alpha, multiplying factor of insulating layers in vertical walls and the ceiling
 parameter Real Anew=Ubat*Sdeper-Swin*Ug-b*Uplancher*Splancher
-    "Décomposition du Ubat";
+    "Ubat decomposition";
 parameter Real coefN1=(Sop-Splancher);
 parameter Real coefD1=sum(paraParoiExt.e./paraParoiExt.mat.lambda.*paraParoiExt.positionIsolant);
 parameter Real coefD2=sum(paraParoiExt.e./paraParoiExt.mat.lambda.*(ones(paraParoiExt.n)-paraParoiExt.positionIsolant))+1/hs_ext_paroiExt+1/hs_int_paroiExt;
 
 parameter Real alpha=(coefN1-Anew*coefD2)/(Anew*coefD1)
-    "Coefficient multiplicateur des couches isolantes(parois extérieures)";
+    "Multiplying factor of insulating layers (vertical walls and ceiling)";
 
-  // Calcul des valeurs extremes du Ubat
+  // Computation of Ubat extreme values
 parameter Real Umin=(Swin*Ug+Uplancher*b*Splancher)/Sdeper
-    "Valeur minimale de Ubat pour le type de plancher et de vitrage considéré";
+    "Ubat minimum value for the considered type of floor and glazing";
 parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParoiExt.e./paraParoiExt.mat.lambda.*(ones(paraParoiExt.n)-paraParoiExt.positionIsolant))+1/hs_ext_paroiExt+1/hs_int_paroiExt))/Sdeper
-    "Valeur maximale de Ubat pour le type de paroi et vitrage considéré";
+    "Ubat maximal value for the considered type of wall and glazing";
 
-// Composants internes
+// Internal components
   BuildSysPro.Building.AirFlow.HeatTransfer.AirNode noeudAir(V=Vair, Tair(
         displayUnit="K") = Tinit)
     annotation (Placement(transformation(extent={{50,4},{70,24}})));
@@ -108,7 +105,7 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
     GLOext=true,
     S=Sop - Splancher,
     AbsParoi=AbsParois,
-    eps=epsParois) "Parois extérieures"
+    eps=epsParois) "Outer walls"
     annotation (Placement(transformation(extent={{-8,36},{12,56}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleGlazing vitrage(
@@ -177,7 +174,7 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
         extent={{-6,-6},{6,6}},
         rotation=270,
         origin={38,-60})));
-// Composants publics
+// Public components
 public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tairext
     annotation (Placement(transformation(extent={{-100,-80},{-80,-60}}),
@@ -187,31 +184,31 @@ public
         iconTransformation(extent={{80,-60},{100,-40}})));
 
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncVitrage
-    "Flux solaire surfacique incident sur les vitrages" annotation (Placement(
+    "Incident on glazing solar surface flux" annotation (Placement(
         transformation(extent={{-120,30},{-80,70}}),  iconTransformation(extent={{-100,50},
             {-80,70}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncParoi
-    "Flux solaire surfacique incident sur les parois" annotation (Placement(
+    "Incident on walls solar surface flux" annotation (Placement(
         transformation(extent={{-120,-10},{-80,30}}),iconTransformation(extent=
             {{-100,30},{-80,50}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxTrVitrage
-    "Flux solaire incident transmis surfacique (doit tenir compte de l'influence de l'incidence)"
+    "Incident transmited surface Solar flux (must take into account the influence of incidence)"
     annotation (Placement(transformation(extent={{-120,60},{-80,100}}),
         iconTransformation(extent={{-100,-10},{-80,10}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tciel
-    "Température de ciel pour la prise en compte du rayonnement GLO"
+    "Sky temperature for LW radiation inclusion"
     annotation (Placement(transformation(extent={{-100,100},{-80,120}}),
         iconTransformation(extent={{-100,80},{-80,100}})));
 
-// Pour validation en régime stationnaire : fixer les paramètres pour avoir CLO, GLO (abs et eps) et renouv à zéro et 1°C de différence entre extérieur et intérieur)
+// For validation in stationary operation: set the parameters to have SWR, LWR (abs and eps), renew at zero and 1°C of difference between outdoor and indoor)
 Real UbatEffectif=Tairint.Q_flow/Sdeper;
 
 equation
-assert(max(paraParoiExt.positionIsolant)==1, "Pas de couche isolante spécifiée pour les parois extérieures. Modifier paraParoiExt.positionIsolant");
-assert(max(paraPlancher.positionIsolant)==1, "Pas de couche isolante spécifiée pour les planchers. Modifier paraPlancher.positionIsolant");
-assert(Ubat<Umax and Ubat>Umin,"La valeur du Ubat est dépendante des types de vitrages et parois choisis. Etant donné la configuration actuelle,"+String(Umin)+"<Ubat<"+String(Umax));
+assert(max(paraParoiExt.positionIsolant)==1, "No insulating layer specified for outer walls. Edit paraParoiExt.positionIsolant");
+assert(max(paraPlancher.positionIsolant)==1, "No insulating layer specified for floors. Edit paraPlancher.positionIsolant");
+assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of glazing and walls. Given the current configuration, "+String(Umin)+"<Ubat<"+String(Umax));
 
-// Noeud d'air et ports internes
+// Air node and internal ports
   connect(noeudAir.port_a, Tairint) annotation (Line(
       points={{60,10},{90,10}},
       color={191,0,0},
@@ -225,7 +222,7 @@ assert(Ubat<Umax and Ubat>Umin,"La valeur du Ubat est dépendante des types de v
       color={191,0,0},
       smooth=Smooth.None));
 
-// Conditions limites réglementaires
+// Regulatory boundary limits
   connect(coefficientBsol.port_int, Tint) annotation (Line(
       points={{-45,-87},{-45,-91.5},{20,-91.5},{20,10}},
       color={191,0,0},
@@ -235,7 +232,7 @@ assert(Ubat<Umax and Ubat>Umin,"La valeur du Ubat est dépendante des types de v
       color={191,0,0},
       smooth=Smooth.None));
 
-// Connexions du plancher
+// Floor connections
   connect(plancher.T_int, Tint)
                            annotation (Line(
       points={{11,-85},{11,-82.5},{20,-82.5},{20,10}},
@@ -259,7 +256,7 @@ assert(Ubat<Umax and Ubat>Umin,"La valeur du Ubat est dépendante des types de v
       color={191,0,0},
       smooth=Smooth.None));
 
-// Vitrage
+// Glazing
   connect(vitrage.T_ext, Text)     annotation (Line(
       points={{-9,-35},{-9,-30.5},{-20,-30.5},{-20,10}},
       color={191,0,0},
@@ -294,7 +291,7 @@ assert(Ubat<Umax and Ubat>Umin,"La valeur du Ubat est dépendante des types de v
       color={191,0,0},
       smooth=Smooth.None));
 
-// PLanchers intermédiaires
+// Intermediate floors
   connect(plancherInt.FluxAbsInt, gainTransmisPlancherIntermediaire.y)
     annotation (Line(
       points={{65,-75},{38,-75},{38,-66.6}},
@@ -409,27 +406,28 @@ assert(Ubat<Umax and Ubat>Umin,"La valeur du Ubat est dépendante des types de v
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
-<p><i><b>Modèle de monozone linéarisé et invariant dans le temps à Ubat et inertie variable</b></i></p>
-<p>Ce modèle permet la représentation de Maison Individuelle/Logement Collectif/ Bâtiment Tertiaire en monozone. La modélisation est simplifiée pour ne prendre en compte qu'une paroi extérieure et un vitrage équivalents indépendant de l'orientation.</p>
-<p>Le niveau de déperdition représenté par le Ubat est un paramètre du modèle. Ce modèle conduit à un modèle linéaire invariant dans le temps qu'il est possible de réduire.</p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<h4>Géométrie</h4>
-<p>Modèle monozone 0D-1D parallépipédique à section carrré. La hauteur du bâtiment est dépendante du nombre de niveaux (<code><span style=\"font-family: Courier New,courier;\">NbNiveau),</span></code> du volume d'air total (<code><span style=\"font-family: Courier New,courier;\">Vair</span></code>) et de la surface habitable (<code><span style=\"font-family: Courier New,courier;\">SH</span></code>). Les vitrages sont définis par une surface totale. La totalité du flux solaire transmis par les vitrages est absorbé en surface du/des planchers.</p>
-<h4>Typologie constructive</h4>
-<p>Les typologies constructives (matériaux et épaisseurs des couches) sont prises en compte de façon détaillée.</p>
-<p>L'inertie est ajustable en choisissant le mode constructif via le type de paroi. L'inertie due aux parois internes, hors planchers, est négligée.</p>
-<p>Le choix des paramètres des parois (<code><span style=\"font-family: Courier New,courier;\">paraParoiV</span></code>...) décrivant les typologies constructives ainsi que des paramètres des vitrages permet le calcul d'un Ubat référence. Le Ubat du bâtiment est ensuite ajusté au paramètre <code><span style=\"font-family: Courier New,courier;\">Ubat</span></code> grâce aux épaisseurs des isolants des parois exterieures. L'isolant de plancher ne participe pas à cette ajustement.</p>
-<h4>Physique</h4>
-<p>Les échanges grande longueur d'onde sur les faces extérieures des vitrages et des parois sont linéarisés. L'influence de l'angle d'incidence, non linéaire, est externalisée. Le coefficient B impose les conditions limites sur la face extérieure du plancher bas. La totalité du flux solaire transmis par les vitrages est absorbé en surface du/des planchers. Les parois extérieures décrivent le plafond/toit et les parois verticales extérieures. Elles sont soumises au rayonnement CLO et GLO.</p>
-<p>Le calcul de flux solaires absorbés et transmis est externalisé de ce modèle et est effectué par un modèle <a href=\"modelica://BS2013.Composants.CLSolaire\">CLSolaire</a>. Ce calcul est détaillé et prend bien en compte l'influence de l'orientation des parois et vitrages.</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Voir les hypothèses de modélisation des <a href=\"modelica://BS2013.Composants.SimpleWall\">parois</a> et des <a href=\"modelica://BS2013.Composants.SimpleGlazing\">vitrages</a> simplifiés.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Connexion des différents ports de flux solaires grâce à un modèle <a href=\"modelica://BS2013.Composants.CLSolaire\">CLSolaire</a>. Le port de température extérieure doit être connecté à un bloc météo.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Suivant la typologie constructive choisie et le type de vitrage, le Ubat ne peut être choisi n'importe comment. Il doit nécessairement être encadré. Un message d'erreur survient lorsque le Ubat choisi est hors de cet interval.</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Gilles Plessis, Hassan Bouia 03/2013</p>
+<p><b>Linearised and time-invariant model of a single zone with Ubat and variable inertia</b></p>
+<p>This model allows the representation of Individual House / Collective Housing / Tertiary Building in single zone. The modelling is simplified to consider only an equivalent outer wall and an equivalent glazing surface both being independant of the orientation.</p>
+<p>The level of losses represented by Ubat is a parameter of the model. This model leads to a linear time-invariant model that can be reduced.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p><b>Geometry</b></p>
+<p>Model of a parallelepiped 0D-1D square section single-zone. The building height depends on the number of levels (NbNiveau), on total air volume (Vair) and on the living area (SH). Glazing are defined by a total surface. The entire solar flux transmitted through the glazing is absorbed on floor(s) surface.</p>
+<p><b>Building typology</b></p>
+<p>Building typologies (materials and layers thicknesses) are considered in detail.</p>
+<p>Inertia is adjustable by choosing the constructive mode via the wall type. The inertia due to inner walls, outside floors, is neglected.</p>
+<p>The choice of walls parameters (<code>paraParoiV</code>...) describing building typologies and of glazing parameters allows to compute a reference Ubat. The Ubat of the building is then adjusted to the parameter <i>Ubat</i> using insulations of external walls thicknesses. Floor insulation is not considered in this adjustment.</p>
+<p><b>Physics</b></p>
+<p>Long wavelength (LW) exchanges on the glazing and walls outer faces are linearized. The angle of incidence influence, nonlinear, is outsourced.</p>
+<p>The coefficient B imposes boundary conditions on the low floor outer face. The entire solar flux transmitted through the glazing is absorbed on floor(s) surface. The outer walls describe the ceiling/roof and outer vertical walls. They are subject to SW and LW radiations.</p>
+<p>The calculation of absorbed and transmitted solar fluxs is outsourced of this model and is performed by a <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\"><code>SolarBC</code></a> model. This calculation is detailed considers the influence of the walls and glazing orientation.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>Refer to BuildSysPro <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall\"><code>Wall</code></a> and <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window\"><code>Window</code></a> modelling assumptions.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>The solar fluxes different ports are connected with a <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.FLUXzone\"><code>FLUXzone</code></a> model. The outdoor temperature port must be connected to a weather block.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>Depending on the chosen buidling typology and the type of glazing, Ubat can be chosen anyhow. It must necessarily be framed. An error message occurs when the selected Ubat is out of this range.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Gilles Plessis, Hassan Bouia 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

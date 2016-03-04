@@ -1,74 +1,79 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.SolarMasks;
-model Masks "Modèle de masques solaires proches et lointain pour une météo"
+model Masks
+  "Base model - Solar incident irradiance and illuminance on a surface considering solar mask"
 
 // Paramètres propres au masque
 parameter Boolean useEclairement=false
-annotation(dialog(compact=true),choices(choice=true
-        "Avec calcul de l'éclairement naturel",                                                             choice=false
-        "Sans calcul de l'éclairement naturel",                                                                                                  radioButtons=true));
+  annotation(choices(choice=true "With calculation of natural lighting",                                    choice=false
+        "Without calculation of natural lighting",                                                                                                  radioButtons=true), Dialog(group="Options"));
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
-    "Azimut de la surface (Orientation par rapport au sud) - S=0°, E=-90°, O=90°, N=180°";
-parameter Integer TypeMasque annotation(Dialog(tab="Masques proches"),choices(choice=0
-        "Masque intégral",                                                                                choice=1
-        "Masque horizontal",choice=2 "Pas de masque proche", radioButtons=true));
-parameter Modelica.SIunits.Distance Av=0.5 "Avancée" annotation(Dialog(enable=TypeMasque<>2,tab="Masques proches"));
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"
+                                                                                              annotation(Dialog(group="Surface description"));
+parameter Integer TypeMasque annotation(Dialog(group="Shading devices"),choices(choice=0
+        "Vertical + horizontal",                                                                                choice=1
+        "Horizontal overhang",choice=2 "No shading device", radioButtons=true));
+parameter Modelica.SIunits.Distance Av=0.5 "Overhang" annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
 parameter Modelica.SIunits.Distance Ha=0.3
-    "Distance de l'auvent au rebord haut de la fenêtre" annotation(Dialog(enable=TypeMasque<>2,tab="Masques proches"));
-parameter Modelica.SIunits.Distance Lf=1 "Largeur de la fenêtre" annotation(Dialog(enable=TypeMasque<>2,tab="Masques proches"));
-parameter Modelica.SIunits.Distance Hf=1 "Hauteur de la fenêtre" annotation(Dialog(enable=TypeMasque<>2,tab="Masques proches"));
-parameter Modelica.SIunits.Distance Dd=0.5 "Distance ou débord droit" annotation(Dialog(enable=TypeMasque<>2,tab="Masques proches"));
-parameter Modelica.SIunits.Distance Dg=0.5 "Distance ou débord gauche" annotation(Dialog(enable=TypeMasque<>2,tab="Masques proches"));
+    "Distance between the overhang and the top of the surface (window)"
+                                                                       annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+parameter Modelica.SIunits.Distance Lf=1 "Surface (window) width"
+                                                                 annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+parameter Modelica.SIunits.Distance Hf=1 "Surface (window) height"
+                                                                  annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+parameter Modelica.SIunits.Distance Dd=0.5 "Lateral overhang (right hand side)"
+                                                               annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+parameter Modelica.SIunits.Distance Dg=0.5 "Lateral overhang (left hand side)"
+                                                              annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
 
 parameter Boolean MasqueLointain=false
-annotation(dialog(tab="Masques lointains",compact=true),choices(choice=true
-        "Avec masque lointain vertical",                                                             choice=false
-        "Sans masque lointain vertical",                                                                                                  radioButtons=true));
+annotation(Dialog(group="Options"),choices(choice=true
+        "With vertical distant mask",                                                             choice=false
+        "Without vertical distant mask",                                                                                                  radioButtons=true));
 parameter Modelica.SIunits.Distance dE=5
-    "Distance de la paroi au masque lointain" annotation(Dialog(enable=MasqueLointain,tab="Masques lointains"));
-parameter Modelica.SIunits.Distance hpE=2 "Hauteur du masque lointain" annotation(Dialog(enable=MasqueLointain,tab="Masques lointains"));
+    "Distance from the surface (window) to the distant masks" annotation(Dialog(enable=MasqueLointain,group="Distant masks"));
+    parameter Modelica.SIunits.Distance hpE=2 "Height of the distant mask" annotation(Dialog(enable=MasqueLointain,group="Distant masks"));
 
 Modelica.SIunits.Conversions.NonSIunits.Angle_deg AzimutSoleil
-    "Azimut du soleil en degrés";
+    "Solar azimuth angle";
 Modelica.SIunits.Conversions.NonSIunits.Angle_deg HauteurSoleil
-    "Hauteur du soleil";
+    "Solar elevation angle";
 Modelica.SIunits.HeatFlux DiffusSol
-    "Partie du rayonnement incident diffus provenant de la réflexion sur le sol";
+    "Share of the diffuse incident radiation from the reflection on the ground";
 output Real FacMasqueDir
-    "Facteur de masque proche pour les flux directs (ce sont les mêmes pour le flux thermique et celui lumineux)";
+    "Close mask factor for direct fluxes (these are the same for thermal flux and luminous flux)";
 output Real FacMasqueDif
-    "Facteur de masque proche pour les flux diffus (ce sont les mêmes pour le flux thermique et celui lumineux)";
+    "Close mask factor for diffuse fluxes (these are the same for thermal flux and luminous flux)";
 output Real FE_dir
-    "Facteur d'affaiblissement du rayonnement solaire direct dû à un masque lointain vertical";
+    "Direct solar radiation attenuation factor due to a vertical distance mask";
 
-Modelica.SIunits.Area A0 "Surface ensoleillée de la fenêtre";
+Modelica.SIunits.Area A0 "Sunny window surface";
 
 Real pi=Modelica.Constants.pi;
-
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxMasques[3]
-    "Flux solaires surfaciques incidents après prise en compte de masques solaires au vitrage 1-Flux Diffus, 2-Flux Direct et 3-Cosi"
+    "Solar irradiation for the surface considering the shading effects 1-Diffuse, 2- Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{30,-20},{70,20}}, rotation=0),
         iconTransformation(extent={{100,-12},{124,12}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUX[3]
-    "Flux solaires surfaciques incidents 1-Flux Diffus, 2-Flux Direct et 3-Cosi"
+    "Incident irradiance 1-Diffuse, 2- Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{-77,-18},{-43,16}}, rotation=
             0), iconTransformation(extent={{-40,-10},{-20,10}})));
   Modelica.Blocks.Interfaces.RealInput AzHSol[3]
-    "Données d'ensoleillement : 1-Azimut et 2-Hauteur du soleil, 3-Flux incident provenant du sol "
+    "Irradiation data: 1-Solar azimuth angle 2-Solar elevation angle 3-Incident flux from ground"
                                                                                                      annotation (Placement(transformation(
           extent={{-99,19},{-59,59}}), iconTransformation(extent={{-100,23},{-86,
             37}})));
   Modelica.Blocks.Interfaces.RealInput Ecl[3] if useEclairement
-    "Eclairement naturel incident: direct, diffus et réfléchi (lumen)"                              annotation (Placement(transformation(
+    "Natural incident illuminance -direct -diffuse -reflected [lumen]"                                  annotation (Placement(transformation(
           extent={{-80,-51},{-40,-11}}),
                                        iconTransformation(extent={{-100,-37},{-86,
             -23}})));
   Modelica.Blocks.Interfaces.RealOutput EclMasques[3] if useEclairement
-    "Eclairement naturel incident après la prise en compte des masques -direct -diffus -réfléchi (lumen)"
+    "Natural illuminance considering shading effects -direct -diffuse -reflected [lumen]"
     annotation (Placement(transformation(extent={{50,-57},{84,-23}}),
         iconTransformation(extent={{70,-37},{84,-23}})));
   Modelica.Blocks.Sources.RealExpression CalculEclMasques[3](y={Ecl[1]*
         FacMasqueDir*FE_dir,Ecl[2]*FacMasqueDif,Ecl[3]}) if              useEclairement
-    "Vecteur éclairements lumineux avec masque proche: direct, diffus, réfléchi"
+    "Lighting illuminations with close mask vector: direct, diffuse, reflected"
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
 algorithm
 
@@ -78,7 +83,7 @@ DiffusSol:=AzHSol[3];
 
 if TypeMasque==0 then
 
-  //Masque intégral
+  //Full mask
   if noEvent(abs(azimut-AzimutSoleil)>=90) or (noEvent(HauteurSoleil<=0)) then
       A0:=0;
   else
@@ -96,7 +101,7 @@ if TypeMasque==0 then
   end if;
   FacMasqueDif:=(Dd+Lf+Dg)*(Ha+Hf)/((Dd+Lf+Dg)*(Ha+Hf)+(Dd+Lf+Dg)*Av+2*(Hf+Ha)*Av);
 else if TypeMasque==1 then
-  //Masque horizontal
+  //Horizontal mask
   if noEvent(abs(azimut-AzimutSoleil)>=90) or (noEvent(HauteurSoleil<=0)) then
       A0:=0;
   else
@@ -121,8 +126,8 @@ else
 end if;
 end if;
 
-//Masque lointain défini par un plan vertical
-if MasqueLointain==true and cos((AzimutSoleil-azimut)*pi/180)>10^(-5) then //si masque lointain et entrée du soleil dans le plan concerné
+//Distant mask defined by a vertical plan
+if MasqueLointain==true and cos((AzimutSoleil-azimut)*pi/180)>10^(-5) then //if distant mask and sun entry in the considered plan
        if hpE>0 then
          if (dE*tan(HauteurSoleil*pi/180)/cos((AzimutSoleil-azimut)*pi/180))>hpE then FE_dir:=1;else FE_dir:=0;end if;
     else FE_dir:=1;
@@ -131,9 +136,9 @@ else FE_dir:=1;
        end if;
 
 equation
-// Vecteur FLUX sur un vitrage avec masque proche / en sortie : diffus, direct, cosi
- FluxMasques[1] = ((FLUX[1]-DiffusSol)*FacMasqueDif + DiffusSol);
- FluxMasques[2] = FacMasqueDir*FLUX[2]*FE_dir;
+  //Vector FLUX on a glazing with close mask / output: diffuse, direct, cosi
+ FluxMasques[1] = ((FLUX[1]-DiffusSol)*FacMasqueDif + DiffusSol)*FE_dir;
+ FluxMasques[2] = FacMasqueDir*FLUX[2];
  FluxMasques[3] = FLUX[3];
 
   if useEclairement then
@@ -143,40 +148,41 @@ equation
       smooth=Smooth.None));
   end if;
   annotation (Documentation(info="<html>
-<h4>Modèle calculant les facteurs de masques architecturaux pour le rayonnement direct et diffus</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Les masques considérés sont :</p>
-<ol>
-<li>Les masques proches</li>
-<li><ol>
-<li>Les auvents (arête horizontale)</li>
-<li>Les masques complets (arête + joue gauche et droite)</li>
-</ol></li>
-</ol>
-<p><br><img src=\"modelica://BuildSysPro/Resources/Images/MasqueHorizontal.bmp\"/> <img src=\"modelica://BuildSysPro/Resources/Images/MasqueIntegral.bmp\"/> </p>
-<ol>
-<li>Les masques lointains verticaux </li>
-</ol>
-<p><u><b>Bibliographie</b></u></p>
-<p>Norme ISO 13791</p>
-<p><i>Intégration de la protection solaire dans le logiciel PAPTER</i>, M. ABDESSELAM, AIRab Consultant, Fevrier 2000 - Corrections effectuées car modèle incorrect</p>
-<p>Norme RT2012 pour la prise en compte des masques lointains verticaux</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b> </u></p>
+<p><i><b>Calculation of solar boundary conditions for the (Lf x Hf)-sized surface considering near and distant mask</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p> This model is used in <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.SolarMasks.FLUXsurfMask\"><code>FLUXsurfMask</code></a></p>
+Following masks are considered:
 <ul>
-<li>Ces modèles ne sont valables que pour des parois verticales</li>
-<li>Le cumul de plusieurs types de masques proches pour une même paroi est interdit</li>
+<li>Shading devices (near mask)</li>
+<ul>
+<li>Horizontal overhang such as awning</li>
+<p><img src=\"modelica://BuildSysPro/Resources/Images/MasqueHorizontal.bmp\"/></p>
+<li>Lateral fin</li>
+<li>Both overhang and lateral fin (such as egg crate)</li>
+<p><img src=\"modelica://BuildSysPro/Resources/Images/MasqueIntegral.bmp\"/> </p>
 </ul>
-<p><br><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé pour les masques proches (selon la norme ISO13791-2004 et BESTEST) - Aurélie Kaemmerlen 05/2011</p>
-<p>Modèle non validé pour les masques lointains - Laura Sudries 05/2015</p>
+<li>Vertical distant masks (such as building)</li>
+</ul>
+<p><u><b>Bibliography</b></u></p>
+<p>ISO 13791 standard</p>
+<p>RT2012 standard for the consideration of vertical distant masks</p>
+<p>Intégration de la protection solaire dans le logiciel PAPTER, M. ABDESSELAM, AIRab Consultant, Fevrier 2000 - Corrections effectuées car modèle incorrect</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>These models are valid only for vertical walls.</p>
+<p>The accumulation of several masks of near types for a same wall is prohibited</p>
+<p><u><b>Validations</b></u></p>
+<p>Non validated model - Aurélie Kaemmerlen 11/2013</p>
+<p>Non validated model for distant masks - Laura Sudries 05/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
-Author : Aurélie KAEMMERLEN, EDF (2011)<br>
+Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
-</html>",                                                                    revisions="<html>
+</html>
+",                                                                           revisions="<html>
 <p>Aurélie Kaemmerlen 04/2013 : Ajout d'une condition sur la hauteur du soleil pour le calcul de la surface ensoleillée. Fait suite à la correction des flux solaires (calcul de l'azimut corrigé - avant il n'était pas déterminé si sinh&LT;=0)</p>
 <p>Laura Sudries, Vincent Magnaudeix 05/2015 : Ajout de la prise en compte des masques lointains verticaux</p>
 <p>Benoît Charrier 05/2015 : Ajout du choix possible de prise en compte ou non des masques lointains verticaux</p>
@@ -237,6 +243,5 @@ Author : Aurélie KAEMMERLEN, EDF (2011)<br>
     Diagram(coordinateSystem(
         preserveAspectRatio=false,
         extent={{-100,-60},{100,60}},
-        grid={1,1}),
-            graphics));
+        grid={1,1})));
 end Masks;

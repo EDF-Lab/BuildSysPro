@@ -1,8 +1,8 @@
-﻿within BuildSysPro.Systems.Controls;
+within BuildSysPro.Systems.Controls;
 model Deadband
 
   parameter Real e=0.5
-    "Ecart inférieur et supérieur accepté par rapport à la consigne";
+    "Upper and lower difference accepted with respect to the setpoint";
 
   Modelica.Blocks.Interfaces.RealInput Consigne
     annotation (Placement(transformation(extent={{-128,0},{-88,40}}),
@@ -94,9 +94,17 @@ equation
           pattern=LinePattern.Dash)}),
     DymolaStoredErrors,
     Documentation(info="<html>
-<p>Modèle validé - Hubert Blervaque 05/2012</p>
-<p><u><b>Description</b></u></p>
-<p>Gestion en tout ou rien autour d'une valeur de consigne plus ou moins une bande à effet <span style=\"font-size: 12pt;\">hysteresis</p>
+
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>All-or-nothing management around a setpoint value plus or minus a hysteresis effect band.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hubert Blervaque 05/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

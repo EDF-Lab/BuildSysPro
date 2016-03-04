@@ -1,6 +1,6 @@
 ﻿within BuildSysPro.Building.Examples;
 model ValidationDMvsSM
-  "Comparaison entre le modèle MonozoneDetaille et MonozoneSimplifie"
+  "Comparison between DetailedMonozone and SimplifiedMonozone models"
 extends Modelica.Icons.Example;
   BoundaryConditions.Solar.Irradiation.FLUXzone fLUXzone
     annotation (Placement(transformation(extent={{-58,42},{-38,62}})));
@@ -73,7 +73,7 @@ equation
       color={255,192,1},
       smooth=Smooth.None));
   connect(meteofile.G,fLUXzone. G) annotation (Line(
-      points={{-81,68},{-62,68},{-62,51.9},{-58.9,51.9}},
+      points={{-81,68},{-62,68},{-62,52.5},{-58.3,52.5}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(mS.Tairext, meteofile1.Tseche)
@@ -100,7 +100,16 @@ equation
   annotation (experiment(StopTime=3.1536e+007, Interval=600),
       __Dymola_experimentSetupOutput(events=false),
     Documentation(info="<html>
-<p>Modèle Validé - Gilles PLESSIS 12/2013</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Gilles PLESSIS 12/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

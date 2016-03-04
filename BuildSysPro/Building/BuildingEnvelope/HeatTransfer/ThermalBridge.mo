@@ -1,12 +1,14 @@
-﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
+within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
 model ThermalBridge "Linear thermal bridge model"
-  parameter Modelica.SIunits.Length L "Longueur du pont thermique";
-parameter Real k
-    " Valeur du pont thermique (conductivité thermique) en W/(m.K)";
+  parameter Modelica.SIunits.Length L "Length of the thermal bridge";
+parameter Modelica.SIunits.ThermalConductivity k
+    "Thermal conductivity of the thermal bridge";
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
+    "Outdoor temperature"
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int
+    "Indoor temperature"
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor
     thermalConductor(G=k*L)
@@ -56,7 +58,7 @@ equation
           smooth=Smooth.None)}),
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>Model based on the basic component <a href=\"modelica://BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor\">ThermalConductor</a>.</p>
+<p>Model based on the basic component <a href=\"modelica://BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor\"><code>ThermalConductor</code></a>.</p>
 <p>The thermal conductance G is calculated with the following equation :
 <pre>    G = k*L
     k: Thermal conductivity [W/(m.K)]

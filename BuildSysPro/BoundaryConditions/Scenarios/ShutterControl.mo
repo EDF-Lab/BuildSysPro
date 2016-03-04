@@ -3,14 +3,14 @@ model ShutterControl
   "Shutters control for closure and occultancy during night in the cooling period - comfort objective"
 
 parameter Integer HeureOuvertureMatin = 8
-    "Shutters opening time in the morning"                                          annotation(dialog(group="Night closure"));
+    "Shutters opening time in the morning"                                          annotation(Dialog(group="Night closure"));
 
 parameter Integer HeureFermetureSoir = 21
-    "Shutters closing time in the evening"                                       annotation(dialog(group="Night closure"));
+    "Shutters closing time in the evening"                                       annotation(Dialog(group="Night closure"));
 parameter Modelica.SIunits.Temperature Tfermeture=299.15
-    "Indoor temperature beyond which shutters are closed during the day"        annotation(dialog(group="Summer comfort"));
+    "Indoor temperature beyond which shutters are closed during the day"        annotation(Dialog(group="Summer comfort"));
 parameter Modelica.SIunits.Temperature Touverture=297.15
-    "Indoor temperature below which shutters are opened during the day"   annotation(dialog(group="Summer comfort"));
+    "Indoor temperature below which shutters are opened during the day"   annotation(Dialog(group="Summer comfort"));
 
 Real TauxOccultation "Shutters occultancy level during the day";
 Integer Hyst1 "Temperature hysteresis";
@@ -162,12 +162,12 @@ equation
 <p>Control model of shutters opening:</p>
 <p>- closure during night (between closing time and opening time)</p>
 <p>- occultation during summer with a hysteresis depending on the indoor temperature when the housing is occupied </p>
-<p><br><u><b>Bibliography</b></u></p>
-<p>None</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>None</p>
-<p><u><b>Known limits / Precautions for use</b></u></p>
-<p>None</p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
 <p><u><b>Validations</b></u></p>
 <p>Non-validated model - Vincent Magnaudeix 06/2013</p>
 <p><b>--------------------------------------------------------------<br>

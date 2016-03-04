@@ -1,28 +1,28 @@
 ﻿within BuildSysPro.Building.Zones.HeatTransfer;
 model ZoneCrawlSpaceGlazedInternalPartitions
-  "Modèle de zone parallépipèdique sur vide sanitaire avec vitrage modélisé en thermique pure et prenant en compte l'inertie due aux parois internes"
+  "Model of parallelepiped zone on crawl space with glazings, in pure thermal modelling, and integrating the internal inertia due to the inner walls"
   extends ZoneCrawlSpaceGlazed;
 
-// Cloisons interzones et intrazones//
-//Refends
+//Inter-zones and intra-zones partition walls//
+//Supporting walls
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracRef
-    "Caractéristiques des réfends" annotation (__Dymola_choicesAllMatching=
-        true, Dialog(tab="Parois internes", group="Refends (murs porteurs)"));
+    "Supporting walls characteristics" annotation (choicesAllMatching=
+        true, Dialog(tab="Inner walls", group="Supporting walls"));
 
-parameter Modelica.SIunits.Area SRef=1 "surface des refends" annotation(Dialog(tab="Parois internes", group="Refends (murs porteurs)"));
+parameter Modelica.SIunits.Area SRef=1 "Supporting walls surfaces" annotation(Dialog(tab="Inner walls", group="Supporting walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hRef
-    "coefficient d'échange convectif des refends"                                                              annotation(Dialog(tab="Parois internes", group="Refends (murs porteurs)"));
+    "Supporting walls convective heat transfer coefficient"                                                              annotation(Dialog(tab="Inner walls", group="Supporting walls"));
 
-//Cloisons légères
+//Light partition walls
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracCleg
-    "Caractéristiques des cloisons légères" annotation (
-      __Dymola_choicesAllMatching=true, Dialog(tab="Parois internes", group=
-          "Cloisons légères"));
-parameter Modelica.SIunits.Area SCleg=1 "surface des cloisons légères" annotation(Dialog(tab="Parois internes", group="Cloisons légères"));
+    "Light partition walls characteristics" annotation (
+      choicesAllMatching=true, Dialog(tab="Inner walls", group=
+          "Light partition walls"));
+parameter Modelica.SIunits.Area SCleg=1 "Light partition walls surface" annotation(Dialog(tab="Inner walls", group="Light partition walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hCleg
-    "coefficient d'échange global des cloisons légères"                                                               annotation(Dialog(tab="Parois internes", group="Cloisons légères"));
+    "Global exchange coefficient of light partition walls"                                                               annotation(Dialog(tab="Inner walls", group="Light partition walls"));
 
-//Composants
+//Components
 protected
   BuildingEnvelope.HeatTransfer.Wall Refends(
     InitType=InitType,
@@ -36,7 +36,7 @@ protected
     S=SRef,
     hs_ext=hRef,
     hs_int=hRef,
-    ParoiInterne=true) "Cloissons interzone de type refends "
+    ParoiInterne=true) "Inter-zones partition walls of supporting walls type"
     annotation (Placement(transformation(extent={{18,40},{38,60}})));
   BuildingEnvelope.HeatTransfer.Wall CloisonsLegeres(
     InitType=InitType,
@@ -50,7 +50,7 @@ protected
     S=SCleg,
     hs_ext=hCleg,
     hs_int=hCleg,
-    ParoiInterne=true) "Cloisons interzone légères" annotation (Placement(
+    ParoiInterne=true) "Inter-zones light partition walls" annotation (Placement(
         transformation(
         extent={{-10,10},{10,-10}},
         rotation=180,
@@ -74,23 +74,25 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   annotation (Documentation(info="<html>
-<h4>Modèle de zone parallèpipèdique sur vide sanitaire avec vitrages modélisé en thermique pure et prenant en compte l'inertie interne due aux parois internes.</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Modèle de bâtiment parallélépipédique monozone sur vide sanitaire vitré, à connecter à un modèle de conditions limites(port thermique de gauche) et realOutput de gauche pour les flux solaires. Par défaut les murs sont orientés selon les quatres points cardinaux; la modification de l'orientation est représentée par le paramètre beta. Le port thermique de droite est connecté au volume intérieur (capacité thermique). Les températures extérieures auxquelles sont soumis le plancher et le plafond sont pondérées par un coefficient b. Pour considérer le rayonnement des parois en grande longueur d'onde, les coefficients d'échange h doivent être des <b>coefficients d'échange globaux</b>. L'inertie des parois internes est prise en compte. Ce modèle hérite de <i>ZoneVideSanitaireVitre</i> et y superpose des cloisons internes de types refends (murs porteurs) et cloisons légères.</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Néant.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Ce modèle de bâtiment monozone est à connecter à un modèle de conditions limites météo sur la gauche (Température extérieure, données relatives à l'ensoleillement). Le port thermique de droite est connecté au volume intérieur (capacité thermique) et peut, si désiré, être relié à tout modèle utilisant un port thermique (apports internes...).</p>
-<p>Le paramètrage des parois se fait par l'intermédiaire du paramètre caracParoi, cependant on peut toujours paramétrer les parois couche par couche sans créer de type de paroi. </p>
+<p><b>Model of parallelepiped glazed zone on crawl space, in pure thermal modelling and integrating the internal inertia due to the inner walls.</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Parallelepiped single-zone building on crawl space with glazing model, to be connected to a boundary conditions model (left thermal port) and a left realOutput for solar fluxes. By default walls are oriented in the four cardinal points; the orientation modification is represented by the parameter beta. The right thermal port is connected to the inner volume (heat capacity). Floor and ceiling are subject to outside temperatures which are weighted by a coefficient b.</p>
+<p>This model inherits from <a href=\"modelica://BuildSysPro.Building.Zones.HeatTransfer.ZoneCrawlSpaceGlazed\"><code>ZoneCrawlSpaceGlazed</code></a> and superimposes on it internal partition walls of shear walls types (bearing walls) and light partition walls.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>This single zone building model is to be connected to a weather boundary conditions model on the left (outside temperature, sunlight-related data). The right thermal port is connected to the inner volume (heat capacity) and can, if desired, be connected to any model using a thermal port (internal heat gains...).</p>
+<p>The walls parameterization is done via the parameter caracParoi, however it still can be done layer by layer without creating any type of wall.</p>
 <ol>
-<li><i><b>Cliquer sur la petite flèche de caracParoi+ Edit</b></i></li>
-<li><i><b>Remplir les champs concernant le nombre de couches, leur épaisseur, le maillage. Le paramètre positionIsolant est optionnel</b></i></li>
-<li><i><b>Pour le paramètre mat, cliquer sur la petite flèche + Edit array, faire correspondre le nombre de case sur une colonne au nombre de couche de matériaux dans la fenêtre s'affichant puis dans chaque case effectuer un clic droit + Insert function Call et parcourir la bibliothèque pour indiquer le chemin du matériaux souhaité (dans <a href=\"modelica://BuildSysPro.Utilities.Data.Solids\">Utilities.Data.Solids</a>)</b></i></li>
+<li>Click on the small arrow of caracParoi + Edit</li>
+<li>Fill in the fields on the number of layers, their thickness, the mesh. The parameter positionIsolant is optional</li>
+<li>For the mat parameter, click on the small arrow + Edit array, match the number of boxes in a column to the number of materials layer in the window that is displayed, then, in each box, right-click + Insert function call and browse the library to specify the path of the desired material (in <a href=\"modelica://BuildSysPro.Utilities.Data.Solids\"><code>Utilities.Data.Solids</code></a>)</li>
 </ol>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Pour considérer le rayonnement des parois en grande longueur d'onde, les coefficients d'échange h doivent être des <b>coefficients d'échange globaux. </b>Les vitrages transmettent les flux solaires au plancher. </p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Gilles Plessis 02/2011</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>To consider walls radiation in long wavelength (LWR), exchange coefficients h must be <b>global exchange coefficients</b>. The inertia of the inner walls is integrated.<p>
+<p>Glazings transmit solar fluxes to the floor.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Gilles Plessis 02/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

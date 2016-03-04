@@ -1,46 +1,45 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
-model FLUXzone
-  "Calcul de l'éclairement incident diffus et direct incident au temps t sur un local avec ses 4 parois selon les points cardinaux"
+model FLUXzone "Calculation of irradiance and illuminance for a zone model"
 
-parameter Real albedo=0.2 "Albedo de l'environnement";
+parameter Real albedo=0.2 "Albedo of the environment";
 parameter Boolean ChoixAzimuth=false
-    "Choix de rentrer soit une correction fixe d'azimuth ou directement les valeurs dans un vecteur"
-    annotation(choices(choice=true "Renseigner le vecteur azim", choice=false
-        "renseigner beta",                                                                       radioButtons=true));
+    "Provide azimuth for each surface or considered a parallelepipedic zone"
+    annotation(choices(choice=true "Azimuth defined for each surface", choice=false
+        "Defined zone orientation (beta)",                                                                       radioButtons=true));
 parameter Real beta=0
-    "Correction de l'azimut des murs verticaux telle que azimut=beta+azimut, {beta=0 : N=180,S=0,E=-90,O=90})"
-    annotation(dialog(enable=not ChoixAzimuth));
+    "Zone orientation azimut=beta+azimut, (if beta=0 : azimut={N=180,S=0,E=-90,O=90})"
+    annotation(Dialog(enable=not ChoixAzimuth));
 parameter Real azim[5]={0,beta+180,beta,beta-90,beta+90}
-    "Azimuth des parois en sortie, par défaut 1-Plafond, 2-Nord, 3-Sud, 4-Est, 5-Ouest "
-      annotation(dialog(enable=ChoixAzimuth));
+    "Walls azimuth, by default 1-Ceiling, 2-North, 3-South, 4-East, 5-West"
+      annotation(Dialog(enable=ChoixAzimuth));
 parameter Real incl[5]={0,90,90,90,90}
-    "Inclinaison des parois - par défaut 1-Plafond, 2-Nord, 3-Sud, 4-Est, 5-Ouest";
+    "Walls tilt, by default 1-Ceiling, 2-North, 3-South, 4-East, 5-West";
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXNord[3]
-    "Flux solaires surfaciques incidents au Nord 1-Flux Diffus, 2-Flux Direct et 3-Cosi"
+    "Irradiance for the North facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{80,31},{118,69}}, rotation=0),
         iconTransformation(extent={{100,32},{120,52}})));
 
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXSud[3]
-    "Flux solaires surfaciques incidents au Sud 1-Flux Diffus, 2-Flux Direct et 3-Cosi"
+    "Irradiance for the South facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{80,-9},{118,29}}, rotation=0),
         iconTransformation(extent={{100,-6},{120,14}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXPlafond[3]
-    "Flux solaires surfaciques incidents au Plafond 1-Flux Diffus, 2-Flux Direct et 3-Cosi"
+    "Irradiance for the sky facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{81,62},{118,99}}, rotation=0),
         iconTransformation(extent={{100,74},{120,94}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXEst[3]
-    "Flux solaires surfaciques incidents à l'Est 1-Flux Diffus, 2-Flux Direct et 3-Cosi"
+    "Irradiance for the East facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{81,-49},{118,-12}}, rotation=
             0), iconTransformation(extent={{100,-46},{120,-26}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXouest[3]
-    "Flux solaires surfaciques incidents à l'Ouest 1-Flux Diffus, 2-Flux Direct et 3-Cosi"
+    "Irradiance for the West facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{80,-89},{118,-51}}, rotation=
             0), iconTransformation(extent={{100,-86},{120,-66}})));
 
 Modelica.Blocks.Interfaces.RealInput G[10]
-    "Résultats : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut,Hauteur}"
-    annotation (Placement(transformation(extent={{-139,-31},{-99,9}},
-        rotation=0), iconTransformation(extent={{-119,-11},{-99,9}})));
+    "Inputs data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], solar azimuth angle,solar elevation angle}"
+    annotation (Placement(transformation(extent={{-133,-25},{-93,15}},
+        rotation=0), iconTransformation(extent={{-113,-5},{-93,15}})));
 
   Modelica.SIunits.HeatFlux DIRH;
   Modelica.SIunits.HeatFlux DIRN;
@@ -53,79 +52,78 @@ Modelica.Blocks.Interfaces.RealInput G[10]
 protected
   parameter Real azim_in[5]=if ChoixAzimuth then azim[1:5] else {0,beta+180,beta,beta-90,beta+90};
   constant Real d2r=Modelica.Constants.pi/180;
-  final parameter Real s[5]={incl[i]*d2r for i in 1:5} "Inclinaison";
+  final parameter Real s[5]={incl[i]*d2r for i in 1:5} "tilt";
   final parameter Real g[5]={azim_in[i]*d2r  for i in 1:5} "Orientation";
   final parameter Real coef1[5]={0.5*(1 - cos(s[i]))*albedo for i in 1:5};
   final parameter Real coef2[5]={0.5*(1 + cos(s[i])) for i in 1:5};
-  // Cosinus directeurs du plan
+  // Direction cosines of the plan
   final parameter Real l[5]={cos(s[i]) for i in 1:5};
   final parameter Real m[5]={sin(s[i])*sin(g[i]) for i in 1:5};
   final parameter Real n[5]={sin(s[i])*cos(g[i]) for i in 1:5};
 
-  Real Idn "Rayonnement solaire direct normal";
-  Real Idi "Rayonnement solaire diffus horizontal isotrope";
-  Real Edn "Eclairement naturel direct normal";
-  Real Edi "Eclairement naturel diffus horizontal";
-  Real gamma "Hauteur angulaire du soleil au-dessus de l'horizon (radians)";
+  Real Idn "Direct normal irradiance";
+  Real Idi "Isotropic horizontal diffuse irradiance";
+  Real Edn "Direct normal illuminance";
+  Real Edi "Diffuse horizontal illuminance";
+  Real gamma "Solar elevation angle above the horizon [rad]";
   Real pi=Modelica.Constants.pi;
-  Real phi "Azimut du soleil (angle du soleil par rapport au Sud) (radians)";
-  Real teta[5] "Angle entre le soleil et la normale à la surface étudiée";
-  Real Erp[5]
-    "Eclairement direct incident dépendant de la surface considérée(Lux)";
-  Real Efp[5] "Eclairement diffus incident (Lux)";
-  Real ERrp[5] "Eclairement réfléchi par le sol (Lux)";
+  Real phi "Sun azimuth relative to South [rad]";
+  Real teta[5] "Angle between solar beam and surface normal [rad]";
+  Real Erp[5] "Direct illuminance on the surfaces [lux]";
+  Real Efp[5] "Diffuse illuminance on the surfaces [lux]";
+  Real ERrp[5] "Illuminance reflected by the ground on the surfaces [lux]";
 
 public
   Modelica.Blocks.Interfaces.RealOutput EclSud[3]
-    "Eclairement naturel incident au Sud -direct -diffus -réfléchi (lumen)"
+    "Illuminance for the South facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,-15},{26,31}}),
         iconTransformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-30,110})));
+
   Modelica.Blocks.Interfaces.RealOutput EclNord[3]
-    "Eclairement naturel incident au Nord -direct -diffus -réfléchi (lumen)"
+    "Illuminance for the North facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,45},{26,91}}),
         iconTransformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-60,110})));
   Modelica.Blocks.Interfaces.RealOutput EclOuest[3]
-    "Eclairement naturel incident à l'Ouest -direct -diffus -réfléchi (lumen)"
+    "Illuminance for the West facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,-45},{26,1}}),
         iconTransformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={30,110})));
   Modelica.Blocks.Interfaces.RealOutput EclEst[3]
-    "Eclairement naturel incident à l'Est -direct -diffus -réfléchi (lumen)"
+    "Illuminance for the East facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,-75},{26,-29}}),
         iconTransformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={0,110})));
   Modelica.Blocks.Interfaces.RealOutput EclPlafond[3]
-    "Eclairement naturel incident au Plafond -direct -diffus -réfléchi (lumen)"
+    "Illuminance for the sky facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,15},{26,61}}),
         iconTransformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-90,110})));
 
 algorithm
-  // Calcul des sinh et cosi
-  sinh :=G[6];  //Premier cosinus directeur du vecteur solaire
+  // sinh and cosi computations
+  sinh :=G[6];  //First direction consine of the solar vector
   cosi:={max(0, l[i]*G[6] + m[i]*G[7] + n[i]*G[8]) for i in 1:5};
 
 //equation
-//// CALCUL DES FLUX
-// Calcul du flux direct : on vérifie que le soleil est couché sur la surface d'orientation choisie : si sin h est négatif, on annule les flux directs"
-//  {DIFH,DIRN,DIRH,GLOH}=G[1:4];
+//// Irradiance computation
+//Direct irradiance calculation: if sin h is negative, direct irradiance is canceled"
   DIFH:=G[1];
   DIRN:=G[2];
   DIRH:=G[3];
   GLOH:=G[4];
 
  for i in 1:5 loop
-   // Vecteur FLUX sur une surface inclinée en sortie : diffus, direct, cosi
+   // FLUX vector for irradiance on the surfaces: diffuse, direct, cosi
    DiffusSol[i] :=max(0, coef1[i]*GLOH);
    FLUX[3*i-2] :=max(0, coef2[i]*DIFH) + DiffusSol[i];
-   FLUX[3*i-1] :=if noEvent(sinh > 0.01) then max(0, cosi[i])*DIRN else 0; //Pour éviter les cas où le flux direct est non nul alors que le soleil est couché !
+   FLUX[3*i-1] :=if noEvent(sinh > 0.01) then max(0, cosi[i])*DIRN else 0; //To avoid cases with a non-zero direct irradiance when the sun is below the horizon
    FLUX[3*i] :=cosi[i];
  end for;
  FLUXPlafond:=FLUX[1:3];
@@ -136,7 +134,7 @@ algorithm
 
 equation
 
- //Calcul des éclairement naturels (équations RT2012)
+ //Computation of natural illuminance (French building regulation RT2012)
   Idn=DIRN;
   Idi=DIFH;
   gamma=G[10]*pi/180;
@@ -150,8 +148,7 @@ equation
   end if;
 
 algorithm
-
-// Calcul de l'éclairement naturel direct, diffus et réfléchi par le sol sans masque
+  // Computation of illuminance (direct, diffuse and reflected) without shading
   phi:=G[9]*pi/180;
   for i in 1:5 loop
   teta[i]:=min(pi/2, acos(cos(gamma)*sin(incl[i]*pi/180)*cos(phi - azim[i]*pi/180)+ sin(gamma)*cos(incl[i]*pi/180)));
@@ -167,19 +164,31 @@ algorithm
  EclOuest:={Erp[5],Efp[5],ERrp[5]};
 
 annotation (Documentation(info="<html>
-<p>Modèle qui prend en entrée le vecteur<b> G</b> issu d'un lecteur météo, avec comme base de temps le <b>Temps Universel</b>, pour calculer les éclairements surfaciques sur cinq parois inclinées d'un local (Plafond, Sud, Est, Ouest, Nord). <b>G</b> contient :</p>
-<p>(1) Flux diffus horizontale</p>
-<p>(2) Flux direct normal</p>
-<p>(3) Flux direct horizontal</p>
-<p>(4) Flux global horizontal</p>
-<p>(5) Heure en TU au temps t = 0 (début de simulation)</p>
-<p>(6-7-8) Cosinus directeurs du soleil (6-sinh, 7-cosW, 8-cosS)</p>
-<p>(9) Azimut du soleil</p>
-<p>(10) Hauteur du soleil</p>
-<p>Modèle validé (identique à celui utilisé dans le BESTEST excepté la base de temps : TU au lieu de TSV) - Aurélie Kaemmerlen 09/2010</p>
+<p><i><b> Calculation of irradiance and illuminance for a zone model (tilt and azimuth given) </b></i></p>
+
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>French Building regulation 2012 (RT 2012 for the illuminance model</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Model which takes as input the vector G from a weather reader to calculate the surface irradiance on a particular surface (tilt and orientation given). G contains:</p>
+<ul>
+ <li> (1) Horizontal diffuse flux</li>
+ <li>(2) Normal direct flux</li>
+ <li>(3) Horizontal direct flux</li>
+ <li>(4) Horizontal global flux</li>
+ <li>(5) Time in UTC at time t = 0 (start of the simulation)</li>
+ <li>(6-7-8) Sun's direction cosines (6-sinH, 7-cosW, 8-cosS)</li>
+ <li>(9) Solar azimuth angle</li>
+ <li>(10) Solar elevation angle</li>
+</ul>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model (identical to the one used in the BESTEST except for the time base: UTC instead of true solar time (TST)) - Aurélie Kaemmerlen 09/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
@@ -193,7 +202,7 @@ Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 </html>"), Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},
             {100,100}},
         grid={1,1},
-        initialScale=0.1), graphics),
+        initialScale=0.1)),
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
             100}},
         grid={1,1},

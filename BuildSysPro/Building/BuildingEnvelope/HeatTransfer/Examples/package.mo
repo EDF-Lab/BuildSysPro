@@ -1,5 +1,5 @@
 within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
-package Examples "Exemples de connexion de composants et/ou validation de ceux-ci"
+package Examples "Examples illustrating how to use models to describe heat transfers for a building envelope"
   extends BuildSysPro.Utilities.Icons.ExamplesPackage;
 
 

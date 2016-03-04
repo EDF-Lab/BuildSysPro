@@ -1,87 +1,84 @@
 ﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
 model FloorOnSlab
-  "Modèle de plancher sur terre plein - Modèle de paroi générique - PRE et paroi active eau possibles - nouvelle saisie des matériaux"
+  "Slab-on-grade floor model - generic floor model - conventional, resistive or water-based heating floor"
 
-// Paramètres de choix du modèle
- parameter Integer ParoiActive=1
-      annotation(dialog(group="Type de paroi",compact=true),
-      choices(choice=1 "Paroi classique",
-      choice=2 "Circulation d'eau",
-      choice=3 "Résistance électrique",radioButtons=true));
+// Choice of model parameters
+ parameter Integer ParoiActive=1 "Type of floor"
+      annotation(Dialog(group="Type of floor",compact=true),
+      choices(choice=1 "Conventional floor",
+      choice=2 "Water-based heating floor",
+      choice=3 "Electric radiant floor",radioButtons=true));
   parameter Boolean SurEquivalentTerre=true
-    "Prise en compte d'une couche de terre entre la paroi et Tsol"
-     annotation(dialog(group="Type de modèle",compact=true),choices(choice=true
-        "Oui : Paroi en contact avec un matériau équivalent à de la terre",                                                                          choice=false
-        "Non : Paroi classique",                                                                                                    radioButtons=true));
+    "Consideration of an earth layer between the floor and Tsol"
+     annotation(Dialog(group="Type of model",compact=true),choices(choice=true
+        "Yes: floor in contact with a material equivalent to earth",                                                                          choice=false
+        "No : conventional floor",                                                                                                    radioButtons=true));
 
-  parameter Boolean RadInterne=true
-    "Prise en compte des flux radiatifs à l'intérieur" annotation(dialog(group="Type de modèle",compact=true),choices(radioButtons=true));
+  parameter Boolean RadInterne=true "Consideration of radiative fluxes inside"
+                                               annotation(Dialog(group="Type of model",compact=true),choices(radioButtons=true));
 
- parameter Boolean CLfixe=true "Condition en température de sol fixe"
-                                            annotation(dialog(group="Type de modèle",compact=true),choices(radioButtons=true));
+ parameter Boolean CLfixe=true "Time-invariant temperature of the ground"
+                                            annotation(Dialog(group="Type of model",compact=true),choices(radioButtons=true));
 
-// Paramètres thermo-physiques
+// Thermophysical parameters
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracParoi
-    "Caractéristiques du plancher (inclue celles du sol sous le plancher si SurEquiValentTerre = False)"
-    annotation (__Dymola_choicesAllMatching=true, dialog(group=
-          "Paramètres de la paroi"));
+    "Floor characteristics (including those of the ground under the floor if SurEquiValentTerre = False)"
+    annotation (choicesAllMatching=true, Dialog(group=
+          "Floor parameters"));
   replaceable parameter BuildSysPro.Utilities.Records.GenericSolid caracTerre=BuildSysPro.Utilities.Data.Solids.SoilClaySilt()
-    "Caractéristiques physiques de la terre"
+    "Physical characteristics of the ground"
     annotation (choices(
                 choice=BuildSysPro.Utilities.Data.Solids.SoilClaySilt()
-        "Terre type argile/glaise lambda=1.5",
+        "Clay/silt ground lambda=1.5",
                 choice=BuildSysPro.Utilities.Data.Solids.SoilSandGravel()
-        "Terre type sable/gravier lambda=2.0"),                                                                     dialog(group=
-          "Paramètres du sol"));
+        "Sand/gravel ground lambda=2.0"),                                                                     Dialog(group=
+          "Ground parameters"));
 
-  parameter Modelica.SIunits.Area S=1 "Surface de la paroi" annotation (dialog(group="Paramètres de la paroi"));
+  parameter Modelica.SIunits.Area S=1 "Floor surface" annotation (Dialog(group="Floor parameters"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hs=5.88
-    "Coefficient d'échange surfacique global sur la face intérieure" annotation (dialog(group="Paramètres de la paroi"));
-  parameter Modelica.SIunits.Temperature Ts=293.15 "Température du sol" annotation (dialog(enable=CLfixe,group="Paramètres du sol"));
+    "Coefficient of global surface exchange on the inner face" annotation (Dialog(group="Floor parameters"));
+  parameter Modelica.SIunits.Temperature Ts=293.15 "Ground temperature" annotation (Dialog(enable=CLfixe,group="Ground parameters"));
 
-// Paramètre commun à la paroi active eau et au rayonnant électrique
+// Parameter common to the water-based heating floor and the electric radiant floor
  parameter Integer nP=1
-    "Numéro de la couche dont la frontière supérieure est le lieu d'injection de la puissance - doit être strictement inférieur à n"
+    "Number of the layer whose upper boundary is the site of power injection - must be strictly lower than n"
     annotation (Dialog(enable=not
-                                 (ParoiActive==1), group="Type de paroi"));
+                                 (ParoiActive==1), group="Type of floor"));
 
-// Paramètres propres à une paroi chauffante avec eau
-  parameter Integer nD=8
-    "Nombre de tranche de discrétisation du plancher à eau"
-    annotation(dialog(enable=ParoiActive==2, tab="Paramètres paroi chauffante"));
-  parameter Modelica.SIunits.Distance Ltube=128
-    "Longueur du serpentin de chauffe du plancher"
-    annotation(dialog(enable=ParoiActive==2, tab="Paramètres paroi chauffante"));
+// Parameters specific to the water-based heating floor
+  parameter Integer nD=8 "Number of water floor discretization slices"
+    annotation(Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
+  parameter Modelica.SIunits.Distance Ltube=128 "Floor heating coil length"
+    annotation(Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
   parameter Modelica.SIunits.Distance DiametreInt=0.013
-    "Diamètre intérieure du tube"
-    annotation(dialog(enable=ParoiActive==2, tab="Paramètres paroi chauffante"));
-  parameter Modelica.SIunits.Distance eT=0.0015 "Epaisseur du tube"
-    annotation (Dialog(enable=ParoiActive==2, tab="Paramètres paroi chauffante"));
+    "Inside diameter of the tube"
+    annotation(Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
+  parameter Modelica.SIunits.Distance eT=0.0015 "Tube thickness"
+    annotation (Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
   parameter Modelica.SIunits.ThermalConductivity lambdaT=0.35
-    "Conductivité thermique du tube"
-    annotation (Dialog(enable=ParoiActive==2, tab="Paramètres paroi chauffante"));
+    "Thermal conductivity of the tube"
+    annotation (Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
 
-// Paramètres d'initialisation
+// Initialisation parameters
   parameter Modelica.SIunits.Temperature Tp=293.15
-    "Température initiale de la paroi" annotation (dialog(group="Paramètres d'initialisation"));
+    "Initial temperature of the floor" annotation (Dialog(group="Initialisation parameters"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    annotation (dialog(group="Paramètres d'initialisation"));
+    annotation (Dialog(group="Initialisation parameters"));
 
-// Paramètres du sol
-  parameter Modelica.SIunits.Length eSol=0.2 "Epaisseur du sol"
-                       annotation (dialog(enable=SurEquivalentTerre,group="Paramètres du sol"));
-  parameter Integer mSol=5 "Nombre de mailles pour modéliser le sol"
-                                            annotation (dialog(group="Paramètres du sol",enable=SurEquivalentTerre));
+// Ground parameters
+  parameter Modelica.SIunits.Length eSol=0.2 "Ground thickness"
+                       annotation (Dialog(enable=SurEquivalentTerre,group="Ground parameters"));
+  parameter Integer mSol=5 "Number of meshes to model the ground"
+                                            annotation (Dialog(group="Ground parameters",enable=SurEquivalentTerre));
 
-// Composants
+// Components
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_int annotation (
      Placement(transformation(extent={{20,-10},{40,10}}), iconTransformation(
           extent={{20,-10},{40,10}})));
   Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
-    RadInterne
-    "Flux absorbés (GLO/CLO) par cette paroi sur sa face intérieure"
+    RadInterne "LWR/SWR flows absorbed by this floor on its inner face"
     annotation (Placement(transformation(extent={{118,70},{80,108}}),
         iconTransformation(extent={{40,40},{20,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.FixedTemperature TemperatureSol(T=Ts) if
@@ -109,12 +106,11 @@ protected
 
 public
   BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tsol if not (CLfixe)
-    "Température du sol" annotation (Placement(transformation(extent={{-100,-40},
+    "Ground temperature" annotation (Placement(transformation(extent={{-100,-40},
             {-80,-20}}), iconTransformation(extent={{-120,-10},{-100,10}})));
 
 protected
-  BaseClasses.HeatTransfer.Interfaces.HeatPort_a NoeudTsol
-    "Température du sol"
+  BaseClasses.HeatTransfer.Interfaces.HeatPort_a NoeudTsol "Ground temperature"
     annotation (Placement(transformation(extent={{-65,-7},{-68,-10}})));
 
 public
@@ -134,7 +130,7 @@ public
       positionIsolant=caracParoi.positionIsolant),
     each nP=nP,
     each InitType=InitType) if ParoiActive == 2
-    "Surface de la paroi subdivisée en nD parois actives avec circulation d'eau à l'intérieur"
+    "Floor surface divided into nD active floors with water circulation inside"
     annotation (Placement(transformation(extent={{-12,-12},{12,12}})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Components.HomogeneousNLayersWall plancherClassique(
@@ -147,20 +143,19 @@ public
     mat=caracParoi.mat) if ParoiActive == 1
     annotation (Placement(transformation(extent={{-14,32},{12,54}})));
   Modelica.Blocks.Interfaces.RealInput EntreeEau[2] if ParoiActive==2
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{-120,12},{-80,52}}),
         iconTransformation(extent={{10,-10},{-10,10}},
         rotation=-90,
         origin={6,-90})));
   Modelica.Blocks.Interfaces.RealOutput SortieEau[2] if ParoiActive==2
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{84,-66},{116,-34}}),
         iconTransformation(extent={{-10,-10},{10,10}},
         rotation=0,
         origin={90,-70})));
   Modelica.Blocks.Interfaces.RealInput PelecPRE if ParoiActive==3
-    "Puissance électrique injectée dans le plancher"
-                                                annotation (Placement(
+    "Electric power injected into the floor"    annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
         rotation=270,
@@ -170,7 +165,7 @@ public
         origin={-8,-90})));
 protected
   BaseClasses.HeatTransfer.Interfaces.HeatPort_a NoeudTsolPlanch
-    "Température entre sol et plancher"
+    "Temperature between ground and floor"
     annotation (Placement(transformation(extent={{-25,-7},{-28,-10}})));
 public
   BuildSysPro.Systems.HVAC.Emission.RadiantFloor.RadiantHeatingFloor
@@ -192,11 +187,11 @@ public
 equation
 
 if ParoiActive==1 then
-  //connection des tranches pour le cas d'une paroi classique
+  //connection of slices in the case of a conventional floor
   connect(plancherClassique.port_a, NoeudTsolPlanch);
   connect(plancherClassique.port_b, Ts_int);
 elseif ParoiActive==2 then
-//connection des nD tranches pour le cas d'une paroi chauffante à eau
+  //connection of the nD slices in the case of a water heating floor
   for i in 1:nD loop
     connect(PlancherActifEau[i].Ts_b, Ts_int);
     connect(PlancherActifEau[i].Ts_a, NoeudTsolPlanch);
@@ -208,7 +203,7 @@ elseif ParoiActive==2 then
   connect(PlancherActifEau[nD].Sortie,SortieEau);
 
 else // ParoiActive==3
-  //connection des tranches pour le cas d'une paroi chauffante électrique
+  //connection of slices in the case of an electric heating floor
 end if;
 
   if not SurEquivalentTerre then
@@ -258,20 +253,20 @@ end if;
 
   annotation (
 Documentation(info="<html>
-<p><i><b>Modèle de plancher sur terre plein avec le sol modélisé comme purement conductif et l'absorption du flux CLO interne</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Modèle de paroi interne sur terre plein avec une condition aux limites en température (la température de sol) sur la face inférieure. La modélisation tient compte uniquement de la conduction 1D au sein du plancher et du sol. Sur la face supérieure, la convection ainsi que les échanges grandes longueurs d'ondes sont modélisés par un coefficient d'échange surfacique global <i>hs.</i> Le paramètre optionnel <i>radInterne </i>permet de tenir compte des flux courtes longueurs d'ondes.</p>
-<p>Le paramètre <i>SurEquiValentTerre </i>permet de prendre en compte une couche de terre d'une épaisseur,  d'un maillage et d'un type (argile/glaise ou sable/gravier) définis dans l'onglet <i>Paramètres du sol</i>. Dans le cas où ce paramètre est à la valeur <i>false </i>la matière constituante du sol doit être considérée dans le paramètre <i>CaracParoi.</i></p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Mutualisation des 2 modèles de paroi sur terre plein de la précédente version de BuildSysPro.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Renseigner les paramètres concernant le type de modèles, prise en compte du flux solaire courtes longueurs d'ondes et la prise en compte d'une couche d'un équivalent terre sous le plancher.</p>
-<p>Renseigner les paramètres de la dalle/plancher notamment la surface, le coefficient d'échange surfacique ainsi que les caractéristiques des matériaux utilisés. Si SurEquivalentTerre=true a été sélectionné, renseigner dans l'onglet <i>Paramètres du sol </i>les informations sur le type de sol, l'épaisseur de cette couche et sa discrétisation.</p>
-<p>Renseigner les paramètres relatif à l'intialisation du modèle.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Gilles Plessis 06/2012</p>
+<p><b>Model of a slab-on-grade floor, the ground is modelled as purely conductive and considers solar fluxes transmitted through windows</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Inner floor on a slab-on-grade floor model with a boundary condition on underside temperature (ground temperature). Modelling considers only the 1D conduction within the floor and the ground. On the upper side, convection and long wavelengths exchanges are modelled by a global surface exchange coefficient <code>hs</code>. The optional parameter <code>RadInterne</code> allows to take into account short wavelengths flows.</p>
+<p>The parameter <code>SurEquiValentTerre</code> allows to take into account a ground layer whose thickness, mesh and type (clay/silt or sand/gravel) are defined in the <i>Ground parameters</i> section. In case this parameter is False the ground constituent material must be considered in the <code>CaracParoi</code> parameter.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Complete the parameters regarding the type of models, inclusion of short wavelengths solar flux as well as a layer of a ground equivalent under the floor.</p>
+<p>Complete the parameters of the slab / floor especially on the surface, the surface exchange coefficient and the characteristics of materials used. If <code>SurEquivalentTerre</code> = True is selected, fill in the <i>Groud Parameters</i> section information on the thickness of this layer and its discretization.</p>
+<p>Complete the parameters for initialisation.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Gilles Plessis 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
@@ -282,7 +277,7 @@ Author : Gilles PLESSIS, EDF (2012)<br>
 <p>Aurélie Kaemmerlen 02/2011 : </p>
 <ul>
 <li>Ajout du choix de considérer ou non les flux CLO sur la face interne via le booléen RadInterne </li>
-<li>Ajout d'une liste déroulante pour le choix des matériaux via l'annotation(__Dymola_choicesAllMatching=true)</li>
+<li>Ajout d'une liste déroulante pour le choix des matériaux via l'annotation(choicesAllMatching=true)</li>
 </ul>
 <p>Vincent Magnaudeix 03/2012 : Ajout d'un noeud de température pour une connection à une température de sol variable</p>
 <p>Aurélie Kaemmerlen 05/2011 : Modification du nom du connecteur CLOabs changé en FluxAbsInt</p>

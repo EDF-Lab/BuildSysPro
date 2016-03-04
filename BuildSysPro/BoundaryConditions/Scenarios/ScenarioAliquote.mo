@@ -192,7 +192,7 @@ equation
 <p><u><b>Instruction for use</b></u></p>
 <p>In the folder Resources/Donnees/Scenarios, it is for example possible to use Scenarios_horaires_occultation.txt for fileNameTable (time scenario) and Scenario_journalier_occultation.txt for fileNameScenario (daily scenario) in order to see the formalism required for text files.</p>
 <p>Scenarios_horaires_occultation.txt defines 15 hourly scenarios which are different over 24 hours and Scenario_journalier_occultation.txt maches each day of the year with one of the 15 different hourly scenarios contained in Scenarios_horaires_occultation.txt.</p>
-<p><u><b>Known limits / Precautions for use</b></u></p>
+<p><u><b>Known limits / Use precautions</b></u></p>
 <p>None</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Hassan Bouia 03/2014</p>  

@@ -7,7 +7,7 @@ parameter Modelica.SIunits.Length[n] e=0.2*fill(1,n)
     "Thickness of layers (ext to int)";
   parameter BuildSysPro.Utilities.Records.GenericSolid mat[n]
     "Materials of the wall - from outdoor to indoor"
-    annotation (__Dymola_choicesAllMatching=true);
+    annotation (choicesAllMatching=true);
  parameter Integer[n] positionIsolant=zeros(n)
     "Vector indicating the position of the insulating layers";
 

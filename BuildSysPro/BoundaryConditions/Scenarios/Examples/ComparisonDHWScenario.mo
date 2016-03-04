@@ -27,7 +27,7 @@ extends Modelica.Icons.Example;
 <p>None</p>
 <p><u><b>Instruction for use</b></u></p>
 <p>Simulate then visualize on the same graph the DHW profiles. Do the same for consumptions on another graph.</p>
-<p><u><b>Known limits / Precautions for use</b></u></p>
+<p><u><b>Known limits / Use precautions</b></u></p>
 <p>None</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis 11/2012</p>

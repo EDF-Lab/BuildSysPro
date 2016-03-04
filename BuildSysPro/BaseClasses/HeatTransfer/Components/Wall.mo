@@ -5,7 +5,7 @@ model Wall
   parameter Integer nc=2 "Nombre de matériaux";
   parameter BuildSysPro.Utilities.Records.GenericSolid matc[nc]
     "Matériaux constitutifs de la paroi de l'extérieur vers l'intérieur"
-    annotation (__Dymola_choicesAllMatching=true);
+    annotation (choicesAllMatching=true);
   parameter Integer mc[nc]=3*fill(1, nc) "Nombre de couches par matériau";
   parameter Modelica.SIunits.Length[nc] ec=0.2*fill(1, nc)
     "Epaisseur des couches (ext vers int)";

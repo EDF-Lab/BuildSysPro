@@ -1,15 +1,14 @@
 ﻿within BuildSysPro.BoundaryConditions.Scenarios;
 block ScenarioDHW
 
-  parameter Integer ChoixScenario=3
-    "Scénarios AICVF, M324 or Personal scenario"                                                                      annotation(choices(
-choice=1 "AICVF", choice=2 "M324", choice=3 "Personal scenario"));
+  parameter Integer ChoixScenario=3 "Scenario choice"                                      annotation(choices(
+choice=1 "AICVF", choice=2 "M324", choice=3 "User-defined"));
 
-  parameter String tableName1="data1" annotation(Dialog(enable= ChoixScenario==3,group="To fill in for a scenario Perso"));
-  parameter String fileName1="File path 2" annotation(Dialog(enable= ChoixScenario==3,group="To fill in for a scenario Perso",
+  parameter String tableName1="data1" annotation(Dialog(enable= ChoixScenario==3,group="To fill in for a user-defined scenario"));
+  parameter String fileName1="File path 2" annotation(Dialog(enable= ChoixScenario==3,group="To fill in for a user-defined scenario",
   __Dymola_loadSelector(filter="Text files (*.txt);;Text files (*.prn);;Matlab files (*.mat)",caption="Opening file2")));
-  parameter String tableName2="data2" annotation(Dialog(enable= ChoixScenario==3,group="To fill in for a scenario Perso"));
-  parameter String fileName2="File path 2" annotation(Dialog(enable= ChoixScenario==3,group="To fill in for a scenario Perso",
+  parameter String tableName2="data2" annotation(Dialog(enable= ChoixScenario==3,group="To fill in for a user-defined scenario"));
+  parameter String fileName2="File path 2" annotation(Dialog(enable= ChoixScenario==3,group="To fill in for a user-defined scenario",
     __Dymola_loadSelector(filter="Text files (*.txt);;Text files (*.prn);;Matlab files (*.mat)",caption="Opening file2")));
 
   parameter Real ConsoAn=32000 "Total annual consumption in L";
@@ -92,27 +91,26 @@ equation
           textString="y")}),
                 Placement(transformation(extent={{98,-10},{118,10}})),
     Documentation(info="<html>
-
+<p><i><b>Domestic hot water scenario reader</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>None</p>
+<p>none</p>
 <p><u><b>Bibliography</b></u></p>
-<p>None</p>
+<p>AICVF scenario for domestic hot water.</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>2 Predefined scenarios can be selected via the drop-down menu (&QUOT;AICVF&QUOT; and &QUOT;M324&QUOT;). If &QUOT;Personal scenario&QUOT; is chosen, then <code>filename1</code>, <code>data1</code>, <code>filename2</code> and <code>data2</code> must be filled.</p>
-<p><code>data1</code> and <code>data2</code> are respectively the name of the data table specified in <code>fileName1</code> with heading &QUOT;<code>double data1(13450,2)</code>&QUOT; and in <code>fileName2</code> with heading &QUOT;<code>double data2(13450,2)&QUOT;</code>.</p>
-<p>In this example, 13450 indicates the number of x-coordinates and 2 indicates the number of data y (number of columns - here the time + 1 data).</p>
-<p>See <a href=\"BuildSysPro.BoundaryConditions.Scenarios.StepFunctionMat\">BuildSysPro.BoundaryConditions.Scenarios.StepFunctionMat</a> block instructions for use.</p>
-<p><u><b>Known limits / Precautions for use</span></b></u></p>
-<p>None</p>
+<p>2 predefined scenarios can be selected from the drop-down menu (\"AICVF\" and \"M324\"). If <i>User-defined</i> is chosen, then <b>filename1</b>, <b>data1</b>, <b>filename2</b> and <b>data2</b> must be filled.<b>data1</b> and <b>data2</b> are respectively the name of the data table specified in fileName1 with heading \"double data1(13450,2)\" and in fileName2 with heading \"double data2(13450,2)\" . In this example, 13450 indicates the number of X-coordinates and 2 indicates the number of Y-data (number of columns = the time + 1 data).</p>
+<p>See <a href=\"modelica://BuildSysPro.BoundaryConditions.Scenarios.StepFunctionMat\"><code>StepFunctionMat</code></a> documentation</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
+Copyright © EDF 2009 - 2016<br>
 BuildSysPro version 2015.12<br>
 Author : Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
-</html>",                                                                    revisions="<html>
+</html>
+",                                                                           revisions="<html>
 <p>Aurélie Kaemmerlen 10/2011 - Paramétrage des choix des scénarios AICVF, M324 et scénarios personnels</p>
 <p>Aurélie Kaemmerlen 06/2012 :</p>
 <p><ul>

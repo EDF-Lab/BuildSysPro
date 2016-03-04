@@ -1,54 +1,51 @@
 ﻿within BuildSysPro.Systems.HVAC.Production.HeatPump.FixedSpeed;
 model HPHeatingAir2Water
-  "PAC air/eau en mode chauffage fonctionnant en tout-ou-rien"
+  "Air/water HP with heating mode operating in all-or-none"
 
   parameter Integer Choix=1
-    annotation(Dialog(group="Choix de la méthode de paramétrisation"), choices(
-                choice=1
-        "Par défaut : un point de fonctionnement à 7°C/35°C",
-                choice=2 "Expert : 3 points de fonctionnement"));
+    annotation(Dialog(group="Choice of parameterization method"), choices(
+                choice=1 "Default: an operating point of 7°C/35°C",
+                choice=2 "Expert: 3 operating points"));
 
-// Parametrisation d'après modèle PAC par défaut : Choix 1
+// Parameterization based on the HP default template : Choice 1
   parameter Modelica.SIunits.Power Qnom=6490
-    "Puissance calorifique nominale dans les conditions de températures de Enom"
-    annotation (Dialog(enable=(Choix==1), group="Paramétrisation choix 1"));
+    "Nominal heating power in Enom temperature conditions"
+    annotation (Dialog(enable=(Choix==1), group="Parameterization choice 1"));
   parameter Real COPnom=4.3
-    "Coefficient de performance nominal dans les conditions de températures de Enom"
+    "Nominal coefficient of performance in Enom temperature conditions"
     annotation (Dialog(enable=(Choix==1), group="Paramétrisation choix 1"));
 
-// Parametrisation experte : Choix 2
+// Expert parameterization : Choice 2
   parameter Real Enom[4] = {2,45,1800,4950}
-    "Données nominales constructeur : {Text(°C), TdépartEau(°C), Puissance électrique appelée(W), Puissance fournie(W)}"
-    annotation (Dialog(enable=(Choix==2), group="Paramétrisation choix 2"));
+    "Nominal manufacturer data: {Text(°C), ToutputHP(°C), Electric power consumed (W), Supplied heat (W)}"
+    annotation (Dialog(enable=(Choix==2), group="Parameterization choice 2"));
   parameter Real E1[4] = {-15,55,1980,2480}
-    "Données constructeur : {Text(°C), TdepartEau(°C), Puissance électrique appelée(W), Puissance fournie(W)}"
+    "Manufacturer data: {Text(°C), ToutputHP(°C), Electric power consumed (W), Supplied heat (W)}"
     annotation (Dialog(enable=(Choix==2), group="Paramétrisation choix 2"));
   parameter Real E2[4] = {20,25,1690,7750}
-    "Données constructeur : {Text(°C), TdepartEau(°C), Puissance électrique appelée(W), Puissance fournie(W)}"
+    "Manufacturer data: {Text(°C), ToutputHP(°C), Electric power consumed (W), Supplied heat (W)}"
     annotation (Dialog(enable=(Choix==2), group="Paramétrisation choix 2"));
 
-// Autres paramètres communs aux différents choix
-
+// Other parameters common to the different choices
   parameter Modelica.SIunits.MassFlowRate MegRat=0.1
-    "Débit d'eau nominal côté intérieur"    annotation (Dialog(group="Autres paramètres"));
+    "Nominal water flow inside"    annotation (Dialog(group="Other parameters"));
   parameter Modelica.SIunits.Power QfanextRat=0
-    "Puissance du ventilateur extérieur, si QfanextRat  incluse dans Qa alors choisir 0"
-    annotation (Dialog(group="Autres paramètres"));
+    "Outdoor fan power, if QfanextRat included in Qa then choose 0"
+    annotation (Dialog(group="Other parameters"));
   parameter Real Cdegi=0.9
-    "Coefficient de dégradation du au givrage : 10% du temps de dégivrage en dessous de 2°C"
-    annotation (Dialog(group="Autres paramètres"));
+    "Degradation coefficient due to icing: 10% of the defrosting time below 2°C"
+    annotation (Dialog(group="Other parameters"));
   parameter Modelica.SIunits.Time TauOn=120
-    "Constante de temps de mise en marche [GAR 2002]"
-    annotation (Dialog(group="Autres paramètres"));
+    "Switch-on time constant [GAR 2002]"
+    annotation (Dialog(group="Other parameters"));
   parameter Real alpha=0.01
-    "Pourcentage de puissance de veille (EcoDesign Draft report of Task 4 : 1, 2 ou 3 % d'après travaux de Henderson2000)"
-    annotation (Dialog(group="Autres paramètres"));
-  parameter Modelica.SIunits.Time dtminOn=360
-    "Durée minimum de fonctionnement"
-    annotation (Dialog(group="Autres paramètres"));
+    "Percentage of standby power (Eco Design Draft report of Task 4: 1, 2 or 3% according to Henderson2000 work)"
+    annotation (Dialog(group="Other parameters"));
+  parameter Modelica.SIunits.Time dtminOn=360 "Minimum operating time"
+    annotation (Dialog(group="Other parameters"));
   parameter Modelica.SIunits.Time dtminOff=360
-    "Durée minimum d'arrêt avant redémarrage"
-    annotation (Dialog(group="Autres paramètres"));
+    "Minimum stop time before restarting"
+    annotation (Dialog(group="Other parameters"));
 
   Integer NbCyclePAC(start=0);
   Boolean v(start=false);
@@ -61,18 +58,18 @@ protected
   Real D1;
   Real C2;
   Real C1;
-  Modelica.SIunits.Power QcRat "Puissance calorifique nominale fournie";
+  Modelica.SIunits.Power QcRat "Nominal heating output power";
   Modelica.SIunits.Power QaRatC
-    "Puissance appelée nominale au compresseur en mode chaud";
+    "Nominal compressor power demand in heating mode";
   Modelica.SIunits.Temperature TextRatC
-    "Température nominale de l'air extérieur nominale en mode chaud";
+    "Outdoor air nominal temperature in heating mode";
   Modelica.SIunits.Temperature TintRatC
-    "Température nominale de l'air à la sortie de l'unité intérieur en mode chaud";
-  Modelica.SIunits.Power Qcflssdegi "sans dégivrage";
+    "Nominal temperature of air at the indoor unit output in heating mode";
+  Modelica.SIunits.Power Qcflssdegi "Without defrosting";
   Modelica.SIunits.Power Qcfl
-    "chaleur fournie à pleine charge à température non nominale";
+    "Heating power supplied at full load at no-nominal temperature";
   Modelica.SIunits.Power Qafl
-    "puissance appelée au compresseur à pleine charge à température non nominale";
+    "Nominal compressor power demand at full load at no-nominal temperature";
   Real Dt;
 
   Boolean w;
@@ -83,11 +80,11 @@ protected
   Modelica.SIunits.SpecificHeatCapacity CpLiq=4180;
 
 public
-  Modelica.Blocks.Interfaces.RealOutput Qfour "Heat supply (W)"
+  Modelica.Blocks.Interfaces.RealOutput Qfour "Supplied heating power (W)"
     annotation (Placement(transformation(extent={{60,-26},{94,8}}),
         iconTransformation(extent={{90,20},{110,40}})));
 
-  Modelica.Blocks.Interfaces.RealInput Text "Température extérieure (K)"
+  Modelica.Blocks.Interfaces.RealInput Text "Outdoor temperature (K)"
     annotation (Placement(transformation(extent={{-120,40},{-80,80}}),
         iconTransformation(extent={{-100,30},{-80,50}})));
   Modelica.Blocks.Interfaces.RealOutput Qelec "Consumed electric power (W)"
@@ -97,7 +94,7 @@ public
         origin={100,60})));
 
   Modelica.Blocks.Interfaces.BooleanInput u(start=false)
-    "Valeur de la bande proportionnelle sur la température de consigne"
+    "Value of proportional band on setpoint temperature"
                                             annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
@@ -116,16 +113,16 @@ public
         rotation=270,
         origin={-70,90})));
   Modelica.Blocks.Interfaces.RealInput Entree[2]
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing 1- the input fluid temperarture (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-120,-70},{-80,-30}}),
         iconTransformation(extent={{-100,-50},{-80,-30}})));
   Modelica.Blocks.Interfaces.RealOutput Sortie[2]
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing 1- the output fluid temperarture (K), 2- the output fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{80,-70},{120,-30}}),
         iconTransformation(extent={{92,-50},{112,-30}})));
 
 equation
-// Performances de la machine ssuivant la méthode de paramétrisation choisi par l'utilisateur
+// Machine performance according to the parameterization method selected by the user
   if Choix==1 then
     TextRatC = 7+273.15;
     TintRatC = 35+273.15;
@@ -156,12 +153,12 @@ equation
       Qcfl = Cdegi*Qcflssdegi;
     end if;
 
-// calculate non-dimensionnal temperature difference
+// Calculate non-dimensionnal temperature difference
     Dt = Text/Entree[1] - TextRatC/TintRatC;
 // Calculate consumed energy rates at full load for no-rating conditions
     Qafl = Qcflssdegi*(QaRatC/QcRat)*(1 + C1*Dt + C2*Dt*Dt);
 
-// Two minimum time periods protect the machin
+// Two minimum time periods protect the machine
      when pre(v) then
        tOn=time;
      end when;
@@ -176,13 +173,12 @@ equation
     v = ((u or dtOn<=dtminOn) and dtOff>=dtminOff);
 
 // Dynamic simulation
-    //Concernant la puissance électrique absorbée, les auteurs s'accordent à dire qu'il n'y a pas
-    //de constante de temps sur Pabs et que sa valeur en régime dynamique est égale à sa valeur en
-    //régime permanent [Goldsmith 80], [Henderson 96], [O'Neal 91]. Cette hypothèse a été
-    //confirmée par de nombreuses expérimentations [Rasmussen 87], [Miller 85] et [Garde 97a]. d'après [Garde2001]
+    //About consumed electric power, the athors agree that there is no time constant
+    //on consumed power, and that its value is the same in dynamic and steady states [Goldsmith 80], [Henderson 96], [O'Neal 91].
+    //This hypothesis was confirmed by different experimentations [Rasmussen 87], [Miller 85] and [Garde 97a]. from [Garde2001]
 if SaisonChauffe then
     Qelec=if v then Qafl+QfanextRat else alpha*QaRatC;
-    //La puissance fournie est déterminée par une dynamique à une constante de temps.
+    //The power supplied is determined by a dynamic with one time constant.
     Qfour = if v then Qcfl*(1-exp(-dtOn/TauOn)) else 0;
     Sortie[2] = if v then MegRat else 1E-10;
     Sortie[1] = if v then Entree[1]+Qfour/(MegRat*CpLiq) else Entree[1];
@@ -209,8 +205,8 @@ end if;
                                      Text(
           extent={{-80,-60},{80,-90}},
           lineColor={0,0,255},
-          textString=" PAC Air/Eau
-tout ou rien, variable"),
+          textString="air to water HP
+all-or-none, variable"),
         Text(
           extent={{20,100},{76,84}},
           lineColor={0,0,0},
@@ -276,26 +272,26 @@ tout ou rien, variable"),
           fillColor={85,170,255},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
-<h4>PAC air/eau à vitesse de compresseur fixe - modèle polynomial adapté à un pas du temps variable</h4>
-<h4>Information</h4>
-<p><u><b>Description</b></u></p>
-<p>Il s'agit d'une pompe à chaleur air/eau fonctionnement en tout ou rien (vitesse fixe) pour le mode chaud seul.</p>
-<p><u><b>Modèle</b></u></p>
-<p>Le modèle se veut minimaliste en terme de paramètres a renseigner et se base sur une approche empirique de la détermination de la puissance en régime permanent suivant les conditions de températures intérieure et extérieure. Le régime transitoire est modélisé à l'aide d'une constante de temps pour la puissance fournie. </p>
-<p>La régulation du lancement est déterminée par l'input booléen &QUOT;u&QUOT; : VRAI la PAc doit fonctionner et FALSE doit être à l'arrêt.</p>
-<p>La PAC fonctionne en tout ou rien. Le système de contr&ocirc;le associé lui indique quels sont les phases de marche et d'arrêt. Pour protéger la machine, il est commun que des temps de marche et d'arrêts minimimums soient définis (DtminOn et DtminOff), ils interviennent en régulation internes à la machine. </p>
-<p><u><b>Choix de paramétrage</b></u></p>
-<p>Deux choix de paramétrages sont possibles : </p>
+<p><b>Air/water heat pump with fixed speed compressor - polynomial model adapted to variable time step</b></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This is an air/water heat pump with on/off (all-or-none) operation (fixed speed) for the heating mode only.</p>
+<p>The model is minimalist in terms of parameters to inform and is based on an empirical approach to determining the power in steady state according to indoor and outdoor temperatures conditions. The transitional regime is modelled using a time constant for the power supplied.</p>
+<p>The start regulation is determined by the input Boolean \"u\" : TRUE the HP must be in operation and FALSE the HP must be stopped.</p>
+<p>The HP operates in all or nothing. Start and stop phases are given by the associated control system. To protect the machine, it is common that minimum on and off times are defined (DtminOn and DtminOff), they intervene in internal control of the machine.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Two parameter choices are possible:</p>
 <ol>
-<li>Indication de la puissance nominale et du COP, il est possible de choisir la puissance nomianle et le COP de la PAC (attention un écart trop important de ces valeurs avec celles par défaut pourraient entraîner une modélisation peu fiable d'une machine réelle)</li>
-<li>Indication de 3 points de fonctionnement, l'approche empirique du modèle nécessite 3 points de fonctionnement qui délimiteront la plage de températures du modèle</li>
+<li>Indication of nominal power and COP (warning, a too large a gap of these values with those by default could result in unreliable modelling of a real machine)</li>
+<li>Indication of 3 operating points, the empirical model approach requires three operating points which delimit the model temperature range</li>
 </ol>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Pour toute approche empirique, il faut porter une attention particulière au choix de la plage des températures de fonctionnement.</p>
-<p>Dégradation liées au givrage/dégivrage est donnée de façon assez grossière sans dynamique (dégradation de 10% de la puissance fournie pour des températures extérieures inférieures à 2&deg;C) </p>
-<p>Pas adapté à la vitesse variable</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé d'après PAC air/air avec TIL - Hubert Blervaque- Sila Filfli 02/2013</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>For empirical approach, pay special attention to the choice of operating temperatures range.</p>
+<p>Degradation related to icing/de-icing is rather grossly given without dynamic (10&percnt; degradation of the power supplied for outside temperatures below 2&deg;C).</p>
+<p>Not suitable for variable speed.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model according to air/air HP with TIL - Hubert Blervaque, Sila Filfli 02/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

@@ -1,38 +1,38 @@
 ﻿within BuildSysPro.Systems.Controls;
 model PIDPrescribedSingleMode
-  "Calcul des besoins de chauffage ou de clim (PID avec scénario de température)"
+  "Calculation of heating or air conditioning needs (PID with temperature scenario)"
 
 parameter Boolean saisieTableau=false
-    "= false si on connecte la température de consigne à un RealInput , = true si on saisit la température de consigne dans un tableau"
-    annotation(Dialog(group="Mode de saisie de la consigne"));
+    "= false if the setpoint temperature is connected to a RealInput , = true if the setpoint temperature is defined in a table"
+    annotation(Dialog(group="Setpoint entry mode"));
 parameter Boolean tableauSurFichier=false
-    "= true, si les consignes de température sont indiquées dans un fichier texte"
-    annotation(Dialog(group="Scénario de consigne de température",enable=saisieTableau));
+    "= true, if the setpoint temperatures are indicated in a text file"
+    annotation(Dialog(group="Setpoint temperature scenario",enable=saisieTableau));
 parameter Real tableau[:, :] = [0, 292.15]
-    "Tableau à définir ici si pas dans un fichier texte (première colonne=temps en secondes, deuxième colonne=consigne de température en Kelvin); par défaut consigne à 19°C"
-       annotation(Dialog(group="Scénario de consigne de température", enable = not tableauSurFichier and saisieTableau));
+    "Table to define here if it's not done in a text file (first column = time in seconds, second column = setpoint temperature in Kelvin) - by default set to 19°C"
+       annotation(Dialog(group="Setpoint temperature scenario", enable = not tableauSurFichier and saisieTableau));
 parameter String nomTableau="data"
-    "Nom du tableau indiqué dans le fichier texte"
-       annotation(Dialog(group="Scénario de consigne de température", enable = tableauSurFichier and saisieTableau));
+    "Name of the table specified in the text file"
+       annotation(Dialog(group="Setpoint temperature scenario", enable = tableauSurFichier and saisieTableau));
 parameter String nomFichier=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/Donnees/Scenarios/ConsigneChauffageRT2012_Kelvin.txt")
-    "Emplacement du fichier texte contenant le tableau des températures de consigne"
-       annotation(Dialog(group="Scénario de consigne de température", enable = tableauSurFichier and saisieTableau,
+    "Location of the text file containing the setpoint temperatures table"
+       annotation(Dialog(group="Setpoint temperature scenario", enable = tableauSurFichier and saisieTableau,
                          __Dymola_loadSelector(filter="Text files (*.txt);;Matlab files (*.mat)",
-                         caption="Ouvrir le fichier renseignant le scénario des températures de consigne")));
+                         caption="Open the file containing the setpoint temperatures scenario")));
 parameter Modelica.Blocks.Types.Smoothness smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments
-    "Type d'interpolation des données dans le tableau"
-  annotation(Dialog(group="Scénario de consigne de température",enable=saisieTableau));
+    "Type of data interpolation in the table"
+  annotation(Dialog(group="Setpoint temperature scenario",enable=saisieTableau));
   parameter Modelica.Blocks.Types.Extrapolation extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint
-    "Extrapolation de la température de consigne en dehors du domaine de définition du tableau"
-  annotation(Dialog(group="Scénario de consigne de température",enable=saisieTableau));
+    "Setpoint temperature extrapolation outside the domain of definition of the table"
+  annotation(Dialog(group="Setpoint temperature scenario",enable=saisieTableau));
 
 parameter Real PuissanceNom=1000
-    "puissance du convecteur ou de la clim (toujours positif !)";
-parameter Integer chaud_froid=0 "0 - chauffage, 1 - refroidissement"
-    annotation (dialog(
+    "Power of heating or cooling system (always positive)";
+parameter Integer chaud_froid=0 "0 - heating, 1 - cooling"
+    annotation (Dialog(
       compact=true), choices(
-      choice=0 "Chauffage",
-      choice=1 "Refroidissement",
+      choice=0 "Heating",
+      choice=1 "Cooling",
       radioButtons=true));
   Modelica.Blocks.Continuous.LimPID PID(
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
@@ -76,20 +76,20 @@ parameter Integer chaud_froid=0 "0 - chauffage, 1 - refroidissement"
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={12,-46})));
-  Modelica.Blocks.Interfaces.RealOutput Pth "puissance thermique appelée"
+  Modelica.Blocks.Interfaces.RealOutput Pth "Thermal power demand"
                                           annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={-6,-58}),  iconTransformation(extent={{80,10},{100,30}},
           rotation=0)));
-  Modelica.Blocks.Interfaces.RealOutput kWh_th "kWh thermiques cumulés"
+  Modelica.Blocks.Interfaces.RealOutput kWh_th "Thermal kWh cumulated"
                                            annotation (Placement(transformation(
         extent={{-10,-11},{10,11}},
         rotation=-90,
         origin={12,-93}), iconTransformation(extent={{80,-31},{100,-9}},
           rotation=0)));
   Modelica.Blocks.Interfaces.RealInput Tcons if not saisieTableau
-    "température de consigne [K]"
+    "Setpoint temperature [K]"
     annotation (Placement(transformation(
         extent={{20,20},{-20,-20}},
         rotation=-90,
@@ -175,29 +175,27 @@ equation
         Text(
           extent={{-52,184},{70,62}},
           lineColor={0,0,255},
-          textString="Chauffage ou
-refroidissement"),
+          textString="Heating or cooling"),
         Line(points={{60,20},{80,20}},color={0,0,255}),
         Line(points={{60,-20},{80,-20}},
                                       color={0,0,255}),
         Line(points={{60,-20},{60,20}},
                                       color={0,0,255})}),
     Documentation(info="<html>
-<p><i><b>Convecteur ou climatiseur à un noeud d'air en fonction d'un scénario de température </b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Ce modèle suppose une régulation PID pour un apport de calories (chauffage) ou de frigories (refroidissement). Les consignes de température sont stockées dans un fichier texte de scénario.</p>
-<p><br><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Le fichier texte ou le tableau de températures de consigne doit contenir dans la première colonne, le temps en secondes, et dans la deuxième colonne, la température de consigne en <u>Kelvin</u></p>
-<p>Un exemple de scénario de température de consigne se trouve dans BuildSysPro/Resources/Donnees/Scenarios/ConsigneChauffageRT2012_Kelvin.txt</p>
-<p>Deux cas d'utilisation :</p>
-<p>- fonctionnement idéal : la puissance nominale doit être largement sur-dimensionnée pour pouvoir calculer les <u>besoins</u> en refroidissement ou en chauffage, sinon rien ne garantit que la puissance installée suffise à atteindre les consignes de température.</p>
-<p>- fonctionnement réel : la puissance nominale est la puissance de dimensionnement, ce qui permet de voir si le dimensionnement permet de satisfaire les températures de consigne.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p><b>Attention ! </b>Les températures de consigne dans le fichier texte, dans le tableau renseigné ou connectées au port Tcons suivant les cas, doivent être en degrés Kelvin</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 10/2013</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model assumes a PID control for intake of calories (heating) or frigories (cooling). The temperature setpoints are stored in a scenario text file.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>The text file or the setpoint temperatures table should contain in the first column the time in seconds, and in the second column the setpoint temperature in Kelvin.</p>
+<p>An example of a setpoint temperature scenario is available : <a href=\"modelica://BuildSysPro/Resources/Donnees/Scenarios/ConsigneChauffageRT2012_Kelvin.txt\">ConsigneChauffageRT2012_Kelvin.txt</a>.</p>
+<p>Two use cases :</p>
+<ul><li>Ideal operation: the nominal power must be largely oversized to calculate cooling or heating <u>needs</u>, otherwise there is no guarantee that the installed power is sufficient to reach temperature setpoints.</li>
+<li>Real operation: the nominal power is the sizing power, which shows whether the dimensioning can meet the targeted setpoint temperatures.</li></ul>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p><b>Warnings !</b> Setpoint temperatures in the text file, in the table or connected to the port Tcons depending on the cases, must be in Kelvin.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 10/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>

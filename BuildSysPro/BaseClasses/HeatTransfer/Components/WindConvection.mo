@@ -5,11 +5,11 @@ model WindConvection
 
 parameter Boolean VitesseVent=false
     "Prise en compte du vent dans le calcul du coefficient d'échange convectif extérieur"
-  annotation(dialog(compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
+  annotation(Dialog(compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
 
 parameter Boolean GLOext=false
     "Prise en compte du rayonnement infrarouge entre la paroi et le ciel"
-    annotation(dialog(compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
+    annotation(Dialog(compact=true),choices(choice=true "oui", choice=false "non", radioButtons=true));
 
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=25
     "Coefficient d'échange surfacique sur la face extérieure - selon choix GLOext et VitesseVent il peut être purement convectif ou purement radiatif";
@@ -97,9 +97,9 @@ else
   Q_flow = hs_ext*dT*S;
 end if;
 
-annotation(dialog(enable=VitesseVent),
-           dialog(enable=VitesseVent),
-           dialog(enable=VitesseVent),
+annotation(Dialog(enable=VitesseVent),
+           Dialog(enable=VitesseVent),
+           Dialog(enable=VitesseVent),
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}),
                                graphics={Rectangle(
           extent={{-80,60},{80,-60}},
