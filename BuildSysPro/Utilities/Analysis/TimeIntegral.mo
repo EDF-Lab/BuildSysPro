@@ -60,6 +60,6 @@ Author : Aurélie KAEMMERLEN, EDF (2011)<br>
           fillColor={215,215,215},
           fillPattern=FillPattern.Solid,
           textString="%name"),
-        Bitmap(extent={{-96,74},{88,-74}}, fileName=
-              "modelica://BuildSysPro/./Resources/Images/equations/Integrale.png")}));
+        Bitmap(extent={{-58,-74},{46,82}}, fileName=
+              "modelica://BuildSysPro/Resources/Images/equations/Integrale.png")}));
 end TimeIntegral;
