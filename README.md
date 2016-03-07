@@ -2,12 +2,12 @@
 *BuildSysPro open source* is [EDF](http://researchers.edf.com/edf-researchers-209799.html)'s Modelica library for buildings, districts and energy systems modelling. This is BuildSysPro's official repository.
 
 ### Release updates
-Current release is version 2015.12a. It is the first open release of BuildSysPro. The flow-based EDF library for fluid modelling is still work in progress and therefore not published yet.
+Current release is version 2015.12b. A large part of the documentation is now in English (translation in progress). This release  provides an improved compatibility with OpenModelica, and other minor corrections.
+
+BuildSysPro open source 2015 is the first open release of BuildSysPro! The flow-based EDF library for fluid modelling is still work in progress and therefore not published yet.
 EDF is part of [IEA EBC Annex 60](http://www.iea-annex60.org/), and the [Annex 60 library](https://github.com/iea-annex60/modelica-annex60) for fluid modelling will be merged in BuildSysPro shortly.
 
-BuildSysPro open source 2015.12a is compatible with OpenModelica 1.9.3. When working with OpenModelica, specify your initial conditions carefully and use preferably Dassl, Euler or Runge-Kutta solvers. Compatibility for two models is still being assessed: PIDfixed and Radiator_EN442.
-
-Package and model names are in English, while part of the documentation and variable names are in French (translation in progress).
+BuildSysPro open source 2015.12b is compatible with OpenModelica 1.9.3. When working with OpenModelica, specify your initial conditions carefully and use preferably Dassl, Euler or Runge-Kutta solvers.
 
 ### License
 The BuildSysPro open source library is licensed by EDF under the [Modelica License Version 2](https://www.modelica.org/licenses/ModelicaLicense2).
