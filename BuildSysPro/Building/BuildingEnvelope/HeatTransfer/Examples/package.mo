@@ -3,8 +3,6 @@ package Examples "Examples illustrating how to use models to describe heat trans
   extends BuildSysPro.Utilities.Icons.ExamplesPackage;
 
 
-
-
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

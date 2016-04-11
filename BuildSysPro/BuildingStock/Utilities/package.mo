@@ -2,7 +2,6 @@
 package Utilities "Contient les records et fonctions utilisés dans les modèles de bâtiments types"
 
 
-
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

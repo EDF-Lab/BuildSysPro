@@ -667,9 +667,9 @@ end if;
 <p><b>Physics</b></p>
 <p>The coefficient B imposes boundary conditions on the low floor outer face. The entire solar flux transmitted through the glazing is absorbed on floor(s) surface. The ceiling / roof is subjected to SW/LW radiations as well as vertical outer walls.</p>
 <p><u><b>Bibliography</b></u></p>
-<p>Refer to BuildSysPro <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall\"><code>Wall</code></a> and <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window\"><code>Window</code></a> modelling assumptions.</p>
+<p>Refer to BuildSysPro <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall\">walls</a> and <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window\">glazings</a> modelling assumptions.</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>The solar fluxes different ports are connected with a <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.FLUXzone\"><code>FLUXzone</code></a> model. The outdoor temperature port must be connected to a weather block.</p>
+<p>The solar fluxes different ports are connected with a <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.FLUXzone\">FLUXzone</a> model. The outdoor temperature port must be connected to a weather block.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>Depending on the chosen building typology and the type of glazing, Ubat can be chosen anyhow. It must necessarily be framed. An error message occurs when the selected Ubat is out of this range.</p>
 <p><u><b>Validations</b></u></p>

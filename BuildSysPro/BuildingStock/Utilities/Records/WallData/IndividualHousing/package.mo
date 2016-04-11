@@ -2,21 +2,6 @@ within BuildSysPro.BuildingStock.Utilities.Records.WallData;
 package IndividualHousing "Contient les parois types pour la maison individuelle Mozart"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

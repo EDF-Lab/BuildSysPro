@@ -2,9 +2,6 @@
 package Building "Package with building envelope and air flow models"
 
 
-
-
-
 annotation (Documentation(info="<html>
 <p>
 The <code>Building</code> package is intended to describe the building envelope and air change, and provides components in a pure thermal or thermo-fluid approach. It also contains generic models of zones which can represent an entire building or a single room. 

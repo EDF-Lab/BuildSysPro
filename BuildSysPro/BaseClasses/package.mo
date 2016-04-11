@@ -2,9 +2,6 @@ within BuildSysPro;
 package BaseClasses "Base classes of the BuildSysPro library"
 
 
-
-
-
 annotation (Documentation(info="<html>
 
 <p>

@@ -2,12 +2,6 @@
 package CollectiveHousing "Contient les parois types pour les logements collectifs (Gauguin, Matisse, Picasso et LNC)"
 
 
-
-
-
-
-
-
   annotation (Documentation(info="<html>
 <p><i><b>Description des parois des bâtiments types.</b></i></p>
 <p><u><b>Hypothèses et équations</b></u></p>

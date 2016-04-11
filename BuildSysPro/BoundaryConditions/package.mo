@@ -2,9 +2,6 @@
 package BoundaryConditions "Package with boundary conditions models"
 
 
-
-
-
 annotation (Documentation(info="<html>
 
 <p>

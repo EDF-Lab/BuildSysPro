@@ -2,8 +2,6 @@ within BuildSysPro.Systems.Solar.PV.BaseClasses;
 package Thermal "Thermal"
 
 
-
-
   annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

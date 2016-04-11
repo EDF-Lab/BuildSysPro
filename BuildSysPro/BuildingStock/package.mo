@@ -2,11 +2,6 @@ within BuildSysPro;
 package BuildingStock "Package with building assemblies"
 
 
-
-
-
-
-
 annotation (Documentation(info="<html>
 
 <p>

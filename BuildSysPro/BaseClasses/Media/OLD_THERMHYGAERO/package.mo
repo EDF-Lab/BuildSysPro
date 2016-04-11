@@ -2,8 +2,6 @@
 package OLD_THERMHYGAERO "Issu de Thermohygroaéraulique des Modèles de base"
 
 
-
-
   annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

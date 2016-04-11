@@ -2,15 +2,6 @@ within BuildSysPro.Building.BuildingEnvelope;
 package HeatTransfer "Heat Transfert"
 
 
-
-
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

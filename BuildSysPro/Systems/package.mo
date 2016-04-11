@@ -2,12 +2,6 @@ within BuildSysPro;
 package Systems "Package with models for energy systems and control"
 
 
-
-
-
-
-
-
 annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}),
                              graphics), Documentation(info="<html>

@@ -2,7 +2,6 @@
 package WallData "Library of wall data"
 
 
-
   annotation (Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>This package regroups wall data, stored in different <i>records</i> characterized by the wall type and these parameters : </p>

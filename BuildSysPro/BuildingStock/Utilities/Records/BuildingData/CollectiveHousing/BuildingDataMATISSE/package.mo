@@ -2,7 +2,6 @@
 package BuildingDataMATISSE "Paramètres relatifs au logement Matisse selon l'année de construction"
 
 
-
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

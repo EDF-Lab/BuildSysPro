@@ -2,13 +2,6 @@ within BuildSysPro;
 package Utilities "Package of utility classes"
 
 
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
 
 <p>

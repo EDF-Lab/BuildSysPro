@@ -96,6 +96,6 @@ BuildSysPro version 2015.12<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p>Sila Filfli - 07/2012 : Modification du signe de la chaleur récupérée</p>
+<p>Hubert Blervaque - 07/2012 : Modification du signe de la chaleur récupérée</p>
 </html>"));
 end SolarThermalCollector;

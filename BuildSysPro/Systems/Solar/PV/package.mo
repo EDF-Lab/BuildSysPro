@@ -2,8 +2,6 @@
 package PV "Solaire photovoltaïque"
 
 
-
-
 annotation (Documentation(info="<html>
 <p><i><b>Modèles permettant d'évaluer la production de panneaux photovolta&iuml;ques</b></i></p>
 <p>Informations sur la structure du package :</p>

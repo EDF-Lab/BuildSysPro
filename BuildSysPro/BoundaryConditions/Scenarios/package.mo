@@ -2,21 +2,6 @@
 package Scenarios "Différentes façons de définir un scénario (débit de ventilation, occupation, apports internes, etc.)"
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

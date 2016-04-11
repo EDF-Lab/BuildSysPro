@@ -3,10 +3,6 @@ package UsersGuide "User's Guide"
   extends Modelica.Icons.Information;
 
 
-
-
-
-
 annotation (DocumentationClass=true, Documentation(info="<html>
 <p>
 This package provides an overview of the <code>BuildSysPro</code> library's structure and models, as well as information on the developers and licence.

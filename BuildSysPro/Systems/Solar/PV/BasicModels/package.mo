@@ -2,8 +2,6 @@
 package BasicModels "Basic Models"
 
 
-
-
 annotation (Documentation(info="<html>
 <p><i><b>Modèles simples qui permettent de déterminer le productible et la puissance d'un panneau photovolta&iuml;que à partir de données fournisseur (datasheet)</b></i></p>
   <p><b>-----------------------------------------------------------------------<br>

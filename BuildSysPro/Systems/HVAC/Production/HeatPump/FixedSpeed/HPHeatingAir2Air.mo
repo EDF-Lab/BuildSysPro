@@ -217,6 +217,6 @@ BuildSysPro version 2015.12<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p>Sila Filfli - novembre 2013 : MAJ de la description des paramètres</p>
+<p>Hubert Blervaque - novembre 2013 : MAJ de la description des paramètres</p>
 </html>"));
 end HPHeatingAir2Air;

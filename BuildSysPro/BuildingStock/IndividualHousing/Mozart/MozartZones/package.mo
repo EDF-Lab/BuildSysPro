@@ -2,12 +2,6 @@ within BuildSysPro.BuildingStock.IndividualHousing.Mozart;
 package MozartZones "Mozart Zones"
 
 
-
-
-
-
-
-
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

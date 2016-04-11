@@ -201,8 +201,8 @@ equation
 <li>Variables devenues dimensionnelles</li>
 <li>MAJ de la documentation BuildSysPro</li>
 </ul></p>
-<p><br>Sila Filfli - 07/2012 : correction du signe de la chaleur solaire récupérée et rajout du connecteur donnant la consommation</p>
-<p>Sila Filfli - 09/2012 : correction dv et diametre où le Volume était divisé par erreur par 1000</p>
+<p><br>Hubert Blervaque - 07/2012 : correction du signe de la chaleur solaire récupérée et rajout du connecteur donnant la consommation</p>
+<p>Hubert Blervaque - 09/2012 : correction dv et diametre où le Volume était divisé par erreur par 1000</p>
 </html>",
         info="<html>
 <p>Electric hot water tank allowing a connection with a solar sensor.</p>
