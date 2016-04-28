@@ -1,5 +1,5 @@
 within BuildSysPro.Systems;
-package Solar "Capteurs Solaires (PV et Thermique)"
+package Solar "Package for solar technology (photovoltaïc panel, solar thermal collector...)"
 
 
 annotation (Documentation(info="<html>
