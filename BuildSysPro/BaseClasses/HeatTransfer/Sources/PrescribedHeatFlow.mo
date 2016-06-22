@@ -1,9 +1,8 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Sources;
-model PrescribedHeatFlow "Condition limite en puissance(régulable)"
-  parameter Modelica.SIunits.Temperature T_ref=293.15
-    "Température de référence";
+model PrescribedHeatFlow "Prescribed heat flow boundary condition"
+  parameter Modelica.SIunits.Temperature T_ref=293.15 "Reference temperature";
   parameter Modelica.SIunits.LinearTemperatureCoefficient alpha=0
-    "Coefficient de pondération du flux de chaleur dû au différentiel de température ";
+    "Temperature coefficient of heat flow rate";
 
   Modelica.Blocks.Interfaces.RealInput Q_flow
         annotation (Placement(transformation(
@@ -48,12 +47,21 @@ equation
           fillPattern=FillPattern.Solid),
         Text(extent={{-124,106},{142,46}}, textString="%name")}),
     Documentation(info="<html>
-<p>This model allows a specified amount of heat flow rate to be &QUOT;injected&QUOT; into a thermal system at a given port. The amount of heat is given by the input signal Q_flow into the model. The heat flows into the component to which the component PrescribedHeatFlow is connected, if the input signal is positive. </p>
-<p>If parameter alpha is &GT; 0, the heat flow is mulitplied by (1 + alpha*(port.T - T_ref)) in order to simulate temperature dependent losses (which are given an reference temperature T_ref). </p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model allows a specified amount of heat flow rate to be &QUOT;injected&QUOT; into a thermal system at a given port. The amount of heat is given by the input signal Q_flow into the model. The heat flows into the component to which the component PrescribedHeatFlow is connected, if the input signal is positive.</p>
+<p>If parameter alpha is &GT; 0, the heat flow is mulitplied by (1 + alpha*(port.T - T_ref)) in order to simulate temperature dependent losses (which are given an reference temperature T_ref).</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow\">PrescribedHeatFlow</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"),

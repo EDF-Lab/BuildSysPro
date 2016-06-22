@@ -1,7 +1,7 @@
-﻿within BuildSysPro.Utilities.Icons;
+within BuildSysPro.Utilities.Icons;
 record HorizontalInternalWall =
     BuildSysPro.Utilities.Records.GenericWall
-  "Icône pour le record paroi type décrivant une paroi interne horizontale"
+  "Icon used for horizontal internal wall records"
     annotation (Diagram(graphics), Icon(graphics={
       Rectangle(
         extent={{-60,100},{60,-100}},
@@ -28,7 +28,7 @@ record HorizontalInternalWall =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

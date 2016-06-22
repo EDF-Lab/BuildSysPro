@@ -1,6 +1,5 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
-model ThermalResistance
-  "Lumped thermal element transporting heat without storing it"
+model ThermalResistance "Thermal resistance"
   extends BaseClasses.HeatTransfer.Interfaces.Element1D;
   parameter Modelica.SIunits.ThermalResistance R
     "Constant thermal resistance of material";
@@ -21,11 +20,20 @@ equation
             -100},{100,100}}),
                              graphics),
     Documentation(info="<html>
-<p>Modèle simple de résistance thermique constante entre deux points de température, reprenant in extenso le modèle natif ThermalConductor EAB 26/03/2010 </p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Simple model of a constant thermal resistance beetween two temperature points.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - EAB 03/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.ThermalResistor\">ThermalResistor</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>

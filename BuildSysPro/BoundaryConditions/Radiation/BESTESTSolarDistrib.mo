@@ -96,6 +96,7 @@ for i in 1:nf loop
 end for;
 
   annotation (Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
 <p>Function computing solar fractions (<b>SF</b>) following the methodology described in appendix of the BESTEST procedure.</p>
 <p>The computation is based on walls and windows short-wave absorptance and transmittance, on surface areas and form factors between each wall and the floor, on which the first reflection is considered. The approach is as follows:</p>
 <ol>
@@ -105,12 +106,18 @@ end for;
 <li>The rest is distributed in proportion to what has been distributed at the previous step.</li>
 </ol>
 <p>Note: This model takes into account what is lost through the windows and sent out of the zone.</a></p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
 <p>Validated model (BESTEST) - Aurélie Kaemmerlen 09/2010</p>
-
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 

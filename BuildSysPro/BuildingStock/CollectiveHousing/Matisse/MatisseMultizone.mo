@@ -2,75 +2,74 @@
 model MatisseMultizone
   import BuildSysPro;
 
-  // Choix de la RT
+  // Choice of RT (French building regulation)
   replaceable parameter
     BuildSysPro.BuildingStock.Utilities.Records.BuildingData.CollectiveHousing.BuildingDataMATISSE.BuildingType
-    paraMaisonRT "Réglementation thermique utilisée" annotation (
-      choicesAllMatching=true, Dialog(group="Choix de la RT"));
+    paraMaisonRT "French building regulation to use" annotation (
+      choicesAllMatching=true, Dialog(group="Choice of RT"));
 
-  // Orientation de la maison
+  // Orientation of the apartment
 parameter Real beta=0
-    "Orientation de la maison (ex. beta=90 le mur Nord est en réalité à l'Est, le mur Est au Sud etc.)";
+    "Correction of azimuth for vertical walls such as azimuth=beta+azimuth, {beta=0 : N=180,S=0,E=-90,O=90}";
 parameter Integer EmplacementAppartement=5
-    "de 1 à 9, désigne la position de l'appartement : 1 à 3 dernier étage - 4 à 6 étage intermed - 7 à 9 : rez-de-chaussée (d'Ouest à Est)";
+    "From 1 to 9, define the position of the apartment : 1 to 3 last floor - 4 à 6 intermediate floor - 7 à 9 : ground floor (from west to east)";
 
-  // Flux thermiques
+  // Thermal flows
 parameter Boolean GLOEXT=false
-    "Prise en compte de rayonnement GLO vers l'environnement et le ciel"                            annotation(Dialog(tab="Flux thermiques"));
+    "Integration of LW radiation (infrared) toward the environment and the sky"                         annotation(Dialog(tab="Thermal flows"));
 parameter Boolean CLOintPlancher=true
-    "True : tout le flux est absorbé par le plancher; False : le flux est absorbé par toutes les parois au prorata des surfaces"
-                                                                                                        annotation(Dialog(tab="Flux thermiques"));
+    "True : solar fluxes are absorbed by the floor; False : solar fluxes are absorbed by all the walls and partition walls in proportion of surfaces"
+                                                                                                        annotation(Dialog(tab="Thermal flows"));
 parameter Boolean QVin=false
-    "True : commande du débit de renouvellement d'air ; False : débit constant"
-                                                                                                annotation(Dialog(tab="Flux thermiques"));
+    "True : controlled air change rate; False : constant air change rate"                       annotation(Dialog(tab="Thermal flows"));
 
-  // Parois
-parameter Modelica.SIunits.Temperature Tp=293.15
-    "Température initiale des parois"
-    annotation(Dialog(tab="Parois"));
+  // Walls
+parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
+    annotation(Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    "Initialisation en régime stationnaire dans les parois"
-    annotation (Dialog(tab="Parois"));
+    "Type of initialization for walls"
+    annotation (Dialog(tab="Walls"));
 
-  // Fenêtres
-parameter Boolean useVolet=false "true si présence d'un volet, false sinon" annotation(Dialog(tab="Fenêtres"));
-parameter Boolean useOuverture=false
-    "true si l'ouverture de fenêtre peut être commandée, false sinon" annotation(Dialog(tab="Fenêtres"));
+  // Windows
+parameter Boolean useVolet=false "True if shutter, false if not" annotation(Dialog(tab="Windows"));
+parameter Boolean useOuverture=false "True if controlled opening, false if not"
+                                               annotation(Dialog(tab="Windows"));
 parameter Boolean useReduction=false
-    "Prise en compte ou non des facteurs de reduction"
-    annotation (Dialog(tab="Fenêtres"));
-parameter Integer TypeFenetrePF=1
-    "Choix du type de fenetre ou porte-fenetre (PF)"
-    annotation (Dialog(tab="Fenêtres",enable=useReduction,group="Paramètres"),
-    choices( choice= 1 "Je ne sais pas - pas de menuiserie",
-             choice= 2 "Battant Fenêtre Bois",
-             choice= 3 "Battant Fenêtre Métal",
-             choice= 4 "Battant PF avec soubassement Bois",
-             choice= 5 "Battant PF sans soubassement Bois",
-             choice= 6 "Battant PF sans soubassement Métal",
-             choice= 7 "Coulissant Fenêtre Bois",
-             choice= 8 "Coulissant Fenêtre Métal",
-             choice= 9 "Coulissant PF avec soubassement Bois",
-             choice= 10 "Coulissant PF sans soubassement Bois",
-             choice= 11 "Coulissant PF sans soubassement Métal"));
-parameter Real voilage=0.95 "Voilage : = 0.95 si oui et = 1 sinon"
-    annotation (Dialog(tab="Fenêtres",enable=useReduction,group="Paramètres"));
+    "True if solar reduction factors (masking, frame), false if not"
+    annotation (Dialog(tab="Windows"));
+parameter Integer TypeFenetrePF=1 "Choice of type of window or French window"
+    annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"),
+    choices( choice= 1 "I do not know - no frame",
+             choice= 2 "Wood window sashes",
+             choice= 3 "Metal window sashes",
+             choice= 4 "French window sashes with wood bedrock",
+             choice= 5 "French window sashes without wood bedrock",
+             choice= 6 "French window sashes without metal bedrock",
+             choice= 7 "Wood sliding window",
+             choice= 8 "Metal sliding window",
+             choice= 9 "Sliding French window with wood bedrock",
+             choice= 10 "Sliding French window without wood bedrock",
+             choice= 11 "Sliding French window without metal bedrock"));
+parameter Real voilage=0.95
+    "Presence of net curtains : = 0.95 if yes and = 1 if not"
+    annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
 parameter Real position=0.90
-    "Position du vitrage : = 0.9 si interieure et = 1 si exterieure"
-    annotation (Dialog(tab="Fenêtres",enable=useReduction,group="Paramètres"));
-parameter Real rideaux=0.85 "Presence de rideaux : = 0.85 si oui et = 1 sinon"
-    annotation (Dialog(tab="Fenêtres",enable=useReduction,group="Paramètres"));
+    "Glazing position: = 0.9 if inner and = 1 if outer"
+    annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
+parameter Real rideaux=0.85
+    "Presence of curtains: = 0.85 if yes and = 1 if not"
+    annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
 parameter Real ombrages=0.85
-    "Ombrage d'obstacles (vegetation, voisinage) : = 0.85 si oui et = 1 sinon"
-    annotation (Dialog(tab="Fenêtres",enable=useReduction,group="Paramètres"));
+    "Obstacles shading (vegetation, neighborhood): = 0.85 if yes et = 1 if not"
+    annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
 parameter Real r1=paraMaisonRT.transmissionMenuiserieFenetres
-    "Coef. réducteur pour le direct si useReduction = false"
-    annotation (Dialog(tab="Fenêtres",enable=not useReduction,group="Coefficients de réduction si useReduction = false"));
+    "Reduction factor for direct radiation if useReduction = false"
+    annotation (Dialog(tab="Windows",enable=not useReduction,group="Reduction factor if useReduction = false"));
 parameter Real r2=paraMaisonRT.transmissionMenuiserieFenetres
-    "Coef. réducteur pour le diffus si useReduction = false"
-    annotation (Dialog(tab="Fenêtres",enable=not useReduction,group="Coefficients de réduction si useReduction = false"));
+    "Reduction factor for diffuse radiation if useReduction = false"
+    annotation (Dialog(tab="Windows",enable=not useReduction,group="Reduction factor if useReduction = false"));
 
- // Paramètres protégés
+ // Protected parameters
 protected
   parameter Boolean EmplacementEst= if EmplacementAppartement==3 or EmplacementAppartement==6 or EmplacementAppartement==9 then true else false;
   parameter Boolean EmplacementOuest= if EmplacementAppartement==1 or EmplacementAppartement==4 or EmplacementAppartement==7 then true else false;
@@ -510,8 +509,7 @@ protected
         TauPonts=paraMaisonRT.TauPonts))
     annotation (Placement(transformation(extent={{40,-28},{66,2}})));
 
-  BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseZones.ZoneBathroom
-                                                                                zoneSDB(
+  BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseZones.ZoneBathroom zoneSDB(
     paraMaisonRT(
       PlancherMitoyen(
         n=paraMaisonRT.PlancherMitoyen.n,
@@ -608,8 +606,7 @@ protected
         TauPonts=paraMaisonRT.TauPonts))
     annotation (Placement(transformation(extent={{34,-74},{68,-34}})));
 
-  BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseZones.ZoneEntrance
-                                                                                zoneEntree(
+  BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseZones.ZoneEntrance zoneEntree(
     paraMaisonRT(
       PlancherMitoyen(
         n=paraMaisonRT.PlancherMitoyen.n,
@@ -706,7 +703,7 @@ protected
         TauPonts=paraMaisonRT.TauPonts))
     annotation (Placement(transformation(extent={{-22,-68},{24,-20}})));
 
-//Parois verticales internes
+// Internal vertical walls
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall
     CloisonChambre1Cuisine(
     ParoiInterne=true,
@@ -888,15 +885,15 @@ protected
         rotation=-90,
         origin={16.75,-35.25})));
 
-//Composants pour prise en compte du rayonnement GLO/CLO
+// Components for LW/SW radiations
 public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tciel if                     GLOEXT==true
     annotation (Placement(transformation(extent={{-100,-20},{-80,0}}),
         iconTransformation(extent={{-120,-40},{-100,-20}})));
 
-//Composants de base
+// Base components
 Modelica.Blocks.Interfaces.RealInput G[10]
-    "DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut, Hauteur"
+    "DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], solar azimuth angle, solar elevation angle"
       annotation (Placement(transformation(extent={{-140,50},{-100,90}}),
         iconTransformation(extent={{-140,80},{-100,120}})));
 protected
@@ -912,25 +909,23 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         iconTransformation(extent={{-140,-100},{-100,-60}})));
 
   Modelica.Blocks.Interfaces.RealInput V[2] if useOuverture
-    "1- vitesse du vent (m/s) 2- direction du vent (provenance 0° - Nord, 90° - Est, 180° - Sud, 270° - Ouest)"
+    "Wind speed (m/s) and  direction (from 0° - North, 90° - East, 180° - South, 270 ° - West)"
     annotation (Placement(transformation(extent={{-140,-60},{-100,-20}}),
         iconTransformation(extent={{-140,28},{-100,68}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Tmit
-    "température des logements mitoyens" annotation (Placement(transformation(
+    "Temperature of adjacent housings" annotation (Placement(transformation(
           extent={{-64,68},{-56,76}}), iconTransformation(extent={{-108,-60},{-100,
             -52}})));
 
   Modelica.Blocks.Interfaces.BooleanInput ouvertureSejour[1] if   useOuverture
-    "ouverture des fenêtres Nord (true = ouvert, false=fermé)"
-                                         annotation (Placement(transformation(
+    "Opening of north windows"           annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={-60,100}), iconTransformation(extent={{-5,-5},{5,5}},
         rotation=-90,
         origin={-65,51})));
   Modelica.Blocks.Interfaces.BooleanInput ouvertureCuisine[1] if  useOuverture
-    "ouverture des fenêtres Nord (true = ouvert, false=fermé)"
-                                   annotation (Placement(transformation(
+    "Opening of north windows"     annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={-40,100}), iconTransformation(
@@ -938,7 +933,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         rotation=-90,
         origin={-27,51})));
   Modelica.Blocks.Interfaces.BooleanInput ouvertureChambre1[1] if useOuverture
-    "ouverture des fenêtres Nord (true = ouvert, false=fermé)"
+    "Opening of north windows"
     annotation (Placement(transformation(extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={-20,100}),
@@ -946,15 +941,14 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         rotation=-90,
         origin={9,51})));
   Modelica.Blocks.Interfaces.BooleanInput ouvertureChambre2[1] if useOuverture
-    "ouverture des fenêtres Nord (true = ouvert, false=fermé)"
-                                  annotation (Placement(transformation(
+    "Opening of north windows"    annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={0,100}), iconTransformation(extent={{5,-5},{-5,5}},
         rotation=90,
         origin={47,51})));
   Modelica.Blocks.Interfaces.RealInput fermetureSejour[1] if useVolet
-    "fermeture des volets Nord (0 - ouvert , 1 - fermé)"
+    "Closing of north shutters"
     annotation (Placement(transformation(extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={-50,100}),
@@ -963,8 +957,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         origin={-45,51})));
   Modelica.Blocks.Interfaces.RealInput fermetureCuisine[1] if
                                                              useVolet
-    "fermeture des volets Nord (0 - ouvert , 1 - fermé)"
-                                annotation (Placement(transformation(
+    "Closing of north shutters"  annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={-30,100}), iconTransformation(
@@ -973,8 +966,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         origin={-17,51})));
   Modelica.Blocks.Interfaces.RealInput fermetureChambre1[1] if
                                                              useVolet
-    "fermeture des volets Nord (0 - ouvert , 1 - fermé)"
-                                annotation (Placement(transformation(
+    "Closing of north shutters"  annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={-10,100}), iconTransformation(
@@ -983,8 +975,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         origin={19,51})));
   Modelica.Blocks.Interfaces.RealInput fermetureChambre2[1] if
                                                              useVolet
-    "fermeture des volets Nord (0 - ouvert , 1 - fermé)"
-                               annotation (Placement(transformation(
+    "Closing of north shutters" annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={10,100}), iconTransformation(extent={{5,-5},{-5,5}},
@@ -1107,7 +1098,7 @@ connect(Tciel, zoneC2_1.Tciel) annotation (Line(
   end if;
 
  connect(fLUXzone.G, G) annotation (Line(
-      points={{-86.9,45.9},{-86.9,70},{-120,70}},
+      points={{-86.3,46.5},{-86.3,70},{-120,70}},
       color={0,0,127},
       smooth=Smooth.None));
   if QVin==true then
@@ -1502,21 +1493,21 @@ graphics={
            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics),
     Documentation(info="<html>
-<p><i><b>Matisse Multizone</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé par comparaison des GV avec Clim 2000 - Amy Lindsay 04/2014</p>
+<p><i><b>Matisse Multizone collective housing</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model by comparison of GV with Clim 2000 - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

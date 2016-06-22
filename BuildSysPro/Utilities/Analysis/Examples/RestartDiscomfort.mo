@@ -114,7 +114,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(scenarioRT.TconsigneChaud, PI1.u_s) annotation (Line(
-      points={{81,85.5},{56,85.5},{56,82},{30,82}},
+      points={{71,93},{56,93},{56,82},{30,82}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(PI1.y, ChauffageEtClim.Q_flow) annotation (Line(
@@ -134,7 +134,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(scenarioRT1.TconsigneChaud, PI2.u_s) annotation (Line(
-      points={{85,-52.5},{58,-52.5},{58,-54},{36,-54}},
+      points={{75,-45},{58,-45},{58,-54},{36,-54}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ChauffageEtClim1.Q_flow, PI2.y) annotation (Line(
@@ -157,12 +157,12 @@ equation
       smooth=Smooth.None));
   connect(scenarioRT1.Presence, mesureInconfortAvecRelance.Presence)
     annotation (Line(
-      points={{85,-37.5},{98,-37.5},{98,-42},{138,-42},{138,-65.4}},
+      points={{75,-30},{98,-30},{98,-42},{138,-42},{138,-65.4}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(scenarioRT.Presence, mesureInconfortSansRelance.Presence)
     annotation (Line(
-      points={{81,100.5},{146,100.5},{146,68.6}},
+      points={{71,108},{146,108},{146,68.6}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(mesureInconfortSansRelance.OutInconfordChaud, inconfortChaud.u1)
@@ -203,22 +203,22 @@ equation
       smooth=Smooth.None));
   connect(scenarioRT1.TconsigneChaud, mesureInconfortAvecRelance.TconsigneChauf)
     annotation (Line(
-      points={{85,-52.5},{64,-52.5},{64,-80.6},{129.4,-80.6}},
+      points={{75,-45},{64,-45},{64,-80.6},{129.4,-80.6}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(scenarioRT1.TconsigneRef, mesureInconfortAvecRelance.TconsigneRef)
     annotation (Line(
-      points={{85,-48.75},{76,-48.75},{76,-67.4},{129.4,-67.4}},
+      points={{75,-41.25},{76,-41.25},{76,-67.4},{129.4,-67.4}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(scenarioRT.TconsigneRef, mesureInconfortSansRelance.TconsigneRef)
     annotation (Line(
-      points={{81,89.25},{68,89.25},{68,66.6},{137.4,66.6}},
+      points={{71,96.75},{68,96.75},{68,66.6},{137.4,66.6}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(mesureInconfortSansRelance.TconsigneChauf, scenarioRT.TconsigneChaud)
     annotation (Line(
-      points={{137.4,53.4},{56,53.4},{56,85.5},{81,85.5}},
+      points={{137.4,53.4},{56,53.4},{56,93},{71,93}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (
@@ -309,7 +309,7 @@ Inconfort")}),
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

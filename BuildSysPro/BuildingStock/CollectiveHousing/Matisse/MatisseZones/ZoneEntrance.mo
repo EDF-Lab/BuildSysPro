@@ -1,47 +1,45 @@
 ﻿within BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseZones;
 model ZoneEntrance
 
-  // Choix de la RT
+  // Choice of RT (French building regulation)
   replaceable parameter
     BuildSysPro.BuildingStock.Utilities.Records.BuildingData.CollectiveHousing.BuildingDataMATISSE.BuildingType
-    paraMaisonRT "Réglementation thermique utilisée" annotation (
-      choicesAllMatching=true, Dialog(group="Choix de la RT"));
+    paraMaisonRT "French building regulation to use" annotation (
+      choicesAllMatching=true, Dialog(group="Choice of RT"));
 
-  // Orientation de la maison
+  // Orientation of the apartment
 parameter Integer EmplacementAppartement=5
-    "de 1 à 9, désigne la position de l'appartement : 1 à 3 dernier étage - 4 à 6 étage intermed - 7 à 9 : rez-de-chaussée (d'Ouest à Est)";
+    "From 1 to 9, define the position of the apartment : 1 to 3 last floor - 4 à 6 intermediate floor - 7 à 9 : ground floor (from west to east)";
 
-  // Flux thermiques
+  // Thermal flows
 parameter Boolean GLOEXT=false
-    "Prise en compte de rayonnement GLO vers l'environnement et le ciel"                            annotation(Dialog(tab="Flux thermiques"));
+    "Integration of LW radiation (infrared) toward the environment and the sky"                         annotation(Dialog(tab="Thermal flows"));
 parameter Boolean QVin=false
-    "True : commande du débit de renouvellement d'air ; False : débit constant"
-                                                                                                annotation(Dialog(tab="Flux thermiques"));
+    "True : controlled air change rate; False : constant air change rate"                       annotation(Dialog(tab="Thermal flows"));
 
-  // Parois
-parameter Modelica.SIunits.Temperature Tp=293.15
-    "Température initiale des parois"
-    annotation(Dialog(tab="Parois"));
+  // Walls
+parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
+    annotation(Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    "Initialisation en régime stationnaire dans les parois"
-    annotation (Dialog(tab="Parois"));
+    "Type of initialization for walls"
+    annotation (Dialog(tab="Walls"));
 
-  // Ponts thermiques
+  // Thermal bridges
   parameter Modelica.SIunits.ThermalConductance G_ponts=
       Utilities.Functions.CalculGThermalBridges(
       ValeursK=paraMaisonRT.ValeursK,
       LongueursPonts=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.LongueursPontsEntree,
       TauPonts=paraMaisonRT.TauPonts)
-    annotation (Dialog(tab="Ponts thermiques"));
+    annotation (Dialog(tab="Thermal bridges"));
 
- // Paramètres protégés
+ // Protected parameters
 protected
   parameter Boolean EmplacementEst= if EmplacementAppartement==3 or EmplacementAppartement==6 or EmplacementAppartement==9 then true else false;
   parameter Boolean EmplacementOuest= if EmplacementAppartement==1 or EmplacementAppartement==4 or EmplacementAppartement==7 then true else false;
   parameter Boolean EmplacementHaut= if EmplacementAppartement<=3 then true else false;
   parameter Boolean EmplacementBas= if EmplacementAppartement>=7 then true else false;
 
-//Coefficients de pondération
+// Weighting coefficients
 protected
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.B_Coefficient TauPlancher(b=
         paraMaisonRT.bPlancher)
@@ -50,7 +48,7 @@ protected
         paraMaisonRT.bLNC)
     annotation (Placement(transformation(extent={{-58,-60},{-38,-40}})));
 
-//Parois horizontales
+// Horizontal walls
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall Plafond(
     ParoiInterne=true,
     Tp=Tp,
@@ -126,7 +124,7 @@ protected
         rotation=90,
         origin={71,-92})));
 
-//Parois verticales extérieures
+// Exterior vertical walls
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall Porte(
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteEntree,
     Tp=Tp,
@@ -145,7 +143,7 @@ protected
     hs_ext=paraMaisonRT.hsIntVert)
     annotation (Placement(transformation(extent={{-7,-57},{7,-42}})));
 
-//Parois verticales internes
+// Internal vertical walls
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall MurSudLNC(
     Tp=Tp,
@@ -166,19 +164,19 @@ protected
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurSudEntree)
     annotation (Placement(transformation(extent={{-7,-38},{7,-24}})));
 
-//Vitrages
+// Glazings
 
-//Ponts thermiques
+// Thermal bridges
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor PontsThermiques(G=G_ponts)
     annotation (Placement(transformation(extent={{-58,-80},{-43,-65}})));
 
-//Composants pour prise en compte du rayonnement GLO/CLO
+// Components for LW/SW radiations
 public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tciel if GLOEXT
      == true and EmplacementHaut annotation (Placement(transformation(extent={{
             -100,0},{-80,20}}), iconTransformation(extent={{20,-100},{40,-80}})));
 
-//Composants de base
+// Base components
 
 public
   BuildSysPro.Building.AirFlow.HeatTransfer.AirNode noeudAir(V=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondEntree
@@ -204,7 +202,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         origin={48,-36})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Tmit
-    "température des logements mitoyens" annotation (Placement(transformation(
+    "Temperature of adjacent housings" annotation (Placement(transformation(
           extent={{-64,88},{-56,96}}), iconTransformation(extent={{52,-94},{60,
             -86}})));
 
@@ -240,8 +238,7 @@ if EmplacementHaut==true then
           points={{6.3,74.9},{40,74.9},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
-else
-      connect(Plafond.T_int, noeudAir.port_a) annotation (Line(
+else  connect(Plafond.T_int, noeudAir.port_a) annotation (Line(
           points={{6.3,91.9},{40,91.9},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
@@ -268,8 +265,7 @@ if EmplacementBas==true then
           points={{-43,-90.2},{28,-90.2},{28,-104},{73.1,-104},{73.1,-98.3}},
           color={191,0,0},
           smooth=Smooth.None));
-else
-      connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
+else  connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
           points={{53.1,-85.7},{53.1,-60},{40,-60},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
@@ -402,21 +398,21 @@ graphics={
            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics),
     Documentation(info="<html>
-<p><i><b>Zone entrée Matisse</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 04/2014</p>
+<p><i><b>Zone entrance Matisse</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -2,19 +2,18 @@
 model SolarThermalCollector
 
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg Azimut=0
-    "Azimut de la surface (Orientation par rapport au sud) - S=0°, E=-90°, O=90°, N=180°"
-                                                                                                        annotation (Dialog(group="Orientation du capteur solaire"));
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"             annotation (Dialog(group="Orientation of the solar collector"));
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg Inclinaison=30
-    "Inclinaison de la surface par rapport à l'horizontale - vers le sol=180°, vers le ciel=0°, verticale=90°"
-                                                                                                        annotation (Dialog(group="Orientation du capteur solaire"));
-parameter Real Albedo=0.2 "Albedo de l'environnement" annotation (Dialog(group="Orientation du capteur solaire"));
-parameter Modelica.SIunits.Area Surface= 1 "Surface du capteur solaire"
-                                                                annotation (Dialog(group="Caractéristiques du capteur solaire"));
+    "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°"
+                                                                                                        annotation (Dialog(group="Orientation of the solar collector"));
+                                                                                                      parameter Real Albedo=0.2
+    "Albedo of the environment"                                                                                                     annotation (Dialog(group="Orientation of the solar collector"));
+parameter Modelica.SIunits.Area Surface= 1 "Surface of the solar collector"
+                                                                annotation (Dialog(group="Characteristics of the solar collector"));
 parameter Real FacteurOptique(min=0, max=1)=0.65
-    "Le facteur optique est généralement compris entre 0,5 et 0,9"                                annotation (Dialog(group="Caractéristiques du capteur solaire"));
+    "Optical factor (generally between 0,5 and 0,9)"                                annotation (Dialog(group="Characteristics of the solar collector"));
 parameter Real CoeffTransmission=4
-    "Le coefficient de transmission du capteur dépend de l'isolation et de la nature de la couverture."
-                                                                                                        annotation (Dialog(group="Caractéristiques du capteur solaire"));
+    "Transmission coefficient, depends on insulation and nature of the coverage."                       annotation (Dialog(group="Characteristics of the solar collector"));
 
 Real Psol;
 Real Pisolation;
@@ -25,7 +24,7 @@ Real Pisolation;
     albedo=Albedo)
     annotation (Placement(transformation(extent={{-18,60},{2,80}})));
   Modelica.Blocks.Interfaces.RealInput MeteoFlux[10]
-    "Résultats : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut, Hauteur}"
+    "Solar data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle , Solar elevation angle}"
                                                 annotation (Placement(
         transformation(extent={{-120,50},{-80,90}}), iconTransformation(extent={{-70,38},
             {-50,58}})));
@@ -88,11 +87,20 @@ equation
           fillPattern=FillPattern.Solid,
           lineColor={0,0,0})}), Diagram(graphics),
     Documentation(info="<html>
-<p>Modèle validé - Hubert Blervaque, Sila Filfli 06/2011</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hubert Blervaque, Sila Filfli 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

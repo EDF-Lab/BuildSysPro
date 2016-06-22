@@ -16,8 +16,7 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=8.29
 parameter Modelica.SIunits.ThermalInsulance R_volet=0.2
     "Additional thermal resistance (shutters closed)"                                                          annotation(Dialog(group="General properties",enable=useVolet==true));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer k=1.43
-    "Glazing coefficient of surface transmission Ug  - without convective exchanges"
-                                                                                      annotation(Dialog(group="General properties"));
+    "Glazing coefficient of surface transmission Ug  - without convective exchanges"  annotation(Dialog(group="General properties"));
 parameter Real skyViewFactor=0
     "Sky view factor between glazings and the sky (exemple: skyViewFactor(flat roof)=1, skyViewfactor(vertical wall in clear environment)=0.5)"
                                                                                                         annotation(Dialog(enable=GLOext,group="General properties"));
@@ -240,7 +239,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

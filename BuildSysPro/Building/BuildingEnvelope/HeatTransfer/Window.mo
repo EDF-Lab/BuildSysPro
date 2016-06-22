@@ -36,8 +36,7 @@ parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
     "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°"
                                                                                                       annotation(Dialog(group="General parameters"));
 parameter Integer choix=1
-    "Formula to weight the thermal transmission of direct flux depending on the angle of incidence"
-                                                                                                      annotation(Dialog(group="Optical properties"),choices(
+    "Formula to weight the thermal transmission of direct flux depending on the angle of incidence"   annotation(Dialog(group="Optical properties"),choices(
         choice=1 "Fauconnier",
         choice=2 "French building regulation (RT)",
         choice=3 "Cardonnel",
@@ -294,8 +293,7 @@ public
   parameter Real e=0.35
     "Thickness of the vertical wall in which the glazing is integrated"                     annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real azimut=0
-    "Azimuth (orientation compared to the south) - S=0°, E=-90°, W=90°, N=180°"
-                                                                                              annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
+    "Azimuth (orientation compared to the south) - S=0°, E=-90°, W=90°, N=180°"           annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real TLw=0.5
     "Global light transmission factor of the window without protection" annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real TLw_dif=0
@@ -436,8 +434,8 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(FLUX[3], CLOTr2[3]) annotation (Line(
-      points={{-100,53.3333},{-56,53.3333},{-56,54},{-10,54},{-10,53.3333},
-          {80,53.3333}},
+      points={{-100,53.3333},{-56,53.3333},{-56,54},{-10,54},{-10,53.3333},{80,
+          53.3333}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(FLUX, transDirect.FLUX) annotation (Line(
@@ -619,7 +617,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -1,4 +1,4 @@
-﻿within BuildSysPro.BaseClasses.HeatTransfer.Examples;
+within BuildSysPro.BaseClasses.HeatTransfer.Examples;
 model ValidationLWRLinear
 extends Modelica.Icons.Example;
   BuildSysPro.BaseClasses.HeatTransfer.Components.LinearExtLWR gLOextLinear(
@@ -51,19 +51,20 @@ equation
     experiment(StopTime=3.1536e+007, Interval=600),
     __Dymola_experimentSetupOutput,
     Documentation(info="<html>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Ce modèle permettant l'estimation de l'écart entre un flux GLO classique et linéarisés.</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Néant.</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Simuler puis observer les différences entre les 2 modèles.</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Gilles Plessis 03/2013.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model allows to estimate the difference in results between a classic long wavelength radiation flux and a linearized one.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Simulate the model and observe the difference between the two modellings.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Gilles Plessis 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

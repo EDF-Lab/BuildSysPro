@@ -24,7 +24,7 @@ extends Modelica.Icons.Example;
     annotation (Placement(transformation(extent={{-26,0},{-6,20}})));
   BoundaryConditions.Weather.Meteofile meteofile1
     annotation (Placement(transformation(extent={{-100,-20},{-80,0}})));
-  Zones.HeatTransfer.SimplifiedMonozone mS(
+  Zones.HeatTransfer.SimplifiedZone1 mS(
     Ubat=0.2,
     NbNiveau=2,
     Vair=480,
@@ -92,9 +92,9 @@ equation
       smooth=Smooth.None));
   connect(mS.FluxTrVitrage, cLSolaire.FluxTrVitrage) annotation (Line(points={{
           29,-50},{-14,-50},{-14,-18},{-33,-18},{-33,-20}}, color={255,192,1}));
-  connect(mS.FluxIncVitrage, cLSolaire.FluxAbsVitrage) annotation (Line(points={{29,-44},
+  connect(mS.FluxIncVitrage, cLSolaire.FluxIncVitrage) annotation (Line(points={{29,-44},
           {-12,-44},{-12,-26},{-33,-26}},           color={255,192,1}));
-  connect(mS.FluxIncParoi, cLSolaire.FluxAbsParois) annotation (Line(points={{
+  connect(mS.FluxIncParoi, cLSolaire.FluxIncParois) annotation (Line(points={{
           29,-46},{14,-46},{14,-44},{-4,-44},{-4,-34},{-33,-34}}, color={255,
           192,1}));
   annotation (experiment(StopTime=3.1536e+007, Interval=600),
@@ -113,7 +113,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author: Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -17,7 +17,7 @@ model Wall
         "Outer wall",                                                                                                  radioButtons=true));
 
   parameter Boolean RadExterne=false
-    "Integration of flows which are absorbed on the external face"
+    "In case of internal wall, integration of flows which are absorbed on the external face"
     annotation(Dialog(group="Options"),choices(choice=true "yes", choice=false "no", radioButtons=true));
   parameter Boolean GLOext=false
     "Integration of LW radiation (infrared) between the wall, the environment and the sky"
@@ -133,11 +133,12 @@ Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
         transformation(extent={{-46,-40},{-26,-20}}), iconTransformation(extent=
            {{-40,-40},{-20,-20}})));
 Modelica.Blocks.Interfaces.RealInput                            FluxAbsExt if
-    RadExterne "Flows (SWR/LWR) absorbed by this wall on its outer face"
+    RadExterne and ParoiInterne
+    "Flows (SWR/LWR) absorbed by this wall on its outer face"
     annotation (Placement(transformation(extent={{-120,12},{-82,50}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt2 if
-    RadExterne annotation (Placement(transformation(
+    RadExterne and ParoiInterne annotation (Placement(transformation(
         extent={{8,8},{-8,-8}},
         rotation=180,
         origin={-62,32})));
@@ -343,8 +344,9 @@ end if;
 <p>TF1 CLIM2000</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>).</p>
-<p>The external incident flows <code>FLUX</code> can come from <code>BoundaryConditions</code> models and from the package <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar\"><code>BoundaryConditions.Solar</code></a> which are the link between walls and weather readers.</p>
-<p>The internal incident flows <code>FluxAbsInt</code> can come from occupants, heating systems but also from the redistribution of solar flux within a room (models from <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\"><code>BoundaryConditions.Radiation</code></a> package).</p>
+<p>The external incident flows <code>FLUX</code> can come from models <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar\"><code>BoundaryConditions.Solar</code></a> models, which are the link between walls and weather readers.</p>
+<p>The internal incident flows <code>FluxAbsInt</code>, activated by the parameter <code>RadInterne</code>, can come from occupants, heating systems but also from the redistribution of solar flux within a room (models from <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\"><code>BoundaryConditions.Radiation</code></a> package).</p>
+<p>In the same way, and in case of inner wall, the internal incident flows <code>FluxAbsExt</code> on the other face of the wall (face named \"external\") can be activated by the parameter <code>RadExterne</code>.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>Warning, default values of convective coefficients are indicative only, and should not be taken as real values in all cases.</p>
 <p>The given exchange coefficients can be either global coefficients (sum of convective and radiative), or purely convective exchanges if radiative exchanges are treated elsewhere.</p>
@@ -363,7 +365,7 @@ end if;
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -1,37 +1,38 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
-model ExtLWR "Echanges GLO avec l'environnement et le ciel"
+model ExtLWR
+  "Long wavelength radiation exchanges with the sky and the environment"
 
 parameter Modelica.SIunits.Area S=1 "Surface";
-  parameter Real eps=0.5 "Emissivité";
+  parameter Real eps=0.5 "Emissivity";
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl
-    "Inclinaison de la surface par rapport à l'horizontale - vers le sol=180°, vers le ciel=0°, verticale=90°";
+    "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°";
 parameter Boolean GLO_env=true
-    "Prise en compte de rayonnement GLO vers l'environnement";
+    "Integration of long wavelength radiation (infrared) toward the environment";
 parameter Boolean GLO_ciel=true
-    "Prise en compte de rayonnement GLO vers le ciel";
+    "Integration of long wavelength radiation (infrared) toward the sky";
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel
-    "Température du ciel" annotation (Placement(transformation(extent={{-100,-60},
+    "Sky temperature" annotation (Placement(transformation(extent={{-100,-60},
             {-80,-40}}, rotation=0)));
   BuildSysPro.BaseClasses.HeatTransfer.Components.BodyRadiation GLOenv(Gr=GrEnv)
-    "Echange GLO avec l'environnement"
+    "Long wavelength exchanges with the environment"
     annotation (Placement(transformation(extent={{-28,28},{4,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Components.BodyRadiation GLOciel(Gr=GrCiel)
-    "Echange GLO avec le ciel"
+    "Long wavelength exchanges with the sky"
     annotation (Placement(transformation(extent={{-32,-66},{2,-32}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
-    "Température extérieure (de l'environnement)" annotation (Placement(
+    "Outside temperature (of the environment)" annotation (Placement(
         transformation(extent={{-100,20},{-80,40}}, rotation=0)));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_p
-    "Température de surface de la paroi" annotation (Placement(transformation(
+    "Outside temperature at the wall surface" annotation (Placement(transformation(
           extent={{80,-10},{100,10}}, rotation=0), iconTransformation(extent={{
             80,-10},{100,10}})));
 
 protected
   parameter Real GrEnv= if GLO_env then eps*S*(0.5*(1-cos(incl*Modelica.Constants.pi/180))) else 0
-    "Net radiation conductance between two surfaces (Env-paroi)";
+    "Net radiation conductance between two surfaces (Env-Wall)";
   parameter Real GrCiel= if GLO_ciel then eps*S*(0.5*(1+cos(incl*Modelica.Constants.pi/180))) else 0
-    "Net radiation conductance between two surfaces (Ciel-paroi)";
+    "Net radiation conductance between two surfaces (Sky-Wall)";
 
 equation
   connect(T_ext, GLOenv.port_a) annotation (Line(
@@ -98,21 +99,21 @@ annotation (
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
-<h4>Modèle permettant de calculer les échanges par rayonnement GLO avec le ciel et l'environnement</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Le flux de rayonnement GLO a deux origines : l'environnement et le ciel. On fait plusieurs hypothèses :</p>
+<p>Calculation of long wavelength radiation exchanges with the sky and the environment</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The solar flux with long wavelength radiation has two sources : the environment and the sky. Different hypothesis have been made :</p>
 <ul>
-<li>Le flux dû au ciel est supposé isotrope </li>
-<li>La paroi échange avec le ciel et l'environnement uniquement en fonction de son inclinaison et de son émissivité GLO.</li>
-<li>Le ciel et l'environnement sont des corps noirs isothermes.</li>
+<li>The flux from the sky is supposed isotropic.</li>
+<li>The exchanges between the wall, the sky and the environment are supposed to depend only on the tilt and the long wavelength emissivity.</li>
+<li>The sky and the environment are supposed to be isothermal black bodies.</li>
 </ul>
-<p>Le flux radiatif net échangé entre une paroi et l'extérieur est calculé avec la fonction ci-après : </p>
+<p>The radiative net fux exchanged between a wall and the outside is calculated with the function below :</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/Equations/FluxGLOEnv.png\"/></p>
-<p>Où <img src=\"modelica://BuildSysPro/Resources/Images/Equations/equation-DUkSL5mr.png\" alt=\"sigma\"/> est la constante de Stefan-Boltzmann.</p>
-<p><u><b>Bibliographie</b></u></p>
+<p>Where <img src=\"modelica://BuildSysPro/Resources/Images/Equations/equation-DUkSL5mr.png\" alt=\"sigma\"/> is the Stefan-Boltzmann constant.</p>
+<p><u><b>Bibliography</b></u></p>
 <p>TF1 CLIM2000</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p><b>Typical values for epsilon</b><i> (d'après le modèle Modelica.Thermal.HeatTransfer.Components.BodyRadiation)</i></p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Typical values for epsilon <i>(from <a href=\"BuildSysPro.BaseClasses.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a> model)</i> :</p>
 <pre>   aluminium, polished    0.04
    copper, polished       0.04
    gold, polished         0.02
@@ -120,16 +121,14 @@ annotation (
    rubber                 0.95
    silver, polished       0.02
    wood                   0.85..0.9</pre>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<ul>
-<li>Ce modèle étant utilisé dans un modèle de paroi avec échanges convectifs et radiatifs à sa surface, il faut prendre garde à ce que le coefficient d'échange superficiel extérieur soit un vrai coefficient d'échange convectif au lieu d'intégrer le rayonnement GLO.</li>
-</ul>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé (Vérification analytique + vérification de la cohérence de l'allure des flux échangés) - Aurélie Kaemmerlen 09/2011</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>As this model is used in a wall model with convective and radiatives exchanges on its surface, care must be taken to ensure that the outside superficial heat exchange coefficient is a real convective heat exchange coefficient instead of integrating the long wavelength radiation.</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model (analytical verification + verification of the coherence of the exchanged fluxes profile) - Aurélie Kaemmerlen 09/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>

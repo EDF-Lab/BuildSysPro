@@ -18,7 +18,7 @@ parameter Real s=(Modelica.Constants.pi*H/(4*t0*Gmax)-1)/(1-Modelica.Constants.p
 equation
 t= mod(time/3600,24)- midi;
 G=  if t>-t0 and t<t0 then max(0,Gmax*cos(Modelica.Constants.pi*t/(2*t0)) * (1 + s*(1-cos(Modelica.Constants.pi*t/(2*t0))))) else
-                                                                                                    0;
+                                                                                              0;
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={Ellipse(
@@ -47,7 +47,7 @@ G=  if t>-t0 and t<t0 then max(0,Gmax*cos(Modelica.Constants.pi*t/(2*t0)) * (1 +
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author :  Emmanuel Amy DE LA BRETEQUE, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

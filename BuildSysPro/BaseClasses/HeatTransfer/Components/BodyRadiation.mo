@@ -49,6 +49,7 @@ equation
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
 <p>This is a model describing the thermal radiation, i.e., electromagnetic radiation emitted between two bodies as a result of their temperatures. The following constitutive equation is used: </p>
 <pre>    Q_flow = Gr*sigma*(port_a.T^4 - port_b.T^4);</pre>
 <p>where Gr is the radiation conductance and sigma is the Stefan-Boltzmann constant (= Modelica.Constants.sigma). Gr may be determined by measurements and is assumed to be constant over the range of operations. </p>
@@ -61,7 +62,7 @@ equation
    rubber                 0.95
    silver, polished       0.02
    wood                   0.85..0.9</pre>
-<h4>Analytical Equations for Gr</h4>
+<p><b>Analytical Equations for Gr</b></p>
 <p><b>Small convex object in large enclosure</b> (e.g., a hot machine in a room): </p>
 <pre>    Gr = e*A
     where
@@ -83,10 +84,16 @@ equation
        L : Length of the two cylinders
        e1: Emission value of inner cylinder (0..1)
        e2: Emission value of outer cylinder (0..1)</pre>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"),

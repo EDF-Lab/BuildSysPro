@@ -7,8 +7,7 @@ parameter Boolean useEclairement=false
   annotation(choices(choice=true "With calculation of natural lighting",                                    choice=false
         "Without calculation of natural lighting",                                                                                                  radioButtons=true), Dialog(group="Options"));
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
-    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"
-                                                                                              annotation(Dialog(group="Surface description"));
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"   annotation(Dialog(group="Surface description"));
 parameter Integer TypeMasque annotation(Dialog(group="Shading devices"),choices(choice=0
         "Vertical + horizontal",                                                                                choice=1
         "Horizontal overhang",choice=2 "No shading device", radioButtons=true));
@@ -58,8 +57,7 @@ Real pi=Modelica.Constants.pi;
     annotation (Placement(transformation(extent={{-77,-18},{-43,16}}, rotation=
             0), iconTransformation(extent={{-40,-10},{-20,10}})));
   Modelica.Blocks.Interfaces.RealInput AzHSol[3]
-    "Irradiation data: 1-Solar azimuth angle 2-Solar elevation angle 3-Incident flux from ground"
-                                                                                                     annotation (Placement(transformation(
+    "Irradiation data: 1-Solar azimuth angle 2-Solar elevation angle 3-Incident flux from ground"    annotation (Placement(transformation(
           extent={{-99,19},{-59,59}}), iconTransformation(extent={{-100,23},{-86,
             37}})));
   Modelica.Blocks.Interfaces.RealInput Ecl[3] if useEclairement
@@ -178,7 +176,7 @@ Following masks are considered:
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>

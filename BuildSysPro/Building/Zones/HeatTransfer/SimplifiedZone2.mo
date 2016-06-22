@@ -30,11 +30,9 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_Vitrage=9.1
 parameter Modelica.SIunits.Area SParoiExt
     "Deperditive surface area of vertical walls" annotation(Dialog(group="Walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_ParoiExt=25
-    "Convective heat transfer coefficient on the outer face for the vertical walls"
-                                                                                         annotation(Dialog(group="Walls"));
+    "Convective heat transfer coefficient on the outer face for the vertical walls"      annotation(Dialog(group="Walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_ParoiExt=7.7
-    "Convective heat transfer coefficient on the inner face for the vertical walls"
-                                                                                        annotation(Dialog(group="Walls"));
+    "Convective heat transfer coefficient on the inner face for the vertical walls"     annotation(Dialog(group="Walls"));
 
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracPlancher
     "Floor definition"
@@ -452,7 +450,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

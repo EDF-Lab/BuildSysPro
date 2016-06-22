@@ -3,7 +3,6 @@ model HeatRecoveryVentilation
 extends Modelica.Icons.Example;
   AirFlow.HeatTransfer.HeatRecoveryVentilation doubleFlux(
     Qv=100,
-    rho=1,
     Cp=1000,
     use_Qv_in=false,
     use_Efficacite_in=false,
@@ -28,7 +27,6 @@ extends Modelica.Icons.Example;
         origin={48,42})));
   AirFlow.HeatTransfer.HeatRecoveryVentilation doubleFlux1(
     Qv=100,
-    rho=1,
     Cp=1000,
     use_Qv_in=false,
     use_Efficacite_in=false,
@@ -100,7 +98,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

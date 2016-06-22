@@ -37,7 +37,7 @@ parameter Real incl[5]={0,90,90,90,90}
             0), iconTransformation(extent={{100,-86},{120,-66}})));
 
 Modelica.Blocks.Interfaces.RealInput G[10]
-    "Inputs data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], solar azimuth angle,solar elevation angle}"
+    "Inputs data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], solar azimuth angle, solar elevation angle}"
     annotation (Placement(transformation(extent={{-133,-25},{-93,15}},
         rotation=0), iconTransformation(extent={{-113,-5},{-93,15}})));
 
@@ -189,7 +189,7 @@ annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

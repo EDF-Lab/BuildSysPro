@@ -40,14 +40,12 @@ parameter Real caloEclairage=2
     "[W/unite1] Heat gains by the lighting per unit (ex. living space)"                                 annotation(Dialog(tab="Others",group="Lighting",enable=UtilApportThEclairage));
 
 parameter Real caloUsageSpe=5.7
-    "[W/unite1] Heat gains out of occupancy and lighting, per unit (ex. living space)"
-                                                                                       annotation(Dialog(tab="Others",group="Specific uses",enable=UtilApportThUsageSpe));
+    "[W/unite1] Heat gains out of occupancy and lighting, per unit (ex. living space)" annotation(Dialog(tab="Others",group="Specific uses",enable=UtilApportThUsageSpe));
 
 parameter Real unite2=0
     "ex: Considered room surface area or number of showers or beds..."                   annotation(Dialog(tab="Others",group="Specific uses"));
 parameter Real HumiUsageSpe=0
-    "[kg/h/unite2] Moisture production out of occupancy and lighting, per unit"
-                                                                                annotation(Dialog(tab="Others",group="Specific uses"));
+    "[kg/h/unite2] Moisture production out of occupancy and lighting, per unit" annotation(Dialog(tab="Others",group="Specific uses"));
 
 parameter BuildSysPro.Utilities.Types.FileNameIn pth=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/Donnees/Scenarios/ScenarioRT2012.txt")
     "Chemin d'acces au fichier des scénarios (contient les 2 tables voir Scenarios.StepFunctionMat)";
@@ -517,9 +515,28 @@ Regulation 2012"),
 <p><u><b>Bibliography</b></u></p>
 <p>Version 9 of the 2012 French Building Regulation scenarios.</p>
 <p><u><b>Instructions for use</b></u></p>
+<p>This model reads a data file, containing the two tables below.</p>
+<p>Table 1 :</p>
+<p><table cellspacing=\"2\" cellpadding=\"0\" border=\"1\"><tr>
+<td><p>Time [s]</p></td>
+<td><p>Hours</p></td>
+</tr>
+</table></p>
+<p>Table 2 :</p>
+<p><table cellspacing=\"2\" cellpadding=\"0\" border=\"1\"><tr>
+<td><p>Hours</p></td>
+<td><p>Control for heating and cooling</p><p>1 = active</p><p>0 = setback period shorter than 48h</p><p>-1 = setback period longer than 48</p></td>
+<td><p>Ventilation setpoint</p><p>1 = operation</p><p>0 = stop or minimum value</p></td>
+<td><p>Lighting setpoint</p><p>1 = operation</p><p>0 = stop or minimum value</p></td>
+<td><p>Hot water consumption [%]</p><p>Part of hot water consumed each hour</p><p>Reference period (100%) is a week</p><p>Reference volume set by <code>consoECShebdo</code></p></td>
+<td><p>Occupancy rate</p><p>1 = presence</p><p>0 = absence</p><p>Possible modulation between 0 and 1 (ex : sleeping period)</p></td>
+<td><p>Internal gains by specific uses</p><p>1 = presence</p><p>0 = absence</p><p>Possible modulation between 0 and 1</p></td>
+<td><p>Water vapour generation out of occupancy and lighting</p><p>1 = presence</p><p>0 = absence</p><p>Possible modulation between 0 and 1</p></td>
+</tr>
+</table></p>
 <p>Scenarios describing the occupancy and specific uses provide &QUOT;physical&QUOT; information (superior ports of the model). The heat loads can be directly connected to an air node, and vapors inputs are in [kg steam/sec]. These are expressed through a RealOutput connector (causal modelling) and will then be adapted to the connectors selected for the multi-physics modelling.</p>
 <p>The use of thermal ports is conditioned by the Booleans (<code>UtilApportThOcc, UtilApportThUsageSpe, UtilApportThEclairage</code>). In situations where these ports are not used but the Booleans are set to TRUE, the following error occurs:</p>
-<p><br><i><span style=\"color: #ff0000;\">Error: Singular inconsistent scalar system for scenarioRT.ApportsThOccupants.T = (scenarioRT.prescribedHeatFlow.Q_flow*(1-scenarioRT.prescribedHeatFlow.alpha*scenarioRT.prescribedHeatFlow.T_ref))/( -scenarioRT.prescribedHeatFlow.Q_flow*scenarioRT.prescribedHeatFlow.alpha) = .../-0</span></i></p>
+<p><i><span style=\"color: #ff0000;\">Error: Singular inconsistent scalar system for scenarioRT.ApportsThOccupants.T = (scenarioRT.prescribedHeatFlow.Q_flow*(1-scenarioRT.prescribedHeatFlow.alpha*scenarioRT.prescribedHeatFlow.T_ref))/( -scenarioRT.prescribedHeatFlow.Q_flow*scenarioRT.prescribedHeatFlow.alpha) = .../-0</span></i></p>
 <p>To fix the problem change the value of concerned booleans.</p>
 <p>Right ports of the model correspond to &QUOT;controls&QUOT;. They can be connected to models such as ventilation, hot water, lighting, heating and cooling or comfort analysis.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
@@ -529,7 +546,7 @@ Regulation 2012"),
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2010 - 2015<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

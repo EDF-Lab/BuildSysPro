@@ -1,7 +1,6 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Sources;
-model FixedTemperature
-  "Condition limite en température fixe (en degré Kelvin)"
-  parameter Modelica.SIunits.Temperature T "Température fixe au port";
+model FixedTemperature "Fixed temperature boundary condition in Kelvin"
+  parameter Modelica.SIunits.Temperature T "Fixed temperature";
 
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port
                              annotation (Placement(transformation(
@@ -36,12 +35,20 @@ equation
           lineColor={0,0,0},
           textString="°K")}),
     Documentation(info="<html>
-<p>Condition limite en température fixe (&deg; Kelvin)</p>
-<p>Remarque : La température en sortie est en Kelvin mais l'entrée peut être renseignée en &deg;C directement dans le code</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model defines a fixed temperature T at its port in Kelvin, i.e., it defines a fixed temperature as a boundary condition.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.FixedTemperature\">FixedTemperature</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>",

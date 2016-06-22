@@ -1,5 +1,5 @@
 ﻿within BuildSysPro.BuildingStock.Examples;
-model MatisseGV
+model MatisseGV "GV calculation of MatisseMonozone"
   extends Modelica.Icons.Example;
 
   BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMonozone matisseMonozone(redeclare
@@ -36,21 +36,21 @@ equation
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics), Documentation(info="<html>
-<p><i><b>Exemple d'utilisation du Matisse Monozone</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 04/2014</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Example of GV calculation (heat losses of a building for a 1°C difference between inside and outside) for the <code>MatisseMonozone</code> model (constant interior temperature, no internal gains, no solar gains).</p>
+<p>The result can be read when the balance is reached, calculating the ratio between the power injected to the building heatport by the <code>FixedTemperature</code> model and the temperature gap between inside and outside.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

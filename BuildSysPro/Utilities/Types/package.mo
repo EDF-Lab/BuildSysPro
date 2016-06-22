@@ -1,5 +1,5 @@
-﻿within BuildSysPro.Utilities;
-package Types "Définition de nouveaux types non présents dans Modelica"
+within BuildSysPro.Utilities;
+package Types "Declaration of types not available in Modelica"
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

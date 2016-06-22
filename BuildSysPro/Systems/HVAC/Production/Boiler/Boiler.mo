@@ -159,7 +159,7 @@ public
     annotation (Placement(transformation(extent={{-128,-60},{-88,-20}}),
         iconTransformation(extent={{-110,-50},{-90,-30}})));
   Modelica.Blocks.Interfaces.RealOutput Sortie[2]
-    "Vector containing 1- the input fluid temperature (K), 2- the input fluid flow rate (kg/s)"
+    "Vector containing 1- the output fluid temperature (K), 2- the output fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{92,-50},{112,-30}}),
         iconTransformation(extent={{92,-50},{112,-30}})));
 initial equation
@@ -484,7 +484,7 @@ Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

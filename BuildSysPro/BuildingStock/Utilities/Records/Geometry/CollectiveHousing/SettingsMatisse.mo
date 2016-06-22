@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing;
 record SettingsMatisse
 
-// Paramètres géométriques
+// Geometric parameters
 
 constant Modelica.SIunits.Volume VolumeMatisse=164.43;
 
@@ -26,9 +26,9 @@ constant Real LongueursPonts[:] = {5.00,5.00,11.27,11.27,11.27,11.27,5.60,28.00}
 constant Real LongueursPontsPlancher[:]={11.27,11.27,12.10};
 constant Real LongueursPontsPlafond[:]={11.27,11.27,12.10};
 
-//Données concernant le multizone
+// Multizone data
 
-//Chambre1
+// Room 1
 
 constant Modelica.SIunits.Area Surf_VitrageNordC1=1.95;
 constant Modelica.SIunits.Area Surf_MurNordC1=4.3;
@@ -37,7 +37,7 @@ constant Modelica.SIunits.Length H_VitrageNordC1=1.3;
 constant Real LongueursPontsC1[:] = {0.00,0.00,2.5,2.5,0.00,0.00,0.00,5.6};
 constant Real LongueursPontsC1PlancherPlafond[:]={2.5,0.00,0.00};
 
-//Chambre2
+// Room 2
 
 constant Modelica.SIunits.Area Surf_MurNordC2=5.675;
 constant Modelica.SIunits.Area Surf_MurEstC2=9.5;
@@ -47,14 +47,14 @@ constant Modelica.SIunits.Length H_VitrageNordC2=1.3;
 constant Real LongueursPontsC2[:] = {2.5,0.00,3.05,3.05,0.00,0.00,0.00,5.6};
 constant Real LongueursPontsC2PlancherPlafond[:]={3.05,0.00,3.8};
 
-//Entrée
+// Entrance
 
 constant Modelica.SIunits.Area Surf_MurSudEntree=7.4;
 constant Modelica.SIunits.Area Surf_PlancherPlafondEntree=8.892;
 constant Real LongueursPontsEntree[:] = {0.00,0.00,0.00,0.00,3.6,3.6,5.6,0.00};
 constant Real LongueursPontsEntreePlancherPlafond[:]={0.00,3.6,0.00};
 
-//Salle de bain
+// Bathroom
 
 constant Modelica.SIunits.Area Surf_MurSudSDB=9.675;
 constant Modelica.SIunits.Area Surf_MurEstSDB=5.25;
@@ -62,7 +62,7 @@ constant Modelica.SIunits.Area Surf_PlancherPlafondSDB=6.867;
 constant Real LongueursPontsSDB[:] = {0.00,2.5,0.00,0.00,1.4+2.47,1.4+2.47,0.00,0.00};
 constant Real LongueursPontsSDBPlancherPlafond[:]={0.00,1.4+2.47,1.2+0.9};
 
-//Cuisine
+// Kitchen
 
 constant Modelica.SIunits.Area Surf_MurNordCuisine=3.05;
 constant Modelica.SIunits.Area Surf_VitrageNordCuisine=1.95;
@@ -71,7 +71,7 @@ constant Modelica.SIunits.Length H_VitrageNordCuisine=1.3;
 constant Real LongueursPontsCuisine[:] = {0.00,0.00,2.00,2.00,0.00,0.00,0.00,5.6};
 constant Real LongueursPontsCuisinePlancherPlafond[:]={2.00,0.00,0.00};
 
-//Séjour
+// Living
 
 constant Modelica.SIunits.Area Surf_MurNordSejour=4.85;
 constant Modelica.SIunits.Area Surf_VitrageNordSejour=3.9;
@@ -82,7 +82,7 @@ constant Modelica.SIunits.Length H_VitrageNordSejour=1.3;
 constant Real LongueursPontsSejour[:] = {2.5,2.5,3.5,3.5,3.5,3.5,0.00,5.6*2};
 constant Real LongueursPontsSejourPlancherPlafond[:]={3.5,3.5,6.05};
 
-//Cloisons
+// Partition walls
 
 constant Modelica.SIunits.Area Surf_CloisonLegSejourCuisine=9.5;
 constant Modelica.SIunits.Area Surf_CloisonLegEntreeSejour=3.75;
@@ -95,22 +95,22 @@ constant Modelica.SIunits.Area Surf_CloisonLegEntreeC2=2;
 constant Modelica.SIunits.Area Surf_CloisonLegEntreeSDB=9.75;
 
   annotation (Documentation(info="<html>
-<p><i><b>Record pour renseigner les paramètres géométriques du LC Matisse</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>Site de la bibliothèque des bâtiments types</p>
+<p><i><b>Record of geometric data for Matisse collective housing.</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>Site of the building stock library</p>
 <p>Note H-E10-1996-02908-FR</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",

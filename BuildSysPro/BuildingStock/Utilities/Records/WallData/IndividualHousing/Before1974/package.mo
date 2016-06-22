@@ -1,5 +1,5 @@
-﻿within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing;
-package Before1974 "Types de parois pour la maison individuelle Mozart : MI avant 1974 sans réhabilitation (GV = 602 W/K)."
+within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing;
+package Before1974 "Wall data for Mozart individual housing : before 1974 whithout renovation (GV = 602 W/K)"
 
 
   annotation (Documentation(revisions="<html>

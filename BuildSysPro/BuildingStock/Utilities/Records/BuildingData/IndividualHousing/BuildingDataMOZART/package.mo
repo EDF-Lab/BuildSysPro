@@ -1,5 +1,5 @@
-﻿within BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing;
-package BuildingDataMOZART "Paramètres relatifs au logement Mozart selon l'année de construction"
+within BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing;
+package BuildingDataMOZART "Settings of Mozart individual housing depending on the date of construction"
 
 
 annotation (Documentation(info="<html>

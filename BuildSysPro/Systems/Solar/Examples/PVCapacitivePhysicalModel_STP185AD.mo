@@ -1,4 +1,4 @@
-﻿within BuildSysPro.Systems.Solar.Examples;
+within BuildSysPro.Systems.Solar.Examples;
 model PVCapacitivePhysicalModel_STP185AD
 extends Modelica.Icons.Example;
   PV.BasicModels.PVPanelSimplified pVmodelePhysiqueCapacitif(
@@ -9,8 +9,7 @@ extends Modelica.Icons.Example;
       technoPV,
     mu_T=-0.48)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  BuildSysPro.BoundaryConditions.Weather.Meteofile meteofile(pth=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/Donnees/Meteos/RT2012/H1a.txt"))
+  BuildSysPro.BoundaryConditions.Weather.Meteofile meteofile
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
 equation
   connect(meteofile.V, pVmodelePhysiqueCapacitif.Vit) annotation (Line(
@@ -34,21 +33,21 @@ equation
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}),        graphics), Documentation(info="<html>
-<p><i><b>Exemple d'utilisation du modèle PVmodeleCapacitif pour une technologie silicium cristallin</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><br><u><b>Bibliographie</b></u></p>
-<p>utilisation des données fournisseur pour les panneaux Suntech 185 AD</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Amy Lindsay 03/2013</p>
+<p>Use example of the <code>PVPanelSimplified</code> model for a crystalline silicon technology.</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>Using supplier data for Suntech 185 AD panels.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

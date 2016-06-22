@@ -1,6 +1,6 @@
-﻿within BuildSysPro.Utilities.Icons;
+within BuildSysPro.Utilities.Icons;
 record Ceiling =        BuildSysPro.Utilities.Records.GenericWall
-  "Record avec icône pour une paroi type décrivant un plafond"
+  "Icon used for ceiling records"
     annotation (Diagram(graphics), Icon(graphics={
       Rectangle(
         extent={{-80,100},{80,-100}},
@@ -26,7 +26,7 @@ record Ceiling =        BuildSysPro.Utilities.Records.GenericWall
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

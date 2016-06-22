@@ -49,7 +49,7 @@ protected
     input Modelica.Blocks.Types.Smoothness smoothness;
     input Modelica.Blocks.Types.Extrapolation extrapolation;
     output Integer tableID;
-  external "C" tableID=  ModelicaTables_CombiTimeTable_init(
+  external "C" tableID = ModelicaTables_CombiTimeTable_init(
                  tableName, fileName, table, size(table, 1), size(table, 2),
                  startTime, smoothness, extrapolation);
     annotation(Library="ModelicaExternalC");
@@ -60,24 +60,21 @@ protected
     input Integer icol;
     input Real timeIn;
     output Real value;
-  external "C" value =
-                     ModelicaTables_CombiTimeTable_interpolate(tableID, icol, timeIn);
+  external "C" value=ModelicaTables_CombiTimeTable_interpolate(tableID, icol, timeIn);
     annotation(Library="ModelicaExternalC");
   end tableTimeIpo;
 
   function tableTimeTmin
     input Integer tableID;
     output Real Tmin "minimum time value in table";
-  external "C" Tmin =
-                    ModelicaTables_CombiTimeTable_minimumTime(tableID);
+  external "C" Tmin=ModelicaTables_CombiTimeTable_minimumTime(tableID);
     annotation(Library="ModelicaExternalC");
   end tableTimeTmin;
 
   function tableTimeTmax
     input Integer tableID;
     output Real Tmax "maximum time value in table";
-  external "C" Tmax =
-                    ModelicaTables_CombiTimeTable_maximumTime(tableID);
+  external "C" Tmax=ModelicaTables_CombiTimeTable_maximumTime(tableID);
     annotation(Library="ModelicaExternalC");
   end tableTimeTmax;
 
@@ -169,7 +166,7 @@ initial equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 Initial model : <a href=\"Modelica.Blocks.Sources.CombiTimeTable\">CombiTimeTable</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p>

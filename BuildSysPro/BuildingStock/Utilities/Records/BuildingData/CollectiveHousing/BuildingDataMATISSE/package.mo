@@ -1,5 +1,5 @@
-﻿within BuildSysPro.BuildingStock.Utilities.Records.BuildingData.CollectiveHousing;
-package BuildingDataMATISSE "Paramètres relatifs au logement Matisse selon l'année de construction"
+within BuildSysPro.BuildingStock.Utilities.Records.BuildingData.CollectiveHousing;
+package BuildingDataMATISSE "Settings of Matisse collective housing depending on the date of construction"
 
 
 annotation (Documentation(info="<html>

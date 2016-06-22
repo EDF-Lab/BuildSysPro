@@ -1,9 +1,9 @@
 ﻿within BuildSysPro.Systems.Solar.PV;
-package BasicModels "Basic Models"
+package BasicModels "Basic models"
 
 
 annotation (Documentation(info="<html>
-<p><i><b>Modèles simples qui permettent de déterminer le productible et la puissance d'un panneau photovolta&iuml;que à partir de données fournisseur (datasheet)</b></i></p>
+<p><i><b>Basic models allowing to determine from supplier data (datasheet) the produced energy and the power of a photovoltaïc panel.</b></i></p>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>
   Copyright &copy; EDF 2009 - 2016<br>

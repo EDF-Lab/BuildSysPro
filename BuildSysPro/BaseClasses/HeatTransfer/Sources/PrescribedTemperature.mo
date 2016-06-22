@@ -1,6 +1,5 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Sources;
-model PrescribedTemperature
-  "Condition limite en température (en degré Kelvin)"
+model PrescribedTemperature "Variable temperature boundary condition in Kelvin"
 
   BaseClasses.HeatTransfer.Interfaces.HeatPort_b port annotation (Placement(
         transformation(extent={{90,-10},{110,10}}, rotation=0)));
@@ -36,11 +35,20 @@ equation
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
-<p>This model represents a variable temperature boundary condition. The temperature in [K] is given as input signal <b>T</b> to the model. The effect is that an instance of this model acts as an infinite reservoir able to absorb or generate as much energy as required to keep the temperature at the specified value. </p>
+<p><u><b>Hypothesis and equations</b></u></p>
+This model represents a variable temperature boundary condition. The temperature in [K] is given as input signal <b>T</b> to the model. The effect is that an instance of this model acts as an infinite reservoir able to absorb or generate as much energy as required to keep the temperature at the specified value.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature\">PrescribedTemperature</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"),

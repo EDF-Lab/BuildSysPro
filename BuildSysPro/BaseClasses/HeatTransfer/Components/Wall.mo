@@ -1,19 +1,19 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
 model Wall
-  "Paroi composée de un ou plusieurs matériaux décrits de l'extérieur vers l'intérieur"
+  "Model of wall composed of one or more materials described from outside to inside"
 
-  parameter Integer nc=2 "Nombre de matériaux";
+  parameter Integer nc=2 "Number of materials";
   parameter BuildSysPro.Utilities.Records.GenericSolid matc[nc]
-    "Matériaux constitutifs de la paroi de l'extérieur vers l'intérieur"
+    "Constituting materials of the wall (from outside to inside)"
     annotation (choicesAllMatching=true);
-  parameter Integer mc[nc]=3*fill(1, nc) "Nombre de couches par matériau";
+  parameter Integer mc[nc]=3*fill(1, nc) "Number of layers by material";
   parameter Modelica.SIunits.Length[nc] ec=0.2*fill(1, nc)
-    "Epaisseur des couches (ext vers int)";
-  parameter Modelica.SIunits.Area Sc=1 "Surface de la paroi en m2";
+    "Thickness of the layers (from outside to inside)";
+  parameter Modelica.SIunits.Area Sc=1 "Surface of the wall";
 
-  parameter Modelica.SIunits.Temperature Tinitc=293.15 "Température initiale";
+  parameter Modelica.SIunits.Temperature Tinitc=293.15 "Initial temperature";
   parameter BuildSysPro.Utilities.Types.InitCond InitTypec=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    "Type d'initialisation";
+    "Initialization type";
 
   BuildSysPro.BaseClasses.HeatTransfer.Components.Material materiau[nc](
     e=ec,
@@ -51,22 +51,21 @@ equation
           fillColor={215,215,215},
           fillPattern=FillPattern.HorizontalCylinder)}),
               Documentation(info="<html>
-<h4>Modèle de Conduction thermique 1D dans un matériau à n couches</h4>
-<p>Modèle étendu du modèle désormais placé dans les modèles avancés - son code n'est plus acessible</p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>La variable <b>T</b> donne la température au centre de chaque noeud (<b>m</b> mailles équidistantes sur l'épaisseur <b>ep</b> donnée).</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Hassan Bouia 10/2011</p>
+<h4>Model of 1-D thermal conduction in a N layers wall</h4>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>The <code>T</code> variable gives the temperature in the middle of each node (<code>m</code> equidistants meshes on the given <code>ep</code> thickness).</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

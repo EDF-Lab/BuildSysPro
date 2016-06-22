@@ -3,11 +3,11 @@ record PlasterBoard =
       BuildSysPro.Utilities.Records.GenericSolid (
     lambda=0.25,
     rho=900,
-    c=1000) "Plaque de plâtre (norme ISO 10456 et RT2012)" annotation (Documentation(info="<html>
+    c=1000) "Plaster board (standard ISO 10456 and RT2012)" annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

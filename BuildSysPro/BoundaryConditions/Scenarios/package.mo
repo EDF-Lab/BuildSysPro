@@ -1,5 +1,20 @@
-﻿within BuildSysPro.BoundaryConditions;
-package Scenarios "Différentes façons de définir un scénario (débit de ventilation, occupation, apports internes, etc.)"
+within BuildSysPro.BoundaryConditions;
+package Scenarios "Solutions for scenario modelling (ventilation flow rate, occupancy schedule, internal gains, etc.)"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 annotation (Documentation(info="<html>

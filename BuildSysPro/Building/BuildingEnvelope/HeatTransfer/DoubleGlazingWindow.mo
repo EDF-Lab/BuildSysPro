@@ -203,8 +203,7 @@ public
   parameter Real e=0.35
     "Thickness of the vertical wall in which the glazing is integrated" annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real azimut=0
-    "Surface azimut (orientation compared to the south) - S=0°, E=-90°, W=90°, N=180°"
-                                                                                              annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
+    "Surface azimut (orientation compared to the south) - S=0°, E=-90°, W=90°, N=180°"    annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Boolean MasqueProche=false
     "True if mask model used upstream, false if not" annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Boolean Protection=false
@@ -399,7 +398,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

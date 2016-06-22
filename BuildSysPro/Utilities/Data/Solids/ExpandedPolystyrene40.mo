@@ -3,11 +3,11 @@ record ExpandedPolystyrene40 =
       BuildSysPro.Utilities.Records.GenericSolid (
     lambda=0.040,
     rho=35,
-    c=1450) "Polystyrène expansé 0.040 isolation intérieure (HE-12/96/015)" annotation (Documentation(info="<html>
+    c=1450) "Expansed polystyrene 0.040 interior insulation (HE-12/96/015)" annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

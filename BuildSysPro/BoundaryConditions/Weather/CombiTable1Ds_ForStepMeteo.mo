@@ -51,7 +51,7 @@ protected
     input Boolean verboseRead
       "= true: Print info message; = false: No info message";
     output Real readSuccess "Table read success";
-    external"C" readSuccess=  ModelicaStandardTables_CombiTable1D_read(tableID, forceRead, verboseRead)
+    external"C" readSuccess = ModelicaStandardTables_CombiTable1D_read(tableID, forceRead, verboseRead)
       annotation (Library={"ModelicaStandardTables"});
   end readTableData;
 
@@ -63,7 +63,7 @@ protected
     input Real tableAvailable
       "Dummy input to ensure correct sorting of function calls";
     output Real y;
-    external"C" y=  ModelicaStandardTables_CombiTable1D_getValue(tableID, icol, u)
+    external"C" y = ModelicaStandardTables_CombiTable1D_getValue(tableID, icol, u)
       annotation (Library={"ModelicaStandardTables"});
     annotation (derivative(noDerivative=tableAvailable) = getDerTableValue);
   end getTableValue;
@@ -77,7 +77,7 @@ protected
     input Real tableAvailable
       "Dummy input to ensure correct sorting of function calls";
     output Real y;
-    external"C" y=  ModelicaStandardTables_CombiTable1D_getValue(tableID, icol, u)
+    external"C" y = ModelicaStandardTables_CombiTable1D_getValue(tableID, icol, u)
       annotation (Library={"ModelicaStandardTables"});
   end getTableValueNoDer;
 
@@ -91,7 +91,7 @@ protected
       "Dummy input to ensure correct sorting of function calls";
     input Real der_u;
     output Real der_y;
-    external"C" der_y=  ModelicaStandardTables_CombiTable1D_getDerValue(tableID, icol, u, der_u)
+    external"C" der_y = ModelicaStandardTables_CombiTable1D_getDerValue(tableID, icol, u, der_u)
       annotation (Library={"ModelicaStandardTables"});
   end getDerTableValue;
 
@@ -186,7 +186,7 @@ double tab2(5,2)   # another comment line
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Hassan BOUIA, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -1,5 +1,13 @@
-﻿within BuildSysPro.BoundaryConditions;
-package Weather "Diverses données météos"
+within BuildSysPro.BoundaryConditions;
+package Weather "Weather boundary conditions"
+
+
+
+
+
+
+
+
 
 
 annotation (Documentation(info="<html>

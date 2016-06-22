@@ -1,9 +1,9 @@
 ﻿within BuildSysPro.BaseClasses.Media.OLD_THERMHYGAERO.AirFunctions;
-function Lv "Chaleur latente en fonction de la temperature"
-  input Real T "Température de l'air [K]";
-  input Real TKref "Température absolue de référence à 0°C [K]";
-  input Real rv "Constante spécifique de la vapeur d'eau [J/(kg.K)]";
-  output Real Lv "Chaleur latente en fonction de la temperature [J/kg]";
+function Lv "Latent heat depending on temperature"
+  input Real T "Air temperature [K]";
+  input Real TKref "Absolute temperature of reference at 0°C [K]";
+  input Real rv "Specific constant of water vapour [J/(kg.K)]";
+  output Real Lv "Latent heat depending on temperature [J/kg]";
 protected
   parameter Real Tmin=273.16;
   parameter Real Tmax=647.3;
@@ -31,10 +31,20 @@ algorithm
   Lv := rv*T*T*(-a/(T*T) + b/T + c);
 
   annotation (Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

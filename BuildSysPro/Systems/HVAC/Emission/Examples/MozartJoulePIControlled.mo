@@ -51,8 +51,7 @@ protected
     annotation (Placement(transformation(extent={{-48,40},{12,80}})));
 
 protected
-  BuildSysPro.BoundaryConditions.Weather.Meteofile meteofile(pth=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/Donnees/Meteos/RT2012/H1a.txt"))
+  BuildSysPro.BoundaryConditions.Weather.Meteofile meteofile
     annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
 
 public
@@ -138,10 +137,20 @@ equation
     experiment(StopTime=3.1536e+007, Interval=30),
     experimentSetupOutput(events=false),
     Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

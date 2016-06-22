@@ -1,12 +1,12 @@
-﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
-model MaterialLayer "Une couche de matériau"
-  parameter BuildSysPro.Utilities.Records.GenericSolid mat "Matériau"
+within BuildSysPro.BaseClasses.HeatTransfer.Components;
+model MaterialLayer "Material layer"
+  parameter BuildSysPro.Utilities.Records.GenericSolid mat "Material"
     annotation (choicesAllMatching=true);
-  parameter Modelica.SIunits.Length e=0.05 "Epasseur en m";
-  parameter Modelica.SIunits.Area S=1 "Surface en m²";
-  parameter Modelica.SIunits.Temperature Tinit=293.15 "Température initiale";
+  parameter Modelica.SIunits.Length e=0.05 "Thickness";
+  parameter Modelica.SIunits.Area S=1 "Surface";
+  parameter Modelica.SIunits.Temperature Tinit=293.15 "Initial temperature";
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    "Type d'initialisation";
+    "Initialization type";
   Modelica.SIunits.Temperature T(start=Tinit,displayUnit="degC");
 protected
   parameter Real G=(2*mat.lambda*S)/e;
@@ -45,10 +45,20 @@ equation
           extent={{-50,136},{70,96}},
           lineColor={0,0,255},
           textString="%name")}), Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

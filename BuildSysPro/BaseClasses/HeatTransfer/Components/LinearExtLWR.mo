@@ -99,43 +99,37 @@ annotation (
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
-<h4>Modèle d'échanges en grande longueur d'onde linéarisé avec le ciel et l'environnement.</h4>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>Le rayonnement GLO a deux origines : l'environnement et le ciel. On fait plusieurs hypothèses :</p>
+<i>Calculation of linearized long wavelength radiation exchanges with the sky and the environment.</i>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The solar flux with long wavelength radiation has two sources : the environment and the sky. Different hypothesis have been made :</p>
 <ul>
-<li>Le flux dû au ciel est supposé isotrope </li>
-<li>La paroi échange avec le ciel et l'environnement uniquement en fonction du <code>skyViewFacto</code>r et de son émissivité GLO.</li>
-<li>Le ciel et l'environnement sont des corps noirs isothermes.</li>
+<li>The flux from the sky is supposed isotropic.</li>
+<li>The exchanges between the wall, the sky and the environment are supposed to depend only on the <code>skyViewFactor</code> and the long wavelength emissivity.</li>
+<li>The sky and the environment are supposed to be isothermal black bodies.</li>
 </ul>
-<p>Le flux radiatif net échangé entre une paroi et l'extérieur (environnement et ciel) est linéarisé avec la fonction ci-après : </p>
+<p>The radiative net fux exchanged between a wall and the outside is linearized with the function below :</p>
 <ul>
 <li><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation1.png\" alt=\"Flux_gloEnvironnement =sigma*epsilon*(T_envConst^2+T_surfConst^2)*(T_envConst+T_surfConst)*S*(1-skyViewfactor)*(T_env-T_surf)\"/></li>
 <li><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation2.png\" alt=\"Flux_gloCiel=sigma*epsilon*(T_cielConst^2+T_surfConst^2)*(T_cielConst+T_surfConst)*S*skyViewfactor*(T_ciel-T_surf)\"/></li>
 </ul>
-<p>Où :</p>
-<p><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation3.png\" alt=\"sigma
-\"/> et <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation4.png\" alt=\"epsilon\"/> sont repsectivement la constante de Stefan-Boltzmann et l'émissivité de la paroi. Par ailleurs <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation5.png\" alt=\"T_cielConst
-\"/>, <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation6.png\" alt=\"T_envConst\"/> et <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation7.png\" alt=\"T_surfConst\"/> sont des constantes représentatives de la température de ciel, de l'environnement et de la surface extérieure. En prenant comme valeurs :</p>
+<p>Where :</p>
+<p><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation3.png\" alt=\"sigma\"/> and <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation4.png\" alt=\"epsilon\"/> are respectively the Stefan-Boltzmann constant and the emissivity of the wall. Furthermore <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation5.png\" alt=\"T_cielConst\"/>, <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation6.png\" alt=\"T_envConst\"/> and <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation7.png\" alt=\"T_surfConst\"/> are representatives constants of the sky, environment and outside surface temperatures. Using the values :</p>
 <ul>
-<li><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation8.png\" alt=\"T_envConst=283.15
-\"/> K,</li>
-<li><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation9.png\" alt=\"T_cielConst=T_extConst-20
-\"/> =263.15 K , d'après la corrélation de BRUNT,</li>
-<li>et <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation10.png\" alt=\"T_surfConst=288.15
-
-\"/> K,</li>
+<li><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation8.png\" alt=\"T_envConst=283.15\"/> K,</li>
+<li><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation9.png\" alt=\"T_cielConst=T_extConst-20\"/> = 263.15 K , from the BRUNT correlation,</li>
+<li>and <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation10.png\" alt=\"T_surfConst=288.15\"/> K,</li>
 </ul>
-<p>on obtient :</p>
+<p>it gives :</p>
 <ul>
 <li><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation11.png\" alt=\"Flux_GLOEnvironnement =5.29*S*epsilon*(1-skyViewfactor)*(T_ext-T_surf)\"/></li>
 <li><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation12.png\" alt=\"Flux_GLOCiel=4.76*S*epsilon*skyViewfactor*(T_ciel-T_surf)\"/></li>
 </ul>
-<p>Pour finir on a :</p>
+<p>Finally, we get :</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation13.png\" alt=\"Flux_GLO=Flux_GLOEnvironnement + Flux_GLOCiel\"/></p>
-<p><u><b>Bibliographie</b></u></p>
+<p><u><b>Bibliography</b></u></p>
 <p>TF1 CLIM2000</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>Valeurs typiques pour epsilon tirées de la documentation du modèle <a href=\"modelica://Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation de Modelica</a>.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Typical values for epsilon <i>(from <a href=\"BuildSysPro.BaseClasses.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a> model)</i> :</p>
 <pre>   aluminium, polished    0.04
    copper, polished       0.04
    gold, polished         0.02
@@ -143,16 +137,14 @@ annotation (
    rubber                 0.95
    silver, polished       0.02
    wood                   0.85..0.9</pre>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Vérifier que les conditions d'utilisation sont suffisanmment proches de <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation14.png\" alt=\"T_envConst=283.15
-\"/> K et <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation15.png\" alt=\"T_cielConst=T_extConst-20
-\"/>=263.15 K.</p>
-<p><u><b>Validations effectuées</b></u></p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>Verify that the conditions of use are close enough to <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation14.png\" alt=\"T_envConst=283.15\"/> K and <img src=\"modelica://BuildSysPro/Resources/Images/equations/LinearGLO/equation15.png\" alt=\"T_cielConst=T_extConst-20\"/> = 263.15 K.</p>
+<p><u><b>Validations</b></u></p>
 <p>Modèle validé - Gilles PLESSIS 12/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>

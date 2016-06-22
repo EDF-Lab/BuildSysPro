@@ -8,8 +8,7 @@ model WaterTank
   parameter Integer ncSol=2 "Layer number of the solar power injection"
                                                                      annotation (Dialog(tab="Tank parameters"));
 
-  parameter Modelica.SIunits.Volume Volume(displayUnit="l")=0.3 "Tank capacity"
-                                                                                 annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Modelica.SIunits.Volume Volume(displayUnit="l")=0.3 "Tank capacity"  annotation (Dialog(group="Thermodynamic tank characteristics"));
   parameter Modelica.SIunits.Length Hauteur=1.8 "Tank height"  annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
   parameter Modelica.SIunits.Power Pmax=1500 "Electrical resistance power"   annotation (Dialog(group="Thermodynamic tank characteristics"));
   parameter Modelica.SIunits.Temperature Tef=283.15 "Cold water temperature"     annotation (Dialog(group="Thermodynamic tank characteristics"));
@@ -205,10 +204,10 @@ equation
 <p>Hubert Blervaque - 09/2012 : correction dv et diametre où le Volume était divisé par erreur par 1000</p>
 </html>",
         info="<html>
-<p>Electric hot water tank allowing a connection with a solar sensor.</p>
+<p>Electric hot water tank allowing a connection with a solar thermal collector.</p>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>This model allows a solar gain in the low floors of the thermodynamic tank.</p>
-<p>The tank is modelled by a superimposed horizontal layers discretization. It is possible to indicate in which layer the thermal power from a solar sensor is injected.</p>
+<p>This model allows solar heat gains (from thermal collector) to be injected in the low part of the water tank.</p>
+<p>The tank is modelled considering horizontal layers discretization. It is possible to indicate in which layer the solar heat gains from the thermal collector are injected.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -220,7 +219,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Hubert BLERVAQUE, Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

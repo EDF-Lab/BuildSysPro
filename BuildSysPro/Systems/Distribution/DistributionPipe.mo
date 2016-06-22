@@ -1,66 +1,66 @@
-﻿within BuildSysPro.Systems.Distribution;
-model DistributionPipe "Modélisation d'un réseau d'eau chaude ou eau froide"
+within BuildSysPro.Systems.Distribution;
+model DistributionPipe "Modelization of a hot/cold distribution system"
 
   import SI = Modelica.SIunits;
 
-  parameter Integer Choix=1  annotation(Dialog(group="Choix de la méthode de calcul"), choices(choice=1
-        "Charactéristiques tuyauterie connues",    choice=2
-        "Estimation par puissance chaudière"));
+  parameter Integer Choix=1  annotation(Dialog(group="Choice of calculation method"), choices(choice=1
+        "Characteristics of pipe known",    choice=2
+        "Estimation by boiler power"));
 
   parameter SI.Length L=20
-    "Longueur d'échange du réseau _ si Ler = 0 alors calcul simplifié et forfaitaire des pertes selon QfouNom"
-                                                                                                        annotation(Dialog(enable=(Choix==1), group="Choix 1 : Caractéristiques tuyauterie connues"));
+    "Exchange length of dstribution pipe (if L = 0 then simplified and global calculation of heat losses according to QfouNom"
+                                                                                                       annotation(Dialog(enable=(Choix==1), group="Choice 1 : Characteristics of pipe known"));
   parameter SI.ThermalConductivity U=0.04
-    "Coefficient d'échange linéique, caractéristique du réseau d'eau"                               annotation(Dialog(enable=(Choix==1), group="Choix 1 : Caractéristiques tuyauterie connues"));
+    "Linear exchange coefficient, defining the distribution pipe"                               annotation(Dialog(enable=(Choix==1), group="Choice 1 : Characteristics of pipe known"));
   parameter SI.SpecificHeatCapacity CpLiq=4190
-    "Capacité thermique du fluide caloporteur" annotation(Dialog(enable=(Choix==1), group="Choix 1 : Caractéristiques tuyauterie connues"));
-  parameter Real Rpnre= 0.8 "Ratio des pertes thermiques non récupérables"
-                                                     annotation(Dialog(enable=(Choix==2), group="Choix 2 : Estimation par puissance chaudière"));
+    "Thermal capacity of heat transfer fluid" annotation(Dialog(enable=(Choix==1), group="Choice 1 : Characteristics of pipe known"));
+  parameter Real Rpnre= 0.8 "Ratio of non recoverable thermal losses"
+                                                     annotation(Dialog(enable=(Choix==2), group="Choice 2 : Estimation by boiler power"));
   parameter Modelica.SIunits.Power QfouNom=8000
-    "puissance nominale fournie par la production centrale" annotation(Dialog(enable=(Choix==2), group="Choix 2 : Estimation par puissance chaudière"));
-  parameter Real Cperte=0.025
-    "pertes par défaut évaluées à 2.5% de QfouNom" annotation(Dialog(enable=(Choix==2), group="Choix 2 : Estimation par puissance chaudière"));
+    "Rated power supplied by the production system (boiler)" annotation(Dialog(enable=(Choix==2), group="Choice 2 : Estimation by boiler power"));
+  parameter Real Cperte=0.025 "Default losses evaluated at 2.5% of QfouNom"
+                                                  annotation(Dialog(enable=(Choix==2), group="Choice 2 : Estimation by boiler power"));
 
 protected
-SI.MassFlowRate Debit; //Débit massique circulant daans la conduite
-SI.Power Qper; //Chaleur perdue
+  SI.MassFlowRate Debit; //Mass flow in the pipe
+SI.Power Qper; //Lost heat
 
 public
   Modelica.Blocks.Interfaces.RealOutput Sortie[2]
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing 1- the output fluid temperature (K), 2- the output fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{80,-10},{120,30}}),
         iconTransformation(extent={{80,-20},{100,0}})));
   Modelica.Blocks.Interfaces.RealInput Entree[2]
-    "Vecteur contenant 1-la témperature du fluide (K), 2-le débit (kg/s)"
+    "Vector containing 1- the input fluid temperature (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-120,-10},{-80,30}}),
         iconTransformation(extent={{-100,-20},{-80,0}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Zone
-    "Zone dans laquelle se trouve les conduites d'eau" annotation (Placement(
+    "Heatport to connect to the thermal zone" annotation (Placement(
         transformation(extent={{-10,60},{10,80}}), iconTransformation(extent={{
             -10,60},{10,80}})));
 // -----------------------------------------------------------------------------------
 equation
 
-// Il y a conservation du débit : Entrée[2]=Sortie[2]
+// Conservation of flow : Entree[2]=Sortie[2]
   Debit=Entree[2];
 
-// Calcul des pertes sur le réseau
-  if (L>0) then// CAS: RESEAU CONNU
+// Calculation of the distribution pipe losses
+  if (L>0) then// CASE : KNOWN PIPE
 
-  // Calcul de la température de sortie
+  // Calculation of the output temperature
     if Entree[1]>Zone.T then
       Sortie[1]= max(Zone.T,Entree[1] - (Entree[1]-Zone.T)*(1-exp(-U*L/(Debit*CpLiq))));
     else
       Sortie[1]= min(Zone.T,Entree[1] - (Entree[1]-Zone.T)*(1-exp(-U*L/(Debit*CpLiq))));
     end if;
-  // Calcul des pertes
+  // Calculation of losses
     Qper = Debit*CpLiq*(Entree[1] - Sortie[1]);
 
-  else // CAS : VALEURS PAR DEFAUT
-  // Calcul des pertes
+  else // CASE : DEFAULT VALUES
+  // Calculation of losses
     Qper = Cperte*QfouNom;
 
-  // Calcul de la température
+  // Calculation of the output temperature
     if (Debit>1e-4) then
         Sortie[1] = Entree[1] - Qper/(Debit*CpLiq);
     else
@@ -69,7 +69,7 @@ equation
 
 end if;
 
-// Calcul de la part récupérable dans les locaux
+// Calculation of the recoverable heat part
 Zone.Q_flow = -Qper*(1 - Rpnre);
 
   connect(Entree[2], Sortie[2]) annotation (Line(
@@ -77,15 +77,22 @@ Zone.Q_flow = -Qper*(1 - Rpnre);
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Documentation(info="<html>
-<p>Modèle validé - Hubert Blervaque, Sila Filfli 06/2011</p>
-<p><u><b>Description</b></u></p>
-<p>Prise en compte des déperditions du réseau de distribution, deux méthodes sont proposées :</p>
-<p>- si les caractéristiques de la tuyauterie sont connues, le calcul permet de construire le réseau de distrubtion en joignant émetteurs (radiateurs par exemple) et éléments de tuyauterie</p>
-<p>- si tel n'est pas le cas, on peut estimer les déperditions globales en fonction de la puissance de la chaudière</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model takes into account the heat losses of the ditribution system, by two possible methods :</p>
+<p>- if pipe characteristics are known, the calculation allows to construct the distribution system connecting radiators and pipe elements</p>
+<p>- if not, heat losses can be estimated according to the boiler power</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hubert Blervaque, Sila Filfli 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p></html>",
     revisions="<html>

@@ -1,5 +1,6 @@
 ﻿within BuildSysPro.Systems.HVAC.Production.HeatPump.FixedSpeed;
-model HPHeatingAir2Air "Air/air HP with heating mode operating in all-or-none"
+model HPHeatingAir2Air
+  "Intermittently controlled air to air HP - heating mode only"
 
   parameter Integer Choix=1
     annotation(Dialog(group="Choice of parameterization method"), choices(
@@ -190,7 +191,7 @@ all-or-none, variable"),
           textString="& Dtmin")}),
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>This is an air/air heat pump with on/off (all or nothing) operation (fixed speed) for the heating mode only.</p>
+<p>This is an air/air heat pump with on/off (intermittently controlled) operation (fixed speed) for the heating mode only.</p>
 <p>The model is minimalist in terms of parameters to inform and is based on an empirical approach to determining the power in steady state according to indoor and outdoor temperatures conditions. The transitional regime is modelled using a time constant for the power supplied.</p>
 <p>The HP operates in all or nothing. Start and stop phases are given by the associated control system. To protect the machine, it is common that minimum on and off times are defined (DtminOn and DtminOff), they intervene in internal control of the machine.</p>
 <p><u><b>Bibliography</b></u></p>
@@ -213,7 +214,7 @@ all-or-none, variable"),
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -1,5 +1,8 @@
 within BuildSysPro.BoundaryConditions.Weather;
-package Functions "Fonctions utiles au lecteur MeteoFile"
+package Functions "Functions for Meteofile"
+
+
+
 
 
 annotation (Documentation(info="<html>

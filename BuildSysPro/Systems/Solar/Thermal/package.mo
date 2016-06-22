@@ -1,5 +1,6 @@
 within BuildSysPro.Systems.Solar;
-package Thermal "Solaire Thermique"
+package Thermal "Thermal collectors"
+
 
 
 annotation (Documentation(info="<html>

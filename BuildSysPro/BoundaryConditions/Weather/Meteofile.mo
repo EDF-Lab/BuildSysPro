@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.BoundaryConditions.Weather;
 model Meteofile "Weather data reader"
 
-parameter Integer TypeMeteo=2 annotation(choices(
+parameter Integer TypeMeteo=3 annotation(choices(
 choice=1 "Meteofrance",
 choice=2 "Meteonorm",
 choice=3 "Weather RT (french building regulation)",
@@ -44,7 +44,7 @@ parameter Integer option[:]=fill(1, table_column_number)
      Placement(transformation(extent={{80,48},{100,68}}, rotation=0),
         iconTransformation(extent={{80,20},{100,40}})));
   Modelica.Blocks.Interfaces.RealOutput G[10]
-    "Output data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle ,Solar elevation angle}"
+    "Output data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle , Solar elevation angle}"
     annotation (Placement(transformation(extent={{82,-52},{118,-16}},
           rotation=0), iconTransformation(extent={{10,-10},{-10,10}},
         rotation=180,
@@ -133,7 +133,7 @@ equation
 
 // Wind connector
  connect(combiTimeTable.y[8], V[1]) annotation (Line(
-      points={{-37,30.3636},{-30,30.3636},{-30,-73},{100,-73}},
+      points={{-37,30},{-30,30},{-30,-73},{100,-73}},
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -148,12 +148,12 @@ equation
       smooth=Smooth.None));
   connect(combiTimeTable.y[3], toKelvinTseche.Celsius)
                                                  annotation (Line(
-      points={{-37,29.4545},{-26,29.4545},{-26,58},{-12,58}},
+      points={{-37,30},{-26,30},{-26,58},{-12,58}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(combiTimeTable.y[4], toKelvinTrosee.Celsius)
                                                   annotation (Line(
-      points={{-37,29.6364},{-34,29.6364},{-34,28},{-10,28}},
+      points={{-37,30},{-34,30},{-34,28},{-10,28}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(toKelvinTseche.Kelvin, prescribedTseche.T)
@@ -233,7 +233,7 @@ equation
     DIFH=GLOH-DIRH;
   end if;
 
-  //G[1:10]={DIFH,DIRN,DIRH,GLOH, t0, CosDir[1],CosDir[2],CosDir[3], latitude,longitude};
+  //G[1:10]={DIFH,DIRN,DIRH,GLOH, t0, CosDir[1],CosDir[2],CosDir[3], latitude, longitude};
   G[1:10]={DIFH,DIRN,DIRH,GLOH, t0, CosDir[1],CosDir[2],CosDir[3], AzHaut[1],AzHaut[2]};
 
   if option[9]==0 then
@@ -382,7 +382,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 <b>Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

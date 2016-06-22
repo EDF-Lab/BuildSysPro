@@ -218,8 +218,8 @@ equation
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXouest[1], multiSumAbsVitrages.u[9])   annotation (Line(
-      points={{-43.8,-20.1867},{-24,-20.1867},{-24,-10},{40,-10},{40,-2.94},
-          {60,-2.94}},
+      points={{-43.8,-20.1867},{-24,-20.1867},{-24,-10},{40,-10},{40,-2.94},{60,
+          -2.94}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXouest[2], multiSumAbsVitrages.u[10])   annotation (Line(
@@ -234,8 +234,8 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXPlafond[1], multiSumAbsParois.u[1]) annotation (Line(
-      points={{-43.8,15.0133},{-24,15.0133},{-24,96},{40,96},{40,73.78},
-          {60,73.78}},
+      points={{-43.8,15.0133},{-24,15.0133},{-24,96},{40,96},{40,73.78},{60,
+          73.78}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXPlafond[2], multiSumAbsParois.u[2]) annotation (Line(
@@ -243,8 +243,7 @@ equation
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXNord[1], multiSumAbsParois.u[3]) annotation (Line(
-      points={{-43.8,5.77333},{-24,5.77333},{-24,92},{40,92},{40,72.1},{
-          60,72.1}},
+      points={{-43.8,5.77333},{-24,5.77333},{-24,92},{40,92},{40,72.1},{60,72.1}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXNord[2], multiSumAbsParois.u[4]) annotation (Line(
@@ -252,8 +251,8 @@ equation
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXSud[1], multiSumAbsParois.u[5]) annotation (Line(
-      points={{-43.8,-2.58667},{-24,-2.58667},{-24,86},{40,86},{40,70.42},
-          {60,70.42}},
+      points={{-43.8,-2.58667},{-24,-2.58667},{-24,86},{40,86},{40,70.42},{60,
+          70.42}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXSud[2], multiSumAbsParois.u[6]) annotation (Line(
@@ -262,8 +261,8 @@ equation
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXEst[1], multiSumAbsParois.u[7]) annotation (Line(
-      points={{-43.8,-11.3867},{-24,-11.3867},{-24,78},{40,78},{40,68.74},
-          {60,68.74}},
+      points={{-43.8,-11.3867},{-24,-11.3867},{-24,78},{40,78},{40,68.74},{60,
+          68.74}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXEst[2], multiSumAbsParois.u[8]) annotation (Line(
@@ -271,8 +270,8 @@ equation
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXouest[1], multiSumAbsParois.u[9]) annotation (Line(
-      points={{-43.8,-20.1867},{-24,-20.1867},{-24,70},{40,70},{40,67.06},
-          {60,67.06}},
+      points={{-43.8,-20.1867},{-24,-20.1867},{-24,70},{40,70},{40,67.06},{60,
+          67.06}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(fLUXzone.FLUXouest[2], multiSumAbsParois.u[10]) annotation (Line(
@@ -379,7 +378,7 @@ Validated model - Gilles Plessis 03/2013.
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

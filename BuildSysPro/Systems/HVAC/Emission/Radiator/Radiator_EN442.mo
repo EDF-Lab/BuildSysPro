@@ -24,8 +24,7 @@ model Radiator_EN442 "Radiator model based on the EN442 standard"
   parameter SI.Mass MediumMass "Mass of water" annotation(Dialog(tab="Dynamic"));
   parameter SI.Mass BodyMass "Radiator mass" annotation(Dialog(tab="Dynamic"));
   parameter SI.SpecificHeatCapacity cpBody=500
-    "Specific heat capacity of the radiator body (ex. 500J/kg/K for cast iron)"
-                                                                                annotation(Dialog(tab="Dynamic"));
+    "Specific heat capacity of the radiator body (ex. 500J/kg/K for cast iron)" annotation(Dialog(tab="Dynamic"));
 
     // Variables
 
@@ -193,11 +192,11 @@ assert((EntreeEau[1]-Conv.T)/(SortieEau[1]-Conv.T)<3,"Arithmetic mean temperatur
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>The model is not discretized along the fluid path therefore in Dynamic mode, nominal operating conditions do not lead to the nominal heating power.</p>
 <p><u><b>Validations</b></u></p>
-<p>Simple validation based on operating point - Gilles PLESSIS 01/2016 </p>
+<p>Simple validation based on operating point - Gilles Plessis 01/2016 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

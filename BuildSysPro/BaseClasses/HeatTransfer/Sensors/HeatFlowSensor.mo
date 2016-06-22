@@ -1,9 +1,9 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Sensors;
-model HeatFlowSensor "Mesure le flux de chaleur"
+model HeatFlowSensor "Heat flow rate sensor"
   extends Modelica.Icons.RotationalSensor;
 
   Modelica.Blocks.Interfaces.RealOutput Q_flow
-    "Heat flow from port_a to port_b"                                            annotation (Placement(
+    "Heat flow from port_a to port_b as output signal"                                            annotation (Placement(
         transformation(
         origin={0,-100},
         extent={{-10,-10},{10,10}},
@@ -38,11 +38,20 @@ equation
           textString="%name",
           lineColor={0,0,255})}),
     Documentation(info="<html>
-<p>Capteur mesurant le flux de chaleur entre deux modèles, dont la valeur peut être sortie par le connecteur output. La valeur sortie est positive si le flux va du port_a au port_b. A connecter entre deux modèles disposant d'au moin un connecteur thermique. N'a aucune incidence sur les phénomènes physiques. </p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This model is capable of monitoring the heat flow rate flowing through this component. The sensed value of heat flow rate is the amount that passes through this sensor while keeping the temperature drop across the sensor zero. This is an ideal model so it does not absorb any energy and it has no direct effect on the thermal response of a system it is included in. The output signal is positive, if the heat flows from port_a to port_b.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sensors.HeatFlowSensor\">HeatFlowSensor</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"));

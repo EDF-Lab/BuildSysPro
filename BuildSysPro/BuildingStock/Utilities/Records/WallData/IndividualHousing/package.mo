@@ -1,5 +1,5 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData;
-package IndividualHousing "Contient les parois types pour la maison individuelle Mozart"
+package IndividualHousing "Wall data for Mozart individual housing"
 
 
 annotation (Documentation(info="<html>

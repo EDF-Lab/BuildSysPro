@@ -1,8 +1,8 @@
-﻿within BuildSysPro.BaseClasses.Media.OLD_THERMHYGAERO.AirFunctions;
-function Psat "Pression de staturation en fonction de la temperature"
+within BuildSysPro.BaseClasses.Media.OLD_THERMHYGAERO.AirFunctions;
+function Psat "Saturation pressure depending on temperature"
   AirConstants.CteAH AH;
-  input Real T "Température de l'air [K]";
-  output Real Psat "Pression de vapeur d'eau saturante [Pa]";
+  input Real T "Air temperature [K]";
+  output Real Psat "Vapour saturation pressure [Pa]";
 protected
   parameter Real Tmin=273.16;
   parameter Real Tmax=647.3;
@@ -30,10 +30,20 @@ algorithm
   Psat:=exp(a/tk + b*log(tk) + c*tk + d);
 
   annotation (Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

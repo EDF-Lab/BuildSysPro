@@ -1,12 +1,12 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
-model HeatCapacitor "Element stockant de la chaleur"
+model HeatCapacitor "Heat capacitor"
   parameter Modelica.SIunits.HeatCapacity C
-    "Capacité thermique de l'élément (= cp*m)";
+    "Heat capacity of the element (= cp*m)";
 
  Modelica.SIunits.Temperature T( displayUnit="degC")
-    "Température de l'élement";
+    "Temperature of the element";
   Modelica.SIunits.TemperatureSlope der_T(start=0)
-    "Dérivée de la température par rapport au temps (= der(T))";
+    "Time derivative of the temperature (= der(T))";
 
   BaseClasses.HeatTransfer.Interfaces.HeatPort_a port annotation (Placement(
         transformation(extent={{0,-100},{20,-80}}, rotation=0)));
@@ -50,6 +50,7 @@ equation
             -100},{100,100}}),
                     graphics),
     Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
 <p>This is a generic model for the heat capacity of a material. No specific geometry is assumed beyond a total volume with uniform temperature for the entire volume. Furthermore, it is assumed that the heat capacity is constant (indepedent of temperature). </p>
 <p>The temperature T [Kelvin] of this component is a <b>state</b>. A default of T = 25 degree Celsius (= SIunits.Conversions.from_degC(25)) is used as start value for initialization. This usually means that at start of integration the temperature of this component is 25 degrees Celsius. You may, of course, define a different temperature as start value for initialization. Alternatively, it is possible to set parameter <b>steadyStateStart</b> to <b>true</b>. In this case the additional equation '<b>der</b>(T) = 0' is used during initialization, i.e., the temperature T is computed in such a way that the component starts in <b>steady state</b>. This is useful in cases, where one would like to start simulation in a suitable operating point without being forced to integrate for a long time to arrive at this point. </p>
 <p>Note, that parameter <b>steadyStateStart</b> is not available in the parameter menue of the simulation window, because its value is utilized during translation to generate quite different equations depending on its setting. Therefore, the value of this parameter can only be changed before translating the model. </p>
@@ -63,10 +64,18 @@ equation
       silver      235
       steel       420 ... 500 (V2A)
       wood       2500</pre>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.HeatCapacitor\">HeatCapacitor</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"));

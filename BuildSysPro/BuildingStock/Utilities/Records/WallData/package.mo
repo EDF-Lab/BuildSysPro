@@ -1,5 +1,5 @@
-﻿within BuildSysPro.BuildingStock.Utilities.Records;
-package WallData "Package contenant les records instanciés de parois types"
+within BuildSysPro.BuildingStock.Utilities.Records;
+package WallData "Package containing wall data records"
 
 
 annotation (Documentation(info="<html>

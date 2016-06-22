@@ -1,5 +1,15 @@
-﻿within BuildSysPro.Utilities;
-package Math "Utilitaires - blocs et fonctions mathématiques"
+within BuildSysPro.Utilities;
+package Math "Mathematical functions and blocks"
+
+
+
+
+
+
+
+
+
+
 
 
 annotation (Documentation(info="<html>

@@ -1,13 +1,13 @@
-﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
-model Material "Materiau discrétisé en couches d'égales épaisseurs"
-  parameter BuildSysPro.Utilities.Records.GenericSolid mat "Matériau"
+within BuildSysPro.BaseClasses.HeatTransfer.Components;
+model Material "Material discretized in different layers with the same length"
+  parameter BuildSysPro.Utilities.Records.GenericSolid mat "Material"
     annotation (choicesAllMatching=true);
-  parameter Integer m=3 "Nombre de couches dans le matériau";
-  parameter Modelica.SIunits.Length e=0.20 "Epasseur en m";
-  parameter Modelica.SIunits.Area S=1 "Surface en m²";
-  parameter Modelica.SIunits.Temperature Tinit=293.15 "Température initiale";
+  parameter Integer m=3 "Number of layers in the material";
+  parameter Modelica.SIunits.Length e=0.20 "Thickness";
+  parameter Modelica.SIunits.Area S=1 "Surface";
+  parameter Modelica.SIunits.Temperature Tinit=293.15 "Initial temperature";
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    "Type d'initialisation";
+    "Initialization type";
 
   BuildSysPro.BaseClasses.HeatTransfer.Components.MaterialLayer couche[m](
     each e=e/m,
@@ -43,10 +43,20 @@ equation
           lineColor={0,0,255},
           fillColor={215,215,215},
           fillPattern=FillPattern.HorizontalCylinder)}), Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

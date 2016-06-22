@@ -2,11 +2,11 @@
 record Glass =  BuildSysPro.Utilities.Records.GenericSolid (
     lambda=1,
     rho=2500,
-    c=750) "Verre (norme ISO 10456 et RT2012)" annotation (Documentation(info="<html>
+    c=750) "Glass (standard ISO 10456 and RT2012)" annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

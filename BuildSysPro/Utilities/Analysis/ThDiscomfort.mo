@@ -3,10 +3,9 @@ model ThDiscomfort
   "Measure of warm and cold discomfort of indoor temperature relative to the setpoint"
   import BuildSysPro;
 
-parameter Real SeuilInconfort= 1;
+parameter Real SeuilInconfort= 1 "Comfort range";
 parameter Boolean UsePresence=false
-    "Inclusion of variable presence (by default the building is considered always occupied)"
-                                                                                                        annotation(Evaluate=true,HideResult=true,choices(choice=true "yes", choice=false "no", radioButtons=true));
+    "Consider occupancy (by default the building is considered always occupied)"                        annotation(Evaluate=true,HideResult=true,choices(choice=true "yes", choice=false "no", radioButtons=true));
   // Public components
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tint
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
@@ -356,7 +355,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

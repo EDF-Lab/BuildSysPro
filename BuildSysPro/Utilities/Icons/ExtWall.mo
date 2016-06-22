@@ -1,6 +1,6 @@
-﻿within BuildSysPro.Utilities.Icons;
+within BuildSysPro.Utilities.Icons;
 record ExtWall =BuildSysPro.Utilities.Records.GenericWall
-  "Record avec icône pour une paroi type décrivant une paroi extérieure"
+  "Icon used for exterior wall records"
     annotation (Diagram(graphics), Icon(graphics={
       Rectangle(
         extent={{-100,100},{-40,-100}},
@@ -25,7 +25,7 @@ record ExtWall =BuildSysPro.Utilities.Records.GenericWall
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

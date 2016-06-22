@@ -1,36 +1,34 @@
-﻿within BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartZones;
+within BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartZones;
 model ZoneEntrance
 
-  // Choix de la RT
+  // Choice of RT (French building regulation)
   replaceable parameter
     BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART.BuildingType
-    paraMaisonRT "Réglementation thermique utilisée" annotation (
-      choicesAllMatching=true, Dialog(group="Choix de la RT"));
+    paraMaisonRT "French building regulation to use" annotation (
+      choicesAllMatching=true, Dialog(group="Choice of RT"));
 
-  // Flux thermiques
+  // Thermal flows
 parameter Boolean GLOEXT=false
-    "Prise en compte de rayonnement GLO vers l'environnement et le ciel"                            annotation(Dialog(tab="Flux thermiques"));
+    "Integration of LW radiation (infrared) toward the environment and the sky"                         annotation(Dialog(tab="Thermal flows"));
 parameter Boolean QVin=false
-    "True : commande du débit de renouvellement d'air ; False : débit constant"
-                                                                                                annotation(Dialog(tab="Flux thermiques"));
+    "True : controlled air change rate; False : constant air change rate"                       annotation(Dialog(tab="Thermal flows"));
 
-  // Parois
-parameter Modelica.SIunits.Temperature Tp=293.15
-    "Température initiale des parois"
-    annotation(Dialog(tab="Parois"));
+  // Walls
+parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
+    annotation(Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    "Initialisation en régime stationnaire dans les parois"
-    annotation (Dialog(tab="Parois"));
+    "Type of initialization for walls"
+    annotation (Dialog(tab="Walls"));
 
-  // Ponts thermiques
+  // Thermal bridges
   parameter Modelica.SIunits.ThermalConductance G_ponts=
       Utilities.Functions.CalculGThermalBridges(
       ValeursK=paraMaisonRT.ValeursK,
       LongueursPonts=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.LongueursPontsEntree,
-      TauPonts=paraMaisonRT.TauPonts) "Ponts thermiques"
-    annotation (Dialog(tab="Ponts thermiques"));
+      TauPonts=paraMaisonRT.TauPonts) "Thermal bridges"
+    annotation (Dialog(tab="Thermal bridges"));
 
-    //Coefficients de pondération
+    // Weighting coefficients
 protected
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.B_Coefficient TauPlancher(b=
         paraMaisonRT.bPlancher)
@@ -39,7 +37,7 @@ protected
         paraMaisonRT.bSousCombles)
     annotation (Placement(transformation(extent={{-58,80},{-38,100}})));
 
-//Parois horizontales
+// Horizontal walls
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall ParoiSousCombles(
     ParoiInterne=true,
     Tp=Tp,
@@ -74,7 +72,7 @@ protected
         rotation=90,
         origin={51,-92})));
 
-//Parois verticales extérieures
+// Exterior vertical walls
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall Porte(
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteEntree,
     Tp=Tp,
@@ -128,21 +126,21 @@ protected
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurSudEntree)
     annotation (Placement(transformation(extent={{-7,-18},{7,-4}})));
 
-//Parois verticales internes
+// Internal vertical walls
 
-//Vitrages
+// Glazings
 
-//Ponts thermiques
+// Thermal bridges
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor PontsThermiques(G=G_ponts)
     annotation (Placement(transformation(extent={{-58,-80},{-43,-65}})));
 
-//Composants pour prise en compte du rayonnement GLO/CLO
+// Components for LW/SW radiations
 public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tciel if GLOEXT
      == true annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{40,-100},{60,-80}})));
 
-//Composants de base
+// Base components
 public
   BuildSysPro.Building.AirFlow.HeatTransfer.AirNode noeudAir(V=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondEntree
         *BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.HauteurMozart, Tair=293.15)
@@ -361,21 +359,21 @@ graphics={
            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {100,100}}),       graphics),
     Documentation(info="<html>
-<p><i><b>Zone entrée Mozart</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
+<p><i><b>Zone entrance Mozart</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

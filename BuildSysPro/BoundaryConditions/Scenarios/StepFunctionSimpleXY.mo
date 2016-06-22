@@ -36,7 +36,7 @@ protected
 <p>The dependent variable (homogenous to the input) is specified in the parameter <b>X vector</b>.</p>
 <p>The independent variable to be interpolated are defined in the parameter <b>Yvector</b>.</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>X vector (dependent variable) et Y vector (data to be interpolated) are 2 vectors having the same size: n elements each.</p>
+<p>X vector (dependent variable) and Y vector (data to be interpolated) are 2 vectors having the same size: n elements each.</p>
 <p>For all i from 1 to n-1, for any x in [Xi, X (i + 1) [, calculation of y = Yi</p>
 <p>For all x &GT;= Xn : y = Yn</p>
 <p>For all x, calculation of xp = >if period &GT; 0 then mod(x,period) else x and calculation of y=y(xp)</p>
@@ -45,7 +45,7 @@ protected
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

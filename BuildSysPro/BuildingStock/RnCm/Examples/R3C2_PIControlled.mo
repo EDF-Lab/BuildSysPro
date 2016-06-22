@@ -2,8 +2,7 @@
 model R3C2_PIControlled "Test of 2 R3C2 models in parallel"
 
   BuildSysPro.BuildingStock.RnCm.R3C2 R3C2_1 annotation (Placement(transformation(extent={{20,2},{40,22}})));
-  BuildSysPro.BoundaryConditions.Weather.Meteofile meteofile(pth=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/Donnees/Meteos/RT2012/H1a.txt"))
+  BuildSysPro.BoundaryConditions.Weather.Meteofile meteofile
     annotation (Placement(transformation(extent={{-60,40},{-40,60}})));
   Modelica.Blocks.Sources.RealExpression ApportsInt1
     annotation (Placement(transformation(extent={{-20,6},{2,30}})));
@@ -55,7 +54,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Hassan BOUIA, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"),

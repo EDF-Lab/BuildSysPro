@@ -1,5 +1,5 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.CollectiveHousing;
-package Before1974 "Types de parois pour les logements collectifs avant 1974 (GV = 172 W/K)."
+package Before1974 "Wall data for collective housing : before 1974 (GV = 172 W/K)."
 
 
   annotation (Documentation(revisions="<html>

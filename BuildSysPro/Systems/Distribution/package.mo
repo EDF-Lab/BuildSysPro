@@ -1,5 +1,16 @@
-﻿within BuildSysPro.Systems;
-package Distribution "Réseaux de distribution (aérauliques, hydrauliques...) reliant le système de production et les émetteurs"
+within BuildSysPro.Systems;
+package Distribution "Distribution systems (aeraulic and hydraulic) connecting heating/cooling systems and thermal emitters"
+
+
+
+
+
+
+
+
+
+
+
 
 
 annotation (Documentation(info="<html>

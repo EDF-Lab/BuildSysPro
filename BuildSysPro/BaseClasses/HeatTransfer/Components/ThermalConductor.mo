@@ -33,6 +33,7 @@ equation
           lineColor={255,0,0},
           textString="Q_flow")}),
     Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
 <p>This is a model for transport of heat without storing it. It may be used for complicated geometries where the thermal conductance G (= inverse of thermal resistance) is determined by measurements and is assumed to be constant over the range of operations. If the component consists mainly of one type of material and a regular geometry, it may be calculated, e.g., with one of the following equations: </p>
 <ul>
 <li>Conductance for a <b>box</b> geometry under the assumption that heat flows along the box length:</li>
@@ -56,10 +57,16 @@ equation
       silver      407
       steel        45 .. 15 (V2A)
       wood         0.1 ... 0.2</pre></p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.ThermalConductor\">ThermalConductor</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"));

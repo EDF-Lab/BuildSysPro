@@ -1,13 +1,13 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
-model HomogeneousConduction "Conduction thermique 1D dans un milieu homogène"
+model HomogeneousConduction "1-D thermal conduction for homogeneous medium"
 
-  parameter Integer n=1 "nombre d'états";
-  parameter Modelica.SIunits.Area S=1 "surface de l'élément";
+  parameter Integer n=1 "Number of states";
+  parameter Modelica.SIunits.Area S=1 "Surface of the element";
   parameter BuildSysPro.Utilities.Records.GenericSolid mat
-    "matériau constitutif de l'élément"
+    "material of the element"
     annotation (choicesAllMatching=true);
   parameter Modelica.SIunits.Length e=0.2
-    "épaisseur de l'élément (dans la direction du gradient de T)";
+    "Thickness of the element (in the direction of the T gradient)";
 
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState;
 
@@ -53,11 +53,20 @@ equation
       DymolaStoredErrors,
     Diagram(graphics),
     Documentation(info="<html>
-<p>Modèle validé - Emmanuel Amy de la Bretèque 06/2010 </p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Emmanuel Amy de la Bretèque 06/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Emmanuel AMY DE LA BRETEQUE, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -28,11 +28,9 @@ parameter Real epsWindows=0.9 "LWR emissivity" annotation(Dialog(group="Glazing"
     "External walls definition"
     annotation (choicesAllMatching=true, Dialog(group="Walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_paroiExt=18
-    "Convective heat transfer coefficient on the outer face for the vertical walls"
-                                                                                             annotation(Dialog(group="Walls"));
+    "Convective heat transfer coefficient on the outer face for the vertical walls"          annotation(Dialog(group="Walls"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_paroiExt=7.7
-    "Convective heat transfer coefficient on the inner face for the vertical walls"
-                                                                                         annotation(Dialog(group="Walls"));
+    "Convective heat transfer coefficient on the inner face for the vertical walls"      annotation(Dialog(group="Walls"));
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall paraPlancher
     "Floor definition"
     annotation (choicesAllMatching=true, Dialog(group="Walls"));
@@ -436,10 +434,11 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
 <p>Gilles Plessis 09/2015 : Ajout d'<code>assert</code> prévenant la non définition de couche isolante.</p>
+<p>Gilles Plessis 03/2016 : Paramètres <code>hs_ext_Plancher</code> et <code>hs_int_Plancher</code> renommés en <code>hs_sub_Plancher</code> et <code>hs_sup_Plancher</code>.</p>
 </html>"));
 end SimplifiedZone1;

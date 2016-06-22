@@ -1,24 +1,31 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
 model NonLinearConvective
-  "Coefficient d'échange convectif non linéaire générique"
+  "Generic non linear convective heat exchange coefficient"
   extends BaseClasses.HeatTransfer.Interfaces.Element1D;
-parameter Real a "facteur multiplicatif de la différence de température";
-parameter Real n "exposant de la loi d'échange";
-parameter Real b "terme supplémentaire de la loi d'échange";
-parameter Modelica.SIunits.Area S "surface d'échange";
+  parameter Real a "Multiplicative factor of the temperature difference";
+  parameter Real n "Exponent of the exchange law";
+  parameter Real b "Additional term of the exchange law";
+  parameter Modelica.SIunits.Area S "Exchange surface";
 
 equation
   Q_flow = if noEvent(abs(dT)>0) then S*(a*abs(dT)^n + b)*dT else 0;
 
   annotation ( Documentation(info="<html>
-<p>Corrélation générique du coefficient d'échange convectif en fonction de l'écart de température : </p>
-<p>hcv = a * dT^n + b </p>
-<p>voir par exemple notice TF111 de CLIM2000 pour des exemples biblio. </p>
-<p>EAB avril 2010 </p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>Generic correlation of the convective heat exchange coefficient depending on the temperature gap : </p>
+<p><code>hcv = a * dT<sup>n</sup> + b</code></p>
+<p><u><b>Bibliography</b></u></p>
+<p>See notice TF111 of CLIM2000 for examples from the bibliography.</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - EAB 04/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>",

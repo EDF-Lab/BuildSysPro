@@ -1,0 +1,4 @@
+convertClass("BuildSysPro.Utilities.Data.Solids.FibreBoard","BuildSysPro.Utilities.Data.Solids.FibreBoard120");
+convertClass("BuildSysPro.Building.Zones.HeatTransfer.SimplifiedMonozone","BuildSysPro.Building.Zones.HeatTransfer.SimplifiedZone1");
+convertClass("BuildSysPro.BoundaryConditions.Weather.SyntheticText","BuildSysPro.BoundaryConditions.Weather.AnalyticText");
+convertClass("BuildSysPro.BoundaryConditions.Weather.SyntheticLighting","BuildSysPro.BoundaryConditions.Weather.AnalyticIrradiance");

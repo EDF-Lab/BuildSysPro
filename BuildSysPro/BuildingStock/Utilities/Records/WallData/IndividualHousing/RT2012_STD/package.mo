@@ -1,5 +1,5 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing;
-package RT2012_STD "Types de parois pour la maison individuelle Mozart standard RT2012"
+package RT2012_STD "Wall data for Mozart individual housing : standard RT2012"
 
 
   annotation (Documentation(info="<html>

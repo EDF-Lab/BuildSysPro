@@ -5,8 +5,7 @@ model FLUXsurfMask
   annotation(choices(choice=true "With calculation of natural lighting",                                    choice=false
         "Without calculation of natural lighting",                                                                                                  radioButtons=true), Dialog(group="Options"));
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
-    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"
-                                                                                              annotation(Dialog(group="Surface description"));
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"   annotation(Dialog(group="Surface description"));
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
     "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°"                                   annotation(Dialog(group="Surface description"));
 
@@ -136,7 +135,7 @@ Following masks are considered:
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -1,5 +1,5 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Sensors;
-model TemperatureSensor "Mesure la température absolue en Kelvin"
+model TemperatureSensor "Absolute temperature sensor in Kelvin"
 
   Modelica.Blocks.Interfaces.RealOutput T annotation (Placement(
         transformation(extent={{90,-10},{110,10}}, rotation=0)));
@@ -85,11 +85,20 @@ equation
           textString="%name",
           lineColor={0,0,255})}),
     Documentation(info="<html>
-<p>Capteur mesurant la température en Kelvin, dont la valeur peut être sortie par le connecteur output. N'a aucune incidence sur les phénomènes physiques. </p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>This is an ideal absolute temperature sensor which returns the temperature of the connected port in Kelvin as an output signal. The sensor itself has no thermal interaction with whatever it is connected to. Furthermore, no thermocouple-like lags are associated with this sensor model.</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor\">TemperatureSensor</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"));

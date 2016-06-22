@@ -1,6 +1,6 @@
-﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
+within BuildSysPro.BaseClasses.HeatTransfer.Components;
 model ASHRAE_vert
-  "Coefficient d'échange convectif non linéaire de l'ASHRAE pour une surface verticale"
+  "Generic non linear convective heat exchange coefficient from ASHRAE for a vertical wall"
   extends BaseClasses.HeatTransfer.Interfaces.Element1D;
 
 parameter Modelica.SIunits.Area S;
@@ -26,10 +26,20 @@ Q_flow = S*(1.24*dT^(1/3));
           fillPattern=FillPattern.HorizontalCylinder,
           fillColor={170,170,255},
           textString="ASHRAE")}), Documentation(info="<html>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2015.12<br>
+BuildSysPro version 2.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));
