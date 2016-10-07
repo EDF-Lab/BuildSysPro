@@ -2,16 +2,6 @@ within BuildSysPro.Utilities;
 package Math "Mathematical functions and blocks"
 
 
-
-
-
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>
