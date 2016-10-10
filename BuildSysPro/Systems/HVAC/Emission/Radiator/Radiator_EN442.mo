@@ -28,8 +28,8 @@ model Radiator_EN442 "Radiator model based on the EN442 standard"
 
     // Variables
 
-SI.TemperatureDifference DTlm= (EntreeEau[1]- SortieEau[1])/Modelica.Math.log((EntreeEau[1]-(Conv.T+Rad.T)/2)/ (SortieEau[1]-(Conv.T+Rad.T)/2))
-    "Logaritmic mean temperature difference, given for information, EN442 being based on arithmetic mean temperature difference";
+/*SI.TemperatureDifference DTlm= (EntreeEau[1]- SortieEau[1])/Modelica.Math.log((EntreeEau[1]-(Conv.T+Rad.T)/2)/ (SortieEau[1]-(Conv.T+Rad.T)/2)) 
+    "Logaritmic mean temperature difference, given for information, EN442 being based on arithmetic mean temperature difference";*/
 inner SI.Temperature   T_HWR(start=273.15+60)
     "Temperature of the hot water radiator";
 

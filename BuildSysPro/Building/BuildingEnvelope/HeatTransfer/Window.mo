@@ -519,7 +519,7 @@ equation
       color={255,0,255},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-//Shutter
+//Sutter
   connect(volet_internal, fermeture_volet) annotation (Line(
       points={{-150,80},{2,80},{2,116}},
       color={0,0,127},

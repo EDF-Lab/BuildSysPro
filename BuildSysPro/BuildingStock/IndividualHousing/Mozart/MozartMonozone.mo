@@ -9,8 +9,10 @@ model MozartMonozone
       choicesAllMatching=true, Dialog(group="Choice of RT"));
 
 protected
+  parameter
     BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART.MozartRenoExisting
-    paraMaisonRenoRTExistant "French building regulation to use";
+    paraMaisonRenoRTExistant "French building regulation to use"
+    annotation (Dialog(group="Building renovation"));
 
    // Choice of renovated elements
 public

@@ -94,6 +94,7 @@ equation
           pattern=LinePattern.Dash)}),
     DymolaStoredErrors,
     Documentation(info="<html>
+
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>All-or-nothing management around a setpoint value plus or minus a hysteresis effect band.</p>
 <p><u><b>Bibliography</b></u></p>

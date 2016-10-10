@@ -1,5 +1,5 @@
 within BuildSysPro.Systems.Distribution;
-model Pump "Pump for a distribution system"
+model Pump "Pump"
 
 //  input Modelica.SIunits.MassFlowRate Me = 2.5 "Fluid mass flow";
 //  input Modelica.SIunits.Temp_C Te = 12.8 "Input temperature of the fluid";
@@ -87,27 +87,11 @@ equation
       smooth=Smooth.None));
   annotation (Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>This model calculates the power and leaving temperature for pump using simple part load characteristics.</p>
-<p>Three types of pumps are represented :
-<ul><li>Case 1 : fixed speed pumps, the control of flow rate is realized by a three way valve</li>
-<li>Case 2 : fixed speed pumps without control</li>
-<li>Case 3 : variable speed pumps</li></ul><p>
-<p>For the variable speed configuration, the electric consumption is calculated by using a part load ratio as function of flow rate.
-The increase of temperature at the outlet is calculated as a function of the power of the pump considering constant efficiency of the motor.</p>
-<p>Case 1 :
-The performance are those of the rating conditions.</p>
-<p>Case 2 :
-When thermal loads decrease, water flow rate is bypassed and the operating conditions of the pump are stable as the flow rate in the emitter would vary.</p>
-<p>Case 3 :
-The pump is characterized by a rating operating point. Making the hypothesis that the efficiency of the motor is constant, the power on the shaft is calculated as a cubic form of the rotational speed if the flow rate is proportional to the speed.
-For an increase of the pressure delivered by the pump, the flow rate and the power are the two variables used to calculate the consumption of the pump at the operating point. A part load ratio (PLR) is used.
-At a non-rating operating point, the PLR is defined as the ratio between the actual volumetric flow rate and the operating one.
-Consumption at partial load is represented as a fraction of the rating power. At a lower flow rate, this fraction (FFLP fraction of full-load power) is determined by using a polynomial curve as a function of partial load.</p>
+<p>Model of pump for a distribution system.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>The user needs to have a characteristics of the pump at partial load (FFLP as function of PLR thus the Ci coefficients), otherwise default coefficients are used. In the case of identification of pump characteristics, the sum of coefficients (Ci) should be verified (equal to 1). 
-The efficiency of the pump can be determined as the ratio between total efficiency of the pump and the efficiency of the motor.</p>
+<p>none</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>
