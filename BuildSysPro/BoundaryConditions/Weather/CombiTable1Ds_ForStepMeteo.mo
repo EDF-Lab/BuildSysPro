@@ -128,7 +128,7 @@ equation
 <ul>
 <li>The interpolation is <b>efficient</b>, because a search for a new interpolation starts at the interval used in the last call.</li>
 <li>If the table has only <b>one row</b>, the table value is returned, independent of the value of the input signal.</li>
-<li>If the input signal <b>u</b> is <b>outside</b> of the defined <b>interval</b>, i.e., u &GT; table[size(table,1),1] or u &LT; table[1,1], the corresponding value is also determined by linear interpolation through the last or first two points of the table.</li>
+<li>If the input signal <b>u</b> is <b>outside</b> of the defined <b>interval</b>, i.e., u &gt; table[size(table,1),1] or u &lt; table[1,1], the corresponding value is also determined by linear interpolation through the last or first two points of the table.</li>
 <li>The grid values (first column) have to be strictly increasing.</li>
 </ul>
 

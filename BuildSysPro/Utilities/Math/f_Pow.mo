@@ -14,10 +14,10 @@ algorithm
   g:=eps*(if y > xc then y^n else (a*y + b)*y);
   g1:=eps*(if y > xc then n*y^(n-1) else (2*a*y + b));
   annotation (Documentation(info="<html>
-<p><b>Power function y = xn for n &LT; 1</b></p>
+<p><b>Power function y = xn for n &lt; 1</b></p>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>Let f be the real function f(x) = xn with 0 &LT; n &LT; 1.</p>
-<p>To avoid a derivative that tends to infinity near 0, f is replaced by the function g such that g (x) = bx + ax&sup2; for 0 &LT; x &LT; xc and g(x) = f(x) for x &GT; xc. </p>
+<p>Let f be the real function f(x) = xn with 0 &lt; n &lt; 1.</p>
+<p>To avoid a derivative that tends to infinity near 0, f is replaced by the function g such that g (x) = bx + ax&sup2; for 0 &lt; x &lt; xc and g(x) = f(x) for x &gt; xc. </p>
 <p>The coefficients a and b are selected so as to keep the continuity of g and its derivative at xc, real chosen close to 0 and depending on the applications. It is shown that a = (n-1) xcn-2 and b = (2-n) xcn-1.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>

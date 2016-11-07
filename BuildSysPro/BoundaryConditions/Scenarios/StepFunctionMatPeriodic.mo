@@ -190,7 +190,7 @@ with n rows and two columns and a second table <code>table2 [i, j]</code> n rows
 <ul>
 <li>the interpolation is effcient because the search for a new interpolation starts from the last interval used for the previous interpolation</li>
 <li>if the table has only one row, its values are returned regardless of the input signal value</li>
-<li>if the value of the input signal <code>u</code> is outside the range defined by the first column of the table, for example, u&GT; table [size (table, 1), 1] or u &LT;table [1, 1], the corresponding value is determined by linear extrapolation from the first or last two points of the table</li>
+<li>if the value of the input signal <code>u</code> is outside the range defined by the first column of the table, for example, u&gt; table [size (table, 1), 1] or u &lt;table [1, 1], the corresponding value is determined by linear extrapolation from the first or last two points of the table</li>
 <li>the first column must be strictly monotonic</li>
 </ul>
 <p>A table can be defined as follows:</p>

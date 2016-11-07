@@ -49,7 +49,7 @@ equation
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>This model allows a specified amount of heat flow rate to be &quot;injected&quot; into a thermal system at a given port. The amount of heat is given by the input signal Q_flow into the model. The heat flows into the component to which the component PrescribedHeatFlow is connected, if the input signal is positive.</p>
-<p>If parameter alpha is &GT; 0, the heat flow is mulitplied by (1 + alpha*(port.T - T_ref)) in order to simulate temperature dependent losses (which are given an reference temperature T_ref).</p>
+<p>If parameter alpha is &gt; 0, the heat flow is mulitplied by (1 + alpha*(port.T - T_ref)) in order to simulate temperature dependent losses (which are given an reference temperature T_ref).</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>

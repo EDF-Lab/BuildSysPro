@@ -103,7 +103,7 @@ algorithm
 <li>Ymin et Ymax, saturation values (eg. 0 and 1 to obtain a gain).</li>
 <li>Value of the Range, i.e. half bandwidth size</li>
 </ol>
-<p><b>Note :</b> For Range &GT; 0, the proportional band will be decreasing. For an increasing function, all you need is Range &LT; 0, leaving other values unchanged.</p>
+<p><b>Note :</b> For Range &gt; 0, the proportional band will be decreasing. For an increasing function, all you need is Range &lt; 0, leaving other values unchanged.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>

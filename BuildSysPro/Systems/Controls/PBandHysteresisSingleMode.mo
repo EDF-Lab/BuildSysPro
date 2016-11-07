@@ -142,8 +142,8 @@ algorithm
 <p>The model returns a value between 0 and 1 from a value X and a setpoint X_ref.></p>
 <p>The regulation is proportional, with a hysteresis loop:</p>
 <ol>
-<li>If X-X_ref &LT; - Range, epsilon = epsmax</li>
-<li>If X-X_ref &GT; Range, epsilon = 0</li>
+<li>If X-X_ref &lt; - Range, epsilon = epsmax</li>
+<li>If X-X_ref &gt; Range, epsilon = 0</li>
 <li>If X belongs to [X_ref-Range; X_ref+Range], proportional regulation or epsilon = 0 according to the entry point in the proportional band.</li>
 </ol>
 <p><u><b>Bibliography</b></u></p>

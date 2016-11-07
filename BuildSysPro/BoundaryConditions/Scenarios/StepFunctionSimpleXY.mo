@@ -38,8 +38,8 @@ protected
 <p><u><b>Instructions for use</b></u></p>
 <p>X vector (dependent variable) and Y vector (data to be interpolated) are 2 vectors having the same size: n elements each.</p>
 <p>For all i from 1 to n-1, for any x in [Xi, X (i + 1) [, calculation of y = Yi</p>
-<p>For all x &GT;= Xn : y = Yn</p>
-<p>For all x, calculation of xp = >if period &GT; 0 then mod(x,period) else x and calculation of y=y(xp)</p>
+<p>For all x &gt;= Xn : y = Yn</p>
+<p>For all x, calculation of xp = >if period &gt; 0 then mod(x,period) else x and calculation of y=y(xp)</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Hassan Bouia 07/2012 </p>
 <p><b>--------------------------------------------------------------<br>

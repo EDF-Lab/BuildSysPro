@@ -577,7 +577,7 @@ equation
 <ul>
 <li>No solar flux transmitted by the part obscured by the shutters</li>
 <li>Absorbed flux unchanged (PVC absorbency similar to that of glass)</li>
-<li>If the shutter is not completely closed (<code>fermeture_volet</code> &LT; 95%), unchanged thermal resistance</li>
+<li>If the shutter is not completely closed (<code>fermeture_volet</code> &lt; 95%), unchanged thermal resistance</li>
 <li>If the shutter is fully closed, increased thermal resistance of an additional thermal resistance, evaluated at 0.2 m&sup2;K / W (PVC thickness of 12 mm approx)</li>
 </ul>
 <p>When the window is open, the conductive heat transfer through the glass is not considered anymore, and instead of that an air renewal by natural ventilation is computed (refer to <a href=\"modelica://BuildSysPro.Building.AirFlow.HeatTransfer.WindowNaturalVentilation\"><code>WindowNaturalVentilation</code></a>). In addition, the absence of glazing results in a suppression of direct and diffuse transmission factors.</p>

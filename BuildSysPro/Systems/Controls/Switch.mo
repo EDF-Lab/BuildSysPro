@@ -67,7 +67,7 @@ equation
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>Operation: </p>
 <ul><li>If the switch is <u>closed</u>, there is equality between thermal ports temperatures (default if OnOff = 1)</li>
-<li>If the switch is <u>opened</u>, no flow circulates between the two ports (default if OnOff &LT;&GT; 1)</li></ul>
+<li>If the switch is <u>opened</u>, no flow circulates between the two ports (default if OnOff &lt;&gt; 1)</li></ul>
 <p>It is possible to change the value at which the switch is closed by changing the value of <code>valeur_On</code> parameter.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>

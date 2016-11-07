@@ -181,7 +181,7 @@ Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>
 ",                                                                           revisions="<html>
-<p>Aurélie Kaemmerlen 04/2013 : Ajout d'une condition sur la hauteur du soleil pour le calcul de la surface ensoleillée. Fait suite à la correction des flux solaires (calcul de l'azimut corrigé - avant il n'était pas déterminé si sinh&LT;=0)</p>
+<p>Aurélie Kaemmerlen 04/2013 : Ajout d'une condition sur la hauteur du soleil pour le calcul de la surface ensoleillée. Fait suite à la correction des flux solaires (calcul de l'azimut corrigé - avant il n'était pas déterminé si sinh&lt;=0)</p>
 <p>Laura Sudries, Vincent Magnaudeix 05/2015 : Ajout de la prise en compte des masques lointains verticaux</p>
 <p>Benoît Charrier 05/2015 : Ajout du choix possible de prise en compte ou non des masques lointains verticaux</p>
 <p>Benoît Charrier 05/2015 : Correction sur le facteur d'affaiblissement du rayonnement solaire direct dû à un masque lointain vertical, qui était appliqué par erreur au rayonnement diffus.</p>

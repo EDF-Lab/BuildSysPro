@@ -36,7 +36,7 @@ BuildSysPro version 2.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p>Aurélie Kaemmerlen 06/2012 : correction de la fonction car le résultat était erroné lors d'une saisie en &deg;Ouest d'une longitude &GT;180&deg; et en &deg;Est d'une longitude &LT;-180&deg;</p>
+<p>Aurélie Kaemmerlen 06/2012 : correction de la fonction car le résultat était erroné lors d'une saisie en &deg;Ouest d'une longitude &gt;180&deg; et en &deg;Est d'une longitude &lt;-180&deg;</p>
 <p>Hassan Bouia 03/2013 : simplification des formules</p>
 </html>"));
 end ConvertLongitude;

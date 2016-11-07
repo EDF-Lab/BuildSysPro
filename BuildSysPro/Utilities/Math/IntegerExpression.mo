@@ -40,7 +40,7 @@ block IntegerExpression
 <p><u><b>Bibliography</b></u></p>
 <p>Modification of the Modelica.Blocks.Sources.IntegerExpression model, adding the u input so that the expression of y can depend on another variable.</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>For example, in the y-menu the definition \"if time &LT; 1 then 0 else 1\" can be given in order to define that the output signal is one, if time &ge; 1 and otherwise it is zero.</p>
+<p>For example, in the y-menu the definition \"if time &lt; 1 then 0 else 1\" can be given in order to define that the output signal is one, if time &ge; 1 and otherwise it is zero.</p>
 <p>Note that \"time\" is a built-in variable that is always accessible and represents the \"model time\" and that variable <b>y</b> is both a variable and a connector.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>

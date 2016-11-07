@@ -117,7 +117,7 @@ initial equation
 <span style=\"font-family: Courier New,courier;\">             = 1: smooth interpolation with Akima Splines such</span>
 <span style=\"font-family: Courier New,courier;\">                  that der(y) is continuous.</span></pre>
 <li>If the table has only <b>one row</b>, no interpolation is performed and the table values of this row are just returned.</li>
-<li>Via parameters <b>startTime</b> and <b>offset</b> the curve defined by the table can be shifted both in time and in the ordinate value. The time instants stored in the table are therefore <b>relative</b> to <b>startTime</b>. If time &LT; startTime, no interpolation is performed and the offset is used as ordinate value for all outputs. </li>
+<li>Via parameters <b>startTime</b> and <b>offset</b> the curve defined by the table can be shifted both in time and in the ordinate value. The time instants stored in the table are therefore <b>relative</b> to <b>startTime</b>. If time &lt; startTime, no interpolation is performed and the offset is used as ordinate value for all outputs. </li>
 <li>The table is implemented in a numerically sound way by generating <b>time events</b> at interval boundaries, in order to not integrate over a discontinuous or not differentiable points. </li>
 <li>For special applications it is sometimes needed to know the minimum and maximum time instant defined in the table as a parameter. For this reason parameters <b>t_min</b> and <b>t_max</b> are provided and can be access from the outside of the table object. </li>
 </ul>
