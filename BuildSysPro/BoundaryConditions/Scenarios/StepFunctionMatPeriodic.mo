@@ -195,10 +195,10 @@ with n rows and two columns and a second table <code>table2 [i, j]</code> n rows
 </ul>
 <p>A table can be defined as follows:</p>
 <ol>
-<li>By explicit entry of parameter &QUOT;table&QUOT;, and other parameters must be set as follows:</li>
-<pre>   tableName = &QUOT;NoName&QUOT; or with blanks,
-   fileName  = &QUOT;NoName&QUOT; or with blanks.</pre>
-   <li>By reading a file &QUOT;fileName&QUOT; where the matrix is stored with the name specified in the parameter &QUOT;tableName&QUOT;. Both ASCII and binary formats are possible. See details and additional information in the <a href=\"Modelica.Blocks.Tables.CombiTable1Ds\"><code>Modelica.Blocks.Tables.CombiTable1Ds</code></a> documentation</li>
+<li>By explicit entry of parameter &quot;table&quot;, and other parameters must be set as follows:</li>
+<pre>   tableName = &quot;NoName&quot; or with blanks,
+   fileName  = &quot;NoName&quot; or with blanks.</pre>
+   <li>By reading a file &quot;fileName&quot; where the matrix is stored with the name specified in the parameter &quot;tableName&quot;. Both ASCII and binary formats are possible. See details and additional information in the <a href=\"Modelica.Blocks.Tables.CombiTable1Ds\"><code>Modelica.Blocks.Tables.CombiTable1Ds</code></a> documentation</li>
 </ol>
 
 

@@ -196,7 +196,7 @@ equation
     Documentation(revisions="<html>
 <p>Hubert Blervaque - 06/2012 :</p>
 <p><ul>
-<li>Suppresion des variables propres au modèle de ballon thermodynamique modélisé initialement &QUOT;ECS_Thermo_M324&QUOT; par Hassan Bouia</li>
+<li>Suppresion des variables propres au modèle de ballon thermodynamique modélisé initialement &quot;ECS_Thermo_M324&quot; par Hassan Bouia</li>
 <li>Variables devenues dimensionnelles</li>
 <li>MAJ de la documentation BuildSysPro</li>
 </ul></p>

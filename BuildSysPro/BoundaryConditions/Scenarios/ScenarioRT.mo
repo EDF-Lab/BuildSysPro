@@ -534,11 +534,11 @@ Regulation 2012"),
 <td><p>Water vapour generation out of occupancy and lighting</p><p>1 = presence</p><p>0 = absence</p><p>Possible modulation between 0 and 1</p></td>
 </tr>
 </table></p>
-<p>Scenarios describing the occupancy and specific uses provide &QUOT;physical&QUOT; information (superior ports of the model). The heat loads can be directly connected to an air node, and vapors inputs are in [kg steam/sec]. These are expressed through a RealOutput connector (causal modelling) and will then be adapted to the connectors selected for the multi-physics modelling.</p>
+<p>Scenarios describing the occupancy and specific uses provide &quot;physical&quot; information (superior ports of the model). The heat loads can be directly connected to an air node, and vapors inputs are in [kg steam/sec]. These are expressed through a RealOutput connector (causal modelling) and will then be adapted to the connectors selected for the multi-physics modelling.</p>
 <p>The use of thermal ports is conditioned by the Booleans (<code>UtilApportThOcc, UtilApportThUsageSpe, UtilApportThEclairage</code>). In situations where these ports are not used but the Booleans are set to TRUE, the following error occurs:</p>
 <p><i><span style=\"color: #ff0000;\">Error: Singular inconsistent scalar system for scenarioRT.ApportsThOccupants.T = (scenarioRT.prescribedHeatFlow.Q_flow*(1-scenarioRT.prescribedHeatFlow.alpha*scenarioRT.prescribedHeatFlow.T_ref))/( -scenarioRT.prescribedHeatFlow.Q_flow*scenarioRT.prescribedHeatFlow.alpha) = .../-0</span></i></p>
 <p>To fix the problem change the value of concerned booleans.</p>
-<p>Right ports of the model correspond to &QUOT;controls&QUOT;. They can be connected to models such as ventilation, hot water, lighting, heating and cooling or comfort analysis.</p>
+<p>Right ports of the model correspond to &quot;controls&quot;. They can be connected to models such as ventilation, hot water, lighting, heating and cooling or comfort analysis.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>None</p>
 <p><u><b>Validations</b></u></p>

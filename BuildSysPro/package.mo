@@ -41,6 +41,6 @@ BuildSysPro contains classes to describe the whole building and its energy syste
 </html>
 
 ",    revisions="<html>
-<p>Gilles Plessis 07/2013 : Suppression des annotations &QUOT;operations&QUOT; pour export binary... pour BuildSysPro.moe.</p>
+<p>Gilles Plessis 07/2013 : Suppression des annotations &quot;operations&quot; pour export binary... pour BuildSysPro.moe.</p>
 </html>"));
 end BuildSysPro;

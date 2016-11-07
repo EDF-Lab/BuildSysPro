@@ -136,7 +136,7 @@ equation
 <p>Derived from the <a href=\"modelica://Modelica.Blocks.Tables.CombiTable1Ds\">Modelica.Blocks.Tables.CombiTable1Ds model </a>.</p>
 <p><u><b>Instructions for use</b></u></p>
 
-<p>The grid points and function values are stored in a matrix &QUOT;table[i,j]&QUOT;, where the first column &QUOT;table[:,1]&QUOT; contains the grid points and the other columns contain the data to be interpolated. Example: </p>
+<p>The grid points and function values are stored in a matrix &quot;table[i,j]&quot;, where the first column &quot;table[:,1]&quot; contains the grid points and the other columns contain the data to be interpolated. Example: </p>
 <pre>   table = [0,  0;
             1,  1;
             2,  4;
@@ -148,20 +148,20 @@ equation
 
 <p>The table matrix can be defined in the following ways: </p>
 <ol>
-<li>Explicitly supplied as <b>parameter matrix</b> &QUOT;table&QUOT;, and the other parameters have the following values: </li>
-<pre>   tableName is &QUOT;NoName&QUOT; or has only blanks,
-   fileName  is &QUOT;NoName&QUOT; or has only blanks.</pre>
-<li> <b>Read</b> from a <b>file</b> &QUOT;fileName&QUOT; where the matrix is stored as &QUOT;tableName&QUOT;. Both ASCII and MAT-file format is possible. (The ASCII format is described below). The MAT-file format comes in four different versions: v4, v6, v7 and v7.3. The library supports at least v4, v6 and v7 whereas v7.3 is optional. It is most convenient to generate the MAT-file from FreeMat or MATLAB&reg; by command </li>
+<li>Explicitly supplied as <b>parameter matrix</b> &quot;table&quot;, and the other parameters have the following values: </li>
+<pre>   tableName is &quot;NoName&quot; or has only blanks,
+   fileName  is &quot;NoName&quot; or has only blanks.</pre>
+<li> <b>Read</b> from a <b>file</b> &quot;fileName&quot; where the matrix is stored as &quot;tableName&quot;. Both ASCII and MAT-file format is possible. (The ASCII format is described below). The MAT-file format comes in four different versions: v4, v6, v7 and v7.3. The library supports at least v4, v6 and v7 whereas v7.3 is optional. It is most convenient to generate the MAT-file from FreeMat or MATLAB&reg; by command </li>
 <pre>   save tables.mat tab1 tab2 tab3</pre>
 <p>or Scilab by command </p>
 <pre>   savematfile tables.mat tab1 tab2 tab3</pre>
 <p>when the three tables tab1, tab2, tab3 should be used from the model.</p>
 <p>Note, a fileName can be defined as URI by using the helper function <a href=\"modelica://Modelica.Utilities.Files.loadResource\">loadResource</a>.</p>
-<li>Statically stored in function &QUOT;usertab&QUOT; in file &QUOT;usertab.c&QUOT;. The matrix is identified by &QUOT;tableName&QUOT;. Parameter fileName = &QUOT;NoName&QUOT; or has only blanks. Row-wise storage is always to be preferred as otherwise the table is reallocated and transposed. See the <a href=\"modelica://Modelica.Blocks.Tables\">Tables</a> package documentation for more details.</li>
+<li>Statically stored in function &quot;usertab&quot; in file &quot;usertab.c&quot;. The matrix is identified by &quot;tableName&quot;. Parameter fileName = &quot;NoName&quot; or has only blanks. Row-wise storage is always to be preferred as otherwise the table is reallocated and transposed. See the <a href=\"modelica://Modelica.Blocks.Tables\">Tables</a> package documentation for more details.</li>
 </ol>
 
-<p>When the constant &QUOT;NO_FILE_SYSTEM&QUOT; is defined, all file I/O related parts of the source code are removed by the C-preprocessor, such that no access to files takes place. </p>
-<p>If tables are read from an ASCII-file, the file needs to have the following structure (&QUOT;-----&QUOT; is not part of the file content): </p>
+<p>When the constant &quot;NO_FILE_SYSTEM&quot; is defined, all file I/O related parts of the source code are removed by the C-preprocessor, such that no access to files takes place. </p>
+<p>If tables are read from an ASCII-file, the file needs to have the following structure (&quot;-----&quot; is not part of the file content): </p>
 <pre>-----------------------------------------------------
 #1
 double tab1(5,2)   # comment line
@@ -177,7 +177,7 @@ double tab2(5,2)   # another comment line
   6  18
   8  32
 -----------------------------------------------------</pre>
-<p>Note, that the first two characters in the file need to be &QUOT;#1&QUOT; (a line comment defining the version number of the file format). Afterwards, the corresponding matrix has to be declared with type (= &QUOT;double&QUOT; or &QUOT;float&QUOT;), name and actual dimensions. Finally, in successive rows of the file, the elements of the matrix have to be given. The elements have to be provided as a sequence of numbers in row-wise order (therefore a matrix row can span several lines in the file and need not start at the beginning of a line). Numbers have to be given according to C syntax (such as 2.3, -2, +2.e4). Number separators are spaces, tab ( ), comma (,), or semicolon (;). Several matrices may be defined one after another. Line comments start with the hash symbol (#) and can appear everywhere. Other characters, like trailing non comments, are not allowed in the file. </p>
+<p>Note, that the first two characters in the file need to be &quot;#1&quot; (a line comment defining the version number of the file format). Afterwards, the corresponding matrix has to be declared with type (= &quot;double&quot; or &quot;float&quot;), name and actual dimensions. Finally, in successive rows of the file, the elements of the matrix have to be given. The elements have to be provided as a sequence of numbers in row-wise order (therefore a matrix row can span several lines in the file and need not start at the beginning of a line). Numbers have to be given according to C syntax (such as 2.3, -2, +2.e4). Number separators are spaces, tab ( ), comma (,), or semicolon (;). Several matrices may be defined one after another. Line comments start with the hash symbol (#) and can appear everywhere. Other characters, like trailing non comments, are not allowed in the file. </p>
 <p>MATLAB is a registered trademark of The MathWorks, Inc. </p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>

@@ -284,7 +284,7 @@ Author : Gilles PLESSIS, EDF (2012)<br>
 <p>Gilles Plessis 06/2012 :</p>
 <ul>
 <li>Fusion des anciens modèles pour considérer le sol ou non</li>
-<li>Insertion du record ParoiGenerique pour le paramètrage des caractéristiques de la paroi sous une forme &QUOT;replaceable&QUOT;</li>
+<li>Insertion du record ParoiGenerique pour le paramètrage des caractéristiques de la paroi sous une forme &quot;replaceable&quot;</li>
 </ul>
 <p>Aurélie Kaemmerlen 07/2012 : Modification similaires à celles effectuées sur la paroi classique</p>
 <ul>
