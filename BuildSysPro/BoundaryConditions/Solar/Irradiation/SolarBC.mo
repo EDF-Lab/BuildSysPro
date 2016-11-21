@@ -382,6 +382,6 @@ BuildSysPro version 2.0.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p>Gilles Plessis 12/2013 : Mise à jour des noms des paramètres SurfaceVitree-&GT;SurfacesVitrees et SurfaceExterieures-&GT;SurfacesExterieures</p>
+<p>Gilles Plessis 12/2013 : Mise à jour des noms des paramètres SurfaceVitree-&gt;SurfacesVitrees et SurfaceExterieures-&gt;SurfacesExterieures</p>
 </html>"));
 end SolarBC;

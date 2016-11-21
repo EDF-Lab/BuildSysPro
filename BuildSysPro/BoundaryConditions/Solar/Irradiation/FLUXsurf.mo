@@ -159,7 +159,7 @@ Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 <p><ul>
 <li>Ajout de sorties : hauteur et azimut du soleil, Rayonnement incident diffus provenant du sol</li>
 <li>Vecteur Gh de dimension 9 (anciennement 6) pour ajouter les entrées CoupleFlux, MoyFlux et dt</li>
-<li>Ajout d'une sécurité pour éviter un flux direct infini : sinh&GT;0.01 au lieu de &GT;0 pour le calcul de FDIRN/FDIRH</li>
+<li>Ajout d'une sécurité pour éviter un flux direct infini : sinh&gt;0.01 au lieu de &gt;0 pour le calcul de FDIRN/FDIRH</li>
 </ul></p>
 <p><br>Hassan Bouia 03/2013 : Simplication du calcul solaire - attention nouvelle dimension du vecteur <b>Gh</b> renommé en <b>G</b></p>
 <p>Amy Lindsay 03/2013 : Ajout du paramètre diffus_isotrope pour choisir entre un modèle de diffus isotrope ou le modèle de diffus HDKR</p>

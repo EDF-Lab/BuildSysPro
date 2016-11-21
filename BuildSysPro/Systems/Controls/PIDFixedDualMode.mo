@@ -161,7 +161,7 @@ equation
 <p><u><b>Instructions for use</b></u></p>
 <p>none</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
-<p>Of course, this model should not be used if Tc &LT; Tf.</a></p>
+<p>Of course, this model should not be used if Tc &lt; Tf.</a></p>
 <p>Safeguards should be added to prevent bug.</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model (BESTEST) - Aurélie Kaemmerlen 12/2010</p>

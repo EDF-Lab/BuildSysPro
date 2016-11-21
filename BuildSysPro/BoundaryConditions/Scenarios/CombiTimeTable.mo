@@ -117,7 +117,7 @@ initial equation
 <span style=\"font-family: Courier New,courier;\">             = 1: smooth interpolation with Akima Splines such</span>
 <span style=\"font-family: Courier New,courier;\">                  that der(y) is continuous.</span></pre>
 <li>If the table has only <b>one row</b>, no interpolation is performed and the table values of this row are just returned.</li>
-<li>Via parameters <b>startTime</b> and <b>offset</b> the curve defined by the table can be shifted both in time and in the ordinate value. The time instants stored in the table are therefore <b>relative</b> to <b>startTime</b>. If time &LT; startTime, no interpolation is performed and the offset is used as ordinate value for all outputs. </li>
+<li>Via parameters <b>startTime</b> and <b>offset</b> the curve defined by the table can be shifted both in time and in the ordinate value. The time instants stored in the table are therefore <b>relative</b> to <b>startTime</b>. If time &lt; startTime, no interpolation is performed and the offset is used as ordinate value for all outputs. </li>
 <li>The table is implemented in a numerically sound way by generating <b>time events</b> at interval boundaries, in order to not integrate over a discontinuous or not differentiable points. </li>
 <li>For special applications it is sometimes needed to know the minimum and maximum time instant defined in the table as a parameter. For this reason parameters <b>t_min</b> and <b>t_max</b> are provided and can be access from the outside of the table object. </li>
 </ul>
@@ -134,16 +134,16 @@ initial equation
 <span style=\"font-family: Courier New,courier;\">    e.g., time = 5.0, the output y = 23.0 (i.e. extrapolation via last 2 points).</span></pre>
 <p>The table matrix can be defined in the following ways: </p>
 <ol>
-<li>Explicitly supplied as <b>parameter matrix</b> &QUOT;table&QUOT;, and the other parameters have the following values: </li>
-<pre><span style=\"font-family: Courier New,courier;\">   tableName is &QUOT;NoName&QUOT; or has only blanks,</span>
-<span style=\"font-family: Courier New,courier;\">   fileName  is &QUOT;NoName&QUOT; or has only blanks.</span></pre>
-<li><b>Read</b> from a <b>file</b> &QUOT;fileName&QUOT; where the matrix is stored as &QUOT;tableName&QUOT;. Both ASCII and binary file format is possible. (the ASCII format is described below). It is most convenient to generate the binary file from Matlab (Matlab 4 storage format), e.g., by command </li>
+<li>Explicitly supplied as <b>parameter matrix</b> &quot;table&quot;, and the other parameters have the following values: </li>
+<pre><span style=\"font-family: Courier New,courier;\">   tableName is &quot;NoName&quot; or has only blanks,</span>
+<span style=\"font-family: Courier New,courier;\">   fileName  is &quot;NoName&quot; or has only blanks.</span></pre>
+<li><b>Read</b> from a <b>file</b> &quot;fileName&quot; where the matrix is stored as &quot;tableName&quot;. Both ASCII and binary file format is possible. (the ASCII format is described below). It is most convenient to generate the binary file from Matlab (Matlab 4 storage format), e.g., by command </li>
 <pre><span style=\"font-family: Courier New,courier;\">   save tables.mat tab1 tab2 tab3 -V4</span></pre>
 <p>when the three tables tab1, tab2, tab3 should be used from the model.</p>
-<li>Statically stored in function &QUOT;usertab&QUOT; in file &QUOT;usertab.c&QUOT;. The matrix is identified by &QUOT;tableName&QUOT;. Parameter fileName = &QUOT;NoName&QUOT; or has only blanks.</li>
+<li>Statically stored in function &quot;usertab&quot; in file &quot;usertab.c&quot;. The matrix is identified by &quot;tableName&quot;. Parameter fileName = &quot;NoName&quot; or has only blanks.</li>
 </ol>
-<p>Table definition methods (1) and (3) do <b>not</b> allocate dynamic memory, and do not access files, whereas method (2) does. Therefore (1) and (3) are suited for hardware-in-the-loop simulation (e.g. with dSpace hardware). When the constant &QUOT;NO_FILE&QUOT; is defined in &QUOT;usertab.c&QUOT;, all parts of the source code of method (2) are removed by the C-preprocessor, such that no dynamic memory allocation and no access to files takes place. </p>
-<p>If tables are read from an ASCII-file, the file need to have the following structure (&QUOT;-----&QUOT; is not part of the file content): </p>
+<p>Table definition methods (1) and (3) do <b>not</b> allocate dynamic memory, and do not access files, whereas method (2) does. Therefore (1) and (3) are suited for hardware-in-the-loop simulation (e.g. with dSpace hardware). When the constant &quot;NO_FILE&quot; is defined in &quot;usertab.c&quot;, all parts of the source code of method (2) are removed by the C-preprocessor, such that no dynamic memory allocation and no access to files takes place. </p>
+<p>If tables are read from an ASCII-file, the file need to have the following structure (&quot;-----&quot; is not part of the file content): </p>
 <pre><span style=\"font-family: Courier New,courier;\">-----------------------------------------------------</span>
 <span style=\"font-family: Courier New,courier;\">#1</span>
 <span style=\"font-family: Courier New,courier;\">double tab1(6,2)   # comment line</span>
@@ -161,7 +161,7 @@ initial equation
 <span style=\"font-family: Courier New,courier;\">  6  18</span>
 <span style=\"font-family: Courier New,courier;\">  8  32</span>
 <span style=\"font-family: Courier New,courier;\">-----------------------------------------------------</span></pre>
-<p>Note, that the first two characters in the file need to be &QUOT;#1&QUOT;. Afterwards, the corresponding matrix has to be declared with type, name and actual dimensions. Finally, in successive rows of the file, the elements of the matrix have to be given. Several matrices may be defined one after another. </p>
+<p>Note, that the first two characters in the file need to be &quot;#1&quot;. Afterwards, the corresponding matrix has to be declared with type, name and actual dimensions. Finally, in successive rows of the file, the elements of the matrix have to be given. Several matrices may be defined one after another. </p>
 
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>

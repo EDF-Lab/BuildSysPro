@@ -390,8 +390,8 @@ Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 <li>Iintégration des coefficients convectifs directement dans ce modèle pour faciliter l'intégration d'éléments actifs dans la paroi</li>
 <li>Hubert Blervaque 06/2012 : Intégration de l'option permettant d'en faire un plancher chauffant à eau, Modification des paramètres par défaut pour hs et hint (5.88 au lieu de 1)</li>
 <li>Vincent Magnaudeix 03/2012 (non validé) : intégration du modèle partiel de plancher chauffant électrique.</li>
-<li>Gilles Plessis 06/2012 : Insertion du record ParoiGenerique pour le paramètrage des caractéristiques de la paroi sous une forme &QUOT;replaceable&QUOT;, Protection des composants internes pour éviter le trop grand nombre de variables lors de l'exploitation des résultats de simulation.</li>
-<li>Remarque GP : Le &QUOT;modifier&QUOT; replaceable est obligatoire pour autoriser la taille variable de ParoiGenerique (Erreur dans le check d'un modèle utilisant la paroi). Il permet aussi d'envisager l'utilisation de matériaux à changement de phase dans les couches de parois.</li>
+<li>Gilles Plessis 06/2012 : Insertion du record ParoiGenerique pour le paramètrage des caractéristiques de la paroi sous une forme &quot;replaceable&quot;, Protection des composants internes pour éviter le trop grand nombre de variables lors de l'exploitation des résultats de simulation.</li>
+<li>Remarque GP : Le &quot;modifier&quot; replaceable est obligatoire pour autoriser la taille variable de ParoiGenerique (Erreur dans le check d'un modèle utilisant la paroi). Il permet aussi d'envisager l'utilisation de matériaux à changement de phase dans les couches de parois.</li>
 </ul>
 <p><br>Aurélie Kaemmerlen 10/2012 : Correction de l'inversion depuis la dernière version des hs_int et hs_ext</p>
 <p>Aurélie Kaemmerlen 09/2013 : Changement des hs par défaut (correspondent désormais à ceux de surfaces verticales)</p>

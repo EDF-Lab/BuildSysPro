@@ -331,7 +331,7 @@ equation
 <ul>
 <li>No solar flux transmitted by the part obscured by the shutters</li>
 <li>Absorbed flux unchanged (PVC absorbency similar to that of glass)</li>
-<li>If the shutter is not completely closed (Coeff_Fermeture &LT;95%), unchanged thermal resistance</li>
+<li>If the shutter is not completely closed (Coeff_Fermeture &lt;95%), unchanged thermal resistance</li>
 <li>If the shutter is fully closed, increased thermal resistance of an additional thermal resistance, evaluated at 0.2 m&sup2;K / W (PVC thickness of 12 mm approx.)</li>
 </ul>
 <p>When the window is open, there is \"broke\" of the conductance through the glass, and instead of that a debit of air renewal by natural ventilation is computed (refer to <a href=\"modelica://BuildSysPro.Building.AirFlow.HeatTransfer.WindowNaturalVentilation\"><code>WindowNaturalVentilation</code></a>). </p>

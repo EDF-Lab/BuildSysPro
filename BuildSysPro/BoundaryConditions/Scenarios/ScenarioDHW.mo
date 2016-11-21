@@ -115,7 +115,7 @@ Author : Hassan BOUIA, EDF (2011)<br>
 <p>Aurélie Kaemmerlen 06/2012 :</p>
 <p><ul>
 <li>Blocage des paramètres propres aux scénarios perso lorsque les scénarios pré-établis sont sélectionnés (AICVF et M324)</li>
-<li>Remplacement du modèle CombiStep1Ds par le nouveau scénario &QUOT;FctEscalierMat&QUOT;</li>
+<li>Remplacement du modèle CombiStep1Ds par le nouveau scénario &quot;FctEscalierMat&quot;</li>
 </ul></p>
 <p><br>Aurélie Kaemmerlen 10/2013 : Suppression des paramètres en protected avec les équations conditionnelles définissant les chemins vers les fichiers AICVF et M324 - Donnait une erreur lors de l'exécution après chiffrement du modèle !</p>
 </html>"));

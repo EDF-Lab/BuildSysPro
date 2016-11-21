@@ -5,65 +5,65 @@ class Acknowledgement "Acknowledgement"
  annotation (Documentation(info="<html>
 <p>
 The <code>BuildSysPro</code> library is developed by the
-EDF R&D's <strong>Energy simulation and building envelope</strong> group, from the <strong>EnerBaT</strong> department (Energy in Buildings and Territories) 
+EDF R&amp;D's <strong>Energy simulation and building envelope</strong> group, from the <strong>EnerBaT</strong> department (Energy in Buildings and Territories) 
 </p>
 <p>
 The core development team of BuildSysPro is composed of:
 <ul>
 <li>
-Hassan Bouia, EDF R&D, France
+Hassan Bouia, EDF R&amp;D, France
 </li>
 <li>
-Mathias Bouquerel, EDF R&D, France
+Mathias Bouquerel, EDF R&amp;D, France
 </li>
 <li>
-Benoit Charrier, EDF R&D, France
+Benoit Charrier, EDF R&amp;D, France
 </li>
 <li>
-Denis Covalet, EDF R&D, France
+Denis Covalet, EDF R&amp;D, France
 </li>
 <li>
-Sila Filfli, EDF R&D, France
+Sila Filfli, EDF R&amp;D, France
 </li>
 <li>
-Gilles Plessis, EDF R&D, France
+Gilles Plessis, EDF R&amp;D, France
 </li>
 <li>
-Mathieu Schumann, EDF R&D, France
+Mathieu Schumann, EDF R&amp;D, France
 </li>
 <li>
-Bénédicte Wall-Ribot, EDF R&D, France
+Bénédicte Wall-Ribot, EDF R&amp;D, France
 </li>
 </p>
 <p>
 The following people have contributed or contribute actively to the development of BuildSysPro:
 <ul>
 <li>
-Emmanuel Amy de la Bretèque, EDF R&D, France
+Emmanuel Amy de la Bretèque, EDF R&amp;D, France
 </li>
 <li>
-Bernard Clémençon, EDF R&D, France
+Bernard Clémençon, EDF R&amp;D, France
 </li>
 <li>
-Frédéric Gastiger, EDF R&D, France
+Frédéric Gastiger, EDF R&amp;D, France
 </li>
 <li>
-Jean-Luc Hubert, EDF R&D, France
+Jean-Luc Hubert, EDF R&amp;D, France
 </li>
 <li>
-Aurélie Kaemmerlen, EDF R&D, France
+Aurélie Kaemmerlen, EDF R&amp;D, France
 </li>
 <li>
-Amy Lindsay, EDF R&D, France
+Amy Lindsay, EDF R&amp;D, France
 </li>
 <li>
-Vincent Magnaudeix, EDF R&D, France
+Vincent Magnaudeix, EDF R&amp;D, France
 </li>
 <li>
-Pierrick Mandrou, EDF R&D, France
+Pierrick Mandrou, EDF R&amp;D, France
 </li>
 <li>
-Davy Merlet, EDF R&D, France
+Davy Merlet, EDF R&amp;D, France
 </li></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>

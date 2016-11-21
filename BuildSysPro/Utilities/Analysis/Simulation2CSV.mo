@@ -78,7 +78,7 @@ annotation(interactive=true,
 <li>In the tab <i>setup</i>, select the name and location of the CSV file and the name of the model to simulate</li>
 <li>In the tab <i>Model parameters </i>select the parameters to be modified from their default value. <b>Warnings, parameters of type String are not changeable by this function,</b></li>
 <li>In the tab <i>Model variables </i>select the variables to be registered in the CSV file, the column <i>description </i>is used to set the title to be associated with the CSV file columns. If it is not given, then the variable name is used.</li>
-<li>The tab <i>preferences</i> <i>-&GT;</i> <i>simulationOptions</i> allows the modification of simulation parameters (<i>startTime..</i>).</li>
+<li>The tab <i>preferences</i> <i>-&gt;</i> <i>simulationOptions</i> allows the modification of simulation parameters (<i>startTime..</i>).</li>
 </ol>
 <p><br>After the successful parameterization of the function, click on <i>Execute </i>in the bottom right of the dialog window. The simulation is performed and variables are saved in the specified CSV file.</p>
 <p><br>This function normally performs a simulation without recording events (<i>saveEvents </i>variable set to <i>false</i> by default), corresponding to the <i>store variables</i> <i>at events </i>box<i> </i>shakeout<i> </i>in the <i>Output </i>tab of the <i>Setup </i>menu (see figure below).</p>

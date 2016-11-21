@@ -32,7 +32,7 @@ algorithm
   end for;
 
   annotation (Documentation(info="<html>
-<p><i><b>FindMultiExtremum returns a vector containing the n (where n &LT;N) extreme values of the input vector X and their indexes.</b></i></p>
+<p><i><b>FindMultiExtremum returns a vector containing the n (where n &lt;N) extreme values of the input vector X and their indexes.</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>This function takes as input : </p>
 <ul>
@@ -40,7 +40,7 @@ algorithm
 <li><i>n</i>, the number of extreme values to extract from the vector <i>X</i></li>
 <li>The boolean <i>ascending</i>, to set if extreme values wanted are the smallest ones (=true) or the greatest ones (=false)</li>
 </ul>
-<p>FindMultiExtremum returns a vector <i>Xm</i> contenant les n (où n &LT; N) containing the n (where n &LT; N) extreme values of the input vector <i>X</i> and the vector <i>Indm</i> containing their indexes in the vector <i>X</i>.</p>
+<p>FindMultiExtremum returns a vector <i>Xm</i> contenant les n (où n &lt; N) containing the n (where n &lt; N) extreme values of the input vector <i>X</i> and the vector <i>Indm</i> containing their indexes in the vector <i>X</i>.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
