@@ -1,4 +1,4 @@
-within BuildSysPro.Systems.HVAC.Components;
+within BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components;
 partial model CharacteristicEquation
   "Model for characteristic equation of a radiator (EN442)"
  import SI = Modelica.SIunits;
@@ -30,21 +30,21 @@ partial model CharacteristicEquation
         transformation(extent={{30,70},{50,90}}), iconTransformation(
           extent={{20,60},{40,80}})));
 
-  replaceable BuildSysPro.Systems.HVAC.Components.BasedCharacteristicEquation1
+  replaceable BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation1
     radEqua(
     Pnom=Pnom,
     DTnom=DTnom,
     nNom=nNom,
     FracRad=FracRad,
     Km=Km) constrainedby
-    BuildSysPro.Systems.HVAC.Components.BasedCharacteristicEquation
+    BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation
                                                      annotation (
     choices(choice(redeclare
-          BuildSysPro.Systems.HVAC.Components.BasedCharacteristicEquation1
+          BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation1
           radEqua
           "Simplified : Room temperature based on average between radiative and convective temperatures"),
         choice(redeclare
-          BuildSysPro.Systems.HVAC.Components.BasedCharacteristicEquation2
+          BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation2
           radEqua
           "Detailed   : Distinction between radiative and convective temperatures for heat transfers")),
     Placement(transformation(extent={{-10,-10},{10,10}})),
@@ -59,11 +59,10 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     Documentation(info="<html>
-
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Authors : Gilles PLESSIS, Hassan BOUIA EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

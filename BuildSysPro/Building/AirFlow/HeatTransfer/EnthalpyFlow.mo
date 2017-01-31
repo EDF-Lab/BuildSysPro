@@ -69,11 +69,11 @@ Documentation(info="<html>
 <p>Use this type of model only for temperature differences lower than 5°C. Beyond, prefer pressure and temperature models, which provide a more accurate modeling.</p>
 <p>Caution related to the conservation of mass.</p>
 <p><u><b>Validations</b></u></p>
-<p>Model validated. Gilles Plessis 02/2012.</p>
+<p>Model validated - Gilles Plessis 02/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

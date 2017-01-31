@@ -108,9 +108,8 @@ Modelica.Blocks.Math.Gain AbsMurExt(k=alpha_ext*S) if  (not ParoiInterne)
         origin={-35,71})));
 Modelica.Blocks.Math.Add add if (not ParoiInterne)
     annotation (Placement(transformation(extent={{-72,64},{-58,78}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUX[3] if
-                                                                          (not
-    ParoiInterne)
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUX[3] if (
+    not ParoiInterne)
     "Surface incident solar flux information 1-Diffuse Flux, 2-Direct Flux 3-Cosi"
     annotation (Placement(transformation(extent={{-118,54},{-80,92}}),
         iconTransformation(extent={{-40,80},{-20,100}})));
@@ -364,8 +363,8 @@ end if;
 <p>Validated model - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

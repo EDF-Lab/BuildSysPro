@@ -4,6 +4,7 @@ findValue
 LeastSquares
 f_Pow
 f_Quadratic
+regStep
 FindMultiExtremum
 RealExpression
 IntegerExpression

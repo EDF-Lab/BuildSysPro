@@ -1,4 +1,4 @@
-﻿within BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartZones;
+within BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartZones;
 model ZoneBathroom
 
   // Choice of RT (French building regulation)
@@ -171,8 +171,8 @@ public
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_CloisonLegEntreeSDB,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurSudSDB,BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_CloisonLegC3SDB,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondSDB},
-    Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_VitrageSudSDB}) if
-    not CLOintPlancher
+    Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_VitrageSudSDB}) if not
+    CLOintPlancher
     annotation (Placement(transformation(extent={{-2,-92},{18,-72}})));
 
 // Base components
@@ -444,21 +444,21 @@ graphics={
            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics),
     Documentation(info="<html>
-<p><i><b>Zone salle de bain Mozart</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>néant</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
+<p><i><b>Zone bathroom Mozart</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Parameter <code>paraMaisonRT</code> allows the user to chose a specific French building regulation for the building, so that building envelope parameters (walls, windows, ventilation...) will be automatically filled with data from the choosen record.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

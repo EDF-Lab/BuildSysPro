@@ -47,7 +47,7 @@ Modelica.Blocks.Interfaces.RealInput G[10]
   Modelica.SIunits.HeatFlux DIFH;
   Real FLUX[15];
   Real DiffusSol[5];
-  output Real sinh;
+  output Real sin_h;
   output Real cosi[5];
 protected
   parameter Real azim_in[5]=if ChoixAzimuth then azim[1:5] else {0,beta+180,beta,beta-90,beta+90};
@@ -107,8 +107,8 @@ public
         origin={-90,110})));
 
 algorithm
-  // sinh and cosi computations
-  sinh :=G[6];  //First direction consine of the solar vector
+  // sin_h and cosi computations
+  sin_h :=G[6];  //First direction consine of the solar vector
   cosi:={max(0, l[i]*G[6] + m[i]*G[7] + n[i]*G[8]) for i in 1:5};
 
 //equation
@@ -123,7 +123,7 @@ algorithm
    // FLUX vector for irradiance on the surfaces: diffuse, direct, cosi
    DiffusSol[i] :=max(0, coef1[i]*GLOH);
    FLUX[3*i-2] :=max(0, coef2[i]*DIFH) + DiffusSol[i];
-   FLUX[3*i-1] :=if noEvent(sinh > 0.01) then max(0, cosi[i])*DIRN else 0; //To avoid cases with a non-zero direct irradiance when the sun is below the horizon
+   FLUX[3*i-1] :=if noEvent(sin_h > 0.01) then max(0, cosi[i])*DIRN else 0; //To avoid cases with a non-zero direct irradiance when the sun is below the horizon
    FLUX[3*i] :=cosi[i];
  end for;
  FLUXPlafond:=FLUX[1:3];
@@ -188,8 +188,8 @@ annotation (Documentation(info="<html>
 <p>Validated model (identical to the one used in the BESTEST except for the time base: UTC instead of true solar time (TST)) - Aurélie Kaemmerlen 09/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

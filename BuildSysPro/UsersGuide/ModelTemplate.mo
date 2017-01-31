@@ -33,7 +33,7 @@ protected
 Real gamma "Intermediate variable not visible by default in the results";
 
 //----------------------------------------------------------------------------------------------------------------------------------------------//
-//----- Section of algorithms & equations -----//
+//----- Section of algorithms &amp; equations -----//
 
 //-- Algorithms - for classic or sequential calculations, not taking part of the equational system of the model to be resolved --//
 // Be careful, an algorithm should not be considered as an equation, contrary to equations there is no memory to save the results at the last time steps for algorithms
@@ -67,7 +67,7 @@ gamma = if Bool then D else 0;
           fillPattern=FillPattern.Solid,
           textString="Assembly of submodels constituting the model")}),
     Documentation(info="<html>
-<p><i><b>Complete the description of the model using <u>Info Editor</u> or<u> Info Source</u> views and fill in the next sections</b></i></p>
+<p><i><b>Complete the description of the model using <u>Info Editor</u> or <u>Info Source</u> views and fill in the next sections</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/example.bmp\"/></p>
 <p><i><span style=\"color: #0000ff;\">If the image does not appear while you are using a relative path, make sure that your work directory (File/Change Directory) is the one containing BuildSysPro and the Resources folder</span></i></p> You can also use hyperlink to another model : <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall\">HYPERLINK to the WALL model</a></p>
@@ -81,8 +81,8 @@ gamma = if Bool then D else 0;
 <p>Validated model (or not) - First name LAST NAME month/year <b>(MANDATORY)</b></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : First name LAST NAME, company (year of creation of the code)<br>
 --------------------------------------------------------------</b></p>
 </html>",

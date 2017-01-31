@@ -528,7 +528,7 @@ Regulation 2012"),
 <td><p>Control for heating and cooling</p><p>1 = active</p><p>0 = setback period shorter than 48h</p><p>-1 = setback period longer than 48</p></td>
 <td><p>Ventilation setpoint</p><p>1 = operation</p><p>0 = stop or minimum value</p></td>
 <td><p>Lighting setpoint</p><p>1 = operation</p><p>0 = stop or minimum value</p></td>
-<td><p>Hot water consumption [%]</p><p>Part of hot water consumed each hour</p><p>Reference period (100%) is a week</p><p>Reference volume set by <code>consoECShebdo</code></p></td>
+<td><p>Hot water consumption [&#37;]</p><p>Part of hot water consumed each hour</p><p>Reference period (100&#37;) is a week</p><p>Reference volume set by <code>consoECShebdo</code></p></td>
 <td><p>Occupancy rate</p><p>1 = presence</p><p>0 = absence</p><p>Possible modulation between 0 and 1 (ex : sleeping period)</p></td>
 <td><p>Internal gains by specific uses</p><p>1 = presence</p><p>0 = absence</p><p>Possible modulation between 0 and 1</p></td>
 <td><p>Water vapour generation out of occupancy and lighting</p><p>1 = presence</p><p>0 = absence</p><p>Possible modulation between 0 and 1</p></td>
@@ -546,7 +546,7 @@ Regulation 2012"),
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2010 - 2015<br>
-BuildSysPro version 2.0.0<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -15,7 +15,7 @@ parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
   Modelica.Blocks.Continuous.LimPID PID(
     Ni=0.1,
     yMin=0.,
-    initType=Modelica.Blocks.Types.InitPID.NoInit,
+    initType=Modelica.Blocks.Types.InitPID.InitialState,
     yMax=PuissanceNom,
     k=k,
     Ti=Ti,
@@ -24,25 +24,22 @@ parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedChauffage if Test
     annotation (Placement(transformation(extent={{-20,-18},{-40,2}})));
   Modelica.Thermal.HeatTransfer.Sensors.HeatFlowSensor Flux
-    annotation (Placement(transformation(extent={{-84,-20},{-62,2}})));
+    annotation (Placement(transformation(extent={{-64,-20},{-84,0}})));
   Modelica.Thermal.HeatTransfer.Celsius.TemperatureSensor MesureTint
     annotation (Placement(transformation(extent={{90,16},{70,36}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Chauffage
     annotation (Placement(transformation(extent={{80,60},{100,80}}),
         iconTransformation(extent={{80,60},{100,80}})));
-  Modelica.Blocks.Math.Gain gain(k=-1)
-    "Gain to have a positive flow on heating"
-    annotation (Placement(transformation(extent={{-58,-88},{-44,-74}})));
   Modelica.Blocks.Interfaces.RealOutput Besoin
     "Flux of heating and cooling system" annotation (Placement(
-        transformation(extent={{78,-92},{100,-70}}), iconTransformation(extent={
+        transformation(extent={{78,-93},{100,-71}}), iconTransformation(extent={
             {80,-80},{100,-60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedClimatisation if Test
     annotation (Placement(transformation(extent={{-20,-48},{-40,-28}})));
   Modelica.Blocks.Continuous.LimPID PID1(
     Ni=0.1,
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
-    initType=Modelica.Blocks.Types.InitPID.NoInit,
+    initType=Modelica.Blocks.Types.InitPID.InitialState,
     yMax=0,
     yMin=-PuissanceNom,
     k=k,
@@ -60,10 +57,6 @@ parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
 protected
   parameter Boolean Test= (Tc <> Tf);
 equation
-  connect(Flux.port_a, Chauffage)        annotation (Line(
-      points={{-84,-9},{-94,-9},{-94,70},{90,70}},
-      color={191,0,0},
-      smooth=Smooth.None));
   connect(MesureTint.port, Chauffage)     annotation (Line(
       points={{90,26},{98,26},{98,70},{90,70}},
       color={191,0,0},
@@ -72,24 +65,10 @@ equation
       points={{30,2},{30,26},{70,26}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(Flux.port_b, prescribedChauffage.port)
-                                                annotation (Line(
-      points={{-62,-9},{-52,-9},{-52,-9.4},{-41,-9.4}},
-      color={191,0,0},
-      smooth=Smooth.None));
   connect(prescribedChauffage.Q_flow, PID.y)
                                             annotation (Line(
       points={{-21,-9.4},{7.5,-9.4},{7.5,-10},{19,-10}},
       color={0,0,127},
-      smooth=Smooth.None));
-  connect(Flux.Q_flow, gain.u) annotation (Line(
-      points={{-73,-20},{-72,-20},{-72,-81},{-59.4,-81}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(Flux.port_b, prescribedClimatisation.port)
-                                                 annotation (Line(
-      points={{-62,-9},{-62,-39.4},{-41,-39.4}},
-      color={191,0,0},
       smooth=Smooth.None));
   connect(prescribedClimatisation.Q_flow, PID1.y)
                                               annotation (Line(
@@ -100,10 +79,6 @@ equation
       points={{30,-40},{30,-30},{56,-30},{56,26},{70,26}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(gain.y,Besoin)  annotation (Line(
-      points={{-43.3,-81},{19.35,-81},{19.35,-81},{89,-81}},
-      color={0,0,127},
-      smooth=Smooth.None));
   connect(const.y, PID.u_s) annotation (Line(
       points={{79,-10},{42,-10}},
       color={0,0,127},
@@ -112,13 +87,18 @@ equation
       points={{79,-50},{60,-50},{60,-52},{42,-52}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(Flux.port_b, prescribedT.port) annotation (Line(
-      points={{-62,-9},{-62,22},{-38,22}},
-      color={191,0,0},
-      smooth=Smooth.None,
-      thickness=0.5));
+  connect(prescribedChauffage.port, Flux.port_a) annotation (Line(points={{-41,
+          -9.4},{-52.5,-9.4},{-52.5,-10},{-64,-10}}, color={191,0,0}));
+  connect(prescribedClimatisation.port, Flux.port_a) annotation (Line(points={{
+          -41,-39.4},{-41,-40},{-64,-40},{-64,-10}}, color={191,0,0}));
+  connect(prescribedT.port, Flux.port_a)
+    annotation (Line(points={{-38,22},{-64,22},{-64,-10}}, color={191,0,0}));
+  connect(Flux.port_b, Chauffage) annotation (Line(points={{-84,-10},{-92,-10},
+          {-92,70},{90,70}}, color={191,0,0}));
+  connect(Besoin, Flux.Q_flow) annotation (Line(points={{89,-82},{12,-82},{-74,
+          -82},{-74,-20},{-74,-20}}, color={0,0,127}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
-            {100,100}}), graphics), Icon(coordinateSystem(preserveAspectRatio=true,
+            {100,100}})),           Icon(coordinateSystem(preserveAspectRatio=true,
           extent={{-100,-100},{100,100}}), graphics={
         Ellipse(
           extent={{-20,-98},{20,-60}},
@@ -155,20 +135,21 @@ equation
           textString="%name")}),
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>Simple model of heating and air conditioning constant setpoints.</p>
+<p>Simple model of heating and air conditioning with constant temperature setpoints.</p>
+<p>The output <b>Besoin</b> is positive when heating is needed, and negative xhan cooling is needed.<p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>none</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
-<p>Of course, this model should not be used if Tc &lt; Tf.</a></p>
+<p>Of course, this model should not be used if Tc &lt; Tf.</p>
 <p>Safeguards should be added to prevent bug.</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model (BESTEST) - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -62,7 +62,7 @@ Modelica.Blocks.Interfaces.RealOutput                            FLUXFenetres[nf
           textString="%name")}), Diagram(graphics),
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>This partial model provides as outputs the vectors of heat flows absorbed by the walls and windows according to their number.</a></p>
+<p>This partial model provides as outputs the vectors of heat flows absorbed by the walls and windows according to their number.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -73,8 +73,8 @@ Modelica.Blocks.Interfaces.RealOutput                            FLUXFenetres[nf
 <p>Validated model (BESTEST) - Aurélie Kaemmerlen 2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

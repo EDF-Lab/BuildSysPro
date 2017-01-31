@@ -19,7 +19,7 @@ equation
 annotation (Documentation(info="<html>
 <p>An unheated room can be considered as an additional area of the building.</p>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>However, a study conducted in the EDF/ R&D / ADEB Department showed that a wall (horizontal or vertical) in contact with an unheated room, could be treated as an outer wall with an additional layer of insulation and overlooking outside.</p>
+<p>However, a study conducted in the EDF/ R&amp;D / ADEB Department showed that a wall (horizontal or vertical) in contact with an unheated room, could be treated as an outer wall with an additional layer of insulation and overlooking outside.</p>
 <p>The thickness of this additional layer is calculated considering the equality between the real wall losses and those of the fictitious wall (ie with additional insulation).</p>
 <p>The thermal coefficient of the wall obtained is used to model the influence of unheated room.</p>
 <p>For this, the regulatory coefficient of temperature reduction <code>b</code> is introduced.<p>
@@ -43,8 +43,8 @@ It reprensents the unheated room losses by air renewal, adjusted to the wall sur
 <p>Validated model - Gilles Plessis 02/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

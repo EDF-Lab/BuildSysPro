@@ -193,13 +193,13 @@ Documentation(info="<html>
 <p>Validated model - Hubert Blervaque 06/2012 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hubert BLERVAQUE, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",
       revisions="<html>
-<p>Gilles Plessis 06/2012 : Modification du paramétrage du modèle pour ne rentrer qu'une composition de paroi (au lieu de n, m, mat et e) et une position de la couche chauffante & suppression de la convection : utiliser le modèle de Paroi intégrant ce choix de paroi active.</p>
+<p>Gilles Plessis 06/2012 : Modification du paramétrage du modèle pour ne rentrer qu'une composition de paroi (au lieu de n, m, mat et e) et une position de la couche chauffante &amp; suppression de la convection : utiliser le modèle de Paroi intégrant ce choix de paroi active.</p>
 <p>Aurélie Kaemmerlen 07/2012 : Fusion des modèles de paroi active à eau et de plancher électrique</p>
 <p>Sila Filfli 07/2012 : Correction de la formule donnant la surface des tuyaux (surfaceT)</p>
 </html>"),

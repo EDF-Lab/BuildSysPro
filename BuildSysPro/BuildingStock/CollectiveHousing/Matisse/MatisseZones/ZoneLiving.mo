@@ -104,8 +104,8 @@ protected
       e=paraMaisonRT.PlafondMitoyen.e,
       mat=paraMaisonRT.PlafondMitoyen.mat,
       positionIsolant=paraMaisonRT.PlafondMitoyen.positionIsolant),
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour) if
-       not EmplacementHaut
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour) if not
+    EmplacementHaut
     annotation (Placement(transformation(extent={{-7,87},{7,101}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PlafondImmeuble(
@@ -125,7 +125,7 @@ protected
     alpha_ext=paraMaisonRT.alphaExt,
     eps=paraMaisonRT.eps,
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour) if
-       EmplacementHaut
+    EmplacementHaut
     annotation (Placement(transformation(extent={{-7,70},{7,84}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PlancherBas(
@@ -141,8 +141,8 @@ protected
       mat=paraMaisonRT.PlancherMitoyen.mat,
       positionIsolant=paraMaisonRT.PlancherMitoyen.positionIsolant),
     InitType=InitType,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour) if
-       not EmplacementBas annotation (Placement(transformation(
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour) if not
+    EmplacementBas        annotation (Placement(transformation(
         extent={{-7,-7},{7,7}},
         rotation=90,
         origin={51,-92})));
@@ -161,7 +161,7 @@ protected
       positionIsolant=paraMaisonRT.PlancherImmeuble.positionIsolant),
     InitType=InitType,
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour) if
-       EmplacementBas annotation (Placement(transformation(
+    EmplacementBas    annotation (Placement(transformation(
         extent={{-7,-7},{7,7}},
         rotation=90,
         origin={71,-92})));
@@ -289,8 +289,8 @@ public
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegEntreeSejour,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurOuestSejour,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour},
-    Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_VitrageNordSejour}) if
-       not CLOintPlancher
+    Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_VitrageNordSejour}) if not
+    CLOintPlancher
     annotation (Placement(transformation(extent={{-2,-92},{18,-72}})));
 
   Modelica.Blocks.Math.MultiSum multiSum(nu=1)
@@ -721,15 +721,15 @@ graphics={
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>none</p>
+<p>Parameter <code>paraMaisonRT</code> allows the user to chose a specific French building regulation for the building, so that building envelope parameters (walls, windows, ventilation...) will be automatically filled with data from the choosen record.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

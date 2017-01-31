@@ -433,12 +433,12 @@ annotation (Documentation(info="<html>
 <p>Validated model - Ludovic Darnaud 07/2010 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Ludovic DARNAUD, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p>Aurélie Kaemmerlen & Gilles Plessis 03/2011 </p>
+<p>Aurélie Kaemmerlen &amp; Gilles Plessis 03/2011 </p>
 <ul>
 <li>Changement du modèle de coefficient B pour vérifier la conservation d'énergie + Ajout d'une liste déroulante pour le choix des matériaux via l'annotation annotation(choicesAllMatching=true)</li>
 <li>Remplacement des modèles de ParoiEclairee et FenetreSimple par ParoiRad et FenetreRad avec externalisation du calcul des flux solaires incidents</li>

@@ -263,8 +263,8 @@ equation
 <p>Validated model - Hubert Blervaque, Sila Filfli 07/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",
@@ -272,6 +272,6 @@ revisions="<html>
 <p>Hubert Blervaque 06/2012 : MAJ de la documentation BuildSysPro.</p>
 <p>Sila Filfli 04/2013 : Ajout d'une vanne thermostatique simple. Le débit varie en fonction du besoin et ne peut dépasser la valeur nominale. Le besoin est représenté par l'ouverture de la vanne avec une régulation entre 0 - fermée et 1 - ouverte (il s'agit du ratio de la puissance demandée par rapport à la puissance nominale).</p>
 <p>Hubert Blervaque 09/2013 : Ajout d'une corrélation par type de radiateur (fonte, aluminium, acier) issue de données constructeur pour faciliter le paramétrage de l'inertie.</p>
-<p>Benoît Charrier 05/2015 : Suppression des connecteurs T & m_flow.</p>
+<p>Benoît Charrier 05/2015 : Suppression des connecteurs T &amp; m_flow.</p>
 </html>"));
 end HotWaterRadiatorRegulDistrib;

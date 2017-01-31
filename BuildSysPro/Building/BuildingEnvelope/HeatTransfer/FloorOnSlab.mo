@@ -100,8 +100,7 @@ protected
     m={mSol},
     Tinit=Tp,
     e={eSol},
-    mat={caracTerre}) if
-    SurEquivalentTerre
+    mat={caracTerre}) if SurEquivalentTerre
     annotation (Placement(transformation(extent={{-56,6},{-36,26}})));
 
 public
@@ -269,8 +268,8 @@ Documentation(info="<html>
 <p>Validated model - Gilles Plessis 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

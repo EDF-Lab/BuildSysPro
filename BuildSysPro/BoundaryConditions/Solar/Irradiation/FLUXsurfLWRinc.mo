@@ -82,7 +82,7 @@ equation
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>Model which takes as input the vector G from a weather reader to calculate the surface irradiance on a particular surface (tilt and orientation given). G contains:</p>
+<p>Model which takes as input the vector G from a weather reader to calculate the surface irradiance on a particular surface (tilt and orientation given). G contains:
 <ul>
  <li> (1) Horizontal diffuse flux</li>
  <li>(2) Normal direct flux</li>
@@ -92,7 +92,7 @@ equation
  <li>(6-7-8) Sun's direction cosines (6-sinH, 7-cosW, 8-cosS)</li>
  <li>(9) Solar azimuth angle</li>
  <li>(10) Solar elevation angle</li>
-</ul>
+</ul></p>
 <p>You can choose which diffuse model to use. The isotropic diffuse model is considered more conservative (tendency to underestimate the incident radiation on an inclined plane) but is easier to use. The diffuse model Hay Davies Klucher Reindl (HDKR) is preferred in solar applications (photovoltaic, solar thermal ...).</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
@@ -100,8 +100,8 @@ equation
 <p>none</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author :   Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

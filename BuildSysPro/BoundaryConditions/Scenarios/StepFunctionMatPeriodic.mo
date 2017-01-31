@@ -206,8 +206,8 @@ with n rows and two columns and a second table <code>table2 [i, j]</code> n rows
 <p>Validated model - Hassan Bouia 07/2012 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

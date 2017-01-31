@@ -12,15 +12,12 @@ algorithm
   ET:=(0.0002 - 0.4197*cos(wd1) + 3.2265*cos(wd2) + 0.0903*cos(wd3)
               + 7.3509*sin(wd1) + 9.3912*sin(wd2) + 0.3361*sin(wd3))/60.0;
   annotation (Documentation(info="<html>
-
 <p><i><b>Function computing the equation of time according to (t0 + t) given in seconds using the method from CLIM2000</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>The function returns the equation of time according to (t0 + t) given in seconds using the method from CLIM2000:<p>
-<P>ET=(0.0002 - 0.4197*cos(wd) + 3.2265*cos(2*wd) + 0.0903*cos(3*wd)
+<p>The function returns the equation of time according to (t0 + t) given in seconds using the method from CLIM2000:</p>
+<p>ET=(0.0002 - 0.4197*cos(wd) + 3.2265*cos(2*wd) + 0.0903*cos(3*wd)
 + 7.3509*sin(wd) + 9.3912*sin(2*wd) + 0.3361*sin(3*wd))/60.0</p>
 <p> Where wd=2*pi/365.25*d et day of the year according to t0+t</p>
-
-
 <p>The year is supposed to be not bisextile.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>H. BOUIA, \"Amélioration du temps de calcul dans BuildSysPro par traitements numériques optimisés de la conduction et des calculs solaires\", Note H-E14-2013-00715-FR, 03/2013. </p>
@@ -32,8 +29,8 @@ algorithm
 <p>Validated function - Hassan BOUIA 03/2013.</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

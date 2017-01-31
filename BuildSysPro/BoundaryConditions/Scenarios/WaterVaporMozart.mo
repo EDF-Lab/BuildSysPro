@@ -200,26 +200,21 @@ equation
 In terms of occupancy , one adult and 2 children are coming back home for lunch during meridian break and it is assumed an intermittent occupancy the afternoon by 1 adult.</p>
 <p>This flow is considered into the conservation equation (for mass balance of gases) and in the energy balance equation. This water vapour flow is assumed to be produced at the temperature zone.</p>
 <p>For faster execution, this model reads the preset values in a file, including totals per zone</p>
-
-<p><u><b>Bibliographie</b></u></p>
+<p><u><b>Bibliography</b></u></p>
 <p>For general data on water vapour production <a href=\"modelica://BuildSysPro/Resources/Images/Aeraulique/Prod_vapeur_comparaison.pdf\">see here</a></p>
-
 <p><u><b>Instructions for use</b></u></p>
 <p>Each output supplies a mass flow rate in [kg/s]. Water vapour production per room is available, as well as the total flow per zone (service and life) and the total for onezone model.</p>
 <p>Useful outputs are to be connected with the appropriate connector of the corresponding air node.</p>
 <p>It is also possible to use a customized scenario.</p>
-
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>The minimum time scale is 1/2h. Below, occupancy fractions are used (1/2 person for example).</p>
-
 <p><u><b>Validations</b></u></p>
 <p>Validated model  - Benoît Charrier 06/2015</p>
-
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
-Author : Beno&icirc;t CHARRIER, EDF (2015)</p>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
+Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>
 ",        revisions="<html>

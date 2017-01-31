@@ -257,7 +257,7 @@ connect(SommeFluxSolaireInterne.y,RepartitionSolaireInterne.RayEntrant);
 </ol>
 <p>The vertical walls parameterization is done via the caracParoiVert parameter (dimension N) of the tab <i>Vertical walls.</i></p>
 <ol>
-<li>Click on the small arrow of caracParoiVert + Edit Array</b></i></li>
+<li>Click on the small arrow of caracParoiVert + Edit Array</li>
 <li>Adjust the number of cells (lines) to the number of vertical walls N</li>
 <li>In each box right-click + Insert function call then browse the library to specify the path of the desired type of wall (in <a href=\"modelica://BuildSysPro.Utilities.Data.WallData\"><code>Utilities.Data.WallData</code></a>)</li>
 </ol>
@@ -276,8 +276,8 @@ connect(SommeFluxSolaireInterne.y,RepartitionSolaireInterne.RayEntrant);
 <p>Validation in <a href=\"modelica://BuildSysPro.Building.Examples.TestZoneNWalls\"><code>TestZoneNWalls</code></a></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

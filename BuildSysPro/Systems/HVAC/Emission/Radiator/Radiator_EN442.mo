@@ -2,7 +2,8 @@
 model Radiator_EN442 "Radiator model based on the EN442 standard"
 
   import SI = Modelica.SIunits;
-  extends BuildSysPro.Systems.HVAC.Components.CharacteristicEquation;
+  extends
+    BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.CharacteristicEquation;
 
   // Parameters
 
@@ -28,8 +29,8 @@ model Radiator_EN442 "Radiator model based on the EN442 standard"
 
     // Variables
 
-/*SI.TemperatureDifference DTlm= (EntreeEau[1]- SortieEau[1])/Modelica.Math.log((EntreeEau[1]-(Conv.T+Rad.T)/2)/ (SortieEau[1]-(Conv.T+Rad.T)/2)) 
-    "Logaritmic mean temperature difference, given for information, EN442 being based on arithmetic mean temperature difference";*/
+SI.TemperatureDifference DTlm= (EntreeEau[1]- SortieEau[1])/Modelica.Math.log((EntreeEau[1]-(Conv.T+Rad.T)/2)/ (SortieEau[1]-(Conv.T+Rad.T)/2))
+    "Logaritmic mean temperature difference, given for information, EN442 being based on arithmetic mean temperature difference";
 inner SI.Temperature   T_HWR(start=273.15+60)
     "Temperature of the hot water radiator";
 
@@ -182,7 +183,7 @@ assert((EntreeEau[1]-Conv.T)/(SortieEau[1]-Conv.T)<3,"Arithmetic mean temperatur
 <p>This model does not considered a discretization along the fluid path.</p>
 <p>This model relies also on an arithmetic mean temperature difference (AMTD), different from the theorical logarithmic mean temperature difference (LMTD) and should be used when the following condition is fulfilled :</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/equation-XCBkvCZD.png\"/></p>
-<p>Otherwise using AMTD leads to a deviation exceeding 10&percnt;.</p>
+<p>Otherwise using AMTD leads to a deviation exceeding 10&#37;.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>This model was implemented following the EN442 standard and considering a single element.</p>
 <p>Nilsson, P.E. and The Commtech Group, 2003. Achieving the Desired Indoor Climate: Energy Efficiency Aspects of System Design. Studentlitteratur AB.</p>
@@ -195,8 +196,8 @@ assert((EntreeEau[1]-Conv.T)/(SortieEau[1]-Conv.T)<3,"Arithmetic mean temperatur
 <p>Simple validation based on operating point - Gilles Plessis 01/2016 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -105,7 +105,7 @@ end for;
 <li>The remaining non-absorbed radiation is then distributed on all surfaces proportionally to the term : absorptance x surface areas</li>
 <li>The rest is distributed in proportion to what has been distributed at the previous step.</li>
 </ol>
-<p>Note: This model takes into account what is lost through the windows and sent out of the zone.</a></p>
+<p>Note: This model takes into account what is lost through the windows and sent out of the zone./p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -116,8 +116,8 @@ end for;
 <p>Validated model (BESTEST) - Aurélie Kaemmerlen 09/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 

@@ -164,11 +164,11 @@ It corresponds to: Tli_sp, Tlid_sp, Tli_ap and Tlid_ap, used in direct, diffuse 
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>near shading must be specify ahead because then the consideration of architecture shading is done according to the type of mask.</p>
 <p><u><b>Validations</b></u></p>
-<p>Non validated model - Laura Sudries 05/2014</b></p>
+<p>Non validated model - Laura Sudries 05/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Laura SUDRIES, Vincent MAGNAUDEIX, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>

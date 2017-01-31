@@ -348,14 +348,14 @@ equation
 <p>Set discomfort threshold for the study. The more it is high, the more discomfort will be low because the comfort range will be larger.</p>
 <p>Precise if presence is taken into account. The inclusion of presence allows to not overestimate the discomfort by preventing its calculation during occupants absence.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
-<p>The outputs<i>OutInconfortFroid </i>and <i>OutInconfortChaud</i> are positive and in [&deg;C.h] unit. It is the difference in absolute value between the range of acceptable thermal comfort and indoor temperature which is integrated over time.</p>
-<p>The outputs<i> OutNbHeureInconfortFroid </i>and <i>OutNbHeureInconfortChaud </i>are positive and in [h] unit. They indicate the number of dicomfort hours.</p>
+<p>The outputs <i>OutInconfortFroid</i> and <i>OutInconfortChaud</i> are positive and in [&deg;C.h] unit. It is the difference in absolute value between the range of acceptable thermal comfort and indoor temperature which is integrated over time.</p>
+<p>The outputs <i>OutNbHeureInconfortFroid</i> and <i>OutNbHeureInconfortChaud</i> are positive and in [h] unit. They indicate the number of dicomfort hours.</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

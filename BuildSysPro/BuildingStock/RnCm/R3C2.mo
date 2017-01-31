@@ -122,7 +122,7 @@ equation
 <p><img src=\"modelica://BuildSysPro/Resources/Images/RnCm/R3C2_5.png\"/></p>
 <p><u><b>Bibliography</b></u></p>
 <p>This simplified R3C2 building model is part of the thesis of Chadia Zayane (EMP, 2001), entitled :</p>
-<p><i><a href=\"modelica://BuildSysPro/Resources/Documentation/These Chadia ZAYANE (R3C2).pdf\">Identification d'un modèle de comportement thermique de bâtiment à partir de sa courbe de charge</a></i></p>
+<p><i><a href=\"modelica://BuildSysPro/Resources/Documentation/These%20Chadia%20ZAYANE%20(R3C2).pdf\">Identification d'un modèle de comportement thermique de bâtiment à partir de sa courbe de charge</a></i></p>
 <p><u><b>Instructions for use</b></u></p>
 <p>Take care to parameter your PID controller with the default values of the table above :
 <ul><li>Gain K = 87.787</li>
@@ -136,8 +136,8 @@ equation
 <p>Validated model - Hassan Bouia 01/2016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hassan BOUIA, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

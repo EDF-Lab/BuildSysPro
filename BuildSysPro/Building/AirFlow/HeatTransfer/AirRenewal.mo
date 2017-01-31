@@ -145,20 +145,18 @@ connect(Qv_in, Qv_in_internal);
 <p>Model TF5 from CLIM 2000</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>This is a none directional model. The <b>port_a</b> can be connected to the thermal port of the <a href=\"modelica://BuildSysPro.BoundaryConditions.Weather.Meteofile\">Meteofile model</a> and the <b>port_b </b> to the thermal port of a <a href=\"modelica://BuildSysPro.Building.AirFlow.HeatTransfer.AirNode\">Zone model</a> or vice versa. To use the ventilation scenario control <b>use_Qv_in = true</b>), connect a real source to the RealInput named <b>Qv_in</b>.<p>
-
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>This model describes the heat transfer corresponding to the air renewal (ventilation and infiltration). This component is particularly important during heating periods. It can represent both an air renewal between a room and outside, and an air renewal between two rooms. For large temperature differences, prefer a pressure and temperature model.
 <p>Do not considered infiltration when calculating the electric power consumption.</p>
 <p><u><b>Validations</b></u></p>
-<p>Validated model. Gilles Plessis 02/2012.</b></p>
+<p>Validated model - Gilles Plessis 02/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
-</html>BuildSysPro.Building.AirFlow.HeatTransfer.AirNode",
-          revisions="<html>
+</html>", revisions="<html>
 <p>Benoît Charrier 12/2015 : Ajout du calcul de la puissance électrique liée à la ventilation, activable depuis un booléen. La puissance calculée est accessible pour les deux modes : débit commandé ou non.</p>
 </html>"));
 end AirRenewal;

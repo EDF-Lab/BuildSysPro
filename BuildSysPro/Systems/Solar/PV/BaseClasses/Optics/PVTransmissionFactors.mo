@@ -207,16 +207,16 @@ PV"),                             Text(
 <p><u><b>Instructions for use</b></u></p>
 <p>none</p>
 <p><u><b>Bibliography</b></u></p>
-<p>Handbook of Photovoltaic Science and Engineering, Antonio Luque & Steven Hegedus, Wiley, 2003, pp. 934-936</p>
-<p>Martin N., Ruiz J, Solar Energy Materials & Solar Cells 70, 25-38, 2001</p>
+<p>Handbook of Photovoltaic Science and Engineering, Antonio Luque &amp; Steven Hegedus, Wiley, 2003, pp. 934-936</p>
+<p>Martin N., Ruiz J, Solar Energy Materials &amp; Solar Cells 70, 25-38, 2001</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>The values of the dirt parameter a_r have not been studied, validations have been made only considering a clean module.</p>
 <p><u><b>Validations</b></u></p>
 <p>Model validated by simulation - Sergeï Agapoff (stagiaire Benoît Braisaz) 08/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Serge&iuml; AGAPOFF, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",

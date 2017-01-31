@@ -12,13 +12,13 @@ protected
   Modelica.SIunits.HeatFlux I0
     "éclairement extraterrestre sur une surface horizontale (hors atmosphère)";
   Real Kt "clearness index";
-  Real sinh "sinus de la hauteur du soleil";
+  Real sin_h "sinus de la hauteur du soleil";
 
 algorithm
-  sinh := G[6];
+  sin_h := G[6];
   I0 :=max(0, Isc*(1 + 0.033*cos((360*(floor((t + G[5])/86400) + 1)/365)*d2r))*
-    sinh);
-  Kt:=if noEvent(sinh>0.02 and I0>0) then (if noEvent(G[4]<I0) then G[4]/I0 else 1) else 0;
+    sin_h);
+  Kt:=if noEvent(sin_h>0.02 and I0>0) then (if noEvent(G[4]<I0) then G[4]/I0 else 1) else 0;
   T_ciel:=-29-19.9*Kt+1.09*T_seche;
 
   annotation (Documentation(info="<html>
@@ -38,8 +38,8 @@ algorithm
 <p>Validated model - Amy Lindsay 03/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

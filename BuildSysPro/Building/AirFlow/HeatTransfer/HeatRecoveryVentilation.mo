@@ -213,11 +213,11 @@ equation
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>This model describes the heat transfer corresponding to the air renewal with heat recovery. This component is particularly important during heating periods. It can represent both an air renewal between a room and outside, and an air renewal between two rooms. For large temperature differences, prefer a pressure and temperature model.
 <p><u><b>Validations</b></u></p>
-<p>Model validated. Gilles Plessis 02/2012.</p>
+<p>Model validated - Gilles Plessis 02/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>

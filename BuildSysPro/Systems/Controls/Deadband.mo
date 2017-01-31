@@ -94,7 +94,6 @@ equation
           pattern=LinePattern.Dash)}),
     DymolaStoredErrors,
     Documentation(info="<html>
-
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>All-or-nothing management around a setpoint value plus or minus a hysteresis effect band.</p>
 <p><u><b>Bibliography</b></u></p>
@@ -107,8 +106,8 @@ equation
 <p>Validated model - Hubert Blervaque 05/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hubert BLERVAQUE, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

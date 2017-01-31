@@ -81,8 +81,8 @@ equation
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
 <ul>
-<li>Setpoint temperature and measured temperature must be with the same unit: °C or K</a></li>
-<li>The power to be injected into the building is Pelec.</a></li>
+<li>Setpoint temperature and measured temperature must be with the same unit: °C or K</li>
+<li>The power to be injected into the building is Pelec.</li>
 </ul>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
@@ -90,8 +90,8 @@ equation
 <p>Model validated in its default operating conditions - Bernard Clémençon 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Bernard CLEMENCON, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

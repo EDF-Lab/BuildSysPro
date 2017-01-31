@@ -2,6 +2,15 @@
 package Building "Package with building envelope and air flow models"
 
 
+
+
+
+
+
+
+
+
+
 annotation (Documentation(info="<html>
 <p>
 The <code>Building</code> package is intended to describe the building envelope and air change, and provides components in a pure thermal or thermo-fluid approach. It also contains generic models of zones which can represent an entire building or a single room. 
@@ -37,7 +46,7 @@ Figure 3: Diagram of a simple thermal zone
 
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>
-  Copyright &copy; EDF 2009 - 2016<br>
+  Copyright &copy; EDF 2009 - 2017<br>
   This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>; it can be redistributed and/or modified under the terms of the Modelica License 2.<br>
   For license conditions (including the disclaimer of warranty) see <a href=\"modelica://BuildSysPro.UsersGuide.ModelicaLicense2\">BuildSysPro.UsersGuide.ModelicaLicense2</a> or visit <a href=\"http://www.modelica.org/licenses/ModelicaLicense2\">http://www.modelica.org/licenses/ModelicaLicense2</a>.<br>
   -----------------------------------------------------------------------</b></p>

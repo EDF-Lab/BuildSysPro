@@ -467,7 +467,7 @@ Documentation(info="<html>
 <ul>
 <li>The durations of anti-short cycles (abnormally rapid start and stop cycles), and especially the duration of the pump operation after combustion have a very significant impact on consumption and the number of machine cycles;</li>
 <li>The parameter &Delta;&eta; (representing the decrease in performance depending on the load at a return of water temperature equal to 30°C) has nearly no effects on the results for the temperature levels of the water law in question (between 35 and 45°C). In the case of modelling a system requiring water temperatures higher than 35°C, the user can leave the default value, especially since this parameter is not provided in the ATITA basis;</li>
-<li>Consideration of pre-combustion purge, during which the air in combustion chamber must be renewed, has also a reduced impact: over-consumption does not exceed 0.5% and is more due to a 30 second delay before launching the boiler than to the thermal power lost in the smoke.</li>
+<li>Consideration of pre-combustion purge, during which the air in combustion chamber must be renewed, has also a reduced impact: over-consumption does not exceed 0.5&#37; and is more due to a 30 second delay before launching the boiler than to the thermal power lost in the smoke.</li>
 </ul>
 <p><u><b>Bibliography</b></u></p>
 <p>The model is configurable from certified data accessible in the ATITA basis (rt2012-chauffage.com).</p>
@@ -483,12 +483,12 @@ Documentation(info="<html>
 <p>Validated model - Hubert Blervaque, Sila Filfli 07/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p>Benoît Charrier 05/2015 : Suppression des connecteurs T & m_flow.</p>
+<p>Benoît Charrier 05/2015 : Suppression des connecteurs T &amp; m_flow.</p>
 <p>Benoît Charrier 01/2016 : Passage du calcul du débit en equation pour compatibilité OpenModelica.</p>
 </html>"),
     experiment(StopTime=5000, Interval=600),

@@ -11,8 +11,8 @@ algorithm
   annotation (Documentation(info="<html>
 <p><i><b>Function computing the equation of time according to (t0 + t) given in seconds</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>The function returns the equation of time in radians according to (t0 + t) given in seconds:<p>
-<P>ET=0.128*sin(w*(d-2)) + 0.164*sin(2*w*(d+10)</p>
+<p>The function returns the equation of time in radians according to (t0 + t) given in seconds:</p>
+<p>ET=0.128*sin(w*(d-2)) + 0.164*sin(2*w*(d+10)</p>
 <p> Where w=2*pi/365.25 and d day of the year according to t0+t.</p>
 <p>The year is supposed to be not bisextile.</p>
 <p><u><b>Bibliography</b></u></p>
@@ -25,8 +25,8 @@ algorithm
 <p>Validated function - Hassan BOUIA 03/2013.</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>

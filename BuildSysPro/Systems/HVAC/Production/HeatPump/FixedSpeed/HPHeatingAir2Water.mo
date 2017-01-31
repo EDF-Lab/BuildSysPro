@@ -294,11 +294,11 @@ all-or-none, variable"),
 <p>Validated model according to air/air HP with TIL - Hubert Blervaque, Sila Filfli 02/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p>Benoît Charrier 05/2015 : Suppression des connecteurs T & m_flow.</p>
+<p>Benoît Charrier 05/2015 : Suppression des connecteurs T &amp; m_flow.</p>
 </html>"));
 end HPHeatingAir2Water;

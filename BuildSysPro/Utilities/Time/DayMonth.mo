@@ -23,7 +23,7 @@ algorithm
 <p>The year is supposed to be not bisextile.</p>
 <p>t : calculation moment in seconds</p>
 <p>t0: elapsed time in seconds since January 1st at t=0s of the simulation</p>
-<p>As output, the day is a real number in the range [0, 31[.</p></p>
+<p>As output, the day is a real number in the range [0, 31[.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -34,8 +34,8 @@ algorithm
 <p>Validated function - Hassan BOUIA 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -59,9 +59,9 @@ equation
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>This model uses a simple equation to determine the electrical efficiency of the PV panel according to the temperature:</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/eta_T.png\" alt=\"eta_T=eta_STC+mu_T*(T_cell-T_STC)\"/></p>
-<p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/mu_T.png\" alt=\"mu_T\"/> is the temperature coefficient on the power (of the order of -0.5%/K) and STC means Standard Testing Conditions.</p>
+<p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/mu_T.png\" alt=\"mu_T\"/> is the temperature coefficient on the power (of the order of -0.5&#37;/K) and STC means Standard Testing Conditions.</p>
 <p><u><b>Bibliography</b></u></p>
-<p>Solar Engineering of Thermal processes, Duffie & Beckmann, Wiley, 2006, p. 757</p>
+<p>Solar Engineering of Thermal processes, Duffie &amp; Beckmann, Wiley, 2006, p. 757</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>none</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
@@ -70,8 +70,8 @@ equation
 <p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

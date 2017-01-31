@@ -9,10 +9,8 @@ model MozartMonozone
       choicesAllMatching=true, Dialog(group="Choice of RT"));
 
 protected
-  parameter
     BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART.MozartRenoExisting
-    paraMaisonRenoRTExistant "French building regulation to use"
-    annotation (Dialog(group="Building renovation"));
+    paraMaisonRenoRTExistant "French building regulation to use";
 
    // Choice of renovated elements
 public
@@ -1065,7 +1063,7 @@ graphics={
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>Parameter <code>paramaisonRT</code> allows to define the date of construction of the building, the building envelope composition will be adapted according to the related RT (French building regulation).</p>
+<p>Parameter <code>paraMaisonRT</code> allows the user to chose a specific French building regulation for the building, so that building envelope parameters (walls, windows, ventilation...) will be automatically filled with data from the choosen record.</p>
 <p>Parameters <code>renoPlafond</code>, <code>renoPlancher</code>, <code>renoFenetre</code>, and <code>renoMurExt</code> allow to specify which element of the building have been renovated according to the RT Existing (French building regulation for renovation by element).</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>For dates of contruction from 1974 to 1989, insulating materials thicknesses in floors are different between building stock site and Clim 2000 (cf <a href=\"modelica://BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing\">Records.WallData.IndividualHousing</a> documentation).</p>
@@ -1073,8 +1071,8 @@ graphics={
 <p>Validated model by comparison of GV with Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

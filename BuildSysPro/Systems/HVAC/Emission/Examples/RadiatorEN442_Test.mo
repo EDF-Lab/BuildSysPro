@@ -1,6 +1,5 @@
 ﻿within BuildSysPro.Systems.HVAC.Emission.Examples;
 model RadiatorEN442_Test "Example to test the HotWaterRadiator model"
-  import BuildSysPro;
   extends Modelica.Icons.Example;
   parameter Modelica.SIunits.EnergyFlowRate Pnom=411;
   parameter Real nNom=1.225 "Slope at nominal point";
@@ -12,7 +11,7 @@ model RadiatorEN442_Test "Example to test the HotWaterRadiator model"
   BuildSysPro.Systems.HVAC.Emission.Radiator.Radiator_EN442 Radiator(
     Pnom=Pnom,
     nNom=nNom,
-    redeclare BuildSysPro.Systems.HVAC.Components.BasedCharacteristicEquation1
+    redeclare BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation1
       radEqua
       "Simplified : Room temperature based on average between radiative and convective temperatures",
     MediumMass=0.1,
@@ -85,8 +84,8 @@ Weight = 9 kg",
 <p>Validated model - Gilles Plessis 01/20016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

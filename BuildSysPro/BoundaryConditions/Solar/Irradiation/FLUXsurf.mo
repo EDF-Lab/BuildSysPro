@@ -24,7 +24,7 @@ Modelica.SIunits.HeatFlux DIFH;
 Modelica.SIunits.HeatFlux DiffusSol
     "Part of the diffuse irradiance from the ground reflection";
 
-output Real sinh;
+output Real sin_h;
 output Real cosi;
 
 Modelica.Blocks.Interfaces.RealInput G[10]
@@ -71,13 +71,13 @@ protected
     "extraterrestrial illumination on a horizontal surface (outside the atmosphere)";
 
 algorithm
-  // sinh and cosi calculations
-  sinh := G[6]; //First sun's direction cosine
+  // sin_h and cosi calculations
+  sin_h := G[6]; //First sun's direction cosine
   cosi :=max(0,l*G[6]+m*G[7]+n*G[8]);
   // Calculation of parameters for diffuse modelling with the model HDKR
   I0 :=max(0, Isc*(1 + 0.033*cos(360*(floor((time + G[5])/86400) + 1)/365))*
-    sinh);
-  AI :=if noEvent(sinh > 0) then DIRH/I0 else 0;
+    sin_h);
+  AI :=if noEvent(sin_h > 0) then DIRH/I0 else 0;
   f :=if noEvent(DIRH > 0 and GLOH > 0) then sqrt(DIRH/GLOH) else 0;
 
 equation
@@ -94,8 +94,8 @@ connect(Albedo_in, Albedo_in_internal);
    DiffusSol = max(0, coef1*GLOH*Albedo_in_internal);
    FLUX[1] = if diffus_isotrope == 1 then max(0, coef2*DIFH) + DiffusSol else
     max(0, coef2*(1 - AI)*(1 + f*coef3)*DIFH) + DiffusSol;
-   FLUX[2] = if noEvent(sinh > 0.01) then (if diffus_isotrope == 1 then max(0,
-    cosi)*max(0,DIRN) else max(0, cosi)*max(0,DIRN) + max(0, AI*cosi*DIFH/sinh)) else 0;
+   FLUX[2] = if noEvent(sin_h > 0.01) then (if diffus_isotrope == 1 then max(0,
+    cosi)*max(0,DIRN) else max(0, cosi)*max(0,DIRN) + max(0, AI*cosi*DIFH/sin_h)) else 0;
    //To avoid cases with a non-zero direct irradiance when the sun is below the horizon
    FLUX[3] = cosi;
  //FLUX[4] = FLUX[1]+FLUX[2];
@@ -116,7 +116,7 @@ annotation (Documentation(info="<html>
 <p>where:</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/AI_HDKR.png\"/>,</p>
 <p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/f_HDKR.png\"/>,</p>
-<p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/GLOH_extraterrestre.png\"/>
+<p><img src=\"modelica://BuildSysPro/Resources/Images/PV/equations/GLOH_extraterrestre.png\"/></p>
 <p>where n is the calendar day (day number within the month) and Isc the solar constant (in this model Isc = 1367 W / m²). </p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
@@ -128,7 +128,7 @@ annotation (Documentation(info="<html>
  <li>(3) Horizontal direct flux</li>
  <li>(4) Horizontal global flux</li>
  <li>(5) Time in UTC at time t = 0 (start of the simulation)</li>
- <li>(6-7-8) Sun's direction cosines (6-sinH, 7-cosW, 8-cosS)</li>
+ <li>(6-7-8) Sun's direction cosines (6-sin_h, 7-cosW, 8-cosS)</li>
  <li>(9) Solar azimuth angle</li>
  <li>(10) Solar elevation angle</li>
 </ul>
@@ -145,8 +145,8 @@ Analytical Validation (Via Excel calculations) on the model parametrization: typ
  </ul>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
@@ -159,7 +159,7 @@ Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 <p><ul>
 <li>Ajout de sorties : hauteur et azimut du soleil, Rayonnement incident diffus provenant du sol</li>
 <li>Vecteur Gh de dimension 9 (anciennement 6) pour ajouter les entrées CoupleFlux, MoyFlux et dt</li>
-<li>Ajout d'une sécurité pour éviter un flux direct infini : sinh&gt;0.01 au lieu de &gt;0 pour le calcul de FDIRN/FDIRH</li>
+<li>Ajout d'une sécurité pour éviter un flux direct infini : sin_h&gt;0.01 au lieu de &gt;0 pour le calcul de FDIRN/FDIRH</li>
 </ul></p>
 <p><br>Hassan Bouia 03/2013 : Simplication du calcul solaire - attention nouvelle dimension du vecteur <b>Gh</b> renommé en <b>G</b></p>
 <p>Amy Lindsay 03/2013 : Ajout du paramètre diffus_isotrope pour choisir entre un modèle de diffus isotrope ou le modèle de diffus HDKR</p>

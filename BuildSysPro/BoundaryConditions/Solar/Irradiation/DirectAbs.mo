@@ -81,10 +81,9 @@ Direct := PondAbsDir*FLUX[2];
                                  Diagram(coordinateSystem(preserveAspectRatio=true,
           extent={{-100,-100},{100,100}}), graphics),
     Documentation(info="<html>
-<html>
 <p><i><b> Compute the direct solar irradiation transmited through a glazing surface considering the incidence angle</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
-
+<p>none</p>
 <p><u><b>Bibliography</b></u></p>
 <p>Relations from RT2000 (french building regulation), Fauconnier, Cardonnel [1983] and proportional weighting of cos i.</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -92,11 +91,11 @@ Direct := PondAbsDir*FLUX[2];
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>
-<p>Validated model (excel sheet comparison) - Aurélie Kaemmerlen 06/2011</b></p>
+<p>Validated model (excel sheet comparison) - Aurélie Kaemmerlen 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

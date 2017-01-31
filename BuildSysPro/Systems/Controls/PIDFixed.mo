@@ -12,7 +12,7 @@ model PIDFixed
   parameter Real yMax=10000 "Upper limit of output";
   parameter Real yMin=0 "Lower limit of output";
   parameter Real Ni=0.1 "Ni*Ti is time constant of anti-windup compensation";
-  parameter Modelica.Blocks.Types.InitPID initType=Modelica.Blocks.Types.InitPID.SteadyState
+  parameter Modelica.Blocks.Types.InitPID initType=Modelica.Blocks.Types.InitPID.InitialState
     "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)";
   parameter Boolean limitsAtInit=true
     "= false, if limits are ignored during initializiation";
@@ -27,51 +27,53 @@ model PIDFixed
     Ni=Ni,
     initType=initType,
     limitsAtInit=limitsAtInit)
-    annotation (Placement(transformation(extent={{30,-20},{10,-40}})));
+    annotation (Placement(transformation(extent={{32,-4},{12,-24}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
-    annotation (Placement(transformation(extent={{-12,-48},{-32,-28}})));
-  Modelica.Blocks.Sources.Constant const(k=Tc)
-    annotation (Placement(transformation(extent={{66,-62},{46,-42}})));
-  Modelica.Thermal.HeatTransfer.Sensors.HeatFlowSensor heatFlowSensor
-    annotation (Placement(transformation(extent={{-60,-32},{-40,-12}})));
+    annotation (Placement(transformation(extent={{-10,-38},{-30,-18}})));
+  Modelica.Blocks.Sources.Constant setpoint(k=Tc)
+    annotation (Placement(transformation(extent={{90,-62},{70,-42}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Sensors.HeatFlowSensor heatFlowSensor
+    annotation (Placement(transformation(extent={{-54,-39},{-74,-18}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sensors.TemperatureSensor temperatureSensor
-    annotation (Placement(transformation(extent={{68,-20},{48,0}})));
+    annotation (Placement(transformation(extent={{68,18},{48,38}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T
-    "Temperature to control" annotation (Placement(transformation(extent={{0,
-            80},{20,100}}), iconTransformation(extent={{0,80},{20,100}})));
+    "Temperature to control" annotation (Placement(transformation(extent={{40,76},
+            {60,96}}),      iconTransformation(extent={{40,76},{60,96}})));
+
+  Modelica.Blocks.Interfaces.RealOutput Power
+    "Flux of heating and cooling system" annotation (Placement(transformation(
+          extent={{-6,-88},{24,-58}}), iconTransformation(extent={{80,-80},{100,
+            -60}})));
 
 equation
   connect(PID.y,prescribedHeatFlow. Q_flow) annotation (Line(
-      points={{9,-30},{-2,-30},{-2,-39.4},{-13,-39.4}},
+      points={{11,-14},{-2,-14},{-2,-29.4},{-11,-29.4}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(const.y,PID. u_s) annotation (Line(
-      points={{45,-52},{40,-52},{40,-30},{32,-30}},
+  connect(setpoint.y, PID.u_s) annotation (Line(
+      points={{69,-52},{40,-52},{40,-14},{34,-14}},
       color={0,0,127},
-      smooth=Smooth.None));
-  connect(prescribedHeatFlow.port,heatFlowSensor. port_b) annotation (
-      Line(
-      points={{-33,-39.4},{-33,-28.7},{-40,-28.7},{-40,-22}},
-      color={191,0,0},
-      smooth=Smooth.None));
-  connect(temperatureSensor.T,PID. u_m) annotation (Line(
-      points={{48,-10},{48,-6},{20,-6},{20,-18}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(heatFlowSensor.port_a, T) annotation (Line(
-      points={{-60,-22},{-80,-22},{-80,90},{10,90}},
-      color={191,0,0},
       smooth=Smooth.None));
 
   connect(T, temperatureSensor.port) annotation (Line(
-      points={{10,90},{80,90},{80,-10},{68,-10}},
+      points={{50,86},{80,86},{80,28},{68,28}},
       color={255,0,0},
       smooth=Smooth.None));
+  connect(temperatureSensor.T, PID.u_m) annotation (Line(points={{48,28},{22,28},
+          {22,-2},{22,-2}}, color={0,0,127}));
+  connect(prescribedHeatFlow.port, heatFlowSensor.port_a) annotation (Line(
+        points={{-31,-29.4},{-41.5,-29.4},{-41.5,-28.5},{-54,-28.5}}, color={191,
+          0,0}));
+  connect(heatFlowSensor.port_b, T) annotation (Line(points={{-74,-28.5},{-78,-28.5},
+          {-86,-28.5},{-86,86},{50,86}}, color={191,0,0}));
+  connect(Power, heatFlowSensor.Q_flow)
+    annotation (Line(points={{9,-73},{-64,-73},{-64,-39}}, color={0,0,127}));
   annotation (Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>PID control model to be connected to the air port of the temperature that must be regulated (eg TairInt).</p>
 <p>Constant temperature given as setpoint.</p>
 <p>Heating and cooling supplied to ensure the setpoint.</p>
+<p>The output <b>Power</b> is positive when heating is needed, and negative xhan cooling is needed.<p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -82,8 +84,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p></html>",
       revisions="<html>
@@ -91,10 +93,10 @@ Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 <p><ul>
 <li>Changement du modèle de capteur de température pour celui de la bibliothèque ENERBAT au lieu de la bibliothèque Modelica et modification de l'unité de température en K.</li>
 </ul></p>
+<p>Mathias Bouquerel 12/2016 : inversion du sens du HeatFlowSensor pour avoir un flux positif pour le chauffage et négatif pour la climatisation, et utilisation du modèle BuildSysPro pour ce HeatFlowSensor au lieu de celui de Modelica.</p>
 </html>"),
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
-            {100,100}}),
-                    graphics),
+            {100,100}})),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
             {100,100}}), graphics={
         Rectangle(extent={{-100,100},{100,-100}}, lineColor={0,0,255}),

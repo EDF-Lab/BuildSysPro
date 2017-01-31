@@ -182,12 +182,10 @@ equation
           fillColor={255,255,170},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
-    
-  
 <p><i><b>Scenario tool to set a daily scenario different for every day of the year</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>Scenario tool to set a daily scenario different for every day of the year, with monthly modulation.</p>
-<p><br><u><b>Bibliography</b></u></p>
+<p><u><b>Bibliography</b></u></p>
 <p>None</p>
 <p><u><b>Instruction for use</b></u></p>
 <p>In the folder Resources/Donnees/Scenarios, it is for example possible to use Scenarios_horaires_occultation.txt for fileNameTable (time scenario) and Scenario_journalier_occultation.txt for fileNameScenario (daily scenario) in order to see the formalism required for text files.</p>
@@ -196,11 +194,10 @@ equation
 <p>None</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Hassan Bouia 03/2014</p>  
-
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Hassan BOUIA, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

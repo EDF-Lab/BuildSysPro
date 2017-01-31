@@ -139,8 +139,7 @@ parameter Boolean GLOext=false
     "Incident solar surface flux information 1-Diffuse flux, 2-Direct flux, 3-Cosi"
     annotation (Placement(transformation(extent={{-120,20},{-80,60}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr if
-                                                                         not
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr if not
     DifDirOut "SW radiation transmitted inside" annotation (Placement(
         transformation(extent={{60,50},{100,90}}), iconTransformation(extent={{
             80,40},{100,60}})));
@@ -331,13 +330,13 @@ equation
 <ul>
 <li>No solar flux transmitted by the part obscured by the shutters</li>
 <li>Absorbed flux unchanged (PVC absorbency similar to that of glass)</li>
-<li>If the shutter is not completely closed (Coeff_Fermeture &lt;95%), unchanged thermal resistance</li>
+<li>If the shutter is not completely closed (Coeff_Fermeture &lt;95&#37;), unchanged thermal resistance</li>
 <li>If the shutter is fully closed, increased thermal resistance of an additional thermal resistance, evaluated at 0.2 m&sup2;K / W (PVC thickness of 12 mm approx.)</li>
 </ul>
 <p>When the window is open, there is \"broke\" of the conductance through the glass, and instead of that a debit of air renewal by natural ventilation is computed (refer to <a href=\"modelica://BuildSysPro.Building.AirFlow.HeatTransfer.WindowNaturalVentilation\"><code>WindowNaturalVentilation</code></a>). </p>
 <p>Reduction coefficients of direct and diffuse fluxes may also be considered (if <code>useReduction=True</code>), based on:</p>
 <ul>
-<li>Type of window / French window (the % of frame is deduced from that)</li>
+<li>Type of window / French window (the &#37; of frame is deduced from that)</li>
 <li>Coefficient representing the decrease in fluxes through net curtains</li>
 <li>Coefficient representing the decrease in fluxes due to window position (inner or outer)</li>
 <li>Coefficient representing the decrease in fluxes through curtains</li>
@@ -397,8 +396,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 05/2011 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

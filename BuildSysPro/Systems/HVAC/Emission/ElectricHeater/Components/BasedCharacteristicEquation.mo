@@ -1,4 +1,4 @@
-within BuildSysPro.Systems.HVAC.Components;
+within BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components;
 partial model BasedCharacteristicEquation
   "Partial model for characteristic equation of a radiator (EN442)"
  import SI = Modelica.SIunits;
@@ -37,11 +37,10 @@ SI.EnergyFlowRate  Qtot "Heating power output from the radiator";
 equation
   Qtot=-(Conv.Q_flow+Rad.Q_flow);
   annotation (Documentation(info="<html>
-
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Authors : Gilles PLESSIS, Hassan BOUIA EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -33,8 +33,7 @@ Mathieu Schumann, EDF R&amp;D, France
 </li>
 <li>
 Bénédicte Wall-Ribot, EDF R&amp;D, France
-</li>
-</p>
+</li></ul></p>
 <p>
 The following people have contributed or contribute actively to the development of BuildSysPro:
 <ul>
@@ -64,11 +63,11 @@ Pierrick Mandrou, EDF R&amp;D, France
 </li>
 <li>
 Davy Merlet, EDF R&amp;D, France
-</li></p>
+</li></ul></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

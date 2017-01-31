@@ -9,7 +9,7 @@ model PrescribedHeatFlow "Prescribed heat flow boundary condition"
         origin={-90,-14},
         extent={{20,-20},{-20,20}},
         rotation=180)));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b port
                              annotation (Placement(transformation(
           extent={{100,-24},{120,-4}}, rotation=0)));
 equation
@@ -60,10 +60,13 @@ equation
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow\">PrescribedHeatFlow</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
+</html>",
+revisions="<html>
+<p>Mathias Bouquerel 12/2016 : remplacement du port thermique Modelica par le port thermique BuildSysPro</p>
 </html>"),
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics));

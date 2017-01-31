@@ -28,7 +28,7 @@ record TechnoCrystallineSilicon =
     eps_fg=0.91,
     eps_bg=0.85,
     alpha_tau_n=0.9) annotation (Documentation(info="<html>
-<p><i><b>Record for the crystalline silicon technology</a></b></i></p>
+<p><i><b>Record for the crystalline silicon technology</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>none</p>
 <p><u><b>Bibliography</b></u></p>
@@ -43,7 +43,7 @@ record TechnoCrystallineSilicon =
 <p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p></html>"));

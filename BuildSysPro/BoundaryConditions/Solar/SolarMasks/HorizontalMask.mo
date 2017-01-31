@@ -89,7 +89,7 @@ if (continue == true) then
   // Calculation of X coordinates of the intersection with the window edge y=Hf
   XiH :=Xdeb+(M/T)*Ha;
 
-  // Cases 4 & 7 depending if 0 belongs to the glazing or not
+  // Cases 4 &amp; 7 depending if 0 belongs to the glazing or not
     Inclus :=BuildSysPro.BoundaryConditions.Solar.SolarMasks.PointOnSurface(
       Lf=Lf,
       Hf=Hf,
@@ -183,8 +183,8 @@ Horizontal shading devices (near mask) are considered. See diagram below:
 <p>Validated model (according the standard ISO13791-2004) - Aurélie Kaemmerlen 05/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright © EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

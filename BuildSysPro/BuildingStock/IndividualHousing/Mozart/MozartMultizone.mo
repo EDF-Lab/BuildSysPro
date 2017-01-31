@@ -1501,21 +1501,21 @@ graphics={
            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics),
     Documentation(info="<html>
-<p><i><b>Mozart Multizone</b></i></p>
-<p><u><b>Hypothèses et équations</b></u></p>
-<p>néant</p>
-<p><u><b>Bibliographie</b></u></p>
-<p>néant</p>
-<p><u><b>Mode d'emploi</b></u></p>
-<p>néant</p>
-<p><u><b>Limites connues du modèle / Précautions d'utilisation</b></u></p>
-<p>Pour les années de construction allant de 1974 à 1989, les épaisseurs d'isolant dans les planchers ne sont pas les mêmes entre le site des bâtiments types et Clim 2000 (cf. onglets Documentation des planchers dans les <a href=\"modelica://BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing\">Records.WallData.IndividualHousing</a>).</p>
-<p><u><b>Validations effectuées</b></u></p>
-<p>Modèle validé par comparaison des GV avec Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
+<p><i><b>Mozart Multizone individual housing</b></i></p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>none</p>
+<p><u><b>Bibliography</b></u></p>
+<p>none</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>Parameter <code>paraMaisonRT</code> allows the user to chose a specific French building regulation for the building, so that building envelope parameters (walls, windows, ventilation...) will be automatically filled with data from the choosen record.</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>For dates of contruction from 1974 to 1989, insulating materials thicknesses in floors are different between building stock site and Clim 2000 (cf <a href=\"modelica://BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing\">Records.WallData.IndividualHousing</a> documentation).</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model by comparison of GV with Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

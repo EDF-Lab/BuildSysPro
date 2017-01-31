@@ -127,12 +127,13 @@ public
     "Incident solar surface flux information 1-Diffuse flux, 2-Direct flux, 3-Cosi"
     annotation (Placement(transformation(extent={{-120,20},{-80,60}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr if  not
-  DifDirOut "SW radiation transmitted inside" annotation (Placement(
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr if not
+    DifDirOut "SW radiation transmitted inside"
+                                              annotation (Placement(
         transformation(extent={{60,50},{100,90}}), iconTransformation(extent={{
             80,40},{100,60}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr2[3] if
-  DifDirOut "SW radiation transmitted inside 1-Diffuse, 2-Direct, 3-cosi"
+    DifDirOut "SW radiation transmitted inside 1-Diffuse, 2-Direct, 3-cosi"
     annotation (Placement(transformation(extent={{60,20},{100,60}}),
         iconTransformation(extent={{80,40},{100,60}})));
   Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
@@ -155,7 +156,7 @@ public
     "Indoor temperature" annotation (Placement(transformation(
           extent={{80,-40},{100,-20}}), iconTransformation(extent={{80,
             -40},{100,-20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if         GLOext
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if GLOext
     "Sky temperature" annotation (Placement(transformation(extent=
             {{-100,-100},{-80,-80}}), iconTransformation(extent={{-100,
             -100},{-80,-80}})));
@@ -185,16 +186,15 @@ public
     conduction
     annotation (Placement(transformation(extent={{-12,-70},{8,-50}})));
   BuildSysPro.Building.AirFlow.HeatTransfer.AirRenewal renouvellementAir(
-      use_Qv_in=true) if
-                useOuverture
+      use_Qv_in=true) if useOuverture
     annotation (Placement(transformation(extent={{32,-98},{52,-78}})));
   BuildSysPro.BaseClasses.HeatTransfer.Components.ExtLWR EchangesGLOext(
     S=S,
     eps=eps,
     incl=incl,
     GLO_env=GLOext,
-    GLO_ciel=GLOext) if
-                      GLOext annotation (Placement(transformation(
+    GLO_ciel=GLOext) if GLOext
+                             annotation (Placement(transformation(
           extent={{-70,-98},{-50,-78}})));
 protected
 Modelica.Blocks.Math.Add Transmission(k1=1, k2=1)                  annotation (Placement(transformation(extent={{48,62},
@@ -211,8 +211,8 @@ protected
         origin={-75,5})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow
-    prescribedCLOAbsInt if
-                         RadInterne annotation (Placement(
+    prescribedCLOAbsInt if RadInterne
+                                    annotation (Placement(
         transformation(
         extent={{-8,8},{8,-8}},
         rotation=180,
@@ -519,7 +519,7 @@ equation
       color={255,0,255},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-//Sutter
+//Shutter
   connect(volet_internal, fermeture_volet) annotation (Line(
       points={{-150,80},{2,80},{2,116}},
       color={0,0,127},
@@ -577,13 +577,13 @@ equation
 <ul>
 <li>No solar flux transmitted by the part obscured by the shutters</li>
 <li>Absorbed flux unchanged (PVC absorbency similar to that of glass)</li>
-<li>If the shutter is not completely closed (<code>fermeture_volet</code> &lt; 95%), unchanged thermal resistance</li>
+<li>If the shutter is not completely closed (<code>fermeture_volet</code> &lt; 95&#37;), unchanged thermal resistance</li>
 <li>If the shutter is fully closed, increased thermal resistance of an additional thermal resistance, evaluated at 0.2 m&sup2;K / W (PVC thickness of 12 mm approx)</li>
 </ul>
 <p>When the window is open, the conductive heat transfer through the glass is not considered anymore, and instead of that an air renewal by natural ventilation is computed (refer to <a href=\"modelica://BuildSysPro.Building.AirFlow.HeatTransfer.WindowNaturalVentilation\"><code>WindowNaturalVentilation</code></a>). In addition, the absence of glazing results in a suppression of direct and diffuse transmission factors.</p>
 <p>Reduction coefficients of direct and diffuse fluxes may also be considered (<code>useReduction=True</code>), based on :</p>
 <ul>
-<li>type of windows/ window doors (the % of frame is deduced from that)</li>
+<li>type of windows/ window doors (the &#37; of frame is deduced from that)</li>
 <li>coefficient representing the decrease in fluxes through net curtains</li>
 <li>coefficient representing the decrease in fluxes due to window position (inner or outer)</li>
 <li>coefficient representing the decrease in fluxes through curtains</li>
@@ -616,8 +616,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -1,9 +1,10 @@
-within BuildSysPro.Systems.HVAC.Components;
+within BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components;
 model BasedCharacteristicEquation2
   "Distinction between radiative and convective temperatures for heat transfers"
 
   import SI = Modelica.SIunits;
-  extends BuildSysPro.Systems.HVAC.Components.BasedCharacteristicEquation;
+  extends
+    BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation;
 
    // Variables
    SI.TemperatureDifference DTam_rad
@@ -31,12 +32,10 @@ equation
     -Conv.Q_flow=(1-FracRad)*Km*DTam_conv*g0_conv;
 
   annotation (Documentation(info="<html>
-
-
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Authors : Gilles PLESSIS, Hassan BOUIA EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

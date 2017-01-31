@@ -36,8 +36,8 @@ end for;
                                       graphics),
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
-<p>This model distributes the radiation proportionally to the surface areas.</a></p>
-<p>Notes: usually used to model the distribution of radiative internal gains. For solar short-wave radiation, consider the surfaces absorptances instead.</a></p>
+<p>This model distributes the radiation proportionally to the surface areas.</p>
+<p>Notes: usually used to model the distribution of radiative internal gains. For solar short-wave radiation, consider the surfaces absorptances instead.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -48,8 +48,8 @@ end for;
 <p>Validated model (BESTEST) - Aurélie Kaemmerlen 09/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

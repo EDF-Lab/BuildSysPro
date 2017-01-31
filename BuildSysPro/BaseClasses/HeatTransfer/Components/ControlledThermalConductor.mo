@@ -36,7 +36,7 @@ equation
 <pre>    G = k*A/L
     k: Thermal conductivity (material constant)
     A: Area of box
-    L: Length of box
+    L: Length of box</pre>
 <li>Conductance for a <b>cylindrical</b> geometry under the assumption that heat flows from the inside to the outside radius of the cylinder: </li>
 <pre>    G = 2*pi*k*L/log(r_out/r_in)
     pi   : Modelica.Constants.pi
@@ -44,7 +44,7 @@ equation
     L    : Length of cylinder
     log  : Modelica.Math.log;
     r_out: Outer radius of cylinder
-    r_in : Inner radius of cylinder</ul>
+    r_in : Inner radius of cylinder</pre></ul>
 <p><pre>Typical values for k at 20 degC in W/(m.K):
       aluminium   220
       concrete      1
@@ -61,8 +61,8 @@ equation
 <p>none</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2016<br>
-BuildSysPro version 2.0.0<br>
+Copyright &copy; EDF 2009 - 2017<br>
+BuildSysPro version 2.1.0<br>
 Author : EDF<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.ThermalConductor\">ThermalConductor</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
