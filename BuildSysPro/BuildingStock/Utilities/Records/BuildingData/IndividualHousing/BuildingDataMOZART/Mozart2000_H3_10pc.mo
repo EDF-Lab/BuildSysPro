@@ -1,27 +1,27 @@
-﻿within BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART;
-record Mozart2012_STD =
+within BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART;
+record Mozart2000_H3_10pc =
     BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART.BuildingType
     (
     redeclare replaceable parameter
-      WallData.IndividualHousing.RT2012_STD.AtticWall ParoiSousCombles,
-    redeclare replaceable parameter WallData.IndividualHousing.RT2012_STD.Door
-                                                 Porte,
-    redeclare replaceable parameter WallData.IndividualHousing.RT2012_STD.Floor
-                                                  PlancherBas,
+      WallData.IndividualHousing.RT2000_H3_10pc.AtticWall ParoiSousCombles,
     redeclare replaceable parameter
-      WallData.IndividualHousing.RT2012_STD.ExtWall Mur,
+      WallData.IndividualHousing.RT2000_H3_10pc.Door Porte,
+    redeclare replaceable parameter
+      WallData.IndividualHousing.RT2000_H3_10pc.Floor PlancherBas,
+    redeclare replaceable parameter
+      WallData.IndividualHousing.RT2000_H3_10pc.ExtWall Mur,
     redeclare replaceable parameter WallData.IndividualHousing.PartitionWall
       Cloisons,
     redeclare replaceable parameter WallData.IndividualHousing.SupportingWall
       Refends,
-    UvitrageAF=1.5,
-    UvitrageSF=1.5,
+    UvitrageAF=2.4,
+    UvitrageSF=2.9,
     renouvAir=0.426,
-    ValeursK={0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00},
+    ValeursK={0.01,0.205,0.19,0.00,0.00,0.05,0.00,0.00,0.00},
     TauPonts={1,1,1,1,1,1,1,1,1},
     bLNC=0.95,
     bPlancher=1,
-    bSousCombles=1) "Settings of Mozart individual housing standard 2012"
+    bSousCombles=1) "Settings of Mozart individual housing 2000 CrefH3 -10%"
   annotation (Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>none</p>
@@ -31,13 +31,13 @@ record Mozart2012_STD =
 <p><u><b>Instructions for use</b></u></p>
 <p>none</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
-<p>Warning : thermal bridges have been set to null because of a lack of data, it will be necessary to complete them when more details are available.</p>
+<p>none</p>
 <p><u><b>Validations</b></u></p>
-<p>Validated model - Benoît Charrier 12/2015</p>
+<p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
 BuildSysPro version 2.1.0<br>
-Author : Benoît CHARRIER, EDF (2015)<br>
+Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));
