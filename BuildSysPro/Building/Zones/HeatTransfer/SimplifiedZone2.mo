@@ -1,4 +1,4 @@
-within BuildSysPro.Building.Zones.HeatTransfer;
+﻿within BuildSysPro.Building.Zones.HeatTransfer;
 model SimplifiedZone2
   "One-zone simplified model with equivalent building envelope component (roof, wall, floor)"
 
@@ -16,7 +16,6 @@ parameter Modelica.SIunits.Area SurfaceVitree "Total glazed surface"
 parameter Modelica.SIunits.CoefficientOfHeatTransfer       U=1
     "Glazing deperditive coefficient" annotation(Dialog(group="Glazing"));
 
-parameter Real Tr=0.7 "Transmittance"   annotation(Dialog(group="Glazing"));
 parameter Real AbsVitrage=0.1 "Absorptance" annotation(Dialog(group="Glazing"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_Vitrage=16.7
     "Convective heat transfer coefficient on the outer face"                       annotation(Dialog(group="Glazing"));
@@ -100,7 +99,6 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleGlazing vitrage(
     S=SurfaceVitree,
     k=k,
-    Tr=Tr,
     Abs=AbsVitrage,
     hs_ext=hs_ext_Vitrage,
     hs_int=hs_int_Vitrage) "Glazing surface"
@@ -454,8 +452,9 @@ BuildSysPro version 2.1.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p><span style=\"font-family: MS Shell Dlg 2;\">Gilles Plessis 07/2015 : Mod&egrave;le d&eacute;riv&eacute; de MonozoneSimplifie de BuildSysPro 2015.04 pour les besoin du projet ANR MERUBBI.</span></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">Ajout d&apos;un composant pour la toiture et pont thermique.</span></p>
-<p><span style=\"font-family: MS Shell Dlg 2;\">Les &eacute;changes GLO lin&eacute;aire sont supprim&eacute;s pour &ecirc;tre externalis&eacute; via le port Ts gr&acirc;ce &agrave; un calcul de facteur de forme.</span></p>
+<p>Gilles Plessis 07/2015 : Modèle dérivé de MonozoneSimplifie de BuildSysPro 2015.04 pour les besoin du projet ANR MERUBBI.</p>
+<p>Ajout d'un composant pour la toiture et pont thermique.</p>
+<p>Les échanges GLO linéaire sont supprimés pour &ecirc;tre externalisé via le port <code>Ts</code> grâce à un calcul de facteur de forme.</p>
+<p>Benoît Charrier 02/2017 : Deleting useless solar transmission coefficient <code>Tr</code> because of transmitted solar radiation in input.</p>
 </html>"));
 end SimplifiedZone2;

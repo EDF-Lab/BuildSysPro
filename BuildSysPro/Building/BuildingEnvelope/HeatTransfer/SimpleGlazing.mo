@@ -22,7 +22,6 @@ parameter Real skyViewFactor=0
                                                                                                         annotation(Dialog(enable=GLOext,group="General properties"));
 
 // Optical properties
-parameter Real Tr=0.544 "Window transmission coefficient" annotation(Dialog(group="Optical properties"));
 parameter Real Abs=0.1 "Window absorption coefficient" annotation(Dialog(group="Optical properties"));
 parameter Real eps=0.9 "Emissivity" annotation(Dialog(enable=GLOext,group="Optical properties"));
 
@@ -85,7 +84,7 @@ Modelica.Blocks.Math.Gain FluxAbsorbe(k=S*Abs)                     annotation (P
             {7,7}},
         rotation=180,
         origin={-55,3})));
-Modelica.Blocks.Math.Gain FluxTransmis(k=S*Tr) annotation (Placement(
+Modelica.Blocks.Math.Gain FluxTransmis(k=S)    annotation (Placement(
         transformation(
         extent={{-7,-7},{7,7}},
         rotation=0,
@@ -231,7 +230,7 @@ equation
 <p><a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window\"><code>Window</code></a> model modified in order to obtain a linear time-invariant model for the purposes of cities study.</p>
 <p>CSTB. 2005. Guide réglementaire RT 2005. Règle d&apos;application Th-Bât Th-U 3/5 Parois vitrées.</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>). The external incident flows <code>FluxAbs</code> and <code>FluxTr</code> come from the solar boundary conditions model <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\"><code>SolarBC</code></a>. The correspondence between their settings must be made.</p>
+<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>). The external incident flows <code>FluxIncExt</code> and <code>FluxTr</code> come from the solar boundary conditions model <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\"><code>SolarBC</code></a>. The correspondence between their settings must be made.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>The limitations are mainly related to the LWR flows linearization and to the outsourcing of the influence of the impact on SWR transmitted fluxes.</p>
 <p><u><b>Validations</b></u></p>
@@ -245,6 +244,7 @@ Author : Gilles PLESSIS, EDF (2013)<br>
 </html>",                                                                    revisions="<html>
 <p>Amy Lindsay 03/2014 : ajout de la possibilité de commander un volet (fermeture_volet qui varie entre 0 et 1 - 1 quand le volet est fermé, 0 quand le volet est ouvert), avec la résistance thermique supplémentaire que cela engendre.</p>
 <p>Gilles Plessis 07/2015 : ajout de la possibilité optionnelle de prise en compte du rayonnement GLO linéarisé.</p>
+<p>Benoît Charrier 02/2017 : deleting useless application of solar transmission coefficient because of transmitted solar radiation in input.</p>
 </html>"),      Placement(transformation(extent={{46,-50},{66,-30}})),
 Documentation(info="<HTML>
 <p>

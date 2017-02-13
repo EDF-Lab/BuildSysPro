@@ -39,9 +39,9 @@ extends Modelica.Icons.Example;
     annotation (Placement(transformation(extent={{28,-62},{48,-38}})));
 
   BoundaryConditions.Solar.Irradiation.SolarBC cLSolaire(
-    TrDir=mS.Tr,
     SurfacesVitrees={0,10,20,10,10},
-    SurfacesExterieures={100,38,18,38,38})
+    SurfacesExterieures={100,38,18,38,38},
+    TrDir=0.544)
     annotation (Placement(transformation(extent={{-52,-38},{-32,-18}})));
 equation
   connect(mD.FLUXN,fLUXzone. FLUXNord) annotation (Line(

@@ -19,7 +19,6 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer k
 parameter Real skyViewFactorWindows
     "Average sky view factor between glazings and sky (example: upward=1, vertical in clear environment=0.5)"
                                                                                                         annotation(Dialog(group="Glazing"));
-parameter Real Tr=0.544 "Transmittance" annotation(Dialog(group="Glazing"));
 parameter Real AbsVitrage=0.1 "Absorptance" annotation(Dialog(group="Glazing"));
 parameter Real epsWindows=0.9 "LWR emissivity" annotation(Dialog(group="Glazing"));
 
@@ -112,7 +111,6 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
     S=SurfaceVitree,
     skyViewFactor=skyViewFactorWindows,
     k=k,
-    Tr=Tr,
     Abs=AbsVitrage,
     eps=epsWindows) "Glazing surface"
     annotation (Placement(transformation(extent={{-10,-42},{10,-22}})));
@@ -440,5 +438,6 @@ Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 </html>",                                                                    revisions="<html>
 <p>Gilles Plessis 09/2015 : Ajout d'<code>assert</code> prévenant la non définition de couche isolante.</p>
 <p>Gilles Plessis 03/2016 : Paramètres <code>hs_ext_Plancher</code> et <code>hs_int_Plancher</code> renommés en <code>hs_sub_Plancher</code> et <code>hs_sup_Plancher</code>.</p>
+<p>Benoît Charrier 02/2017 : Deleting useless solar transmission coefficient <code>Tr</code> because of transmitted solar radiation in input.</p>
 </html>"));
 end SimplifiedZone1;
