@@ -11,7 +11,7 @@ model RadiatorEN442_Test "Example to test the HotWaterRadiator model"
   BuildSysPro.Systems.HVAC.Emission.Radiator.Radiator_EN442 Radiator(
     Pnom=Pnom,
     nNom=nNom,
-    redeclare BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation1
+    redeclare BuildSysPro.Systems.HVAC.Emission.Radiator.Components.BasedCharacteristicEquation1
       radEqua
       "Simplified : Room temperature based on average between radiative and convective temperatures",
     MediumMass=0.1,

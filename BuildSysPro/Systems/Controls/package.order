@@ -1,4 +1,5 @@
 PIDFixed
+PIDDualMode
 PIDFixedDualMode
 PIDPrescribedSingleMode
 Deadband

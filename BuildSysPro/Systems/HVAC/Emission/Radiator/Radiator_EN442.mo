@@ -3,7 +3,7 @@ model Radiator_EN442 "Radiator model based on the EN442 standard"
 
   import SI = Modelica.SIunits;
   extends
-    BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.CharacteristicEquation;
+    BuildSysPro.Systems.HVAC.Emission.Radiator.Components.CharacteristicEquation;
 
   // Parameters
 

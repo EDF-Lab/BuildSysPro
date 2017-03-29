@@ -1,4 +1,4 @@
-within BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components;
+within BuildSysPro.Systems.HVAC.Emission.Radiator.Components;
 partial model BasedCharacteristicEquation
   "Partial model for characteristic equation of a radiator (EN442)"
  import SI = Modelica.SIunits;

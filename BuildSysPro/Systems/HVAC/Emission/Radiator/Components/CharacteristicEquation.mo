@@ -1,4 +1,4 @@
-within BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components;
+within BuildSysPro.Systems.HVAC.Emission.Radiator.Components;
 partial model CharacteristicEquation
   "Model for characteristic equation of a radiator (EN442)"
  import SI = Modelica.SIunits;
@@ -30,14 +30,14 @@ partial model CharacteristicEquation
         transformation(extent={{30,70},{50,90}}), iconTransformation(
           extent={{20,60},{40,80}})));
 
-  replaceable BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation1
+  replaceable BuildSysPro.Systems.HVAC.Emission.Radiator.Components.BasedCharacteristicEquation1
     radEqua(
     Pnom=Pnom,
     DTnom=DTnom,
     nNom=nNom,
     FracRad=FracRad,
     Km=Km) constrainedby
-    BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation
+    BuildSysPro.Systems.HVAC.Emission.Radiator.Components.BasedCharacteristicEquation
                                                      annotation (
     choices(choice(redeclare
           BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation1

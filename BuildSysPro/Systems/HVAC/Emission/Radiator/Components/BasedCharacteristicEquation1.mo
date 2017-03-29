@@ -1,9 +1,9 @@
-within BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components;
+within BuildSysPro.Systems.HVAC.Emission.Radiator.Components;
 model BasedCharacteristicEquation1
   "Room temperature based on average between radiative and convective temperatures"
  import SI = Modelica.SIunits;
   extends
-    BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation;
+    BuildSysPro.Systems.HVAC.Emission.Radiator.Components.BasedCharacteristicEquation;
 
    // Variables
    SI.TemperatureDifference DTam

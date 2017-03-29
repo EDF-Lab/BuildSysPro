@@ -1,10 +1,10 @@
-within BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components;
+within BuildSysPro.Systems.HVAC.Emission.Radiator.Components;
 model BasedCharacteristicEquation2
   "Distinction between radiative and convective temperatures for heat transfers"
 
   import SI = Modelica.SIunits;
   extends
-    BuildSysPro.Systems.HVAC.Emission.ElectricHeater.Components.BasedCharacteristicEquation;
+    BuildSysPro.Systems.HVAC.Emission.Radiator.Components.BasedCharacteristicEquation;
 
    // Variables
    SI.TemperatureDifference DTam_rad
