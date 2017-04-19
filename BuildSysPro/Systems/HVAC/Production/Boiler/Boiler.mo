@@ -217,7 +217,7 @@ else
 end if;
 
 equation
-  Debit = if a < 1 or a > 4 then 0 else V_flow * rhoE;
+  Debit = if a < 1 or a > 4 then 0 else Entree[2];
   //Intersection point Tc determination
   etaNom+a1*(Tc-Tnom) = etaInt+(100*PCSI-etaInt)*(1-Psat(Tc)/Psat(TInt)*TInt/Tc);
 
