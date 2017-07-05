@@ -52,10 +52,10 @@ Real pi=Modelica.Constants.pi;
     "Solar irradiation for the surface considering the shading effects 1-Diffuse, 2- Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{30,-20},{70,20}}, rotation=0),
         iconTransformation(extent={{100,-12},{124,12}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUX[3]
-    "Incident irradiance 1-Diffuse, 2- Direct and 3-Cosi"
-    annotation (Placement(transformation(extent={{-77,-18},{-43,16}}, rotation=
-            0), iconTransformation(extent={{-40,-10},{-20,10}})));
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3]
+    "Incident irradiance 1-Diffuse, 2- Direct and 3-Cosi" annotation (Placement(
+        transformation(extent={{-77,-18},{-43,16}}, rotation=0),
+        iconTransformation(extent={{-40,-10},{-20,10}})));
   Modelica.Blocks.Interfaces.RealInput AzHSol[3]
     "Irradiation data: 1-Solar azimuth angle 2-Solar elevation angle 3-Incident flux from ground"    annotation (Placement(transformation(
           extent={{-99,19},{-59,59}}), iconTransformation(extent={{-100,23},{-86,
@@ -135,9 +135,9 @@ else FE_dir:=1;
 
 equation
   //Vector FLUX on a glazing with close mask / output: diffuse, direct, cosi
- FluxMasques[1] = ((FLUX[1]-DiffusSol)*FacMasqueDif + DiffusSol)*FE_dir;
- FluxMasques[2] = FacMasqueDir*FLUX[2];
- FluxMasques[3] = FLUX[3];
+ FluxMasques[1] =((FluxIncExt[1] - DiffusSol)*FacMasqueDif + DiffusSol)*FE_dir;
+ FluxMasques[2] =FacMasqueDir*FluxIncExt[2];
+ FluxMasques[3] =FluxIncExt[3];
 
   if useEclairement then
     connect(CalculEclMasques.y, EclMasques) annotation (Line(
@@ -176,7 +176,7 @@ Following masks are considered:
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>

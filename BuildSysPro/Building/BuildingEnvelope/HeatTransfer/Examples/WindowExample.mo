@@ -27,7 +27,7 @@ equation
       points={{-51,18},{-54,18},{-54,52},{-63,52}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(fLUXsurf.FLUX, vitrage1.FLUX) annotation (Line(
+  connect(fLUXsurf.FluxIncExt, vitrage1.FluxIncExt) annotation (Line(
       points={{-29,17.9},{-18,17.9},{-18,61},{1,61}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -43,15 +43,15 @@ equation
       points={{58,54},{38,54},{38,-1},{15,-1}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(meteofile.Tseche, vitrage2.T_ext) annotation (Line(
+  connect(meteofile.T_dry, vitrage2.T_ext) annotation (Line(
       points={{-63,57},{-12,57},{-12,-1},{-3,-1}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(vitrage1.T_ext, meteofile.Tseche) annotation (Line(
+  connect(vitrage1.T_ext, meteofile.T_dry) annotation (Line(
       points={{-5,53},{-12,53},{-12,57},{-63,57}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(fLUXsurf.FLUX, vitrage2.FLUX) annotation (Line(
+  connect(fLUXsurf.FluxIncExt, vitrage2.FluxIncExt) annotation (Line(
       points={{-29,17.9},{-18,17.9},{-18,7},{3,7}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -95,7 +95,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

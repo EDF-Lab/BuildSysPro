@@ -9,13 +9,13 @@ parameter Real skyViewFactor
     "Facteur de forme moyen entre les parois et le ciel (exemple: skyViewFactor(toiture terrase)=1, skyViewfactor(paroi verticale en environnement dégagé)=0.5)";
 
 // Composants publics
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel
-    "Température du ciel" annotation (Placement(transformation(extent={{-100,-60},
-            {-80,-40}}, rotation=0)));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky
+    "Température du ciel" annotation (Placement(transformation(extent={{-100,-50},
+            {-80,-30}}, rotation=0)));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
     "Température extérieure (de l'environnement)" annotation (Placement(
-        transformation(extent={{-100,40},{-80,60}}, rotation=0)));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_p
+        transformation(extent={{-100,30},{-80,50}}, rotation=0)));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_ext
     "Température de surface de la paroi" annotation (Placement(transformation(
           extent={{80,-10},{100,10}}, rotation=0), iconTransformation(extent={{
             80,-10},{100,10}})));
@@ -33,26 +33,26 @@ protected
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor GLOenv(G=(1 -
         skyViewFactor)*S*Modelica.Constants.sigma*eps*(TenvConst^2 + TsurfConst
         ^2)*(TenvConst + TsurfConst)) "Echange GLO avec l'environnement"
-    annotation (Placement(transformation(extent={{-16,34},{16,66}})));
+    annotation (Placement(transformation(extent={{-16,24},{16,56}})));
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor GLOciel(G=
         skyViewFactor*S*Modelica.Constants.sigma*eps*(TcielConst^2 + TsurfConst
         ^2)*(TcielConst + TsurfConst)) "Echange GLO avec le ciel"
-    annotation (Placement(transformation(extent={{-18,-66},{16,-32}})));
+    annotation (Placement(transformation(extent={{-18,-57},{16,-23}})));
 equation
-  connect(GLOciel.port_b, Ts_p) annotation (Line(
-      points={{14.3,-49},{50.5,-49},{50.5,0},{90,0}},
+  connect(GLOciel.port_b, Ts_ext) annotation (Line(
+      points={{14.3,-40},{50.5,-40},{50.5,0},{90,0}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(GLOenv.port_b, Ts_p) annotation (Line(
-      points={{14.4,50},{50,50},{50,0},{90,0}},
+  connect(GLOenv.port_b, Ts_ext) annotation (Line(
+      points={{14.4,40},{50,40},{50,0},{90,0}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(GLOenv.port_a, T_ext) annotation (Line(
-      points={{-14.4,50},{-90,50}},
+      points={{-14.4,40},{-90,40}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(T_ciel, GLOciel.port_a) annotation (Line(
-      points={{-90,-50},{-53.15,-50},{-53.15,-49},{-16.3,-49}},
+  connect(T_sky, GLOciel.port_a) annotation (Line(
+      points={{-90,-40},{-16.3,-40}},
       color={191,0,0},
       smooth=Smooth.None));
 annotation (
@@ -144,11 +144,11 @@ annotation (
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"),
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}),     graphics));
+            100}})));
 end LinearExtLWR;

@@ -11,22 +11,24 @@ parameter Boolean GLO_env=true
 parameter Boolean GLO_ciel=true
     "Integration of long wavelength radiation (infrared) toward the sky";
 
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel
-    "Sky temperature" annotation (Placement(transformation(extent={{-100,-60},
-            {-80,-40}}, rotation=0)));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky
+    "Sky temperature" annotation (Placement(transformation(extent={{-100,-50},{
+            -80,-30}}, rotation=0), iconTransformation(extent={{-100,-50},{-80,
+            -30}})));
   BuildSysPro.BaseClasses.HeatTransfer.Components.BodyRadiation GLOenv(Gr=GrEnv)
     "Long wavelength exchanges with the environment"
-    annotation (Placement(transformation(extent={{-28,28},{4,60}})));
+    annotation (Placement(transformation(extent={{-28,24},{4,56}})));
   BuildSysPro.BaseClasses.HeatTransfer.Components.BodyRadiation GLOciel(Gr=GrCiel)
     "Long wavelength exchanges with the sky"
-    annotation (Placement(transformation(extent={{-32,-66},{2,-32}})));
+    annotation (Placement(transformation(extent={{-32,-57},{2,-23}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
     "Outside temperature (of the environment)" annotation (Placement(
-        transformation(extent={{-100,20},{-80,40}}, rotation=0)));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_p
-    "Outside temperature at the wall surface" annotation (Placement(transformation(
-          extent={{80,-10},{100,10}}, rotation=0), iconTransformation(extent={{
-            80,-10},{100,10}})));
+        transformation(extent={{-100,30},{-80,50}}, rotation=0),
+        iconTransformation(extent={{-100,30},{-80,50}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_ext
+    "Outside temperature at the wall surface" annotation (Placement(
+        transformation(extent={{80,-10},{100,10}}, rotation=0),
+        iconTransformation(extent={{80,-10},{100,10}})));
 
 protected
   parameter Real GrEnv= if GLO_env then eps*S*(0.5*(1-cos(incl*Modelica.Constants.pi/180))) else 0
@@ -36,23 +38,23 @@ protected
 
 equation
   connect(T_ext, GLOenv.port_a) annotation (Line(
-      points={{-90,30},{-58,30},{-58,44},{-26.4,44}},
+      points={{-90,40},{-26.4,40}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(GLOenv.port_b, Ts_p) annotation (Line(
-      points={{2.4,44},{52,44},{52,0},{90,0}},
+  connect(GLOenv.port_b, Ts_ext) annotation (Line(
+      points={{2.4,40},{52,40},{52,0},{90,0}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(T_ciel, GLOciel.port_a) annotation (Line(
-      points={{-90,-50},{-58,-50},{-58,-49},{-30.3,-49}},
+  connect(T_sky, GLOciel.port_a) annotation (Line(
+      points={{-90,-40},{-30.3,-40}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(GLOciel.port_b, Ts_p) annotation (Line(
-      points={{0.3,-49},{50.5,-49},{50.5,0},{90,0}},
+  connect(GLOciel.port_b, Ts_ext) annotation (Line(
+      points={{0.3,-40},{50.5,-40},{50.5,0},{90,0}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(T_ciel, T_ciel) annotation (Line(
-      points={{-90,-50},{-94,-50},{-96,-48},{-90,-50}},
+  connect(T_sky, T_sky) annotation (Line(
+      points={{-90,-40},{-90,-40}},
       color={191,0,0},
       smooth=Smooth.None));
 annotation (
@@ -128,11 +130,11 @@ annotation (
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"),
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{
-            100,100}}), graphics));
+            100,100}})));
 end ExtLWR;

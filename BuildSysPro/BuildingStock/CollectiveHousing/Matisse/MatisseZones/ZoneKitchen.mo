@@ -215,7 +215,7 @@ protected
 
 // Components for LW/SW radiations
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tciel if GLOEXT
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if GLOEXT
      == true annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{60,100},{80,120}})));
   BuildSysPro.BoundaryConditions.Radiation.PintRadDistrib PintdistriRad(
@@ -242,10 +242,10 @@ public
   BuildSysPro.Building.AirFlow.HeatTransfer.AirNode noeudAir(V=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondCuisine
         *BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.HauteurMatisse, Tair=
         293.15) annotation (Placement(transformation(extent={{70,16},{90,36}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Text annotation (
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext annotation (
       Placement(transformation(extent={{-100,30},{-80,50}}), iconTransformation(
           extent={{20,100},{40,120}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a TCuisine
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_kitchen
     annotation (Placement(transformation(extent={{80,-29},{100,-9}}),
         iconTransformation(extent={{-19,-42},{1,-22}})));
   BuildSysPro.Building.AirFlow.HeatTransfer.AirRenewal renouvellementAir(
@@ -273,7 +273,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         iconTransformation(extent={{7,-7},{-7,7}},
         rotation=90,
         origin={-15,67})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Tmit
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int_common
     "Temperature of adjacent housings" annotation (Placement(transformation(
           extent={{-64,88},{-56,96}}), iconTransformation(extent={{92,106},{100,
             114}})));
@@ -290,13 +290,13 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         iconTransformation(extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={-10,-90})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxPlafond[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExtRoof[3]
     annotation (Placement(transformation(extent={{-108,74},{-84,98}}),
         iconTransformation(
         extent={{-12,-12},{12,12}},
         rotation=-90,
         origin={-60,109})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxNord[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExtNorth[3]
     annotation (Placement(transformation(extent={{-108,58},{-84,82}}),
         iconTransformation(
         extent={{-12,-12},{12,12}},
@@ -377,19 +377,19 @@ equation
   end if;
 
   if GLOEXT==true then
-    connect(Tciel, VitrageNord.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,16.7},{-36.3,16.7}},
-      color={191,0,0},
-      smooth=Smooth.None));
-      connect(Tciel, MurNord.T_ciel) annotation (Line(
-          points={{-90,10},{-64,10},{-64,16.7},{-6.3,16.7}},
+    connect(T_sky, VitrageNord.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,16.7},{-36.3,16.7}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, MurNord.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,16.7},{-6.3,16.7}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    if EmplacementHaut==true then
+      connect(T_sky, PlafondImmeuble.T_sky) annotation (Line(
+          points={{-90,10},{-64,10},{-64,70.7},{-6.3,70.7}},
           color={191,0,0},
           smooth=Smooth.None));
-    if EmplacementHaut==true then
-        connect(Tciel, PlafondImmeuble.T_ciel) annotation (Line(
-            points={{-90,10},{-64,10},{-64,70.7},{-6.3,70.7}},
-            color={191,0,0},
-            smooth=Smooth.None));
     end if;
   end if;
 
@@ -416,15 +416,15 @@ equation
         pattern=LinePattern.Dash));
   end if;
 
-    connect(Text, MurNord.T_ext) annotation (Line(
-        points={{-90,40},{-52,40},{-52,20.9},{-6.3,20.9}},
+  connect(T_ext, MurNord.T_ext) annotation (Line(
+      points={{-90,40},{-52,40},{-52,20.9},{-6.3,20.9}},
+      color={191,0,0},
+      smooth=Smooth.None));
+if EmplacementHaut==true then
+    connect(T_ext, PlafondImmeuble.T_ext) annotation (Line(
+        points={{-90,40},{-52,40},{-52,74.9},{-6.3,74.9}},
         color={191,0,0},
         smooth=Smooth.None));
-if EmplacementHaut==true then
-      connect(Text, PlafondImmeuble.T_ext) annotation (Line(
-          points={{-90,40},{-52,40},{-52,74.9},{-6.3,74.9}},
-          color={191,0,0},
-          smooth=Smooth.None));
       connect(PlafondImmeuble.T_int, noeudAir.port_a) annotation (Line(
           points={{6.3,74.9},{40,74.9},{40,40},{80,40},{80,22}},
           color={255,0,0},
@@ -433,10 +433,10 @@ else  connect(Plafond.T_int, noeudAir.port_a) annotation (Line(
           points={{6.3,91.9},{40,91.9},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
- connect(Tmit, Plafond.T_ext) annotation (Line(
-      points={{-60,92},{-34,92},{-34,91.9},{-6.3,91.9}},
-      color={128,0,255},
-      smooth=Smooth.None));
+    connect(T_int_common, Plafond.T_ext) annotation (Line(
+        points={{-60,92},{-34,92},{-34,91.9},{-6.3,91.9}},
+        color={128,0,255},
+        smooth=Smooth.None));
 end if;
     connect(MurNord.T_int, noeudAir.port_a) annotation (Line(
         points={{6.3,20.9},{40,20.9},{40,40},{80,40},{80,22}},
@@ -456,17 +456,18 @@ else  connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
           points={{53.1,-85.7},{53.1,-60},{40,-60},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
-      connect(Tmit, PlancherBas.T_ext) annotation (Line(
-          points={{-60,92},{-20,92},{-20,-100},{54,-100},{54,-98.3},{53.1,-98.3}},
-          color={128,0,255},
-          smooth=Smooth.None));
+    connect(T_int_common, PlancherBas.T_ext) annotation (Line(
+        points={{-60,92},{-20,92},{-20,-100},{54,-100},{54,-98.3},{53.1,-98.3}},
+        color={128,0,255},
+        smooth=Smooth.None));
+
 end if;
 
-  connect(Text, VitrageNord.T_ext) annotation (Line(
+  connect(T_ext, VitrageNord.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,20.9},{-36.3,20.9}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, TauPlancher.port_ext) annotation (Line(
+  connect(T_ext, TauPlancher.port_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-87},{-57,-87}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -474,18 +475,20 @@ end if;
       points={{-23.7,26.5},{-14,26.5},{-14,-60}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(Text, renouvellementAir.port_a) annotation (Line(
+  connect(T_ext, renouvellementAir.port_a) annotation (Line(
       points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-102},{71,-102},{71,-58.9}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(noeudAir.port_a, TCuisine) annotation (Line(
+
+  connect(noeudAir.port_a, T_int_kitchen) annotation (Line(
       points={{80,22},{80,-19},{90,-19}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, PontsThermiques.port_a) annotation (Line(
+  connect(T_ext, PontsThermiques.port_a) annotation (Line(
       points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-72.5},{-57.25,-72.5}},
       color={191,0,0},
       smooth=Smooth.None));
+
   connect(renouvellementAir.port_b, noeudAir.port_a) annotation (Line(
       points={{71,-39.1},{71,-30},{40,-30},{40,40},{80,40},{80,22}},
       color={255,0,0},
@@ -505,15 +508,15 @@ end if;
       points={{-23.7,20.9},{40,20.9},{40,40},{80,40},{80,22}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(FluxPlafond, PlafondImmeuble.FLUX) annotation (Line(
+  connect(FluxIncExtRoof, PlafondImmeuble.FluxIncExt) annotation (Line(
       points={{-96,86},{-52,86},{-52,83.3},{-2.1,83.3}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FluxNord, VitrageNord.FLUX) annotation (Line(
+  connect(FluxIncExtNorth, VitrageNord.FluxIncExt) annotation (Line(
       points={{-96,70},{-70,70},{-70,26.5},{-32.1,26.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FluxNord, MurNord.FLUX) annotation (Line(
+  connect(FluxIncExtNorth, MurNord.FluxIncExt) annotation (Line(
       points={{-96,70},{-70,70},{-70,29.3},{-2.1,29.3}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -590,7 +593,7 @@ graphics={
           origin={-7,28},
           rotation=90)}),
            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics),
+            -100},{100,100}})),
     Documentation(info="<html>
 <p><i><b>Zone kitchen Matisse</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -606,7 +609,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

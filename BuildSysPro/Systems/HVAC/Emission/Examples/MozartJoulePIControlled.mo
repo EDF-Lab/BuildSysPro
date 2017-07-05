@@ -88,11 +88,11 @@ public
   ElectricHeater.JouleHeatingPIControlled convThermPI(Pnom(displayUnit="W")=
       1500) annotation (Placement(transformation(extent={{-20,-30},{-40,-10}})));
 equation
-  connect(meteofile.Tseche, cas1aAvecFlux1.Text) annotation (Line(
+  connect(meteofile.T_dry, cas1aAvecFlux1.T_ext) annotation (Line(
       points={{-61,53},{-74,53},{-74,78},{-34,78}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(cas1aAvecFlux1.Tairint, temperatureSensor.port) annotation (Line(
+  connect(cas1aAvecFlux1.T_int, temperatureSensor.port) annotation (Line(
       points={{-2,49.6},{20,49.6},{20,50}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -100,7 +100,7 @@ equation
       points={{-30,20},{-40,20}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(cas1aAvecFlux1.Ensoleillement, meteofile.G) annotation (Line(
+  connect(cas1aAvecFlux1.G, meteofile.G) annotation (Line(
       points={{-34,70},{-72,70},{-72,48},{-61,48}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -108,7 +108,7 @@ equation
       points={{62,-10},{72,-10},{72,20},{59.3333,20}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(mesureFlux.port_b, cas1aAvecFlux1.Tairint) annotation (Line(
+  connect(mesureFlux.port_b, cas1aAvecFlux1.T_int) annotation (Line(
       points={{-10,20},{-2,20},{-2,49.6}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -116,7 +116,7 @@ equation
       points={{8,20},{0,20},{0,10},{-20,10}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(Text.port, cas1aAvecFlux1.Text) annotation (Line(
+  connect(Text.port, cas1aAvecFlux1.T_ext) annotation (Line(
       points={{-60,80},{-34,80},{-34,78}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -124,11 +124,11 @@ equation
       points={{-41,-20},{-74,-20},{-74,20},{-60,20}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(convThermPI.Tcons, to_degC.y) annotation (Line(
+  connect(convThermPI.T_sp, to_degC.y) annotation (Line(
       points={{-19,-18},{0,-18},{0,-10},{39,-10}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(convThermPI.Tint, temperatureSensor.T) annotation (Line(
+  connect(convThermPI.T_int, temperatureSensor.T) annotation (Line(
       points={{-19,-22},{80,-22},{80,50},{40,50}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -150,7 +150,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

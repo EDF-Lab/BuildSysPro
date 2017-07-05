@@ -33,11 +33,11 @@ equation
       points={{-61,8},{-36.5,8},{-36.5,50},{-31,50}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(fLUXsurf.FLUX, MurSud.FLUX) annotation (Line(
+  connect(fLUXsurf.FluxIncExt, MurSud.FluxIncExt) annotation (Line(
       points={{-9,49.9},{-7.5,49.9},{-7.5,31},{-3,31}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(MeteoTrappes.Tseche, MurSud.T_ext) annotation (Line(
+  connect(MeteoTrappes.T_dry, MurSud.T_ext) annotation (Line(
       points={{-61,13},{-9,13},{-9,19}},
       color={255,0,0},
       smooth=Smooth.None));
@@ -63,7 +63,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"),

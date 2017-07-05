@@ -18,7 +18,7 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer U
 parameter Real tau "Coefficient of energy transmission" annotation(Dialog(group="Manufacturer data"));
 parameter Real g "Solar factor" annotation(Dialog(group="Manufacturer data"));
 
-parameter Real eps=0.9 "Glazing emissivity in LWR" annotation(Dialog(group="Manufacturer data"));
+parameter Real eps=0.9 "Glazing emittance in LWR" annotation(Dialog(group="Manufacturer data"));
 parameter Modelica.SIunits.Area S=1 "Glazed surface";
 parameter Modelica.SIunits.Length H=1 "Height of the glazing";
   parameter Modelica.SIunits.Length L=1 "Width of the glazing" annotation(Dialog(enable=useEclairement));
@@ -26,9 +26,9 @@ parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
     "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°";
 
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=21
-    "Coefficient ofurface exchange on the outer face";
+    "Global or convective surface exchange coefficient on the outer face depending on the selected mode (GLOext)";
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=8.29
-    "Coefficient ofurface exchange on the inner face";
+    "Surface exchange coefficient on the inner face";
 parameter Modelica.SIunits.ThermalInsulance R_volet=0.2
     "Additional thermal resistance (shutters closed))" annotation(Dialog(enable=useVolet));
 
@@ -135,7 +135,7 @@ parameter Boolean GLOext=false
     Protection=Protection,
     useEclairement=useEclairement)
     annotation (Placement(transformation(extent={{-36,0},{42,78}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUX[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3]
     "Incident solar surface flux information 1-Diffuse flux, 2-Direct flux, 3-Cosi"
     annotation (Placement(transformation(extent={{-120,20},{-80,60}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
@@ -166,9 +166,9 @@ parameter Boolean GLOext=false
     DifDirOut "SW radiation transmitted inside 1-Diffuse, 2-Direct, 3-cosi"
     annotation (Placement(transformation(extent={{60,24},{100,64}}),
         iconTransformation(extent={{80,40},{100,60}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if GLOext
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if  GLOext
     "Sky temperature" annotation (Placement(transformation(extent={{-100,-100},
-            {-80,-80}}), iconTransformation(extent={{-100,-80},{-80,-60}})));
+            {-80,-80}}), iconTransformation(extent={{-100,-100},{-80,-80}})));
   Modelica.Blocks.Interfaces.RealInput fermeture_volet if      useVolet
     "Shutters closing rate (0 opened, 1 closed)" annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
@@ -198,7 +198,7 @@ public
         origin={-101,81}),
         iconTransformation(extent={{10,-10},{-10,10}},
         rotation=180,
-        origin={-92,-60})));
+        origin={-90,30})));
   parameter Real e=0.35
     "Thickness of the vertical wall in which the glazing is integrated" annotation(Dialog(enable=useEclairement,group="Illumination parameters"));
   parameter Real azimut=0
@@ -226,7 +226,7 @@ public
         origin={1,-109})));
 
 equation
-  connect(FLUX, fenetreRad.FLUX) annotation (Line(
+  connect(FluxIncExt, fenetreRad.FluxIncExt) annotation (Line(
       points={{-100,40},{-58,40},{-58,58.5},{-8.7,58.5}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -258,7 +258,7 @@ equation
       points={{14.7,46.8},{53.9,46.8},{53.9,9},{101,9}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(T_ciel, fenetreRad.T_ciel) annotation (Line(
+  connect(T_sky, fenetreRad.T_sky) annotation (Line(
       points={{-90,-90},{-52,-90},{-52,3.9},{-32.1,3.9}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -311,8 +311,7 @@ equation
           color={95,95,95},
           smooth=Smooth.None,
           thickness=1)}),             Diagram(coordinateSystem(
-          preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-                                              graphics),
+          preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
     Documentation(info="<html>
 <p>Double glazing model based on the <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window\"><code>Window</code></a> model but with simplified settings including the characterization of glazing properties according to the three following parameters:</p>
 <ul>
@@ -381,7 +380,7 @@ equation
 <p>R. Cadiergues, 1978, <i>Un mode simple de calcul des flux à travers les vitrages</i>. 1-Les vitrages non traités, Promoclim E, Etudes Thermique et Aérauliques, Tome 9 E, n°1</p>
 <p>Eclairement naturel : Règles Th-L - Caractérisation du facteur de transmission lumineuse des parois du bâtiment - CSTB Mars 2012, Valeurs tabulées des parois vitrées - CSTB Mars 2012</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>).</p>
+<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (connect <code>T_ext</code> to <code>T_dry</code> of <a href=\"modelica://BuildSysPro.BoundaryConditions.Weather.Meteofile\"><code>Meteofile</code></a>).</p>
 <p>The external incident flows <code>FLUX</code> can come from the <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar\"><code>BoundaryConditions.Solar</code></a> models which are the link between walls and weather readers.</p>
 <p>The internal incident flows <code>FluxAbsInt</code> can come from occupants, heating systems but also from the redistribution of solar flux within a room (models from <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\"><code>BoundaryConditions.Radiation</code></a>).</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
@@ -397,7 +396,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

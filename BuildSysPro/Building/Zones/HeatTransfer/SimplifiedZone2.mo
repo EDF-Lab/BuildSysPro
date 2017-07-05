@@ -54,7 +54,7 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_Toiture=7.7
 parameter Real b=1 "Weighting coefficient for non-heated zones"
                                                  annotation(Dialog(group="Walls"));
 
-parameter Real AbsParois=0.8 "Absorptance of outer walls SWR"
+parameter Real alpha_ext=0.8 "Absorptance of outer walls SWR"
                                  annotation(Dialog(group="Walls"));
 parameter Real epsParois=0.9 "Outer walls emissivity in LWR" annotation(Dialog(group="Walls"));
 
@@ -91,12 +91,12 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
     RadExterne=true,
     GLOext=false,
     S=SParoiExt,
-    AbsParoi=AbsParois,
+    alpha_ext=alpha_ext,
     hs_ext=hs_ext_ParoiExt,
     hs_int=hs_int_ParoiExt) "External walls"
     annotation (Placement(transformation(extent={{-8,40},{12,60}})));
 
-  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleGlazing vitrage(
+  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleWindow vitrage(
     S=SurfaceVitree,
     k=k,
     Abs=AbsVitrage,
@@ -122,7 +122,7 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleWall toiture(
     Tp=Tinit,
     RadExterne=true,
-    AbsParoi=AbsParois,
+    alpha_ext=alpha_ext,
     caracParoi(
       n=caracToiture.n,
       mat=caracToiture.mat,
@@ -179,40 +179,37 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
         origin={38,-60})));
 // Public components
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tairext
-    "Air temperature"
-    annotation (Placement(transformation(extent={{-100,-80},{-80,-60}}),
-        iconTransformation(extent={{-100,-120},{-80,-100}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tairint
-    "Indoor air heat port"
-    annotation (Placement(transformation(extent={{80,0},{100,20}}),
-        iconTransformation(extent={{80,-60},{100,-40}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
+    "Air temperature" annotation (Placement(transformation(extent={{-100,-80},{
+            -80,-60}}), iconTransformation(extent={{-110,-110},{-90,-90}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int
+    "Indoor air heat port" annotation (Placement(transformation(extent={{80,0},
+            {100,20}}), iconTransformation(extent={{70,-50},{90,-30}})));
 
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncVitrage
-    "Irradiation for absorption on glazing surface" annotation (Placement(
-        transformation(extent={{-120,-10},{-80,30}}), iconTransformation(extent=
-           {{-100,10},{-80,30}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncParoi
-    "Irradiation for absorption on external walls" annotation (Placement(
-        transformation(extent={{-120,30},{-80,70}}), iconTransformation(extent={
-            {-100,30},{-80,50}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput
-    FluxIncTrVitrage
-    "Transmitted irradiation through glazing (must take into account the influence of incidence)"
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncGlazing
+    "Surface incident solar flux on glazings" annotation (Placement(
+        transformation(extent={{-120,-10},{-80,30}}), iconTransformation(extent={{-100,10},
+            {-80,30}})));
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncWall
+    "Surface incident solar flux on external walls" annotation (Placement(
+        transformation(extent={{-120,10},{-80,50}}), iconTransformation(extent=
+            {{-100,30},{-80,50}})));
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxTrGlazing
+    "Transmitted solar flux through glazings (must take into account the influence of incidence)"
     annotation (Placement(transformation(extent={{-120,-50},{-80,-10}}),
         iconTransformation(extent={{-100,-10},{-80,10}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncToiture
-    "Irradiation for absorption on external roofs" annotation (Placement(
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncRoof
+    "Surface incident solar flux on external roofs" annotation (Placement(
         transformation(extent={{-120,70},{-80,110}}), iconTransformation(extent=
            {{-100,50},{-80,70}})));
-BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a   Ts[2]
+BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Ts_ext[2]
     "Surface temperature for LW radiation (roof and external walls)"
     annotation (Placement(transformation(extent={{-100,100},{-80,120}}),
-        iconTransformation(extent={{-100,80},{-80,100}})));
+        iconTransformation(extent={{-50,110},{-30,130}})));
 
 equation
 // Air node and internal ports
-  connect(noeudAir.port_a, Tairint) annotation (Line(
+  connect(noeudAir.port_a, T_int) annotation (Line(
       points={{60,10},{90,10}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -220,7 +217,7 @@ equation
       points={{60,10},{20,10}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Tairext, Text) annotation (Line(
+  connect(T_ext, Text) annotation (Line(
       points={{-90,-70},{-56,-70},{-56,10},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -251,8 +248,8 @@ equation
       smooth=Smooth.None));
 
 // Connexions de la toiture
-  connect(Tairext, toiture.T_ext) annotation (Line(points={{-90,-70},{-56,-70},{
-          -56,85},{-7,85}}, color={191,0,0}));
+  connect(T_ext, toiture.T_ext) annotation (Line(points={{-90,-70},{-56,-70},{-56,
+          85},{-7,85}}, color={191,0,0}));
   connect(toiture.T_int, noeudAir.port_a) annotation (Line(points={{11,85},{20,85},{20,10},
           {60,10}},                         color={191,0,0}));
 // Ventilation
@@ -307,11 +304,10 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
       // Connexion for external LWR calculation
-  connect(paroiExt.Ts_ext, Ts[1]) annotation (Line(points={{-1,47},
-          {-0.5,47},{-0.5,105},{-90,105}},
-                      color={191,0,0}));
-  connect(Ts[2], toiture.Ts_ext)
-    annotation (Line(points={{-90,115},{0,115},{0,85},{-1,85}}, color={191,0,0}));
+  connect(paroiExt.Ts_ext, Ts_ext[1]) annotation (Line(points={{-1,47},{-0.5,47},
+          {-0.5,105},{-90,105}}, color={191,0,0}));
+  connect(Ts_ext[2], toiture.Ts_ext) annotation (Line(points={{-90,115},{0,115},
+          {0,85},{-1,85}}, color={191,0,0}));
     // Thermal bridge
   connect(pontThermique.T_int, Tint) annotation (
      Line(points={{7,-128},{20,-128},{20,10}},
@@ -319,103 +315,105 @@ equation
   connect(pontThermique.T_ext, Text) annotation (
      Line(points={{-11,-128},{-20,-128},{-20,10}},
         color={191,0,0}));
-  connect(FluxIncToiture, toiture.FluxIncExt) annotation (Line(points={{-100,
-          90},{-54,90},{-54,93},{-1,93}}, color={255,192,1}));
-  connect(FluxIncParoi, paroiExt.FluxIncExt) annotation (Line(points={{-100,
-          50},{-52,50},{-52,55},{-1,55}}, color={255,192,1}));
-  connect(FluxIncVitrage, vitrage.FluxIncExt) annotation (Line(points={{-100,
-          10},{-54,10},{-54,-27},{-3,-27}}, color={255,192,1}));
-  connect(FluxIncTrVitrage, vitrage.FluxTr) annotation (Line(points={{-100,
-          -30},{-3,-30}},          color={255,192,1}));
+  connect(FluxIncRoof, toiture.FluxIncExt) annotation (Line(points={{-100,90},{
+          -54,90},{-54,93},{-1,93}}, color={255,192,1}));
+  connect(FluxIncWall, paroiExt.FluxIncExt) annotation (Line(points={{-100,30},
+          {-52,30},{-52,55},{-1,55}}, color={255,192,1}));
+  connect(FluxIncGlazing, vitrage.FluxIncExt) annotation (Line(points={{-100,10},
+          {-54,10},{-54,-27},{-3,-27}},     color={255,192,1}));
+  connect(FluxTrGlazing, vitrage.FluxTr)
+    annotation (Line(points={{-100,-30},{-3,-30}}, color={255,192,1}));
+  connect(T_ext, T_ext)
+    annotation (Line(points={{-90,-70},{-94,-70},{-90,-70}}, color={191,0,0}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
-            -140},{100,120}})),  Icon(coordinateSystem(preserveAspectRatio=false,
-          extent={{-100,-140},{100,120}}), graphics={
+            -120},{100,120}})),  Icon(coordinateSystem(preserveAspectRatio=false,
+          extent={{-100,-120},{100,120}}), graphics={
         Polygon(
-          points={{-100,80},{-60,40},{-60,-120},{-100,-78},{-100,80}},
+          points={{-100,100},{-60,60},{-60,-100},{-100,-58},{-100,100}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillPattern=FillPattern.Solid,
           fillColor={175,175,175}),
         Polygon(
-          points={{-100,80},{38,80},{100,40},{-60,40},{-100,80}},
+          points={{-100,100},{38,100},{100,60},{-60,60},{-100,100}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={135,135,135},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-60,40},{100,40},{100,-120},{-60,-120},{-60,40}},
+          points={{-60,60},{100,60},{100,-100},{-60,-100},{-60,60}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillPattern=FillPattern.Solid,
           fillColor={215,215,215}),
         Polygon(
-          points={{-46,34},{-46,14},{-8,14},{-8,34},{-46,34}},
+          points={{-46,54},{-46,34},{-8,34},{-8,54},{-46,54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-46,0},{-46,-20},{-8,-20},{-8,0},{-46,0}},
+          points={{-46,20},{-46,0},{-8,0},{-8,20},{-46,20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-48,-40},{-48,-60},{-10,-60},{-10,-40},{-48,-40}},
+          points={{-48,-20},{-48,-40},{-10,-40},{-10,-20},{-48,-20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-48,-74},{-48,-94},{-10,-94},{-10,-74},{-48,-74}},
+          points={{-48,-54},{-48,-74},{-10,-74},{-10,-54},{-48,-54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,-74},{36,-94},{74,-94},{74,-74},{36,-74}},
+          points={{26,-54},{26,-74},{64,-74},{64,-54},{26,-54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,-40},{36,-60},{74,-60},{74,-40},{36,-40}},
+          points={{26,-20},{26,-40},{64,-40},{64,-20},{26,-20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,0},{36,-20},{74,-20},{74,0},{36,0}},
+          points={{26,20},{26,0},{64,0},{64,20},{26,20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,34},{36,14},{74,14},{74,34},{36,34}},
+          points={{26,54},{26,34},{64,34},{64,54},{26,54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-90,60},{-90,40},{-70,20},{-70,40},{-90,60}},
+          points={{-90,80},{-90,60},{-70,40},{-70,60},{-90,80}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-90,20},{-90,0},{-70,-20},{-70,0},{-90,20}},
+          points={{-90,40},{-90,20},{-70,0},{-70,20},{-90,40}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-90,-20},{-90,-40},{-70,-60},{-70,-40},{-90,-20}},
+          points={{-90,0},{-90,-20},{-70,-40},{-70,-20},{-90,0}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-90,-60},{-90,-80},{-70,-100},{-70,-80},{-90,-60}},
+          points={{-90,-40},{-90,-60},{-70,-80},{-70,-60},{-90,-40}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
@@ -433,14 +431,14 @@ equation
 <p><b>Physics</b></p>
 <p>The building envelope is decomposed into 3 equivalent models for external walls, roof and floor. The external wall  and roof models are subject to short-wave and long-wave radiations (SWR and LWR).</p>
 <p>Long-wave radiations on the external walls and roof are outsourced and should be computed through the <code>Ts</code> connector.</p>
-<p>The calculation of absorbed and transmitted irradiations is outsourced of this model and is performed by a <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\">SolarBC</a> model. This calculation is detailed and considers the influence of the walls and glazing orientation. Therefore the non-linear incidence of the angle of incidence for short-wave radiation, is outsourced. The transmitted irradiation through the glazing is absorbed on floor(s) surface.</p>
+<p>The calculation of incident and transmitted irradiations is outsourced of this model and is performed by a <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\">SolarBC</a> model. This calculation is detailed and considers the influence of the walls and glazing orientation. Therefore the non-linear incidence of the angle of incidence for short-wave radiation, is outsourced. The transmitted irradiation through the glazing is absorbed on floor(s) surface.</p>
 <p>The coefficient B defined a boundary condition in term of temperature on the  outer face of the lowest floor.
 
 <p><u><b>Bibliography</b></u></p>
 <p>Refer to <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall\">walls</a> and <a href=\"modelica://BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Window\">glazings</a> modelling assumptions.</p>
 <p> Eui-Jong Kim, Gilles Plessis, Jean-Luc Hubert, Jean-Jacques Roux, 2014.<i>Urban energy simulation: Simplification and reduction of building envelope models</i>. Energy and Buildings 84 p193-202.
 <p><u><b>Instructions for use</b></u></p>
-<p>The irradiation connectors should be connected to a <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.FLUXzone\">FLUXzone</a> model. The outdoor temperature port must be connected to a weather data reader <a href=\"modelica://BuildSysPro.BoundaryConditions.Weather.Meteofile\">Meteofile</a>.</p>
+<p>The irradiation connectors should be connected to <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\">SolarBC</a> models. The outdoor temperature port must be connected to a weather data reader <a href=\"modelica://BuildSysPro.BoundaryConditions.Weather.Meteofile\">Meteofile</a>.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>
@@ -448,7 +446,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -86,17 +86,17 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer hintplanch annotation(Dialo
     "Tube thermal conductivity"
     annotation (Dialog(enable=PlancherActif==2, tab="Parois Horizontales", group="Floor"));
 // Components
-  Modelica.Blocks.Interfaces.RealInput Ensoleillement[10]
+  Modelica.Blocks.Interfaces.RealInput G[10]
     "Sun data : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle, Solar elevation angle}"
     annotation (Placement(transformation(extent={{-192,-6},{-152,34}}),
         iconTransformation(extent={{-140,40},{-120,60}})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Text annotation (
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext annotation (
       Placement(transformation(extent={{-192,-22},{-172,-2}}),
         iconTransformation(extent={{-140,80},{-120,100}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tairint
-    annotation (Placement(transformation(extent={{20,-58},{40,-38}}),
-        iconTransformation(extent={{20,-62},{40,-42}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int annotation (
+      Placement(transformation(extent={{20,-58},{40,-38}}), iconTransformation(
+          extent={{20,-62},{40,-42}})));
 
 protected
   BuildSysPro.Building.AirFlow.HeatTransfer.AirNode noeudAir(V=Vair, Tair(
@@ -219,11 +219,11 @@ protected
       albedo=albedo)
     annotation (Placement(transformation(extent={{-116,4},{-96,24}})));
 public
-  Modelica.Blocks.Interfaces.RealInput EntreeEau[2] if PlancherActif==2
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2] if   PlancherActif==2
     "Vector containing  1-the fluid temperature (K), 2-the flow(kg/s)"
     annotation (Placement(transformation(extent={{-110,-104},{-90,-84}}),
         iconTransformation(extent={{-160,-110},{-140,-90}})));
-  Modelica.Blocks.Interfaces.RealOutput SortieEau[2] if PlancherActif==2
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2] if  PlancherActif==2
     "Vector containing  1-the fluid temperature (K), 2-the flow(kg/s)"
     annotation (Placement(transformation(extent={{40,-110},{60,-90}}),
         iconTransformation(extent={{60,-110},{80,-90}})));
@@ -268,7 +268,7 @@ equation
       points={{-39,-67},{4,-67},{4,6},{28,6}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(noeudAir.port_a, Tairint) annotation (Line(
+  connect(noeudAir.port_a, T_int) annotation (Line(
       points={{28,6},{30,6},{30,-48}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -277,53 +277,51 @@ equation
       points={{-129,60.2},{-89.5,60.2},{-89.5,77},{-57,77}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, coefficient_bCombles.port_ext)
-                                        annotation (Line(
+  connect(T_ext, coefficient_bCombles.port_ext) annotation (Line(
       points={{-182,-12},{-182,56},{-143,56},{-143,57}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Ensoleillement, fLUXzone.G) annotation (Line(
+  connect(G, fLUXzone.G) annotation (Line(
       points={{-172,14},{-144.45,14},{-144.45,14.5},{-116.3,14.5}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXSud, Sud.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtSouth, Sud.FluxIncExt) annotation (Line(
       points={{-95,14.4},{-88,14.4},{-88,27.1},{-51.7,27.1}},
       color={255,192,1},
       smooth=Smooth.None,
       thickness=0.5));
-  connect(fLUXzone.FLUXEst, Est.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtEast, Est.FluxIncExt) annotation (Line(
       points={{-95,10.4},{-88,10.4},{-88,-0.9},{-51.7,-0.9}},
       color={255,192,1},
       smooth=Smooth.None,
       thickness=0.5));
-  connect(fLUXzone.FLUXouest, Ouest.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtWest, Ouest.FluxIncExt) annotation (Line(
       points={{-95,6.4},{-88,6.4},{-88,-26.9},{-51.7,-26.9}},
       color={255,192,1},
       smooth=Smooth.None,
       thickness=0.5));
-  connect(fLUXzone.FLUXNord, Nord.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, Nord.FluxIncExt) annotation (Line(
       points={{-95,18.2},{-90,18.2},{-90,55.1},{-51.7,55.1}},
       color={255,192,1},
       smooth=Smooth.None,
       thickness=0.5));
-  connect(Nord.T_ext, Text) annotation (Line(
+  connect(Nord.T_ext, T_ext) annotation (Line(
       points={{-57.1,44.3},{-80,44.3},{-80,-12},{-182,-12}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Sud.T_ext, Text) annotation (Line(
+  connect(Sud.T_ext, T_ext) annotation (Line(
       points={{-57.1,16.3},{-80,16.3},{-80,-12},{-182,-12}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Est.T_ext, Text) annotation (Line(
+  connect(Est.T_ext, T_ext) annotation (Line(
       points={{-57.1,-11.7},{-121.55,-11.7},{-121.55,-12},{-182,-12}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Ouest.T_ext, Text) annotation (Line(
+  connect(Ouest.T_ext, T_ext) annotation (Line(
       points={{-57.1,-37.7},{-80,-37.7},{-80,-12},{-182,-12}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(coefficient_bCombles.port_int, Tairint)
-                                           annotation (Line(
+  connect(coefficient_bCombles.port_int, T_int) annotation (Line(
       points={{-143,63},{-150,63},{-150,96},{30,96},{30,-48}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -343,23 +341,23 @@ equation
       points={{-40.9,-37.7},{-2,-37.7},{-2,6},{28,6}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(EntreeEau, Plancher.EntreeEau) annotation (Line(
-      points={{-100,-94},{-86,-94},{-86,-61.4},{-57,-61.4}},
+  connect(WaterIn, Plancher.WaterIn) annotation (Line(
+      points={{-100,-94},{-86,-94},{-86,-61},{-57,-61}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(Plancher.SortieEau, SortieEau) annotation (Line(
+  connect(Plancher.WaterOut, WaterOut) annotation (Line(
       points={{-39,-71},{-20,-71},{-20,-100},{50,-100}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Plancher.PelecPRE, PelecPRE) annotation (Line(
-      points={{-57,-63},{-86,-63},{-86,-74},{-100,-74}},
+      points={{-57,-64},{-86,-64},{-86,-74},{-100,-74}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(Text, coefficient_bVS.port_ext) annotation (Line(
+  connect(T_ext, coefficient_bVS.port_ext) annotation (Line(
       points={{-182,-12},{-182,-55},{-145,-55}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(coefficient_bVS.port_int, Tairint) annotation (Line(
+  connect(coefficient_bVS.port_int, T_int) annotation (Line(
       points={{-145,-61},{-180,-61},{-180,-106},{30,-106},{30,-48}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -382,22 +380,22 @@ equation
       color={0,0,127},
       smooth=Smooth.None,
       thickness=0.5));
-  connect(T_ciel, Nord.T_ciel) annotation (Line(
+  connect(T_ciel, Nord.T_sky) annotation (Line(
       points={{-150,-30},{-74,-30},{-74,38.9},{-57.1,38.9}},
       color={191,0,0},
       thickness=0.5,
       smooth=Smooth.None));
-  connect(T_ciel, Sud.T_ciel) annotation (Line(
+  connect(T_ciel, Sud.T_sky) annotation (Line(
       points={{-150,-30},{-74,-30},{-74,10.9},{-57.1,10.9}},
       color={191,0,0},
       thickness=0.5,
       smooth=Smooth.None));
-  connect(T_ciel, Est.T_ciel) annotation (Line(
+  connect(T_ciel, Est.T_sky) annotation (Line(
       points={{-150,-30},{-74,-30},{-74,-17.1},{-57.1,-17.1}},
       color={191,0,0},
       thickness=0.5,
       smooth=Smooth.None));
-  connect(T_ciel, Ouest.T_ciel) annotation (Line(
+  connect(T_ciel, Ouest.T_sky) annotation (Line(
       points={{-150,-30},{-74,-30},{-74,-43.1},{-57.1,-43.1}},
       color={191,0,0},
       thickness=0.5,
@@ -443,7 +441,7 @@ annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Ludovic DARNAUD, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
@@ -483,8 +481,7 @@ Author : Ludovic DARNAUD, EDF (2010)<br>
           lineColor={255,255,0},
           fillColor={255,255,0},
           fillPattern=FillPattern.Solid)}),                                                          Dialog(tab="Parois Horizontales", group="Plafond"), Diagram(
-        coordinateSystem(preserveAspectRatio=false,extent={{-200,-100},{100,100}}),
-        graphics),
+        coordinateSystem(preserveAspectRatio=false,extent={{-200,-100},{100,100}})),
             Diagram(coordinateSystem(preserveAspectRatio=true,  extent={{-200,-100},
             {100,100}}),       graphics),
                                Icon(coordinateSystem(preserveAspectRatio=true,

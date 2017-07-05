@@ -95,8 +95,8 @@ public
         extent={{5,-5},{-5,5}},
         rotation=270,
         origin={39,63})));
-  Modelica.Blocks.Sources.RealExpression realExpression(y=Entree[2]*CpEau*(Entree[1]
-         - Eau.port.T)) if TypeChauffage==1
+  Modelica.Blocks.Sources.RealExpression realExpression(y=WaterIn[2]*CpEau*(
+        WaterIn[1] - Eau.port.T)) if TypeChauffage == 1
     annotation (Placement(transformation(extent={{-84,58},{-64,78}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1 if
     TypeChauffage == 1
@@ -107,16 +107,16 @@ public
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={-4,36})));
-  Modelica.Blocks.Interfaces.RealInput Entree[2] if TypeChauffage==1
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2] if
+                                                    TypeChauffage==1
     "Vector containing 1- the inlet fluid temperature (K), 2- the inlet fluid flow rate (kg/s)"
-                                              annotation (Placement(
-        transformation(extent={{-104,78},{-84,98}}), iconTransformation(
-          extent={{-100,74},{-80,94}})));
-  Modelica.Blocks.Interfaces.RealOutput Sortie[2] if  TypeChauffage==1
+    annotation (Placement(transformation(extent={{-104,78},{-84,98}}),
+        iconTransformation(extent={{-100,74},{-80,94}})));
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2] if
+                                                      TypeChauffage==1
     "Vector containing 1- the outlet fluid temperature (K), 2- the outlet fluid flow rate (kg/s)"
-                                                annotation (Placement(
-        transformation(extent={{78,60},{98,80}}),    iconTransformation(
-          extent={{80,-96},{100,-76}})));
+    annotation (Placement(transformation(extent={{78,60},{98,80}}),
+        iconTransformation(extent={{80,-96},{100,-76}})));
 protected
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port1
     annotation (Placement(transformation(extent={{-5,-11},{-3,-9}})));
@@ -132,32 +132,32 @@ equation
       smooth=Smooth.None));
 
   connect(PelecIn, prescribedPelec.Q_flow)     annotation (Line(
-      points={{-100,16},{-61,16},{-61,16.6}},
+      points={{-100,16},{-62,16},{-62,18}},
       color={0,0,127},
       smooth=Smooth.Bezier));
-  connect(temperatureSensor.T, Sortie[1]) annotation (Line(
+  connect(temperatureSensor.T, WaterOut[1]) annotation (Line(
       points={{39,68},{39,65},{88,65}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(Entree[2], Sortie[2]) annotation (Line(
+  connect(WaterIn[2], WaterOut[2]) annotation (Line(
       points={{-94,93},{-49,93},{-49,75},{88,75}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(realExpression.y,prescribedHeatFlow1. Q_flow) annotation (
       Line(
-      points={{-63,68},{-56,68},{-56,56.6},{-41,56.6}},
+      points={{-63,68},{-56,68},{-56,58},{-42,58}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(prescribedHeatFlow1.port,Eau. port)        annotation (Line(
-      points={{-21,56.6},{-21,57.3},{-3.9,57.3},{-3.9,63.1}},
+      points={{-22,58},{-22,57.3},{-5,57.3},{-5,64.2}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(Eau.port,temperatureSensor. port) annotation (Line(
-      points={{-3.9,63.1},{-3.9,58},{39,58}},
+      points={{-5,64.2},{-5,58},{39,58}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(prescribedPelec.port, port1) annotation (Line(
-      points={{-41,16.6},{-4,16.6},{-4,-10}},
+      points={{-42,18},{-4,18},{-4,-10}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(ParoiNCouchesHomogenesA.port_b, port1) annotation (Line(
@@ -169,7 +169,7 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   connect(Eau.port, thermalConductor.port_a) annotation (Line(
-      points={{-3.9,63.1},{-3.9,51.5},{-4,51.5},{-4,45}},
+      points={{-5,64.2},{-5,51.5},{-4,51.5},{-4,45}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(thermalConductor.port_b, port1) annotation (Line(
@@ -194,7 +194,7 @@ Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",

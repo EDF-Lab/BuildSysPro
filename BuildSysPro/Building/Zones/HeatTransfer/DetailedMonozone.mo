@@ -44,7 +44,7 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_Plancher=5.88
 
 parameter Real b=0.1 "Weighting coefficient of regulatory boundary conditions"
                                                               annotation(Dialog(group="Walls"));
-parameter Real AbsParois=0.6
+parameter Real alpha_ext=0.6
     "Absorption coefficient of outer walls in the visible" annotation(Dialog(group="Walls"));
 parameter Real epsParois=0.7 "Outer walls emissivity in LWR" annotation(Dialog(group="Walls"));
 
@@ -109,7 +109,7 @@ BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall plafond(
     GLOext=true,
     eps=epsParois,
     ParoiInterne=false,
-    alpha_ext=AbsParois)
+    alpha_ext=alpha_ext)
     annotation (Placement(transformation(extent={{-10,148},{10,168}})));
 
 BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall paroiExtNord(
@@ -126,7 +126,7 @@ BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall paroiExtNord(
     GLOext=true,
     ParoiInterne=false,
     RadExterne=false,
-    alpha_ext=AbsParois,
+    alpha_ext=alpha_ext,
     eps=epsParois,
     S=(Sop - 2*Splancher)/4) "North outer wall"
     annotation (Placement(transformation(extent={{-8,120},{12,140}})));
@@ -144,7 +144,7 @@ BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall paroiExtSud(
     GLOext=true,
     ParoiInterne=false,
     RadExterne=false,
-    alpha_ext=AbsParois,
+    alpha_ext=alpha_ext,
     eps=epsParois,
     S=(Sop - 2*Splancher)/4) "South outer wall"
     annotation (Placement(transformation(extent={{-8,72},{12,92}})));
@@ -162,7 +162,7 @@ BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall paroiExtEst(
     GLOext=true,
     ParoiInterne=false,
     RadExterne=false,
-    alpha_ext=AbsParois,
+    alpha_ext=alpha_ext,
     eps=epsParois,
     S=(Sop - 2*Splancher)/4) "East outer wall"
     annotation (Placement(transformation(extent={{-8,22},{12,42}})));
@@ -180,7 +180,7 @@ BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall paroiExtOuest(
     GLOext=true,
     ParoiInterne=false,
     RadExterne=false,
-    alpha_ext=AbsParois,
+    alpha_ext=alpha_ext,
     eps=epsParois,
     S=(Sop - 2*Splancher)/4) "West outer wall"
     annotation (Placement(transformation(extent={{-8,-30},{12,-10}})));
@@ -296,38 +296,38 @@ BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall paroiExtOuest(
     annotation (Placement(transformation(extent={{50,4},{70,24}})));
 // Public components
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tairext
-    annotation (Placement(transformation(extent={{-100,-20},{-80,0}}),
-        iconTransformation(extent={{-100,-120},{-80,-100}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tairint
-    annotation (Placement(transformation(extent={{80,0},{100,20}}),
-        iconTransformation(extent={{80,-60},{100,-40}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tciel
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext annotation (
+      Placement(transformation(extent={{-100,-20},{-80,0}}), iconTransformation(
+          extent={{-110,-110},{-90,-90}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int annotation (
+      Placement(transformation(extent={{80,0},{100,20}}), iconTransformation(
+          extent={{70,-50},{90,-30}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky
     "Sky temperature for LW radiation inclusion"
     annotation (Placement(transformation(extent={{-100,160},{-80,180}}),
-        iconTransformation(extent={{-100,100},{-80,120}})));
+        iconTransformation(extent={{-50,110},{-30,130}})));
 
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUXS[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExtSouth[3]
     "Information on south solar surface flux (diffuse, direct and cosi)"
     annotation (Placement(transformation(extent={{-120,50},{-80,90}}),
         iconTransformation(extent={{-100,10},{-80,30}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUXN[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExtNorth[3]
     "Information on north solar surface flux (diffuse, direct and cosi)"
     annotation (Placement(transformation(extent={{-120,90},{-80,130}}),
         iconTransformation(extent={{-100,30},{-80,50}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUXO[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExtWest[3]
     "Information on west solar surface flux (diffuse, direct and cosi)"
     annotation (Placement(transformation(extent={{-120,-70},{-80,-30}}),
         iconTransformation(extent={{-100,-30},{-80,-10}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUXE[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExtEast[3]
     "Information on east solar surface flux (diffuse, direct and cosi)"
     annotation (Placement(transformation(extent={{-120,10},{-80,50}}),
         iconTransformation(extent={{-100,-10},{-80,10}})));
 
 // For validation in stationary operation: set the parameters to have SWR, LWR (abs and eps), renew at zero and 1°C of difference between outdoor and indoor)
-Real UbatEffectif=Tairint.Q_flow/Sdeper;
+  Real UbatEffectif=T_int.Q_flow/Sdeper;
 
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUXP[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExtRoof[3]
     "Information on ceiling solar surface flux (diffuse, direct and cosi)"
     annotation (Placement(transformation(extent={{-120,130},{-80,170}}),
         iconTransformation(extent={{-100,50},{-80,70}})));
@@ -336,7 +336,7 @@ equation
   assert(max(paraPlancher.positionIsolant)==1, "No insulating layer specified for floors. Edit paraPlancher.positionIsolant");
   assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of glazing and walls. Given the current configuration, "+String(Umin)+"<Ubat<"+String(Umax));
 
-  connect(noeudAir.port_a, Tairint) annotation (Line(
+  connect(noeudAir.port_a, T_int) annotation (Line(
       points={{60,10},{90,10}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -366,7 +366,7 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
 
-  connect(Tairext, Text) annotation (Line(
+  connect(T_ext, Text) annotation (Line(
       points={{-90,-10},{-56,-10},{-56,10},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -483,71 +483,71 @@ end if;
       points={{-11,55},{-20,55},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Tciel, plafond.T_ciel) annotation (Line(
+  connect(T_sky, plafond.T_sky) annotation (Line(
       points={{-90,170},{-16,170},{-16,149},{-9,149}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(paroiExtNord.T_ciel, Tciel) annotation (Line(
+  connect(paroiExtNord.T_sky, T_sky) annotation (Line(
       points={{-7,121},{-16,121},{-16,170},{-90,170}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(vitrageNord.T_ciel, Tciel) annotation (Line(
+  connect(vitrageNord.T_sky, T_sky) annotation (Line(
       points={{-11,99},{-16,99},{-16,170},{-90,170}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(paroiExtSud.T_ciel, Tciel) annotation (Line(
+  connect(paroiExtSud.T_sky, T_sky) annotation (Line(
       points={{-7,73},{-16,73},{-16,170},{-90,170}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(vitrageSud.T_ciel, Tciel) annotation (Line(
+  connect(vitrageSud.T_sky, T_sky) annotation (Line(
       points={{-11,49},{-16,49},{-16,170},{-90,170}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(paroiExtEst.T_ciel, Tciel) annotation (Line(
+  connect(paroiExtEst.T_sky, T_sky) annotation (Line(
       points={{-7,23},{-16,23},{-16,170},{-90,170}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(vitrageEst.T_ciel, Tciel) annotation (Line(
+  connect(vitrageEst.T_sky, T_sky) annotation (Line(
       points={{-11,-1},{-16,-1},{-16,170},{-90,170}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(paroiExtOuest.T_ciel, Tciel) annotation (Line(
+  connect(paroiExtOuest.T_sky, T_sky) annotation (Line(
       points={{-7,-29},{-16,-29},{-16,170},{-90,170}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(vitrageOuest.T_ciel, Tciel) annotation (Line(
+  connect(vitrageOuest.T_sky, T_sky) annotation (Line(
       points={{-11,-57},{-16,-57},{-16,170},{-90,170}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(FLUXN, paroiExtNord.FLUX) annotation (Line(
+  connect(FluxIncExtNorth, paroiExtNord.FluxIncExt) annotation (Line(
       points={{-100,110},{-40,110},{-40,139},{-1,139}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FLUXS, paroiExtSud.FLUX) annotation (Line(
+  connect(FluxIncExtSouth, paroiExtSud.FluxIncExt) annotation (Line(
       points={{-100,70},{-40,70},{-40,91},{-1,91}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FLUXE, paroiExtEst.FLUX) annotation (Line(
+  connect(FluxIncExtEast, paroiExtEst.FluxIncExt) annotation (Line(
       points={{-100,30},{-40,30},{-40,41},{-1,41}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FLUXE, vitrageEst.FLUX) annotation (Line(
+  connect(FluxIncExtEast, vitrageEst.FluxIncExt) annotation (Line(
       points={{-100,30},{-40,30},{-40,13},{-5,13}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FLUXS, vitrageSud.FLUX) annotation (Line(
+  connect(FluxIncExtSouth, vitrageSud.FluxIncExt) annotation (Line(
       points={{-100,70},{-40,70},{-40,63},{-5,63}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FLUXN, vitrageNord.FLUX) annotation (Line(
+  connect(FluxIncExtNorth, vitrageNord.FluxIncExt) annotation (Line(
       points={{-100,110},{-40,110},{-40,113},{-5,113}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FLUXO, paroiExtOuest.FLUX) annotation (Line(
+  connect(FluxIncExtWest, paroiExtOuest.FluxIncExt) annotation (Line(
       points={{-100,-50},{-40,-50},{-40,-11},{-1,-11}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FLUXO, vitrageOuest.FLUX) annotation (Line(
+  connect(FluxIncExtWest, vitrageOuest.FluxIncExt) annotation (Line(
       points={{-100,-50},{-40,-50},{-40,-43},{-5,-43}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -555,14 +555,13 @@ end if;
       points={{-20,10},{-20,155},{-9,155}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(FLUXP, plafond.FLUX) annotation (Line(
+  connect(FluxIncExtRoof, plafond.FluxIncExt) annotation (Line(
       points={{-100,150},{-40,150},{-40,167},{-3,167}},
       color={255,192,1},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
-            -120},{100,180}}),
-                      graphics), Icon(coordinateSystem(preserveAspectRatio=true,
-          extent={{-100,-120},{100,180}}), graphics={
+            -120},{100,120}})),  Icon(coordinateSystem(preserveAspectRatio=true,
+          extent={{-100,-120},{100,120}}), graphics={
         Polygon(
           points={{-100,100},{-60,60},{-60,-100},{-100,-58},{-100,100}},
           lineColor={0,0,0},
@@ -630,25 +629,25 @@ end if;
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,54},{36,34},{74,34},{74,54},{36,54}},
+          points={{26,54},{26,34},{64,34},{64,54},{26,54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,20},{36,0},{74,0},{74,20},{36,20}},
+          points={{26,20},{26,0},{64,0},{64,20},{26,20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,-20},{36,-40},{74,-40},{74,-20},{36,-20}},
+          points={{26,-20},{26,-40},{64,-40},{64,-20},{26,-20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,-54},{36,-74},{74,-74},{74,-54},{36,-54}},
+          points={{26,-54},{26,-74},{64,-74},{64,-54},{26,-54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
@@ -677,7 +676,7 @@ end if;
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

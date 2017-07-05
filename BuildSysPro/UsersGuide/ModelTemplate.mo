@@ -82,7 +82,7 @@ gamma = if Bool then D else 0;
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : First name LAST NAME, company (year of creation of the code)<br>
 --------------------------------------------------------------</b></p>
 </html>",

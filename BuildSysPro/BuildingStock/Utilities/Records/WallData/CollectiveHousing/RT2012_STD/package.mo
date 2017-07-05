@@ -1,7 +1,6 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.CollectiveHousing;
 package RT2012_STD "Wall data for collective housing : standard RT2012"
 
-
 annotation (Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

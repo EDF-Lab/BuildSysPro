@@ -27,9 +27,9 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer k=6.06
     "Surface transmission coefficient k of the glazing - without convective exchanges; by default, k, hs_ext and hs_int lead to a Uvalue = 3 W/m2/K"
                                                                                                       annotation(Dialog(group="General parameters"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=21
-    "Surface exchange coefficient on the outer face" annotation(Dialog(group="General parameters"));
+    "Global or convective surface exchange coefficient on the outer face depending on the selected mode (GLOext)" annotation(Dialog(group="General parameters"));
 parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=8.29
-    "Global surface exchange coefficient on the inner face" annotation(Dialog(group="General parameters"));
+    "Surface exchange coefficient on the inner face" annotation(Dialog(group="General parameters"));
 parameter Modelica.SIunits.ThermalInsulance R_volet=0.2
     "Additional thermal resistance (shutters closed)"                                                          annotation(Dialog(enable=useVolet,group="General parameters"));
 parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
@@ -47,7 +47,7 @@ parameter Real TrDir=0.747 "Direct transmission coefficient of the window" annot
 parameter Real TrDif=0.665 "Diffuse transmission coefficient of the window" annotation(Dialog(group="Optical properties"));
 parameter Real AbsDir=0.100 "Direct absorption coefficient of the window" annotation(Dialog(group="Optical properties"));
 parameter Real AbsDif=0.108 "Diffuse absorption coefficient of the window" annotation(Dialog(group="Optical properties"));
-parameter Real eps=0.9 "Glazing emissivity in LWR" annotation(Dialog(group="Optical properties"));
+parameter Real eps=0.9 "Glazing emittance in LWR" annotation(Dialog(group="Optical properties"));
 
 // Reduction factors of direct and diffuse fluxes (masking, frame, ...)
 parameter Integer TypeFenetrePF=1 "Choice of type of window or French window"
@@ -123,7 +123,7 @@ protected
 
 // Connectors
 public
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUX[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3]
     "Incident solar surface flux information 1-Diffuse flux, 2-Direct flux, 3-Cosi"
     annotation (Placement(transformation(extent={{-120,20},{-80,60}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
@@ -156,10 +156,9 @@ public
     "Indoor temperature" annotation (Placement(transformation(
           extent={{80,-40},{100,-20}}), iconTransformation(extent={{80,
             -40},{100,-20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if GLOext
-    "Sky temperature" annotation (Placement(transformation(extent=
-            {{-100,-100},{-80,-80}}), iconTransformation(extent={{-100,
-            -100},{-80,-80}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if  GLOext
+    "Sky temperature" annotation (Placement(transformation(extent={{-100,-100},
+            {-80,-80}}), iconTransformation(extent={{-100,-100},{-80,-80}})));
 
   Modelica.Blocks.Interfaces.RealInput fermeture_volet if      useVolet
     "Shutters closing rate (0 opened, 1 closed)" annotation (Placement(
@@ -378,7 +377,7 @@ equation
       smooth=Smooth.None));
 // SWR exchanges
   connect(prescribedCLOAbsExt.Q_flow, AbsFenExt.y)  annotation (Line(
-      points={{-68.7,4.02},{-59.4,4.02},{-59.4,4},{-59,4}},
+      points={{-68,5},{-59.4,5},{-59.4,4},{-59,4}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Transmission.y, CLOTr)       annotation (Line(
@@ -387,7 +386,7 @@ equation
       smooth=Smooth.None));
   connect(prescribedCLOAbsInt.Q_flow, FluxAbsInt)
                                               annotation (Line(
-      points={{57.2,8.88},{65.6,8.88},{65.6,9},{101,9}},
+      points={{58,10},{65.6,10},{65.6,9},{101,9}},
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -396,10 +395,14 @@ equation
   if S>0 then
   part_vitrage=(if useOuverture then (if ouverture_internal then (if useReduction then (1-R_ouv_max) else 0) else 1) else 1)*S;
   part_vide=S-part_vitrage;
-  FluxDirectTr.u=reduc_dir*(1-volet_internal)*(transDirect.Direct*part_vitrage+FLUX[2]*part_vide)/S;
-  FluxDiffusTr.u=reduc_dif*(1-volet_internal)*FLUX[1]*(TrDif*part_vitrage+part_vide)/S;
-  AbsFenExt.u1=reduc_dir*(1-volet_internal)*(absDirect.Direct*part_vitrage+FLUX[2]*part_vide)/S;
-  AbsFenExt.u2=reduc_dif*(1-volet_internal)*FLUX[1]*(AbsDif*part_vitrage+part_vide)/S;
+  FluxDirectTr.u=reduc_dir*(1 - volet_internal)*(transDirect.FluxTrDir*
+      part_vitrage + FluxIncExt[2]*part_vide)/S;
+  FluxDiffusTr.u=reduc_dif*(1 - volet_internal)*FluxIncExt[1]*(TrDif*
+      part_vitrage + part_vide)/S;
+  AbsFenExt.u1=reduc_dir*(1 - volet_internal)*(absDirect.FluxAbsDir*
+      part_vitrage + FluxIncExt[2]*part_vide)/S;
+  AbsFenExt.u2=reduc_dif*(1 - volet_internal)*FluxIncExt[1]*(AbsDif*
+      part_vitrage + part_vide)/S;
   else
   part_vitrage=0;
   part_vide=0;
@@ -410,11 +413,11 @@ equation
   end if;
 
   connect(prescribedCLOAbsExt.port, Ts_ext) annotation (Line(
-      points={{-82.7,4.02},{-92,4.02},{-92,-12},{-30,-12},{-30,-30}},
+      points={{-82,5},{-92,5},{-92,-12},{-30,-12},{-30,-30}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(prescribedCLOAbsInt.port, Ts_int)   annotation (Line(
-      points={{41.2,8.88},{30,8.88},{30,-30}},
+      points={{42,10},{30,10},{30,-30}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(FluxDiffusTr.y, Transmission.u2) annotation (Line(
@@ -433,26 +436,26 @@ equation
       points={{26.7,79},{34.35,79},{34.35,40},{80,40}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(FLUX[3], CLOTr2[3]) annotation (Line(
+  connect(FluxIncExt[3], CLOTr2[3]) annotation (Line(
       points={{-100,53.3333},{-56,53.3333},{-56,54},{-10,54},{-10,53.3333},{80,
           53.3333}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FLUX, transDirect.FLUX) annotation (Line(
+  connect(FluxIncExt, transDirect.FluxIncExt) annotation (Line(
       points={{-100,40},{-70,40},{-70,78.32},{-46.8,78.32}},
       color={255,192,1},
       smooth=Smooth.None));
 
   // LWR exchanges
   connect(EchangesGLOext.T_ext, T_ext) annotation (Line(
-      points={{-69,-85},{-76,-85},{-76,-30},{-90,-30}},
+      points={{-69,-84},{-76,-84},{-76,-30},{-90,-30}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(EchangesGLOext.T_ciel, T_ciel) annotation (Line(
-      points={{-69,-93},{-79.5,-93},{-79.5,-90},{-90,-90}},
+  connect(EchangesGLOext.T_sky, T_sky) annotation (Line(
+      points={{-69,-92},{-79.5,-92},{-79.5,-90},{-90,-90}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(EchangesGLOext.Ts_p, Ts_ext) annotation (Line(
+  connect(EchangesGLOext.Ts_ext, Ts_ext) annotation (Line(
       points={{-51,-88},{-30,-88},{-30,-30}},
       color={255,0,0},
       smooth=Smooth.None));
@@ -539,8 +542,8 @@ equation
       points={{87,-100},{96,-100},{96,-69},{123,-69}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(FLUX,absDirect. FLUX) annotation (Line(points={{-100,40},{-46.8,40},{
-          -46.8,40.32}}, color={255,192,1}));
+  connect(FluxIncExt, absDirect.FluxIncExt) annotation (Line(points={{-100,40},
+          {-46.8,40},{-46.8,40.32}}, color={255,192,1}));
    annotation (Placement(transformation(extent={{-64,-44},{-44,-24}})),
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
             100}})),
@@ -600,7 +603,7 @@ equation
 <p>CSTB. 2005. Guide réglementaire RT 2005. Règle d'application Th-Bât Th-U 3/5 Parois vitrées.</p>
 <p>Natural lighting : Règles Th-L - Caractérisation du facteur de transmission lumineuse des parois du bâtiment - CSTB Mars 2012, Valeurs tabulées des parois vitrées - CSTB Mars 2012</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>).</p>
+<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (connect <code>T_ext</code> to <code>T_dry</code> of <a href=\"modelica://BuildSysPro.BoundaryConditions.Weather.Meteofile\"><code>Meteofile</code></a>).</p>
 <p>The external incident flows <code>FLUX</code> can come from <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar\"><code>BoundaryConditions.Solar</code></a> models which are the link between walls and weather readers.</p>
 <p>The internal incident flows <code>FluxAbsInt</code> can come from occupants, heating systems but also from the redistribution of solar flux within a room (models from <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\"><code>BoundaryConditions.Radiation</code></a> package).</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
@@ -617,7 +620,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

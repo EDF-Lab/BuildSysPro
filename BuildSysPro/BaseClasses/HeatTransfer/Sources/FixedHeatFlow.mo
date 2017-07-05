@@ -7,37 +7,38 @@ model FixedHeatFlow "Fixed heat flow boundary condition"
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b port
                              annotation (Placement(transformation(
-          extent={{100,0},{120,20}}, rotation=0)));
+          extent={{90,-10},{110,10}},rotation=0), iconTransformation(extent={{90,-10},
+            {110,10}})));
 equation
   port.Q_flow = -Q_flow*(1 + alpha*(port.T - T_ref));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={
-        Text(extent={{-124,130},{142,70}}, textString="%name"),
+        Text(extent={{-140,110},{140,50}}, textString="%name"),
         Text(
-          extent={{-127,-42},{143,-90}},
+          extent={{-140,-40},{140,-90}},
           lineColor={0,0,0},
           textString="Q_flow=%Q_flow"),
         Line(
-          points={{-90,-10},{58,-10}},
+          points={{-100,-20},{48,-20}},
           color={191,0,0},
           thickness=0.5),
         Line(
-          points={{-90,30},{56,30}},
+          points={{-100,20},{46,20}},
           color={191,0,0},
           thickness=0.5),
         Polygon(
-          points={{50,10},{50,50},{80,30},{50,10}},
+          points={{40,0},{40,40},{70,20},{40,0}},
           lineColor={191,0,0},
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{50,-30},{50,10},{80,-10},{50,-30}},
+          points={{40,-40},{40,0},{70,-20},{40,-40}},
           lineColor={191,0,0},
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid),
         Rectangle(
-          extent={{80,50},{100,-30}},
+          extent={{70,40},{90,-40}},
           lineColor={191,0,0},
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid)}),
@@ -58,7 +59,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow\">FixedHeatFlow</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>",

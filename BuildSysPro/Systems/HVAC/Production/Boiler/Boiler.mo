@@ -75,7 +75,7 @@ public
 protected
   SI.Temperature Tc
     "Temperature of Sensitive and Latent characteristic intersection";
-  SI.Temperature Te=Entree[1]
+  SI.Temperature Te=WaterIn[1]
     "Water-return temperature (i.e. water inlet temperature)";
   //EQUAL TO THE ENTRY PORT
   Real a1=(etaNom-100)/(Tnom-Tref)
@@ -103,11 +103,10 @@ public
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=270,
         origin={0,32})));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Tamb
-    "Ambient temperature of the place where the boiler is located"
-    annotation (Placement(transformation(extent={{40,50},
-            {60,70}},            rotation=0), iconTransformation(extent={{50,70},
-            {70,90}})));
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a T_int
+    "Ambient temperature of the place where the boiler is located" annotation (
+      Placement(transformation(extent={{40,50},{60,70}}, rotation=0),
+        iconTransformation(extent={{50,70},{70,90}})));
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor CpChau(
       C=500*mSec) "Boiler thermal capacity (dry weight)"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
@@ -134,8 +133,8 @@ public
         extent={{-5.75,-5.75},{5.75,5.75}},
         rotation=0,
         origin={-34.25,-40.25})));
-  Modelica.Blocks.Sources.RealExpression BilanEau(y=Debit*CpE*(Entree[1] -
-        Sortie[1]))
+  Modelica.Blocks.Sources.RealExpression BilanEau(y=Debit*CpE*(WaterIn[1] -
+        WaterOut[1]))
     annotation (Placement(transformation(extent={{-80,-50},{-60,-30}})));
   Modelica.Blocks.Sources.RealExpression DebitExp(y=Debit)
     annotation (Placement(transformation(extent={{40,-40},{60,-24}})));
@@ -154,11 +153,11 @@ protected
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_b1
     annotation (Placement(transformation(extent={{2,2},{-2,-2}})));
 public
-  Modelica.Blocks.Interfaces.RealInput Entree[2]
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]
     "Vector containing 1- the input fluid temperature (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-128,-60},{-88,-20}}),
         iconTransformation(extent={{-110,-50},{-90,-30}})));
-  Modelica.Blocks.Interfaces.RealOutput Sortie[2]
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]
     "Vector containing 1- the output fluid temperature (K), 2- the output fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{92,-50},{112,-30}}),
         iconTransformation(extent={{92,-50},{112,-30}})));
@@ -181,7 +180,8 @@ if SaisonChauffe then  //The boiler is launched for PLR > PLRmin
       a:=1;//Pre-purge
       Pelec:=Paux + Pcirculateur;
       QaFournir :=V_flowAir*rhoA*CpA*(15+273.15 - CpEau.port.T);//seems negligible, delete ??? YES based on parametric study, delete the entry T which is set at 15°C
-      Pgaz:=0;
+        Pgaz
+          :=0;
 
     else
       a:=2;//Combustion
@@ -189,14 +189,16 @@ if SaisonChauffe then  //The boiler is launched for PLR > PLRmin
       Pelec:=Paux*(0.5 + 0.5*PLR/100) + Pcirculateur;
       //Manufacturers data already integrate losses through the envelope so when running, the term corresponding to losses through the envelope is added
       QaFournir :=PInt + (PLR - PLRInt)/(PLRnom - PLRInt)*(Pnom - PInt) + abs(ConductanceEnv.Q_flow);
-      Pgaz:=QaFournir*100/etaRP;//Efficiency (%)
+        Pgaz
+          :=QaFournir*100/etaRP;//Efficiency (%)
     end if;
   else
     if noEvent(time <= Time0+TimePrePurge+TimeCycle) then
       a:=3; //Anti-short cycles at minimal power
       Pelec:=Paux*(0.5 + PLRmin/100) + Pcirculateur;
       QaFournir :=PInt + abs(ConductanceEnv.Q_flow);
-      Pgaz:=QaFournir*100/etaRP;//Efficiency (%)
+        Pgaz
+          :=QaFournir*100/etaRP;//Efficiency (%)
     elseif noEvent(time < max(TimeF,Time0+TimePrePurge+TimeCycle)+TimeCirculateur) then
         a:=4;//Burner off but circulator in operation
         Pelec:=Pveille + Pcirculateur;
@@ -213,7 +215,8 @@ else
   a:=0;//Seasonal shutdown
   Pelec:=0;
   QaFournir:=0;
-  Pgaz:=0;
+    Pgaz
+      :=0;
 end if;
 
 equation
@@ -232,20 +235,20 @@ equation
     NbCycle = pre(NbCycle) + 1;
   end when;
 
-  connect(ConductanceEnv.port_a, Tamb)           annotation (Line(
+  connect(ConductanceEnv.port_a, T_int) annotation (Line(
       points={{1.83697e-015,42},{0,60},{50,60}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(QaFournirExp.y, preHeaFlo.Q_flow)      annotation (Line(
-      points={{-41,-80},{-20,-80},{-20,-81.055},{-19.425,-81.055}},
+      points={{-41,-80},{-20,-80},{-20,-80.25},{-20,-80.25}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(BilanEau.y, preHeaFlo1.Q_flow)         annotation (Line(
-      points={{-59,-40},{-38,-40},{-38,-41.055},{-39.425,-41.055}},
+      points={{-59,-40},{-38,-40},{-38,-40.25},{-40,-40.25}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(preHeaFlo1.port, CpEau.port)   annotation (Line(
-      points={{-27.925,-41.055},{30,-41.055},{30,0}},
+      points={{-28.5,-40.25},{30,-40.25},{30,0}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(CpEau.port, temperatureSensor.port)   annotation (Line(
@@ -266,20 +269,19 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   connect(preHeaFlo.port, port_b1) annotation (Line(
-      points={{-7.925,-81.055},{0,-81.055},{0,0}},
+      points={{-8.5,-80.25},{0,-80.25},{0,0}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(temperatureSensor.T, Sortie[1]) annotation (Line(
+  connect(temperatureSensor.T, WaterOut[1]) annotation (Line(
       points={{60,-47},{80,-47},{80,-45},{102,-45}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(DebitExp.y, Sortie[2]) annotation (Line(
+  connect(DebitExp.y, WaterOut[2]) annotation (Line(
       points={{61,-32},{80,-32},{80,-35},{102,-35}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
-            -100},{100,100}}),
-                      graphics), Icon(coordinateSystem(preserveAspectRatio=false,
+            -100},{100,100}})),  Icon(coordinateSystem(preserveAspectRatio=false,
           extent={{-100,-100},{100,100}}),
                                       graphics={
         Text(
@@ -484,7 +486,7 @@ Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

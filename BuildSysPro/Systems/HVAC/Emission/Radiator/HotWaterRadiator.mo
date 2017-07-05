@@ -61,23 +61,23 @@ public
         transformation(extent={{20,60},{40,80}}), iconTransformation(
           extent={{20,60},{40,80}})));
 
-  Modelica.Blocks.Interfaces.RealInput EntreeEau[2]
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]
     "Vector containing 1- the input fluid temperature (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-100,32},{-80,52}}),
         iconTransformation(extent={{-100,32},{-80,52}})));
-  Modelica.Blocks.Interfaces.RealOutput SortieEau[2]
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]
     "Vector containing 1- the output fluid temperature (K), 2- the output fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{80,-60},{100,-40}})));
 equation
   // Heat capacity of an element
   Ci = (Cmetal + Ceau)/N;
 
-  SortieEau[2] = EntreeEau[2];
+  WaterOut[2] = WaterIn[2];
 
 // Temperatures are fixed
   Ta           = Conv.T;
-  Te[1]        = EntreeEau[1];
-  SortieEau[1]  = TRad[N];
+  Te[1]        =WaterIn[1];
+  WaterOut[1] = TRad[N];
 
 // Thermal balance of an element i
 for i in 1:N loop
@@ -88,7 +88,7 @@ for i in 1:N loop
   else // Particular case of air heating the radiator
       P[i] = -Pnom*(DeltaT[i]/DeltaTnom)/N;
   end if;
-  EntreeEau[2]*CpEau*(Te[i]-TRad[i]) = P[i] + Ci*der(TRad[i]);
+    WaterIn[2]*CpEau*(Te[i] - TRad[i]) = P[i] + Ci*der(TRad[i]);
 end for;
 
 // Means
@@ -252,7 +252,7 @@ end for;
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

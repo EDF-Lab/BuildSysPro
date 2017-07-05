@@ -21,19 +21,19 @@ parameter Real Rpth=1/6.423 "Equivalent resistance due to thermal bridges";
         transformation(extent={{-196,-96},{-186,-86}})));
 
 equation
-  connect(Text, thermalResistance.port_a) annotation (Line(
+  connect(T_ext, thermalResistance.port_a) annotation (Line(
       points={{-182,-12},{-160,-12},{-160,-82},{-125,-82}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(thermalResistance.port_b, Tairint) annotation (Line(
+  connect(thermalResistance.port_b, T_int) annotation (Line(
       points={{-107,-82},{-6,-82},{-6,-96},{30,-96},{30,-48}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(renouvellementAir.port_b, Tairint) annotation (Line(
+  connect(renouvellementAir.port_b, T_int) annotation (Line(
       points={{-172,-95.5},{-42,-95.5},{-42,-96},{30,-96},{30,-48}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(renouvellementAir.port_a, Text) annotation (Line(
+  connect(renouvellementAir.port_a, T_ext) annotation (Line(
       points={{-172,-86.5},{-174,-86.5},{-174,-12},{-182,-12}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -65,7 +65,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Vincent MAGNAUDEIX, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"),                                                                    Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-200,

@@ -70,11 +70,11 @@ public
         rotation=270,
         origin={-80,70})));
 
-  Modelica.Blocks.Interfaces.RealInput EntreeEau[2]
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]
     "Vector containing 1- the input fluid temperature (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-100,30},{-80,50}}),
         iconTransformation(extent={{-100,30},{-80,50}})));
-  Modelica.Blocks.Interfaces.RealOutput SortieEau[2]
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]
     "Vector containing 1- the output fluid temperature (K), 2- the output fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{80,-60},{100,-40}})));
 equation
@@ -83,12 +83,12 @@ equation
 
 // Water flow rate varies depending on room heating needs, and can not exceed nominal water flow rate
   Debit        = min(1,max(Regulation,0))*DebitNom;
-  SortieEau[2] = Debit;
+  WaterOut[2] = Debit;
 
 // Temperatures are fixed
   Ta           = Conv.T;
-  Te[1]        = EntreeEau[1];
-  SortieEau[1]  = TRad[N];
+  Te[1]        =WaterIn[1];
+  WaterOut[1] = TRad[N];
 
 // Thermal balance of an element i
 for i in 1:N loop
@@ -257,7 +257,7 @@ end for;
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p></html>",
 revisions="<html>

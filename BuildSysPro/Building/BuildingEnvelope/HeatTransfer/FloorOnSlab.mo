@@ -35,7 +35,7 @@ model FloorOnSlab
           "Ground parameters"));
 
   parameter Modelica.SIunits.Area S=1 "Floor surface" annotation (Dialog(group="Floor parameters"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hs=5.88
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=5.88
     "Coefficient of global surface exchange on the inner face" annotation (Dialog(group="Floor parameters"));
   parameter Modelica.SIunits.Temperature Ts=293.15 "Ground temperature" annotation (Dialog(enable=CLfixe,group="Ground parameters"));
 
@@ -85,7 +85,8 @@ model FloorOnSlab
     CLfixe annotation (Placement(transformation(extent={{-99,-9},{-81,9}})));
 
 protected
-  BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor thermalConductor(G=hs*S)
+  BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor thermalConductor(G=hs_int*
+        S)
     annotation (Placement(transformation(extent={{51,22},{72,42}})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow2 if
@@ -104,7 +105,8 @@ protected
     annotation (Placement(transformation(extent={{-56,6},{-36,26}})));
 
 public
-  BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tsol if not (CLfixe)
+  BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ground if
+                                                         not (CLfixe)
     "Ground temperature" annotation (Placement(transformation(extent={{-100,-40},
             {-80,-20}}), iconTransformation(extent={{-120,-10},{-100,10}})));
 
@@ -141,16 +143,18 @@ public
     e=caracParoi.e,
     mat=caracParoi.mat) if ParoiActive == 1
     annotation (Placement(transformation(extent={{-14,32},{12,54}})));
-  Modelica.Blocks.Interfaces.RealInput EntreeEau[2] if ParoiActive==2
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2] if   ParoiActive==2
     "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{-120,12},{-80,52}}),
-        iconTransformation(extent={{10,-10},{-10,10}},
+        iconTransformation(
+        extent={{10,-10},{-10,10}},
         rotation=-90,
         origin={6,-90})));
-  Modelica.Blocks.Interfaces.RealOutput SortieEau[2] if ParoiActive==2
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2] if  ParoiActive==2
     "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{84,-66},{116,-34}}),
-        iconTransformation(extent={{-10,-10},{10,10}},
+        iconTransformation(
+        extent={{-10,-10},{10,10}},
         rotation=0,
         origin={90,-70})));
   Modelica.Blocks.Interfaces.RealInput PelecPRE if ParoiActive==3
@@ -195,11 +199,11 @@ elseif ParoiActive==2 then
     connect(PlancherActifEau[i].Ts_b, Ts_int);
     connect(PlancherActifEau[i].Ts_a, NoeudTsolPlanch);
   end for;
-  connect(PlancherActifEau[1].Entree,EntreeEau);
+    connect(PlancherActifEau[1].WaterIn, WaterIn);
   for i in  2:nD loop
-    connect(PlancherActifEau[i-1].Sortie,PlancherActifEau[i].Entree);
+      connect(PlancherActifEau[i - 1].WaterOut, PlancherActifEau[i].WaterIn);
   end for;
-  connect(PlancherActifEau[nD].Sortie,SortieEau);
+    connect(PlancherActifEau[nD].WaterOut, WaterOut);
 
 else // ParoiActive==3
   //connection of slices in the case of an electric heating floor
@@ -224,11 +228,11 @@ end if;
       smooth=Smooth.None));
 
   connect(prescribedHeatFlow2.port, Ts_int) annotation (Line(
-      points={{51.3,88.02},{51.3,87.01},{30,87.01},{30,0}},
+      points={{52,89},{52,87.01},{30,87.01},{30,0}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(FluxAbsInt, prescribedHeatFlow2.Q_flow) annotation (Line(
-      points={{99,89},{81.5,89},{81.5,88.02},{65.3,88.02}},
+      points={{99,89},{81.5,89},{81.5,89},{66,89}},
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -236,7 +240,7 @@ end if;
       points={{-81,0},{-72,0},{-72,-8.5},{-66.5,-8.5}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Tsol, NoeudTsol) annotation (Line(
+  connect(T_ground, NoeudTsol) annotation (Line(
       points={{-90,-30},{-72,-30},{-72,-8.5},{-66.5,-8.5}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -269,7 +273,7 @@ Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

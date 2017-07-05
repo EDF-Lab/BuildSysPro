@@ -10,14 +10,14 @@ parameter Integer choix=2 "Formula used" annotation(choices(
         choice=4 "Weighting factor of cos i"));
 parameter Real TrDir "Direct window transmittance at normal incidence";
 
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUX[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3]
     "Input connector for solar irradiation 1-Diffuse, 2-Direct, 3-Cos i"
     annotation (Placement(transformation(extent={{-140,-26},{-100,14}}),
         iconTransformation(extent={{-120,-6},{-100,14}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput Direct
-    "Direct irradiation transmitted through the glazing surface"
-    annotation (Placement(transformation(extent={{80,-20},{120,20}}),
-        iconTransformation(extent={{100,-8},{120,12}})));
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxTrDir
+    "Direct irradiation transmitted through the glazing surface" annotation (
+      Placement(transformation(extent={{80,-20},{120,20}}), iconTransformation(
+          extent={{100,-8},{120,12}})));
 
 // Internal variables
 protected
@@ -36,7 +36,7 @@ parameter Real b2 = -20.3940*TrDir + 35.3234*tau30 - 20.3940*tau60;
 parameter Real b3 = 14.9294*TrDir - 23.5489*tau30 + 10.9295*tau60;
 
 algorithm
-cosi := FLUX[3];
+cosi :=FluxIncExt[3];
 if choix == 1 then
   // Fauconnier
   PondTransDir := if noEvent(cosi>0.05) then max(0,c0/cosi + c1 + c2*cosi) else 0;
@@ -50,7 +50,7 @@ else
   PondTransDir := if noEvent(cosi>0) then cosi*TrDir else 0;
 end if;
 
-Direct := PondTransDir*FLUX[2];
+  FluxTrDir := PondTransDir*FluxIncExt[2];
 
   annotation (Icon(graphics={
     Polygon(
@@ -79,7 +79,7 @@ Direct := PondTransDir*FLUX[2];
           color={0,0,0},
           smooth=Smooth.Bezier)}),
                                  Diagram(coordinateSystem(preserveAspectRatio=true,
-          extent={{-100,-100},{100,100}}), graphics),
+          extent={{-100,-100},{100,100}})),
     Documentation(info="<html>
 <p><i><b>Compute the direct solar irradiation transmited through a glazing surface considering the incidence angle</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -95,7 +95,7 @@ Direct := PondTransDir*FLUX[2];
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

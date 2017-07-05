@@ -29,12 +29,12 @@ equation
           -40},{-26,-40}}, color={0,0,127}));
   connect(add1.y, PI1.u)
     annotation (Line(points={{-3,-34},{8,-34}}, color={0,0,127}));
-  connect(meteofile.Tseche,R3C2_1. port_Text) annotation (Line(points={{-41,53},
-          {46,53},{46,12},{41,12}},     color={191,0,0}));
+  connect(meteofile.T_dry, R3C2_1.T_ext) annotation (Line(points={{-41,53},{46,
+          53},{46,12},{41,12}}, color={191,0,0}));
   connect(meteofile.G,R3C2_1. G) annotation (Line(points={{-41,48},{-41,48},{-24,
           48},{-24,6},{18,6}}, color={0,0,127}));
-  connect(R3C2_1.port_Tint, temperatureSensor1.port) annotation (Line(points={{
-          30,4},{30,0},{-70,0},{-70,-20},{-62,-20}}, color={191,0,0}));
+  connect(R3C2_1.T_int, temperatureSensor1.port) annotation (Line(points={{30,4},
+          {30,0},{-70,0},{-70,-20},{-62,-20}}, color={191,0,0}));
   connect(PI1.y, R3C2_1.P_Qch) annotation (Line(points={{31,-34},{40,-34},{40,-10},
           {8,-10},{8,12},{18,12}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
@@ -54,7 +54,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hassan BOUIA, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"),

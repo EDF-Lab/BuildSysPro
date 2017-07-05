@@ -23,23 +23,23 @@ Real Pisolation;
     incl=Inclinaison,
     albedo=Albedo)
     annotation (Placement(transformation(extent={{-18,60},{2,80}})));
-  Modelica.Blocks.Interfaces.RealInput MeteoFlux[10]
+  Modelica.Blocks.Interfaces.RealInput G[10]
     "Solar data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle , Solar elevation angle}"
-                                                annotation (Placement(
-        transformation(extent={{-120,50},{-80,90}}), iconTransformation(extent={{-70,38},
-            {-50,58}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a MeteoTseche(Q_flow=0)
+    annotation (Placement(transformation(extent={{-120,50},{-80,90}}),
+        iconTransformation(extent={{-70,38},{-50,58}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext(Q_flow=0)
     annotation (Placement(transformation(extent={{-70,64},{-50,84}}),
         iconTransformation(extent={{-70,64},{-50,84}})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b ChaleurRecuperee
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_solar
     annotation (Placement(transformation(extent={{80,-60},{100,-40}})));
 equation
-    Psol = Surface * FacteurOptique * fLUXsurfGLOH.FLUX;
-    Pisolation = Surface * ( CoeffTransmission * (ChaleurRecuperee.T-MeteoTseche.T));
-  ChaleurRecuperee.Q_flow = max(0,Surface * (FacteurOptique * fLUXsurfGLOH.FLUX - CoeffTransmission * (ChaleurRecuperee.T-MeteoTseche.T)));
+    Psol =Surface*FacteurOptique*fLUXsurfGLOH.FluxIncExt;
+    Pisolation =Surface*(CoeffTransmission*(T_solar.T - T_ext.T));
+  T_solar.Q_flow = max(0, Surface*(FacteurOptique*fLUXsurfGLOH.FluxIncExt -
+    CoeffTransmission*(T_solar.T - T_ext.T)));
 
-  connect(MeteoFlux, fLUXsurfGLOH.G) annotation (Line(
+  connect(G, fLUXsurfGLOH.G) annotation (Line(
       points={{-100,70},{-19,70}},
       color={0,0,127},
       pattern=LinePattern.None,
@@ -85,7 +85,7 @@ equation
           smooth=Smooth.None,
           fillColor={255,255,0},
           fillPattern=FillPattern.Solid,
-          lineColor={0,0,0})}), Diagram(graphics),
+          lineColor={0,0,0})}),
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>none</p>
@@ -100,7 +100,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

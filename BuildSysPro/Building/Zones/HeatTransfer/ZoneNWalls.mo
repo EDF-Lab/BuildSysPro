@@ -9,21 +9,21 @@ parameter Modelica.SIunits.Temperature Tp=293.15
     "Initial temperatureof walls and air node";
 
 //Inputs and outputs of the model//
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a port_sol "Tsol"
-    annotation (Placement(transformation(extent={{-100,-80},{-80,-60}}),
-        iconTransformation(extent={{-100,-80},{-80,-60}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a port_Tint "Tint"
-    annotation (Placement(transformation(extent={{80,0},{100,20}}),
-        iconTransformation(extent={{80,0},{100,20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a port_Text "Text"
-    annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
-        iconTransformation(extent={{-100,0},{-80,20}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ground "Tsol"
+    annotation (Placement(transformation(extent={{-70,-110},{-50,-90}}),
+        iconTransformation(extent={{-70,-110},{-50,-90}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int "Tint"
+    annotation (Placement(transformation(extent={{30,-70},{50,-50}}),
+        iconTransformation(extent={{30,-70},{50,-50}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext "Text"
+    annotation (Placement(transformation(extent={{-110,-10},{-90,10}}),
+        iconTransformation(extent={{-110,-10},{-90,10}})));
 
   Modelica.Blocks.Interfaces.RealInput G[10]
     "Sun data : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle, Solar elevation angle}"
                                             annotation (Placement(
-        transformation(extent={{-120,40},{-80,80}}), iconTransformation(extent={
-            {-100,50},{-80,70}})));
+        transformation(extent={{-120,40},{-80,80}}), iconTransformation(extent={{-110,50},
+            {-90,70}})));
 //Horizontal walls//
 //Ceiling//
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracPlaf
@@ -200,8 +200,8 @@ equation
   // Connections on vertical walls
   for i in 1:N loop
   connect(G,ProjectionSolaireVert[i].G);
-  connect(ProjectionSolaireVert[i].FLUX,paroisVerticales[i].FLUX);
-  connect(port_Text,paroisVerticales[i].T_ext);
+  connect(ProjectionSolaireVert[i].FluxIncExt,paroisVerticales[i].FluxIncExt);
+    connect(T_ext, paroisVerticales[i].T_ext);
   connect(paroisVerticales[i].T_int,noeudAir.port_a);
   connect(RepartitionSolaireInterne.FLUXParois[i],paroisVerticales[i].FluxAbsInt);
   end for;
@@ -209,8 +209,8 @@ equation
   // Connections on windows
   for i in 1:NF loop
   connect(G,ProjectionSolaireFen[i].G);
-  connect(ProjectionSolaireFen[i].FLUX,DVitrages[i].FLUX);
-  connect(port_Text,DVitrages[i].T_ext);
+  connect(ProjectionSolaireFen[i].FluxIncExt,DVitrages[i].FluxIncExt);
+    connect(T_ext, DVitrages[i].T_ext);
   connect(DVitrages[i].T_int,noeudAir.port_a);
   connect(DVitrages[i].CLOTr,SommeFluxSolaireInterne.u[i]);
   connect(RepartitionSolaireInterne.FLUXFenetres[i],DVitrages[i].FluxAbsInt);
@@ -218,22 +218,22 @@ equation
 
 // Connection on the ceiling
   connect(G,ProjectionSolairePlafond.G);
-  connect(ProjectionSolairePlafond.FLUX,Plafond.FLUX);
-  connect(port_Text,Plafond.T_ext);
+  connect(ProjectionSolairePlafond.FluxIncExt,Plafond.FluxIncExt);
+  connect(T_ext, Plafond.T_ext);
   connect(Plafond.T_int,noeudAir.port_a);
   connect(RepartitionSolaireInterne.FLUXParois[N+1],Plafond.FluxAbsInt);
 
 // Connection on the floor
-  connect(port_sol,Plancher.Ts_ext);
+  connect(T_ground,Plancher.Ts_ext);
   connect(Plancher.T_int,noeudAir.port_a);
   connect(RepartitionSolaireInterne.FLUXParois[N+2],Plancher.FluxAbsInt);
 
 // Connection of air renewal
   connect(noeudAir.port_a, renouvellementAir.port_b);
-  connect(renouvellementAir.port_a, port_Text);
+  connect(renouvellementAir.port_a, T_ext);
 
 // Connection of indoor thermal port port_Tint
-  connect(noeudAir.port_a, port_Tint);
+  connect(noeudAir.port_a, T_int);
 
 // Connection of total solar flux transmite for distribution
 connect(SommeFluxSolaireInterne.y,RepartitionSolaireInterne.RayEntrant);
@@ -242,9 +242,9 @@ connect(SommeFluxSolaireInterne.y,RepartitionSolaireInterne.RayEntrant);
 <p><b>Model of zone with N walls and NF windows, in pure thermal modelling</b></p>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>Model of a thermal zone with N vertical walls, NF windows, 1 floor and a ceiling. The walls are of type Wall and windows are of type Window. This model also has an air renewal.</p>
-<p>Vertical walls and the ceiling are connected on their outer face to the heat port <i>port_Text </i>and on their inner face to the heat port <i>port_Tint</i>.Windows are connected in the same way to external and internal boundary conditions. The floor is connected to the port port_sol on its outer face and to the port port_Tint on its inner face.The air renewal is connected to the indoor air node and to the outdoor thermal port. All these boundary conditions are of convective type and are thus connected to the convection temperature and not the surface temperature, except for the port <i>port_sol</i>.</p>
+<p>Vertical walls and the ceiling are connected on their outer face to the heat port <code>T_ext</code> and on their inner face to the heat port <code>T_int</code>. Windows are connected in the same way to external and internal boundary conditions. The floor is connected to the port <code>T_ground</code> on its outer face and to the port <code>T_int</code> on its inner face. The air renewal is connected to the indoor air node and to the outdoor thermal port. All these boundary conditions are of convective type and are thus connected to the convection temperature and not the surface temperature, except for the port <code>T_ground</code>.</p>
 <p>The distribution of SW fluxes transmitted inside through the windows is done in proportion to the surfaces. The sunshine is still considered, contrary to the Wall model.</p>
-<p>The initialisation is done in stationary condition to the temperature Tp.</p>
+<p>The initialisation is done in stationary condition to the temperature <code>Tp</code>.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -277,21 +277,20 @@ connect(SommeFluxSolaireInterne.y,RepartitionSolaireInterne.RayEntrant);
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",
   revisions="<html>
-<p>Gilles Plessis 03/2011 : Ajout d'une liste déroulante pour le choix des matériaux via l'annotation annotation(choicesAllMatching=true).</p>
-<p>Gilles Plessis 02/2012 : Modification du modèle de renouvellement d'air.</p>
+<p>Gilles Plessis 03/2011 : Ajout d&apos;une liste d&eacute;roulante pour le choix des mat&eacute;riaux via l&apos;annotation annotation(choicesAllMatching=true).</p>
+<p>Gilles Plessis 02/2012 : Modification du mod&egrave;le de renouvellement d&apos;air.</p>
 <p>Gilles Plessis 06/2012 : </p>
-<p><ul>
-<li>Intégration du changement de paramétrage des parois. Voir les révisions apportées au modèle de parois</li>
-<li>Protection de composants pour éviter le grand nombre de variables dans la fenêtre des résultats.</li>
-</ul></p>
+<ul>
+<li>Int&eacute;gration du changement de param&eacute;trage des parois. Voir les r&eacute;visions apport&eacute;es au mod&egrave;le de parois</li>
+<li>Protection de composants pour &eacute;viter le grand nombre de variables dans la fen&ecirc;tre des r&eacute;sultats.</li>
+</ul>
 </html>"), Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,
-            -100},{100,100}}),
-                         graphics),
+            -100},{100,100}})),
     DymolaStoredErrors,
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
             {100,100}}), graphics={
@@ -326,7 +325,7 @@ Author : Gilles PLESSIS, EDF (2011)<br>
           lineColor={0,0,255},
           textString="ZoneNparois"),
         Ellipse(
-          extent={{-80,80},{-40,40}},
+          extent={{-90,80},{-50,40}},
           lineColor={0,0,0},
           fillColor={255,255,0},
           fillPattern=FillPattern.Solid)}),

@@ -42,7 +42,7 @@ parameter Real b=0.1 "Weighting coefficient for non-heated zones"
 parameter Real skyViewFactorParois
     "Average sky view factor between walls and the sky (exemple: upward=1, vertical in clear environment=0.5)"
                                                                                                         annotation(Dialog(group="Walls"));
-parameter Real AbsParois=0.6 "Absorptance of outer walls SWR"
+parameter Real alpha_ext=0.6 "Absorptance of outer walls SWR"
                                  annotation(Dialog(group="Walls"));
 parameter Real epsParois=0.7 "Outer walls emissivity in LWR" annotation(Dialog(group="Walls"));
 
@@ -101,11 +101,11 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
     RadExterne=true,
     GLOext=true,
     S=Sop - Splancher,
-    AbsParoi=AbsParois,
+    alpha_ext=alpha_ext,
     eps=epsParois) "External walls"
     annotation (Placement(transformation(extent={{-8,36},{12,56}})));
 
-  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleGlazing vitrage(
+  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleWindow vitrage(
     hs_ext=hs_ext_paroiExt,
     hs_int=hs_int_paroiExt,
     S=SurfaceVitree,
@@ -173,34 +173,32 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
         origin={38,-60})));
 // Public components
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tairext
-    "Air temperature"
-    annotation (Placement(transformation(extent={{-100,-80},{-80,-60}}),
-        iconTransformation(extent={{-100,-120},{-80,-100}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tairint
-    "Indoor air heat port"
-    annotation (Placement(transformation(extent={{80,0},{100,20}}),
-        iconTransformation(extent={{80,-60},{100,-40}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
+    "Air temperature" annotation (Placement(transformation(extent={{-100,-80},{
+            -80,-60}}), iconTransformation(extent={{-110,-110},{-90,-90}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int
+    "Indoor air heat port" annotation (Placement(transformation(extent={{80,0},
+            {100,20}}), iconTransformation(extent={{70,-50},{90,-30}})));
 
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncVitrage
-    "Irradiation for absorption on glazing surface" annotation (Placement(
-        transformation(extent={{-120,30},{-80,70}}),  iconTransformation(extent={{-100,50},
-            {-80,70}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncParoi
-    "Irradiation for absorption on external walls"  annotation (Placement(
-        transformation(extent={{-120,-10},{-80,30}}),iconTransformation(extent=
-            {{-100,30},{-80,50}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxTrVitrage
-    "Transmitted irradiation through glazing (must take into account the influence of incidence)"
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncGlazing
+    "Surface incident solar flux on glazings" annotation (Placement(
+        transformation(extent={{-120,-10},{-80,30}}), iconTransformation(extent={{-100,10},
+            {-80,30}})));
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncWall
+    "Surface incident solar flux on external walls" annotation (Placement(
+        transformation(extent={{-120,-10},{-80,30}}), iconTransformation(extent=
+           {{-100,30},{-80,50}})));
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxTrGlazing
+    "Transmitted solar flux through glazings (must take into account the influence of incidence)"
     annotation (Placement(transformation(extent={{-120,60},{-80,100}}),
         iconTransformation(extent={{-100,-10},{-80,10}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tciel
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky
     "Sky temperature for LW radiation"
-    annotation (Placement(transformation(extent={{-100,100},{-80,120}}),
-        iconTransformation(extent={{-100,80},{-80,100}})));
+    annotation (Placement(transformation(extent={{-50,110},{-30,130}}),
+        iconTransformation(extent={{-50,110},{-30,130}})));
 
 // For validation in stationary operation: set the parameters to have SWR, LWR (abs and eps), air renewal at zero and 1°C of difference between outdoor and indoor)
-Real UbatEffectif=Tairint.Q_flow/Sdeper;
+  Real UbatEffectif=T_int.Q_flow/Sdeper;
 
 equation
 assert(max(paraParoiExt.positionIsolant)==1, "No insulating layer specified for outer walls. Edit paraParoiExt.positionIsolant");
@@ -208,7 +206,7 @@ assert(max(paraPlancher.positionIsolant)==1, "No insulating layer specified for 
 assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of glazing and walls. Given the current configuration, "+String(Umin)+"<Ubat<"+String(Umax));
 
 // Air node and internal ports
-  connect(noeudAir.port_a, Tairint) annotation (Line(
+  connect(noeudAir.port_a, T_int) annotation (Line(
       points={{60,10},{90,10}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -216,7 +214,7 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
       points={{60,10},{20,10}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Tairext, Text) annotation (Line(
+  connect(T_ext, Text) annotation (Line(
       points={{-90,-70},{-56,-70},{-56,10},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -264,10 +262,6 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
       points={{9,-35},{20,-35},{20,10}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(vitrage.T_ciel, Tciel) annotation (Line(
-      points={{-9,-41},{-32,-41},{-32,110},{-90,110}},
-      color={191,0,0},
-      smooth=Smooth.None));
   connect(vitrage.CLOTr, gainTransmisPlancherIntermediaire.u) annotation (Line(
       points={{9,-27},{37.5,-27},{37.5,-52.8},{38,-52.8}},
       color={255,192,1},
@@ -285,8 +279,8 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
       points={{-7,43},{-20,43},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(paroiExt.T_ciel, Tciel)     annotation (Line(
-      points={{-7,37},{-32,37},{-32,110},{-90,110}},
+  connect(paroiExt.T_sky, T_sky) annotation (Line(
+      points={{-7,37},{-32,37},{-32,120},{-40,120}},
       color={191,0,0},
       smooth=Smooth.None));
 
@@ -304,102 +298,102 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
       points={{59,-67},{50,-67},{50,-14},{60,-14},{60,10}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(FluxIncParoi, paroiExt.FluxIncExt)
+  connect(FluxIncWall, paroiExt.FluxIncExt)
     annotation (Line(points={{-100,10},{-1,10},{-1,51}}, color={255,192,1}));
-  connect(vitrage.FluxIncExt, FluxIncVitrage) annotation (Line(points={{-3,-27},
-          {-60,-27},{-60,50},{-100,50}}, color={255,192,1}));
-  connect(FluxTrVitrage, vitrage.FluxTr)
+  connect(vitrage.FluxIncExt,FluxIncGlazing)  annotation (Line(points={{-3,-27},
+          {-60,-27},{-60,10},{-100,10}}, color={255,192,1}));
+  connect(FluxTrGlazing, vitrage.FluxTr)
     annotation (Line(points={{-100,80},{-50,80},{-50,-30},{-3,-30}},
                                                    color={255,192,1}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
             -120},{100,120}})),  Icon(coordinateSystem(preserveAspectRatio=true,
           extent={{-100,-120},{100,120}}), graphics={
         Polygon(
-          points={{-100,80},{-60,40},{-60,-120},{-100,-78},{-100,80}},
+          points={{-100,100},{-60,60},{-60,-100},{-100,-58},{-100,100}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillPattern=FillPattern.Solid,
           fillColor={175,175,175}),
         Polygon(
-          points={{-100,80},{38,80},{100,40},{-60,40},{-100,80}},
+          points={{-100,100},{38,100},{100,60},{-60,60},{-100,100}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={135,135,135},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-60,40},{100,40},{100,-120},{-60,-120},{-60,40}},
+          points={{-60,60},{100,60},{100,-100},{-60,-100},{-60,60}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillPattern=FillPattern.Solid,
           fillColor={215,215,215}),
         Polygon(
-          points={{-46,34},{-46,14},{-8,14},{-8,34},{-46,34}},
+          points={{-46,54},{-46,34},{-8,34},{-8,54},{-46,54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-46,0},{-46,-20},{-8,-20},{-8,0},{-46,0}},
+          points={{-46,20},{-46,0},{-8,0},{-8,20},{-46,20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-48,-40},{-48,-60},{-10,-60},{-10,-40},{-48,-40}},
+          points={{-48,-20},{-48,-40},{-10,-40},{-10,-20},{-48,-20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-48,-74},{-48,-94},{-10,-94},{-10,-74},{-48,-74}},
+          points={{-48,-54},{-48,-74},{-10,-74},{-10,-54},{-48,-54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,-74},{36,-94},{74,-94},{74,-74},{36,-74}},
+          points={{26,-54},{26,-74},{64,-74},{64,-54},{26,-54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,-40},{36,-60},{74,-60},{74,-40},{36,-40}},
+          points={{26,-20},{26,-40},{64,-40},{64,-20},{26,-20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,0},{36,-20},{74,-20},{74,0},{36,0}},
+          points={{26,20},{26,0},{64,0},{64,20},{26,20}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{36,34},{36,14},{74,14},{74,34},{36,34}},
+          points={{26,54},{26,34},{64,34},{64,54},{26,54}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-90,60},{-90,40},{-70,20},{-70,40},{-90,60}},
+          points={{-90,80},{-90,60},{-70,40},{-70,60},{-90,80}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-90,20},{-90,0},{-70,-20},{-70,0},{-90,20}},
+          points={{-90,40},{-90,20},{-70,0},{-70,20},{-90,40}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-90,-20},{-90,-40},{-70,-60},{-70,-40},{-90,-20}},
+          points={{-90,0},{-90,-20},{-70,-40},{-70,-20},{-90,0}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{-90,-60},{-90,-80},{-70,-100},{-70,-80},{-90,-60}},
+          points={{-90,-40},{-90,-60},{-70,-80},{-70,-60},{-90,-40}},
           lineColor={0,0,0},
           smooth=Smooth.None,
           fillColor={170,213,255},
@@ -417,7 +411,7 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
 <p><b>Physics</b></p>
 <p>The external wall describe the ceiling/roof and the external vertical walls. They are subject to short-wave and long-wave radiations (SWR and LWR).</p>
 <p>Long-wave radiations on the glazing and walls outer faces are linearized. </p>
-<p>The calculation of absorbed and transmitted irradiations is outsourced of this model and is performed by a <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\">SolarBC</a> model. This calculation is detailed and considers the influence of the walls and glazing orientation. Therefore the non-linear incidence of the angle of incidence for short-wave radiation, is outsourced. The transmitted irradiation through the glazing is absorbed on floor(s) surface.</p>
+<p>The calculation of incident and transmitted irradiations is outsourced of this model and is performed by a <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\">SolarBC</a> model. This calculation is detailed and considers the influence of the walls and glazing orientation. Therefore the non-linear incidence of the angle of incidence for short-wave radiation, is outsourced. The transmitted irradiation through the glazing is absorbed on floor(s) surface.</p>
 <p>The coefficient B defined a boundary condition in term of temperature on the  outer face of the lowest floor.
 
 <p><u><b>Bibliography</b></u></p>
@@ -432,7 +426,7 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

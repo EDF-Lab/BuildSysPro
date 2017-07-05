@@ -80,10 +80,10 @@ public
     annotation (Placement(transformation(extent={{60,-26},{94,8}}),
         iconTransformation(extent={{84,-20},{124,20}})));
 
-  Modelica.Blocks.Interfaces.RealInput Text "Outdoor air temperature (K)"
+  Modelica.Blocks.Interfaces.RealInput T_ext "Outdoor air temperature (K)"
     annotation (Placement(transformation(extent={{-120,40},{-80,80}}),
         iconTransformation(extent={{-120,40},{-80,80}})));
-  Modelica.Blocks.Interfaces.RealInput Tint "Indoor air temperature (K)"
+  Modelica.Blocks.Interfaces.RealInput T_int "Indoor air temperature (K)"
     annotation (Placement(transformation(extent={{-120,-50},{-80,-10}}),
         iconTransformation(extent={{-120,-80},{-80,-40}})));
   Modelica.Blocks.Interfaces.RealOutput Qelec "Consumed electric power (W)"
@@ -130,17 +130,17 @@ equation
   end if;
 
 // Calculate required energy rates at full load for no-rating conditions
-    Qcflssdegi = QcRat*(1 + D1*(Text - TextRatC) + D2*(Tint - TintRatC));
+    Qcflssdegi =QcRat*(1 + D1*(T_ext - TextRatC) + D2*(T_int - TintRatC));
 
 // Defrost losses when Text < 2°C
-    if (Text > 275.15) then
+  if (T_ext > 275.15) then
       Qcfl = Qcflssdegi;
     else
       Qcfl = Cdegi*Qcflssdegi;
     end if;
 
 // Calculate non-dimensionnal temperature difference
-    Dt = Text/Tint - TextRatC/TintRatC;
+    Dt =T_ext/T_int - TextRatC/TintRatC;
 // Calculate consumed energy rates at full load for no-rating conditions
     Qafl = Qcflssdegi*(QaRatC/QcRat)*(1 + C1*Dt + C2*Dt*Dt);
 
@@ -214,7 +214,7 @@ all-or-none, variable"),
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

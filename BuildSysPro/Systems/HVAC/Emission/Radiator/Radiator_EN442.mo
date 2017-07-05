@@ -29,39 +29,39 @@ model Radiator_EN442 "Radiator model based on the EN442 standard"
 
     // Variables
 
-SI.TemperatureDifference DTlm= (EntreeEau[1]- SortieEau[1])/Modelica.Math.log((EntreeEau[1]-(Conv.T+Rad.T)/2)/ (SortieEau[1]-(Conv.T+Rad.T)/2))
+  SI.TemperatureDifference DTlm=(WaterIn[1] - WaterOut[1])/Modelica.Math.log((
+      WaterIn[1] - (Conv.T + Rad.T)/2)/(WaterOut[1] - (Conv.T + Rad.T)/2))
     "Logaritmic mean temperature difference, given for information, EN442 being based on arithmetic mean temperature difference";
 inner SI.Temperature   T_HWR(start=273.15+60)
     "Temperature of the hot water radiator";
 
 // Components
 
-  Modelica.Blocks.Interfaces.RealInput EntreeEau[2](start={330,1})
-    "1:Temp / 2:m_flow"
-    annotation (Placement(transformation(extent={{-90,42},{-70,62}}),
-        iconTransformation(extent={{-100,40},{-80,60}})));
-  Modelica.Blocks.Interfaces.RealOutput SortieEau[2](start={330,1})
-    "1:Temp / 2:m_flow"
-    annotation (Placement(transformation(extent={{80,-60},{100,-40}}),
-        iconTransformation(extent={{80,-60},{100,-40}})));
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2](start={330,1})
+    "1:Temp / 2:m_flow" annotation (Placement(transformation(extent={{-90,42},{-70,
+            62}}), iconTransformation(extent={{-100,40},{-80,60}})));
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2](start={330,1})
+    "1:Temp / 2:m_flow" annotation (Placement(transformation(extent={{80,-60},{100,
+            -40}}), iconTransformation(extent={{80,-60},{100,-40}})));
 
 equation
-assert((EntreeEau[1]-Conv.T)/(SortieEau[1]-Conv.T)<3,"Arithmetic mean temperature difference assumption leads to a deviation exceeding 5% (compared to LMTD)");
+  assert((WaterIn[1] - Conv.T)/(WaterOut[1] - Conv.T) < 3, "Arithmetic mean temperature difference assumption leads to a deviation exceeding 5% (compared to LMTD)");
 
   // Energy balance
   if not useInertia then
-   0=EntreeEau[2]*Medium.cp_const*(EntreeEau[1]-SortieEau[1])-radEqua.Qtot;
-   T_HWR= (EntreeEau[1]+SortieEau[1])/2;
+   0=WaterIn[2]*Medium.cp_const*(WaterIn[1] - WaterOut[1]) - radEqua.Qtot;
+   T_HWR=(WaterIn[1] + WaterOut[1])/2;
 
   else
-  (MediumMass*Medium.cp_const*SortieEau[1]+BodyMass*cpBody)*der(T_HWR)=EntreeEau[2]*Medium.cp_const*(EntreeEau[1]-SortieEau[1])-radEqua.Qtot;
-  //   T_HWR= (EntreeEau[1]+SortieEau[1])/2; // Assure la cohérence de puissance entre le régime statique et dynamique
-   T_HWR= SortieEau[1]; // Assure la continuité de la température de radiateur.
+    (MediumMass*Medium.cp_const*WaterOut[1] + BodyMass*cpBody)*der(T_HWR) =
+      WaterIn[2]*Medium.cp_const*(WaterIn[1] - WaterOut[1]) - radEqua.Qtot;
+  //   T_HWR= (WaterIn[1]+WaterOut[1])/2; // Assure la cohérence de puissance entre le régime statique et dynamique
+   T_HWR=WaterOut[1];   // Assure la continuité de la température de radiateur.
    //En revanche il faut intégrer une discrétisation sinon les conditions nominales ne fournissent pas
   end if;
 
    // Continuity equation
-  EntreeEau[2]=SortieEau[2];
+  WaterIn[2] = WaterOut[2];
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Rectangle(
@@ -188,8 +188,8 @@ assert((EntreeEau[1]-Conv.T)/(SortieEau[1]-Conv.T)<3,"Arithmetic mean temperatur
 <p>This model was implemented following the EN442 standard and considering a single element.</p>
 <p>Nilsson, P.E. and The Commtech Group, 2003. Achieving the Desired Indoor Climate: Energy Efficiency Aspects of System Design. Studentlitteratur AB.</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>Connect the model to a distribution network through the <span style=\"font-family: David;\">EntreeEau and <code>SortieEau </code>connectors.</p>
-<p>Connect also the model to a thermal ambiance through the <code>Conv </code>and <code>Rad </code>heatports respectively for convective heat transfers and long wave radiation.</p>
+<p>Connect the model to a distribution network through the <code>WaterIn</code> and <code>WaterOut</code> connectors.</p>
+<p>Connect also the model to a thermal ambiance through the <code>Conv</code> and <code>Rad</code> heatports respectively for convective heat transfers and long wave radiation.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>The model is not discretized along the fluid path therefore in Dynamic mode, nominal operating conditions do not lead to the nominal heating power.</p>
 <p><u><b>Validations</b></u></p>
@@ -197,7 +197,7 @@ assert((EntreeEau[1]-Conv.T)/(SortieEau[1]-Conv.T)<3,"Arithmetic mean temperatur
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

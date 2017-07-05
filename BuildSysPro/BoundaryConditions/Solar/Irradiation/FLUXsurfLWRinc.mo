@@ -25,21 +25,21 @@ Modelica.Blocks.Interfaces.RealInput G[10]
     "Inputs data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], solar azimuth angle, solar elevation angle}"
     annotation (Placement(transformation(extent={{-120,-18},{-80,22}},
         rotation=0), iconTransformation(extent={{-120,-10},{-100,10}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUX
-    "Global irradiance in [W/m²]" annotation (Placement(
-        transformation(extent={{65,-12},{99,22}}, rotation=0),
-        iconTransformation(extent={{100,-11},{120,9}})));
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxIncExt
+    "Global irradiance in [W/m²]" annotation (Placement(transformation(extent=
+            {{65,-12},{99,22}}, rotation=0), iconTransformation(extent={{100,-11},
+            {120,9}})));
 equation
-  connect(fLUXsurf.FLUX[1], add.u1) annotation (Line(
+  connect(fLUXsurf.FluxIncExt[1], add.u1) annotation (Line(
       points={{-30.5,3.85},{-12.25,3.85},{-12.25,9.2},{42.6,9.2}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXsurf.FLUX[2], add.u2) annotation (Line(
+  connect(fLUXsurf.FluxIncExt[2], add.u2) annotation (Line(
       points={{-30.5,4.85},{-12.25,4.85},{-12.25,0.8},{42.6,0.8}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(FLUX, add.y) annotation (Line(
-      points={{82,5},{70,5},{70,5},{58.7,5}},
+  connect(FluxIncExt, add.y) annotation (Line(
+      points={{82,5},{58.7,5}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(G, fLUXsurf.G) annotation (Line(
@@ -47,8 +47,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}),
-                      graphics), Icon(graphics={
+            -100},{100,100}})),  Icon(graphics={
         Polygon(
           points={{-100,-83},{100,-23},{100,-42},{-100,-100},{-100,-83}},
           lineColor={0,0,0},
@@ -101,7 +100,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author :   Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

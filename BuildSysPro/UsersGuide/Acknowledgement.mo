@@ -5,7 +5,7 @@ class Acknowledgement "Acknowledgement"
  annotation (Documentation(info="<html>
 <p>
 The <code>BuildSysPro</code> library is developed by the
-EDF R&amp;D's <strong>Energy simulation and building envelope</strong> group, from the <strong>EnerBaT</strong> department (Energy in Buildings and Territories) 
+EDF R&amp;D's <strong>Modelling, Environment and Buildings</strong> group, from the <strong>TREE</strong> department (Technologies and Research for Energy Efficiency) 
 </p>
 <p>
 The core development team of BuildSysPro is composed of:
@@ -67,7 +67,7 @@ Davy Merlet, EDF R&amp;D, France
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

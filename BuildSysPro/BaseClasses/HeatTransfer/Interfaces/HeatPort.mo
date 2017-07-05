@@ -15,7 +15,7 @@ partial connector HeatPort "Thermal port for 1-D heat transfer"
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Interfaces.HeatPort\">HeatPort</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"));

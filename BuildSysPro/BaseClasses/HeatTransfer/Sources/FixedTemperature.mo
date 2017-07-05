@@ -10,7 +10,7 @@ equation
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={
-        Text(extent={{-118,165},{122,105}}, textString="%name"),
+        Text(extent={{-120,160},{120,100}}, textString="%name"),
         Rectangle(
           extent={{-100,100},{100,-100}},
           lineColor={0,0,0},
@@ -31,7 +31,7 @@ equation
           color={191,0,0},
           thickness=0.5),
         Text(
-          extent={{0,-2},{-100,-102}},
+          extent={{0,0},{-100,-100}},
           lineColor={0,0,0},
           textString="°K")}),
     Documentation(info="<html>
@@ -48,7 +48,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.FixedTemperature\">FixedTemperature</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -56,25 +56,26 @@ model HotWaterRadiatorRegulDistrib
     Type=Type)
     annotation (Placement(transformation(extent={{-60,-60},{60,40}})));
 
-  Modelica.Blocks.Interfaces.RealInput EntreeEau[2]
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]
     "Vector containing 1- the input fluid temperature (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-100,-80},{-80,-60}})));
-  Modelica.Blocks.Interfaces.RealOutput SortieEau[2]
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]
     "Vector containing 1- the output fluid temperature (K), 2- the output fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{92,-78},{112,-58}}),
         iconTransformation(extent={{92,-80},{112,-60}})));
 
 equation
   // Water flow rate conservation
-  SortieEau[2]=EntreeEau[2];
+  WaterOut[2] = WaterIn[2];
 
 // if the water flow is too low, heating needs are made null beacause
 // - there is an error of dimensioning
 // - distribution system is off and the radiator should not dissipate heat
-  radiateurNF.Regulation=if DebitNom<EntreeEau[2] then Regulation else 0;
+  radiateurNF.Regulation=if DebitNom < WaterIn[2] then Regulation else 0;
 
 // Output temperature is the weighted mean by water flows : on the output of the radiator and on the distribution system
-  SortieEau[1]=(EntreeEau[1]*(EntreeEau[2]-radiateurNF.SortieEau[2])+radiateurNF.SortieEau[1]*radiateurNF.SortieEau[2])/SortieEau[2];
+  WaterOut[1] = (WaterIn[1]*(WaterIn[2] - radiateurNF.WaterOut[2]) +
+    radiateurNF.WaterOut[1]*radiateurNF.WaterOut[2])/WaterOut[2];
 
   connect(radiateurNF.Conv, Conv) annotation (Line(
       points={{18,25},{30,25},{30,70}},
@@ -84,7 +85,7 @@ equation
       points={{-18,25},{-30,25},{-30,70}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(EntreeEau, radiateurNF.EntreeEau) annotation (Line(
+  connect(WaterIn, radiateurNF.WaterIn) annotation (Line(
       points={{-90,-70},{-68,-70},{-68,10},{-54,10}},
       color={0,0,0},
       pattern=LinePattern.None,
@@ -264,7 +265,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -36,9 +36,9 @@ model PIDFixed
     annotation (Placement(transformation(extent={{-54,-39},{-74,-18}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sensors.TemperatureSensor temperatureSensor
     annotation (Placement(transformation(extent={{68,18},{48,38}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T
-    "Temperature to control" annotation (Placement(transformation(extent={{40,76},
-            {60,96}}),      iconTransformation(extent={{40,76},{60,96}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_room
+    "Temperature to control" annotation (Placement(transformation(extent={{40,
+            76},{60,96}}), iconTransformation(extent={{40,76},{60,96}})));
 
   Modelica.Blocks.Interfaces.RealOutput Power
     "Flux of heating and cooling system" annotation (Placement(transformation(
@@ -47,7 +47,7 @@ model PIDFixed
 
 equation
   connect(PID.y,prescribedHeatFlow. Q_flow) annotation (Line(
-      points={{11,-14},{-2,-14},{-2,-29.4},{-11,-29.4}},
+      points={{11,-14},{-2,-14},{-2,-28},{-10,-28}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(setpoint.y, PID.u_s) annotation (Line(
@@ -55,17 +55,17 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  connect(T, temperatureSensor.port) annotation (Line(
+  connect(T_room, temperatureSensor.port) annotation (Line(
       points={{50,86},{80,86},{80,28},{68,28}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(temperatureSensor.T, PID.u_m) annotation (Line(points={{48,28},{22,28},
           {22,-2},{22,-2}}, color={0,0,127}));
   connect(prescribedHeatFlow.port, heatFlowSensor.port_a) annotation (Line(
-        points={{-31,-29.4},{-41.5,-29.4},{-41.5,-28.5},{-54,-28.5}}, color={191,
+        points={{-30,-28},{-41.5,-28},{-41.5,-28.5},{-54,-28.5}},     color={191,
           0,0}));
-  connect(heatFlowSensor.port_b, T) annotation (Line(points={{-74,-28.5},{-78,-28.5},
-          {-86,-28.5},{-86,86},{50,86}}, color={191,0,0}));
+  connect(heatFlowSensor.port_b, T_room) annotation (Line(points={{-74,-28.5},{
+          -78,-28.5},{-86,-28.5},{-86,86},{50,86}}, color={191,0,0}));
   connect(Power, heatFlowSensor.Q_flow)
     annotation (Line(points={{9,-73},{-64,-73},{-64,-39}}, color={0,0,127}));
   annotation (Documentation(info="<html>
@@ -73,7 +73,7 @@ equation
 <p>PID control model to be connected to the air port of the temperature that must be regulated (eg TairInt).</p>
 <p>Constant temperature given as setpoint.</p>
 <p>Heating and cooling supplied to ensure the setpoint.</p>
-<p>The output <b>Power</b> is positive when heating is needed, and negative xhan cooling is needed.<p>
+<p>The output <b>Power</b> is positive when heating is needed, and negative when cooling is needed.<p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -85,13 +85,13 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p></html>",
       revisions="<html>
 <p>Gilles Plessis Juin 2012 Validation effectuée</p>
 <p><ul>
-<li>Changement du modèle de capteur de température pour celui de la bibliothèque ENERBAT au lieu de la bibliothèque Modelica et modification de l'unité de température en K.</li>
+<li>Changement du modèle de capteur de température pour celui de la bibliothèque BuildSysPro au lieu de la bibliothèque Modelica et modification de l'unité de température en K.</li>
 </ul></p>
 <p>Mathias Bouquerel 12/2016 : inversion du sens du HeatFlowSensor pour avoir un flux positif pour le chauffage et négatif pour la climatisation, et utilisation du modèle BuildSysPro pour ce HeatFlowSensor au lieu de celui de Modelica.</p>
 </html>"),

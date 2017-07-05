@@ -89,39 +89,39 @@ equation
       points={{-3.1,75.7},{88,75.7},{88,-10}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXPlafond, Plafond.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtRoof, Plafond.FluxIncExt) annotation (Line(
       points={{-50.6,91.76},{-42,91.76},{-42,88.9},{-16.3,88.9}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXNord, ParoiNord.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, ParoiNord.FluxIncExt) annotation (Line(
       points={{-50.6,85.88},{-42,85.88},{-42,58.9},{-16.3,58.9}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXSud, ParoiSud.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtSouth, ParoiSud.FluxIncExt) annotation (Line(
       points={{-50.6,80.56},{-42,80.56},{-42,28.9},{-16.3,28.9}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXEst, ParoiEst.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtEast, ParoiEst.FluxIncExt) annotation (Line(
       points={{-50.6,74.96},{-42,74.96},{-42,-1.1},{-16.3,-1.1}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXouest, ParoiOuest.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtWest, ParoiOuest.FluxIncExt) annotation (Line(
       points={{-50.6,69.36},{-42,69.36},{-42,-31.1},{-16.3,-31.1}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXNord, FenetreNord.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, FenetreNord.FluxIncExt) annotation (Line(
       points={{-50.6,85.88},{-42,85.88},{-42,64.5},{23.7,64.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXSud, FenetreSud.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtSouth, FenetreSud.FluxIncExt) annotation (Line(
       points={{-50.6,80.56},{-42,80.56},{-42,32.5},{23.7,32.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXEst, FenetreEst.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtEast, FenetreEst.FluxIncExt) annotation (Line(
       points={{-50.6,74.96},{-42,74.96},{-42,0.5},{23.7,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXouest, FenetreOuest.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtWest, FenetreOuest.FluxIncExt) annotation (Line(
       points={{-50.6,69.36},{-42,69.36},{-42,-29.5},{23.7,-29.5}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -132,17 +132,17 @@ equation
   connect(meteofile.G, fLUXzone.G) annotation (Line(points={{-81,48},{-74,
           48},{-74,64},{-90,64},{-90,80.7},{-80.42,80.7}},
                                                     color={0,0,127}));
-  connect(meteofile.Tseche, RenouvellementAir.port_a) annotation (Line(points={
-          {-81,53},{-36,53},{-36,90},{39,90}}, color={191,0,0}));
-  connect(meteofile.Tseche, Plafond.T_ext) annotation (Line(points={{-81,53},{
-          -36,53},{-36,75.7},{-22.9,75.7}}, color={191,0,0}));
-  connect(meteofile.Tseche, ParoiNord.T_ext) annotation (Line(points={{-81,53},
-          {-36,53},{-36,45.7},{-22.9,45.7}}, color={191,0,0}));
-  connect(meteofile.Tseche, ParoiSud.T_ext) annotation (Line(points={{-81,53},{
-          -36,53},{-36,15.7},{-22.9,15.7}}, color={191,0,0}));
-  connect(meteofile.Tseche, ParoiEst.T_ext) annotation (Line(points={{-81,53},{
-          -36,53},{-36,-14.3},{-22.9,-14.3}}, color={191,0,0}));
-  connect(meteofile.Tseche, ParoiOuest.T_ext) annotation (Line(points={{-81,53},
+  connect(meteofile.T_dry, RenouvellementAir.port_a) annotation (Line(points={{
+          -81,53},{-36,53},{-36,90},{39,90}}, color={191,0,0}));
+  connect(meteofile.T_dry, Plafond.T_ext) annotation (Line(points={{-81,53},{-36,
+          53},{-36,75.7},{-22.9,75.7}}, color={191,0,0}));
+  connect(meteofile.T_dry, ParoiNord.T_ext) annotation (Line(points={{-81,53},{
+          -36,53},{-36,45.7},{-22.9,45.7}}, color={191,0,0}));
+  connect(meteofile.T_dry, ParoiSud.T_ext) annotation (Line(points={{-81,53},{-36,
+          53},{-36,15.7},{-22.9,15.7}}, color={191,0,0}));
+  connect(meteofile.T_dry, ParoiEst.T_ext) annotation (Line(points={{-81,53},{-36,
+          53},{-36,-14.3},{-22.9,-14.3}}, color={191,0,0}));
+  connect(meteofile.T_dry, ParoiOuest.T_ext) annotation (Line(points={{-81,53},
           {-36,53},{-36,-44.3},{-22.9,-44.3}}, color={191,0,0}));
   connect(Plancher.T_int, noeudAir.port_a) annotation (Line(points={{-1,-82},{6,
           -82},{6,76},{88,76},{88,-10}}, color={191,0,0}));
@@ -186,7 +186,7 @@ Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Cristian MURESAN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

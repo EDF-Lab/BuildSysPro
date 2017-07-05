@@ -36,8 +36,7 @@ record MozartRenoExisting =
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>none</p>
 <p><u><b>Bibliography</b></u></p>
-<p>Site of the building stock library</p>
-<p>Note H-E10-1996-02908-FR</p>
+<p>none</p>
 <p>RT 2012 and RT Existing - Réglementation thermique et efficacité énergétique - D. Molle, P-M. Patry 2011</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>none</p>
@@ -48,7 +47,7 @@ record MozartRenoExisting =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Béatrice SUPLICE, Frédéric GASTIGER, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

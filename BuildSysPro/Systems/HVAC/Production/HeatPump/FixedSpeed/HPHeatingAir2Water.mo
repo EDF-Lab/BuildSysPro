@@ -84,7 +84,7 @@ public
     annotation (Placement(transformation(extent={{60,-26},{94,8}}),
         iconTransformation(extent={{90,20},{110,40}})));
 
-  Modelica.Blocks.Interfaces.RealInput Text "Outdoor temperature (K)"
+  Modelica.Blocks.Interfaces.RealInput T_ext "Outdoor temperature (K)"
     annotation (Placement(transformation(extent={{-120,40},{-80,80}}),
         iconTransformation(extent={{-100,30},{-80,50}})));
   Modelica.Blocks.Interfaces.RealOutput Qelec "Consumed electric power (W)"
@@ -112,11 +112,11 @@ public
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={-70,90})));
-  Modelica.Blocks.Interfaces.RealInput Entree[2]
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]
     "Vector containing 1- the input fluid temperarture (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-120,-70},{-80,-30}}),
         iconTransformation(extent={{-100,-50},{-80,-30}})));
-  Modelica.Blocks.Interfaces.RealOutput Sortie[2]
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]
     "Vector containing 1- the output fluid temperarture (K), 2- the output fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{80,-70},{120,-30}}),
         iconTransformation(extent={{92,-50},{112,-30}})));
@@ -144,17 +144,17 @@ equation
   end if;
 
 // Calculate required energy rates at full load for no-rating conditions
-    Qcflssdegi = QcRat*(1 + D1*(Text - TextRatC) + D2*(Entree[1] - TintRatC));
+    Qcflssdegi =QcRat*(1 + D1*(T_ext - TextRatC) + D2*(WaterIn[1] - TintRatC));
 
 // Defrost losses when Text < 2°C
-    if (Text > 275.15) then
+  if (T_ext > 275.15) then
       Qcfl = Qcflssdegi;
     else
       Qcfl = Cdegi*Qcflssdegi;
     end if;
 
 // Calculate non-dimensionnal temperature difference
-    Dt = Text/Entree[1] - TextRatC/TintRatC;
+    Dt =T_ext/WaterIn[1] - TextRatC/TintRatC;
 // Calculate consumed energy rates at full load for no-rating conditions
     Qafl = Qcflssdegi*(QaRatC/QcRat)*(1 + C1*Dt + C2*Dt*Dt);
 
@@ -180,13 +180,13 @@ if SaisonChauffe then
     Qelec=if v then Qafl+QfanextRat else alpha*QaRatC;
     //The power supplied is determined by a dynamic with one time constant.
     Qfour = if v then Qcfl*(1-exp(-dtOn/TauOn)) else 0;
-    Sortie[2] = if v then MegRat else 1E-10;
-    Sortie[1] = if v then Entree[1]+Qfour/(MegRat*CpLiq) else Entree[1];
+    WaterOut[2] = if v then MegRat else 1E-10;
+    WaterOut[1] = if v then WaterIn[1] + Qfour/(MegRat*CpLiq) else WaterIn[1];
 else
     Qfour = 0;
     Qelec =0;
-    Sortie[2] = 1E-10;
-    Sortie[1] = Entree[1];
+    WaterOut[2] = 1E-10;
+    WaterOut[1] = WaterIn[1];
 end if;
 
   when v then
@@ -295,7 +295,7 @@ all-or-none, variable"),
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

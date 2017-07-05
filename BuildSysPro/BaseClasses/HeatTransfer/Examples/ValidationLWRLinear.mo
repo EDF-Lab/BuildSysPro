@@ -21,28 +21,27 @@ extends Modelica.Icons.Example;
         rotation=180,
         origin={82,-64})));
 equation
-  connect(gLOext.T_ext, meteofile1.Tseche) annotation (Line(
+  connect(gLOext.T_ext, meteofile1.T_dry) annotation (Line(
       points={{1,-57},{-30.5,-57},{-30.5,-45},{-57,-45}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(gLOextLinear.T_ext, meteofile.Tseche) annotation (Line(
+  connect(gLOextLinear.T_ext, meteofile.T_dry) annotation (Line(
       points={{-1,47},{-26.5,47},{-26.5,49},{-53,49}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(meteofile.Tciel, gLOextLinear.T_ciel) annotation (Line(
+  connect(meteofile.T_sky, gLOextLinear.T_sky) annotation (Line(
       points={{-53,55},{-33.5,55},{-33.5,37},{-1,37}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(meteofile1.Tciel, gLOext.T_ciel) annotation (Line(
+  connect(meteofile1.T_sky, gLOext.T_sky) annotation (Line(
       points={{-57,-39},{-35.5,-39},{-35.5,-65},{1,-65}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(gLOextLinear.Ts_p, fixedTemperatureLINEAR.port) annotation (
-      Line(
+  connect(gLOextLinear.Ts_ext, fixedTemperatureLINEAR.port) annotation (Line(
       points={{17,42},{70,42}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(fixedTemperatureREFERENCE.port, gLOext.Ts_p) annotation (Line(
+  connect(fixedTemperatureREFERENCE.port, gLOext.Ts_ext) annotation (Line(
       points={{72,-64},{46,-64},{46,-60},{19,-60}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -64,7 +63,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

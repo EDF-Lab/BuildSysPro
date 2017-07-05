@@ -105,94 +105,98 @@ equation
       points={{-8.8,-30.4},{-2,-30.4},{-2,6},{28,6}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(FenNord.T_ext, Text) annotation (Line(
+  connect(FenNord.T_ext, T_ext) annotation (Line(
       points={{-23.2,53.6},{-30,53.6},{-30,-48},{-98,-48},{-98,-12},{-182,-12}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(FenOuest.T_ext, Text) annotation (Line(
+
+  connect(FenOuest.T_ext, T_ext) annotation (Line(
       points={{-23.2,-30.4},{-30,-30.4},{-30,-48},{-98,-48},{-98,-12},{-182,-12}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(FenEst.T_ext, Text) annotation (Line(
+
+  connect(FenEst.T_ext, T_ext) annotation (Line(
       points={{-23.2,-4.4},{-30,-4.4},{-30,-48},{-98,-48},{-98,-12},{-182,-12}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(FenSud.T_ext, Text) annotation (Line(
+
+  connect(FenSud.T_ext, T_ext) annotation (Line(
       points={{-23.2,23.6},{-30,23.6},{-30,-48},{-98,-48},{-98,-12},{-182,-12}},
       color={191,0,0},
       smooth=Smooth.None));
+
   connect(Plancher.Ts_int, FluxO.port) annotation (Line(
-      points={{-45,-67},{-45,-86},{52,-86},{52,-85.7},{59.5,-85.7}},
+      points={{-45,-67},{-45,-86},{52,-86},{52,-85},{60,-85}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(Plancher.Ts_int, FluxE.port) annotation (Line(
-      points={{-45,-67},{-45,-86},{52,-86},{52,-75.7},{59.5,-75.7}},
+      points={{-45,-67},{-45,-86},{52,-86},{52,-75},{60,-75}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(Plancher.Ts_int, FluxN.port) annotation (Line(
-      points={{-45,-67},{-45,-86},{52,-86},{52,-65.7},{59.5,-65.7}},
+      points={{-45,-67},{-45,-86},{52,-86},{52,-65},{60,-65}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(Plancher.Ts_int, FluxS.port) annotation (Line(
-      points={{-45,-67},{-45,-86},{52,-86},{52,-55.7},{59.5,-55.7}},
+      points={{-45,-67},{-45,-86},{52,-86},{52,-55},{60,-55}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(FenSud.CLOTr, FluxS.Q_flow) annotation (Line(
-      points={{-8.8,30},{86,30},{86,-55.7},{69.5,-55.7}},
+      points={{-8.8,30},{86,30},{86,-55},{70,-55}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(FenNord.CLOTr, FluxN.Q_flow) annotation (Line(
-      points={{-8.8,60},{86,60},{86,-65.7},{69.5,-65.7}},
+      points={{-8.8,60},{86,60},{86,-65},{70,-65}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(FenEst.CLOTr, FluxE.Q_flow) annotation (Line(
-      points={{-8.8,2},{86,2},{86,-75.7},{69.5,-75.7}},
+      points={{-8.8,2},{86,2},{86,-75},{70,-75}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(FenOuest.CLOTr, FluxO.Q_flow) annotation (Line(
-      points={{-8.8,-24},{86,-24},{86,-85.7},{69.5,-85.7}},
+      points={{-8.8,-24},{86,-24},{86,-85},{70,-85}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXNord, FenNord.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, FenNord.FluxIncExt) annotation (Line(
       points={{-95,18.2},{-90,18.2},{-90,60},{-18.4,60}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXSud, FenSud.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtSouth, FenSud.FluxIncExt) annotation (Line(
       points={{-95,14.4},{-88,14.4},{-88,30},{-18.4,30}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXEst, FenEst.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtEast, FenEst.FluxIncExt) annotation (Line(
       points={{-95,10.4},{-88,10.4},{-88,2},{-18.4,2}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXouest, FenOuest.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtWest, FenOuest.FluxIncExt) annotation (Line(
       points={{-95,6.4},{-88,6.4},{-88,-24},{-18.4,-24}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(T_ciel, FenNord.T_ciel) annotation (Line(
-      points={{-150,-30},{-92,-30},{-92,-46},{-28,-46},{-28,48.8},{
-          -23.2,48.8}},
+  connect(T_ciel, FenNord.T_sky) annotation (Line(
+      points={{-150,-30},{-92,-30},{-92,-46},{-28,-46},{-28,48.8},{-23.2,48.8}},
       color={191,0,0},
       thickness=0.5,
       smooth=Smooth.None));
-  connect(T_ciel, FenSud.T_ciel) annotation (Line(
-      points={{-150,-30},{-92,-30},{-92,-46},{-28,-46},{-28,18.8},{
-          -23.2,18.8}},
+
+  connect(T_ciel, FenSud.T_sky) annotation (Line(
+      points={{-150,-30},{-92,-30},{-92,-46},{-28,-46},{-28,18.8},{-23.2,18.8}},
       color={191,0,0},
       thickness=0.5,
       smooth=Smooth.None));
-  connect(T_ciel, FenEst.T_ciel) annotation (Line(
-      points={{-150,-30},{-92,-30},{-92,-46},{-28,-46},{-28,-9.2},{
-          -23.2,-9.2}},
+
+  connect(T_ciel, FenEst.T_sky) annotation (Line(
+      points={{-150,-30},{-92,-30},{-92,-46},{-28,-46},{-28,-9.2},{-23.2,-9.2}},
       color={191,0,0},
       thickness=0.5,
       smooth=Smooth.None));
-  connect(T_ciel, FenOuest.T_ciel) annotation (Line(
-      points={{-150,-30},{-92,-30},{-92,-46},{-28,-46},{-28,-35.2},{
-          -23.2,-35.2}},
+
+  connect(T_ciel, FenOuest.T_sky) annotation (Line(
+      points={{-150,-30},{-92,-30},{-92,-46},{-28,-46},{-28,-35.2},{-23.2,-35.2}},
       color={191,0,0},
       thickness=0.5,
       smooth=Smooth.None));
+
   connect(pintDistribRad.FLUXFenetres[3], FenNord.FluxAbsInt)
     annotation (Line(
       points={{36.2,73.625},{12,73.625},{12,57.6},{-13.6,57.6}},
@@ -240,7 +244,7 @@ annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Ludovic DARNAUD, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -16,20 +16,20 @@ parameter Boolean GLOext=false
   parameter Modelica.SIunits.Area S=1 "Wall surface without windows"
     annotation(Dialog(group="General properties of the wall"));
 
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=5.88
-    "Coefficient of CONVECTIVE surface exchange on the outer face"
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=25
+    "Global or convective surface exchange coefficient on the outer face depending on the selected mode (GLOext)"
      annotation(Dialog(group="General properties of the wall"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=5.88
-    "Coefficient of CONVECTIVE surface exchange on the inner face"
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=7.69
+    "Surface exchange coefficient on the inner face"
     annotation(Dialog(group="General properties of the wall"));
   parameter Real skyViewFactor=0
     "Average sky view factor between walls and the sky (example: skyViewFactor(flat roof)=1, skyViewfactor(vertical wall in clear environment)=0.5)"
     annotation(Dialog(enable=GLOext,group="General properties of the wall"));
 // Optical properties
-  parameter Real AbsParoi=0.6
+  parameter Real alpha_ext=0.6
     "Absorption coefficient of the outer wall in the visible"
     annotation(Dialog(enable=RadExterne, group="General properties of the wall"));
-  parameter Real eps=0.6 "Emissivity of the outer surface of the wall in LWR"
+  parameter Real eps=0.9 "Emittance of the outer surface of the wall in LWR (concrete 0.9)"
     annotation(Dialog(enable=GLOext,  group="General properties of the wall"));
 
 // Wall composition
@@ -59,7 +59,7 @@ parameter Boolean GLOext=false
     "Indoor temperature on the surface of the wall" annotation (Placement(
         transformation(extent={{30,-40},{50,-20}}), iconTransformation(extent={
             {20,-40},{40,-20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if GLOext
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if  GLOext
     annotation (Placement(transformation(extent={{-100,-100},{-80,-80}}),
         iconTransformation(extent={{-100,-100},{-80,-80}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt if
@@ -99,7 +99,7 @@ protected
     e=caracParoi.e,
     mat=caracParoi.mat)
     annotation (Placement(transformation(extent={{-10,0},{16,22}})));
-Modelica.Blocks.Math.Gain AbsMurExt(k=AbsParoi*S) if   RadExterne
+Modelica.Blocks.Math.Gain AbsMurExt(k=alpha_ext*S) if  RadExterne
     annotation (Placement(
         transformation(
         extent={{-11,-11},{11,11}},
@@ -116,18 +116,17 @@ equation
   connect(ParoiNCouchesHomogenes.port_a, Ts_ext);
   connect(ParoiNCouchesHomogenes.port_b, Ts_int);
 
-  connect(T_ciel, EchangesGLOext.T_ciel)
-                                       annotation (Line(
-      points={{-90,-90},{-74,-90},{-74,-65},{-67,-65}},
+  connect(T_sky, EchangesGLOext.T_sky) annotation (Line(
+      points={{-90,-90},{-74,-90},{-74,-64},{-67,-64}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, EchangesGLOext.T_ext)
                                    annotation (Line(
-      points={{-90,-30},{-75,-30},{-75,-55},{-67,-55}},
+      points={{-90,-30},{-75,-30},{-75,-56},{-67,-56}},
       color={191,0,0},
       smooth=Smooth.None));
 
-  connect(EchangesGLOext.Ts_p, Ts_ext) annotation (Line(
+  connect(EchangesGLOext.Ts_ext, Ts_ext) annotation (Line(
       points={{-49,-60},{-36,-60},{-36,-30}},
       color={255,0,0},
       smooth=Smooth.None));
@@ -148,11 +147,11 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   connect(prescribedCLOAbsExt.port, Ts_ext)  annotation (Line(
-      points={{-37.12,-4.8},{-37.12,-17.4},{-36,-17.4},{-36,-30}},
+      points={{-36,-4},{-36,-17.4},{-36,-17.4},{-36,-30}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(AbsMurExt.y, prescribedCLOAbsExt.Q_flow)  annotation (Line(
-      points={{-44.9,31},{-44.9,30.5},{-37.12,30.5},{-37.12,11.2}},
+      points={{-44.9,31},{-44.9,30.5},{-36,30.5},{-36,12}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(FluxIncExt, AbsMurExt.u) annotation (Line(
@@ -160,11 +159,11 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(prescribedCLOAbsInt.port, Ts_int) annotation (Line(
-      points={{58.88,21.2},{40,21.2},{40,-30}},
+      points={{60,22},{40,22},{40,-30}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(prescribedCLOAbsInt.Q_flow, FluxAbsInt) annotation (Line(
-      points={{58.88,37.2},{73.44,37.2},{73.44,41},{89,41}},
+      points={{60,38},{73.44,38},{73.44,41},{89,41}},
       color={0,0,127},
       smooth=Smooth.None));
     annotation(Placement(transformation(
@@ -196,23 +195,32 @@ equation
 <p><u><b>Hypothesis and equation</b></u></p>
 <p>This is a model of a simple wall. A conductive heat transfer occurs in the material which is defined by n homogeneous layers (each layer is discretized into equal sized meshes). Convective heat transfers occur on the two faces, internal and external.</p>
 <p>Input solar fluxes with short wavelength (SWR) are absorbed at the surface considering the parameters <code>AbsParoi</code>. This is the overall surface flux.</p>
-<p>In case of long wavelength (LWR), exchanges are linearized with the model <a href=\"modelica://BuildSysPro.BaseClasses.HeatTransfer.Components.LinearExtLWR\"><code>LinearExtLWR</code></a>. The parameter <code>skyViewFactor</code> determines the share of SW radiation of the wall with the sky, considered at <code>T_ciel</code>, and the external environment, considered at <code>T_ext</code>.</p>
-<p>The coefficient of convective heat transfer with the outside <code>hs_ext</code> default value is the value of the coefficient integrating convection only. LWR exchanges are considered elsewhere.</p>
+<p>In case of long wavelength (LWR), exchanges are linearized with the model <a href=\"modelica://BuildSysPro.BaseClasses.HeatTransfer.Components.LinearExtLWR\"><code>LinearExtLWR</code></a>. The parameter <code>skyViewFactor</code> determines the share of SW radiation of the wall with the sky, considered at <code>T_sky</code>, and the external environment, considered at <code>T_ext</code>.</p>
 <p>This model leads to a linear time-invariant model that can be reduced.</p>
 <p><u><b>Bibliography</b></u></p>
 <p>TF1 CLIM2000 modified in order to obtain a linear time-invariant model for the purposes of cities study.</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>This wall can be an outer or inner wall.</p>
-<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>). The external incident flows <code>FluxAbs</code> can come from the solar boundary conditions model <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\"><code>SolarBC</code></a>.</p>
+<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (connect <code>T_ext</code> to <code>T_dry</code> of <a href=\"modelica://BuildSysPro.BoundaryConditions.Weather.Meteofile\"><code>Meteofile</code></a>). The external incident flows <code>FluxAbs</code> can come from the solar boundary conditions model <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar.Irradiation.SolarBC\"><code>SolarBC</code></a>.</p>
 <p>The internal incident flows <code>FluxAbsInt</code> can come from occupants, heating systems but also from the redistribution of solar flux within a room (models from <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\"><code>BoundaryConditions.Radiation</code></a> package).</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
-<p>The limitations are mainly related to the flow LWR linearization. Think of distinguish the convective and radiative LWR shares in convection coefficients.</p>
+<p>Warning, default values of convective coefficients are indicative only, and should not be taken as real values in all cases.</p>
+<p>The given exchange coefficients can be either global coefficients (sum of convective and radiative), or purely convective exchanges if radiative exchanges are treated elsewhere.</p>
+<ul>
+<li>If <code>GLOext = True</code>, then <code>hs_ext</code> is a purely convective coefficient</li>
+<li>5,15 W/m&sup2;.K outside and 5.71 W:m&sup2;.K inside can be removed from the value of the recommended global exchange coefficient.</li>
+</ul>
+<p>Some indications :</p>
+<ul>
+<li>Vertical surfaces: <code>hs_int</code> = 7.69, <code>hs_ext</code> = 25</li>
+<li>Horizontal surfaces: <code>hs_int</code> = 10, <code>hs_ext</code> = 25</li>
+</ul>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis 03/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -3,7 +3,6 @@ model PVPanelSimplified
   "Detailed physical model of photovoltaic panel (thermal capacity)"
 
   // Parameters of the PV system
-
   parameter Modelica.SIunits.Area surface=20 "PV panels surface"
     annotation (Dialog(tab="PV panels", group="PV system"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=30
@@ -14,7 +13,6 @@ model PVPanelSimplified
     annotation (Dialog(tab="PV panels", group="PV system"));
 
   // PV panels characteristics
-
   replaceable parameter BaseClasses.Thermal.ThermalRecordsPV.RecordTechnoPV
     technoPV "Choice of PV technology" annotation (
       choicesAllMatching=true, Dialog(
@@ -41,7 +39,6 @@ model PVPanelSimplified
       radioButtons=true));
 
   // Integration of PV panels to the frame
-
   parameter Integer Integre=1
     "Integrated to the frame=1 ; Non integrated to the frame (in a field)=2"
     annotation (Dialog(
@@ -53,7 +50,6 @@ model PVPanelSimplified
       radioButtons=true));
 
   // Thermal exchanges
-
   parameter Integer convection_avant=2
     "A convective coefficient is imposed = 1; The convection model default is used= 2"
     annotation (Dialog(
@@ -87,7 +83,6 @@ model PVPanelSimplified
       enable=VitesseExt == 2));
 
   // Roof characteristics
-
   parameter Real R_toit=8 "Roof thermal resistance (m²K/W)"
     annotation (Dialog(
       tab="Building",
@@ -95,14 +90,18 @@ model PVPanelSimplified
       enable=Integre == 1));
 
   // Indoors characteristics
-
   parameter Modelica.SIunits.Temperature Tint=293.15
     "Indoor temperature of the building" annotation (Dialog(
       tab="Building",
       group="Indoor temperature of the building",
       enable=Integre == 1));
 
+protected
+  parameter Modelica.Blocks.Interfaces.BooleanInput OnOff_conv_avant=if convection_avant==1 then true else false;
+  parameter Modelica.Blocks.Interfaces.BooleanInput OnOff_integre=if Integre==1 then true else false;
+
   // Internal variables
+public
   Real flux_transmis;
   Real flux_thermique;
 
@@ -123,7 +122,6 @@ model PVPanelSimplified
         rotation=180,
         origin={-101,41}),iconTransformation(extent={{-8,-8},{8,8}}, origin=
            {-92,40})));
-public
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput G[10]
     "Solar flux: {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle, Solar elevation angle}"
     annotation (Placement(transformation(extent={{-116,-16},{-84,16}}),
@@ -184,7 +182,7 @@ public
         extent={{6,-6},{-6,6}},
         rotation=90,
         origin={48,66})));
-  Modelica.Blocks.Interfaces.BooleanInput OnOff_conv_avant=if convection_avant==1 then true else false;
+
   Controls.Switch interrupteur1_modele_conv(valeur_On=false) annotation (
       Placement(transformation(
         extent={{-4,-3},{4,3}},
@@ -219,8 +217,8 @@ public
         extent={{-5,-4},{5,4}},
         rotation=-90,
         origin={29,-52})));
-  Modelica.Blocks.Interfaces.BooleanInput OnOff_integre=if Integre==1 then true else false;
 
+public
   BuildSysPro.BaseClasses.HeatTransfer.Components.ExtLWR GLOext(
     incl=180 - incl,
     S=surface,
@@ -282,9 +280,9 @@ public
         rotation=0,
         origin={90,-80})));
 equation
-  flux_transmis = fLUXsurf.FLUX[2]*facteursTransmission.FT_B + (fLUXsurf.FLUX[
-    1] - fLUXsurf.AzHSol[3])*facteursTransmission.FT_D + fLUXsurf.AzHSol[3]
-    *facteursTransmission.FT_A;
+  flux_transmis =fLUXsurf.FluxIncExt[2]*facteursTransmission.FT_B + (fLUXsurf.FluxIncExt[
+    1] - fLUXsurf.AzHSol[3])*facteursTransmission.FT_D + fLUXsurf.AzHSol[3]*
+    facteursTransmission.FT_A;
   flux_thermique = (technoPV.alpha_tau_n - rendementFctTemperature.eta)*
     surface*flux_transmis;
   Pelec = flux_transmis*surface*rendementFctTemperature.eta;
@@ -297,12 +295,12 @@ equation
 
   connect(interrupteur1_modele_conv.OnOff, OnOff_conv_avant);
   connect(interrupteur1_coeff_impose.OnOff, OnOff_conv_avant);
-  connect(gLOext1.T_ciel, T_ciel1) annotation (Line(
-      points={{51,71.4},{51,84},{52,84},{52,90}},
+  connect(gLOext1.T_sky, T_ciel1) annotation (Line(
+      points={{50.4,71.4},{50.4,84},{52,84},{52,90}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(gLOext1.T_ext, T_ext1) annotation (Line(
-      points={{46.2,71.4},{46,76},{46,80},{40,80},{40,90}},
+      points={{45.6,71.4},{45.6,76},{45.6,80},{40,80},{40,90}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(interrupteur1_modele_conv.port_b, convection_modele1.port_b)
@@ -330,11 +328,11 @@ equation
 
   connect(interrupteur_non_integre.OnOff, OnOff_integre);
   connect(GLOext.T_ext, T_ext2) annotation (Line(
-      points={{38.2,-79.4},{38,-88},{26,-88},{26,-96}},
+      points={{37.6,-79.4},{37.6,-88},{26,-88},{26,-96}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(GLOext.T_ciel, T_ciel2) annotation (Line(
-      points={{43,-79.4},{43,-90.7},{44,-90.7},{44,-96}},
+  connect(GLOext.T_sky, T_ciel2) annotation (Line(
+      points={{42.4,-79.4},{42.4,-90.7},{44,-90.7},{44,-96}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext2, T_ext);
@@ -347,7 +345,7 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
 
-  connect(GLOext.Ts_p, interrupteur_non_integre.port_b) annotation (Line(
+  connect(GLOext.Ts_ext, interrupteur_non_integre.port_b) annotation (Line(
       points={{40,-68.6},{40,-62},{29,-62},{29,-57.625}},
       color={255,0,0},
       smooth=Smooth.None));
@@ -361,40 +359,40 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   connect(prescribedHeatFlow2.port, heatCapacitor.port) annotation (Line(
-      points={{14.7,0.02},{27.35,0.02},{27.35,-3},{39,-3}},
+      points={{14,1},{27.35,1},{27.35,-2},{38,-2}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(heatCapacitor.port, interrupteur1_coeff_impose.port_a)
     annotation (Line(
-      points={{39,-3},{39,42},{14,42},{14,48.5}},
+      points={{38,-2},{38,42},{14,42},{14,48.5}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(heatCapacitor.port, interrupteur1_modele_conv.port_a) annotation (
      Line(
-      points={{39,-3},{39,42},{30,42},{30,48.5}},
+      points={{38,-2},{38,42},{30,42},{30,48.5}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(heatCapacitor.port, gLOext1.Ts_p) annotation (Line(
-      points={{39,-3},{39,42},{48,42},{48,60.6}},
+  connect(heatCapacitor.port, gLOext1.Ts_ext) annotation (Line(
+      points={{38,-2},{38,42},{48,42},{48,60.6}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(heatCapacitor.port, interrupteur_non_integre.port_a) annotation (
       Line(
-      points={{39,-3},{39,-36},{29,-36},{29,-46.375}},
+      points={{38,-2},{38,-36},{29,-36},{29,-46.375}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(heatCapacitor.port, interrupteur_integre_bati.port_a) annotation (
      Line(
-      points={{39,-3},{39,-38},{73,-38},{73,-48.375}},
+      points={{38,-2},{38,-38},{73,-38},{73,-48.375}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(prescribedHeatFlow2.port, temperatureSensor.port) annotation (
       Line(
-      points={{14.7,0.02},{14.7,24},{-2,24}},
+      points={{14,1},{14,24},{-2,24}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(heatCapacitor.port, T_cellule) annotation (Line(
-      points={{39,-3},{59.5,-3},{59.5,0},{80,0}},
+      points={{38,-2},{59.5,-2},{59.5,0},{80,0}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(fixedTemperature.port, T_int) annotation (Line(
@@ -454,7 +452,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

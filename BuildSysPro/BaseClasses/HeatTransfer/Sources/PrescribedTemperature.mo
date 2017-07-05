@@ -5,7 +5,8 @@ model PrescribedTemperature "Variable temperature boundary condition in Kelvin"
         transformation(extent={{90,-10},{110,10}}, rotation=0)));
   Modelica.Blocks.Interfaces.RealInput T
     "Température en K à imposer au niveau du port thermique"                                      annotation (Placement(transformation(
-          extent={{-140,-20},{-100,20}}, rotation=0)));
+          extent={{-120,-20},{-80,20}},  rotation=0), iconTransformation(extent=
+           {{-120,-20},{-80,20}})));
 equation
   port.T = T;
   annotation (
@@ -18,7 +19,7 @@ equation
           fillColor={159,159,223},
           fillPattern=FillPattern.Backward),
         Line(
-          points={{-102,0},{64,0}},
+          points={{-80,0},{86,0}},
           color={191,0,0},
           thickness=0.5),
         Text(
@@ -26,7 +27,7 @@ equation
           lineColor={0,0,0},
           textString="°K"),
         Text(
-          extent={{-125,162},{115,102}},
+          extent={{-120,160},{120,100}},
           textString="%name",
           lineColor={0,0,255}),
         Polygon(
@@ -48,7 +49,7 @@ This model represents a variable temperature boundary condition. The temperature
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature\">PrescribedTemperature</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"),

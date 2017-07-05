@@ -49,7 +49,7 @@ parameter Integer chaud_froid=0 "0 - heating, 1 - cooling"
     annotation (Placement(transformation(extent={{0,-38},{-20,-18}})));
   BaseClasses.HeatTransfer.Sensors.TemperatureSensor temperatureSensor
     annotation (Placement(transformation(extent={{80,-10},{60,10}})));
-  BaseClasses.HeatTransfer.Interfaces.HeatPort_a port_a annotation (Placement(
+  BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_room annotation (Placement(
         transformation(extent={{-100,-100},{-80,-80}}),
                                                  iconTransformation(extent={{-100,
             -100},{-80,-80}})));
@@ -88,9 +88,8 @@ parameter Integer chaud_froid=0 "0 - heating, 1 - cooling"
         rotation=-90,
         origin={12,-93}), iconTransformation(extent={{80,-31},{100,-9}},
           rotation=0)));
-  Modelica.Blocks.Interfaces.RealInput Tcons if not saisieTableau
-    "Setpoint temperature [K]"
-    annotation (Placement(transformation(
+  Modelica.Blocks.Interfaces.RealInput T_sp if  not saisieTableau
+    "Setpoint temperature [K]" annotation (Placement(transformation(
         extent={{20,20},{-20,-20}},
         rotation=-90,
         origin={84,-94}), iconTransformation(
@@ -99,14 +98,14 @@ parameter Integer chaud_froid=0 "0 - heating, 1 - cooling"
         origin={-80,0})));
 equation
   connect(PID.y,prescribedHeatFlow. Q_flow) annotation (Line(
-      points={{23,-20},{10,-20},{10,-29.4},{-1,-29.4}},
+      points={{23,-20},{10,-20},{10,-28},{0,-28}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(temperatureSensor.T,PID. u_m) annotation (Line(
       points={{60,0},{60,4},{34,4},{34,-8}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(temperatureSensor.port, port_a) annotation (Line(
+  connect(temperatureSensor.port,T_room)  annotation (Line(
       points={{80,0},{98,0},{98,-90},{-90,-90}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -118,8 +117,8 @@ equation
       points={{11,-70.5},{11,-93},{12,-93}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(prescribedHeatFlow.port, port_a) annotation (Line(
-      points={{-21,-29.4},{-68,-29.4},{-68,-90},{-90,-90}},
+  connect(prescribedHeatFlow.port,T_room)  annotation (Line(
+      points={{-20,-28},{-68,-28},{-68,-90},{-90,-90}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(PID.y, gain.u) annotation (Line(
@@ -133,7 +132,7 @@ equation
  if saisieTableau then
    connect(combiTimeTable1.y[1],PID.u_s);
  else
-   connect(Tcons,PID.u_s);
+    connect(T_sp, PID.u_s);
  end if;
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
             -100},{100,100}}),
@@ -193,13 +192,13 @@ equation
 <ul><li>Ideal operation: the nominal power must be largely oversized to calculate cooling or heating <u>needs</u>, otherwise there is no guarantee that the installed power is sufficient to reach temperature setpoints.</li>
 <li>Real operation: the nominal power is the sizing power, which shows whether the dimensioning can meet the targeted setpoint temperatures.</li></ul>
 <p><u><b>Known limits / Use precautions</b></u></p>
-<p><b>Warnings !</b> Setpoint temperatures in the text file, in the table or connected to the port Tcons depending on the cases, must be in Kelvin.</p>
+<p><b>Warnings !</b> Setpoint temperatures in the text file, in the table or connected to the port T_sp depending on the cases, must be in Kelvin.</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Amy Lindsay 10/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

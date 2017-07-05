@@ -2,8 +2,8 @@
 record Matisse2012_MTD =
     BuildSysPro.BuildingStock.Utilities.Records.BuildingData.CollectiveHousing.BuildingDataMATISSE.BuildingType
     (
-    UvitrageAF=1.2,
-    UvitrageSF=1.2,
+    UvitrageAF=1.5,
+    UvitrageSF=1.5,
     redeclare replaceable parameter
       WallData.CollectiveHousing.IntermediateFloor PlafondMitoyen,
     redeclare replaceable parameter WallData.CollectiveHousing.RT2012_MTD.Door
@@ -26,16 +26,16 @@ record Matisse2012_MTD =
     bLNC=0.1,
     bPlancher=0.80,
     bPlafond=1,
-    ValeursK={0.28,0.12,0.25,0.25,0.27,0.27,0.00,0.00},
-    TauPonts={1,0.1,1,1,0.1,0.1,0.1,1},
-    ValeursKPlafond={0.23,0.04,0.04},
-    ValeursKPlancher={0.22,0.35,0.35},
+    ValeursK={0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00},
+    TauPonts={1,1,1,1,1,1,1,1},
+    ValeursKPlafond={0.00,0.00,0.00},
+    ValeursKPlancher={0.00,0.00,0.00},
     TauPontsPlafond={1,1,1},
-    TauPontsPlancher={1,0.80,0.80},
-    PontsTh_Generique=10.73,
-    PontsTh_Bas=8.66,
-    PontsTh_Haut=4.68,
-    renouvAir=0.426,
+    TauPontsPlancher={1,1,1},
+    PontsTh_Generique=0.00,
+    PontsTh_Bas=0.00,
+    PontsTh_Haut=0.00,
+    renouvAir=0.3,
     hsExtVert=16.67,
     hsIntVert=9.09,
     hsExtHor=20,
@@ -50,16 +50,19 @@ record Matisse2012_MTD =
 <p><u><b>Instructions for use</b></u></p>
 <p>none</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
-<p>none</p>
+<p style=\"color:red\">Warning : thermal bridges have been set to null because of a lack of data, it will be necessary to complete them when more details are available.</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Benoît Charrier 12/2015</p>
-  <p><b>--------------------------------------------------------------<br>
-  Licensed by EDF under the Modelica License 2<br>
+<p><b>--------------------------------------------------------------<br>
+Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>",
       revisions="<html>
 <p>Benoît Charrier 05/2015 : ajout de paramètres nécessaires au modèle MatisseAssemblageLC</p>
+<p>Benoît Charrier 06/2017 : <ul><li>editing value of air renewal <code>renouvAir</code> from 0,426 to 0,3 vol/h to fit with a humidity sensitive ventilation system which is commonly used in RT2012</li>
+<li>editing value of U glazings <code>UvitrageAF</code> and <code>UvitrageSF</code> from 1,2 to 1,5 W/m2.K which is more representative of RT2012</li>
+<li>setting thermal bridge values to null because actual values are not representative, will need to be adjusted when more data is available</li></ul></p>
 </html>"));

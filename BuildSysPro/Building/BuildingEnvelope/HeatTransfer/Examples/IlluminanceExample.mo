@@ -29,11 +29,11 @@ extends Modelica.Icons.Example;
         origin={68,-36})));
 equation
 
-  connect(fLUXzone.FLUXNord, vitrageNord.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, vitrageNord.FluxIncExt) annotation (Line(
       points={{-49,4.2},{-24,4.2},{-24,29},{13,29}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.EclNord, vitrageNord.Ecl) annotation (Line(
+  connect(fLUXzone.IlluNorth, vitrageNord.Ecl) annotation (Line(
       points={{-66,11},{-66,34},{7,34}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -45,11 +45,11 @@ equation
       points={{-81,48},{-76,48},{-76,-19.2},{-36.6,-19.2}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(fLUXzone.EclSud, MasqueSud.Ecl) annotation (Line(
+  connect(fLUXzone.IlluSouth, MasqueSud.Ecl) annotation (Line(
       points={{-63,11},{-63,18},{-42,18},{-42,-25.64},{-36.6,-25.64}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(MasqueSud.FluxMasques, vitrageSud.FLUX) annotation (Line(
+  connect(MasqueSud.FluxMasques, vitrageSud.FluxIncExt) annotation (Line(
       points={{-8.32,-22},{-4,-22},{-4,-19},{13,-19}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -94,11 +94,11 @@ equation
       points={{58,-36},{30,-36},{30,21},{25,21}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(meteofile.Tseche, vitrageNord.T_ext) annotation (Line(
+  connect(meteofile.T_dry, vitrageNord.T_ext) annotation (Line(
       points={{-81,53},{2,53},{2,21},{7,21}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(meteofile.Tseche, vitrageSud.T_ext) annotation (Line(
+  connect(meteofile.T_dry, vitrageSud.T_ext) annotation (Line(
       points={{-81,53},{2,53},{2,-27},{7,-27}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -121,7 +121,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

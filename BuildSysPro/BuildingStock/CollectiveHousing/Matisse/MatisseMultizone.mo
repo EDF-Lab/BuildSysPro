@@ -9,35 +9,44 @@ model MatisseMultizone
       choicesAllMatching=true, Dialog(group="Choice of RT"));
 
   // Orientation of the apartment
-parameter Real beta=0
+  parameter Real beta=0
     "Correction of azimuth for vertical walls such as azimuth=beta+azimuth, {beta=0 : N=180,S=0,E=-90,O=90}";
-parameter Integer EmplacementAppartement=5
+  parameter Integer EmplacementAppartement=5
     "From 1 to 9, define the position of the apartment : 1 to 3 last floor - 4 à 6 intermediate floor - 7 à 9 : ground floor (from west to east)";
 
   // Thermal flows
-parameter Boolean GLOEXT=false
-    "Integration of LW radiation (infrared) toward the environment and the sky"                         annotation(Dialog(tab="Thermal flows"));
-parameter Boolean CLOintPlancher=true
-    "True : solar fluxes are absorbed by the floor; False : solar fluxes are absorbed by all the walls and partition walls in proportion of surfaces"
-                                                                                                        annotation(Dialog(tab="Thermal flows"));
-parameter Boolean QVin=false
-    "True : controlled air change rate; False : constant air change rate"                       annotation(Dialog(tab="Thermal flows"));
+  parameter Boolean GLOEXT=false
+    "Integration of LW radiation (infrared) toward the environment and the sky"
+    annotation(Dialog(tab="Thermal flows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean CLOintPlancher=true
+    "Floor : solar fluxes are absorbed only by the floor; All walls : solar fluxes are absorbed by all the walls and partition walls in proportion of surfaces"
+    annotation(Dialog(tab="Thermal flows"),
+    choices(choice=true "Floor", choice=false "All walls", radioButtons=true));
+  parameter Boolean QVin=false
+    "Input : controlled air change rate; Constant : constant air change rate"
+    annotation(Dialog(tab="Thermal flows"),
+    choices(choice=true "Input", choice=false "Constant", radioButtons=true));
 
   // Walls
-parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
+  parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
     annotation(Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Type of initialization for walls"
     annotation (Dialog(tab="Walls"));
 
   // Windows
-parameter Boolean useVolet=false "True if shutter, false if not" annotation(Dialog(tab="Windows"));
-parameter Boolean useOuverture=false "True if controlled opening, false if not"
-                                               annotation(Dialog(tab="Windows"));
-parameter Boolean useReduction=false
-    "True if solar reduction factors (masking, frame), false if not"
-    annotation (Dialog(tab="Windows"));
-parameter Integer TypeFenetrePF=1 "Choice of type of window or French window"
+  parameter Boolean useVolet=false "Use of window shutters"
+    annotation(Dialog(tab="Windows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean useOuverture=false "Control of windows opening"
+    annotation(Dialog(tab="Windows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean useReduction=false
+    "Implementation of solar reduction factors (masking, frame)"
+    annotation (Dialog(tab="Windows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Integer TypeFenetrePF=1 "Choice of type of window"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"),
     choices( choice= 1 "I do not know - no frame",
              choice= 2 "Wood window sashes",
@@ -50,24 +59,26 @@ parameter Integer TypeFenetrePF=1 "Choice of type of window or French window"
              choice= 9 "Sliding French window with wood bedrock",
              choice= 10 "Sliding French window without wood bedrock",
              choice= 11 "Sliding French window without metal bedrock"));
-parameter Real voilage=0.95
+  parameter Real voilage=0.95
     "Presence of net curtains : = 0.95 if yes and = 1 if not"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
-parameter Real position=0.90
+  parameter Real position=0.90
     "Glazing position: = 0.9 if inner and = 1 if outer"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
-parameter Real rideaux=0.85
+  parameter Real rideaux=0.85
     "Presence of curtains: = 0.85 if yes and = 1 if not"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
-parameter Real ombrages=0.85
+  parameter Real ombrages=0.85
     "Obstacles shading (vegetation, neighborhood): = 0.85 if yes et = 1 if not"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
-parameter Real r1=paraMaisonRT.transmissionMenuiserieFenetres
+  parameter Real r1=paraMaisonRT.transmissionMenuiserieFenetres
     "Reduction factor for direct radiation if useReduction = false"
-    annotation (Dialog(tab="Windows",enable=not useReduction,group="Reduction factor if useReduction = false"));
-parameter Real r2=paraMaisonRT.transmissionMenuiserieFenetres
+    annotation (Dialog(tab="Windows",group="Reduction factor if useReduction = false",
+    enable=not useReduction));
+  parameter Real r2=paraMaisonRT.transmissionMenuiserieFenetres
     "Reduction factor for diffuse radiation if useReduction = false"
-    annotation (Dialog(tab="Windows",enable=not useReduction,group="Reduction factor if useReduction = false"));
+    annotation (Dialog(tab="Windows",group="Reduction factor if useReduction = false",
+    enable=not useReduction));
 
  // Protected parameters
 protected
@@ -887,7 +898,7 @@ protected
 
 // Components for LW/SW radiations
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tciel if                     GLOEXT==true
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if                     GLOEXT==true
     annotation (Placement(transformation(extent={{-100,-20},{-80,0}}),
         iconTransformation(extent={{-120,-40},{-100,-20}})));
 
@@ -901,7 +912,7 @@ protected
     annotation (Placement(transformation(extent={{-86,36},{-66,56}})));
 
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Text annotation (
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext annotation (
       Placement(transformation(extent={{-100,10},{-80,30}}), iconTransformation(
           extent={{-120,0},{-100,20}})));
 Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
@@ -912,7 +923,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
     "Wind speed (m/s) and  direction (from 0° - North, 90° - East, 180° - South, 270 ° - West)"
     annotation (Placement(transformation(extent={{-140,-60},{-100,-20}}),
         iconTransformation(extent={{-140,28},{-100,68}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Tmit
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int_common
     "Temperature of adjacent housings" annotation (Placement(transformation(
           extent={{-64,68},{-56,76}}), iconTransformation(extent={{-108,-60},{-100,
             -52}})));
@@ -982,22 +993,22 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         rotation=90,
         origin={57,51})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tsejour
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_living
     annotation (Placement(transformation(extent={{-80,-110},{-70,-100}}),
         iconTransformation(extent={{-56,-4},{-48,4}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tcuisine
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_kitchen
     annotation (Placement(transformation(extent={{-60,-110},{-50,-100}}),
         iconTransformation(extent={{-22,6},{-14,14}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tchambre1
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_room1
     annotation (Placement(transformation(extent={{-40,-110},{-30,-100}}),
         iconTransformation(extent={{6,6},{14,14}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tchambre2
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_room2
     annotation (Placement(transformation(extent={{-20,-110},{-10,-100}}),
         iconTransformation(extent={{42,6},{50,14}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a TsalleDeBain
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_bathroom
     annotation (Placement(transformation(extent={{0,-110},{10,-100}}),
         iconTransformation(extent={{36,-28},{44,-20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tentree
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_entrance
     annotation (Placement(transformation(extent={{20,-110},{30,-100}}),
         iconTransformation(extent={{-20,-28},{-12,-20}})));
   BuildSysPro.BoundaryConditions.Weather.ZoneWind vENTzone(beta=beta) if
@@ -1067,30 +1078,30 @@ connect(zoneC1_1.FLUXcloisonChambre2, CloisonChambre1Cuisine8.FluxAbsExt)
 
   if GLOEXT==true then
     if EmplacementHaut then
-  connect(Tciel, zoneEntree.Tciel) annotation (Line(
+  connect(T_sky,zoneEntree.T_sky)  annotation (Line(
       points={{-90,-10},{-76,-10},{-76,-76},{7.9,-76},{7.9,-65.8182}},
       color={191,0,0},
       smooth=Smooth.None));
     end if;
     if EmplacementHaut or EmplacementEst then
- connect(Tciel, zoneSDB.Tciel) annotation (Line(
+ connect(T_sky,zoneSDB.T_sky)  annotation (Line(
       points={{-90,-10},{-76,-10},{-76,20},{74,20},{74,-57.6364},{66.3,-57.6364}},
       color={191,0,0},
       smooth=Smooth.None));
     end if;
-   connect(Tciel, zoneSejour.Tciel) annotation (Line(
+   connect(T_sky,zoneSejour.T_sky)  annotation (Line(
       points={{-90,-10},{-76,-10},{-76,20},{-34.3,20},{-34.3,2}},
       color={191,0,0},
       smooth=Smooth.None));
-connect(Tciel, zoneCuisine.Tciel) annotation (Line(
+connect(T_sky,zoneCuisine.T_sky)  annotation (Line(
       points={{-90,-10},{-74,-10},{-74,20},{-0.5,20},{-0.5,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
-connect(Tciel, zoneC1_1.Tciel) annotation (Line(
+connect(T_sky,zoneC1_1.T_sky)  annotation (Line(
       points={{-90,-10},{-76,-10},{-76,20},{30.1,20},{30.1,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
-connect(Tciel, zoneC2_1.Tciel) annotation (Line(
+connect(T_sky,zoneC2_1.T_sky)  annotation (Line(
       points={{-90,-10},{-76,-10},{-76,20},{62.1,20},{62.1,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -1165,230 +1176,245 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
         smooth=Smooth.None));
   end if;
 
-  connect(fLUXzone.FLUXPlafond, zoneSejour.FluxPlafond) annotation (Line(
+  connect(fLUXzone.FluxIncExtRoof, zoneSejour.FluxIncExtRoof) annotation (Line(
       points={{-65,54.4},{-60,54.4},{-60,32},{-67.9,32},{-67.9,1.8}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXNord, zoneSejour.FluxNord) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, zoneSejour.FluxIncExtNorth) annotation (
+      Line(
       points={{-65,50.2},{-60,50.2},{-60,32},{-62.86,32},{-62.86,1.8}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXouest, zoneSejour.FluxOuest) annotation (Line(
+  connect(fLUXzone.FluxIncExtWest, zoneSejour.FluxIncExtWest) annotation (Line(
       points={{-65,38.4},{-60,38.4},{-60,32},{-58.66,32},{-58.66,1.8}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXPlafond, zoneCuisine.FluxPlafond) annotation (Line(
+  connect(fLUXzone.FluxIncExtRoof, zoneCuisine.FluxIncExtRoof) annotation (Line(
       points={{-65,54.4},{-20,54.4},{-20,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXNord, zoneCuisine.FluxNord) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, zoneCuisine.FluxIncExtNorth) annotation (
+      Line(
       points={{-65,50.2},{-16.7,50.2},{-16.7,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXPlafond, zoneC1_1.FluxPlafond) annotation (Line(
+  connect(fLUXzone.FluxIncExtRoof, zoneC1_1.FluxIncExtRoof) annotation (Line(
       points={{-65,54.4},{13.2,54.4},{13.2,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXNord, zoneC1_1.FluxNord) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, zoneC1_1.FluxIncExtNorth) annotation (Line(
       points={{-65,50.2},{16.06,50.2},{16.06,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXPlafond, zoneC2_1.FluxPlafond) annotation (Line(
+  connect(fLUXzone.FluxIncExtRoof, zoneC2_1.FluxIncExtRoof) annotation (Line(
       points={{-65,54.4},{42.6,54.4},{42.6,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXNord, zoneC2_1.FluxNord) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, zoneC2_1.FluxIncExtNorth) annotation (Line(
       points={{-65,50.2},{45.46,50.2},{45.46,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXEst, zoneC2_1.FluxEst) annotation (Line(
+  connect(fLUXzone.FluxIncExtEast, zoneC2_1.FluxIncExtEast) annotation (Line(
       points={{-65,42.4},{48.32,42.4},{48.32,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXPlafond, zoneSDB.FluxPlafond) annotation (Line(
+  connect(fLUXzone.FluxIncExtRoof, zoneSDB.FluxIncExtRoof) annotation (Line(
       points={{-65,54.4},{82,54.4},{82,-41.4545},{65.96,-41.4545}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXEst, zoneSDB.FluxEst) annotation (Line(
+  connect(fLUXzone.FluxIncExtEast, zoneSDB.FluxIncExtEast) annotation (Line(
       points={{-65,42.4},{82,42.4},{82,-45.0909},{65.96,-45.0909}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXPlafond, zoneEntree.FluxPlafond) annotation (Line(
+  connect(fLUXzone.FluxIncExtRoof, zoneEntree.FluxIncExtRoof) annotation (Line(
       points={{-65,54.4},{82,54.4},{82,-96},{-12.8,-96},{-12.8,-65.6}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(Text, zoneSejour.Text) annotation (Line(
+  connect(T_ext, zoneSejour.T_ext) annotation (Line(
       points={{-90,20},{-42.7,20},{-42.7,2}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, zoneCuisine.Text) annotation (Line(
+  connect(T_ext, zoneCuisine.T_ext) annotation (Line(
       points={{-90,20},{-6.5,20},{-6.5,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, zoneC1_1.Text) annotation (Line(
+  connect(T_ext, zoneC1_1.T_ext) annotation (Line(
       points={{-90,20},{24.9,20},{24.9,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, zoneC2_1.Text) annotation (Line(
+  connect(T_ext, zoneC2_1.T_ext) annotation (Line(
       points={{-90,20},{56.9,20},{56.9,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, zoneSDB.Text) annotation (Line(
+  connect(T_ext, zoneSDB.T_ext) annotation (Line(
       points={{-90,20},{74,20},{74,-50.3636},{66.3,-50.3636}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, zoneEntree.Text) annotation (Line(
+  connect(T_ext, zoneEntree.T_ext) annotation (Line(
       points={{-90,20},{-72,20},{-72,-76},{-1.3,-76},{-1.3,-65.8182}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Tmit, zoneSejour.Tmit) annotation (Line(
+  connect(T_int_common, zoneSejour.T_int_common) annotation (Line(
       points={{-60,72},{-28.84,72},{-28.84,2}},
       color={128,0,255},
       smooth=Smooth.None));
-  connect(Tmit, zoneC1_1.Tmit) annotation (Line(
+  connect(T_int_common, zoneC1_1.T_int_common) annotation (Line(
       points={{-60,72},{33.48,72},{33.48,0.636364}},
       color={128,0,255},
       smooth=Smooth.None));
-  connect(Tmit, zoneC2_1.Tmit) annotation (Line(
+  connect(T_int_common, zoneC2_1.T_int_common) annotation (Line(
       points={{-60,72},{65.48,72},{65.48,0.363636}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(Tmit, zoneCuisine.Tmit) annotation (Line(
+  connect(T_int_common, zoneCuisine.T_int_common) annotation (Line(
       points={{-60,72},{3.4,72},{3.4,0.636364}},
       color={128,0,255},
       smooth=Smooth.None));
-  connect(Tmit, zoneSDB.Tmit) annotation (Line(
+  connect(T_int_common, zoneSDB.T_int_common) annotation (Line(
       points={{-60,72},{66.3,72},{66.3,-62.3636}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(Tmit, zoneEntree.Tmit) annotation (Line(
+  connect(T_int_common, zoneEntree.T_int_common) annotation (Line(
       points={{-60,72},{66,72},{66,-65.8182},{13.88,-65.8182}},
       color={128,0,255},
       smooth=Smooth.None));
-  connect(zoneSejour.TSejour, CloisonChambre1Cuisine.T_ext) annotation (Line(
+  connect(zoneSejour.T_int_living, CloisonChambre1Cuisine.T_ext) annotation (
+      Line(
       points={{-49.21,-30.8},{-38,-30.8},{-38,-18.075},{-31.725,-18.075}},
       color={191,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine.T_int, zoneCuisine.TCuisine) annotation (Line(
+  connect(CloisonChambre1Cuisine.T_int, zoneCuisine.T_int_kitchen) annotation (
+      Line(
       points={{-26.775,-18.075},{-20.3875,-18.075},{-20.3875,-18.7273},{-12.35,
           -18.7273}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(zoneSejour.TSejour, CloisonChambre1Cuisine1.T_ext) annotation (Line(
+  connect(zoneSejour.T_int_living, CloisonChambre1Cuisine1.T_ext) annotation (
+      Line(
       points={{-49.21,-30.8},{-38,-30.8},{-38,-34.075},{-31.725,-34.075}},
       color={191,0,0},
       smooth=Smooth.Bezier));
-  connect(CloisonChambre1Cuisine1.T_int, zoneEntree.TEntree) annotation (Line(
+  connect(CloisonChambre1Cuisine1.T_int, zoneEntree.T_int_entrance) annotation (
+     Line(
       points={{-26.775,-34.075},{-12,-34.075},{-12,-43.5636},{-10.27,-43.5636}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(zoneCuisine.TCuisine, CloisonChambre1Cuisine2.T_ext) annotation (Line(
+
+  connect(zoneCuisine.T_int_kitchen, CloisonChambre1Cuisine2.T_ext) annotation (
+     Line(
       points={{-12.35,-18.7273},{-6.175,-18.7273},{-6.175,-18.075},{0.275,
           -18.075}},
       color={191,0,0},
       smooth=Smooth.Bezier,
       visible=false));
-  connect(CloisonChambre1Cuisine2.T_int, zoneC1_1.TC1) annotation (Line(
+  connect(CloisonChambre1Cuisine2.T_int, zoneC1_1.T_int_room1) annotation (Line(
       points={{5.225,-18.075},{11.6125,-18.075},{11.6125,-20.6364},{19.83,
           -20.6364}},
       color={255,0,0},
       smooth=Smooth.Bezier,
       visible=false));
-  connect(zoneC1_1.TC1, CloisonChambre1Cuisine3.T_ext) annotation (Line(
+  connect(zoneC1_1.T_int_room1, CloisonChambre1Cuisine3.T_ext) annotation (Line(
       points={{19.83,-20.6364},{26.915,-20.6364},{26.915,-18.075},{34.275,
           -18.075}},
       color={191,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine3.T_int, zoneC2_1.TC2) annotation (Line(
+  connect(CloisonChambre1Cuisine3.T_int, zoneC2_1.T_int_room2) annotation (Line(
       points={{39.225,-18.075},{46.6125,-18.075},{46.6125,-20.3636},{53.65,
           -20.3636}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(zoneC2_1.TC2, CloisonChambre1Cuisine4.T_ext) annotation (Line(
+  connect(zoneC2_1.T_int_room2, CloisonChambre1Cuisine4.T_ext) annotation (Line(
       points={{53.65,-20.3636},{53.65,-28.1818},{57.925,-28.1818},{57.925,
           -36.775}},
       color={191,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine4.T_int, zoneSDB.TSDB) annotation (Line(
+  connect(CloisonChambre1Cuisine4.T_int, zoneSDB.T_int_bathroom) annotation (
+      Line(
       points={{57.925,-41.725},{57.925,-51.8182},{48.11,-51.8182}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine5.T_ext, zoneC2_1.TC2) annotation (Line(
+  connect(CloisonChambre1Cuisine5.T_ext, zoneC2_1.T_int_room2) annotation (Line(
       points={{47.925,-36.775},{47.925,-34},{53.65,-34},{53.65,-20.3636}},
       color={191,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine5.T_int, zoneEntree.TEntree) annotation (Line(
+  connect(CloisonChambre1Cuisine5.T_int, zoneEntree.T_int_entrance) annotation (
+     Line(
       points={{47.925,-41.725},{47.925,-43.5636},{-10.27,-43.5636}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine6.T_int, zoneSDB.TSDB) annotation (Line(
+  connect(CloisonChambre1Cuisine6.T_int, zoneSDB.T_int_bathroom) annotation (
+      Line(
       points={{33.225,-46.075},{36,-46.075},{36,-51.8182},{48.11,-51.8182}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(zoneEntree.TEntree, CloisonChambre1Cuisine6.T_ext) annotation (Line(
+  connect(zoneEntree.T_int_entrance, CloisonChambre1Cuisine6.T_ext) annotation (
+     Line(
       points={{-10.27,-43.5636},{16,-43.5636},{16,-46.075},{28.275,-46.075}},
       color={191,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine7.T_ext, zoneCuisine.TCuisine) annotation (Line(
+  connect(CloisonChambre1Cuisine7.T_ext, zoneCuisine.T_int_kitchen) annotation (
+     Line(
       points={{-14.075,-30.775},{-14.075,-25.3875},{-12.35,-25.3875},{-12.35,
           -18.7273}},
       color={191,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine7.T_int, zoneEntree.TEntree) annotation (Line(
+  connect(CloisonChambre1Cuisine7.T_int, zoneEntree.T_int_entrance) annotation (
+     Line(
       points={{-14.075,-35.725},{-14.075,-39.8625},{-10.27,-39.8625},{-10.27,
           -43.5636}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine8.T_ext, zoneC1_1.TC1) annotation (Line(
+  connect(CloisonChambre1Cuisine8.T_ext, zoneC1_1.T_int_room1) annotation (Line(
       points={{15.925,-32.775},{15.925,-20.6364},{19.83,-20.6364}},
       color={191,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Cuisine8.T_int, zoneEntree.TEntree) annotation (Line(
+  connect(CloisonChambre1Cuisine8.T_int, zoneEntree.T_int_entrance) annotation (
+     Line(
       points={{15.925,-37.725},{-10.27,-37.725},{-10.27,-43.5636}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
 
-  connect(Tsejour, zoneSejour.TSejour) annotation (Line(
+  connect(T_int_living, zoneSejour.T_int_living) annotation (Line(
       points={{-75,-105},{-75,-94},{-49.21,-94},{-49.21,-30.8}},
       color={191,0,0},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-  connect(Tcuisine, zoneCuisine.TCuisine) annotation (Line(
+  connect(T_int_kitchen, zoneCuisine.T_int_kitchen) annotation (Line(
       points={{-55,-105},{-55,-94},{-12.35,-94},{-12.35,-18.7273}},
       color={191,0,0},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-  connect(Tchambre1, zoneC1_1.TC1) annotation (Line(
+  connect(T_int_room1, zoneC1_1.T_int_room1) annotation (Line(
       points={{-35,-105},{-35,-94},{19.83,-94},{19.83,-20.6364}},
       color={191,0,0},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-  connect(Tchambre2, zoneC2_1.TC2) annotation (Line(
+  connect(T_int_room2, zoneC2_1.T_int_room2) annotation (Line(
       points={{-15,-105},{-15,-94},{53.65,-94},{53.65,-20.3636}},
       color={191,0,0},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-  connect(TsalleDeBain, zoneSDB.TSDB) annotation (Line(
+  connect(T_int_bathroom, zoneSDB.T_int_bathroom) annotation (Line(
       points={{5,-105},{5,-94},{48.11,-94},{48.11,-51.8182}},
       color={191,0,0},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-  connect(Tentree, zoneEntree.TEntree) annotation (Line(
+  connect(T_int_entrance, zoneEntree.T_int_entrance) annotation (Line(
       points={{25,-105},{25,-94},{-10.27,-94},{-10.27,-43.5636}},
       color={191,0,0},
       smooth=Smooth.None,
@@ -1491,7 +1517,7 @@ graphics={
           lineColor={0,0,0},
           textString="Matisse Multizone")}),
            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics),
+            -100},{100,100}})),
     Documentation(info="<html>
 <p><i><b>Matisse Multizone collective housing</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -1507,7 +1533,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

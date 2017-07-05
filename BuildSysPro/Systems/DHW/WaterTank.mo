@@ -11,11 +11,11 @@ model WaterTank
   parameter Modelica.SIunits.Volume Volume(displayUnit="l")=0.3 "Tank capacity"  annotation (Dialog(group="Thermodynamic tank characteristics"));
   parameter Modelica.SIunits.Length Hauteur=1.8 "Tank height"  annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
   parameter Modelica.SIunits.Power Pmax=1500 "Electrical resistance power"   annotation (Dialog(group="Thermodynamic tank characteristics"));
-  parameter Modelica.SIunits.Temperature Tef=283.15 "Cold water temperature"     annotation (Dialog(group="Thermodynamic tank characteristics"));
-  parameter Modelica.SIunits.Temperature Tcons=337.15 "Setpoint temperature"  annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Modelica.SIunits.Temperature T_cold=283.15 "Cold water temperature"     annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Modelica.SIunits.Temperature T_sp=337.15 "Setpoint temperature"  annotation (Dialog(group="Thermodynamic tank characteristics"));
 
   parameter Modelica.SIunits.TemperatureDifference BP=3
-    "Hysteresis on both sides of Tcons"                                                     annotation (Dialog(tab="Tank parameters"));
+    "Hysteresis on both sides of T_sp"                                                     annotation (Dialog(tab="Tank parameters"));
 
   parameter Modelica.SIunits.ThermalConductivity lambda=0.62
     "Water conductivity"                                                          annotation (Dialog(tab="Tank parameters"));
@@ -35,7 +35,7 @@ model WaterTank
   Real heure=mod(time/3600,24);
 
 protected
-  Modelica.SIunits.Temperature T[nc](start=fill(Tcons,nc));
+  Modelica.SIunits.Temperature T[nc](start=fill(T_sp,nc));
   Modelica.SIunits.Power puis[nc](start=fill(0,nc));
   Modelica.SIunits.Power perte[nc](start=fill(0,nc));
    Modelica.SIunits.Energy Conso;
@@ -64,9 +64,9 @@ public
       Placement(transformation(extent={{-120,-90},{-80,-50}}),
         iconTransformation(extent={{-100,-70},{-80,-50}})));
 public
-  Modelica.Blocks.Interfaces.RealOutput P "Power"
-    annotation (Placement(transformation(extent={{80,0},{100,20}}),
-        iconTransformation(extent={{80,0},{100,20}})));
+  Modelica.Blocks.Interfaces.RealOutput Pelec "Power" annotation (Placement(
+        transformation(extent={{80,0},{100,20}}), iconTransformation(extent={{80,
+            0},{100,20}})));
   Modelica.Blocks.Interfaces.RealOutput Perte "Tank losses"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=90,
@@ -75,24 +75,24 @@ public
         rotation=0,
         origin={90,-50})));
 public
-  Modelica.Blocks.Interfaces.RealInput Tamb(start=293.15)
-    "Ambient temperature (K)"                                          annotation (
-      Placement(transformation(extent={{-20,-20},{20,20}},
+  Modelica.Blocks.Interfaces.RealInput T_int(start=293.15)
+    "Ambient temperature (K)" annotation (Placement(transformation(
+        extent={{-20,-20},{20,20}},
         rotation=270,
-        origin={-30,100}),
-        iconTransformation(extent={{-10,-10},{10,10}},
+        origin={-30,100}), iconTransformation(
+        extent={{-10,-10},{10,10}},
         rotation=270,
         origin={0,110})));
 public
   Modelica.Blocks.Interfaces.RealInput OnOff(start=1) "OnOff"           annotation (
       Placement(transformation(extent={{-120,30},{-80,70}}),
         iconTransformation(extent={{-100,50},{-80,70}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a SolaireThermique
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_solar
     annotation (Placement(transformation(extent={{-100,-40},{-80,-20}})));
 
-  Modelica.Blocks.Interfaces.RealOutput C "Consumption"
-    annotation (Placement(transformation(extent={{80,-42},{100,-22}}),
-        iconTransformation(extent={{80,24},{100,44}})));
+  Modelica.Blocks.Interfaces.RealOutput Cons "Consumption" annotation (
+      Placement(transformation(extent={{80,-42},{100,-22}}), iconTransformation(
+          extent={{80,24},{100,44}})));
 equation
   delta_t=if debit>0 then Hauteur/(debit*coef36/sbase) else 0;
   when initial() then
@@ -110,52 +110,52 @@ equation
   end when;
 
 // Regulation
-  Hyst=if T[ncInj]<=Tcons-BP then 1 else (if T[ncInj]>= Tcons+BP then 0 else pre(Hyst));
-  OnOffSol=if T[ncSol]<=Tcons-0.2 then 1 else (if T[ncSol+1]>= Tcons+BP then 0 else pre(OnOffSol));
+  Hyst=if T[ncInj]<=T_sp-BP then 1 else (if T[ncInj]>= T_sp+BP then 0 else pre(Hyst));
+  OnOffSol=if T[ncSol]<=T_sp-0.2 then 1 else (if T[ncSol+1]>= T_sp+BP then 0 else pre(OnOffSol));
 
 // Distribution of powers transferred to the water per layer
   for i in 1:nc loop
     if i==ncInj then
       puis[i]=OnOffPmax*Hyst;
     elseif i==ncSol then
-      puis[i]=OnOffSol*max(0,-SolaireThermique.Q_flow);
+      puis[i]=OnOffSol*max(0, -T_solar.Q_flow);
     else
       puis[i]=0;
     end if;
   end for;
 
 // Heat balance on the layer 1 after setting exchanges with the room (loss) and with upper and lower layers (conv)
-  perte[1]=U*Slat[2]*(T[1]-Tamb);
+  perte[1]=U*Slat[2]*(T[1] - T_int);
   if nc>=2 then
     conv[1]=(if T[1]>T[2] then ku else kd)*(T[2]-T[1]);
   else
     conv[1]=0;
   end if;
-  rovcp*der(T[1]) = puis[1] - perte[1] + MCp*(Tef-T[1]) + conv[1] + (if nc==1 then 0 else cond*(T[2]-T[1]));
+  rovcp*der(T[1]) = puis[1] - perte[1] + MCp*(T_cold-T[1]) + conv[1] + (if nc==1 then 0 else cond*(T[2]-T[1]));
 
   if nc>1 then
 // Heat balance on intermediate layers
   for i in 2:nc-1 loop
-    perte[i]=U*Slat[1]*(T[i]-Tamb);
+    perte[i]=U*Slat[1]*(T[i] - T_int);
     conv[i]=(if T[i]>T[i+1] then ku else kd)*(T[i+1]-T[i]);
     rovcp*der(T[i]) = puis[i] - perte[i] + MCp *(T[i-1]-T[i]) + conv[i]-conv[i-1] + cond*(T[i-1]+T[i+1]-2*T[i]);
   end for;
 
 // Heat balance on the upper layer
-  perte[nc]=U*Slat[2]*(T[nc]-Tamb);
+  perte[nc]=U*Slat[2]*(T[nc] - T_int);
   conv[nc]=0;//*(if T[nc-1]>T[nc] then ku else kd)*(T[nc-1]-T[nc]);
   rovcp*der(T[nc]) = puis[nc] - perte[nc] + MCp*(T[nc-1]-T[nc]) + 0 - conv[nc-1] + cond*(T[nc-1]-T[nc]);
 
   end if;
 
 // Heat transfer fluid of the solar sensor exits the tank with the temperature of the layer ncSol
-  SolaireThermique.T=T[ncSol];
+  T_solar.T = T[ncSol];
 
 // Analysis data
   Perte=sum(perte);
-  P=puis[ncInj];
-  der(Conso)=P;
-  C = Conso;
+  Pelec = puis[ncInj];
+  der(Conso)=Pelec;
+  Cons = Conso;
   annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={
         Rectangle(
@@ -219,7 +219,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

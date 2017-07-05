@@ -9,22 +9,26 @@ model TimeIntegral
   Modelica.Blocks.Interfaces.RealInput u
     annotation (Placement(transformation(extent={{-138,-20},{-98,20}}),
         iconTransformation(extent={{-140,-20},{-100,20}})));
-  Modelica.Blocks.Interfaces.RealOutput integrale
-    annotation (Placement(transformation(extent={{100,-18},{140,22}}),
-        iconTransformation(extent={{100,-20},{140,20}})));
+  Modelica.Blocks.Interfaces.RealOutput Integral annotation (Placement(
+        transformation(extent={{100,40},{140,80}}), iconTransformation(extent={
+            {100,40},{140,80}})));
 
+  Modelica.Blocks.Interfaces.RealOutput TotalIntegral annotation (Placement(
+        transformation(extent={{100,-80},{140,-40}}), iconTransformation(extent=
+           {{100,-80},{140,-40}})));
 initial equation
   It=0;
 
 equation
 It=It0+der(It)-u/Dt;
+TotalIntegral=It;
 
 algorithm
     when sample(0,Dt) then
       preIt:=It;
     end when;
 
-    integrale := It - preIt;
+  Integral := It - preIt;
 
     It0:=It;
 
@@ -34,7 +38,7 @@ algorithm
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>Use the output <i>Integral</i> only when the box <i>\"Store variables at events\"</i> is checked in the simulation setup. Otherwise, use a difference on the variable <i>It</i> (total integrale).</p>
+<p>Use the output <i>Integral</i> only when the box <i>\"Store variables at events\"</i> is checked in the simulation setup. Otherwise, use the output <i>TotalIntegral</i>.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>
@@ -42,11 +46,12 @@ algorithm
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p>12/2014 Anne-Sophie Coince : Correction du calcul de l'intégrale pour que le pas de temps renseigné (Dt) soit bien pris en compte</p>
+<p>Anne-Sophie Coince 12/2014 : correction du calcul de l'intégrale pour que le pas de temps renseigné (Dt) soit bien pris en compte</p>
+<p>Benoît Charrier 05/2017 : adding <code>TotalIntegral</code> as output to get the total value of integrated signal</p>
 </html>"),
    Icon(graphics={
         Rectangle(

@@ -14,43 +14,60 @@ protected
 
    // Choice of renovated elements
 public
-      parameter Boolean renoPlafond=false
-    "Ceiling renovation according to RT Existing"                                       annotation(Dialog(group="Building renovation according to RT Existing"),choices(radioButtons=true));
-      parameter Boolean renoPlancher=false
-    "Floor renovation according to RT Existing"                                        annotation(Dialog(group="Building renovation according to RT Existing"),choices(radioButtons=true));
-      parameter Boolean renoFenetre=false
-    "Windows renovation according to RT Existing"                                       annotation(Dialog(group="Building renovation according to RT Existing"),choices(radioButtons=true));
-      parameter Boolean renoMurExt=false
-    "Exterior walls renovation according to RT Existing"                                      annotation(Dialog(group="Building renovation according to RT Existing"),choices(radioButtons=true));
+  parameter Boolean renoPlafond=false
+    "Ceiling renovation according to RT Existing"
+     annotation(Dialog(group="Building renovation according to RT Existing"),
+     choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean renoPlancher=false
+    "Floor renovation according to RT Existing"
+    annotation(Dialog(group="Building renovation according to RT Existing"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean renoFenetre=false
+    "Windows renovation according to RT Existing"
+    annotation(Dialog(group="Building renovation according to RT Existing"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean renoMurExt=false
+    "Exterior walls renovation according to RT Existing"
+    annotation(Dialog(group="Building renovation according to RT Existing"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
 
   // Orientation of the house
-parameter Real beta=0
+  parameter Real beta=0
     "Correction of azimuth for vertical walls such as azimuth=beta+azimuth, {beta=0 : N=180,S=0,E=-90,O=90}";
 
   // Thermal flows
-parameter Boolean GLOEXT=false
-    "Integration of LW radiation (infrared) toward the environment and the sky"                         annotation(Dialog(tab="Thermal flows"));
-parameter Boolean CLOintPlancher=true
-    "True : solar fluxes are absorbed by the floor; False : solar fluxes are absorbed by all the walls and partition walls in proportion of surfaces"
-                                                                                                        annotation(Dialog(tab="Thermal flows"));
-parameter Boolean QVin=false
-    "True : controlled air change rate; False : constant air change rate"                       annotation(Dialog(tab="Thermal flows"));
+  parameter Boolean GLOEXT=false
+    "Integration of LW radiation (infrared) toward the environment and the sky"
+    annotation(Dialog(tab="Thermal flows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean CLOintPlancher=true
+    "Floor : solar fluxes are absorbed only by the floor; All walls : solar fluxes are absorbed by all the walls and partition walls in proportion of surfaces"
+    annotation(Dialog(tab="Thermal flows"),
+    choices(choice=true "Floor", choice=false "All walls", radioButtons=true));
+  parameter Boolean QVin=false
+    "Input : controlled air change rate; Constant : constant air change rate"
+    annotation(Dialog(tab="Thermal flows"),
+    choices(choice=true "Input", choice=false "Constant", radioButtons=true));
 
   // Walls
-parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
+  parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
     annotation(Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Type of initialization for walls"
     annotation (Dialog(tab="Walls"));
 
   // Windows
-parameter Boolean useVolet=false "True if shutter, false if not" annotation(Dialog(tab="Windows"));
-parameter Boolean useOuverture=false "True if controlled opening, false if not"
-                                               annotation(Dialog(tab="Windows"));
-parameter Boolean useReduction=false
-    "True if solar reduction factors (masking, frame), false if not"
-    annotation (Dialog(tab="Windows"));
-parameter Integer TypeFenetrePF=1 "Choice of type of window"
+  parameter Boolean useVolet=false "Use of window shutters"
+    annotation(Dialog(tab="Windows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean useOuverture=false "Control of windows opening"
+    annotation(Dialog(tab="Windows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean useReduction=false
+    "Implementation of solar reduction factors (masking, frame)"
+    annotation (Dialog(tab="Windows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Integer TypeFenetrePF=1 "Choice of type of window"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"),
     choices( choice= 1 "I do not know - no frame",
              choice= 2 "Wood window sashes",
@@ -63,33 +80,39 @@ parameter Integer TypeFenetrePF=1 "Choice of type of window"
              choice= 9 "Sliding French window with wood bedrock",
              choice= 10 "Sliding French window without wood bedrock",
              choice= 11 "Sliding French window without metal bedrock"));
-parameter Real voilage=0.95
+  parameter Real voilage=0.95
     "Presence of net curtains : = 0.95 if yes and = 1 if not"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
-parameter Real position=0.90
+  parameter Real position=0.90
     "Glazing position: = 0.9 if inner and = 1 if outer"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
-parameter Real rideaux=0.85
+  parameter Real rideaux=0.85
     "Presence of curtains: = 0.85 if yes and = 1 if not"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
-parameter Real ombrages=0.85
+  parameter Real ombrages=0.85
     "Obstacles shading (vegetation, neighborhood): = 0.85 if yes et = 1 if not"
     annotation (Dialog(tab="Windows",enable=useReduction,group="Parameters"));
-parameter Real r1=paraMaisonRT.transmissionMenuiserieFenetres
+  parameter Real r1=paraMaisonRT.transmissionMenuiserieFenetres
     "Reduction factor for direct radiation if useReduction = false"
-    annotation (Dialog(tab="Windows",enable=not useReduction,group="Reduction factor if useReduction = false"));
-parameter Real r2=paraMaisonRT.transmissionMenuiserieFenetres
+    annotation (Dialog(tab="Windows",group="Reduction factor if useReduction = false",
+    enable=not useReduction));
+  parameter Real r2=paraMaisonRT.transmissionMenuiserieFenetres
     "Reduction factor for diffuse radiation if useReduction = false"
-    annotation (Dialog(tab="Windows",enable=not useReduction,group="Reduction factor if useReduction = false"));
+    annotation (Dialog(tab="Windows",group="Reduction factor if useReduction = false",
+    enable=not useReduction));
 
   // French windows
-parameter Boolean useVoletPF=false "True if shutter, false if not" annotation(Dialog(tab="French windows"));
-parameter Boolean useOuverturePF=false
-    "True if controlled opening, false if not" annotation(Dialog(tab="French windows"));
-parameter Boolean useReduction1=false
-    "True if solar reduction factors (masking, frame), false if not"
-    annotation (Dialog(tab="French windows"));
-parameter Integer TypeFenetrePF1=1 "Choice of type of French window"
+  parameter Boolean useVoletPF=false "Use of window shutters"
+    annotation(Dialog(tab="French windows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean useOuverturePF=false "Control of windows opening"
+    annotation(Dialog(tab="French windows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Boolean useReduction1=false
+    "Implementation of solar reduction factors (masking, frame)"
+    annotation (Dialog(tab="French windows"),
+    choices(choice=true "Yes", choice=false "No", radioButtons=true));
+  parameter Integer TypeFenetrePF1=1 "Choice of type of French window"
     annotation (Dialog(tab="French windows",enable=useReduction1,group="Parameters"),
     choices( choice= 1 "I do not know - no frame",
              choice= 2 "Wood window sashes",
@@ -102,24 +125,26 @@ parameter Integer TypeFenetrePF1=1 "Choice of type of French window"
              choice= 9 "Sliding French window with wood bedrock",
              choice= 10 "Sliding French window without wood bedrock",
              choice= 11 "Sliding French window without metal bedrock"));
-parameter Real voilage1=0.95
+  parameter Real voilage1=0.95
     "Presence of net curtains : = 0.95 if yes and = 1 if not"
     annotation (Dialog(tab="French windows",enable=useReduction1,group="Parameters"));
-parameter Real position1=0.90
+  parameter Real position1=0.90
     "Glazing position: = 0.9 if inner and = 1 if outer"
     annotation (Dialog(tab="French windows",enable=useReduction1,group="Parameters"));
-parameter Real rideaux1=0.85
+  parameter Real rideaux1=0.85
     "Presence of curtains: = 0.85 if yes and = 1 if not"
     annotation (Dialog(tab="French windows",enable=useReduction1,group="Parameters"));
-parameter Real ombrages1=0.85
+  parameter Real ombrages1=0.85
     "Obstacles shading (vegetation, neighborhood): = 0.85 if yes et = 1 if not"
     annotation (Dialog(tab="French windows",enable=useReduction1,group="Parameters"));
-parameter Real r11=paraMaisonRT.transmissionMenuiseriePortesFenetres
+  parameter Real r11=paraMaisonRT.transmissionMenuiseriePortesFenetres
     "Reduction factor for direct radiation if useReduction = false"
-    annotation (Dialog(tab="French windows",enable=not useReduction1,group="Reduction factor if useReduction = false"));
-parameter Real r21=paraMaisonRT.transmissionMenuiseriePortesFenetres
+    annotation (Dialog(tab="French windows",group="Reduction factor if useReduction = false",
+    enable=not useReduction1));
+  parameter Real r21=paraMaisonRT.transmissionMenuiseriePortesFenetres
     "Reduction factor for diffuse radiation if useReduction = false"
-    annotation (Dialog(tab="French windows",enable=not useReduction1,group="Reduction factor if useReduction = false"));
+    annotation (Dialog(tab="French windows",group="Reduction factor if useReduction = false",
+    enable=not useReduction1));
 
   // Ponts thermiques
   parameter Modelica.SIunits.ThermalConductance G_ponts=
@@ -434,7 +459,7 @@ protected
 
 // Components for LW/SW radiations
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tciel if                     GLOEXT==true
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if                     GLOEXT==true
     annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{20,100},{40,120}})));
   BuildSysPro.BoundaryConditions.Radiation.PintRadDistrib PintdistriRad(
@@ -470,10 +495,10 @@ public
   BuildSysPro.Building.AirFlow.HeatTransfer.AirNode noeudAir(V=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.VolumeMozart,
       Tair=293.15)
     annotation (Placement(transformation(extent={{70,16},{90,36}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Text annotation (
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext annotation (
       Placement(transformation(extent={{-100,30},{-80,50}}), iconTransformation(
           extent={{-120,0},{-100,20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tair annotation (
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int annotation (
       Placement(transformation(extent={{80,-29},{100,-9}}), iconTransformation(
           extent={{37,-40},{57,-20}})));
   BuildSysPro.Building.AirFlow.HeatTransfer.AirRenewal renouvellementAir(
@@ -574,46 +599,46 @@ else
   end if;
 
   if GLOEXT==true then
-    connect(Tciel, VitrageEst.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,42.7},{-36.3,42.7}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(Tciel, VitrageNord.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,22.7},{-36.3,22.7}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(Tciel, VitrageOuest.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,2.7},{-35.3,2.7}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(Tciel, VitrageSudSF.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,-17.3},{-35.3,-17.3}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(Tciel, VitrageSudAF.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,-37.3},{-35.3,-37.3}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(Tciel, MurEst.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,42.7},{-6.3,42.7}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(Tciel, MurNord.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,22.7},{-6.3,22.7}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(Tciel, MurOuest.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,2.7},{-6.3,2.7}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(Tciel, MurSud.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,-17.3},{-6.3,-17.3}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(Tciel, Porte.T_ciel) annotation (Line(
-      points={{-90,10},{-64,10},{-64,61.75},{-6.3,61.75}},
-      color={191,0,0},
-      smooth=Smooth.None));
+    connect(T_sky, VitrageEst.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,42.7},{-36.3,42.7}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, VitrageNord.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,22.7},{-36.3,22.7}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, VitrageOuest.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,2.7},{-35.3,2.7}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, VitrageSudSF.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,-17.3},{-35.3,-17.3}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, VitrageSudAF.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,-37.3},{-35.3,-37.3}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, MurEst.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,42.7},{-6.3,42.7}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, MurNord.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,22.7},{-6.3,22.7}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, MurOuest.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,2.7},{-6.3,2.7}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, MurSud.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,-17.3},{-6.3,-17.3}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, Porte.T_sky) annotation (Line(
+        points={{-90,10},{-64,10},{-64,61.75},{-6.3,61.75}},
+        color={191,0,0},
+        smooth=Smooth.None));
   end if;
 
  connect(fLUXzone.G, G) annotation (Line(
@@ -689,43 +714,43 @@ if useOuverturePF then
         pattern=LinePattern.Dash));
 end if;
 
-    connect(fLUXzone.FLUXNord, MurNord.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, MurNord.FluxIncExt) annotation (Line(
       points={{-65,70.2},{-44,70.2},{-44,32},{-10,32},{-10,35.3},{-2.1,35.3}},
       color={255,192,1},
       smooth=Smooth.None));
-    connect(fLUXzone.FLUXSud, MurSud.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtSouth, MurSud.FluxIncExt) annotation (Line(
       points={{-65,66.4},{-44,66.4},{-44,-8},{-10,-8},{-10,-4.7},{-2.1,-4.7}},
       color={255,192,1},
       smooth=Smooth.None));
-    connect(fLUXzone.FLUXEst, MurEst.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtEast, MurEst.FluxIncExt) annotation (Line(
       points={{-65,62.4},{-44,62.4},{-44,52},{-10,52},{-10,55.3},{-2.1,55.3}},
       color={255,192,1},
       smooth=Smooth.None));
-    connect(fLUXzone.FLUXouest, MurOuest.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtWest, MurOuest.FluxIncExt) annotation (Line(
       points={{-65,58.4},{-44,58.4},{-44,12},{-10,12},{-10,15.3},{-2.1,15.3}},
       color={255,192,1},
       smooth=Smooth.None));
-    connect(fLUXzone.FLUXSud, Porte.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtSouth, Porte.FluxIncExt) annotation (Line(
       points={{-65,66.4},{-44,66.4},{-44,75.25},{-2.1,75.25}},
       color={255,192,1},
       smooth=Smooth.None));
-    connect(Text, MurEst.T_ext) annotation (Line(
+  connect(T_ext, MurEst.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,46.9},{-6.3,46.9}},
       color={191,0,0},
       smooth=Smooth.None));
-    connect(Text, MurNord.T_ext) annotation (Line(
+  connect(T_ext, MurNord.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,26.9},{-6.3,26.9}},
       color={191,0,0},
       smooth=Smooth.None));
-    connect(Text, MurOuest.T_ext) annotation (Line(
+  connect(T_ext, MurOuest.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,6.9},{-6.3,6.9}},
       color={191,0,0},
       smooth=Smooth.None));
-    connect(Text, MurSud.T_ext) annotation (Line(
+  connect(T_ext, MurSud.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,-13.1},{-6.3,-13.1}},
       color={191,0,0},
       smooth=Smooth.None));
-    connect(Text, Porte.T_ext) annotation (Line(
+  connect(T_ext, Porte.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,66.25},{-6.3,66.25}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -789,55 +814,55 @@ end if;
       points={{53.1,-85.7},{53.1,-60},{40,-60},{40,40},{80,40},{80,22}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXNord, VitrageNord.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, VitrageNord.FluxIncExt) annotation (Line(
       points={{-65,70.2},{-44,70.2},{-44,32.5},{-32.1,32.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXSud, VitrageSudSF.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtSouth, VitrageSudSF.FluxIncExt) annotation (Line(
       points={{-65,66.4},{-44,66.4},{-44,-7.5},{-31.1,-7.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXEst, VitrageEst.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtEast, VitrageEst.FluxIncExt) annotation (Line(
       points={{-65,62.4},{-44,62.4},{-44,52.5},{-32.1,52.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXouest, VitrageOuest.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtWest, VitrageOuest.FluxIncExt) annotation (Line(
       points={{-65,58.4},{-44,58.4},{-44,12.5},{-31.1,12.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FLUXSud, VitrageSudAF.FLUX) annotation (Line(
+  connect(fLUXzone.FluxIncExtSouth, VitrageSudAF.FluxIncExt) annotation (Line(
       points={{-65,66.4},{-44,66.4},{-44,-27.5},{-31.1,-27.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(Text, VitrageEst.T_ext) annotation (Line(
+  connect(T_ext, VitrageEst.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,46.9},{-36.3,46.9}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, VitrageNord.T_ext) annotation (Line(
+  connect(T_ext, VitrageNord.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,26.9},{-36.3,26.9}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, VitrageOuest.T_ext) annotation (Line(
+  connect(T_ext, VitrageOuest.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,6.9},{-35.3,6.9}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, VitrageSudSF.T_ext) annotation (Line(
+  connect(T_ext, VitrageSudSF.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,-13.1},{-35.3,-13.1}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, VitrageSudAF.T_ext) annotation (Line(
+  connect(T_ext, VitrageSudAF.T_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,-33.1},{-35.3,-33.1}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, TauPlancher.port_ext) annotation (Line(
+  connect(T_ext, TauPlancher.port_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-87},{-57,-87}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, TauLNC.port_ext) annotation (Line(
+  connect(T_ext, TauLNC.port_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,-47},{-57,-47}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, TauPlafond.port_ext) annotation (Line(
+  connect(T_ext, TauPlafond.port_ext) annotation (Line(
       points={{-90,40},{-52,40},{-52,80},{-64,80},{-64,93},{-57,93}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -861,18 +886,20 @@ end if;
       points={{-22.7,-27.5},{-17.36,-27.5},{-17.36,-60}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(Text, renouvellementAir.port_a) annotation (Line(
+  connect(T_ext, renouvellementAir.port_a) annotation (Line(
       points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-102},{71,-102},{71,-58.9}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(noeudAir.port_a, Tair) annotation (Line(
+
+  connect(noeudAir.port_a, T_int) annotation (Line(
       points={{80,22},{80,-19},{90,-19}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Text, PontsThermiques.port_a) annotation (Line(
+  connect(T_ext, PontsThermiques.port_a) annotation (Line(
       points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-72.5},{-57.25,-72.5}},
       color={191,0,0},
       smooth=Smooth.None));
+
   connect(renouvellementAir.port_b, noeudAir.port_a) annotation (Line(
       points={{71,-39.1},{71,-30},{40,-30},{40,40},{80,40},{80,22}},
       color={255,0,0},
@@ -1055,7 +1082,7 @@ graphics={
           smooth=Smooth.None,
           lineThickness=0.5)}),
            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics),
+            -100},{100,100}})),
     Documentation(info="<html>
 <p><i><b>Mozart Monozone individual housing</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -1072,7 +1099,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

@@ -93,8 +93,7 @@ equation
   der(CONSO)=pACch.Qelec;
   der(ChaleurFournie)=pACch.Qfour;
 
-  connect(meteofile.Tseche, temperatureSensor1.port)
-                                                    annotation (Line(
+  connect(meteofile.T_dry, temperatureSensor1.port) annotation (Line(
       points={{-144,76},{-120,76},{-120,-20},{-76,-20}},
       color={255,0,0},
       smooth=Smooth.None));
@@ -103,31 +102,31 @@ equation
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.DashDot));
-  connect(cas1aAvecFlux1.Tairint, temperatureSensor.port) annotation (Line(
+  connect(cas1aAvecFlux1.T_int, temperatureSensor.port) annotation (Line(
       points={{-8,59.2},{18,59.2},{18,60},{20,60}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(meteofile.G, cas1aAvecFlux1.Ensoleillement) annotation (Line(
+  connect(meteofile.G, cas1aAvecFlux1.G) annotation (Line(
       points={{-144,66},{-118.4,66},{-118.4,100},{-72,100}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(meteofile.Tseche, cas1aAvecFlux1.Text) annotation (Line(
+  connect(meteofile.T_dry, cas1aAvecFlux1.T_ext) annotation (Line(
       points={{-144,76},{-120,76},{-120,116},{-72,116}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(prescribedHeatFlow.port, cas1aAvecFlux1.Tairint) annotation (Line(
+  connect(prescribedHeatFlow.port, cas1aAvecFlux1.T_int) annotation (Line(
       points={{159,20.6},{20.5,20.6},{20.5,59.2},{-8,59.2}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(cas1aAvecFlux1.Tairint, temperatureSensor2.port) annotation (Line(
+  connect(cas1aAvecFlux1.T_int, temperatureSensor2.port) annotation (Line(
       points={{-8,59.2},{-8,60},{20,60},{20,-56},{46,-56}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(temperatureSensor2.T, pACch.Tint) annotation (Line(
+  connect(temperatureSensor2.T, pACch.T_int) annotation (Line(
       points={{66,-56},{90,-56}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(temperatureSensor1.T, pACch.Text) annotation (Line(
+  connect(temperatureSensor1.T, pACch.T_ext) annotation (Line(
       points={{-56,-20},{90,-20}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -143,7 +142,7 @@ equation
       points={{103.6,128},{120,128},{120,-11}},
       color={255,0,255},
       smooth=Smooth.None));
-  connect(Table1.y[1], zoneMorte.Consigne) annotation (Line(
+  connect(Table1.y[1],zoneMorte.Setpoint)  annotation (Line(
       points={{-109,140},{64.4,140}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -170,7 +169,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

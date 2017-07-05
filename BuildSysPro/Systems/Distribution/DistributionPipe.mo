@@ -26,35 +26,37 @@ protected
 SI.Power Qper; //Lost heat
 
 public
-  Modelica.Blocks.Interfaces.RealOutput Sortie[2]
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]
     "Vector containing 1- the output fluid temperature (K), 2- the output fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{80,-10},{120,30}}),
         iconTransformation(extent={{80,-20},{100,0}})));
-  Modelica.Blocks.Interfaces.RealInput Entree[2]
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]
     "Vector containing 1- the input fluid temperature (K), 2- the input fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-120,-10},{-80,30}}),
         iconTransformation(extent={{-100,-20},{-80,0}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Zone
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int
     "Heatport to connect to the thermal zone" annotation (Placement(
-        transformation(extent={{-10,60},{10,80}}), iconTransformation(extent={{
-            -10,60},{10,80}})));
+        transformation(extent={{-10,60},{10,80}}), iconTransformation(extent={{-10,
+            60},{10,80}})));
 // -----------------------------------------------------------------------------------
 equation
 
-// Conservation of flow : Entree[2]=Sortie[2]
-  Debit=Entree[2];
+// Conservation of flow : WaterIn[2]=WaterOut[2]
+  Debit=WaterIn[2];
 
 // Calculation of the distribution pipe losses
   if (L>0) then// CASE : KNOWN PIPE
 
   // Calculation of the output temperature
-    if Entree[1]>Zone.T then
-      Sortie[1]= max(Zone.T,Entree[1] - (Entree[1]-Zone.T)*(1-exp(-U*L/(Debit*CpLiq))));
+    if WaterIn[1] > T_int.T then
+      WaterOut[1] = max(T_int.T, WaterIn[1] - (WaterIn[1] - T_int.T)*(1 - exp(-
+        U*L/(Debit*CpLiq))));
     else
-      Sortie[1]= min(Zone.T,Entree[1] - (Entree[1]-Zone.T)*(1-exp(-U*L/(Debit*CpLiq))));
+      WaterOut[1] = min(T_int.T, WaterIn[1] - (WaterIn[1] - T_int.T)*(1 - exp(-
+        U*L/(Debit*CpLiq))));
     end if;
   // Calculation of losses
-    Qper = Debit*CpLiq*(Entree[1] - Sortie[1]);
+    Qper =Debit*CpLiq*(WaterIn[1] - WaterOut[1]);
 
   else // CASE : DEFAULT VALUES
   // Calculation of losses
@@ -62,17 +64,17 @@ equation
 
   // Calculation of the output temperature
     if (Debit>1e-4) then
-        Sortie[1] = Entree[1] - Qper/(Debit*CpLiq);
+      WaterOut[1] = WaterIn[1] - Qper/(Debit*CpLiq);
     else
-        Sortie[1] = Zone.T;
+      WaterOut[1] = T_int.T;
     end if;
 
 end if;
 
 // Calculation of the recoverable heat part
-Zone.Q_flow = -Qper*(1 - Rpnre);
+  T_int.Q_flow = -Qper*(1 - Rpnre);
 
-  connect(Entree[2], Sortie[2]) annotation (Line(
+  connect(WaterIn[2], WaterOut[2]) annotation (Line(
       points={{-100,20},{100,20}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -92,7 +94,7 @@ Zone.Q_flow = -Qper*(1 - Rpnre);
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p></html>",
     revisions="<html>

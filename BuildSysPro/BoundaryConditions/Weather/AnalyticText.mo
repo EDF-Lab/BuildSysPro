@@ -1,9 +1,9 @@
 ﻿within BuildSysPro.BoundaryConditions.Weather;
 model AnalyticText "External temperature scenario"
 
-  Modelica.Blocks.Interfaces.RealOutput Text "Analytic external temperature" annotation (Placement(
-        transformation(extent={{0,40},{20,60}}), iconTransformation(extent={{0,
-            40},{20,60}})));
+  Modelica.Blocks.Interfaces.RealOutput T_ext "Analytic external temperature"
+    annotation (Placement(transformation(extent={{0,40},{20,60}}),
+        iconTransformation(extent={{0,40},{20,60}})));
 
 parameter Real Htmax=14 "Hour of maximum temperature [h]";
 parameter Real midi=12 "Hour of solar noon [h]";
@@ -17,7 +17,8 @@ parameter Real t0 = 0.5*DureeJour "Time of sunset, with the convention on t";
 
 equation
 t=  time/3600 - midi;
-Text=  Tmax + (Tmin-Tmax)*( cos(Modelica.Constants.pi*(t-Htmax+midi)/(2*t0)) - 1)  / ( cos(Modelica.Constants.pi*(t0+Htmax+midi)/(2*t0)) - 1);
+  T_ext = Tmax + (Tmin - Tmax)*(cos(Modelica.Constants.pi*(t - Htmax + midi)/(2
+    *t0)) - 1)/(cos(Modelica.Constants.pi*(t0 + Htmax + midi)/(2*t0)) - 1);
   annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={
         Rectangle(
@@ -72,7 +73,7 @@ Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Emmanuel AMY DE LA BRETEQUE, EDF 07/2010<br>
 --------------------------------------------------------------</b></p>
 </html>

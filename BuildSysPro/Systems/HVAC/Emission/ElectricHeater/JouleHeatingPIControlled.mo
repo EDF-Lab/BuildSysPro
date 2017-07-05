@@ -32,9 +32,9 @@ protected
         origin={60,0})));
 
 public
- Modelica.Blocks.Interfaces.RealInput Tcons "Setpoint temperature"
+ Modelica.Blocks.Interfaces.RealInput T_sp "Setpoint temperature"
     annotation (Placement(transformation(extent={{-120,10},{-100,30}})));
-  Modelica.Blocks.Interfaces.RealInput Tint "Indoor temperature measure"
+  Modelica.Blocks.Interfaces.RealInput T_int "Indoor temperature measure"
     annotation (Placement(transformation(extent={{-120,-30},{-100,-10}})));
 
   Modelica.Blocks.Interfaces.RealOutput Pelec
@@ -42,15 +42,13 @@ public
   Modelica.Blocks.Math.Gain gain(k=Pnom)
     annotation (Placement(transformation(extent={{-8,-10},{12,10}})));
 equation
-  connect(PI1.u_s, Tcons)
-                      annotation (Line(
-      points={{-72,1.46958e-015},{-90,1.46958e-015},{-90,20},{-110,
-          20}},
+  connect(PI1.u_s, T_sp) annotation (Line(
+      points={{-72,1.46958e-015},{-90,1.46958e-015},{-90,20},{-110,20}},
       color={0,0,127},
       smooth=Smooth.None));
 
-  connect(PI1.u_m, Tint) annotation (Line(
-      points={{-60,-12},{-60,-12},{-60,-20},{-70,-20},{-70,-20},{-110,-20}},
+  connect(PI1.u_m, T_int) annotation (Line(
+      points={{-60,-12},{-60,-20},{-110,-20}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(firstOrder.y, Pelec) annotation (Line(
@@ -68,7 +66,6 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (
-    Diagram(graphics),
     experiment(StopTime=0.1, NumberOfIntervals=450),
     __Dymola_experimentSetupOutput,
     Documentation(info="<html>
@@ -91,7 +88,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Bernard CLEMENCON, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

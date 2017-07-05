@@ -22,15 +22,16 @@ equation
       points={{-79,44},{-58,44},{-58,44.3636},{-38.2,44.3636}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(matisseMonozone.Tair, fixedTemperature1.port) annotation (Line(
+  connect(matisseMonozone.T_int, fixedTemperature1.port) annotation (Line(
       points={{13.57,-9.72727},{29.785,-9.72727},{29.785,-14},{48,-14}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(matisseMonozone.Tmit, fixedTemperature2.port) annotation (Line(
+  connect(matisseMonozone.T_int_common, fixedTemperature2.port) annotation (
+      Line(
       points={{-1,11.9091},{-1,24},{26,24},{26,42},{48,42}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(fixedTemperature.port, matisseMonozone.Text) annotation (Line(
+  connect(fixedTemperature.port, matisseMonozone.T_ext) annotation (Line(
       points={{0,80},{0,44},{-4.1,44},{-4.1,34.8182}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -50,7 +51,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

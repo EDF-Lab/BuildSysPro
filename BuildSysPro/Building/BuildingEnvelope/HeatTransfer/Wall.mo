@@ -39,15 +39,15 @@ model Wall
     annotation (Dialog(group="General properties of the wall"));
 
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=25
-    "Surface exchange coefficient on the outer face"
+    "Global or convective surface exchange coefficient on the outer face depending on the selected mode (GLOext)"
      annotation(Dialog(group="General properties of the wall"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=7.69
-    "Global surface exchange coefficient on the inner face"
+    "Surface exchange coefficient on the inner face"
     annotation(Dialog(group="General properties of the wall"));
   parameter Real alpha_ext=0.6
     "Absorption coefficient of the outer walls in the visible (around 0.3 for clear walls and 0.9 for dark shades)"
     annotation(Dialog(enable=(not ParoiInterne), group="General properties of the wall"));
-  parameter Real eps=0.9 "Emissivity (concrete 0.9)"
+  parameter Real eps=0.9 "Emittance of the outer surface of the wall in LWR (concrete 0.9)"
     annotation(Dialog(enable=GLOext, group="General properties of the wall"));
 
 // Composition of the wall
@@ -108,10 +108,11 @@ Modelica.Blocks.Math.Gain AbsMurExt(k=alpha_ext*S) if  (not ParoiInterne)
         origin={-35,71})));
 Modelica.Blocks.Math.Add add if (not ParoiInterne)
     annotation (Placement(transformation(extent={{-72,64},{-58,78}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FLUX[3] if (
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3] if
+                                                                            (
     not ParoiInterne)
     "Surface incident solar flux information 1-Diffuse Flux, 2-Direct Flux 3-Cosi"
-    annotation (Placement(transformation(extent={{-118,54},{-80,92}}),
+    annotation (Placement(transformation(extent={{-119,52},{-81,90}}),
         iconTransformation(extent={{-40,80},{-20,100}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt if (not
     ParoiInterne) annotation (Placement(transformation(
@@ -122,51 +123,51 @@ Modelica.Blocks.Math.Add add if (not ParoiInterne)
     RadInterne annotation (Placement(transformation(
         extent={{8,8},{-8,-8}},
         rotation=90,
-        origin={50,44})));
+        origin={48,52})));
 Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
     RadInterne "Flows (SWR/LWR) absorbed by this wall on its inner face"
     annotation (Placement(transformation(extent={{138,50},{100,88}}),
         iconTransformation(extent={{40,40},{20,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Ts_ext
     "Outside temperature at the wall surface" annotation (Placement(
-        transformation(extent={{-46,-40},{-26,-20}}), iconTransformation(extent=
+        transformation(extent={{-40,-40},{-20,-20}}), iconTransformation(extent=
            {{-40,-40},{-20,-20}})));
 Modelica.Blocks.Interfaces.RealInput                            FluxAbsExt if
     RadExterne and ParoiInterne
     "Flows (SWR/LWR) absorbed by this wall on its outer face"
-    annotation (Placement(transformation(extent={{-120,12},{-82,50}}),
+    annotation (Placement(transformation(extent={{-120,9},{-80,51}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt2 if
     RadExterne and ParoiInterne annotation (Placement(transformation(
         extent={{8,8},{-8,-8}},
         rotation=180,
-        origin={-62,32})));
+        origin={-60,30})));
   BuildSysPro.BaseClasses.HeatTransfer.Components.ExtLWR EchangesGLOext(
     S=S,
     eps=eps,
     incl=incl,
     GLO_env=GLOext,
     GLO_ciel=GLOext) if GLOext
-    annotation (Placement(transformation(extent={{-68,-70},{-48,-50}})));
+    annotation (Placement(transformation(extent={{-66,-70},{-46,-50}})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if GLOext
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if  GLOext
     annotation (Placement(transformation(extent={{-100,-100},{-80,-80}}),
         iconTransformation(extent={{-100,-100},{-80,-80}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_int
     "Inside temperature at the wall surface" annotation (Placement(
         transformation(extent={{30,-40},{50,-20}}), iconTransformation(extent={
             {20,-40},{40,-20}})));
-  Modelica.Blocks.Interfaces.RealInput EntreeEau[2] if ParoiActive==2
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2] if   ParoiActive==2
     "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}}),
-        iconTransformation(extent={{-100,16},{-80,36}})));
-  Modelica.Blocks.Interfaces.RealOutput SortieEau[2] if ParoiActive==2
+        iconTransformation(extent={{-100,20},{-80,40}})));
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2] if  ParoiActive==2
     "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{80,-80},{100,-60}}),
         iconTransformation(extent={{80,-80},{100,-60}})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor Echange_a(G=hs_ext*
-        S) annotation (Placement(transformation(extent={{-72,-40},{-52,-20}},
+        S) annotation (Placement(transformation(extent={{-68,-40},{-48,-20}},
           rotation=0)));
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor Echange_b(G=hs_int*
         S) annotation (Placement(transformation(extent={{56,-40},{76,-20}},
@@ -204,7 +205,7 @@ Modelica.Blocks.Interfaces.RealInput                            FluxAbsExt if
         origin={10,100}),iconTransformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
-        origin={-90,10})));
+        origin={-90,0})));
 equation
 if ParoiActive==1 then
   //slices connection in the case of a conventional wall
@@ -216,11 +217,11 @@ elseif ParoiActive==2 then
     connect(paroiActiveEau[i].Ts_b, Ts_int);
     connect(paroiActiveEau[i].Ts_a, Ts_ext);
   end for;
-  connect(paroiActiveEau[1].Entree,EntreeEau);
+    connect(paroiActiveEau[1].WaterIn, WaterIn);
   for i in  2:nD loop
-    connect(paroiActiveEau[i-1].Sortie,paroiActiveEau[i].Entree);
+      connect(paroiActiveEau[i - 1].WaterOut, paroiActiveEau[i].WaterIn);
   end for;
-  connect(paroiActiveEau[nD].Sortie,SortieEau);
+    connect(paroiActiveEau[nD].WaterOut, WaterOut);
 
 else // ParoiActive==3
   //slices connection in the case of a electric heating wall
@@ -234,59 +235,58 @@ end if;
       color={0,0,127},
       smooth=Smooth.None));
   connect(AbsMurExt.y, prescribedCLOAbsExt.Q_flow) annotation (Line(
-      points={{-22.9,71},{-17.12,71},{-17.12,63.2}},
+      points={{-22.9,71},{-16,71},{-16,64}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(prescribedCLOAbsInt.Q_flow, FluxAbsInt)
                                               annotation (Line(
-      points={{48.88,51.2},{48.88,69},{119,69}},
+      points={{48,60},{48,69},{119,69}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(add.u1, FLUX[2]) annotation (Line(
-      points={{-73.4,75.2},{-88.7,75.2},{-88.7,73},{-99,73}},
+  connect(add.u1, FluxIncExt[2]) annotation (Line(
+      points={{-73.4,75.2},{-88.7,75.2},{-88.7,71},{-100,71}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(add.u2, FLUX[1]) annotation (Line(
-      points={{-73.4,66.8},{-99,66.8},{-99,60.3333}},
+  connect(add.u2, FluxIncExt[1]) annotation (Line(
+      points={{-73.4,66.8},{-100,66.8},{-100,58.3333}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(prescribedCLOAbsExt2.Q_flow, FluxAbsExt)
                                                   annotation (Line(
-      points={{-69.2,30.88},{-69.2,31},{-101,31}},
+      points={{-68,30},{-100,30}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(T_ciel, EchangesGLOext.T_ciel)
-                                       annotation (Line(
-      points={{-90,-90},{-74,-90},{-74,-65},{-67,-65}},
+  connect(T_sky, EchangesGLOext.T_sky) annotation (Line(
+      points={{-90,-90},{-74,-90},{-74,-64},{-65,-64}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, EchangesGLOext.T_ext)
                                    annotation (Line(
-      points={{-90,-30},{-75,-30},{-75,-57},{-67,-57}},
+      points={{-90,-30},{-75,-30},{-75,-56},{-65,-56}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(EchangesGLOext.Ts_p, Ts_ext) annotation (Line(
-      points={{-49,-60},{-36,-60},{-36,-30}},
+  connect(EchangesGLOext.Ts_ext, Ts_ext) annotation (Line(
+      points={{-47,-60},{-30,-60},{-30,-30}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(prescribedCLOAbsInt.port, Ts_int) annotation (Line(
-      points={{48.88,35.2},{48.88,35.6},{40,35.6},{40,-30}},
+      points={{48,44},{48,35.6},{40,35.6},{40,-30}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(prescribedCLOAbsExt2.port, Ts_ext) annotation (Line(
-      points={{-53.2,30.88},{-53.2,31.6},{-36,31.6},{-36,-30}},
+      points={{-52,30},{-52,30},{-30,30},{-30,-30}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(prescribedCLOAbsExt.port, Ts_ext) annotation (Line(
-      points={{-17.12,47.2},{-17.12,32.6},{-36,32.6},{-36,-30}},
+      points={{-16,48},{-16,30},{-30,30},{-30,-30}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(Echange_a.port_b, Ts_ext) annotation (Line(
-      points={{-53,-30},{-36,-30}},
+      points={{-49,-30},{-30,-30}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(T_ext, Echange_a.port_a) annotation (Line(
-      points={{-90,-30},{-71,-30}},
+      points={{-90,-30},{-67,-30}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(Echange_b.port_b, T_int) annotation (Line(
@@ -342,7 +342,7 @@ end if;
 <p><u><b>Bibliography</b></u></p>
 <p>TF1 CLIM2000</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (usually <code>Tseche</code> and <code>Tint</code>).</p>
+<p>The thermal ports <code>T_ext</code> and <code>T_int</code> must be connected to temperature nodes (connect <code>T_ext</code> to <code>T_dry</code> of <a href=\"modelica://BuildSysPro.BoundaryConditions.Weather.Meteofile\"><code>Meteofile</code></a>).</p>
 <p>The external incident flows <code>FLUX</code> can come from models <a href=\"modelica://BuildSysPro.BoundaryConditions.Solar\"><code>BoundaryConditions.Solar</code></a> models, which are the link between walls and weather readers.</p>
 <p>The internal incident flows <code>FluxAbsInt</code>, activated by the parameter <code>RadInterne</code>, can come from occupants, heating systems but also from the redistribution of solar flux within a room (models from <a href=\"modelica://BuildSysPro.BoundaryConditions.Radiation\"><code>BoundaryConditions.Radiation</code></a> package).</p>
 <p>In the same way, and in case of inner wall, the internal incident flows <code>FluxAbsExt</code> on the other face of the wall (face named \"external\") can be activated by the parameter <code>RadExterne</code>.</p>
@@ -350,7 +350,7 @@ end if;
 <p>Warning, default values of convective coefficients are indicative only, and should not be taken as real values in all cases.</p>
 <p>The given exchange coefficients can be either global coefficients (sum of convective and radiative), or purely convective exchanges if radiative exchanges are treated elsewhere.</p>
 <ul>
-<li>If <code>GLOext = True</code>, then <code>hs_est</code> is a purely convective coefficient</li>
+<li>If <code>GLOext = True</code>, then <code>hs_ext</code> is a purely convective coefficient</li>
 <li>5,15 W/m&sup2;.K outside and 5.71 W:m&sup2;.K inside can be removed from the value of the recommended global exchange coefficient.</li>
 </ul>
 <p>Some indications :</p>
@@ -364,7 +364,7 @@ end if;
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

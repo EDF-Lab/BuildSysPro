@@ -7,7 +7,7 @@ model ResistiveWaterHeater
     annotation(Dialog(group = "Tank"));
   parameter Modelica.SIunits.Power P=2500 "Max electric power"
     annotation(Dialog(group = "Regulation"));
-  parameter Modelica.SIunits.Temperature Tcons=273.15+60 "Setpoint temperature"
+  parameter Modelica.SIunits.Temperature T_sp=273.15+60 "Setpoint temperature"
     annotation(Dialog(group = "Regulation"));
   parameter Modelica.SIunits.TemperatureDifference dT=3 "Hysteresis band"
     annotation(Dialog(group = "Regulation"));
@@ -43,9 +43,9 @@ protected
   parameter Modelica.SIunits.HeatCapacity C=rho*Cp*V;
 
 public
-  Modelica.Blocks.Interfaces.RealInput Tef
+  Modelica.Blocks.Interfaces.RealInput T_cold
     "Cold water temperature in degrees C" annotation (Placement(transformation(
-          extent={{-120,-10},{-80,30}}),iconTransformation(
+          extent={{-120,-10},{-80,30}}), iconTransformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
         origin={-40,-100})));
@@ -62,10 +62,10 @@ public
   Modelica.Blocks.Interfaces.RealOutput Pelec "Electric power injected in W"
                                    annotation (Placement(transformation(
           extent={{60,60},{80,80}}), iconTransformation(extent={{60,60},{80,80}})));
-  Modelica.Blocks.Interfaces.RealOutput ConsokWh "Electric consumption in kWh"
-                                  annotation (Placement(transformation(
-          extent={{60,40},{80,60}}), iconTransformation(extent={{60,20},{80,40}})));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b portAMB "Air ambiant"
+  Modelica.Blocks.Interfaces.RealOutput Cons "Electric consumption in kWh"
+    annotation (Placement(transformation(extent={{60,40},{80,60}}),
+        iconTransformation(extent={{60,20},{80,40}})));
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b T_int "Air ambiant"
     annotation (Placement(transformation(extent={{60,-10},{80,10}}),
         iconTransformation(extent={{60,-10},{80,10}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor deperdition(G=KS)
@@ -99,34 +99,35 @@ public
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=0,
         origin={14,10})));
-  Modelica.Blocks.Interfaces.RealOutput T "Water temperature in the tank [K]"
-                                           annotation (Placement(transformation(
-          extent={{60,82},{80,102}}),iconTransformation(extent={{-10,-10},{10,
-            10}},
+  Modelica.Blocks.Interfaces.RealOutput T_tank
+    "Water temperature in the tank [K]" annotation (Placement(transformation(
+          extent={{60,82},{80,102}}), iconTransformation(
+        extent={{-10,-10},{10,10}},
         rotation=90,
         origin={0,90})));
 equation
-  Hyst=if T<Tcons-dT then 1 elseif T>Tcons+dT then 0 else pre(Hyst);
+  Hyst=if T_tank < T_sp - dT then 1 elseif T_tank > T_sp + dT then 0 else pre(
+     Hyst);
   Pelec=OnOff*P*Hyst;
-  T=Eau.T;
-  der(ConsokWh)=Pelec*coef36;
+  T_tank = Eau.T;
+  der(Cons) = Pelec*coef36;
   der(EnergieCHkWh)=ChauffageEau.solid.Q_flow*coef36;
   der(PertekWh)=deperdition.port_a.Q_flow*coef36;
 initial equation
 //  der(T)=0.0;
-  T=Tcons;
+  T_tank = T_sp;
   EnergieCHkWh=0.0;
   PertekWh=0.0;
 
 
 
+
 equation
-  connect(deperdition.port_b, portAMB)
-                                     annotation (Line(
+  connect(deperdition.port_b, T_int) annotation (Line(
       points={{52,0},{70,0}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(toKelvin.Celsius, Tef) annotation (Line(
+  connect(toKelvin.Celsius, T_cold) annotation (Line(
       points={{-70,-2},{-70,10},{-100,10}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -164,7 +165,7 @@ equation
       points={{-4,-32},{14,-32},{14,0}},
       color={191,0,0},
       smooth=Smooth.None));
-  annotation (                               Diagram(graphics),
+  annotation (
     Icon(graphics={Rectangle(
           extent={{-60,80},{60,-80}},
           lineColor={0,0,255},
@@ -185,14 +186,14 @@ homogeneous"),
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>The tank is supposed cylindrical: diameter d and height H.</p>
 <p>The insulator (conductivity lambda and thickness e) is uniformly distributed on the outer surface of the tank.</p>
-<p>The mass of water is supposed to be at homogeneous temperature T.</p>
+<p>The mass of water is supposed to be at homogeneous temperature T_tank.</p>
 <p>The heat storage in the tank results from the superposition of three heat flows:</p>
 <ul>
-<li>the electric power injected into the water with a P power resistance to maintain the setpoint Tcons according to an ON/OFF signal </li>
-<p>- It is a hysteresis regulation with a half-band dT on both sides of the setpoint: Hyst = if TTcons+dT then 0 else pre(Hyst)</p>
+<li>the electric power injected into the water with a Pelec power resistance to maintain the setpoint T_sp according to an ON/OFF signal </li>
+<p>- It is a hysteresis regulation with a half-band dT on both sides of the setpoint: Hyst = if T_sp+dT then 0 else pre(Hyst)</p>
 <p>- The electric power injected into the water is equal to: Pelec = OnOff.P.Hyst </p>
-<li>the power participating in heating the drawing rate that enters in the tank with a temperature Tef (cold water) and exits at temperature T,</li>
-<p>- The water heating power is equal to: debit.Cp.(T - Tef)</p>
+<li>the power participating in heating the drawing rate that enters in the tank with a temperature T_cold (cold water) and exits at temperature T_tank,</li>
+<p>- The water heating power is equal to: debit.Cp.(T_tank - T_cold)</p>
 <li>tank losses through its envelope are calculated by reference [1]:</li>
 <p>- An average coefficient of outside exchange is assumed: he = 10 W / (m&sup2;.K)</p>
 <p>- With a first approximation, the loss coefficient is equal  to: KS = (1,1 +0,05/V).h.S avec 1/h = 1/he + e/lambda, S = pi.d.(H + d/2) et V = pi.d&sup2;.H/4 </p></ul>
@@ -211,7 +212,7 @@ homogeneous"),
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

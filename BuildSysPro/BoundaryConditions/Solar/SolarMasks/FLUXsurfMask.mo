@@ -77,7 +77,7 @@ Modelica.Blocks.Interfaces.RealInput G[10]
         iconTransformation(extent={{40,-36},{60,-16}})));
 
 equation
-  connect(fLUXsurf.FLUX, masques.FLUX) annotation (Line(
+  connect(fLUXsurf.FluxIncExt, masques.FluxIncExt) annotation (Line(
       points={{-39,-0.1},{-29.5,-0.1},{-29.5,0},{5.9,0}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -135,7 +135,7 @@ Following masks are considered:
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",

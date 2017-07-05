@@ -105,7 +105,7 @@ extends Modelica.Icons.Example;
   Modelica.Blocks.Math.Add inconfortChaud(k1=-1)
     annotation (Placement(transformation(extent={{180,8},{200,28}})));
 equation
-  connect(MISansRelance.Tairint, ThermoAmbiance.port) annotation (Line(
+  connect(MISansRelance.T_int, ThermoAmbiance.port) annotation (Line(
       points={{-56.4,40.16},{-56.4,49.08},{-32,49.08},{-32,74}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -121,11 +121,11 @@ equation
       points={{7,82},{10,82},{10,69.4},{5,69.4}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ChauffageEtClim.port, MISansRelance.Tairint) annotation (Line(
+  connect(ChauffageEtClim.port, MISansRelance.T_int) annotation (Line(
       points={{-15,69.4},{-15,68.7},{-56.4,68.7},{-56.4,40.16}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(ThermoAmbiance1.port, MIAvecRelance.Tairint) annotation (Line(
+  connect(ThermoAmbiance1.port, MIAvecRelance.T_int) annotation (Line(
       points={{-32,-58},{-32,-85.84},{-56.4,-85.84}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -141,17 +141,17 @@ equation
       points={{-7,-58.6},{1.5,-58.6},{1.5,-54},{13,-54}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ChauffageEtClim1.port, MIAvecRelance.Tairint) annotation (Line(
+  connect(ChauffageEtClim1.port, MIAvecRelance.T_int) annotation (Line(
       points={{-27,-58.6},{-27,-68.3},{-56.4,-68.3},{-56.4,-85.84}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(mesureInconfortAvecRelance.Tint, MIAvecRelance.Tairint)
-    annotation (Line(
+  connect(mesureInconfortAvecRelance.Tint, MIAvecRelance.T_int) annotation (
+      Line(
       points={{129,-74},{51.5,-74},{51.5,-85.84},{-56.4,-85.84}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(mesureInconfortSansRelance.Tint, MISansRelance.Tairint)
-    annotation (Line(
+  connect(mesureInconfortSansRelance.Tint, MISansRelance.T_int) annotation (
+      Line(
       points={{137,60},{62.5,60},{62.5,40.16},{-56.4,40.16}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -185,19 +185,19 @@ equation
       points={{149,-79},{162,-79},{162,-24},{178,-24}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(meteofile.Tseche, MISansRelance.Text) annotation (Line(
+  connect(meteofile.T_dry, MISansRelance.T_ext) annotation (Line(
       points={{-97,1},{-75.6,1},{-75.6,54.8}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(meteofile.G, MISansRelance.Ensoleillement) annotation (Line(
+  connect(meteofile.G, MISansRelance.G) annotation (Line(
       points={{-97,-4},{-97,-1.5},{-75.6,-1.5},{-75.6,50}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(meteofile.Tseche, MIAvecRelance.Text) annotation (Line(
+  connect(meteofile.T_dry, MIAvecRelance.T_ext) annotation (Line(
       points={{-97,1},{-82,1},{-82,-71.2},{-75.6,-71.2}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(meteofile.G, MIAvecRelance.Ensoleillement) annotation (Line(
+  connect(meteofile.G, MIAvecRelance.G) annotation (Line(
       points={{-97,-4},{-97,-4.5},{-75.6,-4.5},{-75.6,-76}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -309,7 +309,7 @@ Inconfort")}),
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

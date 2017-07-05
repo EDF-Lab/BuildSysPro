@@ -83,15 +83,15 @@ extends Modelica.Icons.Example;
     annotation (Placement(transformation(extent={{-200,40},{-160,80}})));
 equation
 
-  connect(Int.Text, thermalConductor.port_a) annotation (Line(
+  connect(Int.T_ext, thermalConductor.port_a) annotation (Line(
       points={{8,76},{8,110},{34,110}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(thermalConductor.port_b, Int.Tairint) annotation (Line(
+  connect(thermalConductor.port_b, Int.T_int) annotation (Line(
       points={{54,110},{72,110},{72,19.2}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Int.Tairint, temperatureSensor.port) annotation (Line(
+  connect(Int.T_int, temperatureSensor.port) annotation (Line(
       points={{72,19.2},{72,-40},{-82,-40}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -103,15 +103,15 @@ equation
       points={{-125,-22},{-98,-22},{-98,-64}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(boi.Tamb, Int.Tairint) annotation (Line(
+  connect(boi.T_int, Int.T_int) annotation (Line(
       points={{-74,-68},{-74,-40},{72,-40},{72,19.2}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(Int.Text, meteofile.Tseche) annotation (Line(
+  connect(Int.T_ext, meteofile.T_dry) annotation (Line(
       points={{8,76},{-34,76},{-34,126},{-162,126}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(meteofile.G, Int.Ensoleillement) annotation (Line(
+  connect(meteofile.G, Int.G) annotation (Line(
       points={{-162,116},{-42,116},{-42,60},{8,60}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -124,11 +124,11 @@ equation
       color={255,0,255},
       smooth=Smooth.None));
 
-  connect(Int.SortieEau, boi.Entree) annotation (Line(
+  connect(Int.WaterOut, boi.WaterIn) annotation (Line(
       points={{88,0},{120,0},{120,-160},{-182,-160},{-182,-116},{-138,-116}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(boi.Sortie, Int.EntreeEau) annotation (Line(
+  connect(boi.WaterOut, Int.WaterIn) annotation (Line(
       points={{-57.2,-116},{-20,-116},{-20,0},{0,0}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -151,7 +151,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

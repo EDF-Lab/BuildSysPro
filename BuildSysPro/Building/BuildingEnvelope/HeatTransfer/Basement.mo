@@ -59,13 +59,12 @@ public
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-70,10})));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_Text
-    "Outdoor temperature" annotation (Placement(transformation(extent={{-110,
-            0},{-90,20}}), iconTransformation(extent={{-110,0},{-90,20}})));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_NoeudAir
-    "Indoor temperature" annotation (Placement(transformation(extent={{-110,
-            -24},{-90,-4}}),
-                           iconTransformation(extent={{-10,0},{10,20}})));
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a T_ext
+    "Outdoor temperature" annotation (Placement(transformation(extent={{-110,0},
+            {-90,20}}), iconTransformation(extent={{-110,0},{-90,20}})));
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a T_int
+    "Indoor temperature" annotation (Placement(transformation(extent={{-110,-24},
+            {-90,-4}}), iconTransformation(extent={{-10,0},{10,20}})));
   BaseClasses.HeatTransfer.Components.HomogeneousNLayersWall
     paroiNCouchesHomogenes3(
     n=1,
@@ -124,11 +123,11 @@ equation
       points={{-70,0},{-70,-4},{-10,-4}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(port_Text, PorteGarage.port_b) annotation (Line(
+  connect(T_ext, PorteGarage.port_b) annotation (Line(
       points={{-100,10},{-86,10},{-86,28},{-70,28},{-70,20}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(port_Text, Rvt.port_b) annotation (Line(
+  connect(T_ext, Rvt.port_b) annotation (Line(
       points={{-100,10},{-86,10},{-86,28},{-44,28},{-44,20}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -136,7 +135,7 @@ equation
       points={{-10,-26},{-10,-15},{-10,-15},{-10,-4}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(NoeudAir.port, port_NoeudAir) annotation (Line(
+  connect(NoeudAir.port, T_int) annotation (Line(
       points={{-10,-4},{-10,-14},{-100,-14}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -145,7 +144,7 @@ equation
       points={{34,24},{40,24},{40,35}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(paroiNCouchesHomogenes4.port_a, port_Text) annotation (Line(
+  connect(paroiNCouchesHomogenes4.port_a, T_ext) annotation (Line(
       points={{40,77},{42,77},{42,80},{-100,80},{-100,10}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -184,7 +183,6 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   annotation (
-    Diagram(graphics),
     Icon(graphics={
         Rectangle(
           extent={{60,60},{-60,-60}},
@@ -264,7 +262,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

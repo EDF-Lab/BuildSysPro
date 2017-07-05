@@ -44,18 +44,16 @@ equation
   DTAM=(Tinlet+Toutlet)/2-Tconv.T;
   m_flow=Pnom/(Radiator.Medium.cp_const*(Tinlet
          - Toutlet));
-  Tinlet=Radiator.EntreeEau[1];
-  Toutlet=Radiator.SortieEau[1];
+  Tinlet=Radiator.WaterIn[1];
+  Toutlet=Radiator.WaterOut[1];
   connect(Tconv.port, Radiator.Rad)
     annotation (Line(points={{-20,70},{-5,70},{-5,13}},color={191,0,0}));
   connect(Trad.port, Radiator.Conv)
     annotation (Line(points={{20,70},{1,70},{1,13}},color={191,0,0}));
-  connect(m_flow_inlet.y, Radiator.EntreeEau[2]) annotation (Line(points={{-53,4},
-          {-32,4},{-32,11.5},{-11,11.5}},
-                                        color={0,0,127}));
-  connect(InletT.y, Radiator.EntreeEau[1]) annotation (Line(points={{-57,34},{
-          -34,34},{-34,10.5},{-11,10.5}},
-                                    color={0,0,127}));
+  connect(m_flow_inlet.y, Radiator.WaterIn[2]) annotation (Line(points={{-53,4},
+          {-32,4},{-32,11.5},{-11,11.5}}, color={0,0,127}));
+  connect(InletT.y, Radiator.WaterIn[1]) annotation (Line(points={{-57,34},{-34,
+          34},{-34,10.5},{-11,10.5}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false), graphics={Text(
           extent={{-12,4},{102,-90}},
@@ -85,7 +83,7 @@ Weight = 9 kg",
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -17,11 +17,11 @@ equation
       points={{-79,28},{-58,28},{-58,28.4545},{-38.2,28.4545}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(fixedTemperature.port, mozartMonozone.Text) annotation (Line(
+  connect(fixedTemperature.port, mozartMonozone.T_ext) annotation (Line(
       points={{-80,0},{-60,0},{-60,3},{-35.1,3}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(mozartMonozone.Tair, fixedTemperature1.port) annotation (Line(
+  connect(mozartMonozone.T_int, fixedTemperature1.port) annotation (Line(
       points={{13.57,-9.72727},{29.785,-9.72727},{29.785,-14},{48,-14}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -41,7 +41,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

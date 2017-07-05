@@ -4,7 +4,7 @@ model Deadband
   parameter Real e=0.5
     "Upper and lower difference accepted with respect to the setpoint";
 
-  Modelica.Blocks.Interfaces.RealInput Consigne
+  Modelica.Blocks.Interfaces.RealInput Setpoint
     annotation (Placement(transformation(extent={{-128,0},{-88,40}}),
         iconTransformation(extent={{-108,0},{-88,20}})));
 
@@ -15,9 +15,9 @@ model Deadband
     annotation (Placement(transformation(extent={{102,-42},{142,-2}}),
         iconTransformation(extent={{88,-60},{108,-40}})));
 equation
-  if Variable < (Consigne-e) then
+  if Variable < (Setpoint-e) then
     OnOff= true;
-  elseif Variable > (Consigne+e) then
+  elseif Variable > (Setpoint+e) then
     OnOff = false;
   else
     OnOff = pre(OnOff);
@@ -107,7 +107,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hubert BLERVAQUE, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

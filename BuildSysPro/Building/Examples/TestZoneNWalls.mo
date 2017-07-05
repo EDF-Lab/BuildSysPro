@@ -170,16 +170,16 @@ public
 equation
 
   // Multizone
-  connect(meteofile.Tseche, zoneNparois.port_Text) annotation (Line(
+  connect(meteofile.T_dry, zoneNparois.T_ext) annotation (Line(
       points={{-71,-29},{-46,-29},{-46,-69.1},{19.9,-69.1}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(meteofile.G, zoneNparois.G) annotation (Line(
-      points={{-71,-34},{-48.5,-34},{-48.5,-59.6},{19.9,-59.6}},
+      points={{-71,-34},{-48.5,-34},{-48.5,-59.6},{18,-59.6}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(fixedTemperature.port, zoneNparois.port_sol) annotation (Line(
-      points={{-64,-84},{-38,-84},{-38,-84.3},{19.9,-84.3}},
+  connect(fixedTemperature.port,zoneNparois.T_ground)  annotation (Line(
+      points={{-64,-84},{-38,-84},{-38,-90},{25.6,-90}},
       color={191,0,0},
       smooth=Smooth.None));
 
@@ -272,7 +272,7 @@ equation
       smooth=Smooth.None));
 
   // Meteo data to Text
-  connect(meteofile.Tseche, Text) annotation (Line(
+  connect(meteofile.T_dry, Text) annotation (Line(
       points={{-71,-29},{-60,-29},{-60,27},{-49,27}},
       color={255,0,0},
       smooth=Smooth.None));
@@ -283,7 +283,7 @@ equation
       smooth=Smooth.None));
 
   //Solar flux to walls
-  connect(fLUXsurf.FLUX, Plafond.FLUX) annotation (Line(
+  connect(fLUXsurf.FluxIncExt, Plafond.FluxIncExt) annotation (Line(
       points={{-29.4,89.94},{-28.7,89.94},{-28.7,89},{-11,89}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -292,7 +292,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  connect(Sud.FLUX, fLUXsurf1.FLUX) annotation (Line(
+  connect(Sud.FluxIncExt, fLUXsurf1.FluxIncExt) annotation (Line(
       points={{-11,61},{-19.5,61},{-19.5,59.94},{-29.4,59.94}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -301,7 +301,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  connect(fLUXsurf2.FLUX, Ouest.FLUX) annotation (Line(
+  connect(fLUXsurf2.FluxIncExt, Ouest.FluxIncExt) annotation (Line(
       points={{-29.4,35.94},{-22.7,35.94},{-22.7,37},{-11,37}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -310,7 +310,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  connect(fLUXsurf3.FLUX, Nord.FLUX) annotation (Line(
+  connect(fLUXsurf3.FluxIncExt, Nord.FluxIncExt) annotation (Line(
       points={{-33.4,11.94},{-25.7,11.94},{-25.7,13},{-11,13}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -319,7 +319,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  connect(fLUXsurf4.FLUX, Est.FLUX) annotation (Line(
+  connect(fLUXsurf4.FluxIncExt, Est.FluxIncExt) annotation (Line(
       points={{-35.4,-10.06},{-27.7,-10.06},{-27.7,-11},{-11,-11}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -328,22 +328,22 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
    // Solar flux to glazings
-  connect(fLUXsurf4.FLUX, EstVitrage.FLUX) annotation (Line(
+  connect(fLUXsurf4.FluxIncExt, EstVitrage.FluxIncExt) annotation (Line(
       points={{-35.4,-10.06},{8.3,-10.06},{8.3,-17},{17,-17}},
       color={255,192,1},
       smooth=Smooth.None));
 
-  connect(NordVitrage.FLUX, fLUXsurf3.FLUX) annotation (Line(
+  connect(NordVitrage.FluxIncExt, fLUXsurf3.FluxIncExt) annotation (Line(
       points={{17,11},{-8.5,11},{-8.5,11.94},{-33.4,11.94}},
       color={255,192,1},
       smooth=Smooth.None));
 
-  connect(OuestVitrage.FLUX, fLUXsurf2.FLUX) annotation (Line(
+  connect(OuestVitrage.FluxIncExt, fLUXsurf2.FluxIncExt) annotation (Line(
       points={{17,39},{-6.5,39},{-6.5,35.94},{-29.4,35.94}},
       color={255,192,1},
       smooth=Smooth.None));
 
-  connect(SudVitrage.FLUX, fLUXsurf1.FLUX) annotation (Line(
+  connect(SudVitrage.FluxIncExt, fLUXsurf1.FluxIncExt) annotation (Line(
       points={{17,67},{-6.5,67},{-6.5,59.94},{-29.4,59.94}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -420,7 +420,7 @@ equation
       points={{31,94},{72,94},{72,52}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(RenouvellementAir.port_a, meteofile.Tseche) annotation (Line(
+  connect(RenouvellementAir.port_a, meteofile.T_dry) annotation (Line(
       points={{13,94},{-66,94},{-66,-29},{-71,-29}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -443,7 +443,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Gilles PLESSIS, EDF<br>
 --------------------------------------------------------------</b></p>
 </html>",

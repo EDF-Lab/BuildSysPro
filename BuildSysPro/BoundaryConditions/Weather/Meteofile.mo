@@ -40,8 +40,8 @@ parameter Integer option[:]=fill(1, table_column_number)
     "Integer = 0 for a column if it is necessary to apply a step function on it, >0 otherwise."
     annotation (Dialog(tab="Advanced parameters"));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Tseche annotation (
-     Placement(transformation(extent={{80,48},{100,68}}, rotation=0),
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_dry "Dry air temperature" annotation (
+      Placement(transformation(extent={{80,48},{100,68}}, rotation=0),
         iconTransformation(extent={{80,20},{100,40}})));
   Modelica.Blocks.Interfaces.RealOutput G[10]
     "Output data {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle , Solar elevation angle}"
@@ -64,11 +64,10 @@ parameter Integer option[:]=fill(1, table_column_number)
 
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedTemperature prescribedTrosee
     annotation (Placement(transformation(extent={{26,18},{46,38}}, rotation=0)));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Trosee
-    "Dew point temperature" annotation (Placement(transformation(extent={{80,
-            18},{100,38}}, rotation=0), iconTransformation(extent={{80,50},{100,
-            70}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Tciel
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_dew
+    "Dew point temperature" annotation (Placement(transformation(extent={{80,18},
+            {100,38}}, rotation=0), iconTransformation(extent={{80,50},{100,70}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_sky
     "Sky temperature" annotation (Placement(transformation(extent={{80,-14},
             {100,6}}, rotation=0), iconTransformation(extent={{80,80},{100,100}})));
   Modelica.Blocks.Interfaces.RealOutput V[2]
@@ -138,11 +137,11 @@ equation
       smooth=Smooth.None));
 
 // Temperature Connectors
-  connect(prescribedTseche.port, Tseche)      annotation (Line(
+  connect(prescribedTseche.port, T_dry) annotation (Line(
       points={{46,58},{90,58}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(prescribedTrosee.port, Trosee)       annotation (Line(
+  connect(prescribedTrosee.port, T_dew) annotation (Line(
       points={{46,28},{90,28}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -158,11 +157,11 @@ equation
       smooth=Smooth.None));
   connect(toKelvinTseche.Kelvin, prescribedTseche.T)
                                                     annotation (Line(
-      points={{11,58},{24,58}},
+      points={{11,58},{26,58}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(toKelvinTrosee.Kelvin, prescribedTrosee.T)  annotation (Line(
-      points={{13,28},{24,28}},
+      points={{13,28},{26,28}},
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -181,19 +180,19 @@ equation
       T_ciel=Functions.CalculTsky_withRH(
         t=time,
         G=G,
-        T_seche=Tseche.T,
+        T_seche=T_dry.T,
         Pvap=Hygro[3]*ps);
     else
       T_ciel=Functions.CalculTsky_withoutRH(
         t=time,
         G=G,
-        T_seche=Tseche.T);
+        T_seche=T_dry.T);
     end if;
   else
     T_ciel=combiTimeTable.y[5]+273.15;
   end if;
 
-  Tciel.T=T_ciel;
+  T_sky.T=T_ciel;
 
   //Calculation of sun's direction cosines
 
@@ -299,7 +298,7 @@ equation
           lineColor={0,0,255},
           textString="%name")}),
                           Diagram(coordinateSystem(preserveAspectRatio=false,
-                  extent={{-100,-100},{100,100}}), graphics),
+                  extent={{-100,-100},{100,100}})),
     Documentation(info="<html>
 <p><i><b>Weather data reader providing meteorological boundary conditions</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -313,9 +312,9 @@ equation
 <td><p>Time [s] </p></td>
 <td><p>Solar irradiance 1 [W/m²]</p><p>Direct normal (defaut)</p></td>
 <td><p>Solar irradiance 2 [W/m²]</p><p>Diffuse horizontal (defaut)</p></td>
-<td><p>Tseche [°C]</p><p>Dry bulb temperature </p></td>
-<td><p>Trosee [°C]</p><p>Dew point temperature</p></td>
-<td><p>Tciel [°C]</p><p>Sky temperature</p></td>
+<td><p>T_dry [°C]</p><p>Dry bulb temperature </p></td>
+<td><p>T_dew [°C]</p><p>Dew point temperature</p></td>
+<td><p>T_sky [°C]</p><p>Sky temperature</p></td>
 <td><p>Patm [Pa]</p><p>Atmospheric pressure</p></td>
 <td><p>HR (between 0 and 1)</p><p>Relative humidity</p></td>
 <td><p>VitVent [m/s]</p><p>Wind speed</p></td>
@@ -375,7 +374,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

@@ -8,44 +8,49 @@ model PrescribedHeatFlow "Prescribed heat flow boundary condition"
         annotation (Placement(transformation(
         origin={-90,-14},
         extent={{20,-20},{-20,20}},
-        rotation=180)));
+        rotation=180), iconTransformation(
+        extent={{20,-20},{-20,20}},
+        rotation=180,
+        origin={-100,0})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b port
                              annotation (Placement(transformation(
-          extent={{100,-24},{120,-4}}, rotation=0)));
+          extent={{90,-10},{110,10}},  rotation=0), iconTransformation(extent={{90,-10},
+            {110,10}})));
 equation
   port.Q_flow = -Q_flow*(1 + alpha*(port.T - T_ref));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={
         Line(
-          points={{-50,-34},{50,-34}},
+          points={{-60,-20},{40,-20}},
           color={191,0,0},
           thickness=0.5),
-        Line(points={{-50,6},{50,6}}, color={191,0,0}),
+        Line(points={{-60,20},{40,20}},
+                                      color={191,0,0}),
         Line(
-          points={{-70,-14},{-50,-34}},
+          points={{-80,0},{-60,-20}},
           color={191,0,0},
           thickness=0.5),
         Line(
-          points={{-70,-14},{-50,6}},
+          points={{-80,0},{-60,20}},
           color={191,0,0},
           thickness=0.5),
         Polygon(
-          points={{50,-14},{50,26},{80,6},{50,-14}},
+          points={{40,0},{40,40},{70,20},{40,0}},
           lineColor={191,0,0},
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid),
         Polygon(
-          points={{50,-54},{50,-14},{80,-34},{50,-54}},
+          points={{40,-40},{40,0},{70,-20},{40,-40}},
           lineColor={191,0,0},
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid),
         Rectangle(
-          extent={{80,26},{100,-54}},
+          extent={{70,40},{90,-40}},
           lineColor={191,0,0},
           fillColor={191,0,0},
           fillPattern=FillPattern.Solid),
-        Text(extent={{-124,106},{142,46}}, textString="%name")}),
+        Text(extent={{-140,110},{140,50}}, textString="%name")}),
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>This model allows a specified amount of heat flow rate to be &quot;injected&quot; into a thermal system at a given port. The amount of heat is given by the input signal Q_flow into the model. The heat flows into the component to which the component PrescribedHeatFlow is connected, if the input signal is positive.</p>
@@ -61,7 +66,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow\">PrescribedHeatFlow</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -16,7 +16,7 @@ record Mozart2012_STD =
       Refends,
     UvitrageAF=1.5,
     UvitrageSF=1.5,
-    renouvAir=0.426,
+    renouvAir=0.3,
     ValeursK={0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00,0.00},
     TauPonts={1,1,1,1,1,1,1,1,1},
     bLNC=0.95,
@@ -26,18 +26,19 @@ record Mozart2012_STD =
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>none</p>
 <p><u><b>Bibliography</b></u></p>
-<p>Site of the building stock library</p>
-<p>Note H-E10-1996-02908-FR</p>
+<p>none</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>none</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
-<p>Warning : thermal bridges have been set to null because of a lack of data, it will be necessary to complete them when more details are available.</p>
+<p style=\"color:red\">Warning : thermal bridges have been set to null because of a lack of data, it will be necessary to complete them when more details are available.</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Benoît Charrier 12/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Benoît Charrier 06/2017 : editing value of air renewal <code>renouvAir</code> from 0,426 to 0,3 vol/h to fit with a humidity sensitive ventilation system which is commonly used in RT2012</p>
 </html>"));

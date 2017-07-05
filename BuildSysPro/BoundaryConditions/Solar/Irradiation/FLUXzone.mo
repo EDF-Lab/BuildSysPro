@@ -14,24 +14,24 @@ parameter Real azim[5]={0,beta+180,beta,beta-90,beta+90}
       annotation(Dialog(enable=ChoixAzimuth));
 parameter Real incl[5]={0,90,90,90,90}
     "Walls tilt, by default 1-Ceiling, 2-North, 3-South, 4-East, 5-West";
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXNord[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxIncExtNorth[3]
     "Irradiance for the North facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{80,31},{118,69}}, rotation=0),
         iconTransformation(extent={{100,32},{120,52}})));
 
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXSud[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxIncExtSouth[3]
     "Irradiance for the South facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{80,-9},{118,29}}, rotation=0),
         iconTransformation(extent={{100,-6},{120,14}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXPlafond[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxIncExtRoof[3]
     "Irradiance for the sky facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{81,62},{118,99}}, rotation=0),
         iconTransformation(extent={{100,74},{120,94}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXEst[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxIncExtEast[3]
     "Irradiance for the East facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{81,-49},{118,-12}}, rotation=
             0), iconTransformation(extent={{100,-46},{120,-26}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUXouest[3]
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxIncExtWest[3]
     "Irradiance for the West facing surface [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
     annotation (Placement(transformation(extent={{80,-89},{118,-51}}, rotation=
             0), iconTransformation(extent={{100,-86},{120,-66}})));
@@ -74,35 +74,39 @@ protected
   Real ERrp[5] "Illuminance reflected by the ground on the surfaces [lux]";
 
 public
-  Modelica.Blocks.Interfaces.RealOutput EclSud[3]
+  Modelica.Blocks.Interfaces.RealOutput IlluSouth[3]
     "Illuminance for the South facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,-15},{26,31}}),
-        iconTransformation(extent={{-10,-10},{10,10}},
+        iconTransformation(
+        extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-30,110})));
 
-  Modelica.Blocks.Interfaces.RealOutput EclNord[3]
+  Modelica.Blocks.Interfaces.RealOutput IlluNorth[3]
     "Illuminance for the North facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,45},{26,91}}),
-        iconTransformation(extent={{-10,-10},{10,10}},
+        iconTransformation(
+        extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-60,110})));
-  Modelica.Blocks.Interfaces.RealOutput EclOuest[3]
+  Modelica.Blocks.Interfaces.RealOutput IlluWest[3]
     "Illuminance for the West facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,-45},{26,1}}),
         iconTransformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={30,110})));
-  Modelica.Blocks.Interfaces.RealOutput EclEst[3]
+  Modelica.Blocks.Interfaces.RealOutput IlluEast[3]
     "Illuminance for the East facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,-75},{26,-29}}),
-        iconTransformation(extent={{-10,-10},{10,10}},
+        iconTransformation(
+        extent={{-10,-10},{10,10}},
         rotation=90,
         origin={0,110})));
-  Modelica.Blocks.Interfaces.RealOutput EclPlafond[3]
+  Modelica.Blocks.Interfaces.RealOutput IlluRoof[3]
     "Illuminance for the sky facing surface [lumen] 1-Direct, 2-Diffuse and 3-Reflected"
     annotation (Placement(transformation(extent={{-20,15},{26,61}}),
-        iconTransformation(extent={{-10,-10},{10,10}},
+        iconTransformation(
+        extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-90,110})));
 
@@ -126,11 +130,11 @@ algorithm
    FLUX[3*i-1] :=if noEvent(sin_h > 0.01) then max(0, cosi[i])*DIRN else 0; //To avoid cases with a non-zero direct irradiance when the sun is below the horizon
    FLUX[3*i] :=cosi[i];
  end for;
- FLUXPlafond:=FLUX[1:3];
- FLUXNord:=FLUX[4:6];
- FLUXSud:=FLUX[7:9];
- FLUXEst:=FLUX[10:12];
- FLUXouest:=FLUX[13:15];
+  FluxIncExtRoof := FLUX[1:3];
+  FluxIncExtNorth := FLUX[4:6];
+  FluxIncExtSouth := FLUX[7:9];
+  FluxIncExtEast := FLUX[10:12];
+  FluxIncExtWest := FLUX[13:15];
 
 equation
 
@@ -157,11 +161,12 @@ algorithm
   ERrp[i]:=(Edn*sin(gamma) + Edi)*albedo*0.5*(1 - abs(cos(incl[i]*pi/180)));
   end for;
 
- EclPlafond:={Erp[1],Efp[1],ERrp[1]};
- EclNord:={Erp[2],Efp[2],ERrp[2]};
- EclSud:={Erp[3],Efp[3],ERrp[3]};
- EclEst:={Erp[4],Efp[4],ERrp[4]};
- EclOuest:={Erp[5],Efp[5],ERrp[5]};
+  IlluRoof := {Erp[1],Efp[1],ERrp[1]};
+  IlluNorth := {Erp[2],Efp[2],ERrp[2]};
+  IlluSouth := {Erp[3],Efp[3],ERrp[3]};
+  IlluEast := {Erp[4],Efp[4],ERrp[4]};
+  IlluWest
+         :={Erp[5],Efp[5],ERrp[5]};
 
 annotation (Documentation(info="<html>
 <p><i><b> Calculation of irradiance and illuminance for a zone model (tilt and azimuth given) </b></i></p>
@@ -169,7 +174,7 @@ annotation (Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>none</p>
 <p><u><b>Bibliography</b></u></p>
-<p>French Building regulation 2012 (RT 2012 for the illuminance model</p>
+<p>French Building regulation 2012 (RT 2012) for the illuminance model</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>Model which takes as input the vector G from a weather reader to calculate the surface irradiance on a particular surface (tilt and orientation given). G contains:</p>
 <ul>
@@ -189,7 +194,7 @@ annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

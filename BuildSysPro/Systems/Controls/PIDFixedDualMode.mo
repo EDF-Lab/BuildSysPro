@@ -27,9 +27,9 @@ parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
     annotation (Placement(transformation(extent={{-64,-20},{-84,0}})));
   Modelica.Thermal.HeatTransfer.Celsius.TemperatureSensor MesureTint
     annotation (Placement(transformation(extent={{90,16},{70,36}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Chauffage
-    annotation (Placement(transformation(extent={{80,60},{100,80}}),
-        iconTransformation(extent={{80,60},{100,80}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_room annotation (
+     Placement(transformation(extent={{80,60},{100,80}}), iconTransformation(
+          extent={{80,60},{100,80}})));
   Modelica.Blocks.Interfaces.RealOutput Besoin
     "Flux of heating and cooling system" annotation (Placement(
         transformation(extent={{78,-93},{100,-71}}), iconTransformation(extent={
@@ -57,7 +57,7 @@ parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
 protected
   parameter Boolean Test= (Tc <> Tf);
 equation
-  connect(MesureTint.port, Chauffage)     annotation (Line(
+  connect(MesureTint.port, T_room) annotation (Line(
       points={{90,26},{98,26},{98,70},{90,70}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -67,12 +67,12 @@ equation
       smooth=Smooth.None));
   connect(prescribedChauffage.Q_flow, PID.y)
                                             annotation (Line(
-      points={{-21,-9.4},{7.5,-9.4},{7.5,-10},{19,-10}},
+      points={{-20,-8},{7.5,-8},{7.5,-10},{19,-10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(prescribedClimatisation.Q_flow, PID1.y)
                                               annotation (Line(
-      points={{-21,-39.4},{10,-39.4},{10,-52},{19,-52}},
+      points={{-20,-38},{10,-38},{10,-52},{19,-52}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(PID1.u_m, MesureTint.T) annotation (Line(
@@ -87,14 +87,14 @@ equation
       points={{79,-50},{60,-50},{60,-52},{42,-52}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(prescribedChauffage.port, Flux.port_a) annotation (Line(points={{-41,
-          -9.4},{-52.5,-9.4},{-52.5,-10},{-64,-10}}, color={191,0,0}));
-  connect(prescribedClimatisation.port, Flux.port_a) annotation (Line(points={{
-          -41,-39.4},{-41,-40},{-64,-40},{-64,-10}}, color={191,0,0}));
+  connect(prescribedChauffage.port, Flux.port_a) annotation (Line(points={{-40,-8},
+          {-52.5,-8},{-52.5,-10},{-64,-10}},         color={191,0,0}));
+  connect(prescribedClimatisation.port, Flux.port_a) annotation (Line(points={{-40,-38},
+          {-40,-40},{-64,-40},{-64,-10}},            color={191,0,0}));
   connect(prescribedT.port, Flux.port_a)
     annotation (Line(points={{-38,22},{-64,22},{-64,-10}}, color={191,0,0}));
-  connect(Flux.port_b, Chauffage) annotation (Line(points={{-84,-10},{-92,-10},
-          {-92,70},{90,70}}, color={191,0,0}));
+  connect(Flux.port_b, T_room) annotation (Line(points={{-84,-10},{-92,-10},{-92,
+          70},{90,70}}, color={191,0,0}));
   connect(Besoin, Flux.Q_flow) annotation (Line(points={{89,-82},{12,-82},{-74,
           -82},{-74,-20},{-74,-20}}, color={0,0,127}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
@@ -136,7 +136,7 @@ equation
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>Simple model of heating and air conditioning with constant temperature setpoints.</p>
-<p>The output <b>Besoin</b> is positive when heating is needed, and negative xhan cooling is needed.<p>
+<p>The output <b>Besoin</b> is positive when heating is needed, and negative when cooling is needed.<p>
 <p><u><b>Bibliography</b></u></p>
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
@@ -149,7 +149,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

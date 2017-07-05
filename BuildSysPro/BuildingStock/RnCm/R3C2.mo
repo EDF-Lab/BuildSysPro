@@ -31,9 +31,9 @@ model R3C2 "Simplified R3C2 electric model of a building"
     annotation (Placement(transformation(extent={{60,-18},{80,2}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow Qs
     annotation (Placement(transformation(extent={{12,-88},{32,-68}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a port_Text
-    annotation (Placement(transformation(extent={{100,-10},{120,10}}),
-        iconTransformation(extent={{100,-10},{120,10}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext annotation (
+      Placement(transformation(extent={{100,-10},{120,10}}), iconTransformation(
+          extent={{100,-10},{120,10}})));
   Modelica.Blocks.Interfaces.RealInput P_AI "Internal gains" annotation (
       Placement(transformation(extent={{-140,-20},{-100,20}}),
         iconTransformation(extent={{-141,40},{-101,80}})));
@@ -44,49 +44,47 @@ model R3C2 "Simplified R3C2 electric model of a building"
     "G meteofile vector {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Azimut, Hauteur}"
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}}),
         iconTransformation(extent={{-140,-80},{-100,-40}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a port_Tint
-    annotation (Placement(transformation(extent={{-6,-74},{14,-54}}),
-        iconTransformation(extent={{-10,-90},{10,-70}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int annotation (
+      Placement(transformation(extent={{-6,-74},{14,-54}}), iconTransformation(
+          extent={{-10,-90},{10,-70}})));
   BuildSysPro.BoundaryConditions.Solar.Irradiation.FLUXsurf fLUXsurf(azimut=0,
       incl=90)
     annotation (Placement(transformation(extent={{-90,-90},{-70,-70}})));
 
 protected
-  Real cosi=fLUXsurf.FLUX[3],TransDir;
+  Real cosi=fLUXsurf.FluxIncExt[3];
+  Real                       TransDir;
 
 equation
   TransDir =  if noEvent(cosi>0) then (if noEvent(cosi>0.8) then TrDir else TrDir*2.5*cosi*(1-0.625*cosi)) else 0;  // Cardonnel
-  Qs.Q_flow = S*(TrDif*fLUXsurf.FLUX[1]+TransDir*fLUXsurf.FLUX[2]);
+  Qs.Q_flow =S*(TrDif*fLUXsurf.FluxIncExt[1] + TransDir*fLUXsurf.FluxIncExt[2]);
 
-  connect(AI.port, Tint.port) annotation (Line(points={{-59,-39.4},{-29,
-          -39.4},{-29,-7}},
-                     color={191,0,0}));
-  connect(Qch.port, Tint.port) annotation (Line(points={{-59,-59.4},{-29,
-          -59.4},{-29,-7}},
-                      color={191,0,0}));
+  connect(AI.port, Tint.port) annotation (Line(points={{-60,-38},{-30,-38},{-30,
+          -6}},      color={191,0,0}));
+  connect(Qch.port, Tint.port) annotation (Line(points={{-60,-58},{-30,-58},{
+          -30,-6}},   color={191,0,0}));
   connect(res_Rsi.port_b, Ts.port)
-    annotation (Line(points={{19,-8},{41,-8},{41,-7}},    color={191,0,0}));
+    annotation (Line(points={{19,-8},{40,-8},{40,-6}},    color={191,0,0}));
   connect(res_Rsi.port_a, Tint.port)
-    annotation (Line(points={{1,-8},{-29,-8},{-29,-7}},    color={191,0,0}));
+    annotation (Line(points={{1,-8},{-30,-8},{-30,-6}},    color={191,0,0}));
   connect(res_Ro.port_a, Ts.port)
-    annotation (Line(points={{61,-8},{41,-8},{41,-7}},    color={191,0,0}));
+    annotation (Line(points={{61,-8},{40,-8},{40,-6}},    color={191,0,0}));
   connect(res_Rf.port_b, res_Ro.port_b) annotation (Line(points={{19,32},{
           86,32},{86,-8},{79,-8}},
                               color={191,0,0}));
-  connect(Qs.port, Ts.port) annotation (Line(points={{33,-79.4},{41,-79.4},
-          {41,-7}},
+  connect(Qs.port, Ts.port) annotation (Line(points={{32,-78},{40,-78},{40,-6}},
                  color={191,0,0}));
-  connect(res_Ro.port_b, port_Text)
+  connect(res_Ro.port_b, T_ext)
     annotation (Line(points={{79,-8},{110,-8},{110,0}}, color={191,0,0}));
   connect(P_Qch, Qch.Q_flow) annotation (Line(points={{-120,-32},{-94,-32},{-94,
-          -59.4},{-79,-59.4}}, color={0,0,127}));
-  connect(P_AI, AI.Q_flow) annotation (Line(points={{-120,0},{-90,0},{-90,-39.4},
-          {-79,-39.4}}, color={0,0,127}));
-  connect(res_Rf.port_a, Tint.port) annotation (Line(points={{1,32},{-20,32},
-          {-40,32},{-40,-7},{-29,-7}},
+          -58},{-80,-58}},     color={0,0,127}));
+  connect(P_AI, AI.Q_flow) annotation (Line(points={{-120,0},{-90,0},{-90,-38},
+          {-80,-38}},   color={0,0,127}));
+  connect(res_Rf.port_a, Tint.port) annotation (Line(points={{1,32},{-20,32},{
+          -40,32},{-40,-6},{-30,-6}},
                                     color={191,0,0}));
-  connect(Tint.port, port_Tint) annotation (Line(points={{-29,-7},{-29,
-          -28.5},{4,-28.5},{4,-64}}, color={191,0,0}));
+  connect(Tint.port, T_int) annotation (Line(points={{-30,-6},{-30,-28.5},{4,
+          -28.5},{4,-64}}, color={191,0,0}));
   connect(G, fLUXsurf.G) annotation (Line(points={{-120,-60},{-98,-60},{-98,-80},
           {-91,-80}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
@@ -137,7 +135,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hassan BOUIA, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

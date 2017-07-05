@@ -32,9 +32,9 @@ Modelica.Blocks.Interfaces.RealInput G[10]
     annotation (Placement(transformation(extent={{-140,-30},{-100,
         10}},
         rotation=0), iconTransformation(extent={{-120,-10},{-100,10}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FLUX[3]
-    "Surface irradiance in [W/m²] 1-Diffuse, 2-Direct and 3-Cosi"
-    annotation (Placement(transformation(extent={{83,-26},{117,8}}, rotation=0),
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput FluxIncExt[3]
+    "Surface irradiance in [W/m²] 1-Diffuse, 2-Direct and 3-Cosi" annotation (
+      Placement(transformation(extent={{83,-26},{117,8}}, rotation=0),
         iconTransformation(extent={{100,-11},{120,9}})));
 
   Modelica.Blocks.Interfaces.RealOutput AzHSol[3]
@@ -92,12 +92,13 @@ connect(Albedo_in, Albedo_in_internal);
 
  // Vector FLUX on an output inclined surface: diffuse, direct, cosi
    DiffusSol = max(0, coef1*GLOH*Albedo_in_internal);
-   FLUX[1] = if diffus_isotrope == 1 then max(0, coef2*DIFH) + DiffusSol else
-    max(0, coef2*(1 - AI)*(1 + f*coef3)*DIFH) + DiffusSol;
-   FLUX[2] = if noEvent(sin_h > 0.01) then (if diffus_isotrope == 1 then max(0,
-    cosi)*max(0,DIRN) else max(0, cosi)*max(0,DIRN) + max(0, AI*cosi*DIFH/sin_h)) else 0;
+  FluxIncExt[1] = if diffus_isotrope == 1 then max(0, coef2*DIFH) + DiffusSol
+     else max(0, coef2*(1 - AI)*(1 + f*coef3)*DIFH) + DiffusSol;
+  FluxIncExt[2] = if noEvent(sin_h > 0.01) then (if diffus_isotrope == 1 then
+    max(0, cosi)*max(0, DIRN) else max(0, cosi)*max(0, DIRN) + max(0, AI*cosi*
+    DIFH/sin_h)) else 0;
    //To avoid cases with a non-zero direct irradiance when the sun is below the horizon
-   FLUX[3] = cosi;
+  FluxIncExt[3] = cosi;
  //FLUX[4] = FLUX[1]+FLUX[2];
 
   //AzHSol[1] = AzHaut[1];
@@ -146,7 +147,7 @@ Analytical Validation (Via Excel calculations) on the model parametrization: typ
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
@@ -167,7 +168,7 @@ Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 </html>"), Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},
             {100,100}},
         grid={1,1},
-        initialScale=0.1), graphics),
+        initialScale=0.1)),
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}},
         grid={1,1},
         initialScale=0.1), graphics={

@@ -16,13 +16,12 @@ equation
       points={{-61,-5},{-16,-5},{-16,4},{-9.2,4}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(meteofile.Tseche, pVmodelePhysiqueCapacitif.T_ext) annotation (
-      Line(
+  connect(meteofile.T_dry, pVmodelePhysiqueCapacitif.T_ext) annotation (Line(
       points={{-61,3},{-42,3},{-42,4},{-22,4},{-22,24},{-2.2,24},{-2.2,7}},
       color={255,0,0},
       smooth=Smooth.None));
 
-  connect(meteofile.Tciel, pVmodelePhysiqueCapacitif.T_ciel) annotation (
+  connect(meteofile.T_sky, pVmodelePhysiqueCapacitif.T_ciel) annotation (
       Line(
       points={{-61,9},{-42,9},{-42,36},{2,36},{2,7}},
       color={255,0,0},
@@ -47,7 +46,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

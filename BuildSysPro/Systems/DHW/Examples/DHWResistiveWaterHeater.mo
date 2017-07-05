@@ -8,7 +8,7 @@ extends Modelica.Icons.Example;
   Modelica.Blocks.Sources.RealExpression MA(y=if H.y < 8 then 1 else 0)
     "Température d'eau froide en °C"
     annotation (Placement(transformation(extent={{-80,6},{-12,26}})));
-  ResistiveWaterHeater eCSisotherme(dT=1.5, Tcons=333.15)
+  ResistiveWaterHeater eCSisotherme(dT=1.5, T_sp=333.15)
     annotation (Placement(transformation(extent={{0,0},{20,20}})));
   Modelica.Blocks.Sources.RealExpression H(y=mod(time/3600, 24))
     "Heure de de la journée"
@@ -31,7 +31,7 @@ equation
       points={{-8.6,16},{2,16}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(Tef.y, eCSisotherme.Tef) annotation (Line(
+  connect(Tef.y, eCSisotherme.T_cold) annotation (Line(
       points={{1,-20},{6,-20},{6,0}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -39,7 +39,7 @@ equation
       points={{1,-50},{14,-50},{14,0}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(eCSisotherme.portAMB, Tambiante.port) annotation (Line(
+  connect(eCSisotherme.T_int, Tambiante.port) annotation (Line(
       points={{17,10},{28.5,10},{28.5,10},{40,10}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -65,7 +65,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 2.1.0<br>
+BuildSysPro version 3.0.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));
