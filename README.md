@@ -3,11 +3,11 @@
 
 ### Release updates
 Current release is version 3.0.0.
-This release provides new records of building envelope data associated with the different French building regulations which were missing in the library : RT2005 for individual housing (Mozart building), RT2000 / RT2005 / BBC Effinergie (low-energy building) for collective housing (Matisse building).
+This release provides new records of building envelope data associated with the different French building regulations which were missing in the library : *RT2005* for individual housing (*Mozart* building), *RT2000* / *RT2005* / *BBC Effinergie* (low-energy building) for collective housing (*Matisse* building).
 Harmonization and standardisation of input, output and parameter naming have been made.
-New model PIDDualMode of heating and cooling regulation with constant or prescribed setpoints have been added.
+New model *PIDDualMode* of heating and cooling regulation with constant or prescribed setpoints has been added.
 
-EDF is part of [IBPSA Project 1](https://ibpsa.github.io/project1/), and the [IBPSA library](https://github.com/ibpsa/modelica-ibpsa) is now integrated to BuildSysPro open soure 3.0.0.
+EDF is part of [IBPSA Project 1](https://ibpsa.github.io/project1/), and the [IBPSA library](https://github.com/ibpsa/modelica-ibpsa) is now integrated to BuildSysPro open source 3.0.0.
 
 BuildSysPro open source 3.0.0 is compatible with OpenModelica 1.9.3. When working with OpenModelica, specify your initial conditions carefully and use preferably Dassl, Euler or Runge-Kutta solvers.
 
