@@ -415,7 +415,7 @@ protected
     RadInterne=not CLOintPlancher,
     H=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.H_VitrageSudSF,
     useVolet=useVolet,
-    k=if not (renoFenetre) then 1/(1/paraMaisonRT.UvitrageAF - 1/paraMaisonRT.hsExtVert - 1/paraMaisonRT.hsIntVert) else 1/(1/paraMaisonRenoRTExistant.UvitrageAF - 1/paraMaisonRenoRTExistant.hsExtVert - 1/paraMaisonRenoRTExistant.hsIntVert),
+    k=if not (renoFenetre) then 1/(1/paraMaisonRT.UvitrageSF - 1/paraMaisonRT.hsExtVert - 1/paraMaisonRT.hsIntVert) else 1/(1/paraMaisonRenoRTExistant.UvitrageSF - 1/paraMaisonRenoRTExistant.hsExtVert - 1/paraMaisonRenoRTExistant.hsIntVert),
     hs_ext=paraMaisonRT.hsExtVert,
     hs_int=paraMaisonRT.hsIntVert,
     eps=paraMaisonRT.eps_vitrage,
@@ -1098,8 +1098,8 @@ graphics={
 <p>Validated model by comparison of GV with Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

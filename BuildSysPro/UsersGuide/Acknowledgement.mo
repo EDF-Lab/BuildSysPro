@@ -23,10 +23,7 @@ Benoit Charrier, EDF R&amp;D, France
 Denis Covalet, EDF R&amp;D, France
 </li>
 <li>
-Sila Filfli, EDF R&amp;D, France
-</li>
-<li>
-Gilles Plessis, EDF R&amp;D, France
+Stéphanie Froidurot, EDF R&amp;D, France
 </li>
 <li>
 Mathieu Schumann, EDF R&amp;D, France
@@ -44,6 +41,9 @@ Emmanuel Amy de la Bretèque, EDF R&amp;D, France
 Bernard Clémençon, EDF R&amp;D, France
 </li>
 <li>
+Sila Filfli, EDF R&amp;D, France
+</li>
+<li>
 Frédéric Gastiger, EDF R&amp;D, France
 </li>
 <li>
@@ -56,6 +56,9 @@ Aurélie Kaemmerlen, EDF R&amp;D, France
 Amy Lindsay, EDF R&amp;D, France
 </li>
 <li>
+Gilles Plessis, EDF R&amp;D, France
+</li>
+<li>
 Vincent Magnaudeix, EDF R&amp;D, France
 </li>
 <li>
@@ -66,8 +69,8 @@ Davy Merlet, EDF R&amp;D, France
 </li></ul></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

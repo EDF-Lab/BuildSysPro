@@ -119,7 +119,7 @@ equation
     longitude =
       BuildSysPro.BoundaryConditions.Weather.Functions.ConvertLongitude(Est=
       ChoixEst, LongIn=combiTimeTable.y[11]);
-    h0 = if (TypeMeteo==4) then DonneesPerso.h0 else (if (TypeMeteo==1 or TypeMeteo==3) then 0 else -1);
+    h0 = if (TypeMeteo==4) then DonneesPerso.h0 else (if (TypeMeteo==1) then 0 else -1);
     d0 = if TypeMeteo==4 then DonneesPerso.d0 else 1;
     CoupleFlux= if TypeMeteo==4 then DonneesPerso.CoupleFlux else 2;
     t0=86400*(d0-1)+3600*h0;
@@ -209,7 +209,7 @@ equation
     GLOH = FluxMeteo[1];
     DIFH = FluxMeteo[2];
     DIRH=GLOH-DIFH;
-    DIRN=if CosDir[1]>0 then DIRH/CosDir[1] else 0;
+    DIRN=if noEvent(CosDir[1]>0) then DIRH/CosDir[1] else 0;
   elseif CoupleFlux<2.5 then
     DIRN = FluxMeteo[1];
     DIFH = FluxMeteo[2];
@@ -219,11 +219,11 @@ equation
     DIFH = FluxMeteo[1];
     DIRH = FluxMeteo[2];
     GLOH=DIRH+DIFH;
-    DIRN=if CosDir[1]>0 then DIRH/CosDir[1] else 0;
+    DIRN=if noEvent(CosDir[1]>0) then DIRH/CosDir[1] else 0;
   elseif CoupleFlux<4.5 then
     GLOH = FluxMeteo[1];
     DIRH = FluxMeteo[2];
-    DIRN=if CosDir[1]>0 then DIRH/CosDir[1] else 0;
+    DIRN=if noEvent(CosDir[1]>0) then DIRH/CosDir[1] else 0;
     DIFH=GLOH-DIRH;
   else // CoupleFlux==5
     GLOH = FluxMeteo[1];
@@ -318,7 +318,7 @@ equation
 <td><p>Patm [Pa]</p><p>Atmospheric pressure</p></td>
 <td><p>HR (between 0 and 1)</p><p>Relative humidity</p></td>
 <td><p>VitVent [m/s]</p><p>Wind speed</p></td>
-<td><p>DirVent [°C]</p><p>Wind direction</p></td>
+<td><p>DirVent [°]</p><p>Wind direction</p></td>
 <td><p>Latitude [°]</p></td>
 <td><p>Longitude [°]</p></td>
 </tr>
@@ -336,9 +336,9 @@ equation
 </ol></p>
 <p><b>Available files and their differences from default values are:</p></b>
 <ol>
-<li>Meteofrance: Average irradiation [t-dt/2;t+dt/2]. h0=0</li>
-<li>Meteonorm: Irradiation determined on the last hour and assigned in the middle of the hour to better match the sun's path. Local Time (h0 = -1 in France)</li>
-<li>Weather file from the French building regulation RT2012: irradiation determined on the last hour and assigned in the middle of the hour to better match the sun's path.. h0=0 (Temps Universal)</li>
+<li>Meteofrance: Average irradiation [t-dt/2;t+dt/2]. h0 = 0</li>
+<li>Meteonorm: Irradiation determined on the last hour and assigned in the middle of the hour to better match the sun's path. Local time (h0 = -1 in France).</li>
+<li>Weather file from the French building regulation RT2012: irradiation determined on the last hour and assigned in the middle of the hour to better match the sun's path. Local time (h0 = -1 in France).</li>
 <li>For user-defined weather data, fill in the parameters conditioning irradiation calculations thereafter. For example, for data starting May 11, at 15:30 (Universal Time) - indicate h0 = 15.5 and d0 = 135.</li>
 </ol></p>
 <p>This model returns as outputs:
@@ -373,8 +373,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright © EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>
@@ -402,5 +402,6 @@ Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 <p>Gilles Plessis 09/2015 : Utilisation de la fonction <code>Modelica.Utilities.Files.loadResource</code> pour le chargement de fichiers, pour une meilleure compatibilité avec le standard Modelica.</p>
 <p>Benoît Charrier 01/2016 : Ajout du paramètre avancé <code>table_column_number</code> pour éviter une déclaration croisée de variables et permettre la compatibilité avec OpenModelica.</p>
 <p>Benoît Charrier 01/2017 : Remplacement de la pression de vapeur par l'humidité relative comme troisième composante du vecteur <code>Hygro</code> pour coller aux entrées des modèles de conditions limites <code>WithoutWindEffect</code> et <code>WithWindEffect</code>.</p>
+<p>Benoît Charrier 01/2018 : Added <code>noEvent</code> on some <code>CosDir[1]>0</code> conditions to avoid division by zero errors. Changed <code>h0</code> value from <code>0</code> to <code>-1</code> in case of RT2012 meteo to fit with sun height.</p>
 </html>"));
 end Meteofile;

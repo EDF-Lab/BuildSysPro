@@ -4,8 +4,8 @@ function CalculAlphaTauDoubleGlazing
 
   input Modelica.SIunits.CoefficientOfHeatTransfer Uw
     "Heat transfert coefficient of the window";
-  input Real Sw "Solar factor of the window [between 0 and 1]";
-  input Real TLw "Light transmission factor of the window [between 0 and 1]";
+  input Real g "Solar factor of the window [between 0 and 1]";
+  input Real tau0 "Coefficient of energy transmission [between 0 and 1]";
   input Modelica.SIunits.CoefficientOfHeatTransfer Hext=21
     "Global surface exchange coefficient on the outer face of the window";
   input Modelica.SIunits.CoefficientOfHeatTransfer Hint=8.29
@@ -32,8 +32,8 @@ protected
 algorithm
   //Direct coefficients (standard EN 410)
   //First glazing
-  alpha_dir := (Sw-TLw)/(1+Uw*((1/Hext)-(1/Hint)));
-  tau_dir := ((2*TLw*(1-alpha_dir))+sqrt((2*TLw*(1-alpha_dir))^2+4*(1+TLw)*TLw*alpha_dir*(2-alpha_dir)))/(2*(1+TLw));
+  alpha_dir := (g-tau0)/(1+Uw*((1/Hext)-(1/Hint)));
+  tau_dir := ((2*tau0*(1-alpha_dir))+sqrt((2*tau0*(1-alpha_dir))^2+4*(1+tau0)*tau0*alpha_dir*(2-alpha_dir)))/(2*(1+tau0));
   rho_dir := 1-alpha_dir-tau_dir;
   //Global glazing
   tau_dir := (tau_dir)^2/(1-(rho_dir)^2);
@@ -58,8 +58,8 @@ algorithm
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>This function calculates the absorption and transmission coefficients of a double glazing window, for direct and diffuse solar fluxes, from manufacturer data :
 <ul><li>Uw : Heat transfert coefficient of the window [W/m².K]</li>
-<li>Sw : Solar factor of the window [between 0 and 1]</li>
-<li>TLw : Light transmission factor of the window [between 0 and 1]</li></ul></p>
+<li>g : Solar factor of the glazing [between 0 and 1]</li>
+<li>tau0 : Coefficient of energy transmission of the glazing [between 0 and 1]</li></ul></p>
 <p><u><b>Bibliography</b></u></p>
 <p>Standard EN 410 for calculation of equivalent coefficients for direct solar flux on normal incidence.</p>
 <p>Method Th-S from RT for calculation of equivalent coefficients for diffuse solar flux.</p>
@@ -71,9 +71,11 @@ algorithm
 <p>Validated model - Benoît Charrier 02/2016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Benoît CHARRIER, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Benoît Charrier 08/2017 : correction of errors in documentation and parameter naming, manufacturer data needed are the coefficient of energy transmission of the glazing (tau0) and the solar factor of the glazing (g).</p>
 </html>"));
 end CalculAlphaTauDoubleGlazing;

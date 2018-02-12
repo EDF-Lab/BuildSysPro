@@ -61,8 +61,8 @@ equation
     Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Authors : Gilles PLESSIS, Hassan BOUIA EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

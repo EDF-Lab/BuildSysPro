@@ -5,6 +5,7 @@ WaterVaporMozart
 ScenarioAliquote
 InternalGains
 ScenarioDHW
+DrawOffScenario
 StepFunctionMat
 StepFunctionMatPeriodic
 StepFunctionSimpleXY

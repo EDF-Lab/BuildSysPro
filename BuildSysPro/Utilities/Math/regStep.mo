@@ -55,8 +55,8 @@ for a smooth transition from <code>y1</code> to <code>y2</code>.</p>
 <p>Validated function - Gilles PLESSIS 07/2016 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright © EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Initial model : <a href=\"Modelica.Fluid.Utilities.regStep\">regStep</a>, Martin Otter, Copyright © 2002-2016, ABB, DLR, Dassault Systèmes AB, Modelon, TU Braunschweig, TU Hamburg-Harburg, Politecnico di Milano.<br>
 --------------------------------------------------------------</b></p>
 </html>

@@ -212,8 +212,8 @@ In terms of occupancy , one adult and 2 children are coming back home for lunch 
 <p>Validated model  - Benoît Charrier 06/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright © EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>

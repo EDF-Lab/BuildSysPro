@@ -47,7 +47,7 @@ parameter Real TrDir=0.747 "Direct transmission coefficient of the window" annot
 parameter Real TrDif=0.665 "Diffuse transmission coefficient of the window" annotation(Dialog(group="Optical properties"));
 parameter Real AbsDir=0.100 "Direct absorption coefficient of the window" annotation(Dialog(group="Optical properties"));
 parameter Real AbsDif=0.108 "Diffuse absorption coefficient of the window" annotation(Dialog(group="Optical properties"));
-parameter Real eps=0.9 "Glazing emittance in LWR" annotation(Dialog(group="Optical properties"));
+parameter Real eps=0.9 "Glazing emissivity in LWR" annotation(Dialog(group="Optical properties"));
 
 // Reduction factors of direct and diffuse fluxes (masking, frame, ...)
 parameter Integer TypeFenetrePF=1 "Choice of type of window or French window"
@@ -124,20 +124,19 @@ protected
 // Connectors
 public
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3]
-    "Incident solar surface flux information 1-Diffuse flux, 2-Direct flux, 3-Cosi"
+    "Incident solar surface flux information 1-Diffuse flux [W/m2], 2-Direct flux [W/m2], 3-Cosi"
     annotation (Placement(transformation(extent={{-120,20},{-80,60}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr if not
-    DifDirOut "SW radiation transmitted inside"
-                                              annotation (Placement(
-        transformation(extent={{60,50},{100,90}}), iconTransformation(extent={{
-            80,40},{100,60}})));
+    DifDirOut "SW radiation transmitted inside [W]"
+    annotation (Placement(transformation(extent={{60,50},{100,90}}),
+        iconTransformation(extent={{80,40},{100,60}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr2[3] if
-    DifDirOut "SW radiation transmitted inside 1-Diffuse, 2-Direct, 3-cosi"
+    DifDirOut "SW radiation transmitted inside 1-Diffuse [W], 2-Direct [W], 3-cosi"
     annotation (Placement(transformation(extent={{60,20},{100,60}}),
         iconTransformation(extent={{80,40},{100,60}})));
   Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
-    RadInterne "Flux (LWR/SWR) absorbed by the glazing on its inner face"
+    RadInterne "Flux (LWR/SWR) absorbed by the glazing on its inner face [W]"
     annotation (Placement(transformation(extent={{120,-10},{82,28}}),
         iconTransformation(extent={{40,10},{20,30}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
@@ -619,8 +618,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

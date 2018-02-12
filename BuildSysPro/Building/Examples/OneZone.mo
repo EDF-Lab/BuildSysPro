@@ -157,6 +157,14 @@ equation
           1}));
   connect(multiSum.y, Plancher.FluxAbsInt) annotation (Line(points={{34.98,-72},
           {14,-72},{14,-77},{-7,-77}}, color={0,0,127}));
+  connect(meteofile.T_dry, FenetreNord.T_ext) annotation (Line(points={{-81,53},
+          {-36,53},{-36,66},{12,66},{12,55.7},{17.1,55.7}}, color={191,0,0}));
+  connect(meteofile.T_dry, FenetreSud.T_ext) annotation (Line(points={{-81,53},
+          {-36,53},{-36,66},{12,66},{12,23.7},{17.1,23.7}}, color={191,0,0}));
+  connect(meteofile.T_dry, FenetreEst.T_ext) annotation (Line(points={{-81,53},
+          {-36,53},{-36,66},{12,66},{12,-8.3},{17.1,-8.3}}, color={191,0,0}));
+  connect(meteofile.T_dry, FenetreOuest.T_ext) annotation (Line(points={{-81,53},
+          {-36,53},{-36,66},{12,66},{12,-38.3},{17.1,-38.3}}, color={191,0,0}));
   annotation (
 Documentation(info="<html>
 <p><b>Simple example of a thermal zone model</b></p>
@@ -185,8 +193,8 @@ Documentation(info="<html>
 <p>Validated model - Cristian Muresan 04/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Cristian MURESAN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -175,8 +175,8 @@ Following masks are considered:
 <p>Non validated model for distant masks - Laura Sudries 05/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright © EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright © EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>

@@ -23,7 +23,7 @@ parameter Real skyViewFactor=0
 
 // Optical properties
 parameter Real Abs=0.1 "Window absorption coefficient" annotation(Dialog(group="Optical properties"));
-parameter Real eps=0.9 "Glazing emittance in LWR" annotation(Dialog(enable=GLOext,group="Optical properties"));
+parameter Real eps=0.9 "Glazing emissivity in LWR" annotation(Dialog(enable=GLOext,group="Optical properties"));
 
 // Public components
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxTr
@@ -31,11 +31,11 @@ parameter Real eps=0.9 "Glazing emittance in LWR" annotation(Dialog(enable=GLOex
     annotation (Placement(transformation(extent={{-120,50},{-80,90}}),
         iconTransformation(extent={{-40,10},{-20,30}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt
-    "SWR incident surface fluxes on the outer face" annotation (
-      Placement(transformation(extent={{-120,20},{-80,60}}), iconTransformation(
-          extent={{-40,40},{-20,60}})));
+    "SWR incident surface fluxes on the outer face [W/m2]"
+    annotation (Placement(transformation(extent={{-120,20},{-80,60}}),
+        iconTransformation(extent={{-40,40},{-20,60}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr
-    "SW radiation transmitted inside" annotation (Placement(
+    "SW radiation transmitted inside [W]" annotation (Placement(
         transformation(extent={{60,50},{100,90}}), iconTransformation(extent={{
             80,40},{100,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
@@ -71,24 +71,24 @@ protected
     annotation (Placement(transformation(extent={{-12,-70},{8,-50}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt
     annotation (Placement(transformation(
-        extent={{7,-7},{-7,7}},
+        extent={{10,-10},{-10,10}},
         rotation=0,
-        origin={-75,5})));
+        origin={-76,10})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor echange_int(G=hs_int*
         S) annotation (Placement(transformation(extent={{52,-70},{72,-50}})));
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor echange_ext(G=hs_ext*
         S) annotation (Placement(transformation(extent={{-70,-70},{-50,-50}})));
 
-Modelica.Blocks.Math.Gain FluxAbsorbe(k=S*Abs)                     annotation (Placement(transformation(extent={{-7,-7},
-            {7,7}},
+Modelica.Blocks.Math.Gain FluxAbsorbe(k=S*Abs)                     annotation (Placement(transformation(extent={{-10,-10},
+            {10,10}},
         rotation=180,
-        origin={-55,3})));
+        origin={-50,10})));
 Modelica.Blocks.Math.Gain FluxTransmis(k=S)    annotation (Placement(
         transformation(
-        extent={{-7,-7},{7,7}},
+        extent={{-10,-10},{10,10}},
         rotation=0,
-        origin={43,69})));
+        origin={50,70})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Components.LinearExtLWR gLOextLinear(
     S=S,
@@ -154,20 +154,20 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
   connect(prescribedCLOAbsExt.port, Ts_ext) annotation (Line(
-      points={{-82,5},{-92,5},{-92,-12},{-30,-12},{-30,-30}},
+      points={{-86,10},{-92,10},{-92,-12},{-30,-12},{-30,-30}},
       color={191,0,0},
       smooth=Smooth.None));
 
   connect(FluxAbsorbe.y, prescribedCLOAbsExt.Q_flow) annotation (Line(
-      points={{-62.7,3},{-62.35,3},{-62.35,5},{-68,5}},
+      points={{-61,10},{-66,10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(FluxIncExt, FluxAbsorbe.u) annotation (Line(
-      points={{-100,40},{-29,40},{-29,3},{-46.6,3}},
+      points={{-100,40},{-29,40},{-29,10},{-38,10}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(CLOTr, FluxTransmis.y) annotation (Line(
-      points={{80,70},{65.35,70},{65.35,69},{50.7,69}},
+      points={{80,70},{61,70}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(gLOextLinear.Ts_ext, Ts_ext) annotation (Line(
@@ -237,8 +237,8 @@ equation
 <p>Validated model - Gilles Plessis 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

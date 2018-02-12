@@ -82,8 +82,8 @@ Weight = 9 kg",
 <p>Validated model - Gilles Plessis 01/20016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Gilles PLESSIS, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

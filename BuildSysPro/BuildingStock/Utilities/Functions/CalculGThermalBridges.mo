@@ -1,9 +1,9 @@
-within BuildSysPro.BuildingStock.Utilities.Functions;
+﻿within BuildSysPro.BuildingStock.Utilities.Functions;
 function CalculGThermalBridges
   input Real ValeursK[:];
   input Real LongueursPonts[:];
   input Real TauPonts[:];
-  output Modelica.SIunits.ThermalConductivity G;
+  output Modelica.SIunits.ThermalConductance G;
 
 algorithm
   G:=0;
@@ -29,9 +29,11 @@ algorithm
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Benoît Charrier 01/2018 : Changed wrong unit of G from thermal conductivity to thermal conductance.</p>
 </html>"));
 end CalculGThermalBridges;

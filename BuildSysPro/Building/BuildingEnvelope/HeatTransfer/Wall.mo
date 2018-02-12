@@ -47,7 +47,7 @@ model Wall
   parameter Real alpha_ext=0.6
     "Absorption coefficient of the outer walls in the visible (around 0.3 for clear walls and 0.9 for dark shades)"
     annotation(Dialog(enable=(not ParoiInterne), group="General properties of the wall"));
-  parameter Real eps=0.9 "Emittance of the outer surface of the wall in LWR (concrete 0.9)"
+  parameter Real eps=0.9 "Emissivity of the outer surface of the wall in LWR (concrete 0.9)"
     annotation(Dialog(enable=GLOext, group="General properties of the wall"));
 
 // Composition of the wall
@@ -108,10 +108,9 @@ Modelica.Blocks.Math.Gain AbsMurExt(k=alpha_ext*S) if  (not ParoiInterne)
         origin={-35,71})));
 Modelica.Blocks.Math.Add add if (not ParoiInterne)
     annotation (Placement(transformation(extent={{-72,64},{-58,78}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3] if
-                                                                            (
-    not ParoiInterne)
-    "Surface incident solar flux information 1-Diffuse Flux, 2-Direct Flux 3-Cosi"
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3] if not
+    ParoiInterne
+    "Surface incident solar flux information 1-Diffuse Flux [W/m2], 2-Direct Flux [W/m2], 3-Cosi"
     annotation (Placement(transformation(extent={{-119,52},{-81,90}}),
         iconTransformation(extent={{-40,80},{-20,100}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt if (not
@@ -125,7 +124,7 @@ Modelica.Blocks.Math.Add add if (not ParoiInterne)
         rotation=90,
         origin={48,52})));
 Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
-    RadInterne "Flows (SWR/LWR) absorbed by this wall on its inner face"
+    RadInterne "Flows (SWR/LWR) absorbed by this wall on its inner face [W]"
     annotation (Placement(transformation(extent={{138,50},{100,88}}),
         iconTransformation(extent={{40,40},{20,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Ts_ext
@@ -134,7 +133,7 @@ Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
            {{-40,-40},{-20,-20}})));
 Modelica.Blocks.Interfaces.RealInput                            FluxAbsExt if
     RadExterne and ParoiInterne
-    "Flows (SWR/LWR) absorbed by this wall on its outer face"
+    "Flows (SWR/LWR) absorbed by this wall on its outer face [W]"
     annotation (Placement(transformation(extent={{-120,9},{-80,51}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt2 if
@@ -363,8 +362,8 @@ end if;
 <p>Validated model - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

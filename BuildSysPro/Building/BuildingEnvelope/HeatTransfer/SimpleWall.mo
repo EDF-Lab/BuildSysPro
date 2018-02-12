@@ -29,7 +29,7 @@ parameter Boolean GLOext=false
   parameter Real alpha_ext=0.6
     "Absorption coefficient of the outer wall in the visible"
     annotation(Dialog(enable=RadExterne, group="General properties of the wall"));
-  parameter Real eps=0.9 "Emittance of the outer surface of the wall in LWR (concrete 0.9)"
+  parameter Real eps=0.9 "Emissivity of the outer surface of the wall in LWR (concrete 0.9)"
     annotation(Dialog(enable=GLOext,  group="General properties of the wall"));
 
 // Wall composition
@@ -63,9 +63,9 @@ parameter Boolean GLOext=false
     annotation (Placement(transformation(extent={{-100,-100},{-80,-80}}),
         iconTransformation(extent={{-100,-100},{-80,-80}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt if
-    RadExterne "SWR incident surface flux on the outer face"
-    annotation (Placement(transformation(extent={{-118,12},{-80,50}}),
-        iconTransformation(extent={{-40,40},{-20,60}})));
+    RadExterne "SWR incident surface flux on the outer face" annotation (
+      Placement(transformation(extent={{-118,12},{-80,50}}), iconTransformation(
+          extent={{-40,40},{-20,60}})));
 Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
     RadInterne
     "LWR and/or SWR flows which are absorbed by this wall on its inner face"
@@ -219,8 +219,8 @@ equation
 <p>Validated model - Gilles Plessis 03/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",

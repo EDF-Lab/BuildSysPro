@@ -136,15 +136,15 @@ parameter Boolean GLOext=false
     useEclairement=useEclairement)
     annotation (Placement(transformation(extent={{-36,0},{42,78}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3]
-    "Incident solar surface flux information 1-Diffuse flux, 2-Direct flux, 3-Cosi"
+    "Incident solar surface flux information 1-Diffuse flux [W/m2], 2-Direct flux [W/m2], 3-Cosi"
     annotation (Placement(transformation(extent={{-120,20},{-80,60}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr if not
-    DifDirOut "SW radiation transmitted inside" annotation (Placement(
+    DifDirOut "SW radiation transmitted inside [W]" annotation (Placement(
         transformation(extent={{60,50},{100,90}}), iconTransformation(extent={{
             80,40},{100,60}})));
   Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
-    RadInterne "Flux (LWR/SWR) absorbed by the glazing on its inner face"
+    RadInterne "Flux (LWR/SWR) absorbed by the glazing on its inner face [W]"
     annotation (Placement(transformation(extent={{120,-10},{82,28}}),
         iconTransformation(extent={{40,20},{20,40}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
@@ -163,7 +163,7 @@ parameter Boolean GLOext=false
             -40},{100,-20}}), iconTransformation(extent={{80,-40},{100,-20}})));
 
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr2[3] if
-    DifDirOut "SW radiation transmitted inside 1-Diffuse, 2-Direct, 3-cosi"
+    DifDirOut "SW radiation transmitted inside 1-Diffuse [W], 2-Direct [W], 3-cosi"
     annotation (Placement(transformation(extent={{60,24},{100,64}}),
         iconTransformation(extent={{80,40},{100,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if  GLOext
@@ -395,8 +395,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 05/2011 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -62,31 +62,29 @@ model PIDDualMode
     annotation (Placement(transformation(extent={{38,31},{20,49}})));
 
   Modelica.Blocks.Continuous.LimPID PID_heat(
-    Ni=0.1,
     yMin=0.,
-    initType=Modelica.Blocks.Types.InitPID.InitialState,
     k=k,
     Ti=Ti,
     Td=Td,
-    yMax=power_nom_heat)
+    yMax=power_nom_heat,
+    initType=Modelica.Blocks.Types.InitPID.InitialState)
     annotation (Placement(transformation(extent={{0,30},{-20,50}})));
   Modelica.Blocks.Continuous.LimPID PID_cool(
-    Ni=0.1,
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
-    initType=Modelica.Blocks.Types.InitPID.NoInit,
     yMax=0,
     k=k,
     Ti=Ti,
     Td=Td,
-    yMin=-power_nom_cool)
+    yMin=-power_nom_cool,
+    initType=Modelica.Blocks.Types.InitPID.InitialState)
     annotation (Placement(transformation(extent={{0,10},{-20,-10}})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeating if
     (use_T_input or twoDifferentSetpoints)
-    annotation (Placement(transformation(extent={{-30,31},{-50,52}})));
+    annotation (Placement(transformation(extent={{-30,30},{-50,50}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCooling if
     (use_T_input or twoDifferentSetpoints)
-    annotation (Placement(transformation(extent={{-30,-9},{-50,12}})));
+    annotation (Placement(transformation(extent={{-30,-10},{-50,10}})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature if
     (not use_T_input and not twoDifferentSetpoints)
@@ -157,11 +155,11 @@ equation
     points={{19.1,40},{19.1,40},{2,40}},
     color={0,0,127}));
   connect(PID_heat.y, prescribedHeating.Q_flow) annotation (Line(
-    points={{-21,40},{-24,40},{-24,41.5},{-30,41.5}},
+    points={{-21,40},{-30,40}},
     color={0,0,127},
     smooth=Smooth.None));
   connect(prescribedHeating.port, heatFlux.port_a) annotation (Line(
-    points={{-50,41.5},{-60,41.5},{-60,20},{-70,20}},
+    points={{-50,40},{-60,40},{-60,20},{-70,20}},
     color={191,0,0},
     smooth=Smooth.None));
 
@@ -172,9 +170,9 @@ equation
   connect(toKelvin_cool.Kelvin, PID_cool.u_s) annotation (Line(
     points={{19.1,0},{2,0}},color={0,0,127}));
   connect(PID_cool.y, prescribedCooling.Q_flow) annotation (Line(
-    points={{-21,0},{-10,0},{-10,1.5},{-30,1.5}},  color={0,0,127}));
+    points={{-21,0},{-30,0}},                      color={0,0,127}));
   connect(prescribedCooling.port, heatFlux.port_a) annotation (Line(
-    points={{-50,1.5},{-60,1.5},{-60,20},{-70,20}},
+    points={{-50,0},{-60,0},{-60,20},{-70,20}},
     color={191,0,0},
     smooth=Smooth.None));
 
@@ -254,7 +252,7 @@ equation
       fillColor={255,0,0},
       fillPattern=FillPattern.Solid),
     Rectangle(
-      extent={{64,-76},{96,-4}},
+      extent={{64,-76},{94,-4}},
       lineColor={0,0,127},
       fillColor={0,0,255},
       fillPattern=FillPattern.Solid),
@@ -290,7 +288,7 @@ equation
 <p>Validations through comparaison with PIDFixedDualMode and PIDPrescribedSingleMode and simulations within MERUBBI project - Mathias Bouquerel 01/2017<p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
+Copyright &copy; EDF 2009 - 2018<br>
 BuildSysPro version 2.0.0<br>
 Author : Mathias BOUQUEREL, EDF (2017)<br>
 --------------------------------------------------------------</b></p>

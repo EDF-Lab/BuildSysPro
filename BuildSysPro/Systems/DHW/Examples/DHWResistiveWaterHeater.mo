@@ -8,7 +8,8 @@ extends Modelica.Icons.Example;
   Modelica.Blocks.Sources.RealExpression MA(y=if H.y < 8 then 1 else 0)
     "Température d'eau froide en °C"
     annotation (Placement(transformation(extent={{-80,6},{-12,26}})));
-  ResistiveWaterHeater eCSisotherme(dT=1.5, T_sp=333.15)
+  Electric.ResistiveWaterHeater
+                       eCSisotherme(dT=1.5, T_sp=333.15)
     annotation (Placement(transformation(extent={{0,0},{20,20}})));
   Modelica.Blocks.Sources.RealExpression H(y=mod(time/3600, 24))
     "Heure de de la journée"
@@ -64,8 +65,8 @@ equation
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.1.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));
