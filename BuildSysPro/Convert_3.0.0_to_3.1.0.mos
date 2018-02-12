@@ -1,0 +1,3 @@
+convertClass("BuildSysPro.Systems.DHW.ResistiveWaterHeater","BuildSysPro.Systems.DHW.Electric.ResistiveWaterHeater");
+convertClass("BuildSysPro.Systems.DHW.WaterTank","BuildSysPro.Systems.DHW.Electric.WaterTank");
+convertElement("BuildSysPro.Systems.DHW.Electric.WaterTank","T_cold","T_cold_fixed");
