@@ -5,7 +5,7 @@
 Current release is version 3.1.0.
 
 This release provides :
-- improvements in *Systems.DHW.Electric.WaterTank* and *Systems.DHW.Solar.SolarWaterHeater* models to allow a prescribed or fixed cold water temperature
+- improvements in *Systems.DHW.Electric.WaterTank* model to allow a prescribed or fixed cold water temperature
 - correction of an error in the *Meteofile* : a one-hour delay was observed between sun height and solar irradiance data for *RT2012* meteo. **Warning :** this error had an impact on simulation results, be careful if you ran simulations with *RT2012* meteo.
 - other minor error corrections
 
