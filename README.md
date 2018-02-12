@@ -2,14 +2,16 @@
 *BuildSysPro open source* is [EDF](http://researchers.edf.com/edf-researchers-209799.html)'s Modelica library for buildings, districts and energy systems modelling. This is BuildSysPro's official repository.
 
 ### Release updates
-Current release is version 3.0.0.
-This release provides new records of building envelope data associated with the different French building regulations which were missing in the library : *RT2005* for individual housing (*Mozart* building), *RT2000* / *RT2005* / *BBC Effinergie* (low-energy building) for collective housing (*Matisse* building).
-Harmonization and standardisation of input, output and parameter naming have been made.
-New model *PIDDualMode* of heating and cooling regulation with constant or prescribed setpoints has been added.
+Current release is version 3.1.0.
 
-EDF is part of [IBPSA Project 1](https://ibpsa.github.io/project1/), and the [IBPSA library](https://github.com/ibpsa/modelica-ibpsa) is now integrated to BuildSysPro open source 3.0.0.
+This release provides :
+- improvements in *Systems.DHW.Electric.WaterTank* and *Systems.DHW.Solar.SolarWaterHeater* models to allow a prescribed or fixed cold water temperature
+- correction of an error in the *Meteofile* : a one-hour delay was observed between sun height and solar irradiance data for *RT2012* meteo. **Warning :** this error had an impact on simulation results, be careful if you ran simulations with *RT2012* meteo.
+- other minor error corrections
 
-BuildSysPro open source 3.0.0 is compatible with OpenModelica 1.9.3. When working with OpenModelica, specify your initial conditions carefully and use preferably Dassl, Euler or Runge-Kutta solvers.
+EDF is part of [IBPSA Project 1](https://ibpsa.github.io/project1/), and the [IBPSA library](https://github.com/ibpsa/modelica-ibpsa) is now integrated to BuildSysPro open source 3.1.0.
+
+BuildSysPro open source 3.1.0 is compatible with OpenModelica 1.9.3. When working with OpenModelica, specify your initial conditions carefully and use preferably Dassl, Euler or Runge-Kutta solvers.
 
 ### License
 The BuildSysPro open source library is licensed by EDF under the [Modelica License Version 2](https://www.modelica.org/licenses/ModelicaLicense2).
