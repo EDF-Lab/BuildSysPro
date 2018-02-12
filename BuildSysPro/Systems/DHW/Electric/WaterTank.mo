@@ -1,4 +1,4 @@
-﻿within BuildSysPro.Systems.DHW;
+﻿within BuildSysPro.Systems.DHW.Electric;
 model WaterTank
 
   //import SI=Modelica.SIunits;

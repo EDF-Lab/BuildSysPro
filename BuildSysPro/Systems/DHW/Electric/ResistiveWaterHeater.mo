@@ -1,4 +1,4 @@
-within BuildSysPro.Systems.DHW;
+within BuildSysPro.Systems.DHW.Electric;
 model ResistiveWaterHeater
   "Electric hot water tank with homogeneous temperature"
   parameter Modelica.SIunits.Volume V=0.200 "Volume"
