@@ -1,7 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics;
 function power "Flow vs. electrical power characteristics for fan or pump"
   extends Modelica.Icons.Function;
-  input IBPSA.Fluid.Movers.BaseClasses.Characteristics.powerParameters per
+  input
+    IBPSA.Fluid.Movers.BaseClasses.Characteristics.powerParameters per
     "Pressure performance data";
   input Modelica.SIunits.VolumeFlowRate V_flow "Volumetric flow rate";
   input Real r_N(unit="1") "Relative revolution, r_N=N/N_nominal";
@@ -23,23 +24,24 @@ algorithm
     // The use of the max function to avoids problems for low speeds
     // and turned off pumps
     rat := V_flow/IBPSA.Utilities.Math.Functions.smoothMax(
-      x1=r_N,
-      x2=0.1,
-      deltaX=delta);
+                x1=r_N,
+                x2=0.1,
+                deltaX=delta);
     for j in 1:n-1 loop
        if rat > per.V_flow[j] then
          i := j;
        end if;
     end for;
     // Extrapolate or interpolate the data
-    P := r_N^3*IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-      x=rat,
-      x1=per.V_flow[i],
-      x2=per.V_flow[i + 1],
-      y1=per.P[i],
-      y2=per.P[i + 1],
-      y1d=d[i],
-      y2d=d[i + 1]);
+    P := r_N^3*
+      IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
+                x=rat,
+                x1=per.V_flow[i],
+                x2=per.V_flow[i + 1],
+                y1=per.P[i],
+                y2=per.P[i + 1],
+                y1d=d[i],
+                y2d=d[i + 1]);
   end if;
   annotation(smoothOrder=1,
               Documentation(info="<html>

@@ -1,12 +1,12 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.From1982to1989;
 record ExtWall =
- BuildSysPro.Utilities.Icons.ExtWall (
+  BuildSysPro.Utilities.Icons.ExtWall (
     n=3,
     m={4,2,1},
     e={0.2,0.07,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.HollowConcreteBlock(),
-        BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene40(),
-        BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
+         BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene40(),
+         BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
     positionIsolant={0,1,0})
   "Exterior wall and wall on garage Mozart from 1982 to 89"                                                  annotation (
     Icon(graphics), Documentation(info="<html>
@@ -23,6 +23,6 @@ record ExtWall =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

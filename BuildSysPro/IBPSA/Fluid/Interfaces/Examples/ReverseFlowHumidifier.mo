@@ -44,9 +44,9 @@ package Medium = IBPSA.Media.Air;
                    annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         origin={-90,30})));
-  IBPSA.Fluid.Sources.FixedBoundary sink1(redeclare package Medium = Medium,
-      nPorts=2) "Fluid sink" annotation (Placement(transformation(extent={{10,-10},
-            {-10,10}}, origin={40,28})));
+  IBPSA.Fluid.Sources.FixedBoundary sink1(redeclare package Medium =
+        Medium, nPorts=2) "Fluid sink" annotation (Placement(
+        transformation(extent={{10,-10},{-10,10}}, origin={40,28})));
   Sensors.SpecificEnthalpy senEnt1(redeclare package Medium = Medium)
     "Specific enthalpy sensor"
     annotation (Placement(transformation(extent={{10,70},{30,90}})));

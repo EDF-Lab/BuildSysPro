@@ -5,8 +5,9 @@ record Generic "Generic data record for active beam"
   parameter BaseClasses.AirFlow primaryAir(
     r_V={0,0.2,1},
     f={0,0.5,1}) "Performance data for primary air";
-  parameter IBPSA.Fluid.HeatExchangers.ActiveBeams.Data.BaseClasses.WaterFlow water(r_V={0,
-        0.5,1}, f={0,0.7,1}) "Performance data for water";
+  parameter
+    IBPSA.Fluid.HeatExchangers.ActiveBeams.Data.BaseClasses.WaterFlow
+    water(r_V={0,0.5,1}, f={0,0.7,1}) "Performance data for water";
 
   parameter BaseClasses.TemperatureDifference dT(
     r_dT={0,0.5,1},

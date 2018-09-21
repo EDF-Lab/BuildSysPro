@@ -10,9 +10,9 @@ initial equation
    y=x;
 equation
   x = IBPSA.Utilities.Math.Functions.regNonZeroPower(
-    time^3,
-    n,
-    delta);
+              time^3,
+              n,
+              delta);
   der(y)=der(x);
   assert(abs(x-y) < 1E-2, "Model has an error");
 

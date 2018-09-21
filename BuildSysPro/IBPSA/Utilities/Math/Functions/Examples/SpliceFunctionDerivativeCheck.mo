@@ -20,10 +20,10 @@ equation
   // Because the derivative is implemented for all arguments,
   // we make pos, neg and deltax also functions of time
   y = IBPSA.Utilities.Math.Functions.spliceFunction(
-    pos=10*x^3,
-    neg=-10*x^2,
-    x=x,
-    deltax=deltax);
+              pos=10*x^3,
+              neg=-10*x^2,
+              x=x,
+              deltax=deltax);
   der(y)=der(y_comp);
   err = y-y_comp;
   assert(abs(err) < 1E-2, "Model has an error");

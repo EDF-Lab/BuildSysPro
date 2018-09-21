@@ -7,9 +7,9 @@ model TrapezoidalIntegration
   //Real y2[7] = {0.3333, 1.0, 3.0, 9.9, 27.0, 81.0, 243.0}; // //function values of y = 3^(3x-1) for x=0:0.3333:2
 algorithm
   y := IBPSA.Utilities.Math.Functions.trapezoidalIntegration(
-    N=7,
-    f=y1,
-    deltaX=1);
+              N=7,
+              f=y1,
+              deltaX=1);
  assert(y - 286.0 < 1E-4,
    "Error. Function should have returned 286.");
   annotation (experiment(Tolerance=1e-6, StopTime=1.0),
@@ -18,7 +18,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
                      Documentation(info="<html>
 <p>
 Tests the correct implementation of function
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.trapezoidalIntegration\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.trapezoidalIntegration\">
 IBPSA.Utilities.Math.Functions.trapezoidalIntegration</a>.
 </p>
 <p>Integrands y1[7]={72, 70, 64, 54, 40, 22, 0} are the function values of y = -2*x^2-72 for x = {0,1,2,3,4,5,6}. The trapezoidal integration over the 7 integrand points should give a result of 286.</p>

@@ -14,15 +14,6 @@ package Sources "Package with boundary condition models"
 
 
 
-
-
-
-
-
-
-
-
-
 annotation (preferredView="info",
 Documentation(info="<html>
 <p>

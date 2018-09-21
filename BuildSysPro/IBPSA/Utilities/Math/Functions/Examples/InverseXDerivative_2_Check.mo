@@ -23,7 +23,8 @@ initial equation
  der_y = der_y_comp;
 equation
   x = time^3*gain;
-  y = IBPSA.Utilities.Math.Functions.inverseXRegularized(x=x, delta=delta);
+  y = IBPSA.Utilities.Math.Functions.inverseXRegularized(x=x, delta=
+    delta);
 
   der_y = der(y);
   der_y_comp = der(y_comp);
@@ -47,10 +48,10 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
 Documentation(info="<html>
 <p>
 This model validates the implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.inverseXRegularized\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.inverseXRegularized</a>
 and its second order derivative
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.der_2_smoothTransition\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.der_2_smoothTransition\">
 IBPSA.Utilities.Math.Functions.BaseClasses.der_2_smoothTransition</a>.
 If the derivative implementation is wrong, the simulation will stop with an error.
 </p>

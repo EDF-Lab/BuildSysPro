@@ -10,7 +10,7 @@ block FlowSplitter_u "Declaration of an FMU that exports a flow splitter"
 <p>
 This example demonstrates how to export an FMU with a fluid flow component.
 The FMU is an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.FlowSplitter_u\">
+<a href=\"modelica://IBPSA.Fluid.FMI.FlowSplitter_u\">
 IBPSA.Fluid.FMI.FlowSplitter_u</a>.
 </p>
 </html>", revisions="<html>

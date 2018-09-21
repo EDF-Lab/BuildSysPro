@@ -37,7 +37,7 @@ which the air temperature is above the set point.
 </p>
 <p>
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Examples.AirHeater_T\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Examples.AirHeater_T\">
 IBPSA.Fluid.HeatExchangers.Examples.AirHeater_T</a>
 for a model that takes the leaving air temperature as an input.
 </p>

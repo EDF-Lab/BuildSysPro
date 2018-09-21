@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation;
 model AirToOutletFlowReversal
   "Validation model for air to outlet converter with flow reversal enabled"
-  extends IBPSA.Fluid.FMI.Conversion.Validation.AirToOutlet(allowFlowReversal=
-        true);
+  extends IBPSA.Fluid.FMI.Conversion.Validation.AirToOutlet(
+      allowFlowReversal=true);
   BoundaryCondition bouAirNoC(
     redeclare package Medium = IBPSA.Media.Air (
       X_default={0.015, 0.985}))
@@ -81,13 +81,13 @@ equation
   annotation (Documentation(info="<html>
 <p>
 This example is identical to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation.AirToOutlet\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.Validation.AirToOutlet\">
 IBPSA.Fluid.FMI.Conversion.Validation.AirToOutlet</a>,
 except that it has reverse flow.
 This tests whether the fluid properties from
 the upstream media are correctly converted to
 the output signals of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.AirToOutlet\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.AirToOutlet\">
 IBPSA.Fluid.FMI.Conversion.AirToOutlet</a>.
 </p>
 </html>", revisions="<html>

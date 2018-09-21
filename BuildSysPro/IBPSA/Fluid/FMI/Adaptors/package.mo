@@ -6,10 +6,6 @@ package Adaptors "Package with adaptors to connect models with fluid ports and m
 
 
 
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains adaptors that allow connecting models with fluid ports

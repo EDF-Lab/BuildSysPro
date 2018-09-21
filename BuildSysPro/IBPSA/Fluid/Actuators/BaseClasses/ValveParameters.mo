@@ -65,7 +65,8 @@ initial equation
     dpValve_nominal =  (m_flow_nominal/Kv_SI)^2;
   else
     assert(CvData == IBPSA.Fluid.Types.CvTypes.Av, "Invalid value for CvData.
-Obtained CvData = " + String(CvData) + ".");
+Obtained CvData = "
+            + String(CvData) + ".");
     Kv_SI =           Av*sqrt(rhoStd);
     Kv    =           Kv_SI/(rhoStd/3600/sqrt(1E5));
     Cv    =           Kv_SI/(rhoStd*0.0631/1000/sqrt(6895));
@@ -126,7 +127,7 @@ August 12, 2014, by Michael Wetter:<br/>
 Changed attribute <code>min</code> of <code>dpValve_nominal</code>
 to <code>0</code>.
 This is needed as for example in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable\">
 IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable</a>,
 <code>dpValve_nominal=0</code>.
 </li>

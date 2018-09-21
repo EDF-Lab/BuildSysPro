@@ -18,10 +18,10 @@ protected
   constant Real nMax=2*Modelica.Constants.pi "Upper bound";
 equation
   nOut = IBPSA.Utilities.Math.Functions.smoothLimit(
-    nIn,
-    nMin,
-    nMax,
-    delta/10);
+            nIn,
+            nMin,
+            nMax,
+            delta/10);
   annotation (
     defaultComponentName="cheWinDir",
     Documentation(info="<html>

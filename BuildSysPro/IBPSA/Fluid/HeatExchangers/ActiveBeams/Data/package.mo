@@ -4,8 +4,6 @@ package Data "Package with performance data"
 
 
 
-
-
 annotation (Documentation(info="<html>
 <p>
 Package with performance data for active beams.

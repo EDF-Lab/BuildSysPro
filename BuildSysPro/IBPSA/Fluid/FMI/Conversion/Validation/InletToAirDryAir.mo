@@ -1,12 +1,13 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation;
 model InletToAirDryAir
   "Validation model for inlet to air with dry air medium"
-  extends IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir(redeclare
-      package Medium = Modelica.Media.Air.SimpleAir);
+  extends IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir(
+      redeclare replaceable package Medium =
+        Modelica.Media.Air.SimpleAir);
   annotation (Documentation(info="<html>
 <p>
 This validation test is identical to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir\">
 IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir</a>
 except that it uses a medium model without moisture.
 Hence, it tests whether the water vapor connectors are correctly removed.

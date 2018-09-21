@@ -12,45 +12,45 @@ model IsMonotonic
 equation
 // Tests with weak monotonicity
     //strictly increasing
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x_incStrict, strict=false),
-    "Error. Function should have returned true.");
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x_incStrict,
+    strict=false), "Error. Function should have returned true.");
      //not monotonic
-  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(x_notMon, strict=
-    false), "Error. Function should have returned true.");
+  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(x_notMon,
+    strict=false), "Error. Function should have returned true.");
      //weakly increasing
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x_incWeak, strict=false),
-    "Error. Function should have returned true.");
-     //not weakly monotonic
-  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(x_notWeak, strict=
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x_incWeak, strict=
     false), "Error. Function should have returned true.");
+     //not weakly monotonic
+  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(
+    x_notWeak, strict=false), "Error. Function should have returned true.");
 
     //strictly decreasing
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic({2.5,2,0.1}, strict=false),
-    "Error. Function should have returned true.");
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic({2.5,2,0.1},
+    strict=false), "Error. Function should have returned true.");
      //weakly decreasing
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic({3,1,1,0.5}, strict=false),
-    "Error. Function should have returned true.");
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic({3,1,1,0.5},
+    strict=false), "Error. Function should have returned true.");
 
 // Tests with strict monotonicity
     //strictly increasing
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x_incStrict, strict=true),
-    "Error. Function should have returned true.");
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x_incStrict,
+    strict=true), "Error. Function should have returned true.");
      //not monotonic
-  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(x_notMon, strict=
-    true), "Error. Function should have returned true.");
+  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(x_notMon,
+    strict=true), "Error. Function should have returned true.");
      //weakly increasing
-  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(x_incWeak, strict=
-    true), "Error. Function should have returned true.");
+  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(
+    x_incWeak, strict=true), "Error. Function should have returned true.");
      //not weakly monotonic
-  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(x_notWeak, strict=
-    true), "Error. Function should have returned true.");
+  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(
+    x_notWeak, strict=true), "Error. Function should have returned true.");
 
     //strictly decreasing
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x_decStrict, strict=true),
-    "Error. Function should have returned true.");
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x_decStrict,
+    strict=true), "Error. Function should have returned true.");
      //weakly decreasing
-  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(x_decWeak, strict=
-    true), "Error. Function should have returned true.");
+  assert(false == IBPSA.Utilities.Math.Functions.isMonotonic(
+    x_decWeak, strict=true), "Error. Function should have returned true.");
 
   annotation (experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/IsMonotonic.mos"
@@ -59,7 +59,7 @@ Documentation(
 info="<html>
 <p>
 This example tests the correct implementation of the function
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.isMonotonic\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.isMonotonic\">
 IBPSA.Utilities.Math.Functions.isMonotonic</a>.
 If the function is implemented incorrect, the example will stop
 with an error.

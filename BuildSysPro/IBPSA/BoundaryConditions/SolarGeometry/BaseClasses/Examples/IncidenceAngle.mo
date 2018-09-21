@@ -13,9 +13,9 @@ model IncidenceAngle "Test model for incidence angle"
     lat=0.73268921998722) "Incidence angle"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
-    "Weather data"
-    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
+        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+    "Weather data" annotation (Placement(transformation(extent={{-80,-10},
+            {-60,10}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather bus"
     annotation (Placement(transformation(extent={{-46,-10},{-26,10}})));
 equation
@@ -53,7 +53,7 @@ equation
 This example computes the solar incidence angle on a tilted surface.
 This model is also part of more extensive tests that run the
 model for different orientations. These tests are at
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle\">
+<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle\">
 IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle</a>.
 </p>
 </html>", revisions="<html>
@@ -61,7 +61,7 @@ IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle</a>.
 <li>
 March 24, 2015, by Michael Wetter:<br/>
 Assigned azimuth and tilt using the types from
-<a href=\"modelica://BuildSysPro.IBPSA.Types.Tilt\">
+<a href=\"modelica://IBPSA.Types.Tilt\">
 IBPSA.Types.Tilt</a>.
 </li>
 <li>

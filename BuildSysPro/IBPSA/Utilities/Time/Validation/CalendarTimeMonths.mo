@@ -14,7 +14,7 @@ equation
     info="<html>
 <p>
 This model validates the use of the
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Time.CalendarTime\">
+<a href=\"modelica://IBPSA.Utilities.Time.CalendarTime\">
 IBPSA.Utilities.Time.CalendarTime</a>
 block for a period of a couple of months.
 This shorter simulation time has been selected to

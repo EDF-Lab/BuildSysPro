@@ -22,24 +22,24 @@ model Humidifier_u
     use_T_in=true,
     nPorts=4,
     p(displayUnit="Pa") = 101435,
-    T=293.15)
-    annotation (Placement(transformation(extent={{-168,92},{-148,112}})));
+    T=293.15) annotation (Placement(transformation(extent={{-168,92},{-148,
+            112}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_11(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,92},{-80,112}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            92},{-80,112}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_12(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,134},{-80,154}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            134},{-80,154}})));
   IBPSA.Fluid.Sources.Boundary_pT sin_1(
     redeclare package Medium = Medium,
     use_p_in=true,
     T=288.15,
-    nPorts=4)
-    annotation (Placement(transformation(extent={{-168,134},{-148,154}})));
+    nPorts=4) annotation (Placement(transformation(extent={{-168,134},{-148,
+            154}})));
     Modelica.Blocks.Sources.Constant POut(k=101325)
       annotation (Placement(transformation(extent={{-200,140},{-180,160}})));
     Modelica.Blocks.Sources.Ramp u(
@@ -140,14 +140,15 @@ model Humidifier_u
   IBPSA.Fluid.FixedResistances.PressureDrop res_1(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,-110},{-80,-90}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            -110},{-80,-90}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_5(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,-68},{-80,-48}})));
-  Humidifier hea6(                               redeclare package Medium =
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            -68},{-80,-48}})));
+  Humidifier hea6(                               redeclare package
+      Medium =
         Medium,
     m_flow_nominal=0.5,
     mWat_flow_nominal=mWat_flow_nominal,
@@ -169,14 +170,15 @@ model Humidifier_u
   IBPSA.Fluid.FixedResistances.PressureDrop res_6(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,-190},{-80,-170}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            -190},{-80,-170}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_7(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,-148},{-80,-128}})));
-  Humidifier hea8(                               redeclare package Medium =
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            -148},{-80,-128}})));
+  Humidifier hea8(                               redeclare package
+      Medium =
         Medium,
     m_flow_nominal=0.5,
     mWat_flow_nominal=mWat_flow_nominal,

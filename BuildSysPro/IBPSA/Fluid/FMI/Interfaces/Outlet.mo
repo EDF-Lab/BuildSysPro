@@ -17,10 +17,11 @@ connector Outlet "Connector for fluid outlet"
     "Thermodynamic pressure in the connection point";
 
   input IBPSA.Fluid.FMI.Interfaces.FluidProperties backward(redeclare final
-      package Medium = Medium) if allowFlowReversal "Inflowing properties";
+      package       Medium = Medium) if allowFlowReversal
+    "Inflowing properties";
 
   output IBPSA.Fluid.FMI.Interfaces.FluidProperties forward(redeclare final
-      package Medium = Medium) "Outflowing properties";
+      package       Medium = Medium) "Outflowing properties";
 
   annotation (defaultComponentName="outlet",
   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},

@@ -3,7 +3,7 @@ model TraceSubstanceConservationDynamicBalance
   "This test checks if trace substance mass flow rates are conserved when a dynamic balance is used"
   extends
     IBPSA.Fluid.MixingVolumes.Validation.BaseClasses.TraceSubstanceConservation(
-      vol(massDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+     vol(massDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
         energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial));
 
   Modelica.Blocks.Continuous.Integrator intTraSubIn(
@@ -11,14 +11,12 @@ model TraceSubstanceConservationDynamicBalance
     initType=Modelica.Blocks.Types.Init.InitialState,
     y_start=0) "Integrator for trace substance inlet"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=0,
         origin={-30,-60})));
   Modelica.Blocks.Continuous.Integrator intTraSubOut(
     k=1,
     initType=Modelica.Blocks.Types.Init.InitialState,
     y_start=0) "Integrator for trace substance outlet"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=0,
         origin={10,-40})));
   Modelica.Blocks.Sources.RealExpression reaExp(y=vol.m*vol.C[1])
     "Mixing volume total species mass"
@@ -62,9 +60,7 @@ equation
           -2,-40}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (                   Diagram(coordinateSystem(preserveAspectRatio=false,
-          extent={{-100,-100},{100,100}}), graphics),
-    experiment(Tolerance=1e-08, StopTime=1),
+  annotation (    experiment(Tolerance=1e-08, StopTime=1),
     Documentation(info="<html>
 <p>
 This test checks if the trace substance flow rate is
@@ -78,10 +74,10 @@ Note, however, that there is some approximation error because
 in its default configuration, the conservation balance
 models simplify the treatment of the water that is added
 to the fluid.
-See <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+See <a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 for a discussion.
 </p>
@@ -106,7 +102,6 @@ First implementation.
 </li>
 </ul>
 </html>"),
-    Icon(coordinateSystem(extent={{-100,-100},{100,100}})),
     __Dymola_Commands(file=
           "Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/TraceSubstanceConservationDynamicBalance.mos"
         "Simulate and plot"));

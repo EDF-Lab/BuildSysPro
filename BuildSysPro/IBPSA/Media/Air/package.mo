@@ -291,7 +291,8 @@ redeclare function extends saturationPressure
     "Saturation curve valid for 223.16 <= T <= 373.16 (and slightly outside with less accuracy)"
 
 algorithm
-  psat := IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(Tsat);
+    psat := IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(
+      Tsat);
   annotation (
   smoothOrder=5,
   Inline=true);
@@ -359,7 +360,7 @@ where <i>R</i> is the gas constant,
 </p>
 <p>
 To obtain the state for a given pressure, entropy and mass fraction, use
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Air.setState_psX\">
+<a href=\"modelica://IBPSA.Media.Air.setState_psX\">
 IBPSA.Media.Air.setState_psX</a>.
 </p>
 <h4>Limitations</h4>
@@ -561,7 +562,7 @@ specific entropy and mass fraction.
 </p>
 <p>
 The state is computed by symbolically solving
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Air.specificEntropy\">
+<a href=\"modelica://IBPSA.Media.Air.specificEntropy\">
 IBPSA.Media.Air.specificEntropy</a>
 for temperature.
 </p>
@@ -922,9 +923,9 @@ a control volume does not affect the air flow calculations in a duct network
 that may be connected to that volume.
 Note that multizone air exchange simulation in which buoyancy drives the
 air flow is still possible as the models in
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone\">
+<a href=\"modelica://IBPSA.Airflow.Multizone\">
 IBPSA.Airflow.Multizone</a> compute the mass density using the function
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
 IBPSA.Utilities.Psychrometrics.Functions.density_pTX</a> in which density
 is a function of temperature.
 </p>
@@ -970,7 +971,7 @@ This is for
 June 6, 2015, by Michael Wetter:<br/>
 Set <code>AbsolutePressure(start=p_default)</code> to avoid
 a translation error if
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Examples.TraceSubstancesFlowSource\">
+<a href=\"modelica://IBPSA.Fluid.Sources.Examples.TraceSubstancesFlowSource\">
 IBPSA.Fluid.Sources.Examples.TraceSubstancesFlowSource</a>
 is translated in pedantic mode in Dymola 2016.
 The reason is that pressures use <code>Medium.p_default</code> as start values,
@@ -1026,7 +1027,7 @@ This is for
 <li>
 July 24, 2014, by Michael Wetter:<br/>
 Changed implementation to use
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Constants\">
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Constants\">
 IBPSA.Utilities.Psychrometrics.Constants</a>.
 This was done to use consistent values throughout the library.
 </li>
@@ -1054,7 +1055,7 @@ when models are checked in Dymola 2014 in the pedenatic mode.
 </li>
 <li>
 April 12, 2012, by Michael Wetter:<br/>
-Added keyword <code>each</code> to <code>Xi(stateSelect=...</code>.
+Added keyword <code>each</code> to <code>Xi(stateSelect=...)</code>.
 </li>
 <li>
 April 4, 2012, by Michael Wetter:<br/>
@@ -1074,8 +1075,9 @@ that lead to a run-time error when the constructor of this function was called.
 <li>
 January 22, 2010, by Michael Wetter:<br/>
 Added implementation of function
-<a href=\"modelica://BuildSysPro.IBPSA.Media.GasesPTDecoupled.MoistAirUnsaturated.enthalpyOfNonCondensingGas\">
+<a href=\"modelica://IBPSA.Media.GasesPTDecoupled.MoistAirUnsaturated.enthalpyOfNonCondensingGas\">
 enthalpyOfNonCondensingGas</a> and its derivative.
+</li>
 <li>
 January 13, 2010, by Michael Wetter:<br/>
 Fixed implementation of derivative functions.

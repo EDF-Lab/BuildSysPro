@@ -11,9 +11,9 @@ model AltitudeAngle "Test model for altitude angle"
     "Solar hour angle"
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
-    "Weather data"
-    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
+        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+    "Weather data" annotation (Placement(transformation(extent={{-80,-10},
+            {-60,10}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather bus"
     annotation (Placement(transformation(extent={{-44,-10},{-24,10}})));
   IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.AltitudeAngle altAng
@@ -65,13 +65,13 @@ Components used in this model are:
 </p>
 <ul>
 <li>
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination</a>
+<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination</a>
 </li>
 <li>
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.SolarHourAngle\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.SolarHourAngle</a>
+<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.SolarHourAngle\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.SolarHourAngle</a>
 </li>
 <li>
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.ZenithAngle\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.ZenithAngle</a>
+<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.ZenithAngle\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.ZenithAngle</a>
 </li>
 </ul>
 <br/>

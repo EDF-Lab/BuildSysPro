@@ -14,7 +14,7 @@ algorithm
 <ul>
 <li>November 28, 2013, by Marcus Fuchs:<br/>
 Implementation based on Kaustubh Phalak&apos;s block
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.BooleanReplicator\">
+<a href=\"modelica://IBPSA.Utilities.Math.BooleanReplicator\">
 IBPSA.Utilities.Math.BooleanReplicator</a>.
 </li>
 </ul>

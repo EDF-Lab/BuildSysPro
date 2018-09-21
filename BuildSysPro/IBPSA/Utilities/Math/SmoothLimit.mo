@@ -7,10 +7,10 @@ block SmoothLimit
  parameter Real lower "Lower limit";
 equation
   y = IBPSA.Utilities.Math.Functions.smoothLimit(
-    u,
-    lower,
-    upper,
-    deltaX);
+          u,
+          lower,
+          upper,
+          deltaX);
   annotation (Icon(graphics={Text(
           extent={{-88,40},{92,-32}},
           lineColor={160,160,164},
@@ -22,7 +22,7 @@ The output is bounded to be in <i>[lower, upper]</i>.
 </p>
 <p>
 Note that the limit need not be respected, such as illustrated in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Examples.SmoothMin\">
+<a href=\"modelica://IBPSA.Utilities.Math.Examples.SmoothMin\">
 IBPSA.Utilities.Math.Examples.SmoothMin</a>.
 </p>
 </html>",

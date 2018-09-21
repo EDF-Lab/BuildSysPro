@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block ResistanceVolume
   "Declaration of an FMU that exports a flow resistance and control volume"
-  extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(redeclare package
-      Medium = IBPSA.Media.Air);
+  extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(
+      redeclare package Medium = IBPSA.Media.Air);
 
   parameter Modelica.SIunits.Volume V=1 "Volume";
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal=0.01
@@ -18,8 +18,8 @@ protected
   IBPSA.Fluid.FMI.Adaptors.Inlet bouIn(
     redeclare final package Medium = Medium,
     final allowFlowReversal=allowFlowReversal,
-    final use_p_in=use_p_in) "Boundary model for inlet"
-    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
+    final use_p_in=use_p_in) "Boundary model for inlet" annotation (
+     Placement(transformation(extent={{-80,-10},{-60,10}})));
   IBPSA.Fluid.FMI.Adaptors.Outlet bouOut(
     redeclare final package Medium = Medium,
     final allowFlowReversal=allowFlowReversal,
@@ -42,7 +42,8 @@ protected
     final allowFlowReversal=allowFlowReversal,
     final V=V,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState) "Control volume"
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
+    "Control volume"
     annotation (Placement(transformation(extent={{10,0},{30,20}})));
 
 equation
@@ -83,16 +84,16 @@ equation
 This example demonstrates how to export an FMU with a
 flow resistance and a control volume.
 The FMU has an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
+<a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
 IBPSA.Fluid.FixedResistances.PressureDrop</a> and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolume\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolume\">
 IBPSA.Fluid.MixingVolumes.MixingVolume</a>.
 </p>
 <p>
 The mass dynamics has been set to
 <code>massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState</code>.
 See the
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
+<a href=\"modelica://IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
 for the rationale.
 </p>
 </html>", revisions="<html>

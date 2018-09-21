@@ -27,7 +27,7 @@ equation
   <ul>
   <li>
   September 26, 2016, by Moritz Lauster:<br/>
-  Moved calculations to <a href=\"modelica://BuildSysPro.IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature.BaseClasses.PartialVDI6007\">
+  Moved calculations to <a href=\"modelica://IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature.BaseClasses.PartialVDI6007\">
   IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature.BaseClasses.PartialVDI6007</a>.
   </li>
   <li>September 2015, by Moritz Lauster:<br/>

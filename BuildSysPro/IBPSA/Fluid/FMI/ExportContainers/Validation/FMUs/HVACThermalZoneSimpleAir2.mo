@@ -1,14 +1,15 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs;
 block HVACThermalZoneSimpleAir2
   "Validation model for the convective HVAC system"
-  extends IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs.HVACThermalZoneAir1(
-      redeclare package Medium = Modelica.Media.Air.SimpleAir (
+  extends
+    IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs.HVACThermalZoneAir1(
+     redeclare package Medium = Modelica.Media.Air.SimpleAir (
           extraPropertiesNames={"CO2"}));
 annotation (
     Documentation(info="<html>
 <p>
 This example validates that
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
 IBPSA.Fluid.FMI.ExportContainers.HVACZone</a>
 exports correctly as an FMU.
 </p>

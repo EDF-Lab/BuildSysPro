@@ -5,10 +5,6 @@ package Chillers "Package with chiller models"
 
 
 
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains component models for chillers.

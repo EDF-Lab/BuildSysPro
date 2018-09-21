@@ -11,15 +11,6 @@ package HeatExchangers "Package with heat exchanger models"
 
 
 
-
-
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 This package contains models for heat exchangers with and without humidity condensation.
 </html>"));

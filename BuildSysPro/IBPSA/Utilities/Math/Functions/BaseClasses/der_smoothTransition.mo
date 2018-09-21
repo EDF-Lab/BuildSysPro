@@ -35,7 +35,7 @@ algorithm
 Documentation(info="<html>
 <p>
 This function is the 1st order derivative of
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.smoothTransition\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.smoothTransition\">
 IBPSA.Utilities.Math.Functions.BaseClasses.smoothTransition</a>.
 </p>
 <h4>Implementation</h4>
@@ -46,7 +46,7 @@ the inverse of the smoothing parameter <code>deltaInv</code>
 are exposed as arguments to this function.
 Also,
 its derivative is provided in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.der_2_smoothTransition\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.der_2_smoothTransition\">
 IBPSA.Utilities.Math.Functions.BaseClasses.der_2__smoothTransition</a>.
 </p>
 </html>", revisions="<html>

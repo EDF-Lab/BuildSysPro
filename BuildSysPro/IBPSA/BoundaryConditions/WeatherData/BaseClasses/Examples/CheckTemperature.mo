@@ -7,8 +7,9 @@ model CheckTemperature "Test model for CheckTemperature"
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckTemperature cheTemDewPoi
     "Check dew point temperature"
     annotation (Placement(transformation(extent={{60,-20},{80,0}})));
-  IBPSA.Utilities.Time.ModelTime modTim "Block that outputs the model time"
-    annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
+  IBPSA.Utilities.Time.ModelTime modTim
+    "Block that outputs the model time" annotation (Placement(
+        transformation(extent={{-100,0},{-80,20}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim
     "Block that converts time"
     annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
@@ -23,7 +24,7 @@ protected
     tableOnFile=true,
     tableName="tab1",
     fileName=Modelica.Utilities.Files.loadResource(
-       "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
+       Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")),
     columns=2:30,
     smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)
     "Data reader"

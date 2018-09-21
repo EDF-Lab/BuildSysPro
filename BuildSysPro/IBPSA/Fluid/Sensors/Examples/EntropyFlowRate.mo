@@ -4,8 +4,8 @@ model EntropyFlowRate "Test model for the entropy flow rate sensors"
 
   package Medium = IBPSA.Media.Air "Medium model";
 
-  IBPSA.Fluid.Sensors.EntropyFlowRate senS_flow(redeclare package Medium =
-        Medium, m_flow_nominal=2) "Entropy flow rate sensor"
+  IBPSA.Fluid.Sensors.EntropyFlowRate senS_flow(redeclare package
+      Medium = Medium, m_flow_nominal=2) "Entropy flow rate sensor"
     annotation (Placement(transformation(extent={{-30,-20},{-10,0}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou(
     redeclare package Medium = Medium,
@@ -16,7 +16,8 @@ model EntropyFlowRate "Test model for the entropy flow rate sensors"
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     nPorts=1,
-    T=313.15) "Flow boundary condition" annotation (Placement(transformation(
+    T=313.15) "Flow boundary condition" annotation (Placement(
+        transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={70,-10})));
@@ -26,11 +27,11 @@ model EntropyFlowRate "Test model for the entropy flow rate sensors"
     duration=60) "Input signal for mass flow rate"
     annotation (Placement(transformation(extent={{-100,-12},{-80,8}})));
 
-  IBPSA.Fluid.Sensors.SpecificEntropyTwoPort senS(redeclare package Medium =
-        Medium, m_flow_nominal=2) "Specific entropy sensor"
+  IBPSA.Fluid.Sensors.SpecificEntropyTwoPort senS(redeclare package
+      Medium = Medium, m_flow_nominal=2) "Specific entropy sensor"
     annotation (Placement(transformation(extent={{0,-20},{20,0}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flow(redeclare package Medium = Medium)
-    "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flow(redeclare package Medium =
+        Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{28,-20},{48,0}})));
   IBPSA.Utilities.Diagnostics.AssertEquality assEqu
     "Asserts the equality of the entropy flow rate computations"
@@ -39,7 +40,7 @@ model EntropyFlowRate "Test model for the entropy flow rate sensors"
     annotation (Placement(transformation(extent={{0,54},{20,74}})));
 equation
   connect(ramp.y, sou.m_flow_in) annotation (Line(
-      points={{-79,-2},{-60,-2}},
+      points={{-79,-2},{-62,-2}},
       color={0,0,127}));
   connect(sou.ports[1],senS_flow. port_a) annotation (Line(
       points={{-40,-10},{-30,-10}},
@@ -80,7 +81,5 @@ July 29, 2016, by Michael Wetter:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end EntropyFlowRate;

@@ -20,9 +20,9 @@ model Source_T
         iconTransformation(extent={{-140,80},{-100,120}})));
 
   IBPSA.Fluid.FMI.Interfaces.PressureInput p_in if use_p_in
-    "Prescribed boundary pressure" annotation (Placement(transformation(extent=
-            {{-140,28},{-100,68}}), iconTransformation(extent={{-140,28},{-100,
-            68}})));
+    "Prescribed boundary pressure" annotation (Placement(transformation(
+          extent={{-140,28},{-100,68}}), iconTransformation(extent={{-140,
+            28},{-100,68}})));
   Modelica.Blocks.Interfaces.RealInput T_in(unit="K",
                                             displayUnit="degC",
                                             min=0)
@@ -93,7 +93,7 @@ and trace substances (if <code>Medium.nC &gt; 0</code>).
 </p>
 <p>
 For a system of components with the connectors of the
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI\">
+<a href=\"modelica://IBPSA.Fluid.FMI\">
 IBPSA.Fluid.FMI</a>
 package, this component is required to set the pressure
 and the mass flow rate of the system.

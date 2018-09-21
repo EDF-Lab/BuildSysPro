@@ -3,7 +3,8 @@ model To_VolumeFraction "Example problem for conversion model"
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Air (extraPropertiesNames={"CO2"});
 
-  IBPSA.Fluid.Sensors.Conversions.To_VolumeFraction conMasVolFra(MMMea=Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM)
+  IBPSA.Fluid.Sensors.Conversions.To_VolumeFraction conMasVolFra(MMMea=
+        Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM)
     "Conversion from mass fraction CO2 to volume fraction CO2"
     annotation (Placement(transformation(extent={{148,0},{168,20}})));
   Modelica.Blocks.Sources.Constant volFra(k=1000E-6)
@@ -14,9 +15,10 @@ model To_VolumeFraction "Example problem for conversion model"
     reverseAction=true,
     Ti=600,
     k=2,
-    Td=1) annotation (Placement(transformation(extent={{-100,-20},{-80,0}})));
-  IBPSA.Fluid.Sensors.TraceSubstances senCO2(redeclare package Medium = Medium,
-      substanceName="CO2") "CO2 sensor"
+    Td=1) annotation (Placement(transformation(extent={{-100,-20},{-80,
+            0}})));
+  IBPSA.Fluid.Sensors.TraceSubstances senCO2(redeclare package Medium =
+        Medium, substanceName="CO2") "CO2 sensor"
     annotation (Placement(transformation(extent={{120,0},{140,20}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume vol(
     nPorts=4,
@@ -24,7 +26,8 @@ model To_VolumeFraction "Example problem for conversion model"
     V=4*4*2.7,
     C_start={300E-6}*44.009544/28.9651159,
     m_flow_nominal=0.1,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Volume of air"
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
+    "Volume of air"
     annotation (Placement(transformation(extent={{90,60},{110,80}})));
   IBPSA.Fluid.Sources.TraceSubstancesFlowSource souCO2(
     use_m_flow_in=true,
@@ -44,14 +47,14 @@ model To_VolumeFraction "Example problem for conversion model"
     redeclare package Medium = Medium,
     p=100000,
     C={300E-6}*44.009544/28.9651159,
-    nPorts=1) "Sink for exhaust air" annotation (Placement(transformation(
-          extent={{10,-10},{-10,10}}, origin={170,40})));
+    nPorts=1) "Sink for exhaust air" annotation (Placement(
+        transformation(extent={{10,-10},{-10,10}}, origin={170,40})));
   Modelica.Blocks.Math.Gain gai(k=50/3600) "Gain for mass flow rate"
     annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
   Modelica.Blocks.Sources.Constant nPeo(k=1) "Number of people"
     annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
-  IBPSA.Fluid.Sensors.VolumeFlowRate senVolFlo(redeclare package Medium =
-        Medium, m_flow_nominal=0.1)
+  IBPSA.Fluid.Sensors.VolumeFlowRate senVolFlo(redeclare package
+      Medium = Medium, m_flow_nominal=0.1)
     annotation (Placement(transformation(extent={{20,-20},{40,0}})));
   Modelica.Blocks.Math.Gain norSet(k=1/1000E-6)
     "Normalization for set point (to scale control input)"
@@ -89,7 +92,7 @@ equation
       points={{-22.1,70},{-39,70}},
       color={0,0,127}));
   connect(gai.y, sou.m_flow_in) annotation (Line(
-      points={{-39,-10},{-30,-10},{-30,-2},{-20,-2}},
+      points={{-39,-10},{-30,-10},{-30,-2},{-22,-2}},
       color={0,0,127}));
   connect(limPID.y, gai.u) annotation (Line(
       points={{-79,-10},{-62,-10}},

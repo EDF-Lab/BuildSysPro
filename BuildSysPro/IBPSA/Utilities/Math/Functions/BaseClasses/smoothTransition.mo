@@ -41,13 +41,13 @@ annotation(smoothOrder=2,
     Documentation(info="<html>
 <p>
 This function is used by
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.inverseXRegularized\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.inverseXRegularized</a>
 to provide a twice continuously differentiable transition between
 the different regions.
 The code has been implemented in a function as this allows
 to implement the function
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.inverseXRegularized\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.inverseXRegularized</a>
 in such a way that Dymola inlines it.
 However, this function will not be inlined as its body is too large.
@@ -60,10 +60,10 @@ the inverse of the smoothing parameter <code>deltaInv</code>
 are exposed as arguments to this function.
 Also,
 derivatives are provided in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition\">
 IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition</a>
 and in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.der_2_smoothTransition\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.der_2_smoothTransition\">
 IBPSA.Utilities.Math.Functions.BaseClasses.der_2__smoothTransition</a>.
 </p>
 </html>", revisions="<html>

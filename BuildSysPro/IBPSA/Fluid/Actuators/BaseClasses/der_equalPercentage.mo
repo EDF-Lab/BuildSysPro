@@ -41,7 +41,7 @@ Documentation(info="<html>
 This function computes the derivative of the opening characteristics of an equal percentage valve.
 </p><p>
 The function is the derivative of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.equalPercentage\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.equalPercentage\">
 IBPSA.Fluid.Actuators.BaseClasses.equalPercentage</a>.
 </p>
 </html>",

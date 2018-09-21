@@ -6,11 +6,6 @@ package ReducedOrder "Reduced order models based on VDI 6007"
 
 
 
-
-
-
-
-
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
   {100,100}}), graphics={
   Rectangle(

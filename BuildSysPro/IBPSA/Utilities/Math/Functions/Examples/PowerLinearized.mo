@@ -8,9 +8,9 @@ model PowerLinearized
 equation
   T = (1+500*time);
   T = IBPSA.Utilities.Math.Functions.powerLinearized(
-    x=T4,
-    x0=243.15^4,
-    n=0.25);
+              x=T4,
+              x0=243.15^4,
+              n=0.25);
   TExact = abs(T4)^(1/4);
 
   annotation(experiment(Tolerance=1e-6, StopTime=1.0),
@@ -19,7 +19,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
 Documentation(info="<html>
 <p>
 This example tests the implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.powerLinearized\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.powerLinearized\">
 IBPSA.Utilities.Math.Functions.powerLinearized</a>.
 </p>
 </html>", revisions="<html>

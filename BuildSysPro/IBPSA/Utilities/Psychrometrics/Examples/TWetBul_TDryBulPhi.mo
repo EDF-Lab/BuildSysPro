@@ -5,8 +5,9 @@ model TWetBul_TDryBulPhi "Model to test the wet bulb temperature computation"
   package Medium = IBPSA.Media.Air "Medium model"
            annotation (choicesAllMatching = true);
 
-  IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi wetBulPhi(redeclare package
-      Medium = Medium) "Model for wet bulb temperature"
+  IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi wetBulPhi(
+      redeclare package Medium = Medium)
+    "Model for wet bulb temperature"
     annotation (Placement(transformation(extent={{0,40},{20,60}})));
   Modelica.Blocks.Sources.Constant p(k=101325) "Pressure"
                                     annotation (Placement(transformation(extent={{-80,-20},
@@ -19,16 +20,17 @@ model TWetBul_TDryBulPhi "Model to test the wet bulb temperature computation"
   Modelica.Blocks.Sources.Constant TDryBul(k=273.15 + 29.4)
     "Dry bulb temperature"          annotation (Placement(transformation(extent={{-80,60},
             {-60,80}})));
-  IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi wetBulPhiApp(redeclare
-      package Medium = Medium, approximateWetBulb=true)
+  IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi wetBulPhiApp(
+      redeclare package Medium = Medium, approximateWetBulb=true)
     "Model for wet bulb temperature"
     annotation (Placement(transformation(extent={{0,0},{20,20}})));
   IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBulXi(redeclare package
-      Medium = Medium)
+              Medium = Medium)
     "Model for wet bulb temperature using Xi as an input, used to verify consistency with wetBulPhi"
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
-  IBPSA.Utilities.Psychrometrics.X_pTphi x_pTphi "Computes mass fraction"
-    annotation (Placement(transformation(extent={{-22,-36},{-10,-24}})));
+  IBPSA.Utilities.Psychrometrics.X_pTphi x_pTphi
+    "Computes mass fraction" annotation (Placement(transformation(
+          extent={{-22,-36},{-10,-24}})));
 
 protected
   block Assertions
@@ -135,7 +137,5 @@ October 1, 2012 by Michael Wetter:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end TWetBul_TDryBulPhi;

@@ -4,8 +4,9 @@ model SolarTime "Test model for solar time"
   Utilities.Time.ModelTime modTim "Block that outputs simulation time"
     annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.LocalCivilTime locTim(timZon=-21600,
-      lon=-1.7039261675061) "Block that computes the local civil time"
-    annotation (Placement(transformation(extent={{-20,-40},{0,-20}})));
+      lon=-1.7039261675061)
+    "Block that computes the local civil time" annotation (Placement(
+        transformation(extent={{-20,-40},{0,-20}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.SolarTime solTim
     "Block that computes the solar time"
     annotation (Placement(transformation(extent={{20,-20},{40,0}})));

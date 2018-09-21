@@ -46,7 +46,7 @@ The sensor is ideal, i.e., it does not influence the fluid.
 </p>
 <p>
 Read the
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a>
 prior to using this model with one fluid port.
 </p>

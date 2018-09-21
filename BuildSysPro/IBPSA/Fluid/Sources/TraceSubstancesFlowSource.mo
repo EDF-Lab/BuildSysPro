@@ -66,7 +66,7 @@ that is injected into the fluid.
 </p>
 <p>
 Note however that mixing volumes from the package
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes\">IBPSA.Fluid.MixingVolumes</a>
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes\">IBPSA.Fluid.MixingVolumes</a>
 allow to directly add a trace substance mass flow rate,
 which is more efficient than using this model.
 </p>

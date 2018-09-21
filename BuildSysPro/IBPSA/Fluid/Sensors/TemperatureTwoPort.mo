@@ -28,7 +28,9 @@ model TemperatureTwoPort "Ideal two port temperature sensor"
 protected
   parameter Real tauHeaTraInv(final unit = "1/s")=
     if tauHeaTra<1E-10 then 0 else 1/tauHeaTra
-    "Dummy parameter to avoid division by tauLoss";
+    "Dummy parameter to avoid division by tauHeaTra";
+  parameter Real ratTau = if dynamic then tauHeaTra/tau else 1
+    "Ratio of tau";
   Medium.Temperature TMed(start=T_start)
     "Medium temperature to which the sensor is exposed";
   Medium.Temperature T_a_inflow "Temperature of inflowing fluid at port_a";
@@ -63,7 +65,7 @@ equation
   // Output signal of sensor
   if dynamic then
     if transferHeat then
-      der(T) = (TMed-T)*k*tauInv + (TAmb-T)*tauHeaTraInv;
+      der(T) = (TMed-T)*k*tauInv + (TAmb-T)*tauHeaTraInv/(ratTau*k+1);
     else
       der(T) = (TMed-T)*k*tauInv;
     end if;
@@ -127,14 +129,15 @@ If the parameter <code>tau</code> is non-zero, then its output <i>T</i>
 converges to the temperature of the incoming fluid using
 a first order differential equation.
 Setting <code>tau=0</code> is <i>not</i> recommend. See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 <p>
 If <code>transferHeat = true</code>, then heat transfer with the ambient is
 approximated and <i>T</i> converges towards the fixed ambient
 temperature <i>T<sub>Amb</sub></i> using a first order approximation
-with a time constant of <code>tauHeaTra</code>.
+with a time constant of <code>tauHeaTra</code>
+when the flow rate is small.
 Note that no energy is exchanged with the fluid as the
 sensor does not influence the fluid temperature.
 </p>
@@ -153,10 +156,16 @@ the mass flow rate on should set <code>transferHeat=false</code>.
 </html>", revisions="<html>
 <ul>
 <li>
+October 23, 2017 by Filip Jorissen:<br/>
+Revised implementation of equations 
+when <code>transferHeat=true</code>.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/840\">#840</a>.
+</li>
+<li>
 January 12, 2016 by Filip Jorissen:<br/>
 Removed parameter <code>tauInv</code>
 since this now exists in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
+<a href=\"modelica://IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
 </li>
 <li>
 June 19, 2015 by Michael Wetter:<br/>
@@ -181,7 +190,7 @@ use 0 Kelvin as the lower value of the ordinate.
 <li>
 September 10, 2008, by Michael Wetter:<br/>
 First implementation, based on
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.Temperature\">IBPSA.Fluid.Sensors.Temperature</a>.
+<a href=\"modelica://IBPSA.Fluid.Sensors.Temperature\">IBPSA.Fluid.Sensors.Temperature</a>.
 </li>
 </ul>
 </html>"));

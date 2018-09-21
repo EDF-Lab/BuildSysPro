@@ -1,6 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.HeatExchangers;
 model Heater_T "Heater with prescribed outlet temperature"
-  extends IBPSA.Fluid.HeatExchangers.BaseClasses.PartialPrescribedOutlet(outCon(
+  extends IBPSA.Fluid.HeatExchangers.BaseClasses.PartialPrescribedOutlet(
+      outCon(
       final QMin_flow=0,
       final QMax_flow=QMax_flow,
       final mWatMax_flow=0,
@@ -89,11 +90,11 @@ Set <code>dp_nominal = 0</code> to disable the flow friction calculation.
 </p>
 <p>
 For a similar model that is a sensible cooling device, use
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.SensibleCooler_T\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.SensibleCooler_T\">
 IBPSA.Fluid.HeatExchangers.SensibleCooler_T</a>.
 For a model that uses a control signal <i>u &isin; [0, 1]</i> and multiplies
 this with the nominal heating or cooling power, use
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.HeaterCooler_u</a>
 
 </p>
@@ -106,10 +107,10 @@ then the enthalpy of the medium is not affected by this model.
 <p>
 The model has been validated against the analytical solution in
 the examples
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic</a>.
 </p>
 </html>",

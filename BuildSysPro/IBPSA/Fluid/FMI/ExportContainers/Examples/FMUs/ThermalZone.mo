@@ -2,7 +2,7 @@ within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 model ThermalZone
   "Declaration of an FMU that exports a thermal zone"
   extends IBPSA.Fluid.FMI.ExportContainers.ThermalZone(redeclare final package
-      Medium = MediumA, nPorts=2);
+                    Medium = MediumA, nPorts=2);
 
   replaceable package MediumA = IBPSA.Media.Air "Medium for air";
 
@@ -31,7 +31,7 @@ model ThermalZone
   BoundaryConditions.WeatherData.ReaderTMY3 weaDat(
     pAtmSou=IBPSA.BoundaryConditions.Types.DataSource.Parameter,
     TDryBul=TOut_nominal,
-    filNam="modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos",
+    filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
     TDryBulSou=IBPSA.BoundaryConditions.Types.DataSource.File,
     computeWetBulbTemperature=false) "Weather data reader"
     annotation (Placement(transformation(extent={{100,150},{80,170}})));
@@ -67,7 +67,8 @@ model ThermalZone
     annotation (Placement(transformation(extent={{80,30},{100,50}})));
   Modelica.Blocks.Sources.Constant mWat_flow(k=0.0) "mass flow rate"
     annotation (Placement(transformation(extent={{10,70},{30,90}})));
-  Sensors.MassFlowRate senMasFlo[nPorts](redeclare final package Medium = MediumA)
+  Sensors.MassFlowRate senMasFlo[nPorts](redeclare final package
+      Medium =                                                            MediumA)
     "Mass flow rate sensor to connect thermal adapter with thermal zone."
     annotation (Placement(transformation(extent={{-88,110},{-68,130}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temSen
@@ -140,13 +141,13 @@ HVAC system only. The thermal zone is connected to an adaptor so that
 it can be coupled
 to an air-based HVAC system. The thermal zone is
 taken from
-<a href=\"modelica://BuildSysPro.IBPSA.Examples.Tutorial.SpaceCooling.System3\">
+<a href=\"modelica://IBPSA.Examples.Tutorial.SpaceCooling.System3\">
 IBPSA.Examples.Tutorial.SpaceCooling.System3
 </a>.
 </p>
 <p>
 The example extends from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
 IBPSA.Fluid.FMI.ExportContainers.ThermalZone
 </a>
 which provides
@@ -160,6 +161,13 @@ exposed at the FMU interface.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+December 4, 2017, by Michael Wetter:<br/>
+Added call to <code>Modelica.Utilities.Files.loadResource</code>
+for weather data file.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/867\">#867</a>.
+</li>
 <li>
 April 12, 2017, by Michael Wetter:<br/>
 Removed temperature that is no longer needed.<br/>

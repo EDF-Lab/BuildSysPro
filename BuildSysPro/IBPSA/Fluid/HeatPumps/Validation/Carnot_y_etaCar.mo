@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.HeatPumps.Validation;
 model Carnot_y_etaCar
   "Test model for heat pump based on Carnot efficiency with etaCar as parameter"
-  extends IBPSA.Fluid.HeatPumps.Examples.Carnot_y(heaPum(use_eta_Carnot_nominal=
-         true, etaCarnot_nominal=0.494805));
+  extends IBPSA.Fluid.HeatPumps.Examples.Carnot_y(heaPum(
+        use_eta_Carnot_nominal=true, etaCarnot_nominal=0.494805));
 
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
 __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Validation/Carnot_y_etaCar.mos"
@@ -10,7 +10,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 Documentation(info="<html>
 <p>
 This example extends from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Examples.Carnot_y\">
+<a href=\"modelica://IBPSA.Fluid.HeatPumps.Examples.Carnot_y\">
 IBPSA.Fluid.HeatPumps.Examples.Carnot_y</a>
 but uses the parameter <code>etaCar</code> instead of <code>COP_nominal</code>.
 </p>

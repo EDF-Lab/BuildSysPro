@@ -56,7 +56,7 @@ equation
 <p>
 This component computes the solar incidence angle on a tilted surface.
 For a definition of the parameters, see the User's Guide
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.UsersGuide\">IBPSA.BoundaryConditions.UsersGuide</a>.
+<a href=\"modelica://IBPSA.BoundaryConditions.UsersGuide\">IBPSA.BoundaryConditions.UsersGuide</a>.
 </p>
 </html>", revisions="<html>
 <ul>
@@ -78,6 +78,6 @@ First implementation.
             100}}), graphics={Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255}), Bitmap(extent={{-90,90},{90,-92}}, fileName=
+          lineColor={0,0,255}), Bitmap(extent={{-90,-90},{90,90}}, fileName=
               "modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/SolarGeometry/BaseClasses/IncidenceAngle.png")}));
 end IncidenceAngle;

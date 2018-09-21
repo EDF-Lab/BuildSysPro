@@ -15,7 +15,8 @@ model LimPIDReset
     k=0.2,
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
     initType=Modelica.Blocks.Types.InitPID.InitialOutput,
-    y_start=0.3) "PId controller with integrator reset to a parameter value"
+    y_start=0.3)
+    "PId controller with integrator reset to a parameter value"
     annotation (Placement(transformation(extent={{20,-20},{40,0}})));
   Modelica.Blocks.Sources.Constant mea(k=0.5) "Measured signal"
     annotation (Placement(transformation(extent={{-40,-50},{-20,-30}})));
@@ -45,7 +46,8 @@ model LimPIDReset
     Ti=20,
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
     initType=Modelica.Blocks.Types.InitPID.InitialOutput,
-    y_start=0.3) "PId controller with integrator reset to an input value"
+    y_start=0.3)
+    "PId controller with integrator reset to an input value"
     annotation (Placement(transformation(extent={{20,-80},{40,-60}})));
   Modelica.Blocks.Sources.Constant conRes(k=0.9)
     "Signal to which integrator will be reset to"
@@ -110,7 +112,7 @@ First implementation.
 </ul>
 </html>", info="<html>
 <p>This model tests the implementation the
-<a href=\"Modelica://BuildSysPro.IBPSA.Controls.Continuous.LimPID\">IBPSA.Controls.Continuous.LimPID</a>
+<a href=\"Modelica://IBPSA.Controls.Continuous.LimPID\">IBPSA.Controls.Continuous.LimPID</a>
 with integrator reset.
 </p>
 <p>

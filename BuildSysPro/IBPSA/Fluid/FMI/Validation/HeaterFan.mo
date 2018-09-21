@@ -137,7 +137,7 @@ which is an input to the fan model.
 </p>
 <p>
 For a model with that computes the mass flow rate based on the pressure drop, see
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Validation.HeaterFanPressureDriven\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Validation.HeaterFanPressureDriven\">
 IBPSA.Fluid.FMI.Validation.HeaterFanPressureDriven</a>.
 </p>
 <p>

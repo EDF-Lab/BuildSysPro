@@ -3,7 +3,7 @@ model MixingVolumeHeatReverseFlow
   "Validation model for mixing volume with heat input and flow reversal"
   extends
     IBPSA.Fluid.MixingVolumes.Validation.BaseClasses.MixingVolumeReverseFlow(
-      gain(k=10));
+     gain(k=10));
 
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow preHeaDyn
     "Prescribed heat flow rate"
@@ -41,7 +41,5 @@ First implementation.
 </html>"),
  __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeHeatReverseFlow.mos"
         "Simulate and plot"),
-    experiment(Tolerance=1e-08, StopTime=10),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}})));
+    experiment(Tolerance=1e-08, StopTime=10));
 end MixingVolumeHeatReverseFlow;

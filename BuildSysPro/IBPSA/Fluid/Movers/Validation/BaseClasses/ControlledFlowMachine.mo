@@ -14,17 +14,20 @@ model ControlledFlowMachine
     use_p_in=false,
     p=101325,
     T=293.15,
-    nPorts=4) annotation (Placement(transformation(extent={{-90,20},{-70,40}})));
+    nPorts=4) annotation (Placement(transformation(extent={{-90,20},{-70,
+            40}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate masFloRat1(redeclare package Medium = Medium)
+  IBPSA.Fluid.Sensors.MassFlowRate masFloRat1(redeclare package
+      Medium = Medium)
     annotation (Placement(transformation(extent={{60,50},{80,70}})));
-  IBPSA.Fluid.Sensors.RelativePressure relPre(redeclare package Medium = Medium)
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}}, origin={-10,
-            32})));
+  IBPSA.Fluid.Sensors.RelativePressure relPre(redeclare package
+      Medium = Medium) annotation (Placement(transformation(extent={{10,
+            -10},{-10,10}}, origin={-10,32})));
   IBPSA.Fluid.Movers.SpeedControlled_y fan1(
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    redeclare IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos32slash1to12 per)
+    redeclare IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos32slash1to12
+      per)
     annotation (Placement(transformation(extent={{-20,50},{0,70}})));
   FixedResistances.PressureDrop dp1(
     redeclare package Medium = Medium,
@@ -38,41 +41,44 @@ model ControlledFlowMachine
     m_flow_nominal=0.006,
     dp_nominal=50000) "Pressure drop"
     annotation (Placement(transformation(extent={{16,-30},{36,-10}})));
-  IBPSA.Fluid.Sensors.MassFlowRate masFloRat2(redeclare package Medium = Medium)
-    annotation (Placement(transformation(extent={{60,-30},{80,-10}})));
+  IBPSA.Fluid.Sensors.MassFlowRate masFloRat2(redeclare package
+      Medium = Medium) annotation (Placement(transformation(extent={{60,
+            -30},{80,-10}})));
   FixedResistances.PressureDrop dp3(
     redeclare package Medium = Medium,
     from_dp=true,
     m_flow_nominal=0.006,
     dp_nominal=50000) "Pressure drop"
     annotation (Placement(transformation(extent={{16,-70},{36,-50}})));
-  IBPSA.Fluid.Sensors.MassFlowRate masFloRat3(redeclare package Medium = Medium)
-    annotation (Placement(transformation(extent={{60,-70},{80,-50}})));
+  IBPSA.Fluid.Sensors.MassFlowRate masFloRat3(redeclare package
+      Medium = Medium) annotation (Placement(transformation(extent={{60,
+            -70},{80,-50}})));
   IBPSA.Fluid.Movers.FlowControlled_dp fan3(
     redeclare package Medium = Medium,
     m_flow_nominal=6000/3600*1.2,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    redeclare IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos32slash1to12 per)
-    annotation (Placement(transformation(extent={{-20,-70},{0,-50}})));
+    redeclare IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos32slash1to12
+      per) annotation (Placement(transformation(extent={{-20,-70},{0,-50}})));
   IBPSA.Fluid.Movers.FlowControlled_m_flow fan2(
     redeclare package Medium = Medium,
     m_flow_nominal=6000/3600*1.2,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    redeclare IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos32slash1to12 per)
-    annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
+    redeclare IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos32slash1to12
+      per) annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
   FixedResistances.PressureDrop dp4(
     redeclare package Medium = Medium,
     from_dp=true,
     m_flow_nominal=0.006,
     dp_nominal=50000) "Pressure drop"
     annotation (Placement(transformation(extent={{16,100},{36,120}})));
-  IBPSA.Fluid.Sensors.MassFlowRate masFloRat4(redeclare package Medium = Medium)
-    annotation (Placement(transformation(extent={{60,100},{80,120}})));
+  IBPSA.Fluid.Sensors.MassFlowRate masFloRat4(redeclare package
+      Medium = Medium) annotation (Placement(transformation(extent={{60,
+            100},{80,120}})));
   IBPSA.Fluid.Movers.SpeedControlled_Nrpm fan4(
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    redeclare IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos32slash1to12 per)
-    annotation (Placement(transformation(extent={{-20,100},{0,120}})));
+    redeclare IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos32slash1to12
+      per) annotation (Placement(transformation(extent={{-20,100},{0,120}})));
   Modelica.Blocks.Math.Gain gain(k=3580) "Converts y to nominal rpm"
     annotation (Placement(transformation(extent={{-60,130},{-40,150}})));
   FixedResistances.PressureDrop dp5(
@@ -104,7 +110,8 @@ model ControlledFlowMachine
     use_p_in=false,
     p=101325,
     T=293.15,
-    nPorts=4) annotation (Placement(transformation(extent={{142,20},{122,40}})));
+    nPorts=4) annotation (Placement(transformation(extent={{142,20},{122,
+            40}})));
 equation
 
   connect(fan1.port_a, relPre.port_b) annotation (Line(
@@ -132,7 +139,7 @@ equation
       points={{70,71},{70,86},{42,86},{42,4},{-10.2,4},{-10.2,-8}},
       color={0,0,127}));
   connect(relPre.p_rel, fan3.dp_in) annotation (Line(
-      points={{-10,23},{-10,8},{-24,8},{-24,-40},{-10.2,-40},{-10.2,-48}},
+      points={{-10,23},{-10,8},{-24,8},{-24,-40},{-10,-40},{-10,-48}},
       color={0,0,127}));
   connect(dp8.port_b, fan4.port_a) annotation (Line(
       points={{-32,110},{-20,110}},
@@ -147,7 +154,7 @@ equation
       points={{-32,-60},{-20,-60}},
       color={0,127,255}));
   connect(y.y, fan1.y) annotation (Line(
-      points={{-119,80},{-10.2,80},{-10.2,72}},
+      points={{-119,80},{-10,80},{-10,72}},
       color={0,0,127}));
   connect(y.y, gain.u) annotation (Line(
       points={{-119,80},{-80,80},{-80,140},{-62,140}},

@@ -418,7 +418,9 @@ connect(fermetureVolets[1], VitrageNord.fermeture_volet) annotation (
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,120}}),
 graphics={
-        Bitmap(extent={{-98,72},{86,-72}}, fileName="modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Mozart/Cuisine.png"),
+        Bitmap(extent={{92,72},{-92,-72}}, fileName="modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Mozart/Cuisine.png",
+          origin={-6,0},
+          rotation=180),
         Ellipse(extent={{12,68},{40,40}},   lineColor={0,0,0}),
         Polygon(
           points={{-4,-18},{4,-18},{0,-30},{-4,-18}},
@@ -498,7 +500,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

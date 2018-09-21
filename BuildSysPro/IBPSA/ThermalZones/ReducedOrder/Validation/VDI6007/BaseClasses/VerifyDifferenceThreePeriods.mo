@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.ThermalZones.ReducedOrder.Validation.VDI6007.BaseClasses;
 block VerifyDifferenceThreePeriods "Assert when condition is violated"
-  extends IBPSA.Utilities.Diagnostics.BaseClasses.PartialInputCheck(message=
-        "Inputs differ by more than threShold.\n  Check output 'satisfied' for when violation(s) happened.");
+  extends IBPSA.Utilities.Diagnostics.BaseClasses.PartialInputCheck(
+     message="Inputs differ by more than threShold.\n  Check output 'satisfied' for when violation(s) happened.");
   parameter Modelica.SIunits.Time endTime = 0
     "Start time for deactivating the assert (period one)";
   parameter Modelica.SIunits.Time startTime2 = 0

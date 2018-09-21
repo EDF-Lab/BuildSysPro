@@ -56,15 +56,15 @@ equation
   // The next statement sets the heat input into the medium to zero for very small flow rates.
   Q_flow = if homotopyInitialization then homotopy(actual=
     IBPSA.Utilities.Math.Functions.regStep(
-    y1=QThe_flow,
-    y2=0,
-    x=noEvent(abs(V_flow)) - 2*delta_V_flow,
-    x_small=delta_V_flow), simplified=0) else
+            y1=QThe_flow,
+            y2=0,
+            x=noEvent(abs(V_flow)) - 2*delta_V_flow,
+            x_small=delta_V_flow), simplified=0) else
     IBPSA.Utilities.Math.Functions.regStep(
-    y1=QThe_flow,
-    y2=0,
-    x=noEvent(abs(V_flow)) - 2*delta_V_flow,
-    x_small=delta_V_flow);
+            y1=QThe_flow,
+            y2=0,
+            x=noEvent(abs(V_flow)) - 2*delta_V_flow,
+            x_small=delta_V_flow);
 
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
@@ -108,7 +108,7 @@ equation
     Documentation(info="<html>
 <p>Block that implements the functions to compute the
 heat dissipation of fans and pumps. It is used by the model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine\">
+<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine\">
 IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine</a>.
 </p>
 </html>",
@@ -134,7 +134,5 @@ This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/417\">#417</a>.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end PowerInterface;

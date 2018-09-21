@@ -5,6 +5,7 @@ model PrescribedOutlet_dynamic
     heaHigPow(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),
     cooLimPow(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),
     heaCooUnl(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial));
+
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
             -100},{200,200}}),                                                                    graphics),
     __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/Validation/PrescribedOutlet_dynamic.mos"
@@ -15,7 +16,7 @@ Model that demonstrates the use of an ideal heater and an ideal cooler, configur
 </p>
 <p>
 This example is identical to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet</a>
 except that the heater and cooler models are configured to have a
 time constant of <i>60</i> seconds at nominal flow rate.

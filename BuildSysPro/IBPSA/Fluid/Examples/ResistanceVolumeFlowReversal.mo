@@ -5,8 +5,8 @@ model ResistanceVolumeFlowReversal
 
   package Medium = Modelica.Media.Water.ConstantPropertyLiquidWater;
   parameter Real m_flow_nominal=0.1 "Gain value multiplied with input signal";
-  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium, nPorts=
-       1) "Boundary for pressure boundary condition"
+  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium,
+      nPorts=1) "Boundary for pressure boundary condition"
     annotation (Placement(transformation(extent={{-80,-30},{-60,-10}})));
   Movers.FlowControlled_m_flow pump(
     redeclare package Medium = Medium,
@@ -45,7 +45,7 @@ model ResistanceVolumeFlowReversal
   IBPSA.Fluid.FixedResistances.PressureDrop[nRes.k] res(
     redeclare package Medium = Medium,
     each allowFlowReversal=allowFlowReversal.k,
-    each m_flow_nominal=m_flow_nominal,
+    each m_flow_nominal=m_flow_nominal/nRes.k,
     each dp_nominal=1000) "Fluid resistance for splitting flow"
     annotation (Placement(transformation(extent={{56,-30},{76,-10}})));
   Modelica.Blocks.Sources.IntegerConstant nRes(k=10)
@@ -53,7 +53,7 @@ model ResistanceVolumeFlowReversal
     annotation (Placement(transformation(extent={{-40,70},{-20,90}})));
   Delays.DelayFirstOrder[nRes.k] vol(
     redeclare each package Medium = Medium,
-    each m_flow_nominal=m_flow_nominal,
+    each m_flow_nominal=m_flow_nominal/nRes.k,
     each nPorts=2,
     each energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     each massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
@@ -67,7 +67,7 @@ equation
       points={{-59,50},{-50,50},{-50,-12},{-42,-12}},
       color={0,0,127}));
   connect(pump.m_flow_in, gain.y) annotation (Line(
-      points={{29.8,-8},{29.8,50},{-19,50}},
+      points={{30,-8},{30,50},{-19,50}},
       color={0,0,127}));
   connect(gain.u,pulse. y) annotation (Line(
       points={{-42,50},{-59,50}},
@@ -108,7 +108,7 @@ which is the number of parallel branches containing one pressure drop element an
 </p>
 <p>
 This model was created to demonstrate the influence of a new implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.ConservationEquation</a>.
 The old implementation used the <code>actualStream()</code> function
 whereas the new implementation uses the <code>semiLinear()</code>
@@ -152,6 +152,13 @@ Sizes after manipulation of the nonlinear systems: {1, 9, <b>1</b>}
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+September 21, 2017, by Michael Wetter:<br/>
+Corrected parameterization to be independent of <code>k</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/825\">
+IBPSA, #825</a>.
+</li>
 <li>
 May 8, 2017, by Michael Wetter:<br/>
 Updated heater model.<br/>

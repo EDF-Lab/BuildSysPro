@@ -37,7 +37,7 @@ record Mozart2012_MTD =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

@@ -21,11 +21,11 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 <p>
 This model tests whether the Modelica translator substitutes the
 inverse function for
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow</a>.
 Specifically, this function declares in its <code>annotation</code> section
 that its inverse is provided by
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp</a>.
 Translating this model should therefore give no nonlinear equations
 after the symbolic manipulation.

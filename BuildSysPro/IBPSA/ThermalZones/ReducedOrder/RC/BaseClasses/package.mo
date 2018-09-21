@@ -5,10 +5,6 @@ package BaseClasses "Package with base classes for ROM"
 
 
 
-
-
-
-
   annotation (Documentation(info="<html>
   <p>This packages contains base clases for ROM models.</p>
   </html>"));

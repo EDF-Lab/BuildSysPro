@@ -75,6 +75,7 @@ required from medium model \"" + mediumName + "\".
 </html>"));
   end BaseProperties;
 
+
   annotation(preferredView="info", Documentation(info="<html>
 <p>
 This medium package models liquid water.
@@ -82,7 +83,7 @@ This medium package models liquid water.
 <p>
 The mass density is computed using a constant value of <i>995.586</i> kg/s.
 For a medium model in which the density is a function of temperature, use
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Specialized.Water.TemperatureDependentDensity\">
+<a href=\"modelica://IBPSA.Media.Specialized.Water.TemperatureDependentDensity\">
 IBPSA.Media.Specialized.Water.TemperatureDependentDensity</a> which may have considerably higher computing time.
 </p>
 <p>
@@ -112,7 +113,7 @@ There are no phase changes.
 June 6, 2015, by Michael Wetter:<br/>
 Set <code>AbsolutePressure(start=p_default)</code> to avoid
 a translation error if
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Examples.TraceSubstancesFlowSource\">
+<a href=\"modelica://IBPSA.Fluid.Sources.Examples.TraceSubstancesFlowSource\">
 IBPSA.Fluid.Sources.Examples.TraceSubstancesFlowSource</a>
 (if used with water instead of air)
 is translated in pedantic mode in Dymola 2016.
@@ -165,7 +166,7 @@ issue 227</a>.
 <li>
 February 25, 2015, by Michael Wetter:<br/>
 Removed <code>stateSelect</code> attribute on pressure as this caused
-<a href=\"modelica://BuildSysPro.IBPSA.Examples.Tutorial.SpaceCooling.System3\">
+<a href=\"modelica://IBPSA.Examples.Tutorial.SpaceCooling.System3\">
 IBPSA.Examples.Tutorial.SpaceCooling.System3</a>
 to fail with the error message
 \"differentiated if-then-else was not continuous\".

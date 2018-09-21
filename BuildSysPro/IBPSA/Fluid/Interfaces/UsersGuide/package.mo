@@ -17,11 +17,11 @@ Otherwise, it may be used for a steady-state or a dynamic model.
 </p>
 <p>
 The most basic classes are the records
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.TwoPortFlowResistanceParameters\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.TwoPortFlowResistanceParameters\">
 IBPSA.Fluid.Interfaces.TwoPortFlowResistanceParameters</a>,
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.FourPortFlowResistanceParameters\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.FourPortFlowResistanceParameters\">
 IBPSA.Fluid.Interfaces.FourPortFlowResistanceParameters</a> and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations\">
 IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations</a>.
 These define parameters that are needed by many fluid flow components.
 </p>
@@ -33,7 +33,7 @@ see the <i>info</i> section of the class.
 <table summary=\"summary\" border=\"1\" cellspacing=\"0\" cellpadding=\"2\" style=\"border-collapse:collapse;\">
 <tr>
 <!-- ============================================== -->
-  <td><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+  <td><a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
       IBPSA.Fluid.Interfaces.ConservationEquation</a>
   </td>
   <td><p>
@@ -64,7 +64,7 @@ see the <i>info</i> section of the class.
 </tr>
 <!-- ============================================== -->
 <tr>
-  <td><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+  <td><a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
       IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
   </td>
   <td><p>
@@ -87,7 +87,7 @@ see the <i>info</i> section of the class.
   </p>
  <p>
   Compared to
-  <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+  <a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
       IBPSA.Fluid.Interfaces.ConservationEquation</a>
   this model provides a more efficient implementation of the steady-state conservation equations for
   models with two fluid ports.
@@ -97,7 +97,7 @@ see the <i>info</i> section of the class.
 <!-- ============================================== -->
 <tr>
   <td>
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialFourPort\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.PartialFourPort\">
                           IBPSA.Fluid.Interfaces.PartialFourPort</a>
   </td>
   <td>
@@ -113,7 +113,7 @@ see the <i>info</i> section of the class.
 <!-- ============================================== -->
 <tr>
   <td>
-    <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PrescribedOutlet\">
+    <a href=\"modelica://IBPSA.Fluid.Interfaces.PrescribedOutlet\">
                          IBPSA.Fluid.Interfaces.PrescribedOutlet</a>
   </td>
   <td>
@@ -124,7 +124,7 @@ see the <i>info</i> section of the class.
 <!-- ============================================== -->
 <tr>
   <td>
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
                           IBPSA.Fluid.Interfaces.PartialTwoPortInterface</a>
   </td>
   <td>
@@ -140,12 +140,12 @@ see the <i>info</i> section of the class.
 <!-- ============================================== -->
 <tr>
   <td>
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialFourPortInterface\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.PartialFourPortInterface\">
                           IBPSA.Fluid.Interfaces.PartialFourPortInterface</a>
   </td>
   <td>
      This model is identical to
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
                           IBPSA.Fluid.Interfaces.PartialTwoPortInterface</a>
      but it can be used for components with four fluid ports.
   </td>
@@ -153,7 +153,7 @@ see the <i>info</i> section of the class.
 <!-- ============================================== -->
 <tr>
   <td>
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
                           IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>
   </td>
   <td>
@@ -171,12 +171,12 @@ see the <i>info</i> section of the class.
 <!-- ============================================== -->
 <tr>
   <td>
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticFourPortHeatMassExchanger\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.StaticFourPortHeatMassExchanger\">
                           IBPSA.Fluid.Interfaces.StaticFourPortHeatMassExchanger</a>
   </td>
   <td>
      This model is identical to
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
                           IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>
      except that it has four ports.
   </td>
@@ -184,7 +184,7 @@ see the <i>info</i> section of the class.
 <!-- ============================================== -->
 <tr>
   <td>
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.TwoPortHeatMassExchanger\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.TwoPortHeatMassExchanger\">
                           IBPSA.Fluid.Interfaces.TwoPortHeatMassExchanger</a>
   </td>
   <td>
@@ -196,12 +196,12 @@ see the <i>info</i> section of the class.
 <!-- ============================================== -->
 <tr>
   <td>
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.FourPortHeatMassExchanger\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.FourPortHeatMassExchanger\">
                           IBPSA.Fluid.Interfaces.FourPortHeatMassExchanger</a>
   </td>
   <td>
      This model is identical to
-     <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.TwoPortHeatMassExchanger\">
+     <a href=\"modelica://IBPSA.Fluid.Interfaces.TwoPortHeatMassExchanger\">
                           IBPSA.Fluid.Interfaces.TwoPortHeatMassExchanger</a>
      except that it has four ports.
   </td>

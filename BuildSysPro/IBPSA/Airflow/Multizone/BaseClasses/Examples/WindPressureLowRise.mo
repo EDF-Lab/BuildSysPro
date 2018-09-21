@@ -9,16 +9,16 @@ model WindPressureLowRise "Test model for wind pressure function"
 equation
   incAng=time*2*Modelica.Constants.pi;
   Cp = IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise(
-    Cp0=Cp0,
-    G=G,
-    incAng=incAng);
+              Cp0=Cp0,
+              G=G,
+              incAng=incAng);
   annotation (
 experiment(StartTime=-2, Tolerance=1e-6, StopTime=2),
   __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Airflow/Multizone/BaseClasses/Examples/WindPressureLowRise.mos"
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This examples demonstrates the
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise\">
 IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise</a>
 function.
 </p>

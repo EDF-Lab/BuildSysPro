@@ -8,7 +8,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 Documentation(info="<html>
 <p>
 This example extends from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon\">
+<a href=\"modelica://IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon\">
 IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon</a>
 but limits the heating capacity.
 </p>

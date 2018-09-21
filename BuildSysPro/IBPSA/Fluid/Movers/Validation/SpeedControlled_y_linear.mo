@@ -47,13 +47,15 @@ model SpeedControlled_y_linear
     redeclare package Medium = Medium,
     nPorts=1,
     m_flow=m_flow_nominal*0.01,
-    T=293.15) annotation (Placement(transformation(extent={{-62,40},{-42,60}})));
+    T=293.15)
+    annotation (Placement(transformation(extent={{-62,40},{-42,60}})));
   IBPSA.Fluid.Movers.SpeedControlled_y pumFixM_flow(
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     per(pressure(V_flow=2/1000*{0,m_flow_nominal}, dp={2*dp_nominal,0})),
     use_inputFilter=false) "Pump with fixed mass flow rate"
     annotation (Placement(transformation(extent={{40,40},{60,60}})));
+
   IBPSA.Fluid.Sources.Boundary_pT sou3(
     redeclare package Medium = Medium,
     use_p_in=false,
@@ -80,10 +82,10 @@ equation
       points={{-42,50},{40,50}},
       color={0,127,255}));
   connect(y.y, pumFixDp.y) annotation (Line(
-      points={{-59,130},{49.8,130},{49.8,102}},
+      points={{-59,130},{50,130},{50,102}},
       color={0,0,127}));
   connect(y.y, pumFixM_flow.y) annotation (Line(
-      points={{-59,130},{10,130},{10,70},{49.8,70},{49.8,62}},
+      points={{-59,130},{10,130},{10,70},{50,70},{50,62}},
       color={0,0,127}));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{160,

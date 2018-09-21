@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.Sensors;
 model MassFractionTwoPort "Ideal two port mass fraction sensor"
-  extends IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor(redeclare
-      replaceable package Medium =
+  extends IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor(
+      redeclare replaceable package Medium =
         Modelica.Media.Interfaces.PartialCondensingGases);
   extends IBPSA.Fluid.BaseClasses.IndexMassFraction(substanceName="water");
   extends Modelica.Icons.RotationalSensor;
@@ -70,7 +70,7 @@ The sensor is ideal, i.e. it does not influence the fluid.
 If the parameter <code>tau</code> is non-zero, then its output
 is computed using a first order differential equation.
 Setting <code>tau=0</code> is <i>not</i> recommend. See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>",
@@ -89,7 +89,7 @@ to indicate that it is a mass fraction, and declared the assignment final.
 January 18, 2016 by Filip Jorissen:<br/>
 Using parameter <code>tauInv</code>
 since this now exists in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
+<a href=\"modelica://IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
 This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/372\">#372</a>.
 </li>
@@ -105,7 +105,7 @@ OpenModelica.
 <li>
 August 31, 2013, by Michael Wetter:<br/>
 Revised model to use base class
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.IndexMassFraction\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.IndexMassFraction\">
 IBPSA.Fluid.BaseClasses.IndexMassFraction</a>.
 </li>
 <li>

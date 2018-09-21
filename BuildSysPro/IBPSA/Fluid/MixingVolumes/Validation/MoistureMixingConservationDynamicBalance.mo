@@ -3,9 +3,10 @@ model MoistureMixingConservationDynamicBalance
   "This test checks if mass and energy is conserved when mixing fluid streams using dynamic balances"
   extends
     IBPSA.Fluid.MixingVolumes.Validation.BaseClasses.MoistureMixingConservation(
-    mWatFloSol(k={vol.X_start[1],vol1.X_start[1],vol2.X_start[1]}*m_start),
-    vol(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial, massDynamics=
-         Modelica.Fluid.Types.Dynamics.FixedInitial),
+    mWatFloSol(k={vol.X_start[1],vol1.X_start[1],vol2.X_start[1]}*
+          m_start),
+    vol(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+        massDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),
     vol1(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
         massDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),
     vol2(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -30,7 +31,6 @@ model MoistureMixingConservationDynamicBalance
                                              annotation (Placement(
         transformation(
         extent={{-32,-10},{32,10}},
-        rotation=0,
         origin={-32,-50})));
   Modelica.Blocks.Math.Add3 add3Vap(k3=-1)
     "Sum of vapour mass should be conserved"
@@ -39,14 +39,12 @@ model MoistureMixingConservationDynamicBalance
     "Mass stored in mixing volumes"                    annotation (Placement(
         transformation(
         extent={{-40,-10},{40,10}},
-        rotation=0,
         origin={-40,-130})));
   Modelica.Blocks.Continuous.Integrator intMasFloOut(
     k=1,
     initType=Modelica.Blocks.Types.Init.InitialState,
     y_start=0) "Integral of leaving mass" annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
-        rotation=0,
         origin={60,-100})));
   Modelica.Blocks.Math.Add3 add3Mass(k3=-1) "Adding 3 mass streams"
     annotation (Placement(transformation(extent={{86,-140},{106,-120}})));
@@ -64,7 +62,6 @@ model MoistureMixingConservationDynamicBalance
     y_start=0) "Integral of leaving enthalpy"
                                           annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
-        rotation=0,
         origin={50,-180})));
   Modelica.Blocks.Continuous.Integrator intEntIn(
     k=1,
@@ -75,7 +72,6 @@ model MoistureMixingConservationDynamicBalance
     "Energy stored in mixing volumes"                    annotation (Placement(
         transformation(
         extent={{-40,-10},{40,10}},
-        rotation=0,
         origin={-40,-212})));
   Modelica.Blocks.Math.Add3 add3Ent(k3=-1) "Adding 3 enthalpy streams"
     annotation (Placement(transformation(extent={{80,-214},{100,-194}})));
@@ -99,7 +95,6 @@ model MoistureMixingConservationDynamicBalance
 initial equation
   m_start = {vol.m, vol1.m,vol2.m};
   U_start = {vol.U, vol1.U,vol2.U};
-
 
 equation
   connect(add.u1, mWatFlo2.y) annotation (Line(
@@ -210,10 +205,10 @@ Note, however, that there is some approximation error because
 in its default configuration, the conservation balance
 models simplify the treatment of the water that is added
 to the fluid.
-See <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+See <a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 for a discussion.
 </p>
@@ -241,6 +236,5 @@ First implementation.
 experiment(Tolerance=1e-6, StopTime=1),
 __Dymola_Commands(file=
           "Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/MoistureMixingConservationDynamicBalance.mos"
-        "Simulate and plot"),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
+        "Simulate and plot"));
 end MoistureMixingConservationDynamicBalance;

@@ -6,17 +6,10 @@ package Examples "Collection of models that illustrate model use and test models
 
 
 
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains examples for the use of models that can be found in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Valves\">
 IBPSA.Fluid.Actuators.Valves</a>.
 </p>
 </html>"));

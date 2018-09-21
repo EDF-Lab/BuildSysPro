@@ -31,7 +31,8 @@ model PumpsParallel "Two flow machines in parallel"
     redeclare package Medium = Medium,
     use_p_in=false,
     nPorts=2,
-    T=293.15) annotation (Placement(transformation(extent={{-92,48},{-72,68}})));
+    T=293.15)
+    annotation (Placement(transformation(extent={{-92,48},{-72,68}})));
 
   IBPSA.Fluid.FixedResistances.PressureDrop dpIn(
     redeclare package Medium = Medium,
@@ -53,8 +54,10 @@ model PumpsParallel "Two flow machines in parallel"
     redeclare package Medium = Medium,
     per(pressure(V_flow={0,m_flow_nominal/rho_nominal}, dp={2*4*1000,0})),
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    inputType=IBPSA.Fluid.Types.InputType.Constant) "Model of a flow machine"
+    inputType=IBPSA.Fluid.Types.InputType.Constant)
+    "Model of a flow machine"
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
+
   IBPSA.Fluid.FixedResistances.PressureDrop dpOut2(
     redeclare package Medium = Medium,
     dp_nominal=1000,

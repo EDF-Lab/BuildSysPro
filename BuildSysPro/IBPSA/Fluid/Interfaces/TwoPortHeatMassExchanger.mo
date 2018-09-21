@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.Interfaces;
 model TwoPortHeatMassExchanger
   "Partial model transporting one fluid stream with storing mass or energy"
-  extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(port_a(h_outflow(start=
-           h_outflow_start)), port_b(h_outflow(start=h_outflow_start)));
+  extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(port_a(h_outflow(
+          start=h_outflow_start)), port_b(h_outflow(start=h_outflow_start)));
   extends IBPSA.Fluid.Interfaces.TwoPortFlowResistanceParameters(final
       computeFlowResistance=true);
 
@@ -88,7 +88,6 @@ initial algorithm
  You need to set massDynamics == Modelica.Fluid.Types.Dynamics.SteadyState to model steady-state.
  Received tau = " + String(tau) + "\n");
 
-
 equation
   connect(vol.ports[2], port_b) annotation (Line(
       points={{1,0},{100,0}},
@@ -113,7 +112,7 @@ the temperature of the medium that leaves the component.
 For the actual temperatures at the port, the variables <code>sta_a.T</code>
 and <code>sta_b.T</code> can be used. These two variables are provided by
 the base class
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
 IBPSA.Fluid.Interfaces.PartialTwoPortInterface</a>.
 </p>
 
@@ -121,12 +120,12 @@ For models that extend this model, see for example
 <ul>
 <li>
 the ideal heater or cooler
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.HeaterCooler_u</a>, and
 </li>
 <li>
 the ideal humidifier
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Humidifiers.Humidifier_u\">
+<a href=\"modelica://IBPSA.Fluid.Humidifiers.Humidifier_u\">
 IBPSA.Fluid.Humidifiers.Humidifier_u</a>.
 </li>
 </ul>
@@ -213,7 +212,7 @@ used when <code>tau = 0</code>.
 May 25, 2011, by Michael Wetter:<br/>
 Removed temperature sensor and changed implementation of fluid volume
 to allow use of this model for the steady-state and dynamic humidifier
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MassExchangers.HumidifierPrescribed\">
+<a href=\"modelica://IBPSA.Fluid.MassExchangers.HumidifierPrescribed\">
 IBPSA.Fluid.MassExchangers.HumidifierPrescribed</a>.
 </li>
 <li>

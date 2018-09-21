@@ -3,14 +3,14 @@ model PPMTwoPort
   "Ideal two port trace substances sensor outputting in parts per million"
   extends IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor(port_a(
         C_outflow(
-        final quantity="MassFraction",
-        final unit="1",
-        min=0,
-        max=1)), port_b(C_outflow(
-        final quantity="MassFraction",
-        final unit="1",
-        min=0,
-        max=1)));
+        each final quantity="MassFraction",
+        each final unit="1",
+        each min=0,
+        each max=1)), port_b(C_outflow(
+        each final quantity="MassFraction",
+        each final unit="1",
+        each min=0,
+        each max=1)));
   extends Modelica.Icons.RotationalSensor;
 
   parameter String substanceName = "CO2" "Name of trace substance";
@@ -105,7 +105,7 @@ The sensor is ideal, i.e., it does not influence the fluid.
 If the parameter <code>tau</code> is non-zero, then its output
 is computed using a first order differential equation.
 Setting <code>tau=0</code> is <i>not</i> recommend. See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>", revisions="<html>
@@ -117,7 +117,5 @@ See issue
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/372\">#372</a>
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end PPMTwoPort;

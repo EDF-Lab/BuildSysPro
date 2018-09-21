@@ -5,7 +5,7 @@ record LandingWall =
     m={5,1},
     e={0.20,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.Concrete(),
-        BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
+         BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
     positionIsolant={0,0}) "Landing wall collective housing before 1974"                                       annotation (
     Icon(graphics), Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -21,7 +21,7 @@ record LandingWall =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

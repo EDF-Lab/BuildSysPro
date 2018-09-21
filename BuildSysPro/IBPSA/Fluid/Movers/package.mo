@@ -10,14 +10,6 @@ package Movers "Package with fan and pump models"
 
 
 
-
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 This package contains component models for fans and pumps.
 </html>"),

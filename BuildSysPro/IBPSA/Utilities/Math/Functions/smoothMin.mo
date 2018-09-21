@@ -8,10 +8,10 @@ function smoothMin
   output Real y "Result";
 algorithm
   y := IBPSA.Utilities.Math.Functions.regStep(
-    y1=x1,
-    y2=x2,
-    x=x2 - x1,
-    x_small=deltaX);
+            y1=x1,
+            y2=x2,
+            x=x2 - x1,
+            x_small=deltaX);
   annotation (
   Inline=true,
   smoothOrder=1,
@@ -21,7 +21,7 @@ Once continuously differentiable approximation to the <code>min(.,.)</code> func
 </p>
 <p>
 Note that the minimum need not be respected, such as illustrated in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Examples.SmoothMin\">
+<a href=\"modelica://IBPSA.Utilities.Math.Examples.SmoothMin\">
 IBPSA.Utilities.Math.Examples.SmoothMin</a>.
 </p>
 </html>",

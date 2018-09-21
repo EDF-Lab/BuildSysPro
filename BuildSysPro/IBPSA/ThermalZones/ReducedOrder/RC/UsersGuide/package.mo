@@ -2,7 +2,6 @@ within BuildSysPro.IBPSA.ThermalZones.ReducedOrder.RC;
 package UsersGuide "User's Guide"
   extends Modelica.Icons.Information;
 
-
   annotation (Documentation(info="<html>
   <p>
   This package contains

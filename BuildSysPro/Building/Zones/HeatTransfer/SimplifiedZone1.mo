@@ -103,7 +103,7 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
     S=Sop - Splancher,
     alpha_ext=alpha_ext,
     eps=epsParois) "External walls"
-    annotation (Placement(transformation(extent={{-8,36},{12,56}})));
+    annotation (Placement(transformation(extent={{-10,38},{10,58}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleWindow vitrage(
     hs_ext=hs_ext_paroiExt,
@@ -129,7 +129,7 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
     RadExterne=false,
     RadInterne=true,
     GLOext=false) "Lowest floor"
-    annotation (Placement(transformation(extent={{-8,-92},{12,-72}})));
+    annotation (Placement(transformation(extent={{-10,-90},{10,-70}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleWall plancherInt(
     caracParoi(
@@ -159,7 +159,7 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
           extent={{60,-76},{80,-56}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.B_Coefficient coefficientBsol(b=b)
-    annotation (Placement(transformation(extent={{-46,-94},{-26,-74}})));
+    annotation (Placement(transformation(extent={{-50,-90},{-30,-70}})));
   Modelica.Blocks.Math.Gain gainTransmisPlancher(k=1/NbNiveau) annotation (
       Placement(transformation(
         extent={{-6,-6},{6,6}},
@@ -174,8 +174,8 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
 // Public components
 public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
-    "Air temperature" annotation (Placement(transformation(extent={{-100,-80},{
-            -80,-60}}), iconTransformation(extent={{-110,-110},{-90,-90}})));
+    "Air temperature" annotation (Placement(transformation(extent={{-110,30},{
+            -90,50}}),  iconTransformation(extent={{-130,70},{-110,90}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int
     "Indoor air heat port" annotation (Placement(transformation(extent={{80,0},
             {100,20}}), iconTransformation(extent={{70,-50},{90,-30}})));
@@ -186,11 +186,11 @@ public
             {-80,30}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncWall
     "Surface incident solar flux on external walls" annotation (Placement(
-        transformation(extent={{-120,-10},{-80,30}}), iconTransformation(extent=
+        transformation(extent={{-120,52},{-80,92}}),  iconTransformation(extent=
            {{-100,30},{-80,50}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxTrGlazing
     "Transmitted solar flux through glazings (must take into account the influence of incidence)"
-    annotation (Placement(transformation(extent={{-120,60},{-80,100}}),
+    annotation (Placement(transformation(extent={{-120,-50},{-80,-10}}),
         iconTransformation(extent={{-100,-10},{-80,10}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky
     "Sky temperature for LW radiation"
@@ -215,32 +215,32 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, Text) annotation (Line(
-      points={{-90,-70},{-56,-70},{-56,10},{-20,10}},
+      points={{-100,40},{-50,40},{-50,10},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
 
 // Regulatory boundary limits
   connect(coefficientBsol.port_int, Tint) annotation (Line(
-      points={{-45,-87},{-45,-91.5},{20,-91.5},{20,10}},
+      points={{-49,-83},{-49,-91.5},{20,-91.5},{20,10}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(coefficientBsol.port_ext, Text) annotation (Line(
-      points={{-45,-81},{-45,-77.5},{-20,-77.5},{-20,10}},
+      points={{-49,-77},{-49,-69.5},{-20,-69.5},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
 
 // Floor connections
   connect(plancher.T_int, Tint)
                            annotation (Line(
-      points={{11,-85},{11,-82.5},{20,-82.5},{20,10}},
+      points={{9,-83},{9,-82.5},{20,-82.5},{20,10}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(coefficientBsol.Tponder, plancher.T_ext) annotation (Line(
-      points={{-31,-84.2},{-29.5,-84.2},{-29.5,-85},{-7,-85}},
+      points={{-35,-80.2},{-33.5,-80.2},{-33.5,-83},{-9,-83}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(plancher.FluxAbsInt, gainTransmisPlancher.y) annotation (Line(
-      points={{5,-77},{28,-77},{28,-48.6}},
+      points={{3,-75},{28,-75},{28,-48.6}},
       color={0,0,127},
       smooth=Smooth.None));
 // Ventilation
@@ -272,15 +272,15 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
       smooth=Smooth.None));
 // External walls
   connect(paroiExt.T_int, Tint)     annotation (Line(
-      points={{11,43},{20,43},{20,10}},
+      points={{9,45},{20,45},{20,10}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(paroiExt.T_ext, Text)     annotation (Line(
-      points={{-7,43},{-20,43},{-20,10}},
+      points={{-9,45},{-20,45},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(paroiExt.T_sky, T_sky) annotation (Line(
-      points={{-7,37},{-32,37},{-32,120},{-40,120}},
+      points={{-9,39},{-30,39},{-30,120},{-40,120}},
       color={191,0,0},
       smooth=Smooth.None));
 
@@ -299,15 +299,14 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
       color={255,0,0},
       smooth=Smooth.None));
   connect(FluxIncWall, paroiExt.FluxIncExt)
-    annotation (Line(points={{-100,10},{-1,10},{-1,51}}, color={255,192,1}));
+    annotation (Line(points={{-100,72},{-3,72},{-3,53}}, color={255,192,1}));
   connect(vitrage.FluxIncExt,FluxIncGlazing)  annotation (Line(points={{-3,-27},
           {-60,-27},{-60,10},{-100,10}}, color={255,192,1}));
   connect(FluxTrGlazing, vitrage.FluxTr)
-    annotation (Line(points={{-100,80},{-50,80},{-50,-30},{-3,-30}},
-                                                   color={255,192,1}));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
-            -120},{100,120}})),  Icon(coordinateSystem(preserveAspectRatio=true,
-          extent={{-100,-120},{100,120}}), graphics={
+    annotation (Line(points={{-100,-30},{-3,-30}}, color={255,192,1}));
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,
+            -120},{120,120}})),  Icon(coordinateSystem(preserveAspectRatio=true,
+          extent={{-120,-120},{120,120}}), graphics={
         Polygon(
           points={{-100,100},{-60,60},{-60,-100},{-100,-58},{-100,100}},
           lineColor={0,0,0},
@@ -426,7 +425,7 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -8,13 +8,6 @@ package FlowModels "Flow models for pressure drop calculations"
 
 
 
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
 <p>
 This package contains a basic flow model that is used by the
@@ -45,10 +38,10 @@ laminar flow, although the implementation does not use a linear function.
 <h4>Implementation</h4>
 <p>
 The two main functions are
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow</a>
 that compute the mass flow rate or the pressure drop, respectively.
 Both functions are two times continuously differentiable.

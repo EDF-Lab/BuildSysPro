@@ -11,7 +11,7 @@ model TWetBul_TDryBulXi
     offset=273.15 + 30) "Dry bulb temperature"
                  annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
   IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBul(redeclare package
-      Medium = Medium) "Model for wet bulb temperature"
+              Medium = Medium) "Model for wet bulb temperature"
     annotation (Placement(transformation(extent={{0,20},{20,40}})));
   Modelica.Blocks.Sources.Constant p(k=101325) "Pressure"
                                     annotation (Placement(transformation(extent={{-80,-20},
@@ -22,7 +22,7 @@ model TWetBul_TDryBulXi
     offset=0.0175) "Humidity concentration"
                  annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
   IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBulApp(redeclare package
-      Medium = Medium, approximateWetBulb=true)
+              Medium = Medium, approximateWetBulb=true)
     "Model for wet bulb temperature"
     annotation (Placement(transformation(extent={{0,-20},{20,0}})));
 equation

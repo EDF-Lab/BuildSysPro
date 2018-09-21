@@ -11,7 +11,9 @@ model WaterTank
   parameter Modelica.SIunits.Volume Volume(displayUnit="l")=0.3 "Tank capacity"  annotation (Dialog(group="Thermodynamic tank characteristics"));
   parameter Modelica.SIunits.Length Hauteur=1.8 "Tank height"  annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
   parameter Modelica.SIunits.Power Pmax=1500 "Electrical resistance power"   annotation (Dialog(group="Thermodynamic tank characteristics"));
-  parameter Modelica.SIunits.Temperature T_cold=283.15 "Cold water temperature"     annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Boolean type_T_cold=false "Prescribed or fixed cold water temperature"   annotation(Evaluate=true,HideResult=true,Dialog(group="Thermodynamic tank characteristics"),choices(choice=true
+        "Prescribed",                                                                       choice=false "Fixed",   radioButtons=true));
+  parameter Modelica.SIunits.Temperature T_cold_fixed=283.15 "Cold water temperature"     annotation (Dialog(group="Thermodynamic tank characteristics",enable=not type_T_cold));
   parameter Modelica.SIunits.Temperature T_sp=337.15 "Setpoint temperature"  annotation (Dialog(group="Thermodynamic tank characteristics"));
 
   parameter Modelica.SIunits.TemperatureDifference BP=3
@@ -35,6 +37,7 @@ model WaterTank
   Real heure=mod(time/3600,24);
 
 protected
+  Modelica.Blocks.Interfaces.RealInput T_cold_internal "Internal connector for optional configuration";
   Modelica.SIunits.Temperature T[nc](start=fill(T_sp,nc));
   Modelica.SIunits.Power puis[nc](start=fill(0,nc));
   Modelica.SIunits.Power perte[nc](start=fill(0,nc));
@@ -63,6 +66,14 @@ public
                                                                      annotation (
       Placement(transformation(extent={{-120,-90},{-80,-50}}),
         iconTransformation(extent={{-100,-70},{-80,-50}})));
+  Modelica.Blocks.Interfaces.RealInput T_cold(start=0) if type_T_cold "Cold water temperature (K)"
+                                                                     annotation (
+      Placement(transformation(extent={{-20,-20},{20,20}},
+        rotation=90,
+        origin={-30,-100}),
+        iconTransformation(extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={0,-110})));
 public
   Modelica.Blocks.Interfaces.RealOutput Pelec "Power" annotation (Placement(
         transformation(extent={{80,0},{100,20}}), iconTransformation(extent={{80,
@@ -79,10 +90,10 @@ public
     "Ambient temperature (K)" annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=270,
-        origin={-30,100}), iconTransformation(
+        origin={-80,100}), iconTransformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
-        origin={0,110})));
+        origin={-70,110})));
 public
   Modelica.Blocks.Interfaces.RealInput OnOff(start=1) "OnOff"           annotation (
       Placement(transformation(extent={{-120,30},{-80,70}}),
@@ -93,7 +104,20 @@ public
   Modelica.Blocks.Interfaces.RealOutput Cons "Consumption" annotation (
       Placement(transformation(extent={{80,-42},{100,-22}}), iconTransformation(
           extent={{80,24},{100,44}})));
+  Modelica.Blocks.Interfaces.RealOutput T_out "Output water temperature (K)"    annotation (Placement(transformation(extent={{80,38},
+            {100,58}}),
+        iconTransformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={90,90})));
 equation
+  connect(T_cold, T_cold_internal);
+  if not type_T_cold then
+    T_cold_internal= T_cold_fixed;
+  end if;
+
+  T_out=T[nc];
+
   delta_t=if debit>0 then Hauteur/(debit*coef36/sbase) else 0;
   when initial() then
     if nc==1 then
@@ -131,7 +155,7 @@ equation
   else
     conv[1]=0;
   end if;
-  rovcp*der(T[1]) = puis[1] - perte[1] + MCp*(T_cold-T[1]) + conv[1] + (if nc==1 then 0 else cond*(T[2]-T[1]));
+  rovcp*der(T[1]) = puis[1] - perte[1] + MCp*(T_cold_internal-T[1]) + conv[1] + (if nc==1 then 0 else cond*(T[2]-T[1]));
 
   if nc>1 then
 // Heat balance on intermediate layers
@@ -194,14 +218,10 @@ equation
           thickness=0.5,
           smooth=Smooth.None)}),
     Documentation(revisions="<html>
-<p>Hubert Blervaque - 06/2012 :</p>
-<p><ul>
-<li>Suppresion des variables propres au modèle de ballon thermodynamique modélisé initialement &quot;ECS_Thermo_M324&quot; par Hassan Bouia</li>
-<li>Variables devenues dimensionnelles</li>
-<li>MAJ de la documentation BuildSysPro</li>
-</ul></p>
-<p><br>Hubert Blervaque - 07/2012 : correction du signe de la chaleur solaire récupérée et rajout du connecteur donnant la consommation</p>
-<p>Hubert Blervaque - 09/2012 : correction dv et diametre où le Volume était divisé par erreur par 1000</p>
+<p>Hubert Blervaque 06/2012 : Suppresion des variables propres au modèle de ballon thermodynamique modélisé initialement <code>ECS_Thermo_M324</code> par Hassan Bouia. Variables devenues dimensionnelles.</p>
+<p>Hubert Blervaque 07/2012 : Correction du signe de la chaleur solaire récupérée et rajout du connecteur donnant la consommation.</p>
+<p>Hubert Blervaque 09/2012 : Correction <code>dv</code> et <code>diametre</code> où le volume était divisé par erreur par 1000.</p>
+<p>Benoît Charrier 01/2018 : Added <code>T_out</code> (output water temperature). Added choice between prescribed or fixed for the cold water temperature.</p>
 </html>",
         info="<html>
 <p>Electric hot water tank allowing a connection with a solar thermal collector.</p>
@@ -218,8 +238,8 @@ equation
 <p>Validated model - Hubert Blervaque, Hassan Bouia 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2017<br>
-BuildSysPro version 3.0.0<br>
+Copyright &copy; EDF 2009 - 2018<br>
+BuildSysPro version 3.2.0<br>
 Author : Hubert BLERVAQUE, Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

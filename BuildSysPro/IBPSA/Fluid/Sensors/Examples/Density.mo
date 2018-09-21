@@ -18,8 +18,8 @@ model Density "Test model for the density sensor"
     use_m_flow_in=true) "Flow boundary condition"
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
 
-  IBPSA.Fluid.Sensors.Density senDenVol(redeclare package Medium = Medium)
-    "Density sensor for the volume"
+  IBPSA.Fluid.Sensors.Density senDenVol(redeclare package Medium =
+        Medium) "Density sensor for the volume"
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume vol(
     redeclare package Medium = Medium,
@@ -34,7 +34,8 @@ model Density "Test model for the density sensor"
     dp_nominal=200) "Flow resistance"
     annotation (Placement(transformation(extent={{8,-40},{28,-20}})));
   IBPSA.Fluid.Sensors.DensityTwoPort senDenFlo(redeclare package Medium =
-        Medium, m_flow_nominal=10) "Density sensor for the flowing medium"
+        Medium, m_flow_nominal=10)
+    "Density sensor for the flowing medium"
     annotation (Placement(transformation(extent={{40,-40},{60,-20}})));
   Modelica.Blocks.Sources.Ramp ramp(
     height=-20,
@@ -58,7 +59,7 @@ equation
       points={{60,-30},{70,-30}},
       color={0,127,255}));
   connect(ramp.y, masFloRat.m_flow_in) annotation (Line(
-      points={{-69,8},{-50,8}},
+      points={{-69,8},{-52,8}},
       color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=60),
 __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sensors/Examples/Density.mos"

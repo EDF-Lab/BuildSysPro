@@ -132,18 +132,15 @@ end gasConstant;
 
 
 
-
-
-
 redeclare function extends saturationPressure
     "Saturation curve valid for 223.16 <= T <= 373.16 (and slightly outside with less accuracy)"
 
 algorithm
-  psat := IBPSA.Utilities.Math.Functions.regStep(
-    y1=saturationPressureLiquid(Tsat),
-    y2=sublimationPressureIce(Tsat),
-    x=Tsat - 273.16,
-    x_small=1.0);
+    psat := IBPSA.Utilities.Math.Functions.regStep(
+              y1=saturationPressureLiquid(Tsat),
+              y2=sublimationPressureIce(Tsat),
+              x=Tsat - 273.16,
+              x_small=1.0);
   annotation (
     Inline=true,
     smoothOrder=5);
@@ -470,7 +467,7 @@ Set <code>AbsolutePressure(start=p_default)</code>
 and <code>Temperature(start=T_default)</code>
 to have to have conistent start values.
 See also revision notes of
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Water\">
+<a href=\"modelica://IBPSA.Media.Water\">
 IBPSA.Media.Water</a>.
 This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/266\">#266</a>.
@@ -564,7 +561,7 @@ if <i>T=0</i> &deg;C and no water vapor is present.
 </p>
 <p>
 Note that for typical building simulations, the media
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Air\">IBPSA.Media.Air</a>
+<a href=\"modelica://IBPSA.Media.Air\">IBPSA.Media.Air</a>
 should be used as it leads generally to faster simulation.
 </p>
 <h4>References</h4>
@@ -592,7 +589,7 @@ when models are checked in Dymola 2014 in the pedenatic mode.
 </li>
 <li>
 April 12, 2012, by Michael Wetter:<br/>
-Added keyword <code>each</code> to <code>Xi(stateSelect=...</code>.
+Added keyword <code>each</code> to <code>Xi(stateSelect=...)</code>.
 </li>
 <li>
 April 4, 2012, by Michael Wetter:<br/>

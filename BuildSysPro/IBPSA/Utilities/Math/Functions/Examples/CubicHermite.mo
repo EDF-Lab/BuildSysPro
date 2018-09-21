@@ -15,13 +15,13 @@ model CubicHermite "Test problem for cubic hermite splines"
 initial algorithm
   // Get the derivative values at the support points
   d := IBPSA.Utilities.Math.Functions.splineDerivatives(
-    x=xd,
-    y=yd,
-    ensureMonotonicity=false);
+              x=xd,
+              y=yd,
+              ensureMonotonicity=false);
   dMonotone := IBPSA.Utilities.Math.Functions.splineDerivatives(
-    x=xd,
-    y=yd,
-    ensureMonotonicity=true);
+              x=xd,
+              y=yd,
+              ensureMonotonicity=true);
 algorithm
   x := xd[1] + time*1.2*(xd[size(xd, 1)] - xd[1]) - 0.5;
   // i is a counter that is used to pick the derivative of d or dMonotonic
@@ -34,21 +34,22 @@ algorithm
   end for;
   // Extrapolate or interpolate the data
   y := IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-    x=x,
-    x1=xd[i],
-    x2=xd[i + 1],
-    y1=yd[i],
-    y2=yd[i + 1],
-    y1d=d[i],
-    y2d=d[i + 1]);
-  yMonotone := IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-    x=x,
-    x1=xd[i],
-    x2=xd[i + 1],
-    y1=yd[i],
-    y2=yd[i + 1],
-    y1d=dMonotone[i],
-    y2d=dMonotone[i + 1]);
+              x=x,
+              x1=xd[i],
+              x2=xd[i + 1],
+              y1=yd[i],
+              y2=yd[i + 1],
+              y1d=d[i],
+              y2d=d[i + 1]);
+  yMonotone :=
+    IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
+              x=x,
+              x1=xd[i],
+              x2=xd[i + 1],
+              y1=yd[i],
+              y2=yd[i + 1],
+              y1d=dMonotone[i],
+              y2d=dMonotone[i + 1]);
   annotation (
     __Dymola_Commands(file=
           "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/CubicHermite.mos"

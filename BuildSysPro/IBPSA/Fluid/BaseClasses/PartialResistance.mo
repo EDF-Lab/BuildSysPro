@@ -2,8 +2,8 @@ within BuildSysPro.IBPSA.Fluid.BaseClasses;
 partial model PartialResistance "Partial model for a hydraulic resistance"
     extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(
     show_T=false,
-    dp(nominal=if dp_nominal_pos > Modelica.Constants.eps then dp_nominal_pos
-           else 1),
+    dp(nominal=if dp_nominal_pos > Modelica.Constants.eps then
+          dp_nominal_pos else 1),
     m_flow(nominal=if m_flow_nominal_pos > Modelica.Constants.eps then
           m_flow_nominal_pos else 1),
     final m_flow_small=1E-4*abs(m_flow_nominal));
@@ -78,7 +78,7 @@ Models that extend this class need to implement an equation that relates
 </p>
 <p>
 See for example
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
+<a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
 IBPSA.Fluid.FixedResistances.PressureDrop</a> for a model that extends
 this base class.
 </p>
@@ -184,7 +184,7 @@ Changed base classes to allow easier initialization.
 April 13, 2009, by Michael Wetter:<br/>
 Extracted pressure drop computation and implemented it in the
 new model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.BasicFlowModel\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.BasicFlowModel\">
 IBPSA.Fluid.BaseClasses.FlowModels.BasicFlowModel</a>.
 </li>
 <li>

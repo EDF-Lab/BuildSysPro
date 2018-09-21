@@ -21,9 +21,9 @@ model PPM "Test model for the extra property sensor outputting PPM"
     nPorts=2,
     m_flow=m_flow_nominal) "Fresh air supply"
     annotation (Placement(transformation(extent={{-40,30},{-20,50}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin(redeclare package Medium = Medium,
-      nPorts=2) "Exhaust air"
-    annotation (Placement(transformation(extent={{-40,-60},{-20,-40}})));
+  IBPSA.Fluid.Sources.FixedBoundary sin(redeclare package Medium =
+        Medium, nPorts=2) "Exhaust air" annotation (Placement(
+        transformation(extent={{-40,-60},{-20,-40}})));
 
   IBPSA.Fluid.Sensors.PPM senPPMVol(redeclare package Medium = Medium)
     "PPM sensor for mixing volume"
@@ -45,28 +45,24 @@ model PPM "Test model for the extra property sensor outputting PPM"
   IBPSA.Fluid.Sensors.PPMTwoPort senPPMNoRev(
     redeclare package Medium = Medium,
     allowFlowReversal=false,
-    m_flow_nominal=m_flow_nominal) "PPM sensor without flow reversal disabled"
-    annotation (Placement(transformation(
+    m_flow_nominal=m_flow_nominal)
+    "PPM sensor without flow reversal disabled" annotation (Placement(
+        transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={84,-30})));
   IBPSA.Fluid.Sensors.PPMTwoPort senPPMRev(
     redeclare package Medium = Medium,
     allowFlowReversal=true,
-    m_flow_nominal=m_flow_nominal) "PPM sensor with flow in reverse direction"
-    annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={50,-50})));
+    m_flow_nominal=m_flow_nominal)
+    "PPM sensor with flow in reverse direction" annotation (Placement(
+        transformation(extent={{-10,-10},{10,10}}, origin={50,-50})));
   IBPSA.Fluid.Sensors.PPMTwoPort senPPMSta(
     redeclare package Medium = Medium,
     allowFlowReversal=true,
     tau=0,
-    m_flow_nominal=m_flow_nominal) "Static PPM sensor" annotation (Placement(
-        transformation(
-        extent={{10,-10},{-10,10}},
-        rotation=0,
-        origin={10,-50})));
+    m_flow_nominal=m_flow_nominal) "Static PPM sensor" annotation (
+      Placement(transformation(extent={{10,-10},{-10,10}}, origin={10,-50})));
 protected
      final parameter Medium.ThermodynamicState state_default = Medium.setState_pTX(
       T=Medium.T_default,

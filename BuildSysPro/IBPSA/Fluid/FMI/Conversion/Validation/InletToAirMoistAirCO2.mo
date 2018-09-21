@@ -1,8 +1,9 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation;
 model InletToAirMoistAirCO2
   "Validation model for inlet to IBPSA.Media.Air conversion with C02 trace substances"
-  extends IBPSA.Fluid.FMI.Conversion.Validation.InletToAirDryAir(redeclare
-      package Medium = IBPSA.Media.Air (extraPropertiesNames={"CO2"}));
+  extends IBPSA.Fluid.FMI.Conversion.Validation.InletToAirDryAir(
+      redeclare replaceable package Medium = IBPSA.Media.Air (
+          extraPropertiesNames={"CO2"}));
   Modelica.Blocks.Sources.Constant CRev[Medium.nC](each k=0.8)
               "Trace substance for reverse flow"
     annotation (Placement(transformation(extent={{92,-80},{72,-60}})));
@@ -13,11 +14,11 @@ equation
     Documentation(info="<html>
 <p>
 This example validates the conversion model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.InletToAir\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.InletToAir\">
 IBPSA.Fluid.FMI.Conversion.InletToAir
 </a>.
 It is identical to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir\">
 IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir</a>
 except that
 the medium has <code>C02</code> trace substances.

@@ -13,17 +13,6 @@ package PressureDrop "Package with various configurations of pressure drop model
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
 <p>
 This package contains examples that demonstrate how parameter

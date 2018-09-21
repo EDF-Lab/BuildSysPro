@@ -6,12 +6,12 @@ model Pump_Nrpm_stratos "Model validation using a Wilo Stratos 80/1-12 pump"
   parameter Data.Pumps.Wilo.Stratos80slash1to12 per "Pump performance data"
     annotation (Placement(transformation(extent={{-120,80},{-100,100}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sou(redeclare package Medium = Medium, nPorts=
-       5) "Boundary condition with fixed pressure"
-    annotation (Placement(transformation(extent={{-120,-32},{-100,-12}})));
+  IBPSA.Fluid.Sources.Boundary_pT sou(redeclare package Medium = Medium,
+      nPorts=5) "Boundary condition with fixed pressure" annotation (
+      Placement(transformation(extent={{-120,-32},{-100,-12}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium, nPorts=
-       5) "Boundary condition with fixed pressure"
+  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium,
+      nPorts=5) "Boundary condition with fixed pressure"
     annotation (Placement(transformation(extent={{130,-10},{110,10}})));
 
   Modelica.Blocks.Sources.Ramp m_flow(
@@ -37,20 +37,20 @@ model Pump_Nrpm_stratos "Model validation using a Wilo Stratos 80/1-12 pump"
     y_start=1,
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    per=per) "Wilo Stratos pump"
-    annotation (Placement(transformation(extent={{-60,-36},{-40,-16}})));
+    per=per) "Wilo Stratos pump" annotation (Placement(transformation(
+          extent={{-60,-36},{-40,-16}})));
   IBPSA.Fluid.Movers.SpeedControlled_Nrpm pump4(
     y_start=1,
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    per=per) "Wilo Stratos pump"
-    annotation (Placement(transformation(extent={{-60,-80},{-40,-60}})));
+    per=per) "Wilo Stratos pump" annotation (Placement(transformation(
+          extent={{-60,-80},{-40,-60}})));
   IBPSA.Fluid.Movers.SpeedControlled_Nrpm pump5(
     y_start=1,
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    per=per) "Wilo Stratos pump"
-    annotation (Placement(transformation(extent={{-60,-130},{-40,-110}})));
+    per=per) "Wilo Stratos pump" annotation (Placement(transformation(
+          extent={{-60,-130},{-40,-110}})));
 
   IBPSA.Fluid.Movers.FlowControlled_m_flow forcedPump1(
     redeclare package Medium = Medium,
@@ -80,8 +80,8 @@ model Pump_Nrpm_stratos "Model validation using a Wilo Stratos 80/1-12 pump"
     redeclare package Medium = Medium,
     m_flow_nominal=3,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Pump for forcing a certain mass flow rate"
-    annotation (Placement(transformation(extent={{38,-130},{58,-110}})));
+    "Pump for forcing a certain mass flow rate" annotation (Placement(
+        transformation(extent={{38,-130},{58,-110}})));
 
   Modelica.Blocks.Sources.Constant rpm1(k=2960) "Pump speed control signal"
     annotation (Placement(transformation(extent={{-90,84},{-78,96}})));

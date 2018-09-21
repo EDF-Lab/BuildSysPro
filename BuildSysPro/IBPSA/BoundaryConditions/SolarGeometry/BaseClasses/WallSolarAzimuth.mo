@@ -8,12 +8,12 @@ block WallSolarAzimuth
                                               displayUnit="rad")
     "Solar incidence angle"
     annotation (Placement(transformation(extent={{-140,-68},{-100,-28}})));
-Modelica.Blocks.Interfaces.RealInput alt(quantity="Angle",
+  Modelica.Blocks.Interfaces.RealInput alt(quantity="Angle",
                                          unit="rad",
                                          displayUnit="rad")
     "Solar altitude angle (angle between sun ray and horizontal surface)"
     annotation (Placement(transformation(extent={{-140,28},{-100,68}})));
-Modelica.Blocks.Interfaces.RealOutput verAzi(
+  Modelica.Blocks.Interfaces.RealOutput verAzi(
     final quantity="Angle",
     final unit="rad",
     displayUnit="deg")
@@ -29,21 +29,22 @@ protected
   Real rat "Ratio of cosines";
 equation
   alt_c = Modelica.Math.cos(IBPSA.Utilities.Math.Functions.smoothLimit(
-    x=alt,
-    l=-ninety,
-    u=ninety,
-    deltaX=delta));
+            x=alt,
+            l=-ninety,
+            u=ninety,
+            deltaX=delta));
   rat = Modelica.Math.cos(incAng)/alt_c;
   // Due to the smoothLimit, rat can be about 1E-3 greater than 1 or smaller than -1.
   // Hence, below we use another call to smoothLimit to ensure that the argument of
   // acos(.) is inside the interval [-1, 1].
-  verAzi = Modelica.Math.acos(IBPSA.Utilities.Math.Functions.smoothLimit(
-    x=rat,
-    l=-1 + deltaX,
-    u=1 - deltaX,
-    deltaX=deltaX/10));
+  verAzi = Modelica.Math.acos(
+    IBPSA.Utilities.Math.Functions.smoothLimit(
+            x=rat,
+            l=-1 + deltaX,
+            u=1 - deltaX,
+            deltaX=deltaX/10));
 
-  annotation (Icon(graphics={Bitmap(extent={{-92,92},{92,-92}}, fileName=
+  annotation (Icon(graphics={Bitmap(extent={{-90,-90},{90,90}}, fileName=
               "modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/SolarGeometry/BaseClasses/WallSolarAzimuth.png")}),
 defaultComponentName="wallSolAzi",
 Documentation(info="<html>
@@ -59,7 +60,7 @@ In the northern hemisphere at solar noon, the value of the wall solar azimuth an
 July 5, 2012, by Michael Wetter:<br/>
 Decreased <code>deltaX</code> from <i>1e-3</i> to <i>1e-4</i>, as
 the looser tolerance gives sharp changes in
-<a href=\"modelica://BuildSysPro.IBPSA.HeatTransfer.Windows.BaseClasses.Examples.Overhang\">
+<a href=\"modelica://IBPSA.HeatTransfer.Windows.BaseClasses.Examples.Overhang\">
 IBPSA.HeatTransfer.Windows.BaseClasses.Examples.Overhang</a>.
 </li>
 <li>

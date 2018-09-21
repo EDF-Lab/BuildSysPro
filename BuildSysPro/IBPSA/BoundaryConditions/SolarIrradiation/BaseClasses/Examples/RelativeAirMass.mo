@@ -1,12 +1,13 @@
 within BuildSysPro.IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.Examples;
 model RelativeAirMass "Test model for relative air mass"
   extends Modelica.Icons.Example;
-  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.RelativeAirMass relAirMas
+  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.RelativeAirMass
+    relAirMas
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
   IBPSA.BoundaryConditions.SolarGeometry.ZenithAngle zen(lat=0.34906585039887)
     annotation (Placement(transformation(extent={{-20,0},{0,20}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos")
+        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
     annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
 equation
   connect(zen.y, relAirMas.zen) annotation (Line(

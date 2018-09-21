@@ -21,24 +21,24 @@ model HeaterCooler_u
     use_T_in=true,
     nPorts=4,
     p(displayUnit="Pa") = 101735,
-    T=293.15)
-    annotation (Placement(transformation(extent={{-170,90},{-150,110}})));
+    T=293.15) annotation (Placement(transformation(extent={{-170,90},{-150,
+            110}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_11(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,90},{-80,110}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            90},{-80,110}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_12(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,134},{-80,154}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            134},{-80,154}})));
   IBPSA.Fluid.Sources.Boundary_pT sin_1(
     redeclare package Medium = Medium,
     use_p_in=true,
     T=288.15,
-    nPorts=4)
-    annotation (Placement(transformation(extent={{-168,132},{-148,152}})));
+    nPorts=4) annotation (Placement(transformation(extent={{-168,132},{-148,
+            152}})));
     Modelica.Blocks.Sources.Constant POut(k=101325)
       annotation (Placement(transformation(extent={{-200,140},{-180,160}})));
     Modelica.Blocks.Sources.Ramp u(
@@ -70,8 +70,8 @@ model HeaterCooler_u
   IBPSA.Fluid.FixedResistances.PressureDrop res_2(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,-30},{-80,-10}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            -30},{-80,-10}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_3(
     redeclare package Medium = Medium,
     dp_nominal=5,
@@ -110,18 +110,18 @@ model HeaterCooler_u
     dp_nominal=200,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial)
-    "Heater and cooler"
-    annotation (Placement(transformation(extent={{-10,-190},{10,-170}})));
+    "Heater and cooler" annotation (Placement(transformation(extent={{-10,
+            -190},{10,-170}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_1(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,-190},{-80,-170}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            -190},{-80,-170}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_5(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,-130},{-80,-110}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            -130},{-80,-110}})));
   IBPSA.Fluid.HeatExchangers.HeaterCooler_u hea6(
     redeclare package Medium = Medium,
     Q_flow_nominal=5000,
@@ -137,18 +137,18 @@ model HeaterCooler_u
     dp_nominal=200,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial)
-    "Heater and cooler"
-    annotation (Placement(transformation(extent={{-10,-330},{10,-310}})));
+    "Heater and cooler" annotation (Placement(transformation(extent={{-10,
+            -330},{10,-310}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_6(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,-330},{-80,-310}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            -330},{-80,-310}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_7(
     redeclare package Medium = Medium,
     dp_nominal=5,
-    m_flow_nominal=0.5)
-    annotation (Placement(transformation(extent={{-100,-270},{-80,-250}})));
+    m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
+            -270},{-80,-250}})));
   IBPSA.Fluid.HeatExchangers.HeaterCooler_u hea8(
     redeclare package Medium = Medium,
     Q_flow_nominal=5000,
@@ -199,8 +199,8 @@ model HeaterCooler_u
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3a(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
-    tau=0) "Temperature sensor"
-    annotation (Placement(transformation(extent={{-48,-28},{-32,-12}})));
+    tau=0) "Temperature sensor" annotation (Placement(transformation(
+          extent={{-48,-28},{-32,-12}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3b(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
@@ -227,23 +227,23 @@ model HeaterCooler_u
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem6b(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
-    tau=0) "Temperature sensor"
-    annotation (Placement(transformation(extent={{40,-130},{60,-110}})));
+    tau=0) "Temperature sensor" annotation (Placement(transformation(
+          extent={{40,-130},{60,-110}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem6a(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
-    tau=0) "Temperature sensor"
-    annotation (Placement(transformation(extent={{-60,-130},{-40,-110}})));
+    tau=0) "Temperature sensor" annotation (Placement(transformation(
+          extent={{-60,-130},{-40,-110}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem5b(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
-    tau=0) "Temperature sensor"
-    annotation (Placement(transformation(extent={{20,-190},{40,-170}})));
+    tau=0) "Temperature sensor" annotation (Placement(transformation(
+          extent={{20,-190},{40,-170}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem5a(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
-    tau=0) "Temperature sensor"
-    annotation (Placement(transformation(extent={{-60,-190},{-40,-170}})));
+    tau=0) "Temperature sensor" annotation (Placement(transformation(
+          extent={{-60,-190},{-40,-170}})));
   Modelica.Blocks.Math.Add che7(k2=-1)
     annotation (Placement(transformation(extent={{160,-284},{180,-264}})));
   Modelica.Blocks.Math.Add che8(k2=-1)
@@ -251,23 +251,23 @@ model HeaterCooler_u
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem8b(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
-    tau=0) "Temperature sensor"
-    annotation (Placement(transformation(extent={{36,-272},{60,-248}})));
+    tau=0) "Temperature sensor" annotation (Placement(transformation(
+          extent={{36,-272},{60,-248}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem8a(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
-    tau=0) "Temperature sensor"
-    annotation (Placement(transformation(extent={{-60,-270},{-40,-250}})));
+    tau=0) "Temperature sensor" annotation (Placement(transformation(
+          extent={{-60,-270},{-40,-250}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem7b(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
-    tau=0) "Temperature sensor"
-    annotation (Placement(transformation(extent={{20,-330},{40,-310}})));
+    tau=0) "Temperature sensor" annotation (Placement(transformation(
+          extent={{20,-330},{40,-310}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem7a(
     redeclare package Medium = Medium,
     m_flow_nominal=0.5,
-    tau=0) "Temperature sensor"
-    annotation (Placement(transformation(extent={{-60,-330},{-40,-310}})));
+    tau=0) "Temperature sensor" annotation (Placement(transformation(
+          extent={{-60,-330},{-40,-310}})));
 equation
   connect(POut.y,sin_1. p_in) annotation (Line(
       points={{-179,150},{-170,150}},

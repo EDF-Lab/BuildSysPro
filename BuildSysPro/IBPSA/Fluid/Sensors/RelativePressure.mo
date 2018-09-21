@@ -74,7 +74,7 @@ February 19, 2016, by Michael Wetter:<br/>
 Corrected the quantity of the output signal from <code>Pressure</code>
 to <code>PressureDifference</code>.
 This was needed for the model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>
 when revising it for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/417\">

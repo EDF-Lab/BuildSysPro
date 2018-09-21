@@ -215,22 +215,22 @@ equation
     Medium.setState_pTX(
       p = port_a.p,
       T = T,
-      X = inStream(port_a.Xi_outflow) + fill(dXiAct, Medium.nXi)))
+      X = Xi_instream + fill(dXiAct, Medium.nXi)))
         else Medium.h_default;
 
   m_flow_pos = IBPSA.Utilities.Math.Functions.smoothMax(
-    x1=m_flow,
-    x2=0,
-    deltaX=m_flow_small);
+          x1=m_flow,
+          x2=0,
+          deltaX=m_flow_small);
 
    if not restrictHeat and not restrictCool and
       not restrictHumi and not restrictDehu then
      m_flow_non_zero = Modelica.Constants.eps;
    else
     m_flow_non_zero = IBPSA.Utilities.Math.Functions.smoothMax(
-      x1=port_a.m_flow,
-      x2=m_flow_small,
-      deltaX=m_flow_small/2);
+            x1=port_a.m_flow,
+            x2=m_flow_small,
+            deltaX=m_flow_small/2);
    end if;
 
   // Compute mass fraction leaving the component.
@@ -243,29 +243,29 @@ equation
   if use_X_wSet then
     if not restrictHumi and not restrictDehu then
       // No capacity limit
-      dXiAct = 0;
+      dXiAct = Xi_outflow-sum(Xi_instream);
       Xi_outflow  = Xi;
       mWat_flow   = m_flow_pos*(Xi - sum(Xi_instream));
     else
       if restrictHumi and restrictDehu then
         // Capacity limits for heating and cooling
         dXiAct = IBPSA.Utilities.Math.Functions.smoothLimit(
-          x=Xi - sum(Xi_instream),
-          l=mWatMin_flow/m_flow_non_zero,
-          u=mWatMax_flow/m_flow_non_zero,
-          deltaX=deltaXi);
+                x=Xi - sum(Xi_instream),
+                l=mWatMin_flow/m_flow_non_zero,
+                u=mWatMax_flow/m_flow_non_zero,
+                deltaX=deltaXi);
       elseif restrictHumi then
         // Capacity limit for heating only
         dXiAct = IBPSA.Utilities.Math.Functions.smoothMin(
-          x1=Xi - sum(Xi_instream),
-          x2=mWatMax_flow/m_flow_non_zero,
-          deltaX=deltaXi);
+                x1=Xi - sum(Xi_instream),
+                x2=mWatMax_flow/m_flow_non_zero,
+                deltaX=deltaXi);
       else
         // Capacity limit for cooling only
         dXiAct = IBPSA.Utilities.Math.Functions.smoothMax(
-          x1=Xi - sum(Xi_instream),
-          x2=mWatMin_flow/m_flow_non_zero,
-          deltaX=deltaXi);
+                x1=Xi - sum(Xi_instream),
+                x2=mWatMin_flow/m_flow_non_zero,
+                deltaX=deltaXi);
       end if;
       Xi_outflow = sum(Xi_instream) + dXiAct;
       mWat_flow  = m_flow_pos*dXiAct;
@@ -275,7 +275,7 @@ equation
     Xi_outflow = sum(Xi_instream);
     mWat_flow = 0;
     dXiAct = 0;
-    port_b.Xi_outflow = inStream(port_a.Xi_outflow);
+    port_b.Xi_outflow = Xi_instream;
   end if;
 
   // Compute enthalpy leaving the component.
@@ -289,22 +289,22 @@ equation
       if restrictHeat and restrictCool then
         // Capacity limits for heating and cooling
         dhAct = IBPSA.Utilities.Math.Functions.smoothLimit(
-          x=hSet - inStream(port_a.h_outflow),
-          l=QMin_flow/m_flow_non_zero,
-          u=QMax_flow/m_flow_non_zero,
-          deltaX=deltaH);
+                x=hSet - inStream(port_a.h_outflow),
+                l=QMin_flow/m_flow_non_zero,
+                u=QMax_flow/m_flow_non_zero,
+                deltaX=deltaH);
       elseif restrictHeat then
         // Capacity limit for heating only
         dhAct = IBPSA.Utilities.Math.Functions.smoothMin(
-          x1=hSet - inStream(port_a.h_outflow),
-          x2=QMax_flow/m_flow_non_zero,
-          deltaX=deltaH);
+                x1=hSet - inStream(port_a.h_outflow),
+                x2=QMax_flow/m_flow_non_zero,
+                deltaX=deltaH);
       else
         // Capacity limit for cooling only
         dhAct = IBPSA.Utilities.Math.Functions.smoothMax(
-          x1=hSet - inStream(port_a.h_outflow),
-          x2=QMin_flow/m_flow_non_zero,
-          deltaX=deltaH);
+                x1=hSet - inStream(port_a.h_outflow),
+                x2=QMin_flow/m_flow_non_zero,
+                deltaX=deltaH);
       end if;
       port_b.h_outflow = inStream(port_a.h_outflow) + dhAct;
       Q_flow = m_flow_pos*dhAct;
@@ -456,7 +456,7 @@ control volume would have.
 </p>
 <p>
 This model has no pressure drop.
-See <a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
+See <a href=\"modelica://IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.PrescribedOutlet</a>
 for a model that instantiates this model and that has a pressure drop.
 </p>
@@ -467,6 +467,13 @@ properties as the fluid that enters <code>port_b</code>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+March 19, 2018, by Michael Wetter:<br/>
+Added bugfix as the old model did not track <code>TSet</code> and <code>X_wSet</code>
+simultaneously.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/893\">#893</a>.
+</li>
 <li>
 May 3, 2017, by Michael Wetter:<br/>
 Refactored model to allow <code>X_wSet</code> as an input.<br/>

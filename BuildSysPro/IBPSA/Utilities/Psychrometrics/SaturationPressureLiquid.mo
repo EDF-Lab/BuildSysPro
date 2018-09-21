@@ -14,7 +14,9 @@ block SaturationPressureLiquid
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
 equation
-  pSat = IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(TSat);
+  pSat =
+    IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
+    TSat);
     annotation (
     defaultComponentName="pSat",
     Documentation(info="<html>

@@ -10,8 +10,9 @@ function pressure
     "Maximum pressure drop at nominal speed, for regularisation";
   input Modelica.SIunits.VolumeFlowRate V_flow_max
     "Maximum flow rate at nominal speed, for regularisation";
-  input IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal per
-    "Pressure performance data";
+  input
+    IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal
+    per "Pressure performance data";
 
   output Modelica.SIunits.PressureDifference dp(displayUnit="Pa") "Pressure raise";
 
@@ -55,14 +56,15 @@ algorithm
   // dp -> 0 as r_N -> 0 quadratically, because rat is bounded
   // by the above regularization
   if r_N>=0 then
-    dp := r_N^2*IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-      x=rat,
-      x1=per.V_flow[i],
-      x2=per.V_flow[i + 1],
-      y1=per.dp[i],
-      y2=per.dp[i + 1],
-      y1d=d[i],
-      y2d=d[i + 1]);
+    dp := r_N^2*
+      IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
+                x=rat,
+                x1=per.V_flow[i],
+                x2=per.V_flow[i + 1],
+                y1=per.dp[i],
+                y2=per.dp[i + 1],
+                y1d=d[i],
+                y2d=d[i + 1]);
   else
     dp:=-r_N^2*(dpMax-dpMax/V_flow_max*V_flow);
   end if;
@@ -104,7 +106,7 @@ for <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/458\">#458</a>.
 September 7, 2016, by Michael Wetter:<br/>
 Moved function which was a protected function to make it public, as it
 is now called by
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.FlowMachineInterface\">
+<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.FlowMachineInterface\">
 IBPSA.Fluid.Movers.BaseClasses.FlowMachineInterface</a>.
 </li>
 </ul>

@@ -20,7 +20,8 @@ model ClosedLoop_y "Flow machine with feedback control"
     use_p_in=false,
     p=101325,
     T=293.15,
-    nPorts=2) annotation (Placement(transformation(extent={{-82,10},{-62,30}})));
+    nPorts=2)
+    annotation (Placement(transformation(extent={{-82,10},{-62,30}})));
   FixedResistances.PressureDrop dp1(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
@@ -37,13 +38,15 @@ model ClosedLoop_y "Flow machine with feedback control"
             dp_nominal,dp_nominal,0})),
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Fan"
     annotation (Placement(transformation(extent={{40,40},{60,60}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = Medium)
+  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium =
+        Medium)
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
   IBPSA.Controls.Continuous.LimPID conPID(
     Td=1,
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     k=0.5,
-    Ti=15) annotation (Placement(transformation(extent={{0,100},{20,120}})));
+    Ti=15)
+    annotation (Placement(transformation(extent={{0,100},{20,120}})));
   Modelica.Blocks.Math.Gain gain1(k=1/m_flow_nominal)
     annotation (Placement(transformation(extent={{-22,70},{-2,90}})));
 equation

@@ -2,7 +2,7 @@ within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block HVACZone
   "Declaration of an FMU that exports a simple convective only HVAC system"
   extends IBPSA.Fluid.FMI.ExportContainers.HVACZone(redeclare final package
-      Medium = MediumA, hvacAda(nPorts=2));
+                    Medium = MediumA, hvacAda(nPorts=2));
 
   replaceable package MediumA = IBPSA.Media.Air "Medium for air";
   replaceable package MediumW = IBPSA.Media.Water "Medium for water";
@@ -88,14 +88,14 @@ block HVACZone
     redeclare package Medium2 = MediumA,
     m1_flow_nominal=mW_flow_nominal,
     m2_flow_nominal=mA_flow_nominal)
-    "Cooling coil (with sensible cooling only)" annotation (Placement(
-        transformation(
+    "Cooling coil (with sensible cooling only)" annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={-18,94})));
 
-  IBPSA.Fluid.Sources.Outside out(redeclare package Medium = MediumA, nPorts=2)
-    "Outside air boundary condition"
+  IBPSA.Fluid.Sources.Outside out(redeclare package Medium =
+        MediumA, nPorts=2) "Outside air boundary condition"
     annotation (Placement(transformation(extent={{-112,84},{-92,104}})));
   Sources.MassFlowSource_T souWat(
     redeclare package Medium = MediumW,
@@ -134,7 +134,7 @@ block HVACZone
   BoundaryConditions.WeatherData.ReaderTMY3 weaDat(
     pAtmSou=IBPSA.BoundaryConditions.Types.DataSource.Parameter,
     TDryBul=TOut_nominal,
-    filNam="modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos",
+    filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
     TDryBulSou=IBPSA.BoundaryConditions.Types.DataSource.File,
     computeWetBulbTemperature=false) "Weather data reader"
     annotation (Placement(transformation(extent={{-152,130},{-132,150}})));
@@ -182,7 +182,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(fan.m_flow_in,mAir_flow. y) annotation (Line(
-      points={{59.8,112},{59.8,140},{21,140}},
+      points={{60,112},{60,140},{21,140}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(hex.port_b1,senTemHXOut. port_a) annotation (Line(
@@ -210,7 +210,7 @@ equation
       color={255,0,255},
       smooth=Smooth.None));
   connect(mWat_flow.y,souWat. m_flow_in) annotation (Line(
-      points={{-51,16},{-42,16},{-42,24},{-30,24}},
+      points={{-51,16},{-42,16},{-42,24},{-32,24}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(weaDat.weaBus,weaBus)  annotation (Line(
@@ -253,18 +253,18 @@ equation
 This example demonstrates how to export a model of an HVAC system
 that only provides convective cooling to a single thermal zone.
 The HVAC system is adapted from
-<a href=\"modelica://BuildSysPro.IBPSA.Examples.Tutorial.SpaceCooling.System3\">
+<a href=\"modelica://IBPSA.Examples.Tutorial.SpaceCooling.System3\">
 IBPSA.Examples.Tutorial.SpaceCooling.System3</a>,
 but flow resistances have been added to have the same configuration as
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones</a>.
 Having the same configuration is needed for the validation test
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
 IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC</a>.
 </p>
 <p>
 The example extends from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
 IBPSA.Fluid.FMI.ExportContainers.HVACZone
 </a>
 which provides the input and output signals that are needed to interface

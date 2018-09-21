@@ -3,8 +3,8 @@ model CheckRelativeHumidity "Test model for CheckRelativeHumidity"
   extends
     IBPSA.BoundaryConditions.WeatherData.BaseClasses.Examples.ConvertRelativeHumidity;
 
-  IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckRelativeHumidity cheRelHum
-    "Block that constrains the relative humidity"
+  IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckRelativeHumidity
+    cheRelHum "Block that constrains the relative humidity"
     annotation (Placement(transformation(extent={{60,0},{80,20}})));
 equation
   connect(conRelHum.relHumOut, cheRelHum.relHumIn) annotation (Line(

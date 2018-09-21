@@ -30,7 +30,7 @@ and <code>nDay = 86400</code> at the end of January 1.
 <h4>Validation</h4>
 <p>
 A validation with a more detailed calculation can be found at
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Examples.Declination\">
+<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Examples.Declination\">
 IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Examples.Declination</a>.
 </p>
 </html>", revisions="<html>
@@ -62,9 +62,10 @@ First implementation.
 </ul>
 </html>"),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
-            100}}), graphics={Text(
+            100}}), graphics={  Bitmap(extent={{-90,-90},{90,90}}, fileName=
+              "modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/SolarGeometry/BaseClasses/Declination.png"),
+                              Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255}), Bitmap(extent={{-92,92},{92,-92}}, fileName=
-              "modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/SolarGeometry/BaseClasses/Declination.png")}));
+          lineColor={0,0,255})}));
 end Declination;

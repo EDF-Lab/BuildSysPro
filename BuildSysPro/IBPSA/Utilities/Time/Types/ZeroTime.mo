@@ -17,7 +17,7 @@ type ZeroTime = enumeration(
   annotation (Documentation(info="<html>
 <p>
 Type for choosing how to set the reference time in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Time.CalendarTime\">
+<a href=\"modelica://IBPSA.Utilities.Time.CalendarTime\">
 IBPSA.Utilities.Time.CalendarTime</a>.
 </p>
 <p>
@@ -30,7 +30,7 @@ January 1, 2016, 0:00:00 local time.
 <li>
 September 10, 2016, by Michael Wetter:<br/>
 Revised implementation and moved to new package
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Time.CalendarTime.Types\">
+<a href=\"modelica://IBPSA.Utilities.Time.CalendarTime.Types\">
 IBPSA.Utilities.Time.CalendarTime.Types</a>.
 </li>
 <li>

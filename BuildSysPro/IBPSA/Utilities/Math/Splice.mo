@@ -13,10 +13,10 @@ block Splice "Block for splice function opertation"
 parameter Real deltax "Half width of transition interval";
 equation
   y = IBPSA.Utilities.Math.Functions.spliceFunction(
-    pos=u1,
-    neg=u2,
-    x=x,
-    deltax=deltax);
+          pos=u1,
+          neg=u2,
+          x=x,
+          deltax=deltax);
   annotation (defaultComponentName="spl",Icon(graphics={
     Polygon(
       points={{0,88},{-6,72},{6,72},{0,88}},
@@ -61,7 +61,7 @@ equation
           textString="u1")}),
 Documentation(info="<html>
 <p>
-This block implements <a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.spliceFunction\">
+This block implements <a href=\"modelica://IBPSA.Utilities.Math.Functions.spliceFunction\">
 IBPSA.Utilities.Math.Functions.spliceFunction</a>, which provides a continuously differentiable transition between two arguments.
 </p>
 </html>",

@@ -39,7 +39,7 @@ model MultipleFloorsVectors
     "Vector of floor elements"
     annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
 
-  BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam="modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos")
+  BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
     "Weather data reader for input into floor models"
     annotation (Placement(transformation(extent={{-80,-40},{-60,-20}})));
 equation
@@ -68,7 +68,7 @@ First implementation
 <p>With <code>nZones</code> and <code>nFloors</code>, this vectorized model can be scaled to represent a simple building of any size. </p>
 <h4>References</h4>
 <p>Inspired by
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> </p>
 </html>"));
 end MultipleFloorsVectors;

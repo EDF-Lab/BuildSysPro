@@ -1,9 +1,9 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block HeaterCooler_u
   "Declaration of an FMU that exports an ideal heater or cooler with prescribed heat flow rate"
-   extends IBPSA.Fluid.FMI.ExportContainers.ReplaceableTwoPort(redeclare
-      replaceable package Medium = IBPSA.Media.Air, redeclare final
-      IBPSA.Fluid.HeatExchangers.HeaterCooler_u com(
+   extends IBPSA.Fluid.FMI.ExportContainers.ReplaceableTwoPort(
+      redeclare replaceable package Medium = IBPSA.Media.Air,
+      redeclare final IBPSA.Fluid.HeatExchangers.HeaterCooler_u com(
       final m_flow_nominal=m_flow_nominal,
       final dp_nominal=if use_p_in then dp_nominal else 0,
       final Q_flow_nominal=Q_flow_nominal,
@@ -30,14 +30,14 @@ equation
 This example demonstrates how to export an FMU with a heater
 that takes as an input signal the normalized heat flow rate.
 The FMU has an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.HeaterCooler_u</a>.
 </p>
 <p>
 The mass dynamics has been set to
 <code>massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState</code>.
 See the
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
+<a href=\"modelica://IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
 for the rationale.
 </p>
 </html>", revisions="<html>

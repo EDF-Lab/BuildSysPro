@@ -37,7 +37,7 @@ This model can be used to replace a <code>replaceable</code> pipe model
 in flow legs in which no friction should be modeled.
 This is for example done in the outlet port of the
 base class for three way valves,
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialThreeWayValve\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialThreeWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialThreeWayValve</a>.
 </p>
 </html>",

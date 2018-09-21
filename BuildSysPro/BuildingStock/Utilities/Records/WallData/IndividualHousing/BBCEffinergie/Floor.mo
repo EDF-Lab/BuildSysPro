@@ -1,12 +1,12 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.BBCEffinergie;
 record Floor =
-    BuildSysPro.Utilities.Icons.Floor (
+  BuildSysPro.Utilities.Icons.Floor (
     n=3,
     m={3,4,1},
     e={0.1,0.2,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene30(),
-        BuildSysPro.Utilities.Data.Solids.Concrete(),
-        BuildSysPro.Utilities.Data.Solids.FloorTile()},
+         BuildSysPro.Utilities.Data.Solids.Concrete(),
+         BuildSysPro.Utilities.Data.Solids.FloorTile()},
     positionIsolant={1,0,0}) "Floor Mozart Ubat 0.3"
  annotation (Icon(graphics),
                        Documentation(info="<html>
@@ -23,7 +23,7 @@ record Floor =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

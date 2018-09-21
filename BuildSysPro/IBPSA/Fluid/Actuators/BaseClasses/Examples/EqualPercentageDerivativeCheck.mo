@@ -11,10 +11,10 @@ initial equation
    y=x;
 equation
   x = IBPSA.Fluid.Actuators.BaseClasses.equalPercentage(
-    time,
-    R,
-    l,
-    delta);
+              time,
+              R,
+              l,
+              delta);
   der(y)=der(x);
   assert(abs(x-y) < 1E-2, "Model has an error");
 

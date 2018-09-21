@@ -19,30 +19,13 @@ package Psychrometrics "Library with psychrometric functions"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains blocks and functions for psychrometric calculations.
 </p>
 <p>
 The nomenclature used in this package is described at
-<a href=\"modelica://BuildSysPro.IBPSA.UsersGuide.Conventions\">
+<a href=\"modelica://IBPSA.UsersGuide.Conventions\">
 IBPSA.UsersGuide.Conventions</a>.
 </p>
 </html>"));

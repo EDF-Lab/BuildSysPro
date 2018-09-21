@@ -7,16 +7,10 @@ package Validation "Collection of models that illustrate model use and test mode
 
 
 
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains examples for the use of models that can be found in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Conversion\">
 IBPSA.Fluid.FMI.Conversion</a>.
 </p>
 </html>"));

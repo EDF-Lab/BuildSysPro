@@ -1,19 +1,19 @@
 within BuildSysPro.IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.Examples;
 model SkyBrightness "Test model for sky brightness"
   extends Modelica.Icons.Example;
-  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.RelativeAirMass relAirMas
-    "Relative air mass"
+  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.RelativeAirMass
+    relAirMas "Relative air mass"
     annotation (Placement(transformation(extent={{10,20},{30,40}})));
   IBPSA.BoundaryConditions.SolarGeometry.ZenithAngle zen(lat=0.34906585039887)
     "Zenith angle"
     annotation (Placement(transformation(extent={{-20,20},{0,40}})));
-  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.SkyBrightness skyBri
-    "Sky brightness"
+  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.SkyBrightness
+    skyBri "Sky brightness"
     annotation (Placement(transformation(extent={{60,-16},{80,4}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos")
-    "Weather data"
-    annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
+        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
+    "Weather data" annotation (Placement(transformation(extent={{-80,-20},
+            {-60,0}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather data bus"
     annotation (Placement(transformation(extent={{-50,-20},{-30,0}}),
         iconTransformation(extent={{-22,-20},{-22,-20}})));

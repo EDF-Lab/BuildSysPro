@@ -17,25 +17,10 @@ package Examples "Collection of models that illustrate model use and test models
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains examples for the use of models that can be found in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions\">
 IBPSA.Utilities.Math.Functions</a>.
 </p>
 </html>"));

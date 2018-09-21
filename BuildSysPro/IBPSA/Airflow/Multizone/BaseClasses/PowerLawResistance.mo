@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses;
 partial model PowerLawResistance "Flow resistance that uses the power law"
-  extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(final m_flow_nominal=
-        rho_default*k*dp_turbulent);
+  extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(final
+      m_flow_nominal=rho_default*k*dp_turbulent);
   extends IBPSA.Airflow.Multizone.BaseClasses.ErrorControl;
 
   parameter Modelica.SIunits.Area A "|Orifice characteristics|Area of orifice";
@@ -85,14 +85,14 @@ equation
   end if;
 
   V_flow = IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM(
-    k=k,
-    dp=dp,
-    m=m,
-    a=a,
-    b=b,
-    c=c,
-    d=d,
-    dp_turbulent=dp_turbulent);
+            k=k,
+            dp=dp,
+            m=m,
+            a=a,
+            b=b,
+            c=c,
+            d=d,
+            dp_turbulent=dp_turbulent);
 
   port_a.m_flow = rho*V_flow;
   v = V_flow/A;

@@ -21,11 +21,11 @@ model TraceSubstances "Test model for the extra property sensor"
     annotation (Placement(transformation(extent={{-2,30},{18,50}})));
   Modelica.Blocks.Sources.Constant step(k=8.18E-6) "CO2 mass flow rate"
     annotation (Placement(transformation(extent={{-80,30},{-60,50}})));
-  IBPSA.Fluid.Sensors.TraceSubstances senVol(redeclare package Medium = Medium)
-    "Sensor at volume"
+  IBPSA.Fluid.Sensors.TraceSubstances senVol(redeclare package Medium =
+        Medium) "Sensor at volume"
     annotation (Placement(transformation(extent={{100,50},{120,70}})));
-  IBPSA.Fluid.Sensors.TraceSubstances senSou(redeclare package Medium = Medium,
-      substanceName="CO2") "Sensor at source"
+  IBPSA.Fluid.Sensors.TraceSubstances senSou(redeclare package Medium =
+        Medium, substanceName="CO2") "Sensor at source"
     annotation (Placement(transformation(extent={{24,90},{44,110}})));
   Modelica.Blocks.Sources.Constant m_flow(k=m_flow_nominal)
     "Fresh air mass flow rate"
@@ -38,10 +38,12 @@ model TraceSubstances "Test model for the extra property sensor"
   Sources.FixedBoundary mSin(
     redeclare package Medium = Medium, nPorts=1) "Exhaust air"
     annotation (Placement(transformation(extent={{-42,-62},{-22,-42}})));
-  IBPSA.Fluid.Sensors.Conversions.To_VolumeFraction masFraSou(MMMea=Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM)
+  IBPSA.Fluid.Sensors.Conversions.To_VolumeFraction masFraSou(MMMea=
+        Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM)
     "Conversion of mass ratio to volume ratio"
     annotation (Placement(transformation(extent={{140,90},{160,110}})));
-  IBPSA.Fluid.Sensors.Conversions.To_VolumeFraction masFraVol(MMMea=Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM)
+  IBPSA.Fluid.Sensors.Conversions.To_VolumeFraction masFraVol(MMMea=
+        Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM)
     "Conversion of mass ratio to volume ratio"
     annotation (Placement(transformation(extent={{140,50},{160,70}})));
   IBPSA.Fluid.Sensors.TraceSubstancesTwoPort senTraSub(
@@ -60,13 +62,14 @@ model TraceSubstances "Test model for the extra property sensor"
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     allowFlowReversal=false,
-    tau=0) "Sensor at exhaust air, configured to not allow flow reversal"
+    tau=0)
+    "Sensor at exhaust air, configured to not allow flow reversal"
     annotation (Placement(transformation(extent={{18,-62},{-2,-42}})));
   IBPSA.Fluid.Sensors.PPM senPPM(redeclare package Medium = Medium)
     "PPM sensor"
     annotation (Placement(transformation(extent={{100,10},{120,30}})));
 equation
-  connect(m_flow.y, mSou.m_flow_in) annotation (Line(points={{-59,-4},{0,-4}}, color={0,0,127}));
+  connect(m_flow.y, mSou.m_flow_in) annotation (Line(points={{-59,-4},{-2,-4}},color={0,0,127}));
   connect(senSou.C, masFraSou.m) annotation (Line(points={{45,100},{45,100},{139,
           100}}, color={0,0,127}));
   connect(senVol.C, masFraVol.m) annotation (Line(points={{121,60},{139,60}},
@@ -145,7 +148,7 @@ a translation warning in OpenModelica.
 <li>
 August 30, 2013 by Michael Wetter:<br/>
 Renamed example and added an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.TraceSubstancesTwoPort\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.TraceSubstancesTwoPort\">
 IBPSA.Fluid.Sensors.TraceSubstancesTwoPort</a>.
 </li>
 <li>

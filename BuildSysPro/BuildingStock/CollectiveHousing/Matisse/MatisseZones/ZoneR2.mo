@@ -264,9 +264,11 @@ public
     Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_VitrageNordC2},
     np=7,
     Sp={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondC2,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurNordC2,BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegEntreeC2,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurNordC2,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegEntreeC2,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegC2SDB,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurEstC2,BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegC1C2,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurEstC2,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegC1C2,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondC2}) if not
     CLOintPlancher
     annotation (Placement(transformation(extent={{-2,-92},{18,-72}})));
@@ -371,10 +373,6 @@ equation
       smooth=Smooth.None));
   connect(PintdistriRad.FLUXParois[6], FLUXcloisonChambre1) annotation (Line(
       points={{19,-83.4286},{32,-83.4286},{32,49},{95,49}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(FLUXcloisonEntree, FLUXcloisonEntree) annotation (Line(
-      points={{94,88},{-20,88},{-20,88},{94,88}},
       color={0,0,127},
       smooth=Smooth.None));
   if CLOintPlancher == false then
@@ -624,8 +622,10 @@ end if;
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             120}}),
 graphics={
-        Bitmap(extent={{-66,60},{78,-84}}, fileName=
-              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Chambre2.png"),
+        Bitmap(extent={{72,72},{-72,-72}}, fileName=
+              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Chambre2.png",
+          origin={6,-12},
+          rotation=180),
         Ellipse(extent={{-38,52},{-10,24}}, lineColor={0,0,0}),
         Polygon(
           points={{-4,-18},{4,-18},{0,-30},{-4,-18}},
@@ -705,7 +705,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -30,10 +30,10 @@ unless <code>Medium.nC=0</code>.
 </ul>
 <p>
 These quantities are used in the connectors
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Interfaces.Inlet\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Interfaces.Inlet\">
 IBPSA.Fluid.FMI.Interfaces.Inlet</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Interfaces.Outlet\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Interfaces.Outlet\">
 IBPSA.Fluid.FMI.Interfaces.Outlet</a>.
 </p>
 <p>

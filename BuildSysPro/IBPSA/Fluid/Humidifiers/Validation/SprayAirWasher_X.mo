@@ -22,7 +22,7 @@ model SprayAirWasher_X
         origin={110,0})));
 
   replaceable IBPSA.Fluid.Humidifiers.SprayAirWasher_X hum(mWatMax_flow=
-        mWat_flow_nominal, massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
+       mWat_flow_nominal, massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     constrainedby
     IBPSA.Fluid.HeatExchangers.BaseClasses.PartialPrescribedOutlet(
     redeclare package Medium = Medium,

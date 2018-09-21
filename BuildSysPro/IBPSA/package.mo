@@ -2,29 +2,9 @@ within BuildSysPro;
 package IBPSA "Library with models for building energy and control systems"
   extends Modelica.Icons.Package;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 annotation (
-versionDate="2017-01-17",
-dateModified = "2017-01-17",
+versionDate="2018-06-14",
+dateModified = "2018-06-14",
 preferredView="info",
 Documentation(info="<html>
 <p>
@@ -43,7 +23,7 @@ and
 </p>
 <p>
 The development of the IBPSA library is organized through the
-<a href=\"https://BuildSysPro.IBPSA.github.io/project1\">IBPSA Project 1</a>
+<a href=\"https://ibpsa.github.io/project1\">IBPSA Project 1</a>
 of the International Building Performance Simulation Association (IBPSA).
 From 2012 to 2017, the development was organized through the
 <a href=\"http://www.iea-annex60.org\">Annex 60 project</a>

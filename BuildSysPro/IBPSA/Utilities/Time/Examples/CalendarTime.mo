@@ -7,9 +7,7 @@ model CalendarTime "Example for the calendar time model"
 
 equation
 
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)),
-    __Dymola_Commands(file="Resources/Scripts/Dymola/Utilities/Time/Examples/CalendarTime.mos"
+  annotation (    __Dymola_Commands(file="Resources/Scripts/Dymola/Utilities/Time/Examples/CalendarTime.mos"
         "Simulate and plot"),
     Documentation(revisions="<html>
     <ul>
@@ -21,7 +19,7 @@ First implementation.
 </html>", info="<html>
 <p>
 This model demonstrates the use of the
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Time.CalendarTime\">
+<a href=\"modelica://IBPSA.Utilities.Time.CalendarTime\">
 IBPSA.Utilities.Time.CalendarTime</a>
 block.
 </p>

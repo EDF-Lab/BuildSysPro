@@ -24,7 +24,7 @@ The correlation used in this model is valid for dew point temperatures between
 <i>0</i>&deg;C and <i>30</i>&deg;C. It is an approximation to the correlation from 2005
 ASHRAE Handbook, p. 6.2, which is valid in a wider range of temperatures and implemented
 in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.pW_TDewPoi\">
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.pW_TDewPoi\">
 IBPSA.Utilities.Psychrometrics.Functions.pW_TDewPoi</a>.
 The approximation error of this simplified function is below 5% for a
 temperature of <i>0</i>&deg;C to <i>30</i>&deg;C.
@@ -50,7 +50,7 @@ to <code>pW_TDewPoi</code>.
 <li>
 September 4, 2008 by Michael Wetter:<br/>
 Changed from causal to acausal ports, needed, for example, for
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.MixingVolumeMoistAir\">
+<a href=\"modelica://IBPSA.Fluid.Examples.MixingVolumeMoistAir\">
 IBPSA.Fluid.Examples.MixingVolumeMoistAir</a>.
 </li>
 <li>

@@ -3,11 +3,12 @@ model FlowMachineInterface
   "Partial model with performance curves for fans or pumps"
   extends Modelica.Blocks.Interfaces.BlockIcon;
 
-  import cha = BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics;
+  import cha =
+    BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics;
 
-  parameter IBPSA.Fluid.Movers.Data.Generic per "Record with performance data"
-    annotation (choicesAllMatching=true, Placement(transformation(extent={{60,-80},
-            {80,-60}})));
+  parameter IBPSA.Fluid.Movers.Data.Generic per
+    "Record with performance data" annotation (choicesAllMatching=true,
+      Placement(transformation(extent={{60,-80},{80,-60}})));
 
   parameter IBPSA.Fluid.Movers.BaseClasses.Types.PrescribedVariable preVar=IBPSA.Fluid.Movers.BaseClasses.Types.PrescribedVariable.Speed
     "Type of prescribed variable";
@@ -144,50 +145,57 @@ protected
     "Flag, used to pick the right representatio of the fan or pump pressure curve";
 
   final parameter
-    IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal pCur1(
+    IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal
+    pCur1(
     final n=nOri,
     final V_flow=if (haveVMax and haveDPMax) or (nOri == 2) then {per.pressure.V_flow[
         i] for i in 1:nOri} else zeros(nOri),
     final dp=if (haveVMax and haveDPMax) or (nOri == 2) then {(per.pressure.dp[
-        i] + per.pressure.V_flow[i]*kRes) for i in 1:nOri} else zeros(nOri))
+        i] + per.pressure.V_flow[i]*kRes) for i in 1:nOri} else zeros(
+        nOri))
     "Volume flow rate vs. total pressure rise with correction for pump resistance added";
 
   parameter
-    IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal pCur2(
+    IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal
+    pCur2(
     final n=nOri + 1,
-    V_flow=if (haveVMax and haveDPMax) or (nOri == 2) then zeros(nOri + 1)
+    V_flow=if (haveVMax and haveDPMax) or (nOri == 2) then zeros(nOri +
+        1) elseif haveVMax then cat(
+                1,
+                {0},
+                {per.pressure.V_flow[i] for i in 1:nOri}) elseif
+        haveDPMax then cat(
+                1,
+                {per.pressure.V_flow[i] for i in 1:nOri},
+                {V_flow_max}) else zeros(nOri + 1),
+    dp=if (haveVMax and haveDPMax) or (nOri == 2) then zeros(nOri + 1)
          elseif haveVMax then cat(
-        1,
-        {0},
-        {per.pressure.V_flow[i] for i in 1:nOri}) elseif haveDPMax then cat(
-        1,
-        {per.pressure.V_flow[i] for i in 1:nOri},
-        {V_flow_max}) else zeros(nOri + 1),
-    dp=if (haveVMax and haveDPMax) or (nOri == 2) then zeros(nOri + 1) elseif
-        haveVMax then cat(
-        1,
-        {dpMax},
-        {per.pressure.dp[i] + per.pressure.V_flow[i]*kRes for i in 1:nOri})
-         elseif haveDPMax then cat(
-        1,
-        {per.pressure.dp[i] + per.pressure.V_flow[i]*kRes for i in 1:nOri},
-        {0}) else zeros(nOri + 1))
+                1,
+                {dpMax},
+                {per.pressure.dp[i] + per.pressure.V_flow[i]*kRes for i in
+              1:nOri}) elseif haveDPMax then cat(
+                1,
+                {per.pressure.dp[i] + per.pressure.V_flow[i]*kRes for i in
+              1:nOri},
+                {0}) else zeros(nOri + 1))
     "Volume flow rate vs. total pressure rise with correction for pump resistance added";
   parameter
-    IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal pCur3(
+    IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal
+    pCur3(
     final n=nOri + 2,
-    V_flow=if (haveVMax and haveDPMax) or (nOri == 2) then zeros(nOri + 2)
+    V_flow=if (haveVMax and haveDPMax) or (nOri == 2) then zeros(nOri +
+        2) elseif haveVMax or haveDPMax then zeros(nOri + 2) else cat(
+                1,
+                {0},
+                {per.pressure.V_flow[i] for i in 1:nOri},
+                {V_flow_max}),
+    dp=if (haveVMax and haveDPMax) or (nOri == 2) then zeros(nOri + 2)
          elseif haveVMax or haveDPMax then zeros(nOri + 2) else cat(
-        1,
-        {0},
-        {per.pressure.V_flow[i] for i in 1:nOri},
-        {V_flow_max}),
-    dp=if (haveVMax and haveDPMax) or (nOri == 2) then zeros(nOri + 2) elseif
-        haveVMax or haveDPMax then zeros(nOri + 2) else cat(
-        1,
-        {dpMax},
-        {per.pressure.dp[i] + per.pressure.V_flow[i]*kRes for i in 1:nOri},
-        {0}))
+                1,
+                {dpMax},
+                {per.pressure.dp[i] + per.pressure.V_flow[i]*kRes for i in
+              1:nOri},
+                {0}))
     "Volume flow rate vs. total pressure rise with correction for pump resistance added";
 
   parameter Real preDer1[nOri](each fixed=false)
@@ -321,15 +329,16 @@ the simulation stops.");
 
  // Compute derivatives for cubic spline
   motDer = if per.use_powerCharacteristic then zeros(size(per.motorEfficiency.V_flow,
-    1)) elseif (size(per.motorEfficiency.V_flow, 1) == 1) then {0} else
-    IBPSA.Utilities.Math.Functions.splineDerivatives(
-    x=per.motorEfficiency.V_flow,
-    y=per.motorEfficiency.eta,
-    ensureMonotonicity=IBPSA.Utilities.Math.Functions.isMonotonic(x=per.motorEfficiency.eta,
+    1)) elseif (size(per.motorEfficiency.V_flow, 1) == 1) then {0}
+     else IBPSA.Utilities.Math.Functions.splineDerivatives(
+            x=per.motorEfficiency.V_flow,
+            y=per.motorEfficiency.eta,
+            ensureMonotonicity=
+      IBPSA.Utilities.Math.Functions.isMonotonic(x=per.motorEfficiency.eta,
       strict=false));
   hydDer = if per.use_powerCharacteristic then zeros(size(per.hydraulicEfficiency.V_flow,
-    1)) elseif (size(per.hydraulicEfficiency.V_flow, 1) == 1) then {0} else
-    IBPSA.Utilities.Math.Functions.splineDerivatives(x=per.hydraulicEfficiency.V_flow,
+    1)) elseif (size(per.hydraulicEfficiency.V_flow, 1) == 1) then {0}
+     else IBPSA.Utilities.Math.Functions.splineDerivatives(x=per.hydraulicEfficiency.V_flow,
     y=per.hydraulicEfficiency.eta);
 
 equation
@@ -497,9 +506,9 @@ equation
     // Earlier versions of the model computed WFlo = eta * P, but this caused
     // a division by zero.
     eta = WFlo/IBPSA.Utilities.Math.Functions.smoothMax(
-      x1=PEle,
-      x2=1E-5,
-      deltaX=1E-6);
+              x1=PEle,
+              x2=1E-5,
+              deltaX=1E-6);
     // In this configuration, we only know the total power consumption.
     // Because nothing is known about etaMot versus etaHyd, we set etaHyd=1. This will
     // cause etaMot=eta, because eta=etaHyd*etaMot.
@@ -520,9 +529,9 @@ equation
     // To compute the electrical power, we set a lower bound for eta to avoid
     // a division by zero.
     PEle = WFlo/IBPSA.Utilities.Math.Functions.smoothMax(
-      x1=eta,
-      x2=1E-5,
-      deltaX=1E-6);
+              x1=eta,
+              x2=1E-5,
+              deltaX=1E-6);
     eta = etaHyd * etaMot;
 
   end if;
@@ -619,7 +628,7 @@ and efficiency of fans and pumps.
 The nominal hydraulic characteristic (volume flow rate versus total pressure)
 is given by a set of data points
 using the data record <code>per</code>, which is an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Data.Generic\">
+<a href=\"modelica://IBPSA.Fluid.Movers.Data.Generic\">
 IBPSA.Fluid.Movers.Data.Generic</a>.
 A cubic hermite spline with linear extrapolation is used to compute
 the performance at other operating points.
@@ -642,7 +651,7 @@ is computed based on the actual power consumption and the flow work.
 </ul>
 <p>
 For exceptions to this general rule, check the
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Movers.UsersGuide\">
 User's Guide</a> for more information.
 </p>
 
@@ -706,7 +715,7 @@ avoid a translation warning.
 <li>
 April 21, 2014, by Filip Jorissen and Michael Wetter:<br/>
 Changed model to use
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Data.Generic\">
+<a href=\"modelica://IBPSA.Fluid.Movers.Data.Generic\">
 IBPSA.Fluid.Movers.Data.Generic</a>.
 April 19, 2014, by Filip Jorissen:<br/>
 Passed extra parameters to power() and efficiency()
@@ -763,7 +772,5 @@ March 23 2010, by Michael Wetter:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end FlowMachineInterface;

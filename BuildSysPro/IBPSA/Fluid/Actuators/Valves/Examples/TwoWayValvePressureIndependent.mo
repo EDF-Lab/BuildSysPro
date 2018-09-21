@@ -14,8 +14,8 @@ model TwoWayValvePressureIndependent
     redeclare package Medium = Medium,
     use_p_in=true,
     T=293.15,
-    nPorts=3) "Boundary condition for flow source"
-    annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
+    nPorts=3) "Boundary condition for flow source" annotation (
+      Placement(transformation(extent={{-70,-10},{-50,10}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     p(displayUnit="Pa") = 3E5,

@@ -5,8 +5,6 @@ package SetPoints "Package with models for control set points"
 
 
 
-
-
 annotation (preferredView="info", Documentation(info="<html>
 This package contains component models to compute set points of control systems.
 For additional models, see also

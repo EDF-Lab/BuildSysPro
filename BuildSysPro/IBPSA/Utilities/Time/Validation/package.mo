@@ -4,8 +4,6 @@ package Validation "Collection of models that validate the time models"
 
 
 
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains models that validate the time models.

@@ -4,7 +4,8 @@ record Generic "Generic data record for movers"
 
   // Pressure requires default values to avoid in Dymola the message
   // Failed to expand the variable pressure.V_flow.
-  parameter IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParameters pressure(V_flow={0,
+  parameter
+    IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParameters pressure(V_flow={0,
         0}, dp={0,0}) "Volume flow rate vs. total pressure rise"
     annotation (Evaluate=true, Dialog(group="Pressure curve"));
 
@@ -12,11 +13,14 @@ record Generic "Generic data record for movers"
     "Use power data instead of motor efficiency"
     annotation (Dialog(group="Power computation"));
 
-  parameter IBPSA.Fluid.Movers.BaseClasses.Characteristics.efficiencyParameters
+  parameter
+    IBPSA.Fluid.Movers.BaseClasses.Characteristics.efficiencyParameters
     hydraulicEfficiency(V_flow={0}, eta={0.7})
-    "Hydraulic efficiency (used if use_powerCharacteristic=false)" annotation (
-      Dialog(group="Power computation", enable=not use_powerCharacteristic));
-  parameter IBPSA.Fluid.Movers.BaseClasses.Characteristics.efficiencyParameters
+    "Hydraulic efficiency (used if use_powerCharacteristic=false)"
+    annotation (Dialog(group="Power computation", enable=not
+          use_powerCharacteristic));
+  parameter
+    IBPSA.Fluid.Movers.BaseClasses.Characteristics.efficiencyParameters
     motorEfficiency(V_flow={0}, eta={0.7})
     "Electric motor efficiency (used if use_powerCharacteristic=false)"
     annotation (Dialog(group="Power computation", enable=not
@@ -38,15 +42,15 @@ record Generic "Generic data record for movers"
   parameter Real speed_nominal(
     final min=0,
     final unit="1") = 1 "Nominal rotational speed for flow characteristic"
-    annotation (Dialog(group="Normalized speeds (used in model, default values assigned from speeds in rpm"));
+    annotation (Dialog(group="Normalized speeds (used in model, default values assigned from speeds in rpm)"));
 
   parameter Real constantSpeed(final min=0, final unit="1") = constantSpeed_rpm/speed_rpm_nominal
     "Normalized speed set point, used if inputType = IBPSA.Fluid.Types.InputType.Constant"
-    annotation (Dialog(group="Normalized speeds (used in model, default values assigned from speeds in rpm"));
+    annotation (Dialog(group="Normalized speeds (used in model, default values assigned from speeds in rpm)"));
 
   parameter Real[:] speeds(each final min = 0, each final unit="1") = speeds_rpm/speed_rpm_nominal
     "Vector of normalized speed set points, used if inputType = IBPSA.Fluid.Types.InputType.Stages"
-    annotation (Dialog(group="Normalized speeds (used in model, default values assigned from speeds in rpm"));
+    annotation (Dialog(group="Normalized speeds (used in model, default values assigned from speeds in rpm)"));
 
   parameter Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm speed_rpm_nominal=1500
     "Nominal rotational speed for flow characteristic"
@@ -126,18 +130,18 @@ declaration such as
 </pre>
 <p>
 This data record can be used with
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
+<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
 IBPSA.Fluid.Movers.SpeedControlled_Nrpm</a>,
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_y\">
+<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_y\">
 IBPSA.Fluid.Movers.SpeedControlled_y</a>,
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_dp\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_dp\">
 IBPSA.Fluid.Movers.FlowControlled_dp</a>,
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>.
 </p>
 <p>
 An example that uses manufacturer data can be found in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Validation.Pump_Nrpm_stratos\">
+<a href=\"modelica://IBPSA.Fluid.Movers.Validation.Pump_Nrpm_stratos\">
 IBPSA.Fluid.Movers.Validation.Pump_Nrpm_stratos</a>.
 </p>
 <h4>Parameters in RPM</h4>
@@ -152,7 +156,7 @@ The parameters <code>speed_rpm_nominal</code>,
 </pre>
 <p>
 In addition, <code>speed_rpm_nominal</code> is used in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
+<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
 IBPSA.Fluid.Movers.SpeedControlled_Nrpm</a>
 to normalize the control input signal.
 Otherwise, these speed parameters in RPM are not used in the models.

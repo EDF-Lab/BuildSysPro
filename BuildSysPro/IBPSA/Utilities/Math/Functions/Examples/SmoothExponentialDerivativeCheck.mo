@@ -13,7 +13,8 @@ initial equation
    y=y_comp;
 equation
   x = time^3;
-  y_comp = IBPSA.Utilities.Math.Functions.smoothExponential(x=x, delta=delta);
+  y_comp = IBPSA.Utilities.Math.Functions.smoothExponential(x=x,
+    delta=delta);
   der(y)=der(y_comp);
   err = y_comp-y;
   assert(abs(err) < 1E-2, "Model has an error");

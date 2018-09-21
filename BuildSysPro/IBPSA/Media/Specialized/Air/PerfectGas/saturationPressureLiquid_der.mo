@@ -15,7 +15,7 @@ algorithm
     Inline=true,
 Documentation(info="<html>
 Derivative function of
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Specialized.Air.PerfectGas.saturationPressureLiquid\">
+<a href=\"modelica://IBPSA.Media.Specialized.Air.PerfectGas.saturationPressureLiquid\">
 IBPSA.Media.Specialized.Air.PerfectGas.saturationPressureLiquid</a>
 </html>"));
 end saturationPressureLiquid_der;

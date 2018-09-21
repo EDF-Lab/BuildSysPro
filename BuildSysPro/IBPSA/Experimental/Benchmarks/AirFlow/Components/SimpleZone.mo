@@ -34,10 +34,12 @@ model SimpleZone "A room as a thermal zone represented by its air volume"
     nPorts=3,
     mSenFac=75) "Indoor air volume of room"
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package
+      Medium =
         Medium) "Fluid port that connects to the top of the door"
     annotation (Placement(transformation(extent={{90,50},{110,70}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package Medium =
+  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package
+      Medium =
         Medium) "Fluid port that connects to the bottom of the door"
     annotation (Placement(transformation(extent={{90,-70},{110,-50}})));
   Airflow.Multizone.DoorDiscretizedOperable door(
@@ -56,7 +58,8 @@ model SimpleZone "A room as a thermal zone represented by its air volume"
   Modelica.Blocks.Sources.Constant const(k=doorOpening)
     "Input for the door opening"
     annotation (Placement(transformation(extent={{28,40},{48,60}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_vent(redeclare package Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_vent(redeclare package
+      Medium =
         Medium) "Port that connects to the room volume"
     annotation (Placement(transformation(extent={{-110,70},{-90,90}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature preTemp(T(start=Medium.T_default),
@@ -104,7 +107,7 @@ resistance in model <code>conRoom</code> and the capitancy of the mixing volume 
 value for <code>mSenFac</code>. The G-Value of <code>conRoom</code> is approximated by the area of
 one outside wall multiplied with a U-Value of <i>1 W/(m&sup2; K)</i>. The value for <code>mSenFac</code>
 has been estimated from comparisons with other room models as shown in
-<a href=\"modelica://BuildSysPro.IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse\">
+<a href=\"modelica://IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse\">
 IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse</a>.</p>
 <h4>Typical use and important parameters</h4>
 <p><code>port_a</code> and <code>port_b</code> should be connected to the corresponding ports of
@@ -112,12 +115,12 @@ IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse</a>.</p>
 the hallway element. </p>
 <h4>Validation</h4>
 <p>This model is following the approach used in
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a>, only in a more modularized way
 in order to be part of a scalable benchmark. </p>
 <h4>References</h4>
 <p>Inspired by
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> </p>
 </html>", revisions="<html>
 <ul>

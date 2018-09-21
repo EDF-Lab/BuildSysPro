@@ -4,9 +4,6 @@ package Conversion "Package with blocks that convert between different connector
 
 
 
-
-
-
   annotation (Icon(graphics={
         Polygon(
           points={{90,0},{30,20},{30,-20},{90,0}},
@@ -17,10 +14,10 @@ package Conversion "Package with blocks that convert between different connector
 <p>
 This package contains blocks to convert between scalar input-output signals
 and the composite input-output connectors
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Interfaces.Inlet\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Interfaces.Inlet\">
 IBPSA.Fluid.FMI.Interfaces.Inlet</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Interfaces.Outlet\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Interfaces.Outlet\">
 IBPSA.Fluid.FMI.Interfaces.Outlet</a>.
 </p>
 </html>"));

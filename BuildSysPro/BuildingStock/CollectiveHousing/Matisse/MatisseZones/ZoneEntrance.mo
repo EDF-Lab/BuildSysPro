@@ -334,8 +334,6 @@ annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             120}}),
 graphics={
-        Bitmap(extent={{-80,62},{90,-74}}, fileName=
-              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Entree.png"),
         Ellipse(extent={{34,0},{62,-28}},   lineColor={0,0,0}),
         Polygon(
           points={{-4,-18},{4,-18},{0,-30},{-4,-18}},
@@ -397,7 +395,9 @@ graphics={
           fillColor={0,0,255},
           fillPattern=FillPattern.Solid,
           origin={33,-24},
-          rotation=90)}),
+          rotation=90),
+        Bitmap(extent={{-102,-72},{102,38}}, fileName=
+              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Entree.png")}),
            Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}})),
     Documentation(info="<html>
@@ -415,7 +415,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

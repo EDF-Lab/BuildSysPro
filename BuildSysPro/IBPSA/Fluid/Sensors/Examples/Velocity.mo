@@ -34,11 +34,12 @@ model Velocity "Test model for the flow velocity sensor"
     redeclare package Medium = Medium,
     m_flow_nominal=10,
     tau=0,
-    A=A) "Sensor configured to use a steady-state model for the density"
+    A=A)
+    "Sensor configured to use a steady-state model for the density"
     annotation (Placement(transformation(extent={{28,-10},{48,10}})));
 equation
   connect(ramp.y, masFloRat.m_flow_in) annotation (Line(
-      points={{-69,8},{-50,8}},
+      points={{-69,8},{-52,8}},
       color={0,0,127}));
   connect(masFloRat.ports[1], senDyn.port_a) annotation (Line(
       points={{-30,4.44089e-16},{-20,4.44089e-16},{-20,0},{-10,0}},
@@ -60,7 +61,7 @@ configured to be dynamic.
 Note that steady-state sensors can lead to numerical problems
 if used incorrectly.
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>", revisions="<html>

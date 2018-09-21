@@ -6,15 +6,10 @@ package Examples "Collection of models that test the water models"
 
 
 
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains examples that test the media packages in
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Water\">
+<a href=\"modelica://IBPSA.Media.Water\">
 IBPSA.Media.Water</a>.
 </p>
 </html>"));

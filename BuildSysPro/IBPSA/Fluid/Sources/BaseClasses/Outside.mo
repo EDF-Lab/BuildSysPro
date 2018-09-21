@@ -15,9 +15,10 @@ partial model Outside
     "Prescribed boundary trace substances"
     annotation (Placement(transformation(extent={{-140,-100},{-100,-60}})));
 
-  IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Bus with weather data"
-    annotation (Placement(transformation(extent={{-110,-10},{-90,10}}),
-        iconTransformation(extent={{-120,-18},{-80,22}})));
+  IBPSA.BoundaryConditions.WeatherData.Bus weaBus
+    "Bus with weather data" annotation (Placement(transformation(extent=
+           {{-110,-10},{-90,10}}), iconTransformation(extent={{-120,-18},
+            {-80,22}})));
 protected
   final parameter Boolean singleSubstance = (Medium.nX == 1)
     "True if single substance medium";
@@ -114,7 +115,7 @@ revisions="<html>
 <li>
 May 30, 2017 by Jianjun Hu:<br/>
 Corrected <code>X_in_internal = zeros()</code> to be <code>X_in_internal = ones()</code>.
-This is for 
+This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/787\"> #787</a>.
 </li>
 <li>

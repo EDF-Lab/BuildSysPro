@@ -73,8 +73,8 @@ model ReverseBuoyancy
     CDClo=0.78,
     nCom=10,
     vZer=0.01,
-    dp_turbulent=0.1) "Discretized door"
-    annotation (Placement(transformation(extent={{-61,-55},{-41,-35}})));
+    dp_turbulent=0.1) "Discretized door" annotation (Placement(
+        transformation(extent={{-61,-55},{-41,-35}})));
   Fluid.Delays.DelayFirstOrder volBotWes(
     redeclare package Medium = Medium,
     m_flow_nominal=1.2,
@@ -112,8 +112,8 @@ model ReverseBuoyancy
     V=2.5*5*10,
     T_start=273.15 + 21,
     nPorts=3,
-    m_flow_nominal=0.001) "Volume of top floor, east room"
-    annotation (Placement(transformation(extent={{-30,121},{-10,141}})));
+    m_flow_nominal=0.001) "Volume of top floor, east room" annotation (
+      Placement(transformation(extent={{-30,121},{-10,141}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume volTopWes(
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -121,8 +121,8 @@ model ReverseBuoyancy
     T_start=273.15 + 20,
     V=2.5*5*10,
     nPorts=3,
-    m_flow_nominal=0.001) "Volume of top floor, west room"
-    annotation (Placement(transformation(extent={{-110,120},{-90,140}})));
+    m_flow_nominal=0.001) "Volume of top floor, west room" annotation (
+      Placement(transformation(extent={{-110,120},{-90,140}})));
   IBPSA.Airflow.Multizone.DoorDiscretizedOperable dooOpeCloTop(
     redeclare package Medium = Medium,
     LClo=20*1E-4,
@@ -249,7 +249,7 @@ experiment(Tolerance=1e-06, StopTime=3600),
     Documentation(info="<html>
 <p>
 This model is similar than
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> but it has four
 instead of three rooms.
 The outdoor conditions are held constant at <i>10</i>&deg;C and

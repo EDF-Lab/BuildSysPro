@@ -2,13 +2,15 @@ within BuildSysPro.IBPSA.Airflow.Multizone.Examples;
 model Orifice "Model with an orifice"
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Air;
-  IBPSA.Airflow.Multizone.Orifice ori(redeclare package Medium = Medium, A=0.2)
+  IBPSA.Airflow.Multizone.Orifice ori(redeclare package Medium = Medium,
+      A=0.2)
     annotation (Placement(transformation(extent={{0,20},{20,40}})));
   IBPSA.Fluid.Sources.Boundary_pT roo1(
     redeclare package Medium = Medium,
     use_p_in=true,
     nPorts=1,
-    T=278.15) annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
+    T=278.15)
+    annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
   IBPSA.Fluid.Sources.Boundary_pT roo2(
     redeclare package Medium = Medium,
     use_p_in=true,

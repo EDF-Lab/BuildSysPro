@@ -4,16 +4,16 @@ extends Modelica.Icons.Example;
   IBPSA.BoundaryConditions.SolarGeometry.IncidenceAngle incAng(
     azi=0,
     lat=lat,
-    til=1.5707963267949) "solar incidence angle"
-    annotation (Placement(transformation(extent={{-20,-40},{0,-20}})));
+    til=1.5707963267949) "solar incidence angle" annotation (
+      Placement(transformation(extent={{-20,-40},{0,-20}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
-    "Weather data"
-    annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
+        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+    "Weather data" annotation (Placement(transformation(extent={{-100,
+            0},{-80,20}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather bus"
     annotation (Placement(transformation(extent={{-72,-2},{-48,22}})));
-  IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.WallSolarAzimuth walSolAzi
-    "Vertical wall solar azimuth angle"
+  IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.WallSolarAzimuth
+    walSolAzi "Vertical wall solar azimuth angle"
     annotation (Placement(transformation(extent={{70,0},{90,20}})));
   IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.AltitudeAngle altAng
     "Altitude angle"
@@ -29,7 +29,7 @@ equation
       index=1,
       extent={{6,3},{6,3}}));
   connect(weaDat.weaBus, incAng.weaBus) annotation (Line(
-      points={{-80,10},{-72,10},{-72,-29.6},{-20,-29.6}},
+      points={{-80,10},{-72,10},{-72,-30},{-20,-30}},
       color={255,204,51},
       thickness=0.5));
   connect(incAng.y, walSolAzi.incAng) annotation (Line(

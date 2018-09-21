@@ -33,7 +33,7 @@ model ThermalZones
   BoundaryConditions.WeatherData.ReaderTMY3 weaDat(
     pAtmSou=IBPSA.BoundaryConditions.Types.DataSource.Parameter,
     TDryBul=TOut_nominal,
-    filNam="modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos",
+    filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
     TDryBulSou=IBPSA.BoundaryConditions.Types.DataSource.File,
     computeWetBulbTemperature=false) "Weather data reader"
     annotation (Placement(transformation(extent={{150,130},{130,150}})));
@@ -70,8 +70,7 @@ model ThermalZones
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     nPorts=3) "Room volume"
     annotation (Placement(transformation(extent={{80,30},{100,50}})));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor theCon2(
-                                                                   G=10000/30)
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor theCon2(G=10000/30)
     "Thermal conductance with the ambient"
     annotation (Placement(transformation(extent={{30,-26},{50,-6}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow preHea2(Q_flow=
@@ -85,11 +84,13 @@ model ThermalZones
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     nPorts=3) "Room volume"
     annotation (Placement(transformation(extent={{80,-106},{100,-86}})));
-  Sensors.MassFlowRate senMasFlo[nPorts](redeclare final package Medium = MediumA)
+  Sensors.MassFlowRate senMasFlo[nPorts](redeclare final package
+      Medium =                                                            MediumA)
     "Mass flow rate sensor to connect thermal adapter with thermal zone."
     annotation (Placement(transformation(extent={{-90,90},{-70,110}})));
   Sensors.MassFlowRate senMasFlo1[nPorts](
-                                         redeclare final package Medium = MediumA)
+                                         redeclare final package
+      Medium =                                                            MediumA)
     "Mass flow rate sensor to connect thermal adapter with thermal zone."
     annotation (Placement(transformation(extent={{-90,50},{-70,70}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temSen1
@@ -194,13 +195,13 @@ HVAC system only. The thermal zones are connected to an adaptor so that
 they can be coupled
 to an air-based HVAC system. The thermal zone is
 taken from
-<a href=\"modelica://BuildSysPro.IBPSA.Examples.Tutorial.SpaceCooling.System3\">
+<a href=\"modelica://IBPSA.Examples.Tutorial.SpaceCooling.System3\">
 IBPSA.Examples.Tutorial.SpaceCooling.System3
 </a>.
 </p>
 <p>
 The example extends from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.ThermalZones\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.ThermalZones\">
 IBPSA.Fluid.FMI.ExportContainers.ThermalZones</a>
 which provides
 the input and output signals that are needed to interface
@@ -213,6 +214,13 @@ exposed at the FMU interface.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+December 4, 2017, by Michael Wetter:<br/>
+Added call to <code>Modelica.Utilities.Files.loadResource</code>
+for weather data file.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/867\">#867</a>.
+</li>
 <li>
 September 14, 2016, by Michael Wetter:<br/>
 First implementation.

@@ -251,7 +251,7 @@ BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall paroiExtOuest(
     S=Splancher,
     hs_ext=hs_ext_Plancher,
     hs_int=hs_int_Plancher,
-    incl=0) annotation (Placement(transformation(extent={{-8,-92},{12,-72}})));
+    incl=0) annotation (Placement(transformation(extent={{-10,-90},{10,-70}})));
 
    BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall plancherInt[NbNiveau
      - 1](
@@ -290,7 +290,7 @@ BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall paroiExtOuest(
         origin={34,-72})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.B_Coefficient coefficientBsol(b=b)
-    annotation (Placement(transformation(extent={{-46,-94},{-26,-74}})));
+    annotation (Placement(transformation(extent={{-50,-90},{-30,-70}})));
   BuildSysPro.Building.AirFlow.HeatTransfer.AirNode noeudAir(V=Vair, Tair(
         displayUnit="K") = Tinit)
     annotation (Placement(transformation(extent={{50,4},{70,24}})));
@@ -298,7 +298,7 @@ BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall paroiExtOuest(
 public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext annotation (
       Placement(transformation(extent={{-100,-20},{-80,0}}), iconTransformation(
-          extent={{-110,-110},{-90,-90}})));
+          extent={{-130,70},{-110,90}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int annotation (
       Placement(transformation(extent={{80,0},{100,20}}), iconTransformation(
           extent={{70,-50},{90,-30}})));
@@ -372,21 +372,21 @@ equation
       smooth=Smooth.None));
 
   connect(coefficientBsol.port_int, Tint) annotation (Line(
-      points={{-45,-87},{-45,-91.5},{20,-91.5},{20,10}},
+      points={{-49,-83},{-49,-91.5},{20,-91.5},{20,10}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(coefficientBsol.port_ext, Text) annotation (Line(
-      points={{-45,-81},{-45,-77.5},{-20,-77.5},{-20,10}},
+      points={{-49,-77},{-49,-69.5},{-20,-69.5},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
 
   connect(plancher.T_int, Tint)
                            annotation (Line(
-      points={{11,-85},{11,-82.5},{20,-82.5},{20,10}},
+      points={{9,-83},{9,-82.5},{20,-82.5},{20,10}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(coefficientBsol.Tponder, plancher.T_ext) annotation (Line(
-      points={{-31,-84.2},{-29.5,-84.2},{-29.5,-85},{-7,-85}},
+      points={{-35,-80.2},{-33.5,-80.2},{-33.5,-83},{-9,-83}},
       color={191,0,0},
       smooth=Smooth.None));
 
@@ -431,7 +431,7 @@ end if;
       color={255,192,1},
       smooth=Smooth.None));
   connect(plancher.FluxAbsInt, multiSum.y) annotation (Line(
-      points={{5,-77},{19.5,-77},{19.5,-79.02},{34,-79.02}},
+      points={{3,-75},{19.5,-75},{19.5,-79.02},{34,-79.02}},
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -559,9 +559,9 @@ end if;
       points={{-100,150},{-40,150},{-40,167},{-3,167}},
       color={255,192,1},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
-            -120},{100,120}})),  Icon(coordinateSystem(preserveAspectRatio=true,
-          extent={{-100,-120},{100,120}}), graphics={
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,
+            -120},{120,120}})),  Icon(coordinateSystem(preserveAspectRatio=true,
+          extent={{-120,-120},{120,120}}), graphics={
         Polygon(
           points={{-100,100},{-60,60},{-60,-100},{-100,-58},{-100,100}},
           lineColor={0,0,0},
@@ -676,7 +676,7 @@ end if;
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

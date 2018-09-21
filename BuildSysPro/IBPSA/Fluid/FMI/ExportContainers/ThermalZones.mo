@@ -130,12 +130,12 @@ can only be connected to vector of ports whose sizes are literal.
 
 <p>
 The example
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZones\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZones\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZones</a>
 shows how multiple simple thermal zones can be implemented and exported as
 an FMU.
 The example
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
 IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC</a>
 shows how such an FMU can be connected
 to an HVAC system that has signal flow.
@@ -176,10 +176,10 @@ the port <code>fluPor</code> (which is negative if it is an exhaust),
 Note that without the <i>max(&middot;, &middot;)</i>, the energy
 balance would be wrong.
 Models in the package
-<a href=\"modelica://BuildSysPro.IBPSA.ThermalZones.Detailed\">
+<a href=\"modelica://IBPSA.ThermalZones.Detailed\">
 IBPSA.ThermalZones.Detailed</a>
 as well as the control volumes in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes\">
 IBPSA.Fluid.MixingVolumes</a>
 implement such a <i>max(&middot;, &middot;)</i> function.
 </p>
@@ -201,12 +201,12 @@ for the ports <code>fluPor</code> and <code>ports</code>.
 All zones must have the same number of fluid ports <code>nPorts</code>.
 All <code>nPorts</code>
 <code>ports[1:nPorts]</code> need to be connected as demonstrated in the example
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZones\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZones\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZones</a>.
 </p>
 <p>
 The example
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
 IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC</a>
 shows conceptually how such an FMU can then be connected to a HVAC system
 that has signal flow.

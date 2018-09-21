@@ -1,18 +1,21 @@
 within BuildSysPro.IBPSA.Fluid.Movers.BaseClasses;
 partial model PartialFlowMachine
   "Partial model to interface fan or pump models with the medium"
-  extends IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations(final mSenFac=1);
+  extends IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations(final mSenFac=
+       1);
   extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(
     show_T=false,
     port_a(h_outflow(start=h_outflow_start)),
     port_b(
       h_outflow(start=h_outflow_start),
       p(start=p_start),
-      final m_flow(max=if allowFlowReversal then +Modelica.Constants.inf else 0)));
+      final m_flow(max=if allowFlowReversal then +Modelica.Constants.inf
+             else 0)));
 
-  replaceable parameter IBPSA.Fluid.Movers.Data.Generic per constrainedby
-    IBPSA.Fluid.Movers.Data.Generic "Record with performance data" annotation (
-      choicesAllMatching=true, Placement(transformation(extent={{52,60},{72,80}})));
+  replaceable parameter IBPSA.Fluid.Movers.Data.Generic per
+    constrainedby IBPSA.Fluid.Movers.Data.Generic
+    "Record with performance data" annotation (choicesAllMatching=true,
+      Placement(transformation(extent={{52,60},{72,80}})));
 
   parameter IBPSA.Fluid.Types.InputType inputType=IBPSA.Fluid.Types.InputType.Continuous
     "Control input type" annotation (Dialog(group="Control"));
@@ -67,13 +70,14 @@ partial model PartialFlowMachine
   Modelica.Blocks.Interfaces.RealOutput y_actual(
     final unit="1")
     "Actual normalised pump speed that is used for computations"
-    annotation (Placement(transformation(extent={{100,40},{120,60}}),
-        iconTransformation(extent={{100,40},{120,60}})));
+    annotation (Placement(transformation(extent={{100,60},{120,80}}),
+        iconTransformation(extent={{100,60},{120,80}})));
 
   Modelica.Blocks.Interfaces.RealOutput P(
     quantity="Power",
     final unit="W") "Electrical power consumed"
-    annotation (Placement(transformation(extent={{100,70},{120,90}})));
+    annotation (Placement(transformation(extent={{100,80},{120,100}}),
+        iconTransformation(extent={{100,80},{120,100}})));
 
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a heatPort
     "Heat dissipation to environment"
@@ -146,8 +150,8 @@ protected
     "Constant input set point"
     annotation (Placement(transformation(extent={{-80,70},{-60,90}})));
 
-  Extractor extractor(final nin=size(stageInputs,1)) if inputType == IBPSA.Fluid.Types.InputType.Stages
-                                                      "Stage input extractor"
+  Extractor extractor(final nin=size(stageInputs,1)) if inputType ==
+    IBPSA.Fluid.Types.InputType.Stages                "Stage input extractor"
     annotation (Placement(transformation(extent={{-50,60},{-30,40}})));
 
   Modelica.Blocks.Routing.RealPassThrough inputSwitch
@@ -155,7 +159,6 @@ protected
     annotation (
       Placement(transformation(
         extent={{-10,-10},{10,10}},
-        rotation=0,
         origin={-10,50})));
 
   IBPSA.Fluid.Delays.DelayFirstOrder vol(
@@ -185,8 +188,8 @@ protected
     "Second order filter to approximate valve opening time, and to improve numerics"
     annotation (Placement(transformation(extent={{20,81},{34,95}})));
 
-  Modelica.Blocks.Math.Gain gaiSpe(y(final unit="1")) if inputType == IBPSA.Fluid.Types.InputType.Continuous
-     and speedIsInput
+  Modelica.Blocks.Math.Gain gaiSpe(y(final unit="1")) if inputType ==
+    IBPSA.Fluid.Types.InputType.Continuous and speedIsInput
     "Gain to normalized speed using speed_nominal or speed_rpm_nominal"
     annotation (Placement(transformation(extent={{-4,74},{-16,86}})));
 
@@ -198,9 +201,9 @@ protected
     "Pressure source"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
 
-  IBPSA.Fluid.Movers.BaseClasses.PowerInterface heaDis(final motorCooledByFluid=
-       per.motorCooledByFluid, final delta_V_flow=1E-3*V_flow_max) if
-    addPowerToMedium "Heat dissipation into medium"
+  IBPSA.Fluid.Movers.BaseClasses.PowerInterface heaDis(final
+      motorCooledByFluid=per.motorCooledByFluid, final delta_V_flow=1E-3
+        *V_flow_max) if addPowerToMedium "Heat dissipation into medium"
     annotation (Placement(transformation(extent={{20,-80},{40,-60}})));
 
   Modelica.Blocks.Math.Add PToMed(final k1=1, final k2=1) if
@@ -221,8 +224,8 @@ protected
     "Density of the inflowing fluid"
     annotation (Placement(transformation(extent={{-90,-74},{-70,-54}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare final package Medium =
-        Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare final package
+      Medium = Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{-50,10},{-30,-10}})));
 
   Sensors.RelativePressure senRelPre(
@@ -334,27 +337,25 @@ initial equation
   // The control signal is dp or m_flow but the user did not provide a pump curve.
   // Hence, the speed is computed using default values, which likely are wrong.
   // Therefore, scaling the power using the speed is inaccurate.
-  assert(
-    nominalValuesDefineDefaultPressureCurve or per.havePressureCurve or (preVar
-       == IBPSA.Fluid.Movers.BaseClasses.Types.PrescribedVariable.Speed),
-    "*** Warning: You are using a flow or pressure controlled mover with the
+  assert(   nominalValuesDefineDefaultPressureCurve or per.havePressureCurve
+       or (preVar == IBPSA.Fluid.Movers.BaseClasses.Types.PrescribedVariable.Speed),
+            "*** Warning: You are using a flow or pressure controlled mover with the
              default pressure curve.
              This leads to approximate calculations of the electrical power
              consumption. Add the correct pressure curve in the record per
              to obtain an accurate computation.
              Setting nominalValuesDefineDefaultPressureCurve=true will suppress this warning.",
-    level=AssertionLevel.warning);
+            level=AssertionLevel.warning);
 
   // The control signal is dp or m_flow but the user did not provide a pump curve.
   // Hence, the speed is computed using default values, which likely are wrong.
   // In addition, the user wants to use (V_flow, P) to compute the power.
   // This can lead to using a power that is less than the flow work. We avoid
   // this by ignoring the setting of per.use_powerCharacteristics.
-  assert(
-    nominalValuesDefineDefaultPressureCurve or (per.havePressureCurve or (
-      preVar == IBPSA.Fluid.Movers.BaseClasses.Types.PrescribedVariable.Speed))
+  assert(   nominalValuesDefineDefaultPressureCurve or (per.havePressureCurve
+       or (preVar == IBPSA.Fluid.Movers.BaseClasses.Types.PrescribedVariable.Speed))
        or per.use_powerCharacteristic == false,
-    "*** Warning: You are using a flow or pressure controlled mover with the
+            "*** Warning: You are using a flow or pressure controlled mover with the
              default pressure curve and you set use_powerCharacteristic = true.
              Since this can cause wrong power consumption, the model will overwrite
              this setting and use instead use_powerCharacteristic = false.
@@ -362,8 +363,7 @@ initial equation
              make sure that the efficiency curves in the performance record per
              are correct or add the pressure curve of the mover.
              Setting nominalValuesDefineDefaultPressureCurve=true will suppress this warning.",
-    level=AssertionLevel.warning);
-
+            level=AssertionLevel.warning);
 
 equation
   connect(prePow.port, vol.heatPort) annotation (Line(
@@ -419,8 +419,9 @@ equation
           -64}},                          color={0,0,127}));
   connect(eff.m_flow, senMasFlo.m_flow) annotation (Line(points={{-34,-54},{-34,
           -54},{-40,-54},{-40,-11}},               color={0,0,127}));
-  connect(eff.PEle, P) annotation (Line(points={{-11,-59},{0,-59},{0,-50},{90,-50},
-          {90,80},{110,80}}, color={0,0,127}));
+  connect(eff.PEle, P) annotation (Line(points={{-11,-59},{0,-59},{0,-50},{90,
+          -50},{90,90},{110,90}},
+                             color={0,0,127}));
   connect(eff.WFlo, PToMed.u2) annotation (Line(points={{-11,-56},{-8,-56},{-8,-86},
           {48,-86}},      color={0,0,127}));
   connect(inputSwitch.y, filter.u) annotation (Line(points={{1,50},{16,50},{16,88},
@@ -428,8 +429,9 @@ equation
 
   connect(senRelPre.p_rel, eff.dp_in) annotation (Line(points={{50.5,-26.35},{50.5,
           -38},{-18,-38},{-18,-46}},               color={0,0,127}));
-  connect(eff.y_out, y_actual) annotation (Line(points={{-11,-48},{92,-48},{92,50},
-          {110,50}}, color={0,0,127}));
+  connect(eff.y_out, y_actual) annotation (Line(points={{-11,-48},{92,-48},{92,
+          70},{110,70}},
+                     color={0,0,127}));
   connect(port_a, vol.ports[1])
     annotation (Line(points={{-100,0},{-78,0},{-78,0}}, color={0,127,255}));
   connect(vol.ports[2], senMasFlo.port_a)
@@ -440,11 +442,11 @@ equation
     extent={{-100,-100},{100,100}}),
     graphics={
         Line(
-          points={{0,50},{100,50}},
+          points={{0,70},{100,70}},
           color={0,0,0},
           smooth=Smooth.None),
         Line(
-          points={{0,80},{100,80}},
+          points={{0,90},{100,90}},
           color={0,0,0},
           smooth=Smooth.None),
         Line(
@@ -472,29 +474,16 @@ equation
           fillPattern=FillPattern.Sphere,
           visible=energyDynamics <> Modelica.Fluid.Types.Dynamics.SteadyState,
           fillColor={0,100,199}),
-        Rectangle(
-          visible=use_inputFilter,
-          extent={{-34,40},{32,100}},
-          lineColor={0,0,0},
-          fillColor={135,135,135},
-          fillPattern=FillPattern.Solid),
-        Ellipse(
-          visible=use_inputFilter,
-          extent={{-34,100},{32,40}},
-          lineColor={0,0,0},
-          fillColor={135,135,135},
-          fillPattern=FillPattern.Solid),
-        Text(
-          visible=use_inputFilter,
-          extent={{-22,92},{20,46}},
-          lineColor={0,0,0},
-          fillColor={135,135,135},
-          fillPattern=FillPattern.Solid,
-          textString="M",
-          textStyle={TextStyle.Bold}),
-        Text(extent={{64,98},{114,84}},
+        Text(extent={{64,106},{114,92}},
           lineColor={0,0,127},
-          textString="P")}),
+          textString="P"),
+        Text(extent={{42,86},{92,72}},
+          lineColor={0,0,127},
+          textString="y_actual"),
+        Line(
+          points={{0,100},{0,50}},
+          color={0,0,0},
+          smooth=Smooth.None)}),
     Documentation(info="<html>
 <p>
 This is the base model for fans and pumps.
@@ -536,7 +525,7 @@ This is for
 <li>
 November 3, 2016, by Michael Wetter:<br/>
 Set start value for <code>VMachine_flow</code> to avoid a warning in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Examples.MoverContinuous\">
+<a href=\"modelica://IBPSA.Fluid.Movers.Examples.MoverContinuous\">
 IBPSA.Fluid.Movers.Examples.MoverContinuous</a>.
 </li>
 <li>
@@ -608,7 +597,5 @@ Redesigned model to fix bug in medium balance.
 First implementation.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}})));
+</html>"));
 end PartialFlowMachine;

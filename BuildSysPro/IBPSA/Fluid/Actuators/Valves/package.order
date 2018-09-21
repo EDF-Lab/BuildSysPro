@@ -2,8 +2,10 @@ ThreeWayEqualPercentageLinear
 ThreeWayLinear
 TwoWayEqualPercentage
 TwoWayLinear
+TwoWayPolynomial
 TwoWayPressureIndependent
 TwoWayQuickOpening
 TwoWayTable
 Data
 Examples
+Validation

@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.Examples;
 model GetAbsolutePath "Test model to get the absolute path of a URI"
   extends Modelica.Icons.Example;
-  parameter String f = "modelica://BuildSysPro.IBPSA/package.mo"
+  parameter String f = "modelica://IBPSA/package.mo"
    "Name of a file that exists";
   parameter String fAbs=
     IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath(uri=f)

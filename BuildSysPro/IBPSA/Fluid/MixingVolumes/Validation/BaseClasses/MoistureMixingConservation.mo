@@ -7,14 +7,14 @@ partial model MoistureMixingConservation
     redeclare package Medium = Medium,
     nPorts=1,
     m_flow=2,
-    X={0,1}) "Air source"
-    annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
+    X={0,1}) "Air source" annotation (Placement(transformation(extent=
+           {{-100,10},{-80,30}})));
   IBPSA.Fluid.Sources.MassFlowSource_h sou2(
     redeclare package Medium = Medium,
     nPorts=1,
     m_flow=1,
-    X={0,1}) "Air source"
-    annotation (Placement(transformation(extent={{-100,-30},{-80,-10}})));
+    X={0,1}) "Air source" annotation (Placement(transformation(extent=
+           {{-100,-30},{-80,-10}})));
   IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir vol(
     redeclare package Medium = Medium,
     massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
@@ -23,8 +23,8 @@ partial model MoistureMixingConservation
     nPorts=2,
     allowFlowReversal=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Mixing volume for adding water"
-    annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
+    "Mixing volume for adding water" annotation (Placement(
+        transformation(extent={{-60,20},{-40,40}})));
   IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir vol1(
     redeclare package Medium = Medium,
     massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
@@ -33,11 +33,11 @@ partial model MoistureMixingConservation
     nPorts=2,
     allowFlowReversal=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Mixing volume for adding water"
-    annotation (Placement(transformation(extent={{-60,-20},{-40,-40}})));
-  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium, nPorts=
-       1) "Air sink"
-    annotation (Placement(transformation(extent={{160,10},{140,30}})));
+    "Mixing volume for adding water" annotation (Placement(
+        transformation(extent={{-60,-20},{-40,-40}})));
+  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium =
+        Medium, nPorts=1) "Air sink" annotation (Placement(
+        transformation(extent={{160,10},{140,30}})));
   IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir vol2(
     redeclare package Medium = Medium,
     massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
@@ -67,8 +67,8 @@ partial model MoistureMixingConservation
 
   Modelica.Blocks.Sources.Constant mWatFloSol "Solution mass fraction water"
     annotation (Placement(transformation(extent={{140,-100},{120,-80}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium = Medium,
-      allowFlowReversal=false) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium =
+        Medium, allowFlowReversal=false) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{60,30},{80,10}})));
   Modelica.Blocks.Math.Add cheMasFlo(k2=-1)
     "Check for conservation of mass"
@@ -185,7 +185,5 @@ May 22 2015 by Filip Jorissen:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Icon(coordinateSystem(extent={{-100,-100},{100,100}}, preserveAspectRatio=
-            false)));
+</html>"));
 end MoistureMixingConservation;

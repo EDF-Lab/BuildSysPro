@@ -8,7 +8,8 @@ model SaturationPressure "Model to test the saturationPressure function"
   constant Real conv(unit="1/s") = 1 "Conversion factor";
 equation
   T = TMin + conv*time * (TMax-TMin);
-  pSat = IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(T);
+  pSat = IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(
+    T);
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Functions/Examples/SaturationPressure.mos"

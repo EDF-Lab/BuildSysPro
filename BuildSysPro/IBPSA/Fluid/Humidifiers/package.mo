@@ -1,10 +1,6 @@
 within BuildSysPro.IBPSA.Fluid;
-package Humidifiers "fixme: add brief description"
+package Humidifiers "Package with humidifier models"
   extends Modelica.Icons.Package;
-
-
-
-
 
 
 

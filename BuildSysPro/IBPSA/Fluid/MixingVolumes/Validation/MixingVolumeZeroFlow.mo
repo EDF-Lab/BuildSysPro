@@ -17,10 +17,10 @@ model MixingVolumeZeroFlow
     nPorts=1,
     redeclare package Medium = Medium,
     use_m_flow_in=true,
-    use_T_in=true) "Source"
-    annotation (Placement(transformation(extent={{-60,-32},{-40,-12}})));
-  IBPSA.Fluid.Sources.Boundary_pT sin(nPorts=4, redeclare package Medium =
-        Medium) "Sink"
+    use_T_in=true) "Source" annotation (Placement(transformation(extent=
+           {{-60,-32},{-40,-12}})));
+  IBPSA.Fluid.Sources.Boundary_pT sin(nPorts=4, redeclare package
+      Medium = Medium) "Sink"
     annotation (Placement(transformation(extent={{40,-44},{20,-24}})));
   Modelica.Blocks.Sources.Ramp ramp_m_flow(
     height=-1,
@@ -56,8 +56,8 @@ model MixingVolumeZeroFlow
     nPorts=1,
     redeclare package Medium = Medium,
     use_m_flow_in=true,
-    use_T_in=true) "Source"
-    annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
+    use_T_in=true) "Source" annotation (Placement(transformation(extent=
+           {{-60,-60},{-40,-40}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume volLinSys(
     nPorts=2,
     redeclare package Medium = Medium,
@@ -73,8 +73,8 @@ model MixingVolumeZeroFlow
     nPorts=1,
     redeclare package Medium = Medium,
     use_m_flow_in=true,
-    use_T_in=true) "Source"
-    annotation (Placement(transformation(extent={{-60,-100},{-40,-80}})));
+    use_T_in=true) "Source" annotation (Placement(transformation(extent=
+           {{-60,-100},{-40,-80}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalResistor theRes(R=0.001)
     "Thermal resistor for creating linear system" annotation (Placement(
         transformation(
@@ -144,14 +144,18 @@ equation
           -28,10},{-2,10}},      color={0,127,255}));
   connect(volQflow.ports[2], sin.ports[4])
     annotation (Line(points={{2,10},{20,10},{20,-37}}, color={0,127,255}));
-  connect(ramp_m_flow.y, sou1.m_flow_in) annotation (Line(points={{-79,-10},{-72,
-          -10},{-72,18},{-60,18}}, color={0,0,127}));
-  connect(ramp_m_flow.y, sou2.m_flow_in) annotation (Line(points={{-79,-10},{-72,
-          -10},{-72,-14},{-60,-14}}, color={0,0,127}));
-  connect(ramp_m_flow.y, sou3.m_flow_in) annotation (Line(points={{-79,-10},{-72,
-          -10},{-72,-42},{-60,-42}}, color={0,0,127}));
-  connect(ramp_m_flow.y, sou4.m_flow_in) annotation (Line(points={{-79,-10},{-72,
-          -10},{-72,-82},{-60,-82}}, color={0,0,127}));
+  connect(ramp_m_flow.y, sou1.m_flow_in) annotation (Line(points={{-79,-10},{
+          -72,-10},{-72,18},{-62,18}},
+                                   color={0,0,127}));
+  connect(ramp_m_flow.y, sou2.m_flow_in) annotation (Line(points={{-79,-10},{
+          -72,-10},{-72,-14},{-62,-14}},
+                                     color={0,0,127}));
+  connect(ramp_m_flow.y, sou3.m_flow_in) annotation (Line(points={{-79,-10},{
+          -72,-10},{-72,-42},{-62,-42}},
+                                     color={0,0,127}));
+  connect(ramp_m_flow.y, sou4.m_flow_in) annotation (Line(points={{-79,-10},{
+          -72,-10},{-72,-82},{-62,-82}},
+                                     color={0,0,127}));
   connect(ramp_T.y, sou1.T_in) annotation (Line(points={{-79,-50},{-74,-50},{-68,
           -50},{-68,14},{-62,14}}, color={0,0,127}));
   connect(ramp_T.y, sou2.T_in) annotation (Line(points={{-79,-50},{-68,-50},{-68,
@@ -210,7 +214,7 @@ issue 282</a>.
 </html>", info="<html>
 <p>
 This model verifies whether the equations in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 are consisent for all foreseeable cases.
 All <code>MixingVolume</code> instances contain the correct

@@ -6,11 +6,6 @@ package Time "Package with models for time"
 
 
 
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains models for time.

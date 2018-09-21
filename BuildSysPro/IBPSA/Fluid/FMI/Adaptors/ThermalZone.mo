@@ -71,9 +71,9 @@ protected
         nPorts)) "Sum of air mass flow rates"
     annotation (Placement(transformation(extent={{4,72},{16,84}})));
 
-  IBPSA.Utilities.Diagnostics.AssertEquality assEqu(message=
-        "\"Mass flow rate does not balance. The sum needs to be zero.",
-      threShold=1E-4) "Tests whether the mass flow rates balance to zero"
+  IBPSA.Utilities.Diagnostics.AssertEquality assEqu(message="\"Mass flow rate does not balance. The sum needs to be zero.",
+      threShold=1E-4)
+    "Tests whether the mass flow rates balance to zero"
     annotation (Placement(transformation(extent={{70,56},{90,76}})));
   Modelica.Blocks.Sources.Constant const(final k=0) "Outputs zero"
     annotation (Placement(transformation(extent={{30,68},{50,88}})));
@@ -201,8 +201,8 @@ equation
   connect(x_w_toX.X, bou.X_in)
     annotation (Line(points={{-18,56},{-18,56},{-14,56},{-14,44},{0,44}},
                                                color={0,0,127}));
-  connect(con.C, bou.C_in) annotation (Line(points={{-58,52},{-50,52},{-50,40},{
-          -10,40},{2,40}},                  color={0,0,127}));
+  connect(con.C, bou.C_in) annotation (Line(points={{-58,52},{-50,52},{-50,40},
+          {0,40},{0,40}},                   color={0,0,127}));
   connect(heaPorAir, senTemAir.port) annotation (Line(points={{100,-80},{80,-80},
           {72,-80}},          color={191,0,0}));
   connect(XiSup.y, x_i_toX.Xi)
@@ -226,8 +226,9 @@ equation
   connect(CSup.y, con[i].CZon)
     annotation (Line(points={{-1,-60},{-64,-60},{-64,48}}, color={0,0,127}));
   end for;
-  connect(bou.m_flow_in, con.m_flow) annotation (Line(points={{2,56},{-8,56},{-8,
-          78},{-50,78},{-50,68},{-58,68}}, color={0,0,127}));
+  connect(bou.m_flow_in, con.m_flow) annotation (Line(points={{0,56},{-8,56},{
+          -8,78},{-50,78},{-50,68},{-58,68}},
+                                           color={0,0,127}));
   annotation (defaultComponentName="hvacAda",
     Icon(coordinateSystem(
         preserveAspectRatio=false),      graphics={
@@ -353,7 +354,7 @@ of all fluid connections to <code>ports</code> to be equal.
 The reason is that setting a pressure can lead to non-physical system models,
 for example if a mass flow rate is imposed and the HVAC system is connected
 to a model that sets a pressure boundary condition such as
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Outside\">
+<a href=\"modelica://IBPSA.Fluid.Sources.Outside\">
 IBPSA.Fluid.Sources.Outside</a>.
 Also, setting a pressure would make it impossible to use multiple instances
 of this model (one for each thermal zone) and build in Modelica an airflow network
@@ -366,7 +367,7 @@ The model has no pressure drop.
 <h4>Typical use</h4>
 <p>
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
 IBPSA.Fluid.FMI.ExportContainers.ThermalZone
 </a>
 for a model that uses this model.

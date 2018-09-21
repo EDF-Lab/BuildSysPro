@@ -24,7 +24,7 @@ water vapor concentration <i>X</i>, trace substances <i>C</i> and density.
 For such quantities, sensors with two fluid ports need to be used.
 An exception is if the quantity is measured directly in a fluid volume, such as modeled in
 models of the package
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes\">
 IBPSA.Fluid.MixingVolumes</a>.
 Therefore, to measure for example the outlet temperature of a heat exchanger, the
 configuration on the left in the figure below should be used, and not the configuration on the right.
@@ -134,7 +134,7 @@ be <i>V=&tau; &nbsp; m&#775;<sub>0</sub> &frasl; &rho;</i>, where
 <h5>Dynamic response to ambient temperature</h5>
 <p>
 For the sensor
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.TemperatureTwoPort\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.TemperatureTwoPort\">
 IBPSA.Fluid.Sensors.TemperatureTwoPort</a>,
 by setting <code>transferHeat = true</code>, heat transfer to a
 fixed ambient can be approximated. The heat transfer is computed as
@@ -164,7 +164,7 @@ of the heat transfer does not add or remove heat from the fluid.
 <h5>Combined dynamic response</h5>
 <p>
 For the sensor
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.TemperatureTwoPort\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.TemperatureTwoPort\">
 IBPSA.Fluid.Sensors.TemperatureTwoPort</a>,
 if both dynamic effects are enabled, then
 the output <i>T</i> is computed as
@@ -179,7 +179,7 @@ The above equation is implemented in such a way that it is differentiable in the
 </p>
 <p>
 Note that the implementation of the dynamic sensors does not use the model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes\">
 IBPSA.Fluid.MixingVolumes</a>.
 The reason is that depending on the selected medium model, the
 mixing volume may introduce states for the pressure, species concentration,

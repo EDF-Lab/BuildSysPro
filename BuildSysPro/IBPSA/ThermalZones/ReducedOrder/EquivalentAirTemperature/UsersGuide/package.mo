@@ -8,7 +8,7 @@ calculating an equivalent air temperature. There are two common ways to
 consider solar radiation hitting exterior surfaces. One way is to consider
 the resulting heat load at the wall&apos;s capacity. The other way is to
 add correction terms to the outdoor air temperature. The models in the package
-<a href=\"modelica://BuildSysPro.IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature\">
+<a href=\"modelica://IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature\">
 IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature</a>
 follow the second approach. This approach is, for example, described in the German
 Guideline VDI 6007 Part 1 (VDI, 2012). The influence of indoor temperatures

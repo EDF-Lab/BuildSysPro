@@ -56,21 +56,25 @@ equation
   else
     XiSatRefIn=(1-XiDryBul)*XiSat/(1-XiSat);
     XiSat = IBPSA.Utilities.Psychrometrics.Functions.X_pSatpphi(
-      pSat=IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
-        TWetBul),
-      p=p,
-      phi=1);
+            pSat=
+        IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
+         TWetBul),
+            p=p,
+            phi=1);
     XiDryBul = IBPSA.Utilities.Psychrometrics.Functions.X_pSatpphi(
-      p=p,
-      pSat=IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
-        TDryBul),
-      phi=phi);
-    (TWetBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 - XiDryBul)*
-      IBPSA.Utilities.Psychrometrics.Constants.cpAir + XiSatRefIn*IBPSA.Utilities.Psychrometrics.Constants.cpSte
-       + (XiDryBul - XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.cpWatLiq)
+            p=p,
+            pSat=
+        IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
+         TDryBul),
+            phi=phi);
+    (TWetBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 -
+      XiDryBul)*IBPSA.Utilities.Psychrometrics.Constants.cpAir +
+      XiSatRefIn*IBPSA.Utilities.Psychrometrics.Constants.cpSte + (
+      XiDryBul - XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.cpWatLiq)
       = (TDryBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 -
-      XiDryBul)*IBPSA.Utilities.Psychrometrics.Constants.cpAir + XiDryBul*IBPSA.Utilities.Psychrometrics.Constants.cpSte)
-       + (XiDryBul - XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.h_fg;
+      XiDryBul)*IBPSA.Utilities.Psychrometrics.Constants.cpAir + XiDryBul*
+      IBPSA.Utilities.Psychrometrics.Constants.cpSte) + (XiDryBul -
+      XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.h_fg;
 
     TDryBul_degC = 0;
     rh_per       = 0;
@@ -147,12 +151,12 @@ with a mean error of less than <i>0.3</i> Kelvin.
 Otherwise a calculation based on an energy balance is used.
 See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/474\">#474</a> for a discussion.
 The model is validated in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Examples.TWetBul_TDryBulPhi\">
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Examples.TWetBul_TDryBulPhi\">
 IBPSA.Utilities.Psychrometrics.Examples.TWetBul_TDryBulPhi</a>.
 </p>
 <p>
 For a model that takes the mass fraction instead of the relative humidity as an input, see
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi\">
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi\">
 IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi</a>.
 </p>
 <h4>References</h4>

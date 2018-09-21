@@ -18,7 +18,8 @@ partial model Heater "Base class for example model for the heater and cooler"
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
     mSenFac=2,
-    nPorts=3) annotation (Placement(transformation(extent={{40,-10},{60,10}})));
+    nPorts=3)
+    annotation (Placement(transformation(extent={{40,-10},{60,10}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor theCon(
     G=Q_flow_nominal/20) "Thermal conductance to the outside"
     annotation (Placement(transformation(extent={{0,60},{20,80}})));
@@ -32,8 +33,9 @@ partial model Heater "Base class for example model for the heater and cooler"
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     addPowerToMedium=false,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState) "Fan or pump"
-    annotation (Placement(transformation(extent={{-70,-50},{-50,-30}})));
+    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
+    "Fan or pump" annotation (Placement(transformation(extent={{-70,-50},
+            {-50,-30}})));
   Modelica.Blocks.Sources.RealExpression TOut(y=273.15 + 16 - 5*cos(time/86400*
         2*Modelica.Constants.pi)) "Outdoor temperature"
     annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
@@ -104,16 +106,16 @@ equation
   annotation ( Documentation(info="<html>
 <p>
 This partial model is used to construct the models
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Examples.AirHeater_T\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Examples.AirHeater_T\">
 IBPSA.Fluid.HeatExchangers.Examples.AirHeater_T</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Examples.AirHeater_u\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Examples.AirHeater_u\">
 IBPSA.Fluid.HeatExchangers.Examples.AirHeater_u</a> and
 the similar models
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Examples.WaterHeater_T\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Examples.WaterHeater_T\">
 IBPSA.Fluid.HeatExchangers.Examples.WaterHeater_T</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Examples.WaterHeater_u\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Examples.WaterHeater_u\">
 IBPSA.Fluid.HeatExchangers.Examples.WaterHeater_u</a>.
 It consists of a volume with heat loss to the ambient,
 a fan,

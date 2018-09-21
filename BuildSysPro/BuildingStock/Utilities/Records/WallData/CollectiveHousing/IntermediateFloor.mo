@@ -1,6 +1,6 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.CollectiveHousing;
 record IntermediateFloor =
-   BuildSysPro.Utilities.Icons.HorizontalInternalWall (
+  BuildSysPro.Utilities.Icons.HorizontalInternalWall (
     n=1,
     m={5},
     e={0.18},
@@ -20,7 +20,7 @@ record IntermediateFloor =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

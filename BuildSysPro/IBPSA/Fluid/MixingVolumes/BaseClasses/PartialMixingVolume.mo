@@ -1,11 +1,11 @@
 within BuildSysPro.IBPSA.Fluid.MixingVolumes.BaseClasses;
-partial model PartialMixingVolume
+model PartialMixingVolume
   "Partial mixing volume with inlet and outlet ports (flow reversal is allowed)"
 
   extends IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations;
-  constant Boolean initialize_p = not Medium.singleState
+  parameter Boolean initialize_p = not Medium.singleState
     "= true to set up initial equations for pressure"
-    annotation(HideResult=true);
+    annotation(HideResult=true, Evaluate=true, Dialog(tab="Advanced"));
 
   // We set prescribedHeatFlowRate=false so that the
   // volume works without the user having to set this advanced parameter,
@@ -16,9 +16,7 @@ partial model PartialMixingVolume
 
   constant Boolean simplify_mWat_flow = true
     "Set to true to cause port_a.m_flow + port_b.m_flow = 0 even if mWat_flow is non-zero";
-  parameter Boolean use_C_flow = false
-    "Set to true to enable input connector for trace substance"
-    annotation(Evaluate=true, Dialog(tab="Advanced"));
+
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal(min=0)
     "Nominal mass flow rate"
     annotation(Dialog(group = "Nominal condition"));
@@ -53,13 +51,9 @@ partial model PartialMixingVolume
   Modelica.Blocks.Interfaces.RealOutput mC[Medium.nC](each unit="kg")
     "Trace substance mass of the component";
 
-  Modelica.Blocks.Interfaces.RealInput[Medium.nC] C_flow if use_C_flow
-    "Trace substance mass flow rate added to the medium"
-    annotation (Placement(transformation(extent={{-140,-80},{-100,-40}})));
 protected
   IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation steBal(
     final simplify_mWat_flow=simplify_mWat_flow,
-    final use_C_flow=use_C_flow,
     redeclare final package Medium = Medium,
     final m_flow_nominal=m_flow_nominal,
     final allowFlowReversal=allowFlowReversal,
@@ -69,7 +63,6 @@ protected
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
   IBPSA.Fluid.Interfaces.ConservationEquation dynBal(
     final simplify_mWat_flow=simplify_mWat_flow,
-    final use_C_flow=use_C_flow,
     redeclare final package Medium = Medium,
     final energyDynamics=energyDynamics,
     final massDynamics=massDynamics,
@@ -172,12 +165,6 @@ equation
     connect(COut_internal,  dynBal.COut);
   end if;
 
-  connect(steBal.C_flow, C_flow) annotation (Line(points={{18,6},{12,6},{12,-60},
-          {-120,-60}},      color={0,0,127}));
-  connect(dynBal.C_flow, C_flow) annotation (Line(points={{58,6},{50,6},{50,
-          -60},{-120,-60}},
-                      color={0,0,127}));
-
   connect(portT.y, preTem.T)
     annotation (Line(points={{-31,0},{-38,0}},   color={0,0,127}));
   connect(heaFloSen.port_b, preTem.port)
@@ -194,7 +181,7 @@ Documentation(info="<html>
 <p>
 This is a partial model of an instantaneously mixed volume.
 It is used as the base class for all fluid volumes of the package
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes\">
 IBPSA.Fluid.MixingVolumes</a>.
 </p>
 
@@ -256,7 +243,7 @@ If the model is (i) operated in steady-state,
 (ii) has two fluid ports connected, and
 (iii) <code>prescribedHeatFlowRate=true</code> or <code>allowFlowReversal=false</code>,
 then the model uses
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 in order to use
 the same energy and mass balance implementation as is used as in
@@ -266,7 +253,7 @@ flow directions rather than the function
 <code>actualStream</code>, which is less efficient.
 However, the use of <code>inStream</code> has the disadvantage
 that <code>hOut</code> has to be computed, in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>,
 using
 </p>
@@ -297,19 +284,27 @@ As the mass flow rate is by assumption very small, the fluid that leaves the com
 will have a very high temperature, violating the 2nd law.
 To avoid this situation, if
 <code>prescribedHeatFlowRate=false</code>, then the model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.ConservationEquation</a>
 is used instead of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>.
 </p>
 <p>
 For simple models that uses this model, see
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes\">
 IBPSA.Fluid.MixingVolumes</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+October 19, 2017, by Michael Wetter:<br/>
+Changed initialization of pressure from a <code>constant</code> to a <code>parameter</code>.<br/>
+Removed <code>partial</code> keyword as this model is not partial.<br/>
+Moved <code>C_flow</code> and <code>use_C_flow</code> to child classes.<br/>
+This is for
+<a href=\"https://github.com/lbl-srg/modelica-buildings/issues/1013\">Buildings, issue 1013</a>.
+</li>
 <li>
 April 11, 2017, by Michael Wetter:<br/>
 Moved heat port to the extending classes to provide better comment.
@@ -353,7 +348,7 @@ calculation on the moisture balance.
 <li>
 July 1, 2015, by Filip Jorissen:<br/>
 Set <code>prescribedHeatFlowRate=prescribedHeatflowRate</code> for
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>.
 This results in equations that are solved more easily.
 See
@@ -394,7 +389,7 @@ to
  (prescribedHeatFlowRate or (not allowFlowReversal)) and ...
 </pre>
 The reason is that if there is no flow reversal, then
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 computes <code>hOut =  port_b.h_outflow;</code>, and hence
 it is correct to use <code>hOut</code> to compute
@@ -499,7 +494,7 @@ for steady-state component models, i.e., instead of <code>actualStream(...)</cod
 This changed required the introduction of a new parameter <code>m_flow_nominal</code> which
 is used for smoothing in the steady-state balance equations of the model with two fluid ports.
 This implementation also simplifies the implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolumeWaterPort\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolumeWaterPort\">
 IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolumeWaterPort</a>,
 which now uses the same equations as this model.
 </li>
@@ -525,7 +520,7 @@ Eliminated the base class <code>PartialLumpedVessel</code>.
 <li>
 October 12, 2009 by Michael Wetter:<br/>
 Changed base class to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume\">
 IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume</a>.
 </li>
 </ul>
@@ -541,7 +536,5 @@ IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume</a>.
           textString="V=%V"),         Text(
           extent={{-152,100},{148,140}},
           textString="%name",
-          lineColor={0,0,255})}),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+          lineColor={0,0,255})}));
 end PartialMixingVolume;

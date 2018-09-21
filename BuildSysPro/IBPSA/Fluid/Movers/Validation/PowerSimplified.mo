@@ -38,11 +38,11 @@ model PowerSimplified
       hydraulicEfficiency(V_flow={0}, eta={0.3577})),
     use_inputFilter=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial)
-    "Pump with mass flow rate as control signal"
-    annotation (Placement(transformation(extent={{-60,-30},{-40,-10}})));
+    "Pump with mass flow rate as control signal" annotation (Placement(
+        transformation(extent={{-60,-30},{-40,-10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT bou(nPorts=3, redeclare package Medium =
-        Medium) "Pressure source"
+  IBPSA.Fluid.Sources.Boundary_pT bou(nPorts=3, redeclare package
+      Medium = Medium) "Pressure source"
     annotation (Placement(transformation(extent={{-102,10},{-82,30}})));
 
   IBPSA.Fluid.FixedResistances.PressureDrop[3] res(
@@ -50,8 +50,8 @@ model PowerSimplified
     each m_flow_nominal=m_flow_nominal,
     each dp_nominal=40000) "Flow resistance"
     annotation (Placement(transformation(extent={{20,10},{40,30}})));
-  IBPSA.Fluid.Sources.Boundary_pT sink(nPorts=3, redeclare package Medium =
-        Medium)
+  IBPSA.Fluid.Sources.Boundary_pT sink(nPorts=3, redeclare package
+      Medium = Medium)
     annotation (Placement(transformation(extent={{100,10},{80,30}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=100,
@@ -93,19 +93,19 @@ equation
       points={{-59,80},{-50,80},{-50,72}},
       color={0,0,127}));
   connect(m_flowSet.y, pump_m_flow.m_flow_in) annotation (Line(
-      points={{2.2,0},{-50.2,0},{-50.2,-8}},
+      points={{2.2,0},{-50,0},{-50,-8}},
       color={0,0,127}));
   connect(result.u1[1], pump_Nrpm.P) annotation (Line(
-      points={{18,-43},{-30,-43},{-30,68},{-39,68}},
+      points={{18,-43},{-30,-43},{-30,69},{-39,69}},
       color={0,0,127}));
   connect(result.u2[1], pump_dp.P) annotation (Line(
-      points={{18,-50},{-30,-50},{-30,28},{-39,28}},
+      points={{18,-50},{-30,-50},{-30,29},{-39,29}},
       color={0,0,127}));
   connect(result.u3[1], pump_m_flow.P) annotation (Line(
-      points={{18,-57},{-30,-57},{-30,-12},{-39,-12}},
+      points={{18,-57},{-30,-57},{-30,-11},{-39,-11}},
       color={0,0,127}));
   connect(dpSet.y, pump_dp.dp_in) annotation (Line(
-      points={{2.2,40},{-50.2,40},{-50.2,32}},
+      points={{2.2,40},{-50,40},{-50,32}},
       color={0,0,127}));
   annotation (    experiment(Tolerance=1e-6, StopTime=200),
     __Dymola_Commands(file=
@@ -119,10 +119,10 @@ Each pump has identical mass flow rate and pressure rise.
 </p>
 <p>
 Note that for the instances
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_dp\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_dp\">
 IBPSA.Fluid.Movers.FlowControlled_dp</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>,
 we had to assign the efficiencies (otherwise the default constant
 efficiency of <i>0.7</i> would have been used).

@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.FixedResistances;
 model HydraulicDiameter "Fixed flow resistance with hydraulic diameter and m_flow as parameter"
-  extends IBPSA.Fluid.FixedResistances.PressureDrop(final deltaM=eta_default*dh
-        /4*Modelica.Constants.pi*ReC/m_flow_nominal_pos, final dp_nominal=fac*
-        dpStraightPipe_nominal);
+  extends IBPSA.Fluid.FixedResistances.PressureDrop(final deltaM=
+        eta_default*dh/4*Modelica.Constants.pi*ReC/m_flow_nominal_pos,
+      final dp_nominal=fac*dpStraightPipe_nominal);
 
   parameter Modelica.SIunits.Length dh=sqrt(4*m_flow_nominal/rho_default/v_nominal/Modelica.Constants.pi)
     "Hydraulic diameter (assuming a round cross section area)";
@@ -149,14 +149,14 @@ can be used and combined with models from the
 <p>
 For a model that uses <code>dp_nominal</code> as a parameter rather than
 geoemetric data, use
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
+<a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
 IBPSA.Fluid.FixedResistances.PressureDrop</a>.
 </p>
 <h4>Implementation</h4>
 <p>
 The pressure drop is computed by calling a function in the package
-<a href=\"modelica://Buildings.Fluid.BaseClasses.FlowModels\">
-Buildings.Fluid.BaseClasses.FlowModels</a>,
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels\">
+IBPSA.Fluid.BaseClasses.FlowModels</a>,
 This package contains regularized implementations of the equation
 </p>
 <p align=\"center\" style=\"font-style:italic;\">

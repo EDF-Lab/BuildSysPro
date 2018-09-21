@@ -57,6 +57,15 @@ the <code>IBPSA</code> library
 </p>
 <ul>
 <li>
+David Blum, Lawrence Berkeley National Laboratory, Berkeley, CA, USA
+</li>
+<li>
+Massimo Cimmino, Polytechnique Montreal, Canada
+</li>
+<li>
+Jianjun Hu, Lawrence Berkeley National Laboratory, Berkeley, CA, USA
+</li>
+<li>
 Marcus Fuchs, RWTH Aachen University, Germany
 </li>
 <li>

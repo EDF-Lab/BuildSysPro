@@ -29,7 +29,7 @@ partial model PartialCarnot_y
       final homotopyInitialization=homotopyInitialization,
       final Q_flow_nominal=QEva_flow_nominal));
 
-  parameter Modelica.SIunits.Power P_nominal
+  parameter Modelica.SIunits.Power P_nominal(min=0)
     "Nominal compressor power (at y=1)"
     annotation (Dialog(group="Nominal condition"));
 
@@ -166,11 +166,15 @@ that uses the leaving fluid temperature as the control signal.
 revisions="<html>
 <ul>
 <li>
+June 15, 2017, by Michael Wetter:<br/>
+Added <code>min</code> attribute to parameter <code>P_nominal</code>.
+</li>
+<li>
 January 26, 2016, by Michael Wetter:<br/>
 Implemented in the Annex 60 library the models
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Chillers.Carnot_y\">IBPSA.Fluid.Chillers.Carnot_y</a>
+<a href=\"modelica://IBPSA.Fluid.Chillers.Carnot_y\">IBPSA.Fluid.Chillers.Carnot_y</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Carnot_y\">IBPSA.Fluid.HeatPumps.Carnot_y</a>
+<a href=\"modelica://IBPSA.Fluid.HeatPumps.Carnot_y\">IBPSA.Fluid.HeatPumps.Carnot_y</a>
 and refactored these models to use the same base class.<br/>
 Implemented the removal of the flow direction dependency of
 <code>staA1</code>, <code>staB1</code>, <code>staA2</code> and <code>staB2</code> as the
@@ -225,7 +229,5 @@ March 3, 2009 by Michael Wetter:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end PartialCarnot_y;

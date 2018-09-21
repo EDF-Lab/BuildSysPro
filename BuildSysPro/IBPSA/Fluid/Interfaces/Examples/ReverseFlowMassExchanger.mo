@@ -41,8 +41,9 @@ package Medium = IBPSA.Media.Air;
     dp2_nominal=0,
     epsL=0) "Mass exchanger with reverse flow"
     annotation (Placement(transformation(extent={{-30,30},{-50,50}})));
-  IBPSA.Fluid.Sources.FixedBoundary sink2(redeclare package Medium = Medium,
-      nPorts=2) "Fluid sink" annotation (Placement(transformation(
+  IBPSA.Fluid.Sources.FixedBoundary sink2(redeclare package Medium =
+        Medium, nPorts=2) "Fluid sink" annotation (Placement(
+        transformation(
         extent={{10,-10},{-10,10}},
         rotation=180,
         origin={-152,30})));
@@ -117,9 +118,9 @@ package Medium = IBPSA.Media.Air;
                     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         origin={-150,100})));
-  IBPSA.Fluid.Sources.FixedBoundary sink1(redeclare package Medium = Medium,
-      nPorts=2) "Fluid sink" annotation (Placement(transformation(extent={{10,-10},
-            {-10,10}}, origin={40,98})));
+  IBPSA.Fluid.Sources.FixedBoundary sink1(redeclare package Medium =
+        Medium, nPorts=2) "Fluid sink" annotation (Placement(
+        transformation(extent={{10,-10},{-10,10}}, origin={40,98})));
   Sensors.SpecificEnthalpy senEnt1(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{10,140},{30,160}})));
   Sensors.Temperature senTem1(redeclare package Medium = Medium)

@@ -5,14 +5,10 @@ package Examples "Example models integrating multiple components"
 
 
 
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains advanced examples for the use of models that can be found in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid\">
+<a href=\"modelica://IBPSA.Fluid\">
 IBPSA.Fluid</a>.
 </p>
 </html>"));

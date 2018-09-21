@@ -9,7 +9,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 Documentation(info="<html>
 <p>
 This example extends from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Chillers.Examples.Carnot_y\">
+<a href=\"modelica://IBPSA.Fluid.Chillers.Examples.Carnot_y\">
 IBPSA.Fluid.Chillers.Examples.Carnot_y</a>
 but uses a part load efficiency curve that is different from <i>1</i>.
 </p>

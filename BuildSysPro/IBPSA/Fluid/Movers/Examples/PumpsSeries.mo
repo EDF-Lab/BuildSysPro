@@ -18,7 +18,8 @@ model PumpsSeries "Two flow machines in series"
     use_p_in=false,
     p(displayUnit="Pa") = 300000,
     T=293.15,
-    nPorts=1) annotation (Placement(transformation(extent={{-92,50},{-72,70}})));
+    nPorts=1)
+    annotation (Placement(transformation(extent={{-92,50},{-72,70}})));
 
   parameter Medium.ThermodynamicState state_start = Medium.setState_pTX(
       T=Medium.T_default,
@@ -44,7 +45,8 @@ model PumpsSeries "Two flow machines in series"
     use_p_in=false,
     p(displayUnit="Pa") = 300000 + 4000,
     T=293.15,
-    nPorts=1) annotation (Placement(transformation(extent={{156,50},{136,70}})));
+    nPorts=1)
+    annotation (Placement(transformation(extent={{156,50},{136,70}})));
 equation
   connect(const1.y, floMac1.y) annotation (Line(
       points={{-19,90},{-10.2,90},{-10.2,72}},

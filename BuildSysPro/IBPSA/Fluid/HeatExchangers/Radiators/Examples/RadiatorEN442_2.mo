@@ -19,8 +19,8 @@ model RadiatorEN442_2 "Test model for radiator"
     nPorts=2,
     redeclare package Medium = Medium,
     use_p_in=true,
-    T=T_a_nominal)
-    annotation (Placement(transformation(extent={{-64,-68},{-44,-48}})));
+    T=T_a_nominal) annotation (Placement(transformation(extent={{-64,-68},
+            {-44,-48}})));
   FixedResistances.PressureDrop res2(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
@@ -35,8 +35,8 @@ model RadiatorEN442_2 "Test model for radiator"
     redeclare package Medium = Medium,
     nPorts=2,
     p(displayUnit="Pa") = 300000,
-    T=T_b_nominal) "Sink"
-    annotation (Placement(transformation(extent={{90,-68},{70,-48}})));
+    T=T_b_nominal) "Sink" annotation (Placement(transformation(extent=
+           {{90,-68},{70,-48}})));
 
   IBPSA.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad1(
     redeclare package Medium = Medium,
@@ -44,7 +44,8 @@ model RadiatorEN442_2 "Test model for radiator"
     T_b_nominal=T_b_nominal,
     Q_flow_nominal=Q_flow_nominal,
     TAir_nominal=TRoo,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Radiator"
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
+    "Radiator"
     annotation (Placement(transformation(extent={{-10,-2},{10,18}})));
   IBPSA.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad2(
     redeclare package Medium = Medium,
@@ -52,8 +53,8 @@ model RadiatorEN442_2 "Test model for radiator"
     T_a_nominal=T_a_nominal,
     T_b_nominal=T_b_nominal,
     Q_flow_nominal=Q_flow_nominal,
-    TAir_nominal=TRoo) "Radiator"
-    annotation (Placement(transformation(extent={{-10,-70},{10,-50}})));
+    TAir_nominal=TRoo) "Radiator" annotation (Placement(
+        transformation(extent={{-10,-70},{10,-50}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TBCCon1(T=TRoo)
     annotation (Placement(transformation(extent={{-32,28},{-20,40}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TBCCon2(T=TRoo)

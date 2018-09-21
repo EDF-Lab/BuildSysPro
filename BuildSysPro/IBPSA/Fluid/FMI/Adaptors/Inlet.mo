@@ -16,8 +16,8 @@ model Inlet "Adaptor for connecting a fluid inlet to the FMI interface"
   IBPSA.Fluid.FMI.Interfaces.Inlet inlet(
     redeclare final package Medium = Medium,
     final allowFlowReversal=allowFlowReversal,
-    final use_p_in=use_p_in) "Fluid inlet"
-    annotation (Placement(transformation(extent={{-120,-10},{-100,10}})));
+    final use_p_in=use_p_in) "Fluid inlet" annotation (Placement(
+        transformation(extent={{-120,-10},{-100,10}})));
 
   Modelica.Fluid.Interfaces.FluidPort_b port_b(
     redeclare final package Medium=Medium) "Fluid port"
@@ -31,7 +31,7 @@ model Inlet "Adaptor for connecting a fluid inlet to the FMI interface"
         origin={0,-110})));
 protected
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package Medium = Medium)
+      package       Medium = Medium)
     "Internal connector for fluid properties for back flow";
   IBPSA.Fluid.FMI.Interfaces.PressureOutput p_in_internal
     "Internal connector for pressure";
@@ -148,17 +148,17 @@ equation
 <p>
 Model that is used to connect an input signal to a fluid port.
 The model needs to be used in conjunction with an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.OutletAdaptor\">
-IBPSA.Fluid.FMI.OutletAdaptor</a> in order for
+<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.Outlet\">
+IBPSA.Fluid.FMI.Adaptors.Outlet</a> in order for
 fluid mass flow rate and pressure to be properly assigned to
 the acausal fluid models.
 </p>
 <p>
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.PartialTwoPortComponent\">
-IBPSA.Fluid.FMI.ExportContainers.PartialTwoPortComponent</a>
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort\">
+IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort</a>
 or
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ResistanceVolume\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ResistanceVolume\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ResistanceVolume</a>
 for how to use this model.
 </p>

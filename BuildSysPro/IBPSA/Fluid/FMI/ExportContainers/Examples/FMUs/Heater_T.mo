@@ -1,9 +1,9 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block Heater_T
   "Declaration of an FMU that exports an ideal heater or cooler with prescribed outlet temperature"
-   extends IBPSA.Fluid.FMI.ExportContainers.ReplaceableTwoPort(redeclare
-      replaceable package Medium = IBPSA.Media.Air, redeclare final
-      IBPSA.Fluid.HeatExchangers.Heater_T com(
+   extends IBPSA.Fluid.FMI.ExportContainers.ReplaceableTwoPort(
+      redeclare replaceable package Medium = IBPSA.Media.Air,
+      redeclare final IBPSA.Fluid.HeatExchangers.Heater_T com(
       final m_flow_nominal=m_flow_nominal,
       final dp_nominal=if use_p_in then dp_nominal else 0,
       final QMax_flow=QMax_flow,
@@ -40,7 +40,7 @@ equation
 This example demonstrates how to export an FMU with a heater
 that takes as an input signal the leaving fluid temperature.
 The FMU has an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.PrescribedOutlet</a>.
 </p>
 </html>", revisions="<html>

@@ -82,7 +82,7 @@ protected
     annotation (Documentation(info="<html>
 <p>
 Plant model for
-<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.Examples.LimPIDWithReset\">
+<a href=\"modelica://IBPSA.Controls.Continuous.Examples.LimPIDWithReset\">
 IBPSA.Controls.Continuous.Examples.LimPIDWithReset</a>.
 consisting of a simple heat transfer model.
 </p>
@@ -132,8 +132,8 @@ First implementation.
       yMin=0,
       controllerType=Modelica.Blocks.Types.SimpleController.PI,
       Ti=1,
-      k=10) "PI controller"
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+      k=10) "PI controller" annotation (Placement(transformation(extent=
+             {{-10,-10},{10,10}})));
     Modelica.Blocks.Math.Gain gain(k=5000)
                                           "Gain for heat flow rate"
       annotation (Placement(transformation(extent={{30,-10},{50,10}})));
@@ -158,7 +158,7 @@ First implementation.
     annotation (Documentation(info="<html>
 <p>
 Controller model for
-<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.Examples.LimPIDWithReset\">
+<a href=\"modelica://IBPSA.Controls.Continuous.Examples.LimPIDWithReset\">
 IBPSA.Controls.Continuous.Examples.LimPIDWithReset</a>.
 </p>
 <p>

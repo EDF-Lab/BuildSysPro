@@ -52,8 +52,9 @@ initial equation
 equation
   if approximateWetBulb then
     TDryBul_degC = TDryBul - 273.15;
-    rh_per = 100*p/IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(
-      TDryBul)*Xi[iWat]/(Xi[iWat] + IBPSA.Utilities.Psychrometrics.Constants.k_mair
+    rh_per = 100*p/
+      IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(TDryBul)
+      *Xi[iWat]/(Xi[iWat] + IBPSA.Utilities.Psychrometrics.Constants.k_mair
       *(1 - Xi[iWat]));
     TWetBul      = 273.15 + TDryBul_degC
        * Modelica.Math.atan(0.151977 * sqrt(rh_per + 8.313659))
@@ -65,16 +66,19 @@ equation
   else
     XiSatRefIn=(1-Xi[iWat])*XiSat/(1-XiSat);
     XiSat = IBPSA.Utilities.Psychrometrics.Functions.X_pSatpphi(
-      pSat=IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
-        TWetBul),
-      p=p,
-      phi=1);
-    (TWetBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 - Xi[iWat])*
-      IBPSA.Utilities.Psychrometrics.Constants.cpAir + XiSatRefIn*IBPSA.Utilities.Psychrometrics.Constants.cpSte
-       + (Xi[iWat] - XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.cpWatLiq)
-      = (TDryBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 - Xi[
-      iWat])*IBPSA.Utilities.Psychrometrics.Constants.cpAir + Xi[iWat]*IBPSA.Utilities.Psychrometrics.Constants.cpSte)
-       + (Xi[iWat] - XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.h_fg;
+            pSat=
+        IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
+         TWetBul),
+            p=p,
+            phi=1);
+    (TWetBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 - Xi[
+      iWat])*IBPSA.Utilities.Psychrometrics.Constants.cpAir + XiSatRefIn*
+      IBPSA.Utilities.Psychrometrics.Constants.cpSte + (Xi[iWat] -
+      XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.cpWatLiq) = (
+      TDryBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 - Xi[
+      iWat])*IBPSA.Utilities.Psychrometrics.Constants.cpAir + Xi[iWat]*
+      IBPSA.Utilities.Psychrometrics.Constants.cpSte) + (Xi[iWat] -
+      XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.h_fg;
     TDryBul_degC = 0;
     rh_per       = 0;
   end if;
@@ -152,7 +156,7 @@ See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/474\">#474</a> for 
 </p>
 <p>
 For a model that takes the relative humidity instead of the mass fraction as an input, see
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi\">
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi\">
 IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi</a>.
 </p>
 <h4>References</h4>
@@ -200,7 +204,7 @@ I do not see any negative impact from removing this test.
 <li>
 July 24, 2014 by Michael Wetter:<br/>
 Revised computation of <code>rh_per</code> to use
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.smoothMin\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.smoothMin\">
 IBPSA.Utilities.Math.Functions.smoothMin</a> rather
 than <code>min</code>.
 </li>

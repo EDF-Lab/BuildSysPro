@@ -30,8 +30,8 @@ model FlowJunctionSteadyStateNoPressureDrop
     redeclare package Medium = Medium,
     T=273.15 + 30,
     nPorts=1,
-    use_m_flow_in=true) "Mass flow boundary condition"
-    annotation (Placement(transformation(extent={{-60,-70},{-40,-50}})));
+    use_m_flow_in=true) "Mass flow boundary condition" annotation (
+      Placement(transformation(extent={{-60,-70},{-40,-50}})));
 
   Modelica.Blocks.Sources.Ramp m1_flow(
     duration=20,
@@ -47,16 +47,16 @@ model FlowJunctionSteadyStateNoPressureDrop
     offset=1)     "Ramp mass flow signal"
     annotation (Placement(transformation(extent={{-92,-62},{-72,-42}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
-        Medium, m_flow_nominal=1) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package
+      Medium = Medium, m_flow_nominal=1) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package Medium =
-        Medium, m_flow_nominal=2) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package
+      Medium = Medium, m_flow_nominal=2) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package Medium =
-        Medium, m_flow_nominal=3) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package
+      Medium = Medium, m_flow_nominal=3) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-70},{0,-50}})));
 equation
   connect(bou3.ports[1], senTem3.port_a) annotation (Line(points={{-40,-60},{-40,
@@ -72,9 +72,9 @@ equation
   connect(senTem2.port_b, bou2.ports[1])
     annotation (Line(points={{60,0},{70,0}},        color={0,127,255}));
   connect(m1_flow.y, bou1.m_flow_in)
-    annotation (Line(points={{-69,8},{-60,8}}, color={0,0,127}));
+    annotation (Line(points={{-69,8},{-62,8}}, color={0,0,127}));
   connect(m3_flow.y, bou3.m_flow_in)
-    annotation (Line(points={{-71,-52},{-60,-52}}, color={0,0,127}));
+    annotation (Line(points={{-71,-52},{-62,-52}}, color={0,0,127}));
   annotation (experiment(Tolerance=1e-6, StopTime=100),
 __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FixedResistances/Validation/FlowJunctionSteadyStateNoPressureDrop.mos"
         "Simulate and plot"),

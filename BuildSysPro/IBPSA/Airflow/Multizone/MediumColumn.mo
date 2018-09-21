@@ -63,30 +63,30 @@ equation
   if (densitySelection == IBPSA.Airflow.Multizone.Types.densitySelection.fromTop) then
       Xi = inStream(port_a.Xi_outflow);
     rho = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-      p=port_a.p,
-      T=Medium.temperature(Medium.setState_phX(
-        port_a.p,
-        inStream(port_a.h_outflow),
-        Xi)),
-      X_w=if Medium.nXi == 0 then 0 else Xi[1]);
+            p=port_a.p,
+            T=Medium.temperature(Medium.setState_phX(
+              port_a.p,
+              inStream(port_a.h_outflow),
+              Xi)),
+            X_w=if Medium.nXi == 0 then 0 else Xi[1]);
   elseif (densitySelection == IBPSA.Airflow.Multizone.Types.densitySelection.fromBottom) then
       Xi = inStream(port_b.Xi_outflow);
     rho = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-      p=port_b.p,
-      T=Medium.temperature(Medium.setState_phX(
-        port_b.p,
-        inStream(port_b.h_outflow),
-        Xi)),
-      X_w=if Medium.nXi == 0 then 0 else Xi[1]);
+            p=port_b.p,
+            T=Medium.temperature(Medium.setState_phX(
+              port_b.p,
+              inStream(port_b.h_outflow),
+              Xi)),
+            X_w=if Medium.nXi == 0 then 0 else Xi[1]);
    else
       Xi = actualStream(port_a.Xi_outflow);
     rho = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-      p=port_a.p,
-      T=Medium.temperature(Medium.setState_phX(
-        port_a.p,
-        actualStream(port_a.h_outflow),
-        Xi)),
-      X_w=if Medium.nXi == 0 then 0 else Xi[1]);
+            p=port_a.p,
+            T=Medium.temperature(Medium.setState_phX(
+              port_a.p,
+              actualStream(port_a.h_outflow),
+              Xi)),
+            X_w=if Medium.nXi == 0 then 0 else Xi[1]);
   end if;
 
   V_flow = m_flow/Medium.density(sta_a);
@@ -207,7 +207,7 @@ at the top of the column.
 </p>
 <p>
 For a steady-state model, use
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.MediumColumnDynamic\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.MediumColumnDynamic\">
 IBPSA.Airflow.Multizone.MediumColumnDynamic</a> instead of this model.
 </p>
 </html>",
@@ -229,11 +229,11 @@ for <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/404\">#404</a>.
 <li>
 February 24, 2015 by Michael Wetter:<br/>
 Changed model to use
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
 IBPSA.Utilities.Psychrometrics.Functions.density_pTX</a>
 for the density computation
 as
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Air.density\">
+<a href=\"modelica://IBPSA.Media.Air.density\">
 IBPSA.Media.Air.density</a>
 does not depend on temperature.
 </li>

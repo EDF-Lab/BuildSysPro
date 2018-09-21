@@ -419,7 +419,9 @@ else
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,120}}),
 graphics={
-        Bitmap(extent={{-56,62},{56,-76}}, fileName="modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Mozart/Chambre1.png"),
+        Bitmap(extent={{56,69},{-56,-69}}, fileName="modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Mozart/Chambre1.png",
+          origin={0,-7},
+          rotation=180),
         Ellipse(extent={{14,56},{42,28}},   lineColor={0,0,0}),
         Polygon(
           points={{-4,-18},{4,-18},{0,-30},{-4,-18}},
@@ -499,7 +501,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

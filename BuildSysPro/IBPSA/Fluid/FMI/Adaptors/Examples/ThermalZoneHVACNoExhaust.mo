@@ -5,8 +5,8 @@ model ThermalZoneHVACNoExhaust
 
   replaceable package MediumA = IBPSA.Media.Air "Medium for air";
 
-  IBPSA.Fluid.FMI.Adaptors.HVAC hvacAda(redeclare final package Medium =
-        MediumA, nPorts=2)
+  IBPSA.Fluid.FMI.Adaptors.HVAC hvacAda(redeclare final package
+      Medium = MediumA, nPorts=2)
     "Adaptor for an HVAC system that is exposed through an FMI interface"
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
 
@@ -18,8 +18,8 @@ model ThermalZoneHVACNoExhaust
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal=VRoo*2*1.2/3600
     "Nominal mass flow rate";
 
-  IBPSA.Fluid.FMI.Adaptors.ThermalZone con(redeclare package Medium = MediumA,
-      nPorts=2) "Adaptor for thermal zone"
+  IBPSA.Fluid.FMI.Adaptors.ThermalZone con(redeclare package Medium =
+        MediumA, nPorts=2) "Adaptor for thermal zone"
     annotation (Placement(transformation(extent={{80,0},{100,20}})));
   Modelica.Blocks.Sources.Pulse TSet(
     amplitude=4,
@@ -93,7 +93,6 @@ model ThermalZoneHVACNoExhaust
     "Outdoor temperature used for the HVAC model" annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
-        rotation=0,
         origin={-190,-24})));
 equation
   connect(mov.port_b,hea. port_a) annotation (Line(points={{-70,10},{-70,10},{-40,
@@ -171,10 +170,10 @@ also implemented in Modelica)")}),
 <p>
 This example demonstrates how to
 use the adaptors
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.HVAC\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.HVAC\">
 IBPSA.Fluid.FMI.Adaptors.HVAC</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.ThermalZone\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.ThermalZone\">
 IBPSA.Fluid.FMI.Adaptors.ThermalZone</a>
 </p>
 <p>

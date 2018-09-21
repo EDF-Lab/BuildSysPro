@@ -33,19 +33,21 @@ model Carnot_TCon
     nPorts=1,
     redeclare package Medium = Medium1,
     m_flow=m1_flow_nominal,
-    T=293.15) annotation (Placement(transformation(extent={{-60,-4},{-40,16}})));
+    T=293.15)
+    annotation (Placement(transformation(extent={{-60,-4},{-40,16}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou2(
     nPorts=1,
     redeclare package Medium = Medium2,
     use_T_in=false,
     use_m_flow_in=true,
-    T=288.15) annotation (Placement(transformation(extent={{60,-16},{40,4}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium = Medium1,
-      nPorts=1) annotation (Placement(transformation(extent={{10,-10},{-10,10}},
-          origin={50,30})));
-  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package Medium =
-        Medium2) annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-          origin={-50,-30})));
+    T=288.15)
+    annotation (Placement(transformation(extent={{60,-16},{40,4}})));
+  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
+        Medium1, nPorts=1) annotation (Placement(transformation(extent={
+            {10,-10},{-10,10}}, origin={50,30})));
+  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package
+      Medium = Medium2) annotation (Placement(transformation(extent={{-10,
+            -10},{10,10}}, origin={-50,-30})));
   Modelica.Blocks.Sources.Ramp TConLvg(
     duration=60,
     startTime=1800,
@@ -86,7 +88,7 @@ equation
           -20,9},{-12,9}},
                      color={0,0,127}));
   connect(mEva_flow.y, sou2.m_flow_in) annotation (Line(points={{55,-78},{74,
-          -78},{74,-10},{74,2},{60,2}}, color={0,0,127}));
+          -78},{74,-10},{74,2},{62,2}}, color={0,0,127}));
   connect(QEva_flow.u1, heaPum.QCon_flow) annotation (Line(points={{30,-32},{20,
           -32},{20,9},{11,9}}, color={0,0,127}));
   connect(QEva_flow.u2, heaPum.P) annotation (Line(points={{30,-44},{16,-44},{16,

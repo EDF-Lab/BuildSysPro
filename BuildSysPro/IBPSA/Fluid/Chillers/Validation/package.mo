@@ -9,9 +9,6 @@ package Validation "Collection of models that validate the chiller models"
 
 
 
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains models that validate the chiller models.

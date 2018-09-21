@@ -11,7 +11,8 @@ initial equation
   y=y_comp;
 equation
   p_w =  611 + (7383-661)/2 + (7383-661)/2 * time^3;
-  y = IBPSA.Utilities.Psychrometrics.Functions.TDewPoi_pW_amb(p_w=p_w);
+  y = IBPSA.Utilities.Psychrometrics.Functions.TDewPoi_pW_amb(p_w=
+    p_w);
   der(y) = der(y_comp);
   err = y-y_comp;
   assert(abs(err) < 1E-2, "Derivative implementation has an error or solver tolerance is too low.");

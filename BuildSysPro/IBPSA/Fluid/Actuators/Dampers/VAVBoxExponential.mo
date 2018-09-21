@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.Actuators.Dampers;
 model VAVBoxExponential
   "VAV box with a fixed resistance plus a damper model withe exponential characteristics"
-  extends IBPSA.Fluid.Actuators.BaseClasses.PartialDamperExponential(dp(nominal=
-         dp_nominal), final kFixed=sqrt(kResSqu));
+  extends IBPSA.Fluid.Actuators.BaseClasses.PartialDamperExponential(dp(
+        nominal=dp_nominal), final kFixed=sqrt(kResSqu));
   parameter Boolean dp_nominalIncludesDamper = true
     "set to true if dp_nominal includes the pressure loss of the open damper"
                                               annotation(Dialog(group = "Nominal condition"));
@@ -54,15 +54,17 @@ for negative numbers during the solver iterations.
 <li>
 June 10, 2008 by Michael Wetter:<br/>
 Introduced new partial base class,
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialDamperExponential\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialDamperExponential\">
 PartialDamperExponential</a>.
 </li>
 <li>
 September 11, 2007 by Michael Wetter:<br/>
 Redefined <code>kRes</code>, now the pressure drop of the fully open damper is subtracted from the fixed resistance.
+</li>
 <li>
 February 24, 2010 by Michael Wetter:<br/>
 Added parameter <code>dp_nominalIncludesDamper</code>.
+</li>
 <li>
 July 27, 2007 by Michael Wetter:<br/>
 First implementation.

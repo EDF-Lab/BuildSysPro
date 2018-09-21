@@ -15,7 +15,7 @@ from weather data.
 </p>
 <p>
 To use this model, connect weather data from
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
+<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
 IBPSA.BoundaryConditions.WeatherData.ReaderTMY3</a> to the port
 <code>weaBus</code> of this model.
 This will cause the medium of this model to be

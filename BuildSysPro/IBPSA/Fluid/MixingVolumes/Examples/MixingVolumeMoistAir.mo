@@ -28,8 +28,9 @@ model MixingVolumeMoistAir "Test model for mixing volume with moist air input"
   IBPSA.Utilities.Psychrometrics.pW_X humRat(use_p_in=false)
     "Conversion from humidity ratio to partial water vapor pressure"
     annotation (Placement(transformation(extent={{-20,-120},{0,-100}})));
-  IBPSA.Utilities.Psychrometrics.TDewPoi_pW dewPoi "Dew point temperature"
-    annotation (Placement(transformation(extent={{12,-120},{32,-100}})));
+  IBPSA.Utilities.Psychrometrics.TDewPoi_pW dewPoi
+    "Dew point temperature" annotation (Placement(transformation(extent=
+           {{12,-120},{32,-100}})));
   Modelica.Thermal.HeatTransfer.Sensors.HeatFlowSensor heatFlowSensor
     annotation (Placement(transformation(extent={{64,120},{84,140}})));
   Modelica.Blocks.Continuous.Integrator QSen "Sensible heat transfer"
@@ -56,8 +57,8 @@ model MixingVolumeMoistAir "Test model for mixing volume with moist air input"
     Td=1,
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     wd=0,
-    yMin=-1000)
-    annotation (Placement(transformation(extent={{-40,120},{-20,140}})));
+    yMin=-1000) annotation (Placement(transformation(extent={{-40,120},{
+            -20,140}})));
   IBPSA.Controls.Continuous.LimPID PI1(
     Ni=0.1,
     Ti=1,
@@ -66,9 +67,11 @@ model MixingVolumeMoistAir "Test model for mixing volume with moist air input"
     yMax=1,
     yMin=-1,
     Td=1) annotation (Placement(transformation(extent={{-50,-60},{-30,-40}})));
-  IBPSA.Fluid.Sensors.MassFlowRate mIn_flow(redeclare package Medium = Medium)
+  IBPSA.Fluid.Sensors.MassFlowRate mIn_flow(redeclare package Medium =
+        Medium)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-  IBPSA.Fluid.Sensors.MassFlowRate mOut_flow(redeclare package Medium = Medium)
+  IBPSA.Fluid.Sensors.MassFlowRate mOut_flow(redeclare package Medium =
+        Medium)
     annotation (Placement(transformation(extent={{84,-10},{104,10}})));
   Modelica.Blocks.Math.Add dM_flow(k2=-1) annotation (Placement(transformation(
           extent={{140,20},{160,40}})));
@@ -167,7 +170,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
     Documentation(info="<html>
 <p>
 This model tests
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir\">
 IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir</a>.
 After an initial transient, the temperature and humidity of the volume
 stabilizes.
@@ -183,7 +186,7 @@ This is for issue
 <li>
 February 11, 2014 by Michael Wetter:<br/>
 Changed
-<code>HWat_flow(y=vol1.HWat_flow</code> to
+<code>HWat_flow(y=vol1.HWat_flow)</code> to
 <code>QLat_flow(y=vol1.QLat_flow.y)</code>
 and
 <code>QWat</code> to <code>QLat</code>.

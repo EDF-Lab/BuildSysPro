@@ -87,7 +87,7 @@ For a more efficient implementation that approximates a motor, set in
 the valve or damper model the parameter <code>use_inputFilter=true</code>
 instead of using this motor model.
 See also
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.UsersGuide\">
 IBPSA.Fluid.Actuators.UsersGuide</a>.
 </p>
 </html>", revisions="<html>
@@ -102,7 +102,7 @@ This is for
 September 8, 2008 by Michael Wetter:<br/>
 Added to instance <code>int</code> the attribute
 <code>y(stateSelect=StateSelect.always)</code>. Without this attribute,
-the model <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.TwoWayValves\">
+the model <a href=\"modelica://IBPSA.Fluid.Examples.TwoWayValves\">
 IBPSA.Fluid.Examples.TwoWayValves</a> sets <code>y=3</code>
 which is consistent with this model.
 </li>

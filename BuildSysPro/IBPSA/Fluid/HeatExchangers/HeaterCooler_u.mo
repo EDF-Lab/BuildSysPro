@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.HeatExchangers;
 model HeaterCooler_u "Heater or cooler with prescribed heat flow rate"
   extends IBPSA.Fluid.Interfaces.TwoPortHeatMassExchanger(redeclare final
-      IBPSA.Fluid.MixingVolumes.MixingVolume vol(final prescribedHeatFlowRate=
-          true));
+            IBPSA.Fluid.MixingVolumes.MixingVolume vol(final
+        prescribedHeatFlowRate=true));
 
   parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal
     "Heat flow rate at u=1, positive for heating";
@@ -97,7 +97,7 @@ Set <code>dp_nominal = 0</code> to disable the flow friction calculation.
 <p>
 For a model that uses as an input the fluid temperature leaving at
 <code>port_b</code>, use
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.PrescribedOutlet</a>
 </p>
 <h4>Limitations</h4>
@@ -110,7 +110,7 @@ will not change.
 <p>
 The model has been validated against the analytical solution in
 the example
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.HeaterCooler_u\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.Validation.HeaterCooler_u</a>.
 </p>
 </html>",
@@ -145,7 +145,7 @@ Corrected typo in documentation.
 November 12, 2014, by Michael Wetter:<br/>
 Added output signal <code>Q_flow</code> so that it has
 the same output ports as
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet</a>.
 </li>
 <li>

@@ -44,7 +44,7 @@ which the air temperature is above the set point.
 </p>
 <p>
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Examples.AirHeater_u\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Examples.AirHeater_u\">
 IBPSA.Fluid.HeatExchangers.Examples.AirHeater_u</a>
 for a model that takes the heating power as an input.
 </p>

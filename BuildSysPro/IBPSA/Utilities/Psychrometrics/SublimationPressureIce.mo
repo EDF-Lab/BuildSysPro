@@ -13,7 +13,8 @@ block SublimationPressureIce "Saturation pressure as a function of temperature"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
 equation
-  pSat = IBPSA.Utilities.Psychrometrics.Functions.sublimationPressureIce(TSat);
+  pSat = IBPSA.Utilities.Psychrometrics.Functions.sublimationPressureIce(
+    TSat);
     annotation (
     defaultComponentName="pSat",
     Documentation(info="<html>

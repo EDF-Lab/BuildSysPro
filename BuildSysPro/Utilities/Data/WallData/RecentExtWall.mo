@@ -1,17 +1,17 @@
 within BuildSysPro.Utilities.Data.WallData;
 record RecentExtWall =
-   BuildSysPro.Utilities.Icons.ExtWall (
+  BuildSysPro.Utilities.Icons.ExtWall (
     n=3,
     m={4,3,1},
     e={0.2,0.15,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.Concrete(),
-                             BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene30(),
-        BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
+         BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene30(),
+         BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
     positionIsolant={0,1,0}) "Recent external wall - 3 layers"    annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

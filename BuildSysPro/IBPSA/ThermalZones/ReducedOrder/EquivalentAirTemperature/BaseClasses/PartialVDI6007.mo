@@ -127,9 +127,9 @@ equation
   <code>alphaRad</code>. Deleted
   <code>alphaRadWin</code>.<br/>
   Moved calculations from
-  <a href=\"modelica://BuildSysPro.IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature.VDI6007\">
+  <a href=\"modelica://IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature.VDI6007\">
   IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature.VDI6007</a> and
-  <a href=\"modelica://BuildSysPro.IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature.VDI6007WithWindow\">
+  <a href=\"modelica://IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature.VDI6007WithWindow\">
   IBPSA.ThermalZones.ReducedOrder.EquivalentAirTemperature.VDI6007WithWindow</a> to here.
   </li>
   <li>

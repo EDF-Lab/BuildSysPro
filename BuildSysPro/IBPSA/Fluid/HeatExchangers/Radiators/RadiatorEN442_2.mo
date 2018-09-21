@@ -1,16 +1,17 @@
 within BuildSysPro.IBPSA.Fluid.HeatExchangers.Radiators;
 model RadiatorEN442_2 "Dynamic radiator for space heating"
    extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(show_T=true,
-      m_flow_nominal=abs(Q_flow_nominal/cp_nominal/(T_a_nominal - T_b_nominal)));
+      m_flow_nominal=abs(Q_flow_nominal/cp_nominal/(T_a_nominal -
+        T_b_nominal)));
    extends IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations(
     final X_start=Medium.X_default,
     final C_start=fill(0, Medium.nC),
     final C_nominal=fill(1E-2, Medium.nC),
     final mSenFac=1 + 500*mDry/(VWat*cp_nominal*Medium.density(
         Medium.setState_pTX(
-        Medium.p_default,
-        Medium.T_default,
-        Medium.X_default))));
+                Medium.p_default,
+                Medium.T_default,
+                Medium.X_default))));
 
   parameter Integer nEle(min=1) = 5
     "Number of elements used in the discretization";
@@ -211,15 +212,14 @@ initial equation
     // Use difference, TWat_nominal[i] - TRad/Air_nominal, to avoid larger system of equations
     QEle_flow_nominal[i] = k*UAEle*(fraRad*
       IBPSA.Utilities.Math.Functions.powerLinearized(
-      x=k*TWat_nominal[i] - TRad_nominal,
-      n=n,
-      x0=0.1*k*(T_b_nominal - TRad_nominal)) + (1 - fraRad)*
+              x=k*TWat_nominal[i] - TRad_nominal,
+              n=n,
+              x0=0.1*k*(T_b_nominal - TRad_nominal)) + (1 - fraRad)*
       IBPSA.Utilities.Math.Functions.powerLinearized(
-      x=k*TWat_nominal[i] - TAir_nominal,
-      n=n,
-      x0=0.1*k*(T_b_nominal - TAir_nominal)));
+              x=k*TWat_nominal[i] - TAir_nominal,
+              n=n,
+              x0=0.1*k*(T_b_nominal - TAir_nominal)));
    end for;
-
 
 equation
   connect(preCon.port, vol.heatPort)       annotation (Line(
@@ -429,7 +429,7 @@ declarations in the <code>equation</code> section.
 <li>
 April 4, 2011 by Michael Wetter:<br/>
 Changed the implementation to use
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.regNonZeroPower\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.regNonZeroPower\">
 IBPSA.Utilities.Math.Functions.regNonZeroPower</a>.
 This allows formulating the model without any non-differentiable function
 inside the equation section.

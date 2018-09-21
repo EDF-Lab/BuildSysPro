@@ -75,15 +75,15 @@ record BuildingType "List of Matisse collective housing construction dates"
 
 // Thermal bridges
   parameter Real ValeursK[8]
-    "K coefficient for each linear heat loss relating to a thermal bridge in W/m²K"                    annotation(Dialog(tab="Thermal bridges"));
+    "K coefficient for each linear heat loss relating to a thermal bridge in [W/(m.K)]"                    annotation(Dialog(tab="Thermal bridges"));
   parameter Real TauPonts[8] "Tau reduction coefficient of each thermal bridge"
                                                        annotation(Dialog(tab="Thermal bridges"));
   parameter Real ValeursKPlafond[3]
-    "K coefficient for each linear heat loss relating to a thermal bridge on ceiling in W/m²K"         annotation(Dialog(tab="Thermal bridges"));
+    "K coefficient for each linear heat loss relating to a thermal bridge on ceiling in [W/(m.K)]"         annotation(Dialog(tab="Thermal bridges"));
   parameter Real TauPontsPlafond[3]
     "Tau reduction coefficient of each thermal bridge on ceiling" annotation(Dialog(tab="Thermal bridges"));
   parameter Real ValeursKPlancher[3]
-    "K coefficient for each linear heat loss relating to a thermal bridge on floor in W/m²K"           annotation(Dialog(tab="Thermal bridges"));
+    "K coefficient for each linear heat loss relating to a thermal bridge on floor in [W/(m.K)]"           annotation(Dialog(tab="Thermal bridges"));
   parameter Real TauPontsPlancher[3]
     "Tau reduction coefficient of each thermal bridge on floor" annotation(Dialog(tab="Thermal bridges"));
 
@@ -121,7 +121,7 @@ record BuildingType "List of Matisse collective housing construction dates"
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",

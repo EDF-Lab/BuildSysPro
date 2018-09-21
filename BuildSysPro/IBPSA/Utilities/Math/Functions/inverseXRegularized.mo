@@ -17,18 +17,18 @@ function inverseXRegularized
  output Real y "Function value";
 
 algorithm
-  y := if (x > delta or x < -delta) then 1/x elseif (x < delta/2 and x > -delta
-    /2) then x/(delta*delta) else
+  y := if (x > delta or x < -delta) then 1/x elseif (x < delta/2 and x >
+    -delta/2) then x/(delta*delta) else
     IBPSA.Utilities.Math.Functions.BaseClasses.smoothTransition(
-    x=x,
-    delta=delta,
-    deltaInv=deltaInv,
-    a=a,
-    b=b,
-    c=c,
-    d=d,
-    e=e,
-    f=f);
+            x=x,
+            delta=delta,
+            deltaInv=deltaInv,
+            a=a,
+            b=b,
+            c=c,
+            d=d,
+            e=e,
+            f=f);
 
   annotation (smoothOrder=2,
   derivative(order=1,
@@ -50,7 +50,7 @@ real line.
 </p>
 <p>
 See the plot of
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized\">
 IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized</a>
 for the graph.
 </p>
@@ -72,7 +72,7 @@ body of the function. However, assigning the values is optional
 as otherwise, at the expense of efficiency, the values will be
 computed each time the function is invoked.
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized\">
 IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized</a>
 for how to efficiently call this function.
 </p>

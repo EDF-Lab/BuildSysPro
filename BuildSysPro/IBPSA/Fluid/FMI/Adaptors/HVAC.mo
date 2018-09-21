@@ -45,7 +45,7 @@ model HVAC
         rotation=90,
         origin={0,-120})));
   Modelica.Blocks.Interfaces.RealOutput CZon[nPorts, Medium.nC](
-    each final quantity=fill(Medium.extraPropertiesNames, nPorts))
+    final quantity=fill(Medium.extraPropertiesNames, nPorts))
     "Trace substances of the backward flowing medium in the connector outlet"
     annotation (Placement(transformation(extent={{20,20},{-20,-20}},
         rotation=90,
@@ -67,7 +67,7 @@ protected
     annotation (Placement(transformation(extent={{0,-10},{-20,10}})));
 
   IBPSA.Fluid.FMI.Conversion.AirToOutlet con[nPorts](redeclare each final
-      package Medium = Medium, each final allowFlowReversal=true)
+      package       Medium = Medium, each final allowFlowReversal=true)
     "Converter between the different connectors"
     annotation (Placement(transformation(extent={{60,60},{80,80}})));
 
@@ -76,8 +76,8 @@ protected
     each allowFlowReversal=true) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
 
-  IBPSA.Fluid.FMI.BaseClasses.X_w_toX x_w_toX(redeclare final package Medium =
-        Medium) if Medium.nXi > 0 "Conversion from X_w to X"
+  IBPSA.Fluid.FMI.BaseClasses.X_w_toX x_w_toX(redeclare final package
+      Medium = Medium) if Medium.nXi > 0 "Conversion from X_w to X"
     annotation (Placement(transformation(extent={{40,-40},{20,-20}})));
 
   Modelica.Blocks.Sources.RealExpression hSup[nPorts](
@@ -153,7 +153,7 @@ equation
   connect(hSup.y, con.h) annotation (Line(points={{-19,60},{20,60},{20,74},{58,74}},
         color={0,0,127}));
   for i in 1:nPorts loop
-   connect(XiSup[i].y, con[i].Xi) annotation (Line(points={{-19,40},{4,40},{28,40},{28,
+    connect(XiSup[i].y, con[i].Xi) annotation (Line(points={{-19,40},{4,40},{28,40},{28,
           66},{58,66}}, color={0,0,127}));
     connect(CSup[i].y, con[i].C) annotation (Line(points={{-19,20},{32,20},{32,62},
             {58,62}}, color={0,0,127}));
@@ -168,8 +168,9 @@ equation
           -30},{42,-30}},        color={0,0,127}));
   connect(x_w_toX.X, bou.X_in) annotation (Line(points={{18,-30},{12,-30},{12,-4},
           {2,-4}},          color={0,0,127}));
-  connect(con[1].CZon, bou.C_in) annotation (Line(points={{76,58},{76,58},{76,10},
-          {76,-8},{0,-8}},  color={0,0,127}));
+  connect(con[1].CZon, bou.C_in) annotation (Line(points={{76,58},{76,58},{76,
+          10},{76,-8},{2,-8}},
+                            color={0,0,127}));
   connect(con.TAirZon, TAirZon) annotation (Line(points={{64,58},{64,-80},{-60,-80},
           {-60,-120}}, color={0,0,127}));
   connect(con.X_wZon, X_wZon) annotation (Line(points={{70,58},{70,58},{70,4},{70,
@@ -306,7 +307,7 @@ of all fluid connections to <code>ports</code> to be equal.
 The reason is that setting a pressure can lead to non-physical system models,
 for example if a mass flow rate is imposed and the HVAC system is connected
 to a model that sets a pressure boundary condition such as
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Outside\">
+<a href=\"modelica://IBPSA.Fluid.Sources.Outside\">
 IBPSA.Fluid.Sources.Outside</a>.
 Also, setting a pressure would make it impossible to use multiple instances
 of this model (one for each thermal zone) and build in Modelica an airflow network
@@ -320,12 +321,16 @@ in models that are connected to <code>ports</code>.
 <h4>Typical use and important parameters</h4>
 <p>
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
 IBPSA.Fluid.FMI.ExportContainers.HVACZone</a>
 for a model that uses this model.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+September 13, 2017, by Michael Wetter:<br/>
+Removed erroneous <code>each</code>.
+</li>
 <li>
 October 4, 2016, by Michael Wetter:<br/>
 Corrected assignment of <code>quantity</code> in <code>CZon</code>.

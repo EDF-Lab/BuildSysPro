@@ -31,36 +31,6 @@ package Sensors "Package with sensor models"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 annotation (preferredView="info",
 Documentation(info="<html>
 <p>
@@ -81,6 +51,7 @@ library.
     <li>flow sensors based on Modelica.Fluid.Interfaces.PartialTwoPort</li>
     <li>adapted documentation to stream connectors, i.e. less need for two port sensors</li>
     </ul>
+</li>
 <li><i>4 Dec 2008</i>
     by Michael Wetter<br/>
        included sensors for trace substance</li>

@@ -45,10 +45,10 @@ equation
   // orifice equation
   for i in 1:nCom loop
     dV_flow[i] = IBPSA.Airflow.Multizone.BaseClasses.powerLaw(
-      k=kVal,
-      dp=dpAB[i],
-      m=m,
-      dp_turbulent=dp_turbulent);
+            k=kVal,
+            dp=dpAB[i],
+            m=m,
+            dp_turbulent=dp_turbulent);
   end for;
 
   annotation (Icon(graphics={
@@ -91,7 +91,7 @@ The door can be either open or closed, depending on the input signal
 Set <i>y=0</i> if the door is closed, and <i>y=1</i>
 if the door is open.
 Use the model
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.DoorDiscretizedOpen\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.DoorDiscretizedOpen\">
 IBPSA.Airflow.Multizone.DoorDiscretizedOpen</a>
 for a door that is always closed.
 </p>
@@ -121,7 +121,7 @@ Renamed protected parameters for consistency with the naming conventions.
 </li>
 <li><i>August 12, 2011</i> by Michael Wetter:<br/>
        Changed model to use the new function
-       <a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM\">
+       <a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM\">
        Buildings.Airflow.Multizone.BaseClasses.powerLawFixedM</a>.
 </li>
 <li><i>July 20, 2010</i> by Michael Wetter:<br/>

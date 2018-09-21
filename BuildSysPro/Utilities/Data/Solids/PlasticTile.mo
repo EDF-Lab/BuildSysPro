@@ -1,12 +1,12 @@
 ﻿within BuildSysPro.Utilities.Data.Solids;
-record PlasticTile =     BuildSysPro.Utilities.Records.GenericSolid (
+record PlasticTile = BuildSysPro.Utilities.Records.GenericSolid (
     lambda=0.2,
     rho=1000,
     c=1000) "Plastic tile (standard ISO 10456)" annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

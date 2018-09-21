@@ -25,9 +25,9 @@ block Phi_pTX
 
 equation
   phi = IBPSA.Utilities.Psychrometrics.Functions.phi_pTX(
-    p=p,
-    T=T,
-    X_w=X_w);
+          p=p,
+          T=T,
+          X_w=X_w);
 
   annotation (
   defaultComponentName="phi",

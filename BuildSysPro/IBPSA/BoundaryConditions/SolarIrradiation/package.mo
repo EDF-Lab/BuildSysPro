@@ -6,10 +6,6 @@ package SolarIrradiation "Package with models to compute solar irradition"
 
 
 
-
-
-
-
 annotation (preferredView="info",
 Documentation(info="<html>
 This package contains models that compute the solar irradiation

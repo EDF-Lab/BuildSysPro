@@ -223,7 +223,8 @@ public
     nf=1,
     Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_VitrageNordC1},
     Sp={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondC1,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurNordC1,BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegEntreeC1,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurNordC1,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegEntreeC1,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegC1C2,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegC1Cuisine,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondC1}) if not
@@ -289,11 +290,11 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         extent={{-12,-12},{12,12}},
         rotation=-90,
         origin={-38,109})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonEntree if not CLOintPlancher
-    annotation (Placement(transformation(extent={{86,80},{106,100}}),
-        iconTransformation(extent={{60,-10},{80,10}})));
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonChambre2 if
                                                              not CLOintPlancher
+    annotation (Placement(transformation(extent={{86,80},{106,100}}),
+        iconTransformation(extent={{60,-10},{80,10}})));
+  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonEntree if not CLOintPlancher
     annotation (Placement(transformation(extent={{86,58},{106,78}}),
         iconTransformation(
         extent={{-10,-10},{10,10}},
@@ -315,14 +316,12 @@ equation
       points={{19,-84.5},{32,-84.5},{32,26.5},{2.1,26.5}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(PintdistriRad.FLUXParois[3], FLUXcloisonEntree) annotation (
-      Line(
-      points={{19,-84.1667},{32,-84.1667},{32,90},{96,90}},
+  connect(PintdistriRad.FLUXParois[4], FLUXcloisonChambre2) annotation (Line(
+      points={{19,-83.8333},{32,-83.8333},{32,90},{96,90}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(PintdistriRad.FLUXParois[4], FLUXcloisonChambre2) annotation (
-      Line(
-      points={{19,-83.8333},{32,-83.8333},{32,68},{96,68}},
+  connect(PintdistriRad.FLUXParois[3], FLUXcloisonEntree) annotation (Line(
+      points={{19,-84.1667},{32,-84.1667},{32,68},{96,68}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(PintdistriRad.FLUXParois[5], FLUXcloisonCuisine) annotation (
@@ -535,8 +534,10 @@ annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             120}}),
 graphics={
-        Bitmap(extent={{-82,64},{68,-88}}, fileName=
-              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Chambre1.png"),
+        Bitmap(extent={{75,76},{-75,-76}}, fileName=
+              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Chambre1.png",
+          origin={-7,-12},
+          rotation=180),
         Ellipse(extent={{8,58},{36,30}},    lineColor={0,0,0}),
         Polygon(
           points={{-4,-18},{4,-18},{0,-30},{-4,-18}},
@@ -616,7 +617,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

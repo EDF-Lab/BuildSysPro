@@ -14,9 +14,9 @@ block CheckIRRadiation "Ensure that the radiation is not smaller than 0"
     "Minimum value for radiation";
 equation
   HOut = IBPSA.Utilities.Math.Functions.smoothMax(
-    x1=HIn,
-    x2=HMin,
-    deltaX=HMin/10);
+            x1=HIn,
+            x2=HMin,
+            deltaX=HMin/10);
   annotation (
     defaultComponentName="cheRad",
     Documentation(info="<html>

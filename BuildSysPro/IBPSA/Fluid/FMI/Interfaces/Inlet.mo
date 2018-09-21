@@ -17,9 +17,10 @@ connector Inlet "Connector for fluid inlet"
     "Thermodynamic pressure in the connection point";
 
   input IBPSA.Fluid.FMI.Interfaces.FluidProperties forward(redeclare final
-      package Medium = Medium) "Inflowing properties";
+      package       Medium = Medium) "Inflowing properties";
   output IBPSA.Fluid.FMI.Interfaces.FluidProperties backward(redeclare final
-      package Medium = Medium) if allowFlowReversal "Outflowing properties";
+      package       Medium = Medium) if allowFlowReversal
+    "Outflowing properties";
 
 annotation (defaultComponentName="inlet",
   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},

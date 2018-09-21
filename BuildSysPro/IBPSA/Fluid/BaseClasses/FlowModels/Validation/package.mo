@@ -8,17 +8,10 @@ package Validation "Collection of validation models"
 
 
 
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains validation models for the classes in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels\">
 IBPSA.Fluid.BaseClasses.FlowModels</a>.
 </p>
 <p>

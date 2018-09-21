@@ -335,12 +335,12 @@ equation
       smooth=Smooth.None,
       thickness=0.5));
   connect(gain1.y, prescribedHeatFlow.Q_flow) annotation (Line(
-      points={{-69,140.7},{-69,145.35},{-68.6,145.35},{-68.6,151}},
+      points={{-69,140.7},{-69,145.35},{-70,145.35},{-70,150}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(prescribedHeatFlow.port, ApportsThOccupants)
                                                       annotation (Line(
-      points={{-68.6,171},{-68.6,178.5},{-70,178.5},{-70,190}},
+      points={{-70,170},{-70,178.5},{-70,178.5},{-70,190}},
       color={191,0,0},
       thickness=0.5,
       smooth=Smooth.None));
@@ -366,7 +366,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(prescribedHeatFlow1.port,ApportsThUsageSpe)  annotation (Line(
-      points={{1.4,177},{1.4,176.5},{0,176.5},{0,190}},
+      points={{6.66134e-16,176},{6.66134e-16,176.5},{0,176.5},{0,190}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(gain4.y,ApportHuUsageSpe)  annotation (Line(
@@ -374,12 +374,12 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(gain5.y, prescribedHeatFlow2.Q_flow) annotation (Line(
-      points={{69,139.3},{69,142.65},{69.4,142.65},{69.4,147}},
+      points={{69,139.3},{69,142.65},{68,142.65},{68,146}},
       color={0,0,127},
       smooth=Smooth.None));
 
   connect(prescribedHeatFlow2.port, ApportsThEclairage) annotation (Line(
-      points={{69.4,167},{69.4,176.5},{70,176.5},{70,190}},
+      points={{68,166},{68,176.5},{70,176.5},{70,190}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(booleanToReal.u, greaterThreshold4.y) annotation (Line(
@@ -436,7 +436,7 @@ der(ConsoECS)=DebitECS/3600;
       color={0,0,127},
       smooth=Smooth.None));
   connect(gain3.y, prescribedHeatFlow1.Q_flow) annotation (Line(
-      points={{1,147.3},{1,151.65},{1.4,151.65},{1.4,157}},
+      points={{1,147.3},{1,151.65},{-6.66134e-16,151.65},{-6.66134e-16,156}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Eclairage, gain5.y) annotation (Line(
@@ -539,6 +539,8 @@ Regulation 2012"),
 <p><i><span style=\"color: #ff0000;\">Error: Singular inconsistent scalar system for scenarioRT.ApportsThOccupants.T = (scenarioRT.prescribedHeatFlow.Q_flow*(1-scenarioRT.prescribedHeatFlow.alpha*scenarioRT.prescribedHeatFlow.T_ref))/( -scenarioRT.prescribedHeatFlow.Q_flow*scenarioRT.prescribedHeatFlow.alpha) = .../-0</span></i></p>
 <p>To fix the problem change the value of concerned booleans.</p>
 <p>Right ports of the model correspond to &quot;controls&quot;. They can be connected to models such as ventilation, hot water, lighting, heating and cooling or comfort analysis.</p>
+<p><u><span style=\"color: #ff0000;\">Note:</span></u> In the RT2012 regulation, the environmental data are given in solar time whereas the data related to occupancy are in local time.
+To account for this time difference (switch between winter and summer time), the user should choose a specific scenario file (for example <code>ScenarioRT2012_timechange</code>)</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>None</p>
 <p><u><b>Validations</b></u></p>
@@ -546,7 +548,7 @@ Regulation 2012"),
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2010 - 2015<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

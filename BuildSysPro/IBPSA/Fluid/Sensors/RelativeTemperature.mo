@@ -68,11 +68,11 @@ There is no flow through the sensor.
 </p>
 <p>
 Note that this sensor should only be connected to fluid volumes, such as
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolume\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolume\">
 IBPSA.Fluid.MixingVolumes.MixingVolume</a>. Otherwise, numerical
 problems may occur if one of the mass flow rates are close to zero.
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>",

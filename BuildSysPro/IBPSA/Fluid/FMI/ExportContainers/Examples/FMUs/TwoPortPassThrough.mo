@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block TwoPortPassThrough
   "Declaration of an FMU that exports a block that simply passes all the inputs to the outputs"
-   extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(redeclare
-      replaceable package Medium = IBPSA.Media.Air);
+   extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(
+      redeclare replaceable package Medium = IBPSA.Media.Air);
 
 equation
   connect(inlet, outlet) annotation (Line(

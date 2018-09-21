@@ -12,8 +12,8 @@ model OneRoom
     V=2.5*5*5,
     nPorts=2,
     m_flow_nominal=0.001,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial) annotation (
-      Placement(transformation(
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial)
+    annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-30,-10})));
@@ -21,7 +21,8 @@ model OneRoom
   IBPSA.Airflow.Multizone.Orifice oriOutBot(
     redeclare package Medium = Medium,
     A=0.01,
-    m=0.5) annotation (Placement(transformation(extent={{0,-72},{20,-52}})));
+    m=0.5)
+    annotation (Placement(transformation(extent={{0,-72},{20,-52}})));
   IBPSA.Airflow.Multizone.MediumColumn colOutTop(
     redeclare package Medium = Medium,
     h=1.5,
@@ -30,7 +31,8 @@ model OneRoom
   IBPSA.Airflow.Multizone.Orifice oriOutTop(
     redeclare package Medium = Medium,
     A=0.01,
-    m=0.5) annotation (Placement(transformation(extent={{1,30},{21,50}})));
+    m=0.5)
+    annotation (Placement(transformation(extent={{1,30},{21,50}})));
   IBPSA.Airflow.Multizone.MediumColumn colEasInTop(
     redeclare package Medium = Medium,
     h=1.5,
@@ -44,8 +46,8 @@ model OneRoom
     p_start=Medium.p_default,
     nPorts=2,
     m_flow_nominal=0.001,
-    massDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) annotation (
-      Placement(transformation(
+    massDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
+    annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={51,-10})));

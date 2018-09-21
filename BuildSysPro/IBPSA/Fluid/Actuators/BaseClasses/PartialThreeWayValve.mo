@@ -2,8 +2,9 @@ within BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses;
 partial model PartialThreeWayValve "Partial three way valve"
   extends IBPSA.Fluid.BaseClasses.PartialThreeWayResistance(
     final mDyn_flow_nominal=m_flow_nominal,
-    redeclare replaceable IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve
-      res1 constrainedby IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve(
+    redeclare replaceable
+      IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve res1
+      constrainedby IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve(
       deltaM=deltaM,
       dp(start=dpValve_nominal/2),
       from_dp=from_dp,
@@ -15,9 +16,11 @@ partial model PartialThreeWayValve "Partial three way valve"
       final dpValve_nominal=dpValve_nominal,
       final dpFixed_nominal=dpFixed_nominal[1],
       final use_inputFilter=false),
-    redeclare FixedResistances.LosslessPipe res2(m_flow_nominal=m_flow_nominal),
-    redeclare replaceable IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve
-      res3 constrainedby IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve(
+    redeclare FixedResistances.LosslessPipe res2(m_flow_nominal=
+          m_flow_nominal),
+    redeclare replaceable
+      IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve res3
+      constrainedby IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve(
       deltaM=deltaM,
       dp(start=dpValve_nominal/2),
       from_dp=from_dp,
@@ -29,13 +32,12 @@ partial model PartialThreeWayValve "Partial three way valve"
       final dpValve_nominal=dpValve_nominal/fraK^2,
       final dpFixed_nominal=dpFixed_nominal[2],
       final use_inputFilter=false));
-
     extends IBPSA.Fluid.Actuators.BaseClasses.ActuatorSignal;
     extends IBPSA.Fluid.Actuators.BaseClasses.ValveParameters(rhoStd=
         Medium.density_pTX(
-        101325,
-        273.15 + 4,
-        Medium.X_default));
+                101325,
+                273.15 + 4,
+                Medium.X_default));
 
   parameter Modelica.SIunits.PressureDifference dpFixed_nominal[2](each displayUnit="Pa",
                                                          each min=0) = {0, 0}
@@ -165,7 +167,7 @@ of <code>fraK=0.7</code>.
 </p>
 <p>
 Since this model uses two way valves to construct a three way valve, see
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve</a>
 for details regarding the valve implementation.
 </p>
@@ -217,7 +219,7 @@ February 20, 2012 by Michael Wetter:<br/>
 Renamed parameter <code>dp_nominal</code> to <code>dpValve_nominal</code>,
 and added new parameter <code>dpFixed_nominal=0</code>.
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.UsersGuide\">
 IBPSA.Fluid.Actuators.UsersGuide</a>.
 </li>
 <li>

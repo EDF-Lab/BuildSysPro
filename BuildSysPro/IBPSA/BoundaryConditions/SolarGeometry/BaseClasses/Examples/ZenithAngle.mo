@@ -8,12 +8,12 @@ model ZenithAngle "Test model for zenith angle"
     "Declination angle"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
   IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.SolarHourAngle solHouAng
-    "Solar hour angle"
-    annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
+    "Solar hour angle" annotation (Placement(transformation(extent={{20,
+            -40},{40,-20}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
-    "Weather data"
-    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
+        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+    "Weather data" annotation (Placement(transformation(extent={{-80,-10},
+            {-60,10}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather bus"
     annotation (Placement(transformation(extent={{-44,-10},{-24,10}})));
 equation

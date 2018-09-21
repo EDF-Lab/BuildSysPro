@@ -28,19 +28,19 @@ model PowerLawFixedM "Test model for power law function"
 equation
   dp = 10*(-1+2*time);
   V_flow = IBPSA.Airflow.Multizone.BaseClasses.powerLaw(
-    dp=dp,
-    k=k,
-    m=m,
-    dp_turbulent=dp_turbulent);
+              dp=dp,
+              k=k,
+              m=m,
+              dp_turbulent=dp_turbulent);
   VFixed_flow = IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM(
-    k=k,
-    dp=dp,
-    m=m,
-    a=a,
-    b=b,
-    c=c,
-    d=d,
-    dp_turbulent=dp_turbulent);
+              k=k,
+              dp=dp,
+              m=m,
+              a=a,
+              b=b,
+              c=c,
+              d=d,
+              dp_turbulent=dp_turbulent);
   assert(abs(V_flow-VFixed_flow) < 1E-10, "Error: The two implementations of the power law model need to give identical results");
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
@@ -48,10 +48,10 @@ experiment(Tolerance=1e-6, StopTime=1.0),
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This examples demonstrates the
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.powerLaw\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.powerLaw\">
 Buildings.Airflow.Multizone.BaseClasses.powerLaw</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM\">
 Buildings.Airflow.Multizone.BaseClasses.powerLawFixedM</a>
 functions.
 They need to return the same function value.

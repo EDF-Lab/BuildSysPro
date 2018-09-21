@@ -295,7 +295,9 @@ equation
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,120}}),
 graphics={
-        Bitmap(extent={{-80,106},{94,-80}}, fileName="modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Mozart/Entree.png"),
+        Bitmap(extent={{87,93},{-87,-93}},  fileName="modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Mozart/Entree.png",
+          origin={7,13},
+          rotation=180),
         Ellipse(extent={{-14,10},{14,-18}}, lineColor={0,0,0}),
         Polygon(
           points={{-4,-18},{4,-18},{0,-30},{-4,-18}},
@@ -375,7 +377,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

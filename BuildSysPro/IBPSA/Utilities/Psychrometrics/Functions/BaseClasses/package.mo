@@ -8,17 +8,10 @@ package BaseClasses "Package with base classes for IBPSA.Utilities.Psychrometric
 
 
 
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains base classes that are used to construct the models in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions\">IBPSA.Utilities.Psychrometrics.Functions</a>.
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions\">IBPSA.Utilities.Psychrometrics.Functions</a>.
 </p>
 </html>"));
 end BaseClasses;

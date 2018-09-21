@@ -19,12 +19,12 @@ block DiffusePerez
   Modelica.Blocks.Interfaces.RealInput zen(
     quantity="Angle",
     unit="rad",
-    displayUnit="degree") "Zenith angle of the sun beam"
+    displayUnit="deg") "Zenith angle of the sun beam"
     annotation (Placement(transformation(extent={{-140,-60},{-100,-20}})));
   Modelica.Blocks.Interfaces.RealInput incAng(
     quantity="Angle",
     unit="rad",
-    displayUnit="degree") "Solar incidence angle on the surface"
+    displayUnit="deg") "Solar incidence angle on the surface"
     annotation (Placement(transformation(extent={{-140,-90},{-100,-50}})));
 
   Modelica.Blocks.Interfaces.RealOutput HGroDifTil(final quantity=
@@ -42,13 +42,13 @@ protected
     "Lower bound for b";
 equation
   a = IBPSA.Utilities.Math.Functions.smoothMax(
-    0,
-    Modelica.Math.cos(incAng),
-    0.01);
+            0,
+            Modelica.Math.cos(incAng),
+            0.01);
   b = IBPSA.Utilities.Math.Functions.smoothMax(
-    bMin,
-    Modelica.Math.cos(zen),
-    0.01);
+            bMin,
+            Modelica.Math.cos(zen),
+            0.01);
   HSkyDifTil = HDifHor*(0.5*(1 - briCof1)*(1 + Modelica.Math.cos(til)) +
     briCof1*a/b + briCof2*Modelica.Math.sin(til));
   HGroDifTil = HGloHor*0.5*rho*(1 - Modelica.Math.cos(til));
@@ -79,6 +79,12 @@ Solar Energy, 44(5):271-289.
 </ul>
 </html>", revisions="<html>
 <ul>
+<li>
+April 27, 2018, by Michael Wetter:<br/>
+Corrected <code>displayUnit</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/912\">IBPSA, issue 912</a>.
+</li>
 <li>
 June 6, 2012, by Wangda Zuo:<br/>
 Separated the contribution from the sky and the ground.

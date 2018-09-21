@@ -69,7 +69,7 @@ Fluid ports declare the variables listed in the table below.
       the component.
       Users who need to access the actual enthalpy for the given flow
       direction can do so using the sensor
-      <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.SpecificEnthalpyTwoPort\">
+      <a href=\"modelica://IBPSA.Fluid.Sensors.SpecificEnthalpyTwoPort\">
       IBPSA.Fluid.Sensors.SpecificEnthalpyTwoPort</a>.</td>
 </tr>
 <tr>
@@ -82,7 +82,7 @@ Fluid ports declare the variables listed in the table below.
       the component.
       Users who need to access the actual value for the given flow
       direction can do so using the sensor
-      <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.MassFractionTwoPort\">
+      <a href=\"modelica://IBPSA.Fluid.Sensors.MassFractionTwoPort\">
       IBPSA.Fluid.Sensors.MassFractionTwoPort</a>.
       Note that this variable is only present for fluids that are a mixture
       of different substances such as moist air. For water,
@@ -97,12 +97,12 @@ Fluid ports declare the variables listed in the table below.
       the component.
       Users who need to access the actual value for the given flow
       direction can do so using the sensor
-      <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.TraceSubstancesTwoPort\">
+      <a href=\"modelica://IBPSA.Fluid.Sensors.TraceSubstancesTwoPort\">
       IBPSA.Fluid.Sensors.TraceSubstancesTwoPort</a>.
       Note that this variable is only present for fluids that declare
       a trace substance such as CO<sub>2</sub>.
       See for example
-      <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.Examples.TraceSubstances\">
+      <a href=\"modelica://IBPSA.Fluid.Sensors.Examples.TraceSubstances\">
       IBPSA.Fluid.Sensors.Examples.TraceSubstances</a>.</td>
 </tr>
 </table>
@@ -211,7 +211,7 @@ where <i>m(t)</i> is the mass of the control volume,
 <li>
 If a system model sets the pressure, such as if the volume is connected
 to a model that sets the pressure, e.g.,
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.FixedBoundary\">
+<a href=\"modelica://IBPSA.Fluid.Sources.FixedBoundary\">
 IBPSA.Fluid.Sources.FixedBoundary</a>,
 then due to the connection between the models, the
 pressure of the volume is the same as the pressure of the
@@ -320,7 +320,7 @@ parameters in various model to help the user understand how they are used.
       to define a point on the flow rate versus pressure drop curve. For other
       mass flow rates, the pressure drop is typically adjusted using similarity laws.
       See
-      <a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
+      <a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
       IBPSA.Fluid.FixedResistances.PressureDrop</a>.
   </td>
 </tr>
@@ -381,7 +381,7 @@ parameters in various model to help the user understand how they are used.
 <h4>Implementation</h4>
 <p>
 The models are implemented using base classes from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces\">
 IBPSA.Fluid.Interfaces</a>
 and from
 <a href=\"modelica://Modelica.Fluid.Interfaces\">

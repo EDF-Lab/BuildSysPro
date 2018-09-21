@@ -45,20 +45,20 @@ algorithm
   // continuously differentiable for all incidence angles
   if aR < aRDel then
     Cp := Cp0*IBPSA.Utilities.Math.Functions.regStep(
-      y1=Modelica.Math.log(1.248 - 0.703*sinA2 - 1.175*Modelica.Math.sin(aR)^2
-         + 0.131*Modelica.Math.sin(2*aR*G)^3 + 0.769*cosA2 + 0.071*G^2*sinA2^2
-         + 0.717*cosA2^2),
-      y2=1,
-      x=aR - aRDel2,
-      x_small=aRDel2);
+              y1=Modelica.Math.log(1.248 - 0.703*sinA2 - 1.175*
+        Modelica.Math.sin(aR)^2 + 0.131*Modelica.Math.sin(2*aR*G)^3 + 0.769
+        *cosA2 + 0.071*G^2*sinA2^2 + 0.717*cosA2^2),
+              y2=1,
+              x=aR - aRDel2,
+              x_small=aRDel2);
   elseif aR > aRMax then
     Cp := Cp0*IBPSA.Utilities.Math.Functions.regStep(
-      y1=a180,
-      y2=Modelica.Math.log(1.248 - 0.703*sinA2 - 1.175*Modelica.Math.sin(aR)^2
-         + 0.131*Modelica.Math.sin(2*aR*G)^3 + 0.769*cosA2 + 0.071*G^2*sinA2^2
-         + 0.717*cosA2^2),
-      x=aR + aRDel2 - Modelica.Constants.pi,
-      x_small=aRDel2);
+              y1=a180,
+              y2=Modelica.Math.log(1.248 - 0.703*sinA2 - 1.175*
+        Modelica.Math.sin(aR)^2 + 0.131*Modelica.Math.sin(2*aR*G)^3 + 0.769
+        *cosA2 + 0.071*G^2*sinA2^2 + 0.717*cosA2^2),
+              x=aR + aRDel2 - Modelica.Constants.pi,
+              x_small=aRDel2);
   else
     Cp :=Cp0*Modelica.Math.log(1.248 - 0.703*sinA2 - 1.175*Modelica.Math.sin(aR)^2 +
       0.131*Modelica.Math.sin(2*aR*G)^3 + 0.769*cosA2 + 0.071*G^2*sinA2^2 + 0.717*cosA2^2);
@@ -115,7 +115,7 @@ the current angle of incidence.
 </p>
 <p>
 This function is used in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Outside_CpLowRise\">
+<a href=\"modelica://IBPSA.Fluid.Sources.Outside_CpLowRise\">
 Buildings.Fluid.Sources.Outside_CpLowRise</a>
 which can be used directly with components of this package.
 </p>

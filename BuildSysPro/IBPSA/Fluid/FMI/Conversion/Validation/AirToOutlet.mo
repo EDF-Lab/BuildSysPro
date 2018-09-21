@@ -15,22 +15,26 @@ model AirToOutlet "Validation model for air to outlet conversion"
   Modelica.Blocks.Sources.Constant C[1](k={1E-5}) "Trace substances"
     annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
 
-  IBPSA.Fluid.FMI.Conversion.AirToOutlet conAirNoC(redeclare package Medium =
-        IBPSA.Media.Air, final allowFlowReversal=allowFlowReversal)
+  IBPSA.Fluid.FMI.Conversion.AirToOutlet conAirNoC(redeclare package
+      Medium = IBPSA.Media.Air, final allowFlowReversal=
+        allowFlowReversal)
     "Converter for air without trace substances"
     annotation (Placement(transformation(extent={{0,50},{20,70}})));
 
-  IBPSA.Fluid.FMI.Conversion.AirToOutlet conAirWithC(redeclare package Medium
-      = IBPSA.Media.Air (extraPropertiesNames={"CO2"}), final allowFlowReversal=
-       allowFlowReversal) "Converter for air with trace substances"
+  IBPSA.Fluid.FMI.Conversion.AirToOutlet conAirWithC(redeclare package
+              Medium = IBPSA.Media.Air (extraPropertiesNames={"CO2"}),
+      final allowFlowReversal=allowFlowReversal)
+    "Converter for air with trace substances"
     annotation (Placement(transformation(extent={{0,10},{20,30}})));
-  IBPSA.Fluid.FMI.Conversion.AirToOutlet conDryAirNoC(redeclare package Medium
-      = Modelica.Media.Air.SimpleAir, final allowFlowReversal=allowFlowReversal)
+  IBPSA.Fluid.FMI.Conversion.AirToOutlet conDryAirNoC(redeclare package
+              Medium = Modelica.Media.Air.SimpleAir, final
+      allowFlowReversal=allowFlowReversal)
     "Converter for dry air without trace substances"
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
   IBPSA.Fluid.FMI.Conversion.AirToOutlet conDryAirWithC(redeclare package
-      Medium = Modelica.Media.Air.SimpleAir (extraPropertiesNames={"CO2"}),
-      final allowFlowReversal=allowFlowReversal)
+              Medium = Modelica.Media.Air.SimpleAir (
+          extraPropertiesNames={"CO2"}), final allowFlowReversal=
+        allowFlowReversal)
     "Converter for dry air with trace substances"
     annotation (Placement(transformation(extent={{0,-80},{20,-60}})));
 equation
@@ -62,7 +66,7 @@ annotation (
     Documentation(info="<html>
 <p>
 This example validates the conversion model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.AirToOutlet\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.AirToOutlet\">
 IBPSA.Fluid.FMI.Conversion.AirToOutlet</a>
 for the situation without reverse flow.
 </p>

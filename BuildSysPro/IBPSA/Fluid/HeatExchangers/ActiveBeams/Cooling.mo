@@ -190,7 +190,6 @@ initial equation
   assert(perCoo.dT.r_dT[1]<=0.000001      and perCoo.dT.f[1]<=0.00001,
     "Performance curve perCoo.dT must pass through (0,0).");
 
-
 equation
   connect(heaToRoo.port, heaPor)
     annotation (Line(points={{0,-46},{0,-120}}, color={191,0,0}));
@@ -273,17 +272,17 @@ Model of an active beam, based on the EnergyPlus beam model  <code>AirTerminal:S
 </p>
 <p>
 This model operates only in cooling mode. For a model that operates in both heating and cooling mode,
-use <a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
+use <a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating</a>.
 </p>
 <p>
 For a description of the equations, see the
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.UsersGuide\">
 User's Guide</a>.
 </p>
 <p>
 Performance data are available from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Data\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Data\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Data</a>.
 </p>
 <h4>References</h4>

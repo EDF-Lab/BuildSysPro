@@ -17,8 +17,8 @@ model Outlet "Adaptor for connecting a fluid outlet to the FMI interface"
     redeclare final package Medium = Medium,
     final allowFlowReversal=allowFlowReversal,
     final use_p_in=use_p_in) "Fluid outlet" annotation (Placement(
-        transformation(extent={{100,-10},{120,10}}), iconTransformation(extent=
-            {{100,-10},{120,10}})));
+        transformation(extent={{100,-10},{120,10}}), iconTransformation(
+          extent={{100,-10},{120,10}})));
 
   Modelica.Fluid.Interfaces.FluidPort_a port_a(
     redeclare final package Medium=Medium) "Fluid port"
@@ -27,13 +27,14 @@ model Outlet "Adaptor for connecting a fluid outlet to the FMI interface"
           iconTransformation(extent={{-110,
             -10},{-90,10}})));
   IBPSA.Fluid.FMI.Interfaces.PressureInput p if use_p_in
-    "Pressure to be sent to outlet" annotation (Placement(transformation(
+    "Pressure to be sent to outlet" annotation (Placement(
+        transformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
         origin={0,-120})));
 protected
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package Medium = Medium)
+      package       Medium = Medium)
     "Internal connector for fluid properties for back flow";
   IBPSA.Fluid.FMI.Interfaces.PressureOutput p_in_internal
     "Internal connector for pressure";
@@ -132,17 +133,17 @@ equation
 <p>
 Model that is used to connect a fluid port with an output signal.
 The model needs to be used in conjunction with an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.InletAdaptor\">
-IBPSA.Fluid.FMI.InletAdaptor</a> in order for
+<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.Inlet\">
+IBPSA.Fluid.FMI.Adaptors.Inlet</a> in order for
 fluid mass flow rate and pressure to be properly assigned to
 the acausal fluid models.
 </p>
 <p>
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.PartialTwoPortComponent\">
-IBPSA.Fluid.FMI.ExportContainers.PartialTwoPortComponent</a>
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort\">
+IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort</a>
 or
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ResistanceVolume\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ResistanceVolume\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ResistanceVolume</a>
 for how to use this model.
 </p>

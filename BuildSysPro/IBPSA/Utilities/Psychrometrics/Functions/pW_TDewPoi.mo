@@ -45,7 +45,7 @@ Fixed derivative implementation.
 <li>
 September 4, 2008 by Michael Wetter:<br/>
 Changed from causal to acausal ports, needed, for example, for
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.MixingVolumeMoistAir\">
+<a href=\"modelica://IBPSA.Fluid.Examples.MixingVolumeMoistAir\">
 IBPSA.Fluid.Examples.MixingVolumeMoistAir</a>.
 </li>
 <li>

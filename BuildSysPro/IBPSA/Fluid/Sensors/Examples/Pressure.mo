@@ -28,18 +28,18 @@ model Pressure "Test model for the pressure sensor"
     offset=10,
     duration=1)
     annotation (Placement(transformation(extent={{-90,-2},{-70,18}})));
-  IBPSA.Fluid.Sensors.Pressure senPre_a(redeclare package Medium = Medium)
-    "Pressure sensor at resistance port a"
+  IBPSA.Fluid.Sensors.Pressure senPre_a(redeclare package Medium =
+        Medium) "Pressure sensor at resistance port a"
     annotation (Placement(transformation(extent={{-22,20},{-2,40}})));
-  IBPSA.Fluid.Sensors.Pressure senPre_b(redeclare package Medium = Medium)
-    "Pressure sensor at resistance port b"
+  IBPSA.Fluid.Sensors.Pressure senPre_b(redeclare package Medium =
+        Medium) "Pressure sensor at resistance port b"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
-  IBPSA.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium =
-        Medium) "Pressure difference across resistance"
+  IBPSA.Fluid.Sensors.RelativePressure senRelPre(redeclare package
+      Medium = Medium) "Pressure difference across resistance"
     annotation (Placement(transformation(extent={{-2,-50},{18,-30}})));
 equation
   connect(ramp.y, masFloRat.m_flow_in) annotation (Line(
-      points={{-69,8},{-52,8}},
+      points={{-69,8},{-54,8}},
       color={0,0,127}));
   connect(masFloRat.ports[1], dp.port_a) annotation (Line(
       points={{-32,0},{-18,0},{-18,6.66134e-16},{-2,6.66134e-16}},

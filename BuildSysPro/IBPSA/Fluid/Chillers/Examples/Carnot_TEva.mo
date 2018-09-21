@@ -36,19 +36,21 @@ model Carnot_TEva
     redeclare package Medium = Medium1,
     use_T_in=false,
     use_m_flow_in=true,
-    T=298.15) annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
+    T=298.15)
+    annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou2(
     nPorts=1,
     redeclare package Medium = Medium2,
     m_flow=m2_flow_nominal,
     use_T_in=false,
-    T=295.15) annotation (Placement(transformation(extent={{80,-16},{60,4}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium = Medium1,
-      nPorts=1) annotation (Placement(transformation(extent={{10,-10},{-10,10}},
-          origin={70,30})));
-  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package Medium =
-        Medium2) annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-          origin={-40,-30})));
+    T=295.15)
+    annotation (Placement(transformation(extent={{80,-16},{60,4}})));
+  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
+        Medium1, nPorts=1) annotation (Placement(transformation(extent={
+            {10,-10},{-10,10}}, origin={70,30})));
+  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package
+      Medium = Medium2) annotation (Placement(transformation(extent={{-10,
+            -10},{10,10}}, origin={-40,-30})));
   Modelica.Blocks.Sources.Ramp TEvaLvg(
     duration=60,
     startTime=1800,
@@ -90,7 +92,7 @@ equation
   connect(QCon_flow.y, mCon_flow.u) annotation (Line(points={{69,-40},{80,-40},
           {80,-60},{-92,-60},{-92,14},{-82,14}},color={0,0,127}));
   connect(mCon_flow.y, sou1.m_flow_in)
-    annotation (Line(points={{-59,14},{-50,14}},          color={0,0,127}));
+    annotation (Line(points={{-59,14},{-52,14}},          color={0,0,127}));
   connect(chi.port_b1, sin1.ports[1]) annotation (Line(points={{30,6},{50,6},{
           50,30},{60,30}}, color={0,127,255}));
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
@@ -113,7 +115,5 @@ November 25, 2015, by Michael Wetter:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}})));
+</html>"));
 end Carnot_TEva;

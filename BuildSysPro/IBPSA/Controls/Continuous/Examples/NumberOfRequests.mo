@@ -5,7 +5,8 @@ model NumberOfRequests
   IBPSA.Controls.Continuous.NumberOfRequests numReq(
     nin=2,
     threShold=0,
-    kind=0) annotation (Placement(transformation(extent={{0,20},{20,40}})));
+    kind=0)
+    annotation (Placement(transformation(extent={{0,20},{20,40}})));
   Modelica.Blocks.Sources.Sine sine(freqHz=2)
     annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
   Modelica.Blocks.Sources.Pulse pulse(period=0.35)
@@ -34,7 +35,7 @@ Added documentation.
 </html>", info="<html>
 <p>
 Example that demonstrates the use of the block
-<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.NumberOfRequests\">
+<a href=\"modelica://IBPSA.Controls.Continuous.NumberOfRequests\">
 IBPSA.Controls.Continuous.NumberOfRequests</a>.
 The parameters of the block are such that the output is incremented
 for each input signal that is strictly larger than <i>0</i>.

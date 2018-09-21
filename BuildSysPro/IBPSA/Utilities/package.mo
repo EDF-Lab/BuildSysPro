@@ -5,10 +5,6 @@ package Utilities "Package with utility functions such as for I/O"
 
 
 
-
-
-
-
 annotation (
 preferredView="info", Documentation(info="<html>
 <p>

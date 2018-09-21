@@ -25,6 +25,7 @@ package TemperatureDependentDensity "Package with model for liquid water with te
     Temperature T(start=T_default) "Temperature of medium";
     AbsolutePressure p(start=p_default) "Pressure of medium";
   end ThermodynamicState;
+
   constant Modelica.SIunits.SpecificHeatCapacity cp_const = 4184
     "Specific heat capacity at constant pressure";
 
@@ -165,7 +166,7 @@ This function computes the specific entropy.
 </p>
 <p>
 To obtain the state for a given pressure, entropy and mass fraction, use
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Air.setState_psX\">
+<a href=\"modelica://IBPSA.Media.Air.setState_psX\">
 IBPSA.Media.Air.setState_psX</a>.
 </p>
 </html>",
@@ -619,7 +620,7 @@ specific entropy and mass fraction.
 </p>
 <p>
 The state is computed by symbolically solving
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Specialized.Water.TemperatureDependentDensity.specificEntropy\">
+<a href=\"modelica://IBPSA.Media.Specialized.Water.TemperatureDependentDensity.specificEntropy\">
 IBPSA.Media.Specialized.Water.TemperatureDependentDensity.specificEntropy</a>
 for temperature.
   </p>
@@ -637,6 +638,7 @@ First implementation.
 </ul>
 </html>"));
 end setState_psX;
+
 //////////////////////////////////////////////////////////////////////
 // Protected classes.
 // These classes are only of use within this medium model.
@@ -741,7 +743,7 @@ In addition, at 5 &deg;C the kinematic viscosity is linearly extrapolated
 to avoid a large gradient at very low temperatures.
 We selected the same point for the linearization as we used for the density,
 as the density and the kinematic viscosity are combined in
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Specialized.Water.TemperatureDependentDensity.dynamicViscosity\">
+<a href=\"modelica://IBPSA.Media.Specialized.Water.TemperatureDependentDensity.dynamicViscosity\">
 IBPSA.Media.Specialized.Water.TemperatureDependentDensity.dynamicViscosity</a>.
 </p>
 </html>",
@@ -770,10 +772,10 @@ The mass density is computed using a 3rd order polynomial, which yields the
 density as a function of temperature as shown in the figure below. Note, however,
 that computing density as a function of temperature can lead to considerably
 slower computing time compared to using
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Water\">
+<a href=\"modelica://IBPSA.Media.Water\">
 IBPSA.Media.Water</a>
 in which the density is a constant. We therefore recommend to use
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Water\">
+<a href=\"modelica://IBPSA.Media.Water\">
 IBPSA.Media.Water</a>
 for typical building energy simulations.
 </p>
@@ -818,7 +820,7 @@ alt=\"Thermal conductivity as a function of temperature\"/>
 Dynamic viscosity is calculated as the product of density and kinematic viscosity,
 both temperature dependent. However, the kinematic viscosity
 has its own temperature dependent correlation, implemented at
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Specialized.Water.TemperatureDependentDensity.kinematicViscosity\">
+<a href=\"modelica://IBPSA.Media.Specialized.Water.TemperatureDependentDensity.kinematicViscosity\">
 IBPSA.Media.Specialized.Water.TemperatureDependentDensity.kinematicViscosity</a>.
 Results of the kinematic viscosity as a function of temperature are shown in the figure below.
 </p>
@@ -848,7 +850,7 @@ Set <code>AbsolutePressure(start=p_default)</code>
 and <code>Temperature(start=T_default)</code>
 to have to have conistent start values.
 See also revision notes of
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Water\">
+<a href=\"modelica://IBPSA.Media.Water\">
 IBPSA.Media.Water</a>.
 This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/266\">#266</a>.
@@ -862,7 +864,7 @@ issue 227</a>.
 <li>
 February 25, 2015, by Michael Wetter:<br/>
 Removed <code>stateSelect</code> attribute on pressure as this caused
-<a href=\"modelica://BuildSysPro.IBPSA.Examples.Tutorial.SpaceCooling.System3\">
+<a href=\"modelica://IBPSA.Examples.Tutorial.SpaceCooling.System3\">
 IBPSA.Examples.Tutorial.SpaceCooling.System3</a>
 to fail with the error message
 \"differentiated if-then-else was not continuous\".
@@ -884,7 +886,7 @@ September 12, 2014, by Michael Wetter:<br/>
 Set <code>T(start=T_default)</code> and <code>p(start=p_default)</code> in the
 <code>ThermodynamicState</code> record. Setting the start value for
 <code>T</code> is required to avoid an error due to conflicting start values
-when checking <a href=\"modelica://BuildSysPro.IBPSA.Examples.VAVReheat.ClosedLoop\">
+when checking <a href=\"modelica://IBPSA.Examples.VAVReheat.ClosedLoop\">
 IBPSA.Examples.VAVReheat.ClosedLoop</a> in pedantic mode.
 </li>
 <li>

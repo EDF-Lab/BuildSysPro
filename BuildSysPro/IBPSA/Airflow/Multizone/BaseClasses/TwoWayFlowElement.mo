@@ -67,14 +67,14 @@ equation
   // as different media can have different datum for the enthalpy.
   Xi_a1_inflow = inStream(port_a1.Xi_outflow);
   rho_a1_inflow = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-    p=port_a1.p,
-    T=Medium1.temperature(state_a1_inflow),
-    X_w=if Medium1.nXi == 0 then 0 else Xi_a1_inflow[1]);
+            p=port_a1.p,
+            T=Medium1.temperature(state_a1_inflow),
+            X_w=if Medium1.nXi == 0 then 0 else Xi_a1_inflow[1]);
   Xi_a2_inflow = inStream(port_a2.Xi_outflow);
   rho_a2_inflow = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-    p=port_a2.p,
-    T=Medium2.temperature(state_a2_inflow),
-    X_w=if Medium2.nXi == 0 then 0 else Xi_a2_inflow[1]);
+            p=port_a2.p,
+            T=Medium2.temperature(state_a2_inflow),
+            X_w=if Medium2.nXi == 0 then 0 else Xi_a2_inflow[1]);
 
   VZer_flow = vZer*A;
 
@@ -141,11 +141,11 @@ This is for
 <li>
 February 24, 2015 by Michael Wetter:<br/>
 Changed model to use
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
 Buildings.Utilities.Psychrometrics.Functions.density_pTX</a>
 for the density computation
 as
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Air.density\">
+<a href=\"modelica://IBPSA.Media.Air.density\">
 Buildings.Media.Air.density</a>
 does not depend on temperature.
 </li>

@@ -1,0 +1,9 @@
+﻿convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "CloisonChambre1Cuisine", "CloisonSejourCuisine");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "CloisonChambre1Cuisine2", "CloisonChambre1Cuisine");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "CloisonChambre1Cuisine3", "CloisonChambre1Chambre2");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "CloisonChambre1Cuisine5", "CloisonChambre2Entree");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "CloisonChambre1Cuisine4", "CloisonChambre2SDB");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "CloisonChambre1Cuisine6", "CloisonEntreeSDB");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "CloisonChambre1Cuisine8", "CloisonChambre1Entree");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "CloisonChambre1Cuisine7", "CloisonCuisineEntree");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "CloisonChambre1Cuisine1", "CloisonSejourEntree");

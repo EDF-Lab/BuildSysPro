@@ -17,9 +17,9 @@ initial equation
 equation
   dp = time*gain;
   m_flow = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-    dp=dp,
-    k=k,
-    m_flow_turbulent=m_flow_turbulent);
+              dp=dp,
+              k=k,
+              m_flow_turbulent=m_flow_turbulent);
   der(m_flow) = der(m_flow_comp);
   err = m_flow-m_flow_comp;
   assert(abs(err) < 1E-3, "Error in implementation.");
@@ -33,10 +33,10 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 Documentation(info="<html>
 <p>
 This model validates the implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp</a>
 and its first order derivative
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der</a>.
 If the derivative implementation is wrong, the simulation will stop with an error.
 </p>

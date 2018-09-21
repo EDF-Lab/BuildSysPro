@@ -7,16 +7,10 @@ package Examples "Collection of models that illustrate model use and test models
 
 
 
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains examples for the use of models that can be found in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers\">
 IBPSA.Fluid.HeatExchangers</a>.
 </p>
 </html>"));

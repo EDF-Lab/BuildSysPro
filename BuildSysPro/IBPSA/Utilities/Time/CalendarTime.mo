@@ -87,17 +87,16 @@ initial equation
   weekDay = integer(rem(4+daysSinceEpoch-1,7)+1);
 initial algorithm
   // check if yearRef is in the valid range
-  assert(not zerTim == IBPSA.Utilities.Time.Types.ZeroTime.Custom or yearRef
-     >= firstYear and yearRef <= lastYear, "The value you chose for yearRef (="
+  assert(not zerTim == IBPSA.Utilities.Time.Types.ZeroTime.Custom or
+    yearRef >= firstYear and yearRef <= lastYear, "The value you chose for yearRef (="
      + String(yearRef) + ") is outside of
-   the validity range of " + String(firstYear) + " to " + String(lastYear) +
-    ".");
+   the validity range of "
+                     + String(firstYear) + " to " + String(lastYear) + ".");
 
   // check if the day number exists for the chosen month and year
-  assert(not zerTim == IBPSA.Utilities.Time.Types.ZeroTime.Custom or dayInMonth[
-    monthRef] + (if monthRef == 2 and isLeapYear[yearRef - firstYear + 1] then
-    1 else 0) >= dayRef,
-    "The day number you chose is larger than the number of days contained by the month you chose.");
+  assert(not zerTim == IBPSA.Utilities.Time.Types.ZeroTime.Custom or
+    dayInMonth[monthRef] + (if monthRef == 2 and isLeapYear[yearRef -
+    firstYear + 1] then 1 else 0) >= dayRef, "The day number you chose is larger than the number of days contained by the month you chose.");
 
   // compute the offset to be added to time based on the parameters specified by the user
   if zerTim == IBPSA.Utilities.Time.Types.ZeroTime.UnixTimeStamp then
@@ -149,25 +148,29 @@ initial algorithm
   end if;
 
    // input data range checks at initial time
-  assert(time + offset + timOff >= timeStampsNewYear[1], if zerTim == IBPSA.Utilities.Time.Types.ZeroTime.UnixTimeStamp
-     then "Could not initialize date in the CalendarTime block.
+  assert(time + offset + timOff >= timeStampsNewYear[1], if zerTim ==
+    IBPSA.Utilities.Time.Types.ZeroTime.UnixTimeStamp then "Could not initialize date in the CalendarTime block.
    You selected 1970 as the time=0 reference.
-   Therefore the simulation startTime must be at least " + String(
+   Therefore the simulation startTime must be at least "
+                                                   + String(
     timeStampsNewYear[1]) + "." elseif zerTim == IBPSA.Utilities.Time.Types.ZeroTime.Custom
      then if yearRef < firstYear then "Could not initialize date in the CalendarTime block.
    You selected a custom time=0 reference.
-   The minimum value for yearRef is then " + String(firstYear) +
-    " but your value is " + String(yearRef) + "." else "Could not initialize date in the CalendarTime block.
+   The minimum value for yearRef is then "
+                                     + String(firstYear) + " but your value is "
+     + String(yearRef) + "." else "Could not initialize date in the CalendarTime block.
    You selected a custom time=0 reference.
-   Possibly your startTime is too small." else "Could not initialize date in the CalendarTime block.
+   Possibly your startTime is too small."
+                                    else "Could not initialize date in the CalendarTime block.
    Possibly your startTime is negative?");
 
-  assert(time + offset + timOff < timeStampsNewYear[size(timeStampsNewYear, 1)],
-    if zerTim == IBPSA.Utilities.Time.Types.ZeroTime.Custom and yearRef >=
-    lastYear then "Could not initialize date in the CalendarTime block.
+  assert(time + offset + timOff < timeStampsNewYear[size(
+    timeStampsNewYear, 1)], if zerTim == IBPSA.Utilities.Time.Types.ZeroTime.Custom
+     and yearRef >= lastYear then "Could not initialize date in the CalendarTime block.
    You selected a custom time=0 reference.
-   The maximum value for yearRef is then " + String(lastYear) +
-    " but your value is " + String(yearRef) + "." else "Could not initialize date in the CalendarTime block.
+   The maximum value for yearRef is then "
+                                     + String(lastYear) + " but your value is "
+     + String(yearRef) + "." else "Could not initialize date in the CalendarTime block.
        Possibly your startTime is too large.");
 
   // iterate to find the year at initialization

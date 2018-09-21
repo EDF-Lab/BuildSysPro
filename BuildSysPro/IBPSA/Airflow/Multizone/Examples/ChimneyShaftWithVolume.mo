@@ -25,8 +25,8 @@ model ChimneyShaftWithVolume
     redeclare package Medium = Medium,
     use_m_flow_in=true,
     T=293.15,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{-40,-90},{-20,-70}})));
+    nPorts=1) annotation (Placement(transformation(extent={{-40,-90},{-20,
+            -70}})));
   IBPSA.Fluid.Sources.Boundary_pT bou0(
     redeclare package Medium = Medium,
     T=273.15,
@@ -131,7 +131,7 @@ equation
       points={{110,-30},{110,-39}},
       color={0,127,255}));
   connect(mRoo_flow.y[1], boundary.m_flow_in) annotation (Line(
-      points={{-69,-72},{-40,-72}},
+      points={{-69,-72},{-42,-72}},
       color={0,0,127}));
   connect(boundary.ports[1], roo.ports[1]) annotation (Line(
       points={{-20,-80},{27.3333,-80},{27.3333,-60}},
@@ -152,7 +152,7 @@ equation
     Documentation(info="<html>
 <p>
 This model is identical to
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Examples.ChimneyShaftNoVolume\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.Examples.ChimneyShaftNoVolume\">
 Buildings.Airflow.Multizone.Examples.ChimneyShaftNoVolume</a>,
 except that the chimney model is not steady-state, but rather dynamic
 as it contains an air volume. The air volume is approximated

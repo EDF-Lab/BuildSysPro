@@ -11,9 +11,9 @@ block SkyBrightness "Sky brightness"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 equation
   skyBri = IBPSA.Utilities.Math.Functions.smoothMin(
-    HDifHor*relAirMas/1367,
-    1,
-    0.025);
+            HDifHor*relAirMas/1367,
+            1,
+            0.025);
   annotation (
     defaultComponentName="skyBri",
     Documentation(info="<html>

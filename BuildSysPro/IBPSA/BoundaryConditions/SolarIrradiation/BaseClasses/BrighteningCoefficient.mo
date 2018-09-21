@@ -5,7 +5,7 @@ block BrighteningCoefficient "Circumsolar and horizon brightening coefficients"
   Modelica.Blocks.Interfaces.RealInput zen(
     quantity="Angle",
     unit="rad",
-    displayUnit="degree") "Zenith angle of the sun beam"
+    displayUnit="deg") "Zenith angle of the sun beam"
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}})));
   Modelica.Blocks.Interfaces.RealInput skyCle
     "Sky clearness. skyCle=1: overcast sky; skyCle=8 clear sky"
@@ -106,9 +106,9 @@ equation
   F23 = -0.0220216*a1 - 0.0288748*a2 - 0.0260542*a3 - 0.0139754*a4 + 0.0012448*
     a5 + 0.0558651*a6 + 0.1310694*a7 + 0.2506212*a8;
   F1 = IBPSA.Utilities.Math.Functions.smoothMax(
-    0,
-    F11 + F12*skyBri + F13*zen,
-    0.01);
+            0,
+            F11 + F12*skyBri + F13*zen,
+            0.01);
   F2 = F21 + F22*skyBri + F23*zen;
   annotation (
     defaultComponentName="briCoe",
@@ -118,6 +118,12 @@ This component computes the circumsolar and horizon brightening coefficients.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 27, 2018, by Michael Wetter:<br/>
+Corrected <code>displayUnit</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/912\">IBPSA, issue 912</a>.
+</li>
 <li>
 March 15, 2016, by Michael Wetter:<br/>
 Replaced <code>spliceFunction</code> with <code>regStep</code>.

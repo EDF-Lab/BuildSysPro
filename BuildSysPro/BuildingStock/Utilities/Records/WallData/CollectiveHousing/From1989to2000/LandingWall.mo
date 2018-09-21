@@ -1,12 +1,12 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.CollectiveHousing.From1989to2000;
 record LandingWall =
-    BuildSysPro.Utilities.Icons.VerticalInternalWall (
+  BuildSysPro.Utilities.Icons.VerticalInternalWall (
     n=3,
     m={5,1,1},
     e={0.20,0.04,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.Concrete(),
-        BuildSysPro.Utilities.Data.Solids.ExtrudedPolystyrene30(),
-        BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
+         BuildSysPro.Utilities.Data.Solids.ExtrudedPolystyrene30(),
+         BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
     positionIsolant={0,1,0}) "Landing wall collective housing 1989"        annotation (
     Icon(graphics), Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -22,6 +22,6 @@ record LandingWall =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

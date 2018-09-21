@@ -9,7 +9,7 @@ The calculations follow the description in Wetter (2004), Appendix A.4.2.</p>
 <h4>Accessing weather data</h4>
 <p>
 The model
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
+<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
 IBPSA.BoundaryConditions.WeatherData.ReaderTMY3</a>
 can read TMY3 weather data for different locations.
 The documentation of that model explains how to add
@@ -24,14 +24,14 @@ proceed as follows:
 <li>
 <p>
 Create an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
+<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
 IBPSA.BoundaryConditions.WeatherData.ReaderTMY3</a>.
 </p>
 </li>
 <li>
 <p>
 Create an instance of
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.Bus\">
+<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.Bus\">
 IBPSA.BoundaryConditions.WeatherData.Bus</a>.
 </p>
 </li>
@@ -44,15 +44,15 @@ Draw a connection between these two instances.
 <p>
 Finally, to send weather data to an input connector of a model,
 connect the input connector of that model with the instance of
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.Bus\">
+<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.Bus\">
 IBPSA.BoundaryConditions.WeatherData.Bus</a>.
 Some models connect to the whole weather data bus, such as
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle\">
+<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle\">
 IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle</a>,
 in which case the connection will directly be drawn.
 Other models require only an individual signal from the weather data bus,
 such as
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SkyTemperature.Examples.BlackBody\">
+<a href=\"modelica://IBPSA.BoundaryConditions.SkyTemperature.Examples.BlackBody\">
 IBPSA.BoundaryConditions.SkyTemperature.Examples.BlackBody</a>.
 In this situation, Modelica modeling environments typically show a window that allows you to
 select what data from this weather data bus you want to connect
@@ -67,10 +67,10 @@ with your model.
 <p align=\"center\"><img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/zen_pla.png\"/> </p>
 <p>
 For the surface azimuth and tilt, the enumerations
-<a href=\"modelica://BuildSysPro.IBPSA.Types.Azimuth\">
+<a href=\"modelica://IBPSA.Types.Azimuth\">
 IBPSA.Types.Azimuth</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Types.Tilt\">
+<a href=\"modelica://IBPSA.Types.Tilt\">
 IBPSA.Types.Tilt</a>
 can be used.
 </p>

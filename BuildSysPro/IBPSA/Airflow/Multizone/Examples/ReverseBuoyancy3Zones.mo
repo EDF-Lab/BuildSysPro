@@ -41,8 +41,8 @@ model ReverseBuoyancy3Zones
     V=1E12,
     T_start=273.15 + 15,
     nPorts=2,
-    m_flow_nominal=0.001)
-    annotation (Placement(transformation(extent={{129,-30},{149,-10}})));
+    m_flow_nominal=0.001) annotation (Placement(transformation(extent={{
+            129,-30},{149,-10}})));
   IBPSA.Airflow.Multizone.MediumColumn colEasInBot(
     redeclare package Medium = Medium,
     h=1.5,
@@ -82,8 +82,8 @@ model ReverseBuoyancy3Zones
     CDClo=0.78,
     nCom=10,
     vZer=0.01,
-    dp_turbulent=0.1) "Discretized door"
-    annotation (Placement(transformation(extent={{-61,-55},{-41,-35}})));
+    dp_turbulent=0.1) "Discretized door" annotation (Placement(
+        transformation(extent={{-61,-55},{-41,-35}})));
   Modelica.Blocks.Sources.Constant ope(k=1) annotation (Placement(
         transformation(extent={{-102,-23},{-82,-3}})));
   IBPSA.Airflow.Multizone.MediumColumn col1EasBot(
@@ -111,8 +111,8 @@ model ReverseBuoyancy3Zones
     T_start=273.15 + 20,
     m_flow_nominal=0.001,
     V=2.5*10*10,
-    nPorts=2)
-    annotation (Placement(transformation(extent={{-70,120},{-50,140}})));
+    nPorts=2) annotation (Placement(transformation(extent={{-70,120},{-50,
+            140}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume volWes(
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -120,8 +120,8 @@ model ReverseBuoyancy3Zones
     V=2.5*5*5,
     T_start=273.15 + 22,
     nPorts=3,
-    m_flow_nominal=0.001)
-    annotation (Placement(transformation(extent={{-164,-27},{-144,-7}})));
+    m_flow_nominal=0.001) annotation (Placement(transformation(extent={{
+            -164,-27},{-144,-7}})));
 equation
   connect(dooOpeClo.port_b2, volWes.ports[1]) annotation (Line(
       points={{-61,-51},{-104,-51},{-104,-50},{-156.667,-50},{-156.667,-27}},
@@ -217,7 +217,7 @@ Added documentation.
 </html>", info="<html>
 <p>
 This model is similar than
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a>.
 However, the initial temperatures are such that at the start of the
 simulation, the flow direction between the three rooms reverses direction.

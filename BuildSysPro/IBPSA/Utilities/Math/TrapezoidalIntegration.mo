@@ -5,9 +5,9 @@ model TrapezoidalIntegration "Integration using the trapezoidal rule"
   parameter Real deltaX "Width of interval for Trapezoidal integration";
 equation
   y = IBPSA.Utilities.Math.Functions.trapezoidalIntegration(
-    N=N,
-    f=u,
-    deltaX=deltaX);
+          N=N,
+          f=u,
+          deltaX=deltaX);
   annotation (Icon(graphics={Text(
           extent={{-90,36},{90,-36}},
           lineColor={160,160,164},

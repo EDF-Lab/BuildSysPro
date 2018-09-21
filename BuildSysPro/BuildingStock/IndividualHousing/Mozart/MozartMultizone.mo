@@ -1464,8 +1464,10 @@ connect(ouvertureChambre3, zoneC3_3_1.ouvertureFenetres) annotation (Line(
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,120}}),
 graphics={
-        Bitmap(extent={{-100,78},{102,-62}}, fileName=
-              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Mozart/Mozart.png"),
+        Bitmap(extent={{101,70},{-101,-70}}, fileName=
+              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Mozart/Mozart.png",
+          origin={1,8},
+          rotation=180),
         Text(
           extent={{-69,-67},{122,-91}},
           lineColor={0,0,0},
@@ -1555,7 +1557,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

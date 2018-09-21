@@ -1,9 +1,9 @@
 within BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses;
 model Convector "Heat exchanger for the water stream"
-  extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(final m_flow_nominal=
-        per.mWat_flow_nominal*nBeams);
-  extends IBPSA.Fluid.Interfaces.TwoPortFlowResistanceParameters(final
-      computeFlowResistance=true, final dp_nominal=per.dpWat_nominal
+  extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(final
+      m_flow_nominal=per.mWat_flow_nominal*nBeams);
+  extends IBPSA.Fluid.Interfaces.TwoPortFlowResistanceParameters(
+      final computeFlowResistance=true, final dp_nominal=per.dpWat_nominal
       "Don't multiply with nBeams, as the beams are in parallel");
 
   parameter Data.Generic per "Performance data"

@@ -22,7 +22,8 @@ block ReaderTMY3 "Reader for TMY3 weather data"
   //--------------------------------------------------------------
   // Ceiling height
   parameter IBPSA.BoundaryConditions.Types.DataSource ceiHeiSou=IBPSA.BoundaryConditions.Types.DataSource.File
-    "Ceiling height" annotation (Evaluate=true, Dialog(group="Data source"));
+    "Ceiling height"
+    annotation (Evaluate=true, Dialog(group="Data source"));
   parameter Real ceiHei(
     final quantity="Height",
     final unit="m",
@@ -38,7 +39,8 @@ block ReaderTMY3 "Reader for TMY3 weather data"
   //--------------------------------------------------------------
   // Total sky cover
   parameter IBPSA.BoundaryConditions.Types.DataSource totSkyCovSou=IBPSA.BoundaryConditions.Types.DataSource.File
-    "Total sky cover" annotation (Evaluate=true, Dialog(group="Data source"));
+    "Total sky cover"
+    annotation (Evaluate=true, Dialog(group="Data source"));
   parameter Real totSkyCov(
     min=0,
     max=1,
@@ -54,7 +56,8 @@ block ReaderTMY3 "Reader for TMY3 weather data"
         iconTransformation(extent={{-240,-58},{-200,-18}})));
   // Opaque sky cover
   parameter IBPSA.BoundaryConditions.Types.DataSource opaSkyCovSou=IBPSA.BoundaryConditions.Types.DataSource.File
-    "Opaque sky cover" annotation (Evaluate=true, Dialog(group="Data source"));
+    "Opaque sky cover"
+    annotation (Evaluate=true, Dialog(group="Data source"));
   parameter Real opaSkyCov(
     min=0,
     max=1,
@@ -116,7 +119,8 @@ block ReaderTMY3 "Reader for TMY3 weather data"
   //--------------------------------------------------------------
   // Relative humidity
   parameter IBPSA.BoundaryConditions.Types.DataSource relHumSou=IBPSA.BoundaryConditions.Types.DataSource.File
-    "Relative humidity" annotation (Evaluate=true, Dialog(group="Data source"));
+    "Relative humidity"
+    annotation (Evaluate=true, Dialog(group="Data source"));
   parameter Real relHum(
     min=0,
     max=1,
@@ -146,7 +150,8 @@ block ReaderTMY3 "Reader for TMY3 weather data"
   //--------------------------------------------------------------
   // Wind direction
   parameter IBPSA.BoundaryConditions.Types.DataSource winDirSou=IBPSA.BoundaryConditions.Types.DataSource.File
-    "Wind direction" annotation (Evaluate=true, Dialog(group="Data source"));
+    "Wind direction"
+    annotation (Evaluate=true, Dialog(group="Data source"));
   parameter Modelica.SIunits.Angle winDir=1.0
     "Wind direction (used if winDir=Parameter)"
     annotation (Dialog(group="Data source"));
@@ -203,17 +208,17 @@ block ReaderTMY3 "Reader for TMY3 weather data"
         iconTransformation(extent={{-240,-240},{-200,-200}})));
 
   //--------------------------------------------------------------
-  parameter String filNam="" "Name of weather data file" annotation (Dialog(
-        loadSelector(filter="Weather files (*.mos)", caption=
-            "Select weather file")));
+  parameter String filNam="" "Name of weather data file" annotation (
+    Dialog(loadSelector(filter="Weather files (*.mos)",
+                        caption="Select weather file")));
   final parameter Modelica.SIunits.Angle lon(displayUnit="deg")=
     IBPSA.BoundaryConditions.WeatherData.BaseClasses.getLongitudeTMY3(
-    absFilNam) "Longitude";
+    filNam) "Longitude";
   final parameter Modelica.SIunits.Angle lat(displayUnit="deg")=
     IBPSA.BoundaryConditions.WeatherData.BaseClasses.getLatitudeTMY3(
-    absFilNam) "Latitude";
+    filNam) "Latitude";
   final parameter Modelica.SIunits.Time timZon(displayUnit="h")=
-    IBPSA.BoundaryConditions.WeatherData.BaseClasses.getTimeZoneTMY3(absFilNam)
+    IBPSA.BoundaryConditions.WeatherData.BaseClasses.getTimeZoneTMY3(filNam)
     "Time zone";
   Bus weaBus "Weather data bus" annotation (Placement(transformation(extent={{
             290,-10},{310,10}}), iconTransformation(extent={{190,-10},{210,10}})));
@@ -228,26 +233,23 @@ block ReaderTMY3 "Reader for TMY3 weather data"
   constant Modelica.SIunits.HeatFlux solCon = 1367.7 "Solar constant";
 
 protected
-  final parameter String absFilNam = IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath(filNam)
-    "Absolute path of the file";
-
   Modelica.Blocks.Tables.CombiTable1Ds datRea(
     final tableOnFile=true,
     final tableName="tab1",
-    final fileName=absFilNam,
+    final fileName=filNam,
     final smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative,
     final columns={2,3,4,5,6,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,
         28,29,30,8})
                    "Data reader"
     annotation (Placement(transformation(extent={{-80,-40},{-60,-20}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckTemperature cheTemDryBul
-    "Check dry bulb temperature "
-    annotation (Placement(transformation(extent={{160,-200},{180,-180}})));
+    "Check dry bulb temperature " annotation (Placement(transformation(
+          extent={{160,-200},{180,-180}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckTemperature cheTemDewPoi
-    "Check dew point temperature"
-    annotation (Placement(transformation(extent={{160,-240},{180,-220}})));
-  IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertRelativeHumidity conRelHum
-    "Convert the relative humidity from percentage to [0, 1] "
+    "Check dew point temperature" annotation (Placement(transformation(
+          extent={{160,-240},{180,-220}})));
+  IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertRelativeHumidity
+    conRelHum "Convert the relative humidity from percentage to [0, 1] "
     annotation (Placement(transformation(extent={{120,20},{140,40}})));
   BaseClasses.CheckPressure chePre "Check the air pressure"
     annotation (Placement(transformation(extent={{160,60},{180,80}})));
@@ -273,9 +275,9 @@ protected
     annotation (Placement(transformation(extent={{160,100},{180,120}})));
   BaseClasses.CheckWindDirection cheWinDir "Check the wind direction"
     annotation (Placement(transformation(extent={{160,-280},{180,-260}})));
-  SkyTemperature.BlackBody TBlaSkyCom(final calTSky=calTSky) if not (TBlaSkySou
-     == IBPSA.BoundaryConditions.Types.DataSource.Parameter or TBlaSkySou ==
-    IBPSA.BoundaryConditions.Types.DataSource.Input)
+  SkyTemperature.BlackBody TBlaSkyCom(final calTSky=calTSky) if not (
+    TBlaSkySou == IBPSA.BoundaryConditions.Types.DataSource.Parameter or
+    TBlaSkySou == IBPSA.BoundaryConditions.Types.DataSource.Input)
     "Computation of the black-body sky temperature"
     annotation (Placement(transformation(extent={{240,-220},{260,-200}})));
   Utilities.Time.ModelTime modTim "Model time"
@@ -287,12 +289,12 @@ protected
     "Constant used to shift weather data reader"
     annotation (Placement(transformation(extent={{-180,212},{-160,232}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.LocalCivilTime locTim(final lon=
-       lon, final timZon=timZon) "Local civil time"
-    annotation (Placement(transformation(extent={{-120,-160},{-100,-140}})));
+       lon, final timZon=timZon) "Local civil time" annotation (Placement(
+        transformation(extent={{-120,-160},{-100,-140}})));
   Modelica.Blocks.Tables.CombiTable1Ds datRea1(
     final tableOnFile=true,
     final tableName="tab1",
-    final fileName=absFilNam,
+    final fileName=filNam,
     final smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative,
     final columns=9:11) "Data reader"
     annotation (Placement(transformation(extent={{-80,180},{-60,200}})));
@@ -403,15 +405,17 @@ protected
 
   //---------------------------------------------------------------------------
   // Conversion blocks for sky cover
-  Modelica.Blocks.Math.Gain conTotSkyCov(final k=0.1) if totSkyCovSou == IBPSA.BoundaryConditions.Types.DataSource.File
+  Modelica.Blocks.Math.Gain conTotSkyCov(final k=0.1) if totSkyCovSou ==
+    IBPSA.BoundaryConditions.Types.DataSource.File
     "Convert sky cover from [0...10] to [0...1]"
     annotation (Placement(transformation(extent={{120,-40},{140,-20}})));
-  Modelica.Blocks.Math.Gain conOpaSkyCov(final k=0.1) if opaSkyCovSou == IBPSA.BoundaryConditions.Types.DataSource.File
+  Modelica.Blocks.Math.Gain conOpaSkyCov(final k=0.1) if opaSkyCovSou ==
+    IBPSA.BoundaryConditions.Types.DataSource.File
     "Convert sky cover from [0...10] to [0...1]"
     annotation (Placement(transformation(extent={{120,-158},{140,-138}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckBlackBodySkyTemperature
-    cheTemBlaSky(TMin=0) "Check black body sky temperature"
-    annotation (Placement(transformation(extent={{240,-260},{260,-240}})));
+    cheTemBlaSky(TMin=0) "Check black body sky temperature" annotation (
+      Placement(transformation(extent={{240,-260},{260,-240}})));
 
   // Blocks that are added in order to set the name of the output signal,
   // which then is displayed in the GUI of the weather data connector.
@@ -434,9 +438,6 @@ protected
           extent={{-81,32},{84,-24}},
           lineColor={0,0,0},
             textString="Latitude")}),
-    Diagram(coordinateSystem(
-        preserveAspectRatio=false,
-        extent={{-100,-100},{100,100}})),
     Documentation(info="<html>
 <p>
 Block to output the latitude of the location.
@@ -481,9 +482,6 @@ First implementation.
           extent={{-81,32},{84,-24}},
           lineColor={0,0,0},
             textString="Longitude")}),
-    Diagram(coordinateSystem(
-        preserveAspectRatio=false,
-        extent={{-100,-100},{100,100}})),
     Documentation(info="<html>
 <p>
 Block to output the longitude of the location.
@@ -654,15 +652,15 @@ equation
       "Get HDirNor using user input file";
   elseif HSou == IBPSA.BoundaryConditions.Types.RadiationDataSource.Input_HGloHor_HDifHor then
     IBPSA.Utilities.Math.Functions.smoothMin(
-      solCon,
-      (HGloHor_in_internal - HDifHor_in_internal)*
+            solCon,
+            (HGloHor_in_internal - HDifHor_in_internal)*
         IBPSA.Utilities.Math.Functions.spliceFunction(
-        x=cos(zenAng.zen),
-        pos=IBPSA.Utilities.Math.Functions.inverseXRegularized(cos(zenAng.zen),
-          epsCos),
-        neg=0,
-        deltax=epsCos),
-      0.1) = HDirNor_in_internal
+              x=cos(zenAng.zen),
+              pos=IBPSA.Utilities.Math.Functions.inverseXRegularized(cos(
+          zenAng.zen), epsCos),
+              neg=0,
+              deltax=epsCos),
+            0.1) = HDirNor_in_internal
       "Calculate the HDirNor using HGloHor and HDifHor according to (A.4.14) and (A.4.15)";
   else
     connect(conDirNorRad.HOut, HDirNor_in_internal)
@@ -1289,7 +1287,7 @@ On a console window, type<pre>
 </pre>
 This will generate the weather data file <code>inputFile.mos</code>, which can be read
 by the model
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
+<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
 IBPSA.BoundaryConditions.WeatherData.ReaderTMY3</a>.
 </li>
 </ol>
@@ -1373,7 +1371,7 @@ parameter <code>pAtm=101325</code> Pascals.
 The parameter <code>*Sou</code> configures the source of the data.
 For the atmospheric pressure, temperatures, relative humidity, wind speed and wind direction,
 the enumeration
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.Types.DataSource\">
+<a href=\"modelica://IBPSA.BoundaryConditions.Types.DataSource\">
 IBPSA.BoundaryConditions.Types.DataSource</a>
 is used as follows:
 </p>
@@ -1417,7 +1415,7 @@ is used as follows:
 Because global, diffuse and direct radiation are related to each other, the parameter
 <code>HSou</code> is treated differently.
 It is set to a value of the enumeration
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.Types.RadiationDataSource\">
+<a href=\"modelica://IBPSA.BoundaryConditions.Types.RadiationDataSource\">
 IBPSA.BoundaryConditions.Types.RadiationDataSource</a>,
 and allows the following configurations:
 </p>
@@ -1567,10 +1565,23 @@ Technical Report, NREL/TP-581-43156, revised May 2008.
 </html>", revisions="<html>
 <ul>
 <li>
+December 4, 2017, by Michael Wetter:<br/>
+Removed function call to <code>getAbsolutePath</code>, as this causes in Dymola 2018FD01
+the error
+\"A call of loadResource with a non-literal string remains in the generated code; it will not work for an URI.\"
+when exporting <a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZone\">
+IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZone</a>
+as an FMU. Instead, if the weather file is specified as a Modelica, URI, syntax such as
+<code>Modelica.Utilities.Files.loadResource(\"modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos\")</code>
+should be used.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/867\">#867</a>.
+</li>
+<li>
 February 18, 2017, by Filip Jorissen:<br/>
 Infrared radiation on horizontal surface is now delayed by 30 minutes
 such that the results in
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SkyTemperature.Examples.BlackBody\">TBlaSky</a>
+<a href=\"modelica://IBPSA.BoundaryConditions.SkyTemperature.Examples.BlackBody\">TBlaSky</a>
 are consistent.
 This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/648\">#648</a>.
@@ -1585,7 +1596,7 @@ This is for
 <li>
 April 21, 2016, by Michael Wetter:<br/>
 Introduced <code>absFilNam</code> to avoid multiple calls to
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
+<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
 IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath</a>.
 This is for
 <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/506\">Buildings, #506</a>.
@@ -1613,7 +1624,7 @@ This is for
 </li>
 <li>
 September 24, 2015, by Marcus Fuchs:<br/>
-Replace annotation <code>__Dymola_loadSelector</code> by <code>loadSelector</code>
+Replace Dymola specific annotation by <code>loadSelector</code>
 for MSL compliancy as reported by @tbeu at
 <a href=\"https://github.com/RWTH-EBC/AixLib/pull/107\">RWTH-EBC/AixLib#107</a>
 </li>
@@ -1623,7 +1634,7 @@ Removed redundant but consistent
 <code>connect(TBlaSkyCom.TBlaSky, weaBus.TBlaSky)</code>
 statement.
 This avoids a warning if
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.Examples.SkyClearness\">
+<a href=\"modelica://IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.Examples.SkyClearness\">
 IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.Examples.SkyClearness</a>
 is translated in pedantic mode in Dymola 2016.
 This is for
@@ -1663,13 +1674,13 @@ and the infrared horizontal radiation <code>HInfHor</code>.
 October 8, 2013, by Michael Wetter:<br/>
 Improved the algorithm that determines the absolute path of the file.
 Now weather files are searched in the path specified, and if not found, the urls
-<code>file://</code>, <code>modelica://</code> and <code>modelica://BuildSysPro.IBPSA</code>
+<code>file://</code>, <code>modelica://</code> and <code>modelica://IBPSA</code>
 are added in this order to search for the weather file.
 This allows using the data reader without having to specify an absolute path,
 as long as the <code>IBPSA</code> library
 is on the <code>MODELICAPATH</code>.
 This change was implemented in
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
+<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
 IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath</a>
 and improves this weather data reader.
 </li>

@@ -4,8 +4,8 @@ model WaterProperties_pT
   extends Modelica.Icons.Example;
   extends IBPSA.Media.Examples.BaseClasses.FluidProperties(
     redeclare package Medium =
-        IBPSA.Media.Specialized.Water.ConstantProperties_pT (T_nominal=273.15
-             + 100, p_nominal=5e5),
+        IBPSA.Media.Specialized.Water.ConstantProperties_pT (
+          T_nominal=273.15 + 100, p_nominal=5e5),
     TMin=273.15,
     TMax=273.15 + 150);
 equation
@@ -18,7 +18,7 @@ equation
       Documentation(info="<html>
 <p>
 This example checks the thermophysical properties of the medium
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Specialized.Water.Examples.WaterProperties_pT\">
+<a href=\"modelica://IBPSA.Media.Specialized.Water.Examples.WaterProperties_pT\">
 IBPSA.Media.Specialized.Water.Examples.WaterProperties_pT</a>.
 </p>
 </html>",

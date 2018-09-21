@@ -6,7 +6,7 @@ class Contact "Contact"
 <h4><font color=\"#008000\" size=\"5\">Contact</font></h4>
 <p>
 The development of the IBPSA library is organized through the
-<a href=\"https://BuildSysPro.IBPSA.github.io/project1\">IBPSA Project 1</a>
+<a href=\"https://ibpsa.github.io/project1\">IBPSA Project 1</a>
 of the International Building Performance Simulation Association (IBPSA).
 From 2012 to 2017, the development was organized through the
 <a href=\"http://www.iea-annex60.org\">Annex 60 project</a>

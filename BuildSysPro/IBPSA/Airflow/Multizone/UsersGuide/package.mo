@@ -37,7 +37,7 @@ in Costola <i>et al.</i> (2009), Persily and Ivy (2001), and Swami and Chandra (
 <p>
 The models in this package are as described in Wetter (2005),
 except for the addition of the model
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise\">
 Buildings.Airflow.Multizone.BaseClasses.windPressureLowRise</a>
 that computes the wind pressure on facades, and
 some changes that have been done when migrating

@@ -25,9 +25,9 @@ equation
   dp = 1*time^3;
 
   m_flow = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-    dp=dp,
-    k=k,
-    m_flow_turbulent=m_flow_turbulent);
+              dp=dp,
+              k=k,
+              m_flow_turbulent=m_flow_turbulent);
 
   // Equate first and second order derivatives
   der_m_flow      = der(m_flow);
@@ -49,10 +49,10 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 Documentation(info="<html>
 <p>
 This model validates the implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp</a>
 and its second order derivative
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2</a>.
 If the derivative implementation is wrong, the simulation will stop with an error.
 </p>
@@ -60,7 +60,7 @@ If the derivative implementation is wrong, the simulation will stop with an erro
 <p>
 The pressure drop <code>dp</code> is increased non-linearly in order
 for the first and second derivatives in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2</a>
 to be non-zero during part of the simulation. This will ensure
 full code coverage of this function.

@@ -23,27 +23,6 @@ package Math "Library with functions such as for smoothing"
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains blocks and functions for commonly used

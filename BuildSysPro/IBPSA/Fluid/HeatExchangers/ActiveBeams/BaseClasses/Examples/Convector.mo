@@ -8,11 +8,11 @@ model Convector
     redeclare package Medium = Medium,
     m_flow=0.094,
     T=288.15,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
-  IBPSA.Fluid.Sources.FixedBoundary bou(redeclare package Medium = Medium,
-      nPorts=1) "Pressure boundary condition"
-    annotation (Placement(transformation(extent={{80,-10},{60,10}})));
+    nPorts=1) annotation (Placement(transformation(extent={{-80,-10},
+            {-60,10}})));
+  IBPSA.Fluid.Sources.FixedBoundary bou(redeclare package Medium =
+        Medium, nPorts=1) "Pressure boundary condition" annotation (
+     Placement(transformation(extent={{80,-10},{60,10}})));
   Modelica.Blocks.Sources.Ramp airFlo(height=0.0792, duration=4)
     "Air mass flow rate"
     annotation (Placement(transformation(extent={{-80,70},{-60,90}})));
@@ -28,10 +28,10 @@ model Convector
       dT_nominal=-10,
       Q_flow_nominal=1092,
       dpWat_nominal=10000,
-      dpAir_nominal=100)) "Convector model"
-    annotation (Placement(transformation(extent={{0,-10},{20,10}})));
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package Medium =
-        Medium, m_flow_nominal=0.094) "Temperature sensor"
+      dpAir_nominal=100)) "Convector model" annotation (Placement(
+        transformation(extent={{0,-10},{20,10}})));
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package
+      Medium = Medium, m_flow_nominal=0.094) "Temperature sensor"
     annotation (Placement(transformation(extent={{30,-10},{50,10}})));
 equation
   connect(airFlo.y, con.mAir_flow) annotation (Line(points={{-59,80},{-10,80},{-10,
@@ -50,7 +50,7 @@ equation
     Documentation(info="<html>
 <p>
 The example tests the implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.Convector\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.Convector\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.Convector</a>.
 The room air temperature and the water mass flow rate are constant while the air flow rate varys with a ramp.
 </p>

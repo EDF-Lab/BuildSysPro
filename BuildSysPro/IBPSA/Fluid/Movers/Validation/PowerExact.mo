@@ -6,8 +6,6 @@ model PowerExact
     pump_m_flow(per=per));
   annotation (
     experiment(Tolerance=1e-6, StopTime=200),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}})),
     __Dymola_Commands(file=
           "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Validation/PowerExact.mos"
         "Simulate and plot"),
@@ -15,7 +13,7 @@ model PowerExact
 info="<html>
 <p>
 This example is identical to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Validation.PowerSimplified\">
+<a href=\"modelica://IBPSA.Fluid.Movers.Validation.PowerSimplified\">
 IBPSA.Fluid.Movers.Validation.PowerSimplified</a>, except that the
 performance data for the flow controlled pumps
 <code>pump_dp</code> and <code>pump_m_flow</code> contain

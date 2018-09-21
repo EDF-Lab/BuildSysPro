@@ -3,7 +3,8 @@ model Carnot_TCon
   "Heat pump with prescribed condenser leaving temperature and performance curve adjusted based on Carnot efficiency"
  extends IBPSA.Fluid.Chillers.BaseClasses.PartialCarnot_T(
     final COP_is_for_cooling=false,
-    final QEva_flow_nominal=-QCon_flow_nominal*(COP_nominal - 1)/COP_nominal,
+    final QEva_flow_nominal=-QCon_flow_nominal*(COP_nominal - 1)/
+        COP_nominal,
     PEle(y=QCon_flow/COP),
     redeclare HeatExchangers.Heater_T con(
       final from_dp=from_dp1,
@@ -44,7 +45,6 @@ protected
 initial equation
   assert(QCon_flow_nominal > 0, "Parameter QCon_flow_nominal must be positive.");
   assert(COP_nominal > 1, "The nominal COP of a heat pump must be bigger than one.");
-
 
 equation
   connect(TSet, con.TSet) annotation (Line(points={{-120,90},{-80,90},{-80,90},{
@@ -148,7 +148,7 @@ since otherwise the second law of thermodynamics may be violated.
 <h4>Notes</h4>
 <p>
 For a similar model that can be used as a chiller, see
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Chillers.Examples.Carnot_TEva\">
+<a href=\"modelica://IBPSA.Fluid.Chillers.Examples.Carnot_TEva\">
 IBPSA.Fluid.Chillers.Examples.Carnot_TEva</a>.
 </p>
 </html>",

@@ -1,12 +1,7 @@
 within BuildSysPro.Utilities.Data;
 package Solids "Package with solid material, characterized by thermal conductance, density and specific heat capacity"
 
-
-
-
-
-
-  annotation (uses(BuildSysPro(version="2015.12"), Modelica(version="3.2.1")),
+  annotation (
     Documentation(info="<html>
   <p><b>-----------------------------------------------------------------------<br>
   Licensed by EDF under the Modelica License 2<br>

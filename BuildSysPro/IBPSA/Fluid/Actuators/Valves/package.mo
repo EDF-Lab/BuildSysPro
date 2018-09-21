@@ -11,15 +11,9 @@ package Valves "Package with valve models"
 
 
 
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 This package contains component models for two- and three-way valves.
 For motor models, see
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Motors\">IBPSA.Fluid.Actuators.Motors</a>.
+<a href=\"modelica://IBPSA.Fluid.Actuators.Motors\">IBPSA.Fluid.Actuators.Motors</a>.
 </html>"));
 end Valves;

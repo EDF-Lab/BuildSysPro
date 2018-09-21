@@ -5,9 +5,9 @@ block SmoothMax
  parameter Real deltaX "Width of transition interval";
 equation
   y = IBPSA.Utilities.Math.Functions.smoothMax(
-    x1=u1,
-    x2=u2,
-    deltaX=deltaX);
+          x1=u1,
+          x2=u2,
+          deltaX=deltaX);
   annotation (Icon(graphics={Text(
           extent={{-88,40},{92,-32}},
           lineColor={160,160,164},
@@ -21,7 +21,7 @@ Once continuously differentiable approximation to the <i>max(.,.)</i> function.
 </p>
 <p>
 Note that the maximum need not be respected, such as illustrated in
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Examples.SmoothMin\">
+<a href=\"modelica://IBPSA.Utilities.Math.Examples.SmoothMin\">
 IBPSA.Utilities.Math.Examples.SmoothMin</a>.
 </p>
 </html>",

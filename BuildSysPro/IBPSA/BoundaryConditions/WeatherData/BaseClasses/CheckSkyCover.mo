@@ -14,10 +14,10 @@ protected
   constant Real nMax=10 - delta "Upper bound";
 equation
   nOut = IBPSA.Utilities.Math.Functions.smoothLimit(
-    nIn,
-    nMin,
-    nMax,
-    delta/10);
+            nIn,
+            nMin,
+            nMax,
+            delta/10);
   annotation (
     defaultComponentName="cheSkyCov",
     Documentation(info="<html>
@@ -33,7 +33,7 @@ Removed wrong unit string for input signal.
 <li>
 October 17, 2014, by Michael Wetter:<br/>
 Changed model as
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
+<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
 IBPSA.BoundaryConditions.WeatherData.ReaderTMY3</a>
 send a signal between <i>0</i> and <i>1</i>.
 Added <code>min</code> and <code>max</code>

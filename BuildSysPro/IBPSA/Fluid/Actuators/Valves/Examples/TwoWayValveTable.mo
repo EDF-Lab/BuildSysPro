@@ -14,8 +14,8 @@ model TwoWayValveTable
     use_p_in=false,
     p(displayUnit="Pa") = 306000,
     T=293.15,
-    nPorts=1) "Boundary condition for flow source"
-    annotation (Placement(transformation(extent={{-90,10},{-70,30}})));
+    nPorts=1) "Boundary condition for flow source" annotation (
+      Placement(transformation(extent={{-90,10},{-70,30}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     p(displayUnit="Pa") = 3E5,

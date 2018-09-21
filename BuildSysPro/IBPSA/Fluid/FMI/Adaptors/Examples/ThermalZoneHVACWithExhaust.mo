@@ -31,10 +31,10 @@ equation
 <p>
 This example demonstrates how to
 use the adaptors
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.HVAC\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.HVAC\">
 IBPSA.Fluid.FMI.Adaptors.HVAC</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.ThermalZone\">
+<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.ThermalZone\">
 IBPSA.Fluid.FMI.Adaptors.ThermalZone</a>
 </p>
 <p>

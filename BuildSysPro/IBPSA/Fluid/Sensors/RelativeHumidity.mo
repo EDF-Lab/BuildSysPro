@@ -19,9 +19,9 @@ equation
       X=Xi);
 
   phi = IBPSA.Utilities.Psychrometrics.Functions.phi_pTX(
-    p=port.p,
-    T=T,
-    X_w=Xi[1]);
+          p=port.p,
+          T=T,
+          X_w=Xi[1]);
 
 annotation (defaultComponentName="senRelHum",
   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
@@ -47,7 +47,7 @@ which is typically the case for moist air models.
 </p>
 <p>
 Read the
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a>
 prior to using this model with one fluid port.
 </p>

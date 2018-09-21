@@ -7,12 +7,6 @@ package Characteristics "Functions for fan or pump characteristics"
 
 
 
-
-
-
-
-
-
   annotation (Documentation(info="<html>
 <p>
 This package implements performance curves for fans and pumps,
@@ -21,7 +15,7 @@ curves.
 </p>
 <p>
 See the
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Movers.UsersGuide\">
 User's Guide</a> for information about these performance curves.
 </p>
 </html>",
@@ -30,7 +24,7 @@ revisions="<html>
 <li>
 September 8, 2016, by Michael Wetter:<br/>
 Deleted function <code>performanceCurve</code> as it is no longer needed. Instead, the function
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics.pressure\">
+<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics.pressure\">
 IBPSA.Fluid.Movers.BaseClasses.Characteristics.pressure</a>
 is used for all speeds.<br/>
 This is

@@ -1,6 +1,7 @@
 within BuildSysPro.IBPSA.Utilities.Psychrometrics;
 block pW_X "Water vapor pressure for given humidity ratio"
-  extends IBPSA.Utilities.Psychrometrics.BaseClasses.HumidityRatioVaporPressure;
+  extends
+    IBPSA.Utilities.Psychrometrics.BaseClasses.HumidityRatioVaporPressure;
   Modelica.Blocks.Interfaces.RealInput X_w(min=0, max=0.99999, nominal=0.1)
     "Water concentration at dry bulb temperature"
     annotation (Placement(transformation(extent={{-120,-10},{-100,10}}), iconTransformation(extent={{-120,-10},{-100,10}})));
@@ -14,7 +15,8 @@ block pW_X "Water vapor pressure for given humidity ratio"
     "Water mass fraction per mass of dry air";
 
 equation
-  p_w = IBPSA.Utilities.Psychrometrics.Functions.pW_X(X_w=X_w, p=p_in_internal);
+  p_w = IBPSA.Utilities.Psychrometrics.Functions.pW_X(X_w=X_w, p=
+    p_in_internal);
   x_w = X_w/(1-X_w);
   annotation (
     defaultComponentName="pWat",

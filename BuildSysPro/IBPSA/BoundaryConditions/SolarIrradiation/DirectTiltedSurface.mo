@@ -18,8 +18,8 @@ protected
     final til=til,
     final lat=lat) "Incidence angle"
     annotation (Placement(transformation(extent={{-50,-30},{-30,-10}})));
-  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.DirectTiltedSurface HDirTil
-    "Direct irradition on tilted surface"
+  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.DirectTiltedSurface
+    HDirTil "Direct irradition on tilted surface"
     annotation (Placement(transformation(extent={{0,-20},{40,20}})));
 
 equation
@@ -55,7 +55,7 @@ equation
 <p>
 This component computes the direct solar irradiation on a tilted surface.
 For a definition of the parameters, see the
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.UsersGuide\">User's Guide</a>.
+<a href=\"modelica://IBPSA.BoundaryConditions.UsersGuide\">User's Guide</a>.
 </p>
 </html>", revisions="<html>
 <ul>

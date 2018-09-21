@@ -33,13 +33,10 @@ initial equation
     "flowCharateristics.phi[end] must be 1.");
 
   // Assert that the sequences are strictly monotonic increasing
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x=flowCharacteristics.y,
-    strict=true),
-    "The values for y in flowCharacteristics must be strictly monotone increasing.");
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x=flowCharacteristics.phi,
-    strict=true),
-    "The values for phi in flowCharacteristics must be strictly monotone increasing.");
-
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x=
+    flowCharacteristics.y, strict=true), "The values for y in flowCharacteristics must be strictly monotone increasing.");
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x=
+    flowCharacteristics.phi, strict=true), "The values for phi in flowCharacteristics must be strictly monotone increasing.");
 
 equation
   connect(phiLooUp.u[1], y_actual) annotation (Line(
@@ -88,7 +85,7 @@ a valve leakage of <i>l=0.0001</i>, then one would set
  </pre>
 <p>
 Note, however, that
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
 IBPSA.Fluid.Actuators.Valves.TwoWayLinear</a> provides a more
 efficient implementation for this simple case.
 </p>
@@ -117,14 +114,14 @@ The last values must satisfy
 </ul>
 <p>
 This model is based on the partial valve model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve</a>.
 Check this model for more information, such
 as the regularization near the origin.
 </p>
 <p>
 For an example that specifies an opening characteristics, see
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable\">
 IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable</a>.
 </p>
 </html>", revisions="<html>

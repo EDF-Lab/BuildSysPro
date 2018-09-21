@@ -1,11 +1,11 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.RT2000_H3;
 record Floor =
-    BuildSysPro.Utilities.Icons.Floor (
+  BuildSysPro.Utilities.Icons.Floor (
     n=2,
     m={2,4},
     e={0.10,0.18},
     mat={BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene38(),
-        BuildSysPro.Utilities.Data.Solids.Concrete()},
+         BuildSysPro.Utilities.Data.Solids.Concrete()},
     positionIsolant={1,0}) "Floor Mozart RT2000 zone H3"
   annotation (Icon(graphics), Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -21,6 +21,6 @@ record Floor =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

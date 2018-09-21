@@ -4,7 +4,6 @@ model Junction
     extends IBPSA.Fluid.BaseClasses.PartialThreeWayResistance(
     mDyn_flow_nominal=sum(abs(m_flow_nominal[:])/3),
     redeclare IBPSA.Fluid.FixedResistances.PressureDrop res1(
-      final allowFlowReversal=true,
       from_dp=from_dp,
       final m_flow_nominal=m_flow_nominal[1],
       final dp_nominal=dp_nominal[1],
@@ -12,7 +11,6 @@ model Junction
       homotopyInitialization=homotopyInitialization,
       deltaM=deltaM),
     redeclare IBPSA.Fluid.FixedResistances.PressureDrop res2(
-      final allowFlowReversal=true,
       from_dp=from_dp,
       final m_flow_nominal=m_flow_nominal[2],
       final dp_nominal=dp_nominal[2],
@@ -20,7 +18,6 @@ model Junction
       homotopyInitialization=homotopyInitialization,
       deltaM=deltaM),
     redeclare IBPSA.Fluid.FixedResistances.PressureDrop res3(
-      final allowFlowReversal=true,
       from_dp=from_dp,
       final m_flow_nominal=m_flow_nominal[3],
       final dp_nominal=dp_nominal[3],
@@ -80,7 +77,7 @@ and an optional mixing volume at the junction.
 </p>
 <p>
 The pressure drop is implemented using the model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
+<a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
 IBPSA.Fluid.FixedResistances.PressureDrop</a>.
 If its nominal pressure drop is set to zero, then the pressure drop
 model will be removed.
@@ -103,7 +100,7 @@ If
 <code>energyDynamics &lt;&gt; Modelica.Fluid.Types.Dynamics.SteadyState</code>,
 then at the flow junction, a fluid volume is modeled.
 The fluid volume is implemented using the model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Delays.DelayFirstOrder\">
+<a href=\"modelica://IBPSA.Fluid.Delays.DelayFirstOrder\">
 IBPSA.Fluid.Delays.DelayFirstOrder</a>.
 The fluid volume has the size
 </p>
@@ -119,6 +116,15 @@ system of equations.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+March 26, 2018 by Filip Jorissen:<br/>
+Removed <code>final allowFlowReversal=true</code> from all resistances 
+since this overrides the default simplification when the flow
+is not bidirectional.
+This change can lead to smaller algebraic loops.
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/898\">issue 898</a>.
+</li>
 <li>
 December 1, 2016, by Michael Wetter:<br/>
 Renamed model from <code>SplitterFixedResistanceDpM</code> to
@@ -153,7 +159,7 @@ to avoid flow reversal in large flow networks where such a setting may be useful
 <li>
 June 11, 2008 by Michael Wetter:<br/>
 Based class on
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.PartialThreeWayFixedResistance\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.PartialThreeWayFixedResistance\">
 PartialThreeWayFixedResistance</a>.
 </li>
 <li>

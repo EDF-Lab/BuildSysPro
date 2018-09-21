@@ -1,7 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.HeatExchangers;
 model PrescribedOutlet
   "Ideal heater, cooler, humidifier or dehumidifier with prescribed outlet conditions"
-  extends IBPSA.Fluid.HeatExchangers.BaseClasses.PartialPrescribedOutlet(outCon(
+  extends IBPSA.Fluid.HeatExchangers.BaseClasses.PartialPrescribedOutlet(
+      outCon(
       final T_start=T_start,
       final X_start=X_start,
       final use_TSet=use_TSet,
@@ -158,7 +159,7 @@ that leaves the model from <code>port_b</code>.
 This model forces the outlet temperature at <code>port_b</code> to be equal to the temperature
 of the input signal <code>TSet</code>, subject to optional limits on the
 heating or cooling capacity <code>QMax_flow &ge; 0</code> and <code>QMin_flow &le; 0</code>.
-Similarly than for the temperature, 
+Similarly than for the temperature,
 this model also forces the outlet water mass fraction at <code>port_b</code> to be
 no lower than the
 input signal <code>X_wSet</code>, subject to optional limits on the
@@ -201,7 +202,7 @@ If no flow resistance is requested, set <code>dp_nominal=0</code>.
 <p>
 For a model that uses a control signal <i>u &isin; [0, 1]</i> and multiplies
 this with the nominal heating or cooling power, use
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.HeaterCooler_u</a>
 
 </p>
@@ -227,10 +228,10 @@ IBPSA.Fluid.Humidifiers.SprayAirWasher_X</a>.
 <p>
 The model has been validated against the analytical solution in
 the examples
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic</a>.
 </p>
 </html>",

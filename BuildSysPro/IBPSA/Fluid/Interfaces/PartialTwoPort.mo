@@ -56,7 +56,7 @@ November 13, 2015, by Michael Wetter:<br/>
 Assinged <code>start</code> attribute for leaving
 enthalpy at <code>port_a</code> and <code>port_b</code>.
 This was done to make the model similar to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialFourPort\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.PartialFourPort\">
 IBPSA.Fluid.Interfaces.PartialFourPort</a>.
 </li>
 <li>

@@ -2,11 +2,10 @@ within BuildSysPro.IBPSA.Airflow.Multizone;
 package Validation "Collection of validation models"
   extends Modelica.Icons.ExamplesPackage;
 
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains validation models for the classes in
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone\">
+<a href=\"modelica://IBPSA.Airflow.Multizone\">
 Buildings.Airflow.Multizone</a>.
 </p>
 <p>

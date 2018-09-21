@@ -2,7 +2,6 @@ within BuildSysPro.IBPSA.ThermalZones.ReducedOrder;
 package Validation "Collection of validation models"
   extends Modelica.Icons.ExamplesPackage;
 
-
   annotation (Documentation(info="<html>
   <p>This package contains models for validation of Reduced Order Models. The
   examples plot various outputs, which have been verified against comparative

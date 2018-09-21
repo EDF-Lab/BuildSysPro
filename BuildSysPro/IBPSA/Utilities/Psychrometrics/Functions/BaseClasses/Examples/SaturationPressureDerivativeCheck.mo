@@ -14,7 +14,8 @@ initial equation
   y=y_comp;
 equation
   T =  TMin + (TMax-TMin)/2 + (TMax-TMin)/2*time^3;
-  y = IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(TSat=T);
+  y = IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(
+    TSat=T);
   der(y)=der(y_comp);
   err = y-y_comp;
   assert(abs(err)/max(1, abs(y)) < 1E-2, "Derivative implementation has an error or solver tolerance is too low.");

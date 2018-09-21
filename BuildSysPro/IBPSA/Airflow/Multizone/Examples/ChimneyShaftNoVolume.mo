@@ -25,8 +25,8 @@ model ChimneyShaftNoVolume
     redeclare package Medium = Medium,
     use_m_flow_in=true,
     T=293.15,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{-40,-90},{-20,-70}})));
+    nPorts=1) annotation (Placement(transformation(extent={{-40,-90},{-20,
+            -70}})));
   IBPSA.Fluid.Sources.Boundary_pT bou0(
     redeclare package Medium = Medium,
     T=273.15,
@@ -78,8 +78,8 @@ model ChimneyShaftNoVolume
         origin={-80,0})));
   Modelica.Blocks.Math.Gain gain(k=3000)
     annotation (Placement(transformation(extent={{-28,20},{-8,40}})));
-  IBPSA.Airflow.Multizone.MediumColumn sha(redeclare package Medium = Medium,
-      densitySelection=IBPSA.Airflow.Multizone.Types.densitySelection.actual)
+  IBPSA.Airflow.Multizone.MediumColumn sha(redeclare package Medium =
+        Medium, densitySelection=IBPSA.Airflow.Multizone.Types.densitySelection.actual)
     "Shaft of chimney"
     annotation (Placement(transformation(extent={{60,-30},{80,-10}})));
   MediumColumn staIn(
@@ -128,7 +128,7 @@ equation
       points={{110,-30},{110,-39}},
       color={0,127,255}));
   connect(mRoo_flow.y[1], boundary.m_flow_in) annotation (Line(
-      points={{-69,-72},{-40,-72}},
+      points={{-69,-72},{-42,-72}},
       color={0,0,127}));
   connect(boundary.ports[1], roo.ports[1]) annotation (Line(
       points={{-20,-80},{27.3333,-80},{27.3333,-60}},

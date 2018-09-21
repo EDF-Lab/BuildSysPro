@@ -3,7 +3,7 @@ model BlackBody "Test model for black body sky temperature"
   extends Modelica.Icons.Example;
 
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
+        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   IBPSA.BoundaryConditions.SkyTemperature.BlackBody TBlaSky
     "Black body sky temperature computed from temperature and sky cover"
@@ -11,7 +11,8 @@ model BlackBody "Test model for black body sky temperature"
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather data bus"
     annotation (Placement(transformation(extent={{0,0},{20,20}}),
         iconTransformation(extent={{0,0},{2,2}})));
-  IBPSA.BoundaryConditions.SkyTemperature.BlackBody TBlaSkyIrr(calTSky=IBPSA.BoundaryConditions.Types.SkyTemperatureCalculation.HorizontalRadiation)
+  IBPSA.BoundaryConditions.SkyTemperature.BlackBody TBlaSkyIrr(calTSky=
+        IBPSA.BoundaryConditions.Types.SkyTemperatureCalculation.HorizontalRadiation)
     "Black body sky temperature computation compued from horizontal infrared radiation"
     annotation (Placement(transformation(extent={{40,-20},{60,0}})));
 equation
@@ -92,7 +93,5 @@ First implementation.
 </html>"),
 experiment(Tolerance=1e-6, StartTime=0, StopTime=86400),
     __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/SkyTemperature/Examples/BlackBody.mos"
-        "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+        "Simulate and plot"));
 end BlackBody;

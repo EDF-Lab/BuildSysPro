@@ -11,7 +11,8 @@ block ZenithAngle "Zenith angle"
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
 protected
    IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.ZenithAngle zen(final lat=
-       lat) annotation (Placement(transformation(extent={{0,-10},{20,10}})));
+       lat)
+    annotation (Placement(transformation(extent={{0,-10},{20,10}})));
 equation
   connect(zen.zen, y) annotation (Line(
       points={{21,0},{88.25,0},{88.25,0},{95.5,
@@ -32,7 +33,7 @@ equation
 This component computes the zenith angle,
 which is the angle between the earth surface normal and the sun beam.
 For a definition of the parameters, see the User's Guide
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.UsersGuide\">
+<a href=\"modelica://IBPSA.BoundaryConditions.UsersGuide\">
 IBPSA.BoundaryConditions.UsersGuide</a>.
 </p>
 </html>", revisions="<html>
@@ -52,6 +53,6 @@ First implementation.
             100}}), graphics={Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255}), Bitmap(extent={{-90,90},{90,-92}}, fileName=
+          lineColor={0,0,255}), Bitmap(extent={{-90,-90},{90,90}}, fileName=
               "modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/SolarGeometry/BaseClasses/ZenithAngle.png")}));
 end ZenithAngle;

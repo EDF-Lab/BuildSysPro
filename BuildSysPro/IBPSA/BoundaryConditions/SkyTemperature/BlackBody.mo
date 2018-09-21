@@ -1,9 +1,8 @@
 within BuildSysPro.IBPSA.BoundaryConditions.SkyTemperature;
 block BlackBody "Calculate black body sky temperature"
   extends Modelica.Blocks.Icons.Block;
-  import BuildSysPro.IBPSA.BoundaryConditions.Types.SkyTemperatureCalculation;
-  parameter IBPSA.BoundaryConditions.Types.SkyTemperatureCalculation calTSky=
-      SkyTemperatureCalculation.TemperaturesAndSkyCover
+
+  parameter IBPSA.BoundaryConditions.Types.SkyTemperatureCalculation calTSky=IBPSA.BoundaryConditions.Types.SkyTemperatureCalculation.TemperaturesAndSkyCover
     "Computation of black-body sky temperature"
     annotation (choicesAllMatching=true, Evaluate=true);
   Modelica.Blocks.Interfaces.RealInput TDryBul(
@@ -36,9 +35,9 @@ protected
 equation
   if calTSky == IBPSA.BoundaryConditions.Types.SkyTemperatureCalculation.TemperaturesAndSkyCover then
     TDewPoiK = IBPSA.Utilities.Math.Functions.smoothMin(
-      TDryBul,
-      TDewPoi,
-      0.1);
+            TDryBul,
+            TDewPoi,
+            0.1);
     nOpa10 =  10*nOpa "Input nOpa is scaled to [0,1] instead of [0,10]";
     epsSky =  (0.787 + 0.764*Modelica.Math.log(-TDewPoiK/Modelica.Constants.T_zero))*(1 + 0.0224*nOpa10 -
       0.0035*(nOpa10^2) + 0.00028*(nOpa10^3));
@@ -61,6 +60,11 @@ Otherwise, it uses dry buld temperature, dew point temperature and opaque sky co
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+November 3, 2017, by Michael Wetter:<br/>
+Removed <code>import</code> statement.<br/>
+This is for <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/852\">#852</a>.
+</li>
 <li>
 January 6, 2016, by Moritz Lauster:<br/>
 Changed unit and comment of input <code>nOpa</code> for correct display of units
@@ -126,7 +130,5 @@ First implementation.
         Text(
           extent={{-88,-24},{-64,-36}},
           lineColor={0,0,127},
-          textString="nOpa")}),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}})));
+          textString="nOpa")}));
 end BlackBody;

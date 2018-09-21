@@ -7,7 +7,8 @@ model PIDHysteresis "Example model for PID controller with hysteresis"
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     yMin=0.3,
     Ti=600,
-    Td=60) annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
+    Td=60)
+    annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
   Modelica.Blocks.Sources.Constant TSet(k=273.15 + 40, y(unit="K")) "Set point"
     annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor cap(C=1000000, T(start=

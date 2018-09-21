@@ -32,8 +32,8 @@ model PumpCurveConstruction
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
-    per(pressure(V_flow={0,0.5*V_flow_nominal,V_flow_nominal}, dp={dp_nominal,
-            0.5*dp_nominal,0})),
+    per(pressure(V_flow={0,0.5*V_flow_nominal,V_flow_nominal}, dp={
+            dp_nominal,0.5*dp_nominal,0})),
     inputType=IBPSA.Fluid.Types.InputType.Constant)
     "Pump with 3 data points for the pressure flow relation"
     annotation (Placement(transformation(extent={{40,70},{60,90}})));
@@ -42,8 +42,8 @@ model PumpCurveConstruction
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
-    per(pressure(V_flow={0.5*V_flow_nominal,0.75*V_flow_nominal,V_flow_nominal},
-          dp={0.5*dp_nominal,0.25*dp_nominal,0})),
+    per(pressure(V_flow={0.5*V_flow_nominal,0.75*V_flow_nominal,
+            V_flow_nominal}, dp={0.5*dp_nominal,0.25*dp_nominal,0})),
     inputType=IBPSA.Fluid.Types.InputType.Constant)
     "Pump with 2 data points for the pressure flow relation, with data at dp=0"
     annotation (Placement(transformation(extent={{40,20},{60,40}})));
@@ -63,7 +63,8 @@ model PumpCurveConstruction
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
     per(pressure(V_flow={0.25*V_flow_nominal,0.5*V_flow_nominal,0.75*
-            V_flow_nominal}, dp={0.75*dp_nominal,0.5*dp_nominal,0.25*dp_nominal})),
+            V_flow_nominal}, dp={0.75*dp_nominal,0.5*dp_nominal,0.25*
+            dp_nominal})),
     inputType=IBPSA.Fluid.Types.InputType.Constant)
     "Pump with 2 data points for the pressure flow relation, with no data at m_flow=0 and dp=0"
     annotation (Placement(transformation(extent={{40,-70},{60,-50}})));

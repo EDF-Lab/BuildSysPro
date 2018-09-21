@@ -21,11 +21,11 @@ model Damper
     redeclare package Medium = Medium,
     p(displayUnit="Pa") = 101335,
     T=293.15,
-    nPorts=4) "Pressure boundary condition"
-    annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
+    nPorts=4) "Pressure boundary condition" annotation (Placement(
+        transformation(extent={{-60,-10},{-40,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium, nPorts=
-       4) "Pressure boundary condition"
+  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium =
+        Medium, nPorts=4) "Pressure boundary condition"
     annotation (Placement(transformation(extent={{94,-10},{74,10}})));
 
   IBPSA.Fluid.Actuators.Dampers.PressureIndependent preIndDpFixed_nominal(

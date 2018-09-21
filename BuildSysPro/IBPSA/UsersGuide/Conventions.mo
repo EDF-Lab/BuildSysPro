@@ -72,7 +72,7 @@ in addition to the ones of the Modelica Standard Library:
 <ol>
 <li>
   The nomenclature used in the package
-  <a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics\">
+  <a href=\"modelica://IBPSA.Utilities.Psychrometrics\">
   IBPSA.Utilities.Psychrometrics</a>
    is as follows,
   <ul>

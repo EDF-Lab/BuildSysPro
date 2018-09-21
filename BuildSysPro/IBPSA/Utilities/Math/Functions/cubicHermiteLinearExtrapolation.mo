@@ -35,7 +35,7 @@ linearly extrapolates.
 </p>
 <p>
 For how to use this function, see
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.Examples.CubicHermite\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.Examples.CubicHermite\">
 IBPSA.Utilities.Math.Functions.Examples.CubicHermite</a>.
 </p>
 </html>",

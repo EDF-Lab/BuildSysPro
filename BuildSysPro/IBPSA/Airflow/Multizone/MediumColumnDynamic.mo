@@ -41,8 +41,8 @@ model MediumColumnDynamic
     final p_start=p_start,
     final T_start=T_start,
     final X_start=X_start,
-    final C_start=C_start) "Air volume in the shaft" annotation (Placement(
-        transformation(
+    final C_start=C_start) "Air volume in the shaft" annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-20,0})));
@@ -175,7 +175,7 @@ walls to model a solar chimney that stores heat.
 </p>
 <p>
 For a steady-state model, use
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.MediumColumn\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.MediumColumn\">
 IBPSA.Airflow.Multizone.MediumColumn</a> instead of this model.
 </p>
 <p>In this model, the parameter <code>h</code> must always be positive, and the port <code>port_a</code> must be
@@ -191,7 +191,7 @@ alias sets have different nominal values.
 </li>
 <li><i>July 31, 2011</i> by Michael Wetter:<br/>
 Changed model to use new base class
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations\">
 IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations</a>.
 </li>
 <li><i>May 25, 2011</i> by Michael Wetter:<br/>

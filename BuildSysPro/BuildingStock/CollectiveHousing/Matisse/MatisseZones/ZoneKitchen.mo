@@ -278,14 +278,14 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
           extent={{-64,88},{-56,96}}), iconTransformation(extent={{92,106},{100,
             114}})));
 
-  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonEntree if not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonSejour if not CLOintPlancher
     annotation (Placement(transformation(extent={{88,80},{108,100}}),
         iconTransformation(extent={{-74,-10},{-94,10}})));
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonChambre1 if
                                                              not CLOintPlancher
     annotation (Placement(transformation(extent={{88,60},{108,80}}),
         iconTransformation(extent={{52,-10},{72,10}})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonSejour if not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonEntree if not CLOintPlancher
     annotation (Placement(transformation(extent={{88,40},{108,60}}),
         iconTransformation(extent={{-10,-10},{10,10}},
         rotation=-90,
@@ -350,16 +350,16 @@ equation
       points={{19,-84.5},{32,-84.5},{32,26.5},{2.1,26.5}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(PintdistriRad.FLUXParois[3], FLUXcloisonEntree) annotation (Line(
-      points={{19,-84.1667},{32,-84.1667},{32,90},{98,90}},
-      color={0,0,127},
-      smooth=Smooth.None));
+    connect(PintdistriRad.FLUXParois[5], FLUXcloisonSejour) annotation (Line(
+        points={{19,-83.5},{32,-83.5},{32,90},{98,90}},
+        color={0,0,127},
+        smooth=Smooth.None));
   connect(PintdistriRad.FLUXParois[4], FLUXcloisonChambre1) annotation (Line(
       points={{19,-83.8333},{32,-83.8333},{32,70},{98,70}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(PintdistriRad.FLUXParois[5], FLUXcloisonSejour) annotation (Line(
-      points={{19,-83.5},{32,-83.5},{32,50},{98,50}},
+  connect(PintdistriRad.FLUXParois[3],FLUXcloisonEntree)  annotation (Line(
+      points={{19,-84.1667},{32,-84.1667},{32,50},{98,50}},
       color={0,0,127},
       smooth=Smooth.None));
   else
@@ -528,8 +528,10 @@ annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             120}}),
 graphics={
-        Bitmap(extent={{-72,60},{52,-62}}, fileName=
-              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Cuisine.png"),
+        Bitmap(extent={{62,61},{-62,-61}}, fileName=
+              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Cuisine.png",
+          origin={-10,-1},
+          rotation=180),
         Ellipse(extent={{-6,52},{22,24}},   lineColor={0,0,0}),
         Polygon(
           points={{-4,-18},{4,-18},{0,-30},{-4,-18}},
@@ -609,7 +611,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

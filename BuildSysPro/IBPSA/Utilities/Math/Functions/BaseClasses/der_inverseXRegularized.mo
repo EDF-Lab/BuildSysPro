@@ -17,25 +17,25 @@ function der_inverseXRegularized "Derivative of inverseXRegularised function"
  output Real y_der "Function value";
 
 algorithm
-  y_der := if (x > delta or x < -delta) then -x_der/x/x elseif (x < delta/2
-     and x > -delta/2) then x_der/(delta*delta) else
+  y_der := if (x > delta or x < -delta) then -x_der/x/x elseif (x <
+    delta/2 and x > -delta/2) then x_der/(delta*delta) else
     IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition(
-    x=x,
-    x_der=x_der,
-    delta=delta,
-    deltaInv=deltaInv,
-    a=a,
-    b=b,
-    c=c,
-    d=d,
-    e=e,
-    f=f);
+              x=x,
+              x_der=x_der,
+              delta=delta,
+              deltaInv=deltaInv,
+              a=a,
+              b=b,
+              c=c,
+              d=d,
+              e=e,
+              f=f);
 annotation (
 Documentation(
 info="<html>
 <p>
 Implementation of the first derivative of the function
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.inverseXRegularized\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.inverseXRegularized</a>.
 </p>
 </html>",

@@ -166,7 +166,7 @@ initial equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : EDF<br>
 Initial model : <a href=\"Modelica.Blocks.Sources.CombiTimeTable\">CombiTimeTable</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p>

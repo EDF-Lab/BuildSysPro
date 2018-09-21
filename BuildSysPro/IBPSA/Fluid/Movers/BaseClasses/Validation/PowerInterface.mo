@@ -1,8 +1,9 @@
 within BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Validation;
 model PowerInterface "Simple model to validate PowerInterface"
   extends Modelica.Icons.Example;
-  IBPSA.Fluid.Movers.BaseClasses.PowerInterface powCoo(motorCooledByFluid=true,
-      delta_V_flow=0.05) "Power interface model"
+  IBPSA.Fluid.Movers.BaseClasses.PowerInterface powCoo(
+      motorCooledByFluid=true, delta_V_flow=0.05)
+    "Power interface model"
     annotation (Placement(transformation(extent={{-10,10},{10,30}})));
   Modelica.Blocks.Sources.Constant WFlo(k=1*1000) "Flow work"
     annotation (Placement(transformation(extent={{-60,-40},{-40,-20}})));
@@ -14,9 +15,10 @@ model PowerInterface "Simple model to validate PowerInterface"
     annotation (Placement(transformation(extent={{-60,60},{-40,80}})));
   Modelica.Blocks.Sources.Constant PEle(k=1*1000*4) "Electrical work"
     annotation (Placement(transformation(extent={{-60,-80},{-40,-60}})));
-  IBPSA.Fluid.Movers.BaseClasses.PowerInterface powNonCoo(motorCooledByFluid=
-        false, delta_V_flow=0.05) "Power interface model"
-    annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
+  IBPSA.Fluid.Movers.BaseClasses.PowerInterface powNonCoo(
+      motorCooledByFluid=false, delta_V_flow=0.05)
+    "Power interface model" annotation (Placement(transformation(
+          extent={{-10,-30},{10,-10}})));
 equation
   connect(powCoo.etaHyd, etaHyd.y) annotation (Line(points={{-12,30},{-26,30},{-26,
           70},{-39,70}}, color={0,0,127}));
@@ -35,8 +37,6 @@ equation
   connect(PEle.y, powNonCoo.PEle) annotation (Line(points={{-39,-70},{-20,-70},{
           -20,-30},{-12,-30}}, color={0,0,127}));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})),
     Documentation(info="<html>
 <p>
 Simple validation model for the power interface model.

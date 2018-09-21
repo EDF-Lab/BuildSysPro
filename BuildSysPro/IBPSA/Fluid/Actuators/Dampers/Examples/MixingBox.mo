@@ -20,17 +20,20 @@ model MixingBox
     redeclare package Medium = Medium,
     T=273.15 + 10,
     use_p_in=true,
-    nPorts=2) annotation (Placement(transformation(extent={{-60,2},{-40,22}})));
+    nPorts=2)
+    annotation (Placement(transformation(extent={{-60,2},{-40,22}})));
     IBPSA.Fluid.Sources.Boundary_pT bouSup(
     redeclare package Medium = Medium,
     T=273.15 + 26,
     use_p_in=true,
-    nPorts=1) annotation (Placement(transformation(extent={{68,-10},{48,10}})));
+    nPorts=1)
+    annotation (Placement(transformation(extent={{68,-10},{48,10}})));
     IBPSA.Fluid.Sources.Boundary_pT bouRet(
     redeclare package Medium = Medium,
     T=273.15 + 20,
     use_p_in=true,
-    nPorts=1) annotation (Placement(transformation(extent={{68,-90},{48,-70}})));
+    nPorts=1) annotation (Placement(transformation(extent={{68,-90},{48,
+            -70}})));
     Modelica.Blocks.Sources.Constant PAtm(k=101325)
       annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
     Modelica.Blocks.Sources.Ramp PSup(

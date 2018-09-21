@@ -1,6 +1,6 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.RT2000_H1H2_15pc;
 record Door =
-    BuildSysPro.Utilities.Icons.Door (
+  BuildSysPro.Utilities.Icons.Door (
     n=1,
     m={4},
     e={0.06},
@@ -20,6 +20,6 @@ record Door =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

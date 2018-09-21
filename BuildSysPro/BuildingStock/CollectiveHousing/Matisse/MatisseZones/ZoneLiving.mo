@@ -651,8 +651,10 @@ annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             120}}),
 graphics={
-        Bitmap(extent={{-90,60},{92,-92}}, fileName=
-              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Sejour.png"),
+        Bitmap(extent={{91,76},{-91,-76}}, fileName=
+              "modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/Sejour.png",
+          origin={1,-16},
+          rotation=180),
         Ellipse(extent={{-38,-10},{-10,-38}},
                                             lineColor={0,0,0}),
         Polygon(
@@ -733,7 +735,7 @@ graphics={
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -1,4 +1,4 @@
-﻿within BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART;
+within BuildSysPro.BuildingStock.Utilities.Records.BuildingData.IndividualHousing.BuildingDataMOZART;
 record BuildingType "List of Mozart individual housing construction dates"
 
 // Walls
@@ -61,7 +61,7 @@ record BuildingType "List of Mozart individual housing construction dates"
 
 // Thermal bridges
   parameter Real ValeursK[9]
-    "K coefficient for each linear heat loss relating to a thermal bridge in W/m²K"                   annotation(Dialog(tab="Thermal bridges"));
+    "K coefficient for each linear heat loss relating to a thermal bridge in [W/(m.K)]"                   annotation(Dialog(tab="Thermal bridges"));
   parameter Real TauPonts[9] "Tau reduction coefficient of each thermal bridge"                  annotation(Dialog(tab="Thermal bridges"));
 
 // Boundary conditions
@@ -87,7 +87,7 @@ record BuildingType "List of Mozart individual housing construction dates"
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

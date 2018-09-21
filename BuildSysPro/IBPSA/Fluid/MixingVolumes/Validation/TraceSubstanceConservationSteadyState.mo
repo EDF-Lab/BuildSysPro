@@ -3,7 +3,7 @@ model TraceSubstanceConservationSteadyState
   "This test checks if trace substance mass flow rates are conserved when steady state"
   extends
     IBPSA.Fluid.MixingVolumes.Validation.BaseClasses.TraceSubstanceConservation(
-      sou(X={0,1}));
+     sou(X={0,1}));
   Modelica.Blocks.Math.Add cheEquTra2(k2=-1)
     "Check for equality of trace substances"
     annotation (Placement(transformation(extent={{80,-60},{100,-40}})));
@@ -30,9 +30,7 @@ equation
       points={{78,-44},{46,-44},{46,-41}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
-          extent={{-100,-100},{100,100}}), graphics),
-    experiment(Tolerance=1e-6, StopTime=2),
+  annotation (    experiment(Tolerance=1e-6, StopTime=2),
     Documentation(info="<html>
 <p>
 This test checks if the trace substance flow rate is conserved
@@ -46,10 +44,10 @@ Note, however, that there is some approximation error because
 in its default configuration, the conservation balance
 models simplify the treatment of the water that is added
 to the fluid.
-See <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+See <a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 for a discussion.
 </p>

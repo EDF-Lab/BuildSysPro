@@ -5,10 +5,10 @@ model SpliceFunction
   Real y "Function value";
 equation
   y = IBPSA.Utilities.Math.Functions.spliceFunction(
-    pos=10,
-    neg=-10,
-    x=time - 0.4,
-    deltax=0.2);
+              pos=10,
+              neg=-10,
+              x=time - 0.4,
+              deltax=0.2);
   annotation(experiment(StartTime=-1, Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/SpliceFunction.mos"
         "Simulate and plot"),

@@ -2,7 +2,8 @@ within BuildSysPro.IBPSA.Fluid.Interfaces.Examples;
 model PrescribedOutlet_X_wSetOnly
   "Test model for prescribed outlet state"
   extends Modelica.Icons.Example;
-  extends IBPSA.Fluid.Interfaces.Examples.BaseClasses.PrescribedOutletState(
+  extends
+    IBPSA.Fluid.Interfaces.Examples.BaseClasses.PrescribedOutletState(
     heaHigPow(use_TSet=false),
     cooLimPow(use_TSet=false),
     heaCooUnl(use_TSet=false),
@@ -26,7 +27,7 @@ __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/F
     Documentation(info="<html>
 <p>
 Model that demonstrates
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PrescribedOutlet\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.PrescribedOutlet\">
 IBPSA.Fluid.Interfaces.PrescribedOutlet</a>
 with mass fraction setpoint.
 </p>

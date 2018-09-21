@@ -1,7 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.Humidifiers;
 model SprayAirWasher_X
   "Spray air washer with leaving water mass fraction as input"
-  extends IBPSA.Fluid.HeatExchangers.BaseClasses.PartialPrescribedOutlet(outCon(
+  extends IBPSA.Fluid.HeatExchangers.BaseClasses.PartialPrescribedOutlet(
+      outCon(
       final T_start=293.15,
       final X_start=X_start,
       final use_TSet=true,
@@ -171,7 +172,7 @@ Set <code>dp_nominal = 0</code> to disable the flow friction calculation.
 <p>
 For a model that uses a control signal <i>u &isin; [0, 1]</i> and multiplies
 this with the nominal water mass flow rate, use
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Humidifiers.Humidifier_u\">
+<a href=\"modelica://IBPSA.Fluid.Humidifiers.Humidifier_u\">
 IBPSA.Fluid.Humidifiers.Humidifier_u</a>
 
 </p>

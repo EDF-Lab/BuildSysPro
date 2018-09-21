@@ -20,29 +20,31 @@ equation
      if from_dp then
         m_flow = homotopy(actual=
           IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-          dp=dp,
-          k=k,
-          m_flow_turbulent=m_flow_turbulent), simplified=m_flow_nominal_pos*dp/
-          dp_nominal_pos);
+                  dp=dp,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent), simplified=
+          m_flow_nominal_pos*dp/dp_nominal_pos);
       else
         dp = homotopy(actual=
           IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-          m_flow=m_flow,
-          k=k,
-          m_flow_turbulent=m_flow_turbulent), simplified=dp_nominal_pos*m_flow/
-          m_flow_nominal_pos);
+                  m_flow=m_flow,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent), simplified=
+          dp_nominal_pos*m_flow/m_flow_nominal_pos);
      end if;
    else // do not use homotopy
      if from_dp then
-        m_flow = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-          dp=dp,
-          k=k,
-          m_flow_turbulent=m_flow_turbulent);
+        m_flow =
+          IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
+                  dp=dp,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent);
       else
-        dp = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-          m_flow=m_flow,
-          k=k,
-          m_flow_turbulent=m_flow_turbulent);
+        dp =
+          IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
+                  m_flow=m_flow,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent);
       end if;
     end if; // homotopyInitialization
  end if; // linearized
@@ -79,7 +81,7 @@ Documentation(info="<html>
 <p>
 Partial model for valves with different opening characteristics,
 such as linear, equal percentage or quick opening. This partial extends from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve</a>
 and also contains the governing equations for these three two way valve models.
 </p>
@@ -88,7 +90,7 @@ and also contains the governing equations for these three two way valve models.
 Models that extend this model need to provide a binding equation
 for the flow function <code>phi</code>.
 An example of such a code can be found in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
 IBPSA.Fluid.Actuators.Valves.TwoWayLinear</a>.
 </p>
 </html>",

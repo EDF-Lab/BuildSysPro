@@ -18,7 +18,7 @@ Enthalpy of the water.
 October 16, 2014 by Michael Wetter:<br/>
 First implementation.
 This function is used by
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir\">
 IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir</a>.
 </li>
 </ul>

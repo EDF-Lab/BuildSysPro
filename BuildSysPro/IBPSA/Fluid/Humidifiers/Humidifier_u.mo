@@ -4,7 +4,7 @@ model Humidifier_u
   extends IBPSA.Fluid.Interfaces.TwoPortHeatMassExchanger(redeclare
       replaceable package Medium =
         Modelica.Media.Interfaces.PartialCondensingGases, redeclare final
-      IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir vol(final
+            IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir vol(final
         prescribedHeatFlowRate=true));
 
   parameter Modelica.SIunits.MassFlowRate mWat_flow_nominal
@@ -146,6 +146,7 @@ for example, to use the model as a steam humidifier.<br/>
 This is for issue
 <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/704\">
 Buildings #704</a>.
+</li>
 <li>
 May 6, 2015, by Michael Wetter:<br/>
 Set <code>prescribedHeatFlowRate=true</code>.

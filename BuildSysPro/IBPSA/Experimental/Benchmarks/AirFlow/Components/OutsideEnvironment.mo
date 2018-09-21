@@ -21,10 +21,12 @@ model OutsideEnvironment
     densitySelection=IBPSA.Airflow.Multizone.Types.densitySelection.fromBottom)
     "Upper air column"
     annotation (Placement(transformation(extent={{-10,20},{10,40}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a(redeclare package
+      Medium =
         Medium) "Fluid port at the top of the room"
     annotation (Placement(transformation(extent={{-110,50},{-90,70}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package Medium =
+  Modelica.Fluid.Interfaces.FluidPort_b port_b(redeclare package
+      Medium =
         Medium) "Fluid port at the bottom of the room"
     annotation (Placement(transformation(extent={{-110,-70},{-90,-50}})));
   Fluid.Sources.Outside_CpLowRise out(
@@ -69,7 +71,7 @@ approach. It may be necessary to calculate this parameter depending on the scale
 element. </p>
 <h4>References</h4>
 <p>Inspired by
-<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> </p>
 </html>", revisions="<html>
 <ul>

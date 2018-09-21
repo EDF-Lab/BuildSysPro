@@ -6,14 +6,10 @@ package Examples "Collection of models that illustrate model use and test models
 
 
 
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains examples for the use of models that can be found in
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses\">
+<a href=\"modelica://IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses\">
 IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses</a>.
 </p>
 </html>"));

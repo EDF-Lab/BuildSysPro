@@ -1,20 +1,20 @@
 within BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.Examples;
 model CheckCeilingHeight "Test model for ceiling height check"
   extends Modelica.Icons.Example;
-  IBPSA.Utilities.Time.ModelTime modTim
-    annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
-  IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckCeilingHeight cheCeiHei
-    "Block that constrains the ceiling height"
+  IBPSA.Utilities.Time.ModelTime modTim annotation (Placement(
+        transformation(extent={{-80,-20},{-60,0}})));
+  IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckCeilingHeight
+    cheCeiHei "Block that constrains the ceiling height"
     annotation (Placement(transformation(extent={{40,-20},{60,0}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim
-    "Block that converts time"
-    annotation (Placement(transformation(extent={{-40,-20},{-20,0}})));
+    "Block that converts time" annotation (Placement(transformation(
+          extent={{-40,-20},{-20,0}})));
 protected
   Modelica.Blocks.Tables.CombiTable1Ds datRea(
     tableOnFile=true,
     tableName="tab1",
     fileName=Modelica.Utilities.Files.loadResource(
-       "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
+       Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")),
     columns=2:30,
     smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)
     "Data reader"

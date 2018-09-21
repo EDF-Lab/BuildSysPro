@@ -14,7 +14,8 @@ model SpecificEntropy "Test model for the entropy flow rate sensors"
     redeclare package Medium = Medium,
     use_h_in=false,
     h=20,
-    nPorts=1) "Flow boundary condition" annotation (Placement(transformation(
+    nPorts=1) "Flow boundary condition" annotation (Placement(
+        transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={70,-12})));
@@ -24,15 +25,15 @@ model SpecificEntropy "Test model for the entropy flow rate sensors"
     duration=60)
     annotation (Placement(transformation(extent={{-80,-12},{-60,8}})));
 
-  IBPSA.Fluid.Sensors.SpecificEntropy senFloSou(redeclare package Medium =
-        Medium) "Sensor at the flow source"
+  IBPSA.Fluid.Sensors.SpecificEntropy senFloSou(redeclare package
+      Medium = Medium) "Sensor at the flow source"
     annotation (Placement(transformation(extent={{-10,0},{10,20}})));
-  IBPSA.Fluid.Sensors.SpecificEntropyTwoPort senStr(redeclare package Medium =
-        Medium, m_flow_nominal=2) "Sensor in the fluid stream"
+  IBPSA.Fluid.Sensors.SpecificEntropyTwoPort senStr(redeclare package
+      Medium = Medium, m_flow_nominal=2) "Sensor in the fluid stream"
     annotation (Placement(transformation(extent={{20,-22},{40,-2}})));
 equation
   connect(ramp.y, sou.m_flow_in) annotation (Line(
-      points={{-59,-2},{-40,-2}},
+      points={{-59,-2},{-42,-2}},
       color={0,0,127}));
   connect(sou.ports[1], senFloSou.port) annotation (Line(
       points={{-20,-8},{0,-8},{0,0}},

@@ -5,8 +5,9 @@ model MoistAirEnthalpyFlowRate
 
   package Medium = IBPSA.Media.Air;
 
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate senH_flow(redeclare package Medium =
-        Medium, m_flow_nominal=1) "Sensor for enthalpy flow rate"
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate senH_flow(redeclare package
+      Medium = Medium, m_flow_nominal=1)
+    "Sensor for enthalpy flow rate"
     annotation (Placement(transformation(extent={{-30,10},{-10,30}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou(
     redeclare package Medium = Medium,
@@ -18,7 +19,8 @@ model MoistAirEnthalpyFlowRate
     redeclare package Medium = Medium,
     nPorts=1,
     X={0.02,0.98},
-    T=313.15) "Flow boundary condition" annotation (Placement(transformation(
+    T=313.15) "Flow boundary condition" annotation (Placement(
+        transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={70,-70})));
@@ -28,26 +30,28 @@ model MoistAirEnthalpyFlowRate
     duration=60)
     annotation (Placement(transformation(extent={{-90,18},{-70,38}})));
 
-  IBPSA.Fluid.Sensors.SpecificEnthalpyTwoPort senH(redeclare package Medium =
-        Medium, m_flow_nominal=1) "Specific enthalpy sensor"
+  IBPSA.Fluid.Sensors.SpecificEnthalpyTwoPort senH(redeclare package
+      Medium = Medium, m_flow_nominal=1) "Specific enthalpy sensor"
     annotation (Placement(transformation(extent={{0,10},{20,30}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flow(redeclare package Medium = Medium)
-    "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flow(redeclare package Medium =
+        Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{28,10},{48,30}})));
   Modelica.Blocks.Math.Product pro "Product to compute enthalpy flow rate"
     annotation (Placement(transformation(extent={{60,60},{80,80}})));
   IBPSA.Fluid.Sensors.LatentEnthalpyFlowRate senHLat_flow(redeclare package
-      Medium = Medium, m_flow_nominal=1) "Latent enthalpy flow rate sensor"
-    annotation (Placement(transformation(extent={{-60,-80},{-40,-60}})));
+              Medium = Medium, m_flow_nominal=1)
+    "Latent enthalpy flow rate sensor" annotation (Placement(
+        transformation(extent={{-60,-80},{-40,-60}})));
   IBPSA.Fluid.Sensors.SensibleEnthalpyFlowRate senHSen_flow(redeclare package
-      Medium = Medium, m_flow_nominal=1) "Sensible enthalpy flow rate sensor"
+              Medium = Medium, m_flow_nominal=1)
+    "Sensible enthalpy flow rate sensor"
     annotation (Placement(transformation(extent={{-20,-80},{0,-60}})));
   Modelica.Blocks.Math.Add add
     "Outputs the sensible plus latent enthalpy flow rate"
     annotation (Placement(transformation(extent={{20,-46},{40,-26}})));
 equation
   connect(ramp.y, sou.m_flow_in) annotation (Line(
-      points={{-69,28},{-70,28},{-60,28}},
+      points={{-69,28},{-62,28},{-62,28}},
       color={0,0,127}));
   connect(sou.ports[1], senH_flow.port_a) annotation (Line(
       points={{-40,20},{-30,20}},

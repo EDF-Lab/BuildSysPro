@@ -1,8 +1,9 @@
 within BuildSysPro.IBPSA.Fluid.FixedResistances;
 model PressureDrop
   "Fixed flow resistance with dp and m_flow as parameter"
-  extends IBPSA.Fluid.BaseClasses.PartialResistance(final m_flow_turbulent=if
-        computeFlowResistance then deltaM*m_flow_nominal_pos else 0);
+  extends IBPSA.Fluid.BaseClasses.PartialResistance(final
+      m_flow_turbulent=if computeFlowResistance then deltaM*
+        m_flow_nominal_pos else 0);
 
   parameter Real deltaM(min=0.01) = 0.3
     "Fraction of nominal mass flow rate where transition to turbulent occurs"
@@ -10,13 +11,18 @@ model PressureDrop
                   Dialog(group = "Transition to laminar",
                          enable = not linearized));
 
-  final parameter Real k(unit="") = if computeFlowResistance then
+  final parameter Real k = if computeFlowResistance then
         m_flow_nominal_pos / sqrt(dp_nominal_pos) else 0
     "Flow coefficient, k=m_flow/sqrt(dp), with unit=(kg.m)^(1/2)";
 protected
   final parameter Boolean computeFlowResistance=(dp_nominal_pos > Modelica.Constants.eps)
     "Flag to enable/disable computation of flow resistance"
    annotation(Evaluate=true);
+  final parameter Real coeff=
+    if linearized and computeFlowResistance
+    then if from_dp then k^2/m_flow_nominal_pos else m_flow_nominal_pos/k^2
+    else 0
+    "Precomputed coefficient to avoid division by parameter";
 initial equation
  if computeFlowResistance then
    assert(m_flow_turbulent > 0, "m_flow_turbulent must be bigger than zero.");
@@ -27,35 +33,41 @@ equation
   // Pressure drop calculation
   if computeFlowResistance then
     if linearized then
-      m_flow*m_flow_nominal_pos = k^2*dp;
+      if from_dp then
+        m_flow = dp*coeff;
+      else
+        dp = m_flow*coeff;
+      end if;
     else
       if homotopyInitialization then
         if from_dp then
           m_flow = homotopy(actual=
             IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-            dp=dp,
-            k=k,
-            m_flow_turbulent=m_flow_turbulent), simplified=m_flow_nominal_pos*
-            dp/dp_nominal_pos);
+                  dp=dp,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent), simplified=
+            m_flow_nominal_pos*dp/dp_nominal_pos);
         else
           dp = homotopy(actual=
             IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-            m_flow=m_flow,
-            k=k,
-            m_flow_turbulent=m_flow_turbulent), simplified=dp_nominal_pos*
-            m_flow/m_flow_nominal_pos);
+                  m_flow=m_flow,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent), simplified=
+            dp_nominal_pos*m_flow/m_flow_nominal_pos);
          end if;  // from_dp
       else // do not use homotopy
         if from_dp then
-          m_flow = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-            dp=dp,
-            k=k,
-            m_flow_turbulent=m_flow_turbulent);
+          m_flow =
+            IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
+                  dp=dp,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent);
         else
-          dp = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-            m_flow=m_flow,
-            k=k,
-            m_flow_turbulent=m_flow_turbulent);
+          dp =
+            IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
+                  m_flow=m_flow,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent);
         end if;  // from_dp
       end if; // homotopyInitialization
     end if; // linearized
@@ -143,13 +155,13 @@ can be used and combined with models from the
 <p>
 For a model that uses the hydraulic parameter and flow velocity at nominal conditions
 as a parameter, use
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
+<a href=\"modelica://IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
 IBPSA.Fluid.FixedResistances.HydraulicDiameter</a>.
 </p>
 <h4>Implementation</h4>
 <p>
 The pressure drop is computed by calling a function in the package
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels\">
 IBPSA.Fluid.BaseClasses.FlowModels</a>,
 This package contains regularized implementations of the equation
 </p>
@@ -168,10 +180,17 @@ This leads to simpler equations.
 </html>", revisions="<html>
 <ul>
 <li>
+February 3, 2018, by Filip Jorissen:<br/>
+Revised implementation of pressure drop equation
+such that it depends on <code>from_dp</code>
+when <code>linearized=true</code>.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/884\">#884</a>.
+</li>
+<li>
 December 1, 2016, by Michael Wetter:<br/>
 Simplified model by removing the geometry dependent parameters into the new
 model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
+<a href=\"modelica://IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
 IBPSA.Fluid.FixedResistances.HydraulicDiameter</a>.
 </li>
 <li>
@@ -187,7 +206,7 @@ Updated comment for parameter <code>use_dh</code>.
 November 26, 2014, by Michael Wetter:<br/>
 Added the required <code>annotation(Evaluate=true)</code> so
 that the system of nonlinear equations in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PressureDropsExplicit\">
+<a href=\"modelica://IBPSA.Fluid.FixedResistances.Validation.PressureDropsExplicit\">
 IBPSA.Fluid.FixedResistances.Validation.PressureDropsExplicit</a>
 remains the same.
 </li>
@@ -232,7 +251,5 @@ July 20, 2007 by Michael Wetter:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end PressureDrop;

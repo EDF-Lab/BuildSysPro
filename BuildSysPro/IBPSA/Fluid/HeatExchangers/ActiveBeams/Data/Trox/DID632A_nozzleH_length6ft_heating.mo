@@ -3,8 +3,8 @@ record DID632A_nozzleH_length6ft_heating =
     IBPSA.Fluid.HeatExchangers.ActiveBeams.Data.Generic (
     dT(f={0,0.5,1}, r_dT={0,0.5,1}),
     primaryAir(r_V={0,0.714286,1,1.2857}, f={0,0.8554,1,1.0778}),
-    water(r_V={0,0.33333,0.5,0.666667,0.833333,1,1.333333}, f={0,0.71,0.85,0.92,
-          0.97,1,1.04}),
+    water(r_V={0,0.33333,0.5,0.666667,0.833333,1,1.333333}, f={0,0.71,
+          0.85,0.92,0.97,1,1.04}),
     mAir_flow_nominal=0.0792,
     mWat_flow_nominal=0.094,
     dpWat_nominal=10000,

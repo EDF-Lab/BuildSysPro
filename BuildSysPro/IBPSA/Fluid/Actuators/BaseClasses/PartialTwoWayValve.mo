@@ -8,9 +8,9 @@ partial model PartialTwoWayValve "Partial model for a two way valve"
 
   extends IBPSA.Fluid.Actuators.BaseClasses.ValveParameters(rhoStd=
         Medium.density_pTX(
-        101325,
-        273.15 + 4,
-        Medium.X_default));
+                101325,
+                273.15 + 4,
+                Medium.X_default));
 
   extends IBPSA.Fluid.Actuators.BaseClasses.ActuatorSignal;
   parameter Modelica.SIunits.PressureDifference dpFixed_nominal(displayUnit="Pa", min=0) = 0
@@ -92,7 +92,7 @@ of pressure drop in <code>Pa</code>.
 <p>
 This model allows different parameterization of the flow resistance.
 The different parameterizations are described in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.ValveParameters\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.ValveParameters\">
 IBPSA.Fluid.Actuators.BaseClasses.ValveParameters</a>.
 </p>
 <h4>Implementation</h4>
@@ -130,7 +130,7 @@ Changed test in assertion from <code>dpFixed_nominal > -Modelica.Constants.small
 to
 <code>dpFixed_nominal > -Modelica.Constants.eps</code>.
 Otherwise, JModelica evaluates it as <code>true</code> in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValves\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValves\">
 IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValves</a>.
 See also
 <a href=\"https://trac.jmodelica.org/ticket/4932\">https://trac.jmodelica.org/ticket/4932</a>.
@@ -146,10 +146,10 @@ for <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/404\">#404</a>.
 <li>
 January 29, 2015, by Filip Jorissen:<br/>
 Moved the governing equations to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValveKv\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValveKv\">
 PartialTwoWayValveKv</a>
 in order to be able to extend from this partial in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.TwoWayPressureIndependent\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.TwoWayPressureIndependent\">
 TwoWayPressureIndependent</a>
 </li>
 <li>
@@ -162,7 +162,7 @@ April 4, 2014, by Michael Wetter:<br/>
 Added keyword <code>input</code> to variable <code>phi</code>
 to require models that extend this model to provide a binding equation.
 This is done to use the same modeling concept as is used for example in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
 IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>.
 </li>
 <li>
@@ -190,7 +190,7 @@ February 20, 2012 by Michael Wetter:<br/>
 Renamed parameter <code>dp_nominal</code> to <code>dpValve_nominal</code>,
 and added new parameter <code>dpFixed_nominal</code>.
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.UsersGuide\">
 IBPSA.Fluid.Actuators.UsersGuide</a>.
 </li>
 <li>
@@ -207,7 +207,7 @@ and model
 August 12, 2011 by Michael Wetter:<br/>
 Added <code>assert</code> statement to prevent <code>l=0</code> due to the
 implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow</a>.
 </li>
 <li>

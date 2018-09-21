@@ -4,9 +4,9 @@ model DerivateCubicSpline
 
   Modelica.Blocks.Sources.Clock clock "Clock"
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
-  IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.DerivativesCubicSpline cubSpl
-    "Derivatives of cubic spline"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+  IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.DerivativesCubicSpline
+    cubSpl "Derivatives of cubic spline" annotation (Placement(
+        transformation(extent={{-10,-10},{10,10}})));
 equation
   connect(clock.y, cubSpl.u)
     annotation (Line(points={{-39,0},{-12,0}},         color={0,0,127}));
@@ -15,8 +15,8 @@ equation
         Documentation(info="<html>
 <p>
 The example tests the implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.DerivatesCubicSpline\">
-IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.DerivatesCubicSpline</a>.
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.DerivativesCubicSpline\">
+IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.DerivativesCubicSpline</a>.
 Default vectors are: <i>x=[0,0.5,1]</i> and <i>y=[0,0.75,1]</i>.
 Input to the model is the simulation time.
 </p>

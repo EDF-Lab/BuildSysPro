@@ -1,13 +1,13 @@
 ﻿within BuildSysPro.BuildingStock.Utilities.Records.WallData.CollectiveHousing.RT2000;
 record Ceiling =
- BuildSysPro.Utilities.Icons.Ceiling (
+  BuildSysPro.Utilities.Icons.Ceiling (
     n=4,
     m={1,2,4,1},
     e={0.01,0.08,0.18,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.BitumenFelt(),
-        BuildSysPro.Utilities.Data.Solids.Polyurethane23(),
-        BuildSysPro.Utilities.Data.Solids.Concrete(),
-        BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
+         BuildSysPro.Utilities.Data.Solids.Polyurethane23(),
+         BuildSysPro.Utilities.Data.Solids.Concrete(),
+         BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
     positionIsolant={0,1,0,0}) "Ceiling collective housing RT2000"
   annotation (Icon(graphics),
                         Documentation(revisions="<html>
@@ -26,6 +26,6 @@ record Ceiling =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Benoît CHARRIER, Philippe PETIOT, EDF (2017)<br>
 --------------------------------------------------------------</b></p></html>"));

@@ -29,10 +29,10 @@ The following heat exchanger configurations are available in this enumeration:
 Note that for a given heat exchanger, the
  <code>HeatExchangerConfiguration</code> is fixed. However, if the capacity
  flow rates change, then the
- <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Types.HeatExchangerFlowRegime\">
+ <a href=\"modelica://IBPSA.Fluid.Types.HeatExchangerFlowRegime\">
  IBPSA.Fluid.Types.HeatExchangerFlowRegime</a> may change. For example,
  a counter flow heat exchanger has <code>HeatExchangerConfiguration=CounterFlow</code>,
- but the <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Types.HeatExchangerFlowRegime\">
+ but the <a href=\"modelica://IBPSA.Fluid.Types.HeatExchangerFlowRegime\">
  IBPSA.Fluid.Types.HeatExchangerFlowRegime</a> can change to parallel flow if one of the two capacity flow rates reverts
  its direction.
  </p>

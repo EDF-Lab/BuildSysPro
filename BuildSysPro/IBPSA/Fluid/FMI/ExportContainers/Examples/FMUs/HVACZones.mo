@@ -89,14 +89,14 @@ block HVACZones
     redeclare package Medium2 = MediumA,
     m1_flow_nominal=mW_flow_nominal,
     m2_flow_nominal=mA_flow_nominal)
-    "Cooling coil (with sensible cooling only)" annotation (Placement(
-        transformation(
+    "Cooling coil (with sensible cooling only)" annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={-18,94})));
 
-  IBPSA.Fluid.Sources.Outside out(redeclare package Medium = MediumA, nPorts=3)
-    "Outside air boundary condition"
+  IBPSA.Fluid.Sources.Outside out(redeclare package Medium =
+        MediumA, nPorts=3) "Outside air boundary condition"
     annotation (Placement(transformation(extent={{-120,80},{-100,100}})));
   Sources.MassFlowSource_T souWat(
     nPorts=1,
@@ -137,7 +137,7 @@ block HVACZones
   BoundaryConditions.WeatherData.ReaderTMY3 weaDat(
     pAtmSou=IBPSA.BoundaryConditions.Types.DataSource.Parameter,
     TDryBul=TOut_nominal,
-    filNam="modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos",
+    filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
     TDryBulSou=IBPSA.BoundaryConditions.Types.DataSource.File,
     computeWetBulbTemperature=false) "Weather data reader"
     annotation (Placement(transformation(extent={{-152,130},{-132,150}})));
@@ -184,14 +184,16 @@ block HVACZones
     redeclare package Medium = MediumA,
     dp_nominal=200,
     linearized=true,
-    m_flow_nominal=0.5*mA_flow_nominal) "Fixed resistance for return air duct"
-    annotation (Placement(transformation(extent={{40,50},{20,70}})));
+    m_flow_nominal=0.5*mA_flow_nominal)
+    "Fixed resistance for return air duct" annotation (Placement(
+        transformation(extent={{40,50},{20,70}})));
   IBPSA.Fluid.FixedResistances.PressureDrop resRet2(
     redeclare package Medium = MediumA,
     dp_nominal=200,
     linearized=true,
-    m_flow_nominal=0.5*mA_flow_nominal) "Fixed resistance for return air duct"
-    annotation (Placement(transformation(extent={{40,20},{20,40}})));
+    m_flow_nominal=0.5*mA_flow_nominal)
+    "Fixed resistance for return air duct" annotation (Placement(
+        transformation(extent={{40,20},{20,40}})));
 equation
   connect(zer.y, QGaiRad_flow) annotation (Line(points={{121,-90},{140,-90},{140,
           -40},{180,-40}}, color={0,0,127}));
@@ -212,7 +214,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(fan.m_flow_in,mAir_flow. y) annotation (Line(
-      points={{49.8,112},{49.8,140},{21,140}},
+      points={{50,112},{50,140},{21,140}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(hex.port_b1,senTemHXOut. port_a) annotation (Line(
@@ -240,7 +242,7 @@ equation
       color={255,0,255},
       smooth=Smooth.None));
   connect(mWat_flow.y,souWat. m_flow_in) annotation (Line(
-      points={{-49,-30},{-40,-30}},
+      points={{-49,-30},{-42,-30}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(weaDat.weaBus,weaBus)  annotation (Line(
@@ -306,13 +308,13 @@ equation
 This example demonstrates how to export a model of an HVAC system
 that only provides convective cooling to two thermal zones.
 The example is similar to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZone\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZone\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZone</a>
 except that is serves two thermal zones rather than one.
 </p>
 <p>
 The example extends from
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.HVACZones\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.HVACZones\">
 IBPSA.Fluid.FMI.ExportContainers.HVACZones
 </a>
 which provides the input and output signals that are needed to interface

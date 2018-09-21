@@ -2,16 +2,16 @@ within BuildSysPro.IBPSA.Media.Specialized.Water;
 package ConstantProperties_pT "Package with model for liquid water with constant properties at user-provided nominal conditions"
 
   extends IBPSA.Media.Water(
-  mediumName="ConstantPropertyWater(p=" + String(p_nominal) + ",T=" + String(
-      T_nominal) + ")",
-  p_default=p_nominal,
-  reference_p=p_nominal,
-  cp_const=cp_nominal,
-  d_const=d_nominal,
-  eta_const=eta_nominal,
-  lambda_const=lambda_nominal,
-  a_const=a_nominal,
-  T_max=T_max_nominal);
+    mediumName="ConstantPropertyWater(p=" + String(p_nominal) + ",T=" +
+        String(T_nominal) + ")",
+    p_default=p_nominal,
+    reference_p=p_nominal,
+    cp_const=cp_nominal,
+    d_const=d_nominal,
+    eta_const=eta_nominal,
+    lambda_const=lambda_nominal,
+    a_const=a_nominal,
+    T_max=T_max_nominal);
 
   constant Modelica.SIunits.Temperature T_max_nominal=
   Modelica.Media.Water.IF97_Utilities.BaseIF97.Basic.tsat(p_nominal)
@@ -55,7 +55,7 @@ Model for liquid water with constant properties at given nominal conditions.
 </p>
 <p>
 This water model is similar to
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Water\">IBPSA.Media.Water</a> with regard to its
+<a href=\"modelica://IBPSA.Media.Water\">IBPSA.Media.Water</a> with regard to its
 complexity. It also uses constant values for properties such as density and
 specific heat capacity. The main difference is that the constants <code>T_nominal</code>
 and <code>p_nominal</code> allow for user-provided nominal condition of the water model. The

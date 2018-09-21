@@ -50,25 +50,25 @@ The following performance curves are implemented:
 <tr>
 <td>Volume flow rate</td>
 <td>Pressure</td>
-<td><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParameters\">
+<td><a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParameters\">
 flowParameters</a></td>
-<td><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics.pressure\">
+<td><a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics.pressure\">
 pressure</a></td>
 </tr>
 <tr>
 <td>Volume flow rate</td>
 <td>Efficiency</td>
-<td><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics.efficiencyParameters\">
+<td><a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics.efficiencyParameters\">
 efficiencyParameters</a></td>
-<td><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics.efficiency\">
+<td><a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics.efficiency\">
 efficiency</a></td>
 </tr>
 <tr>
 <td>Volume flow rate</td>
 <td>Power*</td>
-<td><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics.powerParameters\">
+<td><a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics.powerParameters\">
 powerParameters</a></td>
-<td><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics.power\">
+<td><a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics.power\">
 power</a></td>
 </tr>
 </table>
@@ -87,31 +87,31 @@ In this case the efficiency records will be used.
 Note that in this case an error is still introduced,
 but it is smaller than when using the power records.
 Compare
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Validation.PowerSimplified\">
+<a href=\"modelica://IBPSA.Fluid.Movers.Validation.PowerSimplified\">
 IBPSA.Fluid.Movers.Validation.PowerSimplified</a>
 with
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Validation.PowerSimplified\">
+<a href=\"modelica://IBPSA.Fluid.Movers.Validation.PowerSimplified\">
 IBPSA.Fluid.Movers.Validation.PowerSimplified</a>
 for an illustration of this error.
 </p>
 <p>
 These performance curves are implemented in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics\">
+<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics\">
 IBPSA.Fluid.Movers.BaseClasses.Characteristics</a>,
 and are used in the performance records in the package
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Data\">
+<a href=\"modelica://IBPSA.Fluid.Movers.Data\">
 IBPSA.Fluid.Movers.Data</a>.
 The package
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Data\">
+<a href=\"modelica://IBPSA.Fluid.Movers.Data\">
 IBPSA.Fluid.Movers.Data</a>
 contains different data records.
 </p>
 <h5>Models that use performance curves for pressure rise</h5>
 <p>
 The models
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_y\">
+<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_y\">
 IBPSA.Fluid.Movers.SpeedControlled_y</a> and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
+<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
 IBPSA.Fluid.Movers.SpeedControlled_Nrpm</a>
 take as an input either a control signal between <i>0</i> and <i>1</i>, or the
 rotational speed in units of <i>[1/min]</i>. From this input and the current flow rate,
@@ -120,7 +120,7 @@ This pressure rise is computed using a user-provided list of operating points th
 defines the fan or pump curve at full speed.
 For other speeds, similarity laws are used to scale the performance curves, as
 described in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics.pressure\">
+<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics.pressure\">
 IBPSA.Fluid.Movers.BaseClasses.Characteristics.pressure</a>.
 </p>
 
@@ -166,9 +166,9 @@ This will model the following pump curve for the pump input signal <code>y=1</co
 
 <h5>Models that directly control the head or the mass flow rate</h5>
 <p>
-The models <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_dp\">
+The models <a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_dp\">
 IBPSA.Fluid.Movers.FlowControlled_dp</a> and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>
 take as an input the pressure difference or the mass flow rate.
 This pressure difference or mass flow rate will be provided by the fan or pump,
@@ -180,7 +180,7 @@ as an input the speed.
 <p>
 These models can be configured for three different control inputs.
 For
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_dp\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_dp\">
 IBPSA.Fluid.Movers.FlowControlled_dp</a>,
 the head is as follows:
 </p>
@@ -229,7 +229,7 @@ Then, the mover will have the following heads:
 </ul>
 <p>
 Similarly, for
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>,
 the mass flow rate is as follows:
 </p>
@@ -302,12 +302,27 @@ This loss of accuracy has the advantage that it allows to use the
 mover models without requiring flow and efficiency/power characteristics.
 </p>
 <p>
-The models <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_dp\">
+The model <a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_dp\">
+IBPSA.Fluid.Movers.FlowControlled_dp</a>
+has an option to control the mover such
+that the pressure difference set point is obtained
+across two remote points in the system.
+To use this functionality
+parameter <code>prescribeSystemPressure</code> has
+to be enabled and a differential pressure measurement
+must be connected to
+the pump input <code>dpMea</code>.
+This functionality is demonstrated in
+<a href=\"IBPSA.Fluid.Movers.Validation.FlowControlled_dpSystem\">
+IBPSA.Fluid.Movers.Validation.FlowControlled_dpSystem</a>.
+</p>
+<p>
+The models <a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_dp\">
 IBPSA.Fluid.Movers.FlowControlled_dp</a> and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>
 both have a parameter <code>m_flow_nominal</code>. For
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>, this parameter
 is used for convenience to set a default value for the parameters
 <code>constantMassFlowRate</code> and
@@ -392,7 +407,7 @@ When changing the value of <code>use_inputFilter</code>, the control gains
 may need to be retuned.
 We now present values control parameters that seem to work in most cases.
 Suppose there is a closed loop control with a PI-controller
-<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.LimPID\">
+<a href=\"modelica://IBPSA.Controls.Continuous.LimPID\">
 IBPSA.Controls.Continuous.LimPID</a>
 and a fan or pump, configured with <code>use_inputFilter=true</code> and <code>riseTime=30</code> seconds.
 Assume that the transient response of the other dynamic elements in the control loop is fast
@@ -533,7 +548,7 @@ we changed the models to use total pressure in Pascals instead of head in meters
 <li>
 The performance data are interpolated using cubic hermite splines instead of polynomials.
 These functions are implemented in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics\">
+<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics\">
 IBPSA.Fluid.Movers.BaseClasses.Characteristics</a>.
 </li>
 </ul>

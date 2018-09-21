@@ -79,7 +79,7 @@ since otherwise the second law of thermodynamics may be violated.
 <h4>Notes</h4>
 <p>
 For a similar model that can be used as a heat pump, see
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Carnot_y\">IBPSA.Fluid.HeatPumps.Carnot_y</a>.
+<a href=\"modelica://IBPSA.Fluid.HeatPumps.Carnot_y\">IBPSA.Fluid.HeatPumps.Carnot_y</a>.
 </p>
 </html>",
 revisions="<html>
@@ -105,7 +105,7 @@ Annex 60, issue 497</a>.
 <li>
 January 26, 2016, by Michael Wetter:<br/>
 Refactored model to use the same base class as
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Carnot_y\">IBPSA.Fluid.HeatPumps.Carnot_y</a>.
+<a href=\"modelica://IBPSA.Fluid.HeatPumps.Carnot_y\">IBPSA.Fluid.HeatPumps.Carnot_y</a>.
 <br/>
 Changed part load efficiency to depend on cooling part load ratio rather than on the compressor
 part load ratio.<br/>
@@ -161,8 +161,6 @@ First implementation.
 </li>
 </ul>
 </html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})),
     Icon(graphics={
         Line(points={{0,-70},{0,-90},{100,-90}}, color={0,0,255})}));
 end Carnot_y;

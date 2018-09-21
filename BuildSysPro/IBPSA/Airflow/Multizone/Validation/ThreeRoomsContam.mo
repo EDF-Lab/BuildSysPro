@@ -26,7 +26,8 @@ model ThreeRoomsContam
   IBPSA.Airflow.Multizone.Orifice oriOutTop(
     redeclare package Medium = Medium,
     A=0.01,
-    m=0.5) annotation (Placement(transformation(extent={{141,10},{161,30}})));
+    m=0.5)
+    annotation (Placement(transformation(extent={{141,10},{161,30}})));
   IBPSA.Airflow.Multizone.MediumColumn colEasInTop(
     redeclare package Medium = Medium,
     h=1.5,
@@ -36,8 +37,8 @@ model ThreeRoomsContam
     redeclare package Medium = Medium,
     nPorts=2,
     p(displayUnit="Pa") = 101325,
-    T=283.15) annotation (Placement(transformation(extent={{10,-10},{-10,10}},
-          origin={231,-30})));
+    T=283.15) annotation (Placement(transformation(extent={{10,-10},{-10,
+            10}}, origin={231,-30})));
 
   IBPSA.Airflow.Multizone.MediumColumn colEasInBot(
     redeclare package Medium = Medium,

@@ -6,11 +6,11 @@ model DiffusePerez
   parameter Modelica.SIunits.Angle azi=0.3 "Azi angle";
   parameter Modelica.SIunits.Angle til=0.5 "Tilted angle";
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos")
+        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus annotation (Placement(
-        transformation(extent={{1,-1},{21,21}}), iconTransformation(extent={{20,
-            20},{21,21}})));
+        transformation(extent={{1,-1},{21,21}}), iconTransformation(
+          extent={{20,20},{21,21}})));
   IBPSA.BoundaryConditions.SolarIrradiation.DiffusePerez HDifRoo(
     til=IBPSA.Types.Tilt.Ceiling,
     lat=0.6457718232379,

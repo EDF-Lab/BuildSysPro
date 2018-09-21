@@ -1,12 +1,12 @@
 ﻿within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.RT2005;
 record Floor =
-    BuildSysPro.Utilities.Icons.Floor (
+  BuildSysPro.Utilities.Icons.Floor (
     n=3,
     m={3,4,1},
     e={0.07,0.2,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene32(),
-        BuildSysPro.Utilities.Data.Solids.Concrete(),
-        BuildSysPro.Utilities.Data.Solids.FloorTile()},
+         BuildSysPro.Utilities.Data.Solids.Concrete(),
+         BuildSysPro.Utilities.Data.Solids.FloorTile()},
     positionIsolant={1,0,0}) "Floor Mozart RT2005"
  annotation (Icon(graphics),
                        Documentation(info="<html>
@@ -23,7 +23,7 @@ record Floor =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Benoît CHARRIER, Philippe PETIOT, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

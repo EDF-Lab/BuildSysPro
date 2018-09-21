@@ -3,8 +3,8 @@ model StaticFourPortHeatMassExchanger
   "Partial model transporting two fluid streams between four ports without storing mass or energy"
   extends IBPSA.Fluid.Interfaces.PartialFourPortInterface;
   extends IBPSA.Fluid.Interfaces.FourPortFlowResistanceParameters(final
-      computeFlowResistance1=(dp1_nominal > Modelica.Constants.eps), final
-      computeFlowResistance2=(dp2_nominal > Modelica.Constants.eps));
+      computeFlowResistance1=(dp1_nominal > Modelica.Constants.eps),
+      final computeFlowResistance2=(dp2_nominal > Modelica.Constants.eps));
 
   constant Boolean prescribedHeatFlowRate1 = false
     "Set to true if the heat flow rate into fluid 1 is not a function of the component temperature";
@@ -71,7 +71,7 @@ equation
 <p>
 This component transports two fluid streams between four ports, without
 storing mass or energy. It is similar to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
 IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>,
 but it has four ports instead of two.
 </p>
@@ -125,7 +125,7 @@ This is for issue
 January 22, 2016 by Michael Wetter:<br/>
 Removed assignment of <code>sensibleOnly</code> in <code>bal1</code> and <code>bal2</code>
 as this constant has been removed in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
 IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>.
 </li>
 <li>

@@ -17,9 +17,9 @@ equation
     T = 293.15+convT*(time-0.5)*10;
   end if;
   d = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-    p=p,
-    T=T,
-    X_w=X_w);
+              p=p,
+              T=T,
+              X_w=X_w);
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Functions/Examples/Density_pTX.mos"
@@ -28,7 +28,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
 info="<html>
 <p>
 Model that tests the implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
+<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
 IBPSA.Utilities.Psychrometrics.Functions.density_pTX</a>.
 </p>
 </html>",

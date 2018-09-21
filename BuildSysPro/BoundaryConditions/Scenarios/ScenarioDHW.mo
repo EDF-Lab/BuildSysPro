@@ -98,6 +98,7 @@ equation
 <p>AICVF scenario for domestic hot water.</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>2 predefined scenarios can be selected from the drop-down menu (\"AICVF\" and \"M324\"). If <i>User-defined</i> is chosen, then <b>filename1</b>, <b>data1</b>, <b>filename2</b> and <b>data2</b> must be filled.<b>data1</b> and <b>data2</b> are respectively the name of the data table specified in fileName1 with heading \"double data1(13450,2)\" and in fileName2 with heading \"double data2(13450,2)\" . In this example, 13450 indicates the number of X-coordinates and 2 indicates the number of Y-data (number of columns = the time + 1 data).</p>
+<p>The input scenario gives the fraction of the total annual DHW consumption for each time step.</p>
 <p>See <a href=\"modelica://BuildSysPro.BoundaryConditions.Scenarios.StepFunctionMat\"><code>StepFunctionMat</code></a> documentation</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
@@ -106,7 +107,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>

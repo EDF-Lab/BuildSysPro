@@ -41,7 +41,7 @@ which the water temperature is above the set point.
 </p>
 <p>
 See
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Examples.WaterHeater_T\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Examples.WaterHeater_T\">
 IBPSA.Fluid.HeatExchangers.Examples.WaterHeater_T</a>
 for a model that takes the leaving water temperature as an input.
 </p>

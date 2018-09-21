@@ -50,7 +50,8 @@ model SpeedControlled_y_pumpCurves
     use_p_in=false,
     p=300000,
     T=293.15,
-    nPorts=4) annotation (Placement(transformation(extent={{-70,78},{-50,98}})));
+    nPorts=4)
+    annotation (Placement(transformation(extent={{-70,78},{-50,98}})));
 
   IBPSA.Fluid.Sources.Boundary_pT sou1(
     redeclare package Medium = Medium,

@@ -5,18 +5,20 @@ model BrighteningCoefficient "Test model for brightening coeffcients"
     annotation (Placement(transformation(extent={{-40,-20},{-20,0}})));
   IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.SkyClearness skyCle
     annotation (Placement(transformation(extent={{40,20},{60,40}})));
-  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.BrighteningCoefficient briCoe
+  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.BrighteningCoefficient
+    briCoe
     annotation (Placement(transformation(extent={{80,-20},{100,0}})));
-  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.RelativeAirMass relAirMas
+  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.RelativeAirMass
+    relAirMas
     annotation (Placement(transformation(extent={{-10,-20},{10,0}})));
-  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.SkyBrightness skyBri
-    annotation (Placement(transformation(extent={{40,-40},{60,-20}})));
+  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.SkyBrightness
+    skyBri annotation (Placement(transformation(extent={{40,-40},{60,-20}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos")
+        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
     annotation (Placement(transformation(extent={{-90,60},{-70,80}})));
-  IBPSA.BoundaryConditions.WeatherData.Bus weaBus annotation (Placement(
-        transformation(extent={{-60,60},{-40,80}}), iconTransformation(extent={
-            {-20,60},{-20,60}})));
+  IBPSA.BoundaryConditions.WeatherData.Bus weaBus annotation (
+      Placement(transformation(extent={{-60,60},{-40,80}}),
+        iconTransformation(extent={{-20,60},{-20,60}})));
 equation
   connect(zen.y, skyCle.zen) annotation (Line(
       points={{-19,-10},{-16,-10},{-16,24},{38,24}},

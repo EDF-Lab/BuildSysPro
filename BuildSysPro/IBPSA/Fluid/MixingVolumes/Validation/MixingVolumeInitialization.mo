@@ -7,12 +7,14 @@ model MixingVolumeInitialization "Test model for mixing volume initialization"
     redeclare package Medium = Medium,
     p=101330,
     nPorts=1,
-    T=293.15) annotation (Placement(transformation(extent={{-60,10},{-40,30}})));
+    T=293.15)
+    annotation (Placement(transformation(extent={{-60,10},{-40,30}})));
   IBPSA.Fluid.Sources.Boundary_pT sin1(
     redeclare package Medium = Medium,
     p=101320,
     nPorts=1,
-    T=293.15) annotation (Placement(transformation(extent={{120,10},{100,30}})));
+    T=293.15)
+    annotation (Placement(transformation(extent={{120,10},{100,30}})));
   Modelica.Fluid.Pipes.StaticPipe pipe1(
     redeclare package Medium = Medium,
     length=1,

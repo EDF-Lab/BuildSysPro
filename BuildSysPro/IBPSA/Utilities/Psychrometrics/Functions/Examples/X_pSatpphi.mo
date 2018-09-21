@@ -18,9 +18,9 @@ equation
   phi = time*conv;
   pSat = Medium.saturationPressure(T);
   X_w = IBPSA.Utilities.Psychrometrics.Functions.X_pSatpphi(
-    pSat=pSat,
-    p=p,
-    phi=phi);
+              pSat=pSat,
+              p=p,
+              phi=phi);
 
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),

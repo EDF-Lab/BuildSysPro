@@ -2,8 +2,9 @@ within BuildSysPro.IBPSA.Media.Specialized.Water.Examples;
 model TemperatureDependentDensityTemperatureEnthalpyInversion
   "Model to check computation of h(T) and its inverse"
   extends Modelica.Icons.Example;
-  extends IBPSA.Media.Examples.BaseClasses.TestTemperatureEnthalpyInversion(
-      redeclare package Medium =
+  extends
+    IBPSA.Media.Examples.BaseClasses.TestTemperatureEnthalpyInversion(
+     redeclare package Medium =
         IBPSA.Media.Specialized.Water.TemperatureDependentDensity);
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),

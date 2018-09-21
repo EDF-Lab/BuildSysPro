@@ -13,11 +13,12 @@ model SpeedControlled_Nrpm
       u_nominal=1,
       u(final unit="1"),
       y(final unit="1")),
-    eff(per(final pressure=per.pressure, final use_powerCharacteristic=per.use_powerCharacteristic)),
+    eff(per(final pressure=per.pressure, final use_powerCharacteristic=
+            per.use_powerCharacteristic)),
     gaiSpe(u(final unit="1/min"), final k=1/per.speed_rpm_nominal));
 
-  Modelica.Blocks.Interfaces.RealInput Nrpm(final unit="1/min") if inputType
-     == IBPSA.Fluid.Types.InputType.Continuous
+  Modelica.Blocks.Interfaces.RealInput Nrpm(final unit="1/min") if
+    inputType == IBPSA.Fluid.Types.InputType.Continuous
     "Prescribed rotational speed"
     annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
@@ -35,7 +36,6 @@ protected
 initial equation
   assert(per.havePressureCurve,
    "SpeedControlled_Nrpm model requires to set the pressure vs. flow rate curve in record 'per'.");
-
 
 equation
   connect(Nrpm, gaiSpe.u)
@@ -59,17 +59,29 @@ equation
     Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
             100}}), graphics={
             Text(
-              visible = inputType == IBPSA.Fluid.Types.InputType.Continuous,
-              extent={{20,126},{118,104}},
-              textString="Nrpm [rpm]"),
-            Text(
-          visible=inputType == IBPSA.Fluid.Types.InputType.Constant,
-          extent={{-80,136},{78,102}},
-          lineColor={0,0,255},
-          textString="%speed"),
-        Text(extent={{52,70},{102,56}},
-          lineColor={0,0,127},
-          textString="N_rpm")}),
+              extent={{26,136},{124,114}},
+          textString="Nrpm [rpm]",
+          lineColor={0,0,127}),
+        Rectangle(
+          visible=use_inputFilter,
+          extent={{-34,40},{32,100}},
+          lineColor={0,0,0},
+          fillColor={135,135,135},
+          fillPattern=FillPattern.Solid),
+        Ellipse(
+          visible=use_inputFilter,
+          extent={{-34,100},{32,40}},
+          lineColor={0,0,0},
+          fillColor={135,135,135},
+          fillPattern=FillPattern.Solid),
+        Text(
+          visible=use_inputFilter,
+          extent={{-22,92},{20,46}},
+          lineColor={0,0,0},
+          fillColor={135,135,135},
+          fillPattern=FillPattern.Solid,
+          textString="M",
+          textStyle={TextStyle.Bold})}),
     Documentation(info="<html>
 This model describes a fan or pump with prescribed speed in revolutions per minute.
 The head is computed based on the performance curve that take as an argument
@@ -82,7 +94,7 @@ based on the motor performance curves.
 <br/>
 <p>
 See the
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.UsersGuide\">
+<a href=\"modelica://IBPSA.Fluid.Movers.UsersGuide\">
 User's Guide</a> for more information.
 </p>
 </html>",
@@ -151,7 +163,5 @@ Revised implementation to allow zero flow rate.
     by <a href=\"mailto:francesco.casella@polimi.it\">Francesco Casella</a>:<br/>
        Model added to the Fluid library</li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end SpeedControlled_Nrpm;

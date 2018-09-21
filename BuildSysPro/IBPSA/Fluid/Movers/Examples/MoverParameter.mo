@@ -17,12 +17,12 @@ model MoverParameter
     "Pump with m_flow input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sou(redeclare package Medium = Medium, nPorts=
-       4) "Fluid source"
+  IBPSA.Fluid.Sources.Boundary_pT sou(redeclare package Medium = Medium,
+      nPorts=4) "Fluid source"
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium, nPorts=
-       4) "Fluid sink"
+  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium,
+      nPorts=4) "Fluid sink"
     annotation (Placement(transformation(extent={{80,-10},{60,10}})));
   SpeedControlled_y pump_y(
     redeclare package Medium = Medium,
@@ -85,8 +85,6 @@ equation
   connect(pump_Nrpm.port_b, sin.ports[4]) annotation (Line(points={{10,40},{24,40},
           {60,40},{60,-3}}, color={0,127,255}));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
-            100}})),
     __Dymola_Commands(file=
           "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Examples/MoverParameter.mos"
         "Simulate and plot"),

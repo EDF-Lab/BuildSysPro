@@ -13,9 +13,9 @@ block CheckCeilingHeight
   constant Modelica.SIunits.Height ceiHeiMin=0 "Minimum allowed ceiling height";
 equation
   ceiHeiOut = IBPSA.Utilities.Math.Functions.smoothMax(
-    ceiHeiIn,
-    ceiHeiMin,
-    0.1);
+            ceiHeiIn,
+            ceiHeiMin,
+            0.1);
 
   annotation (
     defaultComponentName="cheCeiHei",

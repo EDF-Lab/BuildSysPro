@@ -40,9 +40,9 @@ equation
     k = kVal;
   end if;
   dp_min = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-    m_flow=m_flow_set,
-    k=k,
-    m_flow_turbulent=m_flow_turbulent);
+            m_flow=m_flow_set,
+            k=k,
+            m_flow_turbulent=m_flow_turbulent);
 
   if from_dp then
     m_flow_x=0;
@@ -57,33 +57,35 @@ equation
     dp_x2 = deltax*dp_min;
     // min function ensures that m_flow_y1 does not increase further for dp_x > dp_x1
     m_flow_y1 = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-      dp=min(dp, dp_min + dp_x1),
-      k=k,
-      m_flow_turbulent=m_flow_turbulent);
+              dp=min(dp, dp_min + dp_x1),
+              k=k,
+              m_flow_turbulent=m_flow_turbulent);
     // max function ensures that m_flow_y2 does not decrease further for dp_x < dp_x2
     m_flow_y2 = m_flow_set + coeff1*max(dp_x,dp_x2);
 
-    m_flow_smooth = noEvent(smooth(2, if dp_x <= dp_x1 then m_flow_y1 elseif
-      dp_x >= dp_x2 then m_flow_y2 else
+    m_flow_smooth = noEvent(smooth(2, if dp_x <= dp_x1 then m_flow_y1
+       elseif dp_x >= dp_x2 then m_flow_y2 else
       IBPSA.Utilities.Math.Functions.quinticHermite(
-      x=dp_x,
-      x1=dp_x1,
-      x2=dp_x2,
-      y1=m_flow_y1,
-      y2=m_flow_y2,
-      y1d=IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der(
-        dp=dp_min + dp_x1,
-        k=k,
-        m_flow_turbulent=m_flow_turbulent,
-        dp_der=1),
-      y2d=coeff1,
-      y1dd=IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2(
-        dp=dp_min + dp_x1,
-        k=k,
-        m_flow_turbulent=m_flow_turbulent,
-        dp_der=1,
-        dp_der2=0),
-      y2dd=y2dd)));
+              x=dp_x,
+              x1=dp_x1,
+              x2=dp_x2,
+              y1=m_flow_y1,
+              y2=m_flow_y2,
+              y1d=
+        IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der(
+                dp=dp_min + dp_x1,
+                k=k,
+                m_flow_turbulent=m_flow_turbulent,
+                dp_der=1),
+              y2d=coeff1,
+              y1dd=
+        IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2(
+                dp=dp_min + dp_x1,
+                k=k,
+                m_flow_turbulent=m_flow_turbulent,
+                dp_der=1,
+                dp_der2=0),
+              y2dd=y2dd)));
   else
     dp_x=0;
     dp_x1=0;
@@ -97,33 +99,35 @@ equation
     m_flow_x2 = deltax*m_flow_set;
     // min function ensures that dp_y1 does not increase further for m_flow_x > m_flow_x1
     dp_y1 = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-      m_flow=min(m_flow, m_flow_set + m_flow_x1),
-      k=k,
-      m_flow_turbulent=m_flow_turbulent);
+              m_flow=min(m_flow, m_flow_set + m_flow_x1),
+              k=k,
+              m_flow_turbulent=m_flow_turbulent);
     // max function ensures that dp_y2 does not decrease further for m_flow_x < m_flow_x2
     dp_y2 = dp_min + coeff2*max(m_flow_x, m_flow_x2);
 
-    dp_smooth = noEvent(smooth(2, if m_flow_x <= m_flow_x1 then dp_y1 elseif
-      m_flow_x >= m_flow_x2 then dp_y2 else
+    dp_smooth = noEvent(smooth(2, if m_flow_x <= m_flow_x1 then dp_y1
+       elseif m_flow_x >= m_flow_x2 then dp_y2 else
       IBPSA.Utilities.Math.Functions.quinticHermite(
-      x=m_flow_x,
-      x1=m_flow_x1,
-      x2=m_flow_x2,
-      y1=dp_y1,
-      y2=dp_y2,
-      y1d=IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der(
-        m_flow=m_flow_set + m_flow_x1,
-        k=k,
-        m_flow_turbulent=m_flow_turbulent,
-        m_flow_der=1),
-      y2d=coeff2,
-      y1dd=IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der2(
-        m_flow=m_flow_set + m_flow_x1,
-        k=k,
-        m_flow_turbulent=m_flow_turbulent,
-        m_flow_der=1,
-        m_flow_der2=0),
-      y2dd=y2dd)));
+              x=m_flow_x,
+              x1=m_flow_x1,
+              x2=m_flow_x2,
+              y1=dp_y1,
+              y2=dp_y2,
+              y1d=
+        IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der(
+                m_flow=m_flow_set + m_flow_x1,
+                k=k,
+                m_flow_turbulent=m_flow_turbulent,
+                m_flow_der=1),
+              y2d=coeff2,
+              y1dd=
+        IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der2(
+                m_flow=m_flow_set + m_flow_x1,
+                k=k,
+                m_flow_turbulent=m_flow_turbulent,
+                m_flow_der=1,
+                m_flow_der2=0),
+              y2dd=y2dd)));
   end if;
 
   if homotopyInitialization then

@@ -5,19 +5,20 @@ model ConvertRadiation "Test model for ConvertRadiation"
     "Convert units for global horizontal radiation"
     annotation (Placement(transformation(extent={{40,10},{60,30}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertRadiation conDifRad
-    "Convert units for diffuse horizontal radiation"
-    annotation (Placement(transformation(extent={{40,-30},{60,-10}})));
-  IBPSA.Utilities.Time.ModelTime modTim "Block that outputs simulation time"
-    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
+    "Convert units for diffuse horizontal radiation" annotation (
+      Placement(transformation(extent={{40,-30},{60,-10}})));
+  IBPSA.Utilities.Time.ModelTime modTim
+    "Block that outputs simulation time" annotation (Placement(
+        transformation(extent={{-80,-10},{-60,10}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertTime timCon
-    "Convert simmulation time to calendar time"
-    annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+    "Convert simmulation time to calendar time" annotation (Placement(
+        transformation(extent={{-40,-10},{-20,10}})));
 protected
   Modelica.Blocks.Tables.CombiTable1Ds datRea(
     tableOnFile=true,
     tableName="tab1",
     fileName=Modelica.Utilities.Files.loadResource(
-       "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
+       Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")),
     columns=2:30,
     smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)
     "Data reader"

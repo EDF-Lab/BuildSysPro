@@ -22,12 +22,14 @@ model Delay
     T=293.15,
     redeclare package Medium = Medium,
     use_p_in=true,
-    nPorts=1) annotation (Placement(transformation(extent={{-58,-4},{-38,16}})));
+    nPorts=1)
+    annotation (Placement(transformation(extent={{-58,-4},{-38,16}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     T=283.15,
     redeclare package Medium = Medium,
     use_p_in=true,
-    nPorts=1) annotation (Placement(transformation(extent={{78,-4},{58,16}})));
+    nPorts=1)
+    annotation (Placement(transformation(extent={{78,-4},{58,16}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res2(
     from_dp=true,
     m_flow_nominal=5,

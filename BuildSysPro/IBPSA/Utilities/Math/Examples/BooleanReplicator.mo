@@ -18,7 +18,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
     Documentation(info="<html>
 <p>
 This model tests the implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.BooleanReplicator\">
+<a href=\"modelica://IBPSA.Utilities.Math.BooleanReplicator\">
 IBPSA.Utilities.Math.BooleanReplicator</a>.
 </p>
 </html>", revisions="<html>

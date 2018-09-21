@@ -65,7 +65,7 @@ on a tilted surface using an isotropic model.
 The irradiation is a sum composed of diffuse solar irradiation and
 radiation reflected by the ground.
 For a definition of the parameters, see the
-<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.UsersGuide\">User's Guide</a>.
+<a href=\"modelica://IBPSA.BoundaryConditions.UsersGuide\">User's Guide</a>.
 </p>
 <h4>References</h4>
 P. Ineichen, R. Perez and R. Seals (1987).

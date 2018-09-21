@@ -8,8 +8,8 @@ model NumberOfBeams
 
   parameter Integer nBeams(min=1) = 10 "Number of beams";
 
-  IBPSA.Fluid.Sources.FixedBoundary sin_1(redeclare package Medium = MediumW,
-      nPorts=2) "Sink for chilled water"
+  IBPSA.Fluid.Sources.FixedBoundary sin_1(redeclare package Medium =
+        MediumW, nPorts=2) "Sink for chilled water"
     annotation (Placement(transformation(extent={{80,70},{60,90}})));
   IBPSA.Fluid.Sources.MassFlowSource_T souAir(
     redeclare package Medium = MediumA,
@@ -18,29 +18,30 @@ model NumberOfBeams
     m_flow=0.0792,
     T=285.85) "Source for air"
     annotation (Placement(transformation(extent={{80,-10},{60,10}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin_3(redeclare package Medium = MediumA,
-      nPorts=2)
-    annotation (Placement(transformation(extent={{-120,-10},{-100,10}})));
+  IBPSA.Fluid.Sources.FixedBoundary sin_3(redeclare package Medium =
+        MediumA, nPorts=2) annotation (Placement(transformation(
+          extent={{-120,-10},{-100,10}})));
   IBPSA.Fluid.Sources.FixedBoundary sou_1(
     redeclare package Medium = MediumW,
     nPorts=2,
-    T=288.15) "Source for chilled water"
-    annotation (Placement(transformation(extent={{-120,68},{-100,88}})));
+    T=288.15) "Source for chilled water" annotation (Placement(
+        transformation(extent={{-120,68},{-100,88}})));
   IBPSA.Fluid.Movers.FlowControlled_m_flow pumHotWat(
     redeclare package Medium = MediumW,
     m_flow_nominal=0.094,
     addPowerToMedium=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
-    nominalValuesDefineDefaultPressureCurve=true) "Pump for hot water"
-    annotation (Placement(transformation(extent={{-60,30},{-40,50}})));
+    nominalValuesDefineDefaultPressureCurve=true)
+    "Pump for hot water" annotation (Placement(transformation(extent={
+            {-60,30},{-40,50}})));
   IBPSA.Fluid.Sources.FixedBoundary sou_2(
     redeclare package Medium = MediumW,
     nPorts=2,
-    T=320.95) "Source for hot water"
-    annotation (Placement(transformation(extent={{-120,28},{-100,48}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin_2(redeclare package Medium = MediumW,
-      nPorts=2) "Sink for hot water"
+    T=320.95) "Source for hot water" annotation (Placement(
+        transformation(extent={{-120,28},{-100,48}})));
+  IBPSA.Fluid.Sources.FixedBoundary sin_2(redeclare package Medium =
+        MediumW, nPorts=2) "Sink for hot water"
     annotation (Placement(transformation(extent={{80,30},{60,50}})));
   IBPSA.Fluid.Movers.FlowControlled_m_flow pumChiWat(
     redeclare package Medium = MediumW,
@@ -48,8 +49,9 @@ model NumberOfBeams
     addPowerToMedium=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
-    nominalValuesDefineDefaultPressureCurve=true) "Pump for chilled water"
-    annotation (Placement(transformation(extent={{-60,70},{-40,90}})));
+    nominalValuesDefineDefaultPressureCurve=true)
+    "Pump for chilled water" annotation (Placement(transformation(
+          extent={{-60,70},{-40,90}})));
   IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating beaCooHea(
     redeclare package MediumWat = MediumW,
     redeclare package MediumAir = MediumA,
@@ -60,7 +62,8 @@ model NumberOfBeams
       IBPSA.Fluid.HeatExchangers.ActiveBeams.Data.Trox.DID632A_nozzleH_length6ft_heating
       perHea,
     nBeams=1,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState) "Active beam"
+    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
+    "Active beam"
     annotation (Placement(transformation(extent={{-14,28},{14,52}})));
 
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature
@@ -72,8 +75,8 @@ model NumberOfBeams
     use_m_flow_in=false,
     nPorts=1,
     m_flow=0.0792*nBeams,
-    T=285.85) "Source for air"
-    annotation (Placement(transformation(extent={{80,-130},{60,-110}})));
+    T=285.85) "Source for air" annotation (Placement(transformation(
+          extent={{80,-130},{60,-110}})));
 
   IBPSA.Fluid.Movers.FlowControlled_m_flow pumHotWat10(
     redeclare package Medium = MediumW,
@@ -81,8 +84,9 @@ model NumberOfBeams
     m_flow_nominal=0.094*nBeams,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
-    nominalValuesDefineDefaultPressureCurve=true) "Pump for hot water"
-    annotation (Placement(transformation(extent={{-60,-90},{-40,-70}})));
+    nominalValuesDefineDefaultPressureCurve=true)
+    "Pump for hot water" annotation (Placement(transformation(extent={
+            {-60,-90},{-40,-70}})));
 
   IBPSA.Fluid.Movers.FlowControlled_m_flow pumChiWat10(
     redeclare package Medium = MediumW,
@@ -90,8 +94,9 @@ model NumberOfBeams
     m_flow_nominal=0.094*nBeams,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
-    nominalValuesDefineDefaultPressureCurve=true) "Pump for chilled water"
-    annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
+    nominalValuesDefineDefaultPressureCurve=true)
+    "Pump for chilled water" annotation (Placement(transformation(
+          extent={{-60,-50},{-40,-30}})));
 
   IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating beaCooHea10(
     redeclare package MediumWat = MediumW,
@@ -103,8 +108,9 @@ model NumberOfBeams
       IBPSA.Fluid.HeatExchangers.ActiveBeams.Data.Trox.DID632A_nozzleH_length6ft_heating
       perHea,
     nBeams=nBeams,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState) "Active beam"
-    annotation (Placement(transformation(extent={{-14,-92},{14,-68}})));
+    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
+    "Active beam" annotation (Placement(transformation(extent={{-14,-92},
+            {14,-68}})));
   Modelica.Blocks.Sources.Step step(
     height=-0.094,
     offset=0.094,
@@ -162,14 +168,14 @@ equation
           {28,-74},{28,78},{60,78}}, color={0,127,255}));
   connect(beaCooHea10.watHea_b, sin_2.ports[2]) annotation (Line(points={{14,-80},
           {28,-80},{40,-80},{40,38},{60,38}}, color={0,127,255}));
-  connect(step.y, pumChiWat.m_flow_in) annotation (Line(points={{-159,100},{-108,
-          100},{-50.2,100},{-50.2,92}}, color={0,0,127}));
-  connect(step1.y, pumHotWat.m_flow_in) annotation (Line(points={{-159,60},{-110,
-          60},{-50.2,60},{-50.2,52}}, color={0,0,127}));
+  connect(step.y, pumChiWat.m_flow_in) annotation (Line(points={{-159,100},{
+          -108,100},{-50,100},{-50,92}},color={0,0,127}));
+  connect(step1.y, pumHotWat.m_flow_in) annotation (Line(points={{-159,60},{
+          -110,60},{-50,60},{-50,52}},color={0,0,127}));
   connect(step3.y, pumChiWat10.m_flow_in) annotation (Line(points={{-159,-20},{
-          -104,-20},{-50.2,-20},{-50.2,-28}}, color={0,0,127}));
+          -104,-20},{-50,-20},{-50,-28}},     color={0,0,127}));
   connect(step2.y, pumHotWat10.m_flow_in) annotation (Line(points={{-159,-60},{
-          -104,-60},{-50.2,-60},{-50.2,-68}}, color={0,0,127}));
+          -104,-60},{-50,-60},{-50,-68}},     color={0,0,127}));
   connect(step4.y, prescribedTemperature.T)
     annotation (Line(points={{-99,-150},{-62,-150}}, color={0,0,127}));
   connect(prescribedTemperature.port, beaCooHea10.heaPor) annotation (Line(
@@ -188,7 +194,7 @@ This model validates the scaling of the heat tranfer and pressure drop for
 </p>
 <p>
 It uses two instances of
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating</a>,
 one with
 <code>nBeams = 1</code> and one with

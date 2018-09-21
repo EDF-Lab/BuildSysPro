@@ -6,11 +6,6 @@ package UsersGuide "User's Guide"
 
 
 
-
-
-
-
-
   annotation (preferredView="info",
   Documentation(info="<html>
 <p>
@@ -21,7 +16,7 @@ building and community energy and control systems.
 </p>
 <p>
 The development of the IBPSA library is organized through the
-<a href=\"https://BuildSysPro.IBPSA.github.io/project1\">IBPSA Project 1</a>
+<a href=\"https://ibpsa.github.io/project1\">IBPSA Project 1</a>
 of the International Building Performance Simulation Association (IBPSA).
 From 2012 to 2017, the development was organized through the
 <a href=\"http://www.iea-annex60.org\">Annex 60 project</a>
@@ -50,23 +45,23 @@ to solve specific problems.
 The library has the following <i>User's Guides</i>:
 </p>
 <table summary=\"summary\" border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
-<tr><td valign=\"top\"><a href=\"modelica://BuildSysPro.IBPSA.Fluid.UsersGuide\">Fluid</a>
+<tr><td valign=\"top\"><a href=\"modelica://IBPSA.Fluid.UsersGuide\">Fluid</a>
    </td>
    <td valign=\"top\">Package for one-dimensional fluid in piping networks with heat exchangers, valves, etc.</td>
 </tr>
-<tr><td valign=\"top\"><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.UsersGuide\">Fluid.Actuators</a>
+<tr><td valign=\"top\"><a href=\"modelica://IBPSA.Fluid.Actuators.UsersGuide\">Fluid.Actuators</a>
    </td>
    <td valign=\"top\">Package with valves and air dampers.</td>
 </tr>
-<tr><td valign=\"top\"><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.UsersGuide\">Fluid.Movers</a>
+<tr><td valign=\"top\"><a href=\"modelica://IBPSA.Fluid.Movers.UsersGuide\">Fluid.Movers</a>
    </td>
    <td valign=\"top\">Package with fans and pumps.</td>
 </tr>
-<tr><td valign=\"top\"><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">Fluid.Sensors</a>
+<tr><td valign=\"top\"><a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">Fluid.Sensors</a>
    </td>
    <td valign=\"top\">Package with sensors.</td>
 </tr>
-<tr><td valign=\"top\"><a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.UsersGuide\">Fluid.Interfaces</a>
+<tr><td valign=\"top\"><a href=\"modelica://IBPSA.Fluid.Interfaces.UsersGuide\">Fluid.Interfaces</a>
    </td>
    <td valign=\"top\">Base models that can be used by developers to implement new models.</td>
 </tr>

@@ -115,7 +115,7 @@ The efficiency of the pump can be determined as the ratio between total efficien
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p></html>"), Diagram(graphics),
     Icon(graphics={Ellipse(extent={{-80,90},{80,-70}}, lineColor={0,0,0},

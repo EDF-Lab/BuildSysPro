@@ -1,9 +1,9 @@
 within BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses;
 partial model PartialDamperExponential
   "Partial model for air dampers with exponential opening characteristics"
-   extends IBPSA.Fluid.BaseClasses.PartialResistance(m_flow_turbulent=if
-        use_deltaM then deltaM*m_flow_nominal else eta_default*ReC*sqrt(A)*
-        facRouDuc);
+   extends IBPSA.Fluid.BaseClasses.PartialResistance(m_flow_turbulent=
+        if use_deltaM then deltaM*m_flow_nominal else eta_default*ReC*
+        sqrt(A)*facRouDuc);
    extends IBPSA.Fluid.Actuators.BaseClasses.ActuatorSignal;
 
  parameter Boolean use_deltaM = true
@@ -69,14 +69,15 @@ equation
         else
           Medium.density(Medium.setState_phX(port_a.p, inStream(port_a.h_outflow), inStream(port_a.Xi_outflow)));
   // flow coefficient, k=m_flow/sqrt(dp)
-  kDam = sqrt(2*rho)*A/IBPSA.Fluid.Actuators.BaseClasses.exponentialDamper(
-    y=y_actual,
-    a=a,
-    b=b,
-    cL=cL,
-    cU=cU,
-    yL=yL,
-    yU=yU);
+  kDam = sqrt(2*rho)*A/
+    IBPSA.Fluid.Actuators.BaseClasses.exponentialDamper(
+            y=y_actual,
+            a=a,
+            b=b,
+            cL=cL,
+            cU=cU,
+            yL=yL,
+            yU=yU);
   k = if (kFixed>Modelica.Constants.eps) then sqrt(1/(1/kFixed^2 + 1/kDam^2)) else kDam;
   // Pressure drop calculation
   if linearized then
@@ -86,29 +87,31 @@ equation
       if from_dp then
         m_flow = homotopy(actual=
           IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-          dp=dp,
-          k=k,
-          m_flow_turbulent=m_flow_turbulent), simplified=m_flow_nominal_pos*dp/
-          dp_nominal_pos);
+                  dp=dp,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent), simplified=
+          m_flow_nominal_pos*dp/dp_nominal_pos);
       else
         dp = homotopy(actual=
           IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-          m_flow=m_flow,
-          k=k,
-          m_flow_turbulent=m_flow_turbulent), simplified=dp_nominal_pos*m_flow/
-          m_flow_nominal_pos);
+                  m_flow=m_flow,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent), simplified=
+          dp_nominal_pos*m_flow/m_flow_nominal_pos);
        end if;  // from_dp
     else // do not use homotopy
       if from_dp then
-        m_flow = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-          dp=dp,
-          k=k,
-          m_flow_turbulent=m_flow_turbulent);
+        m_flow =
+          IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
+                  dp=dp,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent);
       else
-        dp = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-          m_flow=m_flow,
-          k=k,
-          m_flow_turbulent=m_flow_turbulent);
+        dp =
+          IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
+                  m_flow=m_flow,
+                  k=k,
+                  m_flow_turbulent=m_flow_turbulent);
       end if;  // from_dp
     end if; // homotopyInitialization
   end if; // linearized
@@ -123,7 +126,7 @@ models.
 </p>
 <p>
 For a description of the opening characteristics and typical parameter values, see the damper model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Dampers.Exponential\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Dampers.Exponential\">
 IBPSA.Fluid.Actuators.Dampers.Exponential</a>.
 </p>
 </html>",
@@ -180,7 +183,7 @@ to coupled equations instead of an explicit solution.
 <li>
 June 22, 2008 by Michael Wetter:<br/>
 Extended range of control signal from 0 to 1 by implementing the function
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.exponentialDamper\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.exponentialDamper\">
 exponentialDamper</a>.
 </li>
 <li>

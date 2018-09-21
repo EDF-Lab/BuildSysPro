@@ -1,14 +1,13 @@
 ﻿within BuildSysPro.Utilities.Data.Solids;
-record Air30 =
-      BuildSysPro.Utilities.Records.GenericSolid (
-      lambda=0.167,
-      rho=1.218,
-      c=1005) "3cm air gap non ventilated (standard ISO 6946 and RT2012)" annotation (
+record Air30 = BuildSysPro.Utilities.Records.GenericSolid (
+    lambda=0.167,
+    rho=1.218,
+    c=1005) "3cm air gap non ventilated (standard ISO 6946 and RT2012)" annotation (
     Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

@@ -1,10 +1,10 @@
 within BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.Examples;
 model CheckWindDirection "Test model for wind direction check"
   extends Modelica.Icons.Example;
-  IBPSA.Utilities.Time.ModelTime modTim
-    annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
-  IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckWindDirection cheWinDir
-    "Block that constrains the wind direction"
+  IBPSA.Utilities.Time.ModelTime modTim annotation (Placement(
+        transformation(extent={{-100,0},{-80,20}})));
+  IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckWindDirection
+    cheWinDir "Block that constrains the wind direction"
     annotation (Placement(transformation(extent={{60,0},{80,20}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim
     "Block that converts time"
@@ -17,7 +17,7 @@ protected
     tableOnFile=true,
     tableName="tab1",
     fileName=Modelica.Utilities.Files.loadResource(
-       "modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
+       Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")),
     columns=2:30,
     smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)
     "Data reader"

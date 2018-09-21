@@ -39,19 +39,21 @@ model Carnot_y "Test model for chiller based on Carnot_y efficiency"
     redeclare package Medium = Medium1,
     use_T_in=true,
     m_flow=m1_flow_nominal,
-    T=298.15) annotation (Placement(transformation(extent={{-60,6},{-40,26}})));
+    T=298.15)
+    annotation (Placement(transformation(extent={{-60,6},{-40,26}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou2(
     nPorts=1,
     redeclare package Medium = Medium2,
     use_T_in=true,
     m_flow=m2_flow_nominal,
-    T=291.15) annotation (Placement(transformation(extent={{60,-6},{40,14}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(nPorts=1, redeclare package Medium =
-        Medium1) annotation (Placement(transformation(extent={{10,-10},{-10,10}},
-          origin={70,40})));
-  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package Medium =
-        Medium2) annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-          origin={-50,-20})));
+    T=291.15)
+    annotation (Placement(transformation(extent={{60,-6},{40,14}})));
+  IBPSA.Fluid.Sources.FixedBoundary sin1(nPorts=1, redeclare package
+      Medium = Medium1) annotation (Placement(transformation(extent={{10,
+            -10},{-10,10}}, origin={70,40})));
+  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package
+      Medium = Medium2) annotation (Placement(transformation(extent={{-10,
+            -10},{10,10}}, origin={-50,-20})));
   Modelica.Blocks.Sources.Ramp uCom(
     height=-1,
     duration=60,

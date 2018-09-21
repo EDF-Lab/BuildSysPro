@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs;
 block ThermalZoneAir1 "Validation of simple thermal zone"
-  extends IBPSA.Fluid.FMI.ExportContainers.ThermalZone(redeclare package Medium
-      = IBPSA.Media.Air, nPorts=2);
+  extends IBPSA.Fluid.FMI.ExportContainers.ThermalZone(redeclare package
+              Medium = IBPSA.Media.Air, nPorts=2);
 
   parameter Modelica.SIunits.Volume V=6*10*3 "Room volume";
 
@@ -68,7 +68,8 @@ protected
     linearized=true) "Flow resistance"
     annotation (Placement(transformation(extent={{80,130},{100,150}})));
 public
-  Sensors.MassFlowRate senMasFlo[nPorts](redeclare final package Medium = Medium)
+  Sensors.MassFlowRate senMasFlo[nPorts](redeclare final package
+      Medium =                                                            Medium)
     "Mass flow rate sensor to connect thermal adapter with thermal zone."
     annotation (Placement(transformation(extent={{-106,150},{-86,170}})));
 equation
@@ -109,7 +110,7 @@ equation
     Documentation(info="<html>
 <p>
 This example validates that
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
+<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
 IBPSA.Fluid.FMI.ExportContainers.ThermalZone
 </a>
 exports correctly as an FMU.

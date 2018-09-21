@@ -1,11 +1,11 @@
 ﻿within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.RTExisting_Reno;
 record AtticWall =
-    BuildSysPro.Utilities.Icons.Ceiling (
+  BuildSysPro.Utilities.Icons.Ceiling (
     n=2,
     m={4,1},
     e={0.18,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.MineralWool40(),
-        BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
+         BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
     positionIsolant={1,0})
   "Attic wall Mozart renovated according to RT Existing"
   annotation (Icon(graphics),
@@ -26,6 +26,6 @@ record AtticWall =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Béatrice SUPLICE, Frédéric GASTIGER, EDF (2016)<br>
 --------------------------------------------------------------</b></p></html>"));

@@ -5,9 +5,10 @@ partial model Example1 "Example 1 partial model"
   package Medium = Modelica.Media.Water.ConstantPropertyLiquidWater;
   parameter Real m_flow_nominal=0.1 "Gain value multiplied with input signal";
 
-  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium, nPorts=
-       1) "Boundary for pressure boundary condition" annotation (Placement(
-        transformation(extent={{-10,-10},{10,10}}, origin={-50,20})));
+  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium =
+        Medium, nPorts=1) "Boundary for pressure boundary condition"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+          origin={-50,20})));
   Fluid.Movers.FlowControlled_m_flow pump(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
@@ -97,10 +98,10 @@ equation
     Documentation(info="<html>
 <p>
 This partial model is extended by
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.Performance.Example1v1\">
+<a href=\"modelica://IBPSA.Fluid.Examples.Performance.Example1v1\">
 IBPSA.Fluid.Examples.Performance.Example1v1</a>
 and
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.Performance.Example1v2\">
+<a href=\"modelica://IBPSA.Fluid.Examples.Performance.Example1v2\">
 IBPSA.Fluid.Examples.Performance.Example1v2</a>
 and is created to avoid errors in the implementation of the two depending examples.
 </p>

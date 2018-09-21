@@ -38,7 +38,7 @@ protected
       sum(m_flow_nominal)/nout "Average nominal mass flow rate";
 protected
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package Medium = Medium)
+      package       Medium = Medium)
     "Internal connector for fluid properties for back flow";
   IBPSA.Fluid.FMI.Interfaces.MassFractionConnector X_w_out_internal=0
     "Internal connector for mass fraction of backward flow properties";

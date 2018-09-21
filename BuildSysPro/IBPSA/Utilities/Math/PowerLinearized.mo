@@ -7,9 +7,9 @@ block PowerLinearized
 
 equation
   y = IBPSA.Utilities.Math.Functions.powerLinearized(
-    x=u,
-    n=n,
-    x0=x0);
+          x=u,
+          n=n,
+          x0=x0);
 
   annotation (Icon(graphics={Text(
           extent={{-90,36},{90,-36}},

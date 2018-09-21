@@ -135,15 +135,15 @@ equation
   // if the input connectors mWat_flow or C_flow are enabled.
   if use_m_flowInv then
     m_flowInv = IBPSA.Utilities.Math.Functions.inverseXRegularized(
-      x=port_a.m_flow,
-      delta=deltaReg,
-      deltaInv=deltaInvReg,
-      a=aReg,
-      b=bReg,
-      c=cReg,
-      d=dReg,
-      e=eReg,
-      f=fReg);
+            x=port_a.m_flow,
+            delta=deltaReg,
+            deltaInv=deltaInvReg,
+            a=aReg,
+            b=bReg,
+            c=cReg,
+            d=dReg,
+            e=eReg,
+            f=fReg);
   else
     // m_flowInv is not used.
     m_flowInv = 0;
@@ -151,27 +151,28 @@ equation
 
   if prescribedHeatFlowRate then
     assert(noEvent( abs(Q_flow) < 200*cp_default*max(m_flow_small/1E3, abs(m_flow))),
-   "Energy may not be conserved for small mass flow rates. The implementation may require prescribedHeatFlowRate = false.");
+   "In " + getInstanceName() + ": Energy may not be conserved for small mass flow rates. 
+   The implementation may require prescribedHeatFlowRate = false.");
   end if;
 
   if allowFlowReversal then
     // Formulate hOut using spliceFunction. This avoids an event iteration.
     // The introduced error is small because deltax=m_flow_small/1e3
     hOut = IBPSA.Utilities.Math.Functions.regStep(
-      y1=port_b.h_outflow,
-      y2=port_a.h_outflow,
-      x=port_a.m_flow,
-      x_small=m_flow_small/1E3);
+            y1=port_b.h_outflow,
+            y2=port_a.h_outflow,
+            x=port_a.m_flow,
+            x_small=m_flow_small/1E3);
     XiOut = IBPSA.Utilities.Math.Functions.regStep(
-      y1=port_b.Xi_outflow,
-      y2=port_a.Xi_outflow,
-      x=port_a.m_flow,
-      x_small=m_flow_small/1E3);
+            y1=port_b.Xi_outflow,
+            y2=port_a.Xi_outflow,
+            x=port_a.m_flow,
+            x_small=m_flow_small/1E3);
     COut = IBPSA.Utilities.Math.Functions.regStep(
-      y1=port_b.C_outflow,
-      y2=port_a.C_outflow,
-      x=port_a.m_flow,
-      x_small=m_flow_small/1E3);
+            y1=port_b.C_outflow,
+            y2=port_a.C_outflow,
+            x=port_a.m_flow,
+            x_small=m_flow_small/1E3);
   else
     hOut =  port_b.h_outflow;
     XiOut = port_b.Xi_outflow;
@@ -189,7 +190,7 @@ equation
     if use_m_flowInv then
       port_b.Xi_outflow = inStream(port_a.Xi_outflow) + mXi_flow * m_flowInv;
     else // no water is added
-      assert(use_mWat_flow == false, "Wrong implementation for forward flow.");
+      assert(use_mWat_flow == false, "In " + getInstanceName() + ": Wrong implementation for forward flow.");
       port_b.Xi_outflow = inStream(port_a.Xi_outflow);
     end if;
 
@@ -198,7 +199,7 @@ equation
       if use_m_flowInv then
         port_a.Xi_outflow = inStream(port_b.Xi_outflow) - mXi_flow * m_flowInv;
       else // no water added
-        assert(use_mWat_flow == false, "Wrong implementation for reverse flow.");
+        assert(use_mWat_flow == false, "In " + getInstanceName() + ": Wrong implementation for reverse flow.");
         port_a.Xi_outflow = inStream(port_b.Xi_outflow);
       end if;
     else // no  flow reversal
@@ -235,7 +236,7 @@ equation
   if use_m_flowInv and use_C_flow then
     port_b.C_outflow =  inStream(port_a.C_outflow) + C_flow_internal * m_flowInv;
   else // no trace substance added.
-    assert(not use_C_flow, "Wrong implementation of trace substance balance for forward flow.");
+    assert(not use_C_flow, "In " + getInstanceName() + ": Wrong implementation of trace substance balance for forward flow.");
     port_b.C_outflow =  inStream(port_a.C_outflow);
   end if;
 
@@ -334,12 +335,18 @@ Input connectors of the model are
 <p>
 The model can only be used as a steady-state model with two fluid ports.
 For a model with a dynamic balance, and more fluid ports, use
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.ConservationEquation</a>.
 </p>
 </html>",
 revisions="<html>
 <ul>
+<li>
+March 30, 2018, by Filip Jorissen:<br/>
+Added <code>getInstanceName()</code> in asserts to facilitate
+debugging.<br/>
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/901\">#901</a>.
+</li>
 <li>
 April 24, 2017, by Michael Wetter and Filip Jorissen:<br/>
 Reimplemented check for energy conversion.<br/>
@@ -380,7 +387,7 @@ Removed <code>constant sensibleOnly</code> as this is no longer used because
 the model uses <code>use_mWat_flow</code>.<br/>
 Changed condition that determines whether <code>m_flowInv</code> needs to be
 computed because the change from January 20 introduced an error in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MassExchangers.Examples.ConstantEffectiveness\">
+<a href=\"modelica://IBPSA.Fluid.MassExchangers.Examples.ConstantEffectiveness\">
 IBPSA.Fluid.MassExchangers.Examples.ConstantEffectiveness</a>.
 </li>
 <li>
@@ -417,7 +424,7 @@ Rewrote some equations for better readability.
 <li>
 August 11, 2015, by Michael Wetter:<br/>
 Refactored implementation of
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.inverseXRegularized\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.inverseXRegularized</a>
 to allow function to be inlined and to factor out the computation
 of arguments that only depend on parameters.
@@ -510,7 +517,7 @@ December 14, 2011 by Michael Wetter:<br/>
 Changed assignment of <code>hOut</code>, <code>XiOut</code> and
 <code>COut</code> to no longer declare that it is continuous.
 The declaration of continuity, i.e, the
-<code>smooth(0, if (port_a.m_flow >= 0) then ...</code> declaration,
+<code>smooth(0, if (port_a.m_flow >= 0) then ...)</code> declaration,
 was required for Dymola 2012 to simulate, but it is no longer needed
 for Dymola 2012 FD01.
 </li>
@@ -607,7 +614,5 @@ First implementation.
         Line(points={{-56,-73},{81,-73}}, color={255,255,255}),
         Line(points={{6,14},{6,-37}},     color={255,255,255}),
         Line(points={{54,14},{6,14}},     color={255,255,255}),
-        Line(points={{6,-37},{-42,-37}},  color={255,255,255})}),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}})));
+        Line(points={{6,-37},{-42,-37}},  color={255,255,255})}));
 end StaticTwoPortConservationEquation;

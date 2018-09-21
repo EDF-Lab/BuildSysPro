@@ -8,14 +8,14 @@ model MixingVolumeHeatReverseFlowPrescribedHeatFlowRate
 info="<html>
 <p>
 This model is identical to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.Validation.MixingVolumeHeatReverseFlow\">
+<a href=\"modelica://IBPSA.Fluid.MixingVolumes.Validation.MixingVolumeHeatReverseFlow\">
 IBPSA.Fluid.MixingVolumes.Validation.MixingVolumeHeatReverseFlow</a>,
 except that the steady state volume <code>volSte</code>
 is configured to have a prescribed heat flow rate,
 which is in this case zero as the heat port is not connected.
 This configures <code>volSte</code> to use the two port
 steady state heat and mass balance model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>.
 </p>
 </html>", revisions="<html>

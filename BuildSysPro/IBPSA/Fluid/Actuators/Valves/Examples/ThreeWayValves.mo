@@ -22,8 +22,8 @@ model ThreeWayValves "Three way valves with different opening characteristics"
     redeclare package Medium = Medium,
     nPorts=2,
     use_p_in=true,
-    T=313.15) "Boundary condition for flow source"
-    annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
+    T=313.15) "Boundary condition for flow source" annotation (
+      Placement(transformation(extent={{-50,-10},{-30,10}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     nPorts=2,
@@ -47,8 +47,9 @@ model ThreeWayValves "Three way valves with different opening characteristics"
     redeclare package Medium = Medium,
     nPorts=2,
     use_p_in=true,
-    T=303.15) "Boundary condition for flow sink" annotation (Placement(
-        transformation(extent={{10,-10},{-10,10}}, origin={64,-70})));
+    T=303.15) "Boundary condition for flow sink" annotation (
+      Placement(transformation(extent={{10,-10},{-10,10}}, origin={64,
+            -70})));
 
 equation
   connect(y.y, valLin.y) annotation (Line(

@@ -28,7 +28,7 @@ experiment(Tolerance=1e-6, StopTime=500),
 This model validates whether the transient response is indeed
 independent of the number of beams.
 The model is similar to
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Validation.NumberOfBeams\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Validation.NumberOfBeams\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Validation.NumberOfBeams</a>,
 except that it is configured with a dynamic balance and non-default initial conditions.
 </p>

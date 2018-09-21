@@ -3,11 +3,10 @@ package Validation "Collection of validation models"
   extends Modelica.Icons.ExamplesPackage;
 
 
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains validation models for the classes in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams</a>.
 </p>
 <p>

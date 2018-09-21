@@ -31,18 +31,18 @@ protected
 equation
   tmp1 =  k*zen^3;
   HDifHorBou = IBPSA.Utilities.Math.Functions.smoothMax(
-    x1=HDifHor,
-    x2=hSmall,
-    deltaX=deltaX);
+            x1=HDifHor,
+            x2=hSmall,
+            deltaX=deltaX);
   // In the Buildings library, HGloHor is always larger than 1E-4
   // (minus some small undershoot due to regularization. Hence,
   // it makes no sense to simplify the equation for
   // HGloHor < Modelica.Constants.small.
   skyCle = IBPSA.Utilities.Math.Functions.smoothLimit(
-    x=(HGloHor/HDifHorBou + tmp1)/(1 + tmp1),
-    l=1,
-    u=8,
-    deltaX=0.01);
+            x=(HGloHor/HDifHorBou + tmp1)/(1 + tmp1),
+            l=1,
+            u=8,
+            deltaX=0.01);
 
   annotation (
     defaultComponentName="skyCle",

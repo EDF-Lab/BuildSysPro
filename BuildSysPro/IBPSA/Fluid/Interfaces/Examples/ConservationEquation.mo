@@ -33,7 +33,8 @@ extends Modelica.Icons.Example;
     use_p_in=false,
     redeclare package Medium = Medium,
     p=101325,
-    T=283.15) annotation (Placement(transformation(extent={{80,-68},{60,-48}})));
+    T=283.15)
+    annotation (Placement(transformation(extent={{80,-68},{60,-48}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res1(
     from_dp=true,
     redeclare package Medium = Medium,
@@ -43,8 +44,8 @@ extends Modelica.Icons.Example;
   IBPSA.Fluid.Sources.MassFlowSource_T bou(
     nPorts=2,
     redeclare package Medium = Medium,
-    m_flow=0.01) "Boundary condition for mass flow rate"
-    annotation (Placement(transformation(extent={{-80,-68},{-60,-48}})));
+    m_flow=0.01) "Boundary condition for mass flow rate" annotation (
+      Placement(transformation(extent={{-80,-68},{-60,-48}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res2(
     from_dp=true,
     redeclare package Medium = Medium,

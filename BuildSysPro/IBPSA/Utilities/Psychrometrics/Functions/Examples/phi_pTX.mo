@@ -17,9 +17,9 @@ equation
     T = 293.15+convT*(time-0.5)*10;
   end if;
   phi = IBPSA.Utilities.Psychrometrics.Functions.phi_pTX(
-    p=p,
-    T=T,
-    X_w=X_w);
+              p=p,
+              T=T,
+              X_w=X_w);
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Functions/Examples/phi_pTX.mos"

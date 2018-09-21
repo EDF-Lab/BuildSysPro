@@ -13,7 +13,7 @@ a normalized leakage flow rate of <i>0.0001</i>.
 <p>
 <b>Note</b>: This record is only for demonstration,
 as the implementation in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
 IBPSA.Fluid.Actuators.Valves.TwoWayLinear</a>
 is more efficient.
 </p>

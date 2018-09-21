@@ -4,9 +4,9 @@ block Biquadratic "Biquadratic function"
   parameter Real a[6] "Coefficients";
 equation
   y = IBPSA.Utilities.Math.Functions.biquadratic(
-    a=a,
-    x1=u1,
-    x2=u2);
+          a=a,
+          x1=u1,
+          x2=u2);
   annotation (Icon(graphics={Text(
           extent={{-88,40},{92,-32}},
           lineColor={160,160,164},

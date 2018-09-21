@@ -46,7 +46,7 @@ model Carnot_TEva_2ndLaw
     final m2_flow_nominal=m2_flow_nominal,
     final m1_flow_nominal=m1_flow_nominal)
     "Chiller model that uses port_b to compute Carnot efficiency" annotation (
-      Placement(transformation(rotation=0, extent={{60,-40},{80,-20}})));
+      Placement(transformation(extent={{60,-40},{80,-20}})));
 
 protected
   model Chiller "Subsystem model with the chiller"
@@ -74,11 +74,11 @@ protected
       nPorts=1,
       use_m_flow_in=false,
       use_T_in=true,
-      m_flow=m1_flow_nominal) "Mass flow rate source"
-      annotation (Placement(transformation(extent={{-100,-20},{-80,0}})));
-    IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium = Medium2,
-        nPorts=1) "Pressure source" annotation (Placement(transformation(extent=
-             {{-10,-10},{10,10}}, origin={-88,-50})));
+      m_flow=m1_flow_nominal) "Mass flow rate source" annotation (
+        Placement(transformation(extent={{-100,-20},{-80,0}})));
+    IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
+          Medium2, nPorts=1) "Pressure source" annotation (Placement(
+          transformation(extent={{-10,-10},{10,10}}, origin={-88,-50})));
     IBPSA.Fluid.Chillers.Carnot_TEva chi(
       redeclare package Medium1 = Medium1,
       redeclare package Medium2 = Medium2,
@@ -100,31 +100,31 @@ protected
       m_flow=m2_flow_nominal,
       use_T_in=true,
       T=293.15,
-      nPorts=1) "Mass flow rate source"
-      annotation (Placement(transformation(extent={{102,-60},{82,-40}})));
+      nPorts=1) "Mass flow rate source" annotation (Placement(
+          transformation(extent={{102,-60},{82,-40}})));
     IBPSA.Fluid.Sensors.EntropyFlowRate S_a1(
       redeclare package Medium = Medium1,
       m_flow_nominal=m1_flow_nominal,
-      tau=0) "Entropy flow rate sensor"
-      annotation (Placement(transformation(extent={{-50,-20},{-30,0}})));
+      tau=0) "Entropy flow rate sensor" annotation (Placement(
+          transformation(extent={{-50,-20},{-30,0}})));
     IBPSA.Fluid.Sensors.EntropyFlowRate S_a2(
       redeclare package Medium = Medium1,
       m_flow_nominal=m1_flow_nominal,
-      tau=0) "Entropy flow rate sensor"
-      annotation (Placement(transformation(extent={{-30,-60},{-50,-40}})));
+      tau=0) "Entropy flow rate sensor" annotation (Placement(
+          transformation(extent={{-30,-60},{-50,-40}})));
     IBPSA.Fluid.Sensors.EntropyFlowRate S_a3(
       redeclare package Medium = Medium1,
       m_flow_nominal=m1_flow_nominal,
-      tau=0) "Entropy flow rate sensor"
-      annotation (Placement(transformation(extent={{58,-60},{38,-40}})));
+      tau=0) "Entropy flow rate sensor" annotation (Placement(
+          transformation(extent={{58,-60},{38,-40}})));
     IBPSA.Fluid.Sensors.EntropyFlowRate S_a4(
       redeclare package Medium = Medium1,
       m_flow_nominal=m1_flow_nominal,
       tau=0) "Entropy flow rate sensor"
       annotation (Placement(transformation(extent={{38,-20},{58,0}})));
-    IBPSA.Fluid.Sources.FixedBoundary sin2(redeclare package Medium = Medium2,
-        nPorts=1) "Pressure source" annotation (Placement(transformation(extent=
-             {{10,-10},{-10,10}}, origin={88,-10})));
+    IBPSA.Fluid.Sources.FixedBoundary sin2(redeclare package Medium =
+          Medium2, nPorts=1) "Pressure source" annotation (Placement(
+          transformation(extent={{10,-10},{-10,10}}, origin={88,-10})));
     Modelica.Blocks.Math.Add SIn_flow
       "Entropy carried by flow that goes into the chiller"
       annotation (Placement(transformation(extent={{60,40},{80,60}})));
@@ -137,12 +137,12 @@ protected
 
     Modelica.Blocks.Interfaces.RealInput TSetEvaLea(unit="K")
       "Set point for evaporator leaving temperature" annotation (Placement(
-          transformation(rotation=0, extent={{-144,10},{-120,30}})));
+          transformation(extent={{-144,10},{-120,30}})));
     Modelica.Blocks.Interfaces.RealOutput SGen_flow "Entropy generated"
-      annotation (Placement(transformation(rotation=0, extent={{140,30},{164,50}})));
+      annotation (Placement(transformation(extent={{140,30},{164,50}})));
     Modelica.Blocks.Interfaces.RealInput TConIn(final unit="K", displayUnit=
           "degC") "Condenser inlet temperature" annotation (Placement(
-          transformation(rotation=0, extent={{-144,-30},{-120,-10}})));
+          transformation(extent={{-144,-30},{-120,-10}})));
     Modelica.Blocks.Interfaces.RealInput TEvaIn(final unit="K", displayUnit=
           "degC") "Evaporator inlet temperature" annotation (Placement(
           transformation(

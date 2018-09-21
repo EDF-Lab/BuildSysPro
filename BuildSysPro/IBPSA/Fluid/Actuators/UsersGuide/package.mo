@@ -85,7 +85,7 @@ influence the flow network.
 <h5>Approximation using a 2nd order filter</h5>
 <p>
 The valves and dampers in the package
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators\">
+<a href=\"modelica://IBPSA.Fluid.Actuators\">
 IBPSA.Fluid.Actuators</a>
 all have a parameter <code>use_inputFilter</code>.
 This parameter is used as follows:
@@ -116,7 +116,7 @@ is changed, control gains may need to be retuned.
 </p>
 <p>
 For example, suppose there is a closed loop control with a PI-controller
-<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.LimPID\">
+<a href=\"modelica://IBPSA.Controls.Continuous.LimPID\">
 IBPSA.Controls.Continuous.LimPID</a>
 and a valve, configured with <code>use_inputFilter=true</code> and <code>riseTime=120</code> seconds.
 Assume that the transient response of the other dynamic elements in the control loop is fast
@@ -167,7 +167,7 @@ easier to solve when a controller switches.
 <h5>Approximation using a motor model with hysteresis</h5>
 <p>
 The model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Motors.IdealMotor\">
+<a href=\"modelica://IBPSA.Fluid.Actuators.Motors.IdealMotor\">
 IBPSA.Fluid.Actuators.Motors.IdealMotor</a>
 models a motor with hysteresis.
 It is more detailed than the above approximation.

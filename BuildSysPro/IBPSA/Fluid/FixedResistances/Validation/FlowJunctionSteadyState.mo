@@ -9,7 +9,8 @@ model FlowJunctionSteadyState
     redeclare package Medium = Medium,
     m_flow_nominal={2,2,2},
     dp_nominal={5,10,15},
-    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState) "Splitter"
+    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
+    "Splitter"
     annotation (Placement(transformation(extent={{10,-10},{30,10}})));
 
   IBPSA.Fluid.Sources.Boundary_pT bou1(
@@ -30,8 +31,8 @@ model FlowJunctionSteadyState
     redeclare package Medium = Medium,
     T=273.15 + 30,
     use_p_in=true,
-    nPorts=1) "Pressure boundary condition"
-    annotation (Placement(transformation(extent={{-60,-70},{-40,-50}})));
+    nPorts=1) "Pressure boundary condition" annotation (Placement(
+        transformation(extent={{-60,-70},{-40,-50}})));
 
   Modelica.Blocks.Sources.Ramp P1(
     offset=101320,
@@ -47,16 +48,16 @@ model FlowJunctionSteadyState
     startTime=70) "Ramp pressure signal"
     annotation (Placement(transformation(extent={{-92,-62},{-72,-42}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
-        Medium, m_flow_nominal=1) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package
+      Medium = Medium, m_flow_nominal=1) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package Medium =
-        Medium, m_flow_nominal=2) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package
+      Medium = Medium, m_flow_nominal=2) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package Medium =
-        Medium, m_flow_nominal=3) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package
+      Medium = Medium, m_flow_nominal=3) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-70},{0,-50}})));
 equation
   connect(P1.y, bou1.p_in)

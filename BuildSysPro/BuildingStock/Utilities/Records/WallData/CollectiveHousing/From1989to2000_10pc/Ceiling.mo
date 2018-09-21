@@ -5,9 +5,9 @@ record Ceiling =
     m={1,2,4,1},
     e={0.01,0.06,0.18,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.BitumenFelt(),
-        BuildSysPro.Utilities.Data.Solids.Polyurethane25(),
-        BuildSysPro.Utilities.Data.Solids.Concrete(),
-        BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
+         BuildSysPro.Utilities.Data.Solids.Polyurethane25(),
+         BuildSysPro.Utilities.Data.Solids.Concrete(),
+         BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
     positionIsolant={0,1,0,0}) "Ceiling collective housing GV(1989) -10%"
   annotation (Icon(graphics),
                         Documentation(revisions="<html>
@@ -26,6 +26,6 @@ record Ceiling =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

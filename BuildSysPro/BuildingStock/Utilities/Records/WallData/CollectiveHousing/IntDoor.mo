@@ -1,12 +1,11 @@
 ﻿within BuildSysPro.BuildingStock.Utilities.Records.WallData.CollectiveHousing;
 record IntDoor =
-    BuildSysPro.Utilities.Icons.VerticalInternalWall (
-      n=1,
-      m={2},
-      e={0.04},
-      mat={
-          BuildSysPro.Utilities.Data.Solids.WoodInteriorDoor()},
-      positionIsolant={0}) "Interior door collective housing"                          annotation (
+  BuildSysPro.Utilities.Icons.VerticalInternalWall (
+    n=1,
+    m={2},
+    e={0.04},
+    mat={BuildSysPro.Utilities.Data.Solids.WoodInteriorDoor()},
+    positionIsolant={0}) "Interior door collective housing"                          annotation (
     Icon(graphics), Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>none</p>
@@ -21,7 +20,7 @@ record IntDoor =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Frédéric GASTIGER, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

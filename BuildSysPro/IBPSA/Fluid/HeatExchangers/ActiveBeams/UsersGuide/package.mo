@@ -22,10 +22,10 @@ The conditioned induced air is then mixed with primary air, and the mixture desc
 </p>
 <p>
 This package contains two models. The model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling</a>
 is for cooling only, while the model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating</a>
 has two water streams, one for heating and one for cooling.
 </p>
@@ -33,11 +33,11 @@ has two water streams, one for heating and one for cooling.
 <h4>Model equations for cooling</h4>
 <p>
 The performance of the model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling</a>
 is computed based on manufacturer data
 specified in the package
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Data\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Data\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Data</a>.
 </p>
 <p>
@@ -54,7 +54,7 @@ The heat flow rate
 through the fluid ports, while the heat flow rate from the convector <i>Q<sub>c,Beam</sub></i>
 is coupled directly to the heat port.
 See for example
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Examples.CoolingOnly\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Examples.CoolingOnly\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Examples.CoolingOnly</a>
 for how to connect these heat flow rates to a control volume.
 </p>
@@ -107,7 +107,7 @@ and the nominal water flow rate used to rate the beam performance.
 <h4>Model equations for heating</h4>
 <p>
 The performance of the model
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
+<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating</a>
 is computed identical to the above described model that only provides cooling,
 with the exception that this model contains an additional water stream that

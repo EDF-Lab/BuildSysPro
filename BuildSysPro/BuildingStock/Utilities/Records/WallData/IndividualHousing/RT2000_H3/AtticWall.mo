@@ -1,11 +1,11 @@
 within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.RT2000_H3;
 record AtticWall =
-   BuildSysPro.Utilities.Icons.Ceiling (
+  BuildSysPro.Utilities.Icons.Ceiling (
     n=2,
     m={3,1},
     e={0.16,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.MineralWool40(),
-        BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
+         BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
     positionIsolant={1,0}) "Attic wall Mozart RT2000 zone H3"
   annotation (Icon(graphics),
                         Documentation(revisions="<html>
@@ -24,6 +24,6 @@ record AtticWall =
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

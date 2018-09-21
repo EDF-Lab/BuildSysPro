@@ -16,7 +16,7 @@ algorithm
 <li>
 November 28, 2013, by Marcus Fuchs:<br/>
 Implementation based on Kaustubh Phalak&apos;s block
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.IntegerReplicator\">
+<a href=\"modelica://IBPSA.Utilities.Math.IntegerReplicator\">
 IBPSA.Utilities.Math.IntegerReplicator</a>.
 </li>
 </ul>

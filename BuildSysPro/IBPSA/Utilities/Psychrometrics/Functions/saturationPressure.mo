@@ -10,10 +10,13 @@ function saturationPressure
 
 algorithm
   pSat := IBPSA.Utilities.Math.Functions.regStep(
-    y1=IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(TSat),
-    y2=IBPSA.Utilities.Psychrometrics.Functions.sublimationPressureIce(TSat),
-    x=TSat - 273.16,
-    x_small=1.0);
+            y1=
+      IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
+       TSat),
+            y2=
+      IBPSA.Utilities.Psychrometrics.Functions.sublimationPressureIce(
+      TSat),x=TSat - 273.16,
+            x_small=1.0);
   annotation(Inline=true,
     smoothOrder=1,
     Documentation(info="<html>
@@ -43,7 +46,7 @@ This is for
 <li>
 August 19, 2015 by Michael Wetter:<br/>
 Changed <code>smoothOrder</code> from <i>5</i> to <i>1</i> as
-<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.spliceFunction\">
+<a href=\"modelica://IBPSA.Utilities.Math.Functions.spliceFunction\">
 IBPSA.Utilities.Math.Functions.spliceFunction</a> is only once
 continuously differentiable.
 Inlined the function.

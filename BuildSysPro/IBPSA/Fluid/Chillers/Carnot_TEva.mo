@@ -3,7 +3,8 @@ model Carnot_TEva
   "Chiller with prescribed evaporator leaving temperature and performance curve adjusted based on Carnot efficiency"
  extends IBPSA.Fluid.Chillers.BaseClasses.PartialCarnot_T(
     final COP_is_for_cooling=true,
-    final QCon_flow_nominal=-QEva_flow_nominal*(1 + COP_nominal)/COP_nominal,
+    final QCon_flow_nominal=-QEva_flow_nominal*(1 + COP_nominal)/
+        COP_nominal,
     PEle(y=-QEva_flow/COP),
     redeclare HeatExchangers.HeaterCooler_u con(
       final from_dp=from_dp1,
@@ -43,7 +44,6 @@ protected
     annotation (Placement(transformation(extent={{-80,30},{-60,50}})));
 initial equation
   assert(QEva_flow_nominal < 0, "Parameter QEva_flow_nominal must be negative.");
-
 
 equation
   connect(TSet, eva.TSet) annotation (Line(points={{-120,90},{-66,90},{28,90},{28,
@@ -148,7 +148,7 @@ since otherwise the second law of thermodynamics may be violated.
 <h4>Notes</h4>
 <p>
 For a similar model that can be used as a heat pump, see
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon\">
+<a href=\"modelica://IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon\">
 IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon</a>.
 </p>
 </html>",
@@ -184,7 +184,5 @@ November 25, 2015 by Michael Wetter:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end Carnot_TEva;

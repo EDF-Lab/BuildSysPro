@@ -47,7 +47,7 @@ G=  if t>-t0 and t<t0 then max(0,Gmax*cos(Modelica.Constants.pi*t/(2*t0)) * (1 +
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under the Modelica License 2<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.1.0<br>
+BuildSysPro version 3.2.0<br>
 Author :  Emmanuel Amy DE LA BRETEQUE, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

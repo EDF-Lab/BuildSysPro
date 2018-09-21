@@ -26,8 +26,8 @@ partial model MixingVolumeReverseFlow
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={70,-20})));
-  replaceable IBPSA.Fluid.MixingVolumes.MixingVolume volDyn constrainedby
-    IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume(
+  replaceable IBPSA.Fluid.MixingVolumes.MixingVolume volDyn
+    constrainedby IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume(
     redeclare package Medium = Medium,
     V=1,
     nPorts=2,
@@ -36,16 +36,16 @@ partial model MixingVolumeReverseFlow
     "Volume with dynamic balance"
     annotation (Placement(transformation(extent={{10,0},{30,20}})));
 
-  replaceable IBPSA.Fluid.MixingVolumes.MixingVolume volSte constrainedby
-    IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume(
+  replaceable IBPSA.Fluid.MixingVolumes.MixingVolume volSte
+    constrainedby IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume(
     redeclare package Medium = Medium,
     final prescribedHeatFlowRate=prescribedHeatFlowRate,
     V=1,
     nPorts=2,
     m_flow_nominal=m_flow_nominal,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Volume with steady-state balance"
-    annotation (Placement(transformation(extent={{10,-50},{30,-30}})));
+    "Volume with steady-state balance" annotation (Placement(
+        transformation(extent={{10,-50},{30,-30}})));
 
   Modelica.Blocks.Math.Gain gain
     "Gain to add heat, moisture or trace substance flow rate"
@@ -97,7 +97,5 @@ January 19, 2016, by Michael Wetter:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end MixingVolumeReverseFlow;

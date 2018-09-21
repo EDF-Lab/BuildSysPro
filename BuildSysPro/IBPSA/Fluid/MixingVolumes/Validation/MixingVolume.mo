@@ -14,13 +14,15 @@ model MixingVolume "Test model for mixing volumes"
     redeclare package Medium = Medium,
     T=293.15,
     use_p_in=true,
-    nPorts=3) annotation (Placement(transformation(extent={{-70,48},{-50,68}})));
+    nPorts=3)
+    annotation (Placement(transformation(extent={{-70,48},{-50,68}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     nPorts=3,
     use_p_in=false,
     p=101325,
-    T=283.15) annotation (Placement(transformation(extent={{130,48},{110,68}})));
+    T=283.15)
+    annotation (Placement(transformation(extent={{130,48},{110,68}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res1(
     redeclare package Medium = Medium,
     from_dp=true,
@@ -65,11 +67,11 @@ model MixingVolume "Test model for mixing volumes"
   IBPSA.Utilities.Diagnostics.CheckEquality cheEqu1
     "Check for equality of results"
     annotation (Placement(transformation(extent={{156,70},{176,90}})));
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate entFloRat(redeclare package Medium =
-        Medium, m_flow_nominal=2) "Enthalpy flow rate"
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate entFloRat(redeclare package
+      Medium = Medium, m_flow_nominal=2) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{40,50},{60,70}})));
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate entFloRat1(redeclare package Medium =
-        Medium, m_flow_nominal=2) "Enthalpy flow rate"
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate entFloRat1(redeclare package
+      Medium = Medium, m_flow_nominal=2) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{40,0},{60,20}})));
   IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir vol2(
     redeclare package Medium = Medium,
@@ -83,8 +85,8 @@ model MixingVolume "Test model for mixing volumes"
     redeclare package Medium = Medium,
     from_dp=true,
     m_flow_nominal=2,
-    dp_nominal=2.5)
-    annotation (Placement(transformation(extent={{-40,-92},{-20,-72}})));
+    dp_nominal=2.5) annotation (Placement(transformation(extent={{-40,-92},
+            {-20,-72}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res22(
     redeclare package Medium = Medium,
     from_dp=true,
@@ -94,8 +96,8 @@ model MixingVolume "Test model for mixing volumes"
   IBPSA.Utilities.Diagnostics.CheckEquality cheEqu2
     "Check for equality of results"
     annotation (Placement(transformation(extent={{156,10},{176,30}})));
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate entFloRat2(redeclare package Medium =
-        Medium, m_flow_nominal=2) "Enthalpy flow rate"
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate entFloRat2(redeclare package
+      Medium = Medium, m_flow_nominal=2) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{40,-92},{60,-72}})));
     Modelica.Blocks.Sources.Constant zero(k=0)
       annotation (Placement(transformation(extent={{-40,-30},{-20,-10}})));
