@@ -1,5 +1,5 @@
 # BuildSysPro open source
-*BuildSysPro open source* is [EDF](http://researchers.edf.com/edf-researchers-209799.html)'s Modelica library for buildings, districts and energy systems modelling. This is BuildSysPro's official repository.
+*BuildSysPro open source* is [EDF](https://www.edf.fr/en/the-edf-group/who-we-are/activities/research-and-development)'s Modelica library for buildings, districts and energy systems modelling. This is BuildSysPro's official repository.
 
 ### Release updates
 Current release is version 3.2.0.
