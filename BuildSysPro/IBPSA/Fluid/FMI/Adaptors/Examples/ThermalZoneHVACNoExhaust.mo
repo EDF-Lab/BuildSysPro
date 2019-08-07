@@ -5,8 +5,8 @@ model ThermalZoneHVACNoExhaust
 
   replaceable package MediumA = IBPSA.Media.Air "Medium for air";
 
-  IBPSA.Fluid.FMI.Adaptors.HVAC hvacAda(redeclare final package
-      Medium = MediumA, nPorts=2)
+  IBPSA.Fluid.FMI.Adaptors.HVAC hvacAda(redeclare final package Medium =
+               MediumA, nPorts=2)
     "Adaptor for an HVAC system that is exposed through an FMI interface"
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
 
@@ -170,10 +170,10 @@ also implemented in Modelica)")}),
 <p>
 This example demonstrates how to
 use the adaptors
-<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.HVAC\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.HVAC\">
 IBPSA.Fluid.FMI.Adaptors.HVAC</a>
 and
-<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.ThermalZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.ThermalZone\">
 IBPSA.Fluid.FMI.Adaptors.ThermalZone</a>
 </p>
 <p>

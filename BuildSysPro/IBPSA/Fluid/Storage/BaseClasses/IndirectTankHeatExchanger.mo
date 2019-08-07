@@ -11,9 +11,9 @@ model IndirectTankHeatExchanger
 
   extends IBPSA.Fluid.Interfaces.TwoPortFlowResistanceParameters;
   extends IBPSA.Fluid.Interfaces.LumpedVolumeDeclarations(redeclare final
-      package       Medium = MediumHex);
+      package Medium =       MediumHex);
   extends IBPSA.Fluid.Interfaces.PartialTwoPortInterface(redeclare final
-      package       Medium = MediumHex, final show_T=false);
+      package Medium =       MediumHex, final show_T=false);
 
   parameter Integer nSeg(min=2) "Number of segments in the heat exchanger";
   parameter Modelica.SIunits.HeatCapacity CHex

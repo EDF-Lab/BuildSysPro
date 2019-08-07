@@ -29,7 +29,7 @@ __Dymola_Commands(file=
     Documentation(info="<html>
 <p>
 This model tests the implementation of
-<a href=\"modelica://IBPSA.Utilities.Math.SmoothMin\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.SmoothMin\">
 IBPSA.Utilities.Math.SmoothMin</a>.
 </p>
 <p>

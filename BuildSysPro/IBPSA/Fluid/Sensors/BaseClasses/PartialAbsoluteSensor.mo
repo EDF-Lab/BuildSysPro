@@ -6,7 +6,7 @@ partial model PartialAbsoluteSensor
     "Medium in the sensor"
     annotation(choicesAllMatching=true);
 
-  Modelica.Fluid.Interfaces.FluidPort_a port(redeclare package Medium=Medium, m_flow(min=0,max=0))
+  Modelica.Fluid.Interfaces.FluidPort_a port(redeclare package Medium=Medium, m_flow(min=0))
     annotation (Placement(transformation(
         origin={0,-100},
         extent={{-10,-10},{10,10}},
@@ -22,12 +22,23 @@ equation
 Partial component to model an absolute sensor.
 The component can be used for pressure sensor models.
 Use for other properties such as temperature or density is discouraged, because the enthalpy at the connector can have different meanings, depending on the connection topology. For these properties, use
-<a href=\"modelica://IBPSA.Fluid.Sensors.BaseClasses.PartialFlowSensor\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.BaseClasses.PartialFlowSensor\">
 IBPSA.Fluid.Sensors.BaseClasses.PartialFlowSensor</a>.
 </p>
 </html>",
 revisions="<html>
 <ul>
+<li>
+September 7, 2018, by Michael Wetter:<br/>
+Changed
+<code>port(redeclare package Medium=Medium, m_flow(min=0, max=0))</code>
+to
+<code>port(redeclare package Medium=Medium, m_flow(min=0))</code>
+to avoid in Dymola 2019FD01 beta1 the message
+\"port.m_flow has the range [0,0] - which is suspicious since the max-value should be above the min-value\"
+which causes an error in pedantic mode.
+Note that the MSL also uses only a <code>min</code> value.
+</li>
 <li>
 March 22, 2017, by Filip Jorissen:<br/>
 Set <code>m_flow(max=0)</code>.

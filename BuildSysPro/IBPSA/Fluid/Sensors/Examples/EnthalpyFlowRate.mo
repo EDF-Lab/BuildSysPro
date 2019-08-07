@@ -4,8 +4,8 @@ model EnthalpyFlowRate "Test model for the enthalpy flow rate sensors"
 
   package Medium = IBPSA.Media.Air "Medium model";
 
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate senH_flow(redeclare package
-      Medium = Medium, m_flow_nominal=2) "Enthalpy flow rate sensor"
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate senH_flow(redeclare package Medium =
+               Medium, m_flow_nominal=2) "Enthalpy flow rate sensor"
     annotation (Placement(transformation(extent={{-30,-20},{-10,0}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou(
     redeclare package Medium = Medium,
@@ -27,8 +27,8 @@ model EnthalpyFlowRate "Test model for the enthalpy flow rate sensors"
     duration=60) "Input signal for mass flow rate"
     annotation (Placement(transformation(extent={{-100,-12},{-80,8}})));
 
-  IBPSA.Fluid.Sensors.SpecificEnthalpyTwoPort senH(redeclare package
-      Medium = Medium, m_flow_nominal=2) "Specific enthalpy sensor"
+  IBPSA.Fluid.Sensors.SpecificEnthalpyTwoPort senH(redeclare package Medium =
+               Medium, m_flow_nominal=2) "Specific enthalpy sensor"
     annotation (Placement(transformation(extent={{0,-20},{20,0}})));
   IBPSA.Fluid.Sensors.MassFlowRate senM_flow(redeclare package Medium =
         Medium) "Mass flow rate sensor"

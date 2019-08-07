@@ -17,11 +17,11 @@ model ControlledFlowMachine
     nPorts=4) annotation (Placement(transformation(extent={{-90,20},{-70,
             40}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate masFloRat1(redeclare package
-      Medium = Medium)
+  IBPSA.Fluid.Sensors.MassFlowRate masFloRat1(redeclare package Medium =
+               Medium)
     annotation (Placement(transformation(extent={{60,50},{80,70}})));
-  IBPSA.Fluid.Sensors.RelativePressure relPre(redeclare package
-      Medium = Medium) annotation (Placement(transformation(extent={{10,
+  IBPSA.Fluid.Sensors.RelativePressure relPre(redeclare package Medium =
+               Medium) annotation (Placement(transformation(extent={{10,
             -10},{-10,10}}, origin={-10,32})));
   IBPSA.Fluid.Movers.SpeedControlled_y fan1(
     redeclare package Medium = Medium,
@@ -41,8 +41,8 @@ model ControlledFlowMachine
     m_flow_nominal=0.006,
     dp_nominal=50000) "Pressure drop"
     annotation (Placement(transformation(extent={{16,-30},{36,-10}})));
-  IBPSA.Fluid.Sensors.MassFlowRate masFloRat2(redeclare package
-      Medium = Medium) annotation (Placement(transformation(extent={{60,
+  IBPSA.Fluid.Sensors.MassFlowRate masFloRat2(redeclare package Medium =
+               Medium) annotation (Placement(transformation(extent={{60,
             -30},{80,-10}})));
   FixedResistances.PressureDrop dp3(
     redeclare package Medium = Medium,
@@ -50,8 +50,8 @@ model ControlledFlowMachine
     m_flow_nominal=0.006,
     dp_nominal=50000) "Pressure drop"
     annotation (Placement(transformation(extent={{16,-70},{36,-50}})));
-  IBPSA.Fluid.Sensors.MassFlowRate masFloRat3(redeclare package
-      Medium = Medium) annotation (Placement(transformation(extent={{60,
+  IBPSA.Fluid.Sensors.MassFlowRate masFloRat3(redeclare package Medium =
+               Medium) annotation (Placement(transformation(extent={{60,
             -70},{80,-50}})));
   IBPSA.Fluid.Movers.FlowControlled_dp fan3(
     redeclare package Medium = Medium,
@@ -71,8 +71,8 @@ model ControlledFlowMachine
     m_flow_nominal=0.006,
     dp_nominal=50000) "Pressure drop"
     annotation (Placement(transformation(extent={{16,100},{36,120}})));
-  IBPSA.Fluid.Sensors.MassFlowRate masFloRat4(redeclare package
-      Medium = Medium) annotation (Placement(transformation(extent={{60,
+  IBPSA.Fluid.Sensors.MassFlowRate masFloRat4(redeclare package Medium =
+               Medium) annotation (Placement(transformation(extent={{60,
             100},{80,120}})));
   IBPSA.Fluid.Movers.SpeedControlled_Nrpm fan4(
     redeclare package Medium = Medium,

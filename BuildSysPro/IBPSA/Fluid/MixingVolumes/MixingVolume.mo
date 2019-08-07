@@ -77,7 +77,7 @@ Set the parameter <code>use_C_flow = true</code> to enable an input connector fo
 This allows to directly add or subtract trace substances such as
 CO2 to the volume.
 See
-<a href=\"modelica://IBPSA.Fluid.Sensors.Examples.PPM\">IBPSA.Fluid.Sensors.Examples.PPM</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.Examples.PPM\">IBPSA.Fluid.Sensors.Examples.PPM</a>
 for an example.
 </p>
 <h4>Implementation</h4>
@@ -107,14 +107,14 @@ The variable <code>mXi_flow</code> is used to add a species mass flow rate to th
 <p>
 For the rationale of selecting different energy and mass balances, and for the
 use of <code>prescribedHeatFlowRate</code>, see the documentation of
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume\">
 IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume</a>.
 </p>
 <p>
 For simple models that uses this model, see
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.HeaterCooler_u</a> and
-<a href=\"modelica://IBPSA.Fluid.Humidifiers.Humidifier_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Humidifiers.Humidifier_u\">
 IBPSA.Fluid.Humidifiers.Humidifier_u</a>.
 </p>
 
@@ -239,7 +239,7 @@ Eliminated the base class <code>PartialLumpedVessel</code>.
 <li>
 October 12, 2009 by Michael Wetter:<br/>
 Changed base class to
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume\">
 IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume</a>.
 </li>
 </ul>

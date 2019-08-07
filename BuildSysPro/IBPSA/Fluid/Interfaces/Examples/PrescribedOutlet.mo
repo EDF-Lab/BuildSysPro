@@ -1,8 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.Interfaces.Examples;
 model PrescribedOutlet "Test model for prescribed outlet state"
   extends Modelica.Icons.Example;
-  extends
-    IBPSA.Fluid.Interfaces.Examples.BaseClasses.PrescribedOutletState;
+  extends IBPSA.Fluid.Interfaces.Examples.BaseClasses.PrescribedOutletState;
 
 equation
   connect(setHeaHigPow.y[1], heaHigPow.TSet) annotation (Line(points={{-39,120},
@@ -29,7 +28,7 @@ __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/F
     Documentation(info="<html>
 <p>
 Model that demonstrates
-<a href=\"modelica://IBPSA.Fluid.Interfaces.PrescribedOutlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PrescribedOutlet\">
 IBPSA.Fluid.Interfaces.PrescribedOutlet</a>
 with mass fraction setpoint.
 </p>

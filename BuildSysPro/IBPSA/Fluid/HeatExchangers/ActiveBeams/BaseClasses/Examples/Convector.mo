@@ -30,8 +30,8 @@ model Convector
       dpWat_nominal=10000,
       dpAir_nominal=100)) "Convector model" annotation (Placement(
         transformation(extent={{0,-10},{20,10}})));
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package
-      Medium = Medium, m_flow_nominal=0.094) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package Medium =
+               Medium, m_flow_nominal=0.094) "Temperature sensor"
     annotation (Placement(transformation(extent={{30,-10},{50,10}})));
 equation
   connect(airFlo.y, con.mAir_flow) annotation (Line(points={{-59,80},{-10,80},{-10,
@@ -50,7 +50,7 @@ equation
     Documentation(info="<html>
 <p>
 The example tests the implementation of
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.Convector\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.Convector\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.Convector</a>.
 The room air temperature and the water mass flow rate are constant while the air flow rate varys with a ramp.
 </p>

@@ -148,7 +148,7 @@ an equality constraint on the pressure between the sink and the source.
 It also outputs a signal for the mass flow rate. Hence, this component is
 used to declare how to break the algebraic loop in this signal flow diagram.
 For a model with prescribed mass flow rate, see
-<a href=\"modelica://IBPSA.Fluid.FMI.Validation.HeaterFan\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Validation.HeaterFan\">
 IBPSA.Fluid.FMI.Validation.HeaterFan</a>.
 </p>
 <p>

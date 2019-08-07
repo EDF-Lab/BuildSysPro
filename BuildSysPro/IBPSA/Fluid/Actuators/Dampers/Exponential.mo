@@ -118,19 +118,19 @@ Renamed protected parameters for consistency with the naming conventions.
 <li>
 June 22, 2008 by Michael Wetter:<br/>
 Extended range of control signal from 0 to 1 by implementing the function
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.exponentialDamper\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.exponentialDamper\">
 IBPSA.Fluid.Actuators.BaseClasses.exponentialDamper</a>.
 </li>
 <li>
 June 10, 2008 by Michael Wetter:<br/>
 Introduced new partial base class,
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialDamperExponential\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialDamperExponential\">
 PartialDamperExponential</a>.
 </li>
 <li>
 June 30, 2007 by Michael Wetter:<br/>
 Introduced new partial base class,
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialActuator\">PartialActuator</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialActuator\">PartialActuator</a>.
 </li>
 <li>
 July 27, 2007 by Michael Wetter:<br/>

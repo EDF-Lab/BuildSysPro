@@ -82,7 +82,7 @@ protected
     annotation (Documentation(info="<html>
 <p>
 Plant model for
-<a href=\"modelica://IBPSA.Controls.Continuous.Examples.LimPIDWithReset\">
+<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.Examples.LimPIDWithReset\">
 IBPSA.Controls.Continuous.Examples.LimPIDWithReset</a>.
 consisting of a simple heat transfer model.
 </p>
@@ -158,7 +158,7 @@ First implementation.
     annotation (Documentation(info="<html>
 <p>
 Controller model for
-<a href=\"modelica://IBPSA.Controls.Continuous.Examples.LimPIDWithReset\">
+<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.Examples.LimPIDWithReset\">
 IBPSA.Controls.Continuous.Examples.LimPIDWithReset</a>.
 </p>
 <p>

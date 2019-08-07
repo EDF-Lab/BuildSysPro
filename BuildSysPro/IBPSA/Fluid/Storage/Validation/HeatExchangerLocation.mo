@@ -70,12 +70,12 @@ model HeatExchangerLocation
     m_flow_nominal=m_flow_nominal,
     tau=0) "Temperature sensor at tank outlet"
     annotation (Placement(transformation(extent={{10,-80},{-10,-60}})));
-  IBPSA.Fluid.Sources.MassFlowSource_T mWatTanSte_flow(redeclare package
-              Medium = Medium, nPorts=1)
+  IBPSA.Fluid.Sources.MassFlowSource_T mWatTanSte_flow(redeclare package Medium
+      =                Medium, nPorts=1)
     "Mass flow rate through the tank"
     annotation (Placement(transformation(extent={{92,-58},{72,-38}})));
-  IBPSA.Fluid.Sources.MassFlowSource_T mWatTanDyn_flow(redeclare package
-              Medium = Medium, nPorts=1)
+  IBPSA.Fluid.Sources.MassFlowSource_T mWatTanDyn_flow(redeclare package Medium
+      =                Medium, nPorts=1)
     "Mass flow rate through the tank"
     annotation (Placement(transformation(extent={{94,14},{74,34}})));
 equation

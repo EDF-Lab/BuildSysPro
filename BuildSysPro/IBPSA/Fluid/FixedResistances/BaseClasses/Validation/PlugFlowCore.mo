@@ -108,7 +108,7 @@ equation
     Documentation(info="<html>
 <p>
 Basic test of model
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowCore\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowCore\">
 IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowCore</a>.
 This test includes an inlet temperature step under a constant mass flow rate.
 </p>

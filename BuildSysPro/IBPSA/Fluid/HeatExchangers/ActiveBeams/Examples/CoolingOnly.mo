@@ -110,7 +110,7 @@ equation
     Icon(coordinateSystem(extent={{-120,-120},{120,120}})),
      Documentation(info="<html>
 <p>
-This example tests the implementation of <a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling\">
+This example tests the implementation of <a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling</a>.
 An air volume is maintained at a temperature below <i>25&circ;</i>C by a controller
 that regulates the water flow rate in the active beam.

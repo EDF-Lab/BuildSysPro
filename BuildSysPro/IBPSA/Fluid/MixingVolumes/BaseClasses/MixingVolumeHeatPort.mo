@@ -17,7 +17,7 @@ Mixing volume with a heat port.
 </p>
 <p>
 This model is identical to
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume\">
 IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume</a>,
 except that it has a heat port.
 </p>
@@ -25,7 +25,7 @@ except that it has a heat port.
 Note that this model is typically only used to implement new component models that
 have staggered volumes.
 In contrast to
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolume\">
 IBPSA.Fluid.MixingVolumes.MixingVolume</a>, it does
 not set <code>initialize_p</code> to <code>final</code> in order
 for this model to be usable in staggered volumes which require one

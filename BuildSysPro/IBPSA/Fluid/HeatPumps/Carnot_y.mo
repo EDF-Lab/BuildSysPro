@@ -80,7 +80,7 @@ since otherwise the second law of thermodynamics may be violated.
 <h4>Notes</h4>
 <p>
 For a similar model that can be used as a chiller, see
-<a href=\"modelica://IBPSA.Fluid.Chillers.Carnot_y\">IBPSA.Fluid.Chillers.Carnot_y</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Chillers.Carnot_y\">IBPSA.Fluid.Chillers.Carnot_y</a>.
 </p>
 </html>",
 revisions="<html>
@@ -106,7 +106,7 @@ Annex 60, issue 497</a>.
 <li>
 January 26, 2016, by Michael Wetter:<br/>
 Refactored model to use the same base class as
-<a href=\"modelica://IBPSA.Fluid.Chillers.Carnot_y\">IBPSA.Fluid.Chillers.Carnot_y</a>.<br/>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Chillers.Carnot_y\">IBPSA.Fluid.Chillers.Carnot_y</a>.<br/>
 Changed part load efficiency to depend on heating part load ratio rather than on the compressor
 part load ratio.
 </li>

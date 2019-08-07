@@ -105,7 +105,7 @@ The sensor is ideal, i.e., it does not influence the fluid.
 If the parameter <code>tau</code> is non-zero, then its output
 is computed using a first order differential equation.
 Setting <code>tau=0</code> is <i>not</i> recommend. See
-<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>", revisions="<html>

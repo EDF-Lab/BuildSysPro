@@ -149,13 +149,13 @@ can be used and combined with models from the
 <p>
 For a model that uses <code>dp_nominal</code> as a parameter rather than
 geoemetric data, use
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
 IBPSA.Fluid.FixedResistances.PressureDrop</a>.
 </p>
 <h4>Implementation</h4>
 <p>
 The pressure drop is computed by calling a function in the package
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels\">
 IBPSA.Fluid.BaseClasses.FlowModels</a>,
 This package contains regularized implementations of the equation
 </p>

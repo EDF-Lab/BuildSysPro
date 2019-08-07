@@ -68,7 +68,7 @@ First implementation
 <p>With <code>nZones</code> and <code>nFloors</code>, this vectorized model can be scaled to represent a simple building of any size. </p>
 <h4>References</h4>
 <p>Inspired by
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> </p>
 </html>"));
 end MultipleFloorsVectors;

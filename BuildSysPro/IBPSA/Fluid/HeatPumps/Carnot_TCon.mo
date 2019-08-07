@@ -148,7 +148,7 @@ since otherwise the second law of thermodynamics may be violated.
 <h4>Notes</h4>
 <p>
 For a similar model that can be used as a chiller, see
-<a href=\"modelica://IBPSA.Fluid.Chillers.Examples.Carnot_TEva\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Chillers.Examples.Carnot_TEva\">
 IBPSA.Fluid.Chillers.Examples.Carnot_TEva</a>.
 </p>
 </html>",

@@ -28,7 +28,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Co
 info="<html>
 <p>
 Example that demonstrates the use of the model
-<a href=\"modelica://IBPSA.Controls.Continuous.OffTimer\">
+<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.OffTimer\">
 IBPSA.Controls.Continuous.OffTimer</a>.
 The input to the two timers are alternating boolean values.
 Whenever the input becomes <code>false(=0)</code>, the timer is reset.

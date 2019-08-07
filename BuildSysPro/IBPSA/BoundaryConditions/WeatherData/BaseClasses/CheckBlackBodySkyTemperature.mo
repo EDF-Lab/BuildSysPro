@@ -38,7 +38,7 @@ the simulation will stop with an error.
 <li>
 January 5, 2015 by Michael Wetter:<br/>
 First implementation, based on
-<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckTemperature\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckTemperature\">
 IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckTemperature</a>.
 This was implemented to get the corrected documentation string in the weather bus connector.
 </li>

@@ -112,7 +112,7 @@ the temperature of the medium that leaves the component.
 For the actual temperatures at the port, the variables <code>sta_a.T</code>
 and <code>sta_b.T</code> can be used. These two variables are provided by
 the base class
-<a href=\"modelica://IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
 IBPSA.Fluid.Interfaces.PartialTwoPortInterface</a>.
 </p>
 
@@ -120,12 +120,12 @@ For models that extend this model, see for example
 <ul>
 <li>
 the ideal heater or cooler
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.HeaterCooler_u</a>, and
 </li>
 <li>
 the ideal humidifier
-<a href=\"modelica://IBPSA.Fluid.Humidifiers.Humidifier_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Humidifiers.Humidifier_u\">
 IBPSA.Fluid.Humidifiers.Humidifier_u</a>.
 </li>
 </ul>
@@ -212,7 +212,7 @@ used when <code>tau = 0</code>.
 May 25, 2011, by Michael Wetter:<br/>
 Removed temperature sensor and changed implementation of fluid volume
 to allow use of this model for the steady-state and dynamic humidifier
-<a href=\"modelica://IBPSA.Fluid.MassExchangers.HumidifierPrescribed\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MassExchangers.HumidifierPrescribed\">
 IBPSA.Fluid.MassExchangers.HumidifierPrescribed</a>.
 </li>
 <li>

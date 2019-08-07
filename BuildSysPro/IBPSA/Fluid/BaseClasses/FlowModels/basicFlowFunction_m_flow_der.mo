@@ -30,7 +30,7 @@ algorithm
 Documentation(info="<html>
 <p>
 Function that implements the first order derivative of
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow</a>
 with respect to the mass flow rate.
 </p>
@@ -40,7 +40,7 @@ revisions="<html>
 <li>
 May 1, 2017, by Filip Jorissen:<br/>
 Revised implementation such that
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow</a>
 is C2 continuous.
 See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/725\">#725</a>.

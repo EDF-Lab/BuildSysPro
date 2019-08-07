@@ -65,14 +65,14 @@ model TwoWayValveParameterization
     T=293.15) "Boundary condition for flow sink"
     annotation (Placement(transformation(extent={{90,-10},{70,10}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flowOpPoi(redeclare package
-      Medium = Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flowOpPoi(redeclare package Medium =
+               Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{20,30},{40,50}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flowKv(redeclare package
-      Medium = Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flowKv(redeclare package Medium =
+               Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flowCv(redeclare package
-      Medium = Medium) "Mass flow rate sensor" annotation (Placement(
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flowCv(redeclare package Medium =
+               Medium) "Mass flow rate sensor" annotation (Placement(
         transformation(extent={{20,-50},{40,-30}})));
   Valves.TwoWayLinear valAv(
     redeclare package Medium = Medium,
@@ -81,8 +81,8 @@ model TwoWayValveParameterization
     CvData=IBPSA.Fluid.Types.CvTypes.Av,
     Av=Av) "Valve model, linear opening characteristics"
     annotation (Placement(transformation(extent={{-10,-90},{10,-70}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flowAv(redeclare package
-      Medium = Medium) "Mass flow rate sensor" annotation (Placement(
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flowAv(redeclare package Medium =
+               Medium) "Mass flow rate sensor" annotation (Placement(
         transformation(extent={{20,-90},{40,-70}})));
 equation
   connect(y.y, valOPPoi.y)

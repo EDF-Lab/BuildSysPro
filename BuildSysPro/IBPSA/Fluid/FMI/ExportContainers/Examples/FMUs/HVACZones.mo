@@ -308,13 +308,13 @@ equation
 This example demonstrates how to export a model of an HVAC system
 that only provides convective cooling to two thermal zones.
 The example is similar to
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZone\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZone</a>
 except that is serves two thermal zones rather than one.
 </p>
 <p>
 The example extends from
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.HVACZones\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.HVACZones\">
 IBPSA.Fluid.FMI.ExportContainers.HVACZones
 </a>
 which provides the input and output signals that are needed to interface

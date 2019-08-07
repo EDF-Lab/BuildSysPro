@@ -164,9 +164,9 @@ initial equation
 <p>Note, that the first two characters in the file need to be &quot;#1&quot;. Afterwards, the corresponding matrix has to be declared with type, name and actual dimensions. Finally, in successive rows of the file, the elements of the matrix have to be given. Several matrices may be defined one after another. </p>
 
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : EDF<br>
 Initial model : <a href=\"Modelica.Blocks.Sources.CombiTimeTable\">CombiTimeTable</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p>

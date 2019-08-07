@@ -44,28 +44,22 @@ model ZoneHallway
     densitySelection=IBPSA.Airflow.Multizone.Types.densitySelection.fromBottom)
     "Upper air column between top orifice to outside and indoor air volume"
     annotation (Placement(transformation(extent={{50,20},{70,40}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_toZone(redeclare package
-              Medium =
-        Medium) "Direct connection to air volume without orifice"
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_toZone(redeclare package Medium
+      = Medium) "Direct connection to air volume without orifice"
     annotation (Placement(transformation(extent={{-110,50},{-90,70}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_toZone(redeclare package
-              Medium =
-        Medium) "Direct connection to air volume without orifice"
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_toZone(redeclare package Medium
+      = Medium) "Direct connection to air volume without orifice"
     annotation (Placement(transformation(extent={{-110,-70},{-90,-50}})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a_toOutside(redeclare package
-              Medium =
-               Medium) "Indirect connection to air volume with orifice"
+      Medium = Medium) "Indirect connection to air volume with orifice"
     annotation (Placement(transformation(extent={{90,50},{110,70}})));
   Modelica.Fluid.Interfaces.FluidPort_b port_b_toOutside(redeclare package
-              Medium =
-               Medium) "Indirect connection to air volume with orifice"
+      Medium = Medium) "Indirect connection to air volume with orifice"
     annotation (Placement(transformation(extent={{90,-70},{110,-50}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a1(redeclare package
-      Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a1(redeclare package Medium =
         Medium) "Indirect connection to air volume with orifice"
     annotation (Placement(transformation(extent={{-70,-110},{-50,-90}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a2(redeclare package
-      Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a2(redeclare package Medium =
         Medium) "Direct connection to air volume without orifice"
     annotation (Placement(transformation(extent={{-70,90},{-50,110}})));
   Airflow.Multizone.Orifice oriOutTop(
@@ -80,12 +74,10 @@ model ZoneHallway
     forceErrorControlOnFlow=forceErrorControlOnFlow)
     "Lower orifice to outdoor environment"
     annotation (Placement(transformation(extent={{68,-70},{88,-50}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b1(redeclare package
-      Medium =
+  Modelica.Fluid.Interfaces.FluidPort_b port_b1(redeclare package Medium =
         Medium) "Indirect connection to air volume with orifice"
     annotation (Placement(transformation(extent={{50,-110},{70,-90}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b2(redeclare package
-      Medium =
+  Modelica.Fluid.Interfaces.FluidPort_b port_b2(redeclare package Medium =
         Medium) "Direct connection to air volume without orifice"
     annotation (Placement(transformation(extent={{50,90},{70,110}})));
   Airflow.Multizone.MediumColumn col2(
@@ -201,10 +193,10 @@ resistance in model <code>conRoom</code> and the capitancy of the mixing volume 
 value for <code>mSenFac</code>. The G-Value of <code>conRoom</code> is approximated by the area of
 one outside wall multiplied with a U-Value of<i> 1 W/(m&sup2; K)</i>. The value for
 <code>mSenFac</code> has been estimated from comparisons with other room models as shown in
-<a href=\"modelica://IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse\">
+<a href=\"modelica://BuildSysPro.IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse\">
 IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse</a>. For this model, a value for
 <code>mSenFac</code> slightly lower than in
-<a href=\"modelica://IBPSA.Experimental.Benchmarks.AirFlow.Components.SimpleZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Experimental.Benchmarks.AirFlow.Components.SimpleZone\">
 IBPSA.Experimental.Benchmarks.AirFlow.Components.SimpleZone</a> has been chosen.</p>
 <h4>Typical use and important parameters</h4>
 <p><code>port_a_toZone</code> and <code>port_b_toZone</code> should be connected to the corresponding
@@ -214,12 +206,12 @@ and <code>port_b2</code> can be connected to either a staircase model or to furt
 via their respective <code>port_a1</code> and <code>port_b2</code>. </p>
 <h4>Validation</h4>
 <p>This model is following the approach used in
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a>, only in a more modularized way
 in order to be part of a scalable benchmark. </p>
 <h4>References</h4>
 <p>Inspired by
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> </p>
 </html>", revisions="<html>
 <ul>

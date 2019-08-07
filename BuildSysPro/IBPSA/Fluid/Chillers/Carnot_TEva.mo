@@ -148,7 +148,7 @@ since otherwise the second law of thermodynamics may be violated.
 <h4>Notes</h4>
 <p>
 For a similar model that can be used as a heat pump, see
-<a href=\"modelica://IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon\">
 IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon</a>.
 </p>
 </html>",

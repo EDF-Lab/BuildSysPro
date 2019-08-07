@@ -19,7 +19,7 @@ record PropertyCoefficients
     Documentation(info="<html>
 <p>
 Record that is used by media packages in 
-<a href=\"modelica://IBPSA.Media.Antifreeze\">
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze\">
 IBPSA.Media.Antifreeze</a> to implement the thermophysical properties
 based on Melinder (2010).
 </p>

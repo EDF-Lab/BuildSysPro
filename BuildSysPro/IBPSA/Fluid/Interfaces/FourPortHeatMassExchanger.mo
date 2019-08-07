@@ -211,7 +211,7 @@ See for example
 IBPSA.Fluid.Chillers.Carnot_y</a>.
 To add moisture input into (or moisture output from) volume <code>vol2</code>,
 the model can be replaced with
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir\">
 IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir</a>.
 </p>
 <h4>Implementation</h4>

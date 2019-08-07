@@ -2,10 +2,6 @@ within BuildSysPro.IBPSA.Fluid.FMI;
 package Adaptors "Package with adaptors to connect models with fluid ports and models with signal ports"
   extends Modelica.Icons.Package;
 
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains adaptors that allow connecting models with fluid ports

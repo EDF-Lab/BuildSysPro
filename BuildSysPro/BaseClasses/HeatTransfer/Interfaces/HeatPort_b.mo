@@ -18,9 +18,9 @@ connector HeatPort_b "Thermal port for 1-D heat transfer"
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b\">HeatPort_b</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"),

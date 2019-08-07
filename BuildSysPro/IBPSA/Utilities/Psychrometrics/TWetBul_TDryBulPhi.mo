@@ -151,12 +151,12 @@ with a mean error of less than <i>0.3</i> Kelvin.
 Otherwise a calculation based on an energy balance is used.
 See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/474\">#474</a> for a discussion.
 The model is validated in
-<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Examples.TWetBul_TDryBulPhi\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Examples.TWetBul_TDryBulPhi\">
 IBPSA.Utilities.Psychrometrics.Examples.TWetBul_TDryBulPhi</a>.
 </p>
 <p>
 For a model that takes the mass fraction instead of the relative humidity as an input, see
-<a href=\"modelica://IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi\">
 IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi</a>.
 </p>
 <h4>References</h4>

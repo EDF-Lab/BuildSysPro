@@ -8,7 +8,8 @@ partial model ZonalFlow "Flow across zonal boundaries of a room"
     final m1_flow_nominal=10/3600*1.2,
     final m2_flow_nominal=m1_flow_nominal);
 
-   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
+   replaceable package Medium =
+      Modelica.Media.Interfaces.PartialMedium
     annotation (choicesAllMatching = true);
 
 equation

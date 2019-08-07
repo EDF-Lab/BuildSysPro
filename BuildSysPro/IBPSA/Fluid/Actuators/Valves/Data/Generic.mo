@@ -13,7 +13,7 @@ Documentation(info="<html>
 This is a generic record for the normalized volume flow
 rates for different valve opening positions.
 See the documentation of
-<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.Data\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.Data\">
 IBPSA.Fluid.Actuators.Valves.Data</a>
 for how to use this record.
 </p>

@@ -5,7 +5,7 @@ package BaseClasses "Package with base classes for IBPSA.Fluid.HeatExchangers.Ex
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains base classes that are used to construct the models in
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Examples\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Examples\">
 IBPSA.Fluid.HeatExchangers.Examples</a>.
 </p>
 </html>"));

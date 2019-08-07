@@ -38,9 +38,9 @@ equation
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Aurélie Kaemmerlen 11/2010</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 Initial model : <a href=\"Modelica.Blocks.Math.Add\">Add</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p></html>"),

@@ -148,7 +148,7 @@ a translation warning in OpenModelica.
 <li>
 August 30, 2013 by Michael Wetter:<br/>
 Renamed example and added an instance of
-<a href=\"modelica://IBPSA.Fluid.Sensors.TraceSubstancesTwoPort\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.TraceSubstancesTwoPort\">
 IBPSA.Fluid.Sensors.TraceSubstancesTwoPort</a>.
 </li>
 <li>

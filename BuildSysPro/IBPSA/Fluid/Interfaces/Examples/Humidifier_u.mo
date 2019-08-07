@@ -147,8 +147,7 @@ model Humidifier_u
     dp_nominal=5,
     m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
             -68},{-80,-48}})));
-  Humidifier hea6(                               redeclare package
-      Medium =
+  Humidifier hea6(                               redeclare package Medium =
         Medium,
     m_flow_nominal=0.5,
     mWat_flow_nominal=mWat_flow_nominal,
@@ -177,8 +176,7 @@ model Humidifier_u
     dp_nominal=5,
     m_flow_nominal=0.5) annotation (Placement(transformation(extent={{-100,
             -148},{-80,-128}})));
-  Humidifier hea8(                               redeclare package
-      Medium =
+  Humidifier hea8(                               redeclare package Medium =
         Medium,
     m_flow_nominal=0.5,
     mWat_flow_nominal=mWat_flow_nominal,

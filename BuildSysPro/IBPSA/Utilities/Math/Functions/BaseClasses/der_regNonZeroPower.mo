@@ -33,7 +33,7 @@ Documentation(
 info="<html>
 <p>
 Implementation of the first derivative of the function
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.regNonZeroPower\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.regNonZeroPower\">
 IBPSA.Utilities.Math.Functions.regNonZeroPower</a>.
 </p>
 </html>",

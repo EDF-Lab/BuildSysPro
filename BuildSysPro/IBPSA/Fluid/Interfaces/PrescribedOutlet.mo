@@ -456,7 +456,7 @@ control volume would have.
 </p>
 <p>
 This model has no pressure drop.
-See <a href=\"modelica://IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
+See <a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.PrescribedOutlet</a>
 for a model that instantiates this model and that has a pressure drop.
 </p>

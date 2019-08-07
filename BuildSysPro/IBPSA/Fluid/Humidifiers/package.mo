@@ -2,10 +2,6 @@ within BuildSysPro.IBPSA.Fluid;
 package Humidifiers "Package with humidifier models"
   extends Modelica.Icons.Package;
 
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 Package with humidifiers.

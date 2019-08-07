@@ -66,7 +66,7 @@ and latent and sensible heat can be exchanged.
 </p>
 <p>
 This model represents the same physics as
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolume\">
 IBPSA.Fluid.MixingVolumes.MixingVolume</a>, but in addition, it allows
 adding or subtracting water to the control volume.
 The mass flow rate of the added or subtracted water is
@@ -116,7 +116,7 @@ Set the parameter <code>use_C_flow = true</code> to enable an input connector fo
 This allows to directly add or subtract trace substances such as
 CO2 to the volume.
 See
-<a href=\"modelica://IBPSA.Fluid.Sensors.Examples.PPM\">IBPSA.Fluid.Sensors.Examples.PPM</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.Examples.PPM\">IBPSA.Fluid.Sensors.Examples.PPM</a>
 for an example.
 </p>
 </html>", revisions="<html>

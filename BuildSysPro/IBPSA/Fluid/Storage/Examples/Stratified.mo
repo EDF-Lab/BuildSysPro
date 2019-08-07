@@ -49,11 +49,11 @@ model Stratified "Test model for stratified tank"
     dp_nominal=5000,
     m_flow_nominal=0.1)
     annotation (Placement(transformation(extent={{38,-38},{58,-18}})));
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate HOut_flow(redeclare package
-      Medium = Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate HOut_flow(redeclare package Medium =
+               Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{6,2},{22,18}})));
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate HOut_flow1(redeclare package
-      Medium = Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate HOut_flow1(redeclare package Medium =
+               Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{18,-36},{34,-20}})));
   Modelica.Blocks.Continuous.Integrator dH
     "Differenz in enthalpy (should be zero at steady-state)"

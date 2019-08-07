@@ -1,13 +1,12 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs;
 block ThermalZoneSimpleAir3 "Validation of simple thermal zone"
-  extends
-    IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs.ThermalZoneAir1(
+  extends IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs.ThermalZoneAir1(
      redeclare package Medium = Modelica.Media.Air.SimpleAir (
           extraPropertiesNames={"CO2","VOC","CH2O"}));
   annotation (Documentation(info="<html>
 <p>
 This example validates that
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
 IBPSA.Fluid.FMI.ExportContainers.ThermalZone
 </a>
 exports correctly as an FMU.

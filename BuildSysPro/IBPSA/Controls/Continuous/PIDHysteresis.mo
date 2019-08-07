@@ -176,7 +176,7 @@ used in the PID controller.
 April 13, 2016, by Michael Wetter:<br/>
 Set <code>zer(final k=0)</code> and made swi, zer and zer1 protected
 which they are also for
-<a href=\"modelica://IBPSA.Controls.Continuous.PIDHysteresis\">
+<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.PIDHysteresis\">
 IBPSA.Controls.Continuous.PIDHysteresis</a>.
 These changes are not backwards compatible.
 </li>

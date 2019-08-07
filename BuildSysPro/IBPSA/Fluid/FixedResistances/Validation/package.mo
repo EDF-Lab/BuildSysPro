@@ -2,17 +2,10 @@ within BuildSysPro.IBPSA.Fluid.FixedResistances;
 package Validation "Collection of validation models"
   extends Modelica.Icons.ExamplesPackage;
 
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains validation models for the classes in
-<a href=\"modelica://IBPSA.Fluid.FixedResistances\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances\">
 IBPSA.Fluid.FixedResistances</a>.
 </p>
 <p>

@@ -8,7 +8,7 @@ This package contains data for pumps.
 </p>
 <p>
 See the
-<a href=\"modelica://IBPSA.Fluid.Movers.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.UsersGuide\">
 User's Guide</a> for more information.
 </p>
 </html>"));

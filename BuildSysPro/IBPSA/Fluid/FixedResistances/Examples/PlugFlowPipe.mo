@@ -71,7 +71,7 @@ equation
     experiment(StopTime=1000, Tolerance=1e-006),
     Documentation(info="<html>
 <p>Basic test of model
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.PlugFlowPipe\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PlugFlowPipe\">
 IBPSA.Fluid.FixedResistances.PlugFlowPipe</a>.
 This test includes an inlet temperature step under a constant mass flow rate.
 </p>

@@ -30,14 +30,14 @@ equation
 This example demonstrates how to export an FMU with a heater
 that takes as an input signal the normalized heat flow rate.
 The FMU has an instance of
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.HeaterCooler_u</a>.
 </p>
 <p>
 The mass dynamics has been set to
 <code>massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState</code>.
 See the
-<a href=\"modelica://IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
 for the rationale.
 </p>
 </html>", revisions="<html>

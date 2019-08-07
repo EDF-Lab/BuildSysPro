@@ -53,8 +53,8 @@ model To_VolumeFraction "Example problem for conversion model"
     annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
   Modelica.Blocks.Sources.Constant nPeo(k=1) "Number of people"
     annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
-  IBPSA.Fluid.Sensors.VolumeFlowRate senVolFlo(redeclare package
-      Medium = Medium, m_flow_nominal=0.1)
+  IBPSA.Fluid.Sensors.VolumeFlowRate senVolFlo(redeclare package Medium =
+               Medium, m_flow_nominal=0.1)
     annotation (Placement(transformation(extent={{20,-20},{40,0}})));
   Modelica.Blocks.Math.Gain norSet(k=1/1000E-6)
     "Normalization for set point (to scale control input)"

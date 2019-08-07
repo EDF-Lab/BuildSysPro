@@ -5,7 +5,7 @@ model PressureDrop
       m_flow_turbulent=if computeFlowResistance then deltaM*
         m_flow_nominal_pos else 0);
 
-  parameter Real deltaM(min=0.01) = 0.3
+  parameter Real deltaM(min=1E-6) = 0.3
     "Fraction of nominal mass flow rate where transition to turbulent occurs"
        annotation(Evaluate=true,
                   Dialog(group = "Transition to laminar",
@@ -155,13 +155,13 @@ can be used and combined with models from the
 <p>
 For a model that uses the hydraulic parameter and flow velocity at nominal conditions
 as a parameter, use
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
 IBPSA.Fluid.FixedResistances.HydraulicDiameter</a>.
 </p>
 <h4>Implementation</h4>
 <p>
 The pressure drop is computed by calling a function in the package
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels\">
 IBPSA.Fluid.BaseClasses.FlowModels</a>,
 This package contains regularized implementations of the equation
 </p>
@@ -180,6 +180,11 @@ This leads to simpler equations.
 </html>", revisions="<html>
 <ul>
 <li>
+September 21, 2018, by Michael Wetter:<br/>
+Decrease value of <code>deltaM(min=...)</code> attribute.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1026\">#1026</a>.
+</li>
+<li>
 February 3, 2018, by Filip Jorissen:<br/>
 Revised implementation of pressure drop equation
 such that it depends on <code>from_dp</code>
@@ -190,7 +195,7 @@ See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/884\">#884</a>.
 December 1, 2016, by Michael Wetter:<br/>
 Simplified model by removing the geometry dependent parameters into the new
 model
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
 IBPSA.Fluid.FixedResistances.HydraulicDiameter</a>.
 </li>
 <li>
@@ -206,7 +211,7 @@ Updated comment for parameter <code>use_dh</code>.
 November 26, 2014, by Michael Wetter:<br/>
 Added the required <code>annotation(Evaluate=true)</code> so
 that the system of nonlinear equations in
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.Validation.PressureDropsExplicit\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PressureDropsExplicit\">
 IBPSA.Fluid.FixedResistances.Validation.PressureDropsExplicit</a>
 remains the same.
 </li>

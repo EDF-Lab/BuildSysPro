@@ -123,7 +123,7 @@ for the sensible and latent heat transfer,
 </p>
 <p>
 For a sensible heat exchanger, use
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ConstantEffectiveness\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ConstantEffectiveness\">
 IBPSA.Fluid.HeatExchangers.ConstantEffectiveness</a>
 instead of this model.
 </p>
@@ -172,7 +172,7 @@ Added regularization near zero flow.
 <li>
 October 21, 2008, by Michael Wetter:<br/>
 First implementation, based on
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ConstantEffectiveness\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ConstantEffectiveness\">
 IBPSA.Fluid.HeatExchangers.ConstantEffectiveness</a>.
 </li>
 </ul>

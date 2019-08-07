@@ -30,7 +30,7 @@ equation
     Documentation(info="<html>
 <p>
 This example is an extension of
-<a href=\"modelica://IBPSA.Fluid.Examples.Performance.Example1v1\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.Performance.Example1v1\">
 IBPSA.Fluid.Examples.Performance.Example1v1</a>
 and demonstrates the use of
 mixing volumes for decoupling the algebraic loop that solves for the enthalpy of the system.

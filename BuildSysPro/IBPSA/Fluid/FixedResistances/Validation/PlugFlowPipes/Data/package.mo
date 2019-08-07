@@ -1,15 +1,6 @@
 ﻿within BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes;
 package Data "Experimental data for verification of pipe models"
 
-
-
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
 <p>Subpackage that contains measurement data from various experiments at ULg and AIT. This data is used to validate <a href=\"modelica://IBPSA/Fluid/PlugFlowPipes/BaseClasses/PipeCore\">BaseClasses.PipeCore</a>.</p>
 <h4>References</h4>

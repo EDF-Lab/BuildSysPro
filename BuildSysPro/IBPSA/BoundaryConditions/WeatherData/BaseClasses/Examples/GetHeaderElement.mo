@@ -41,10 +41,10 @@ revisions="<html>
 <li>
 April 21, 2016, by Michael Wetter:<br/>
 Added call to
-<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
 IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath</a>
 as this call has been removed from the function
-<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.BaseClasses.getHeaderElementTMY3\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.getHeaderElementTMY3\">
 IBPSA.BoundaryConditions.WeatherData.BaseClasses.getHeaderElementTMY3</a>.
 This is for
 <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/506\">Buildings, #506</a>.

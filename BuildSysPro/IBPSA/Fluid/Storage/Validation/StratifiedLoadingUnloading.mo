@@ -53,20 +53,20 @@ model StratifiedLoadingUnloading "Test model for stratified tank"
     offset=-m_flow_nominal,
     period=7200)
     annotation (Placement(transformation(extent={{20,80},{40,100}})));
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate HIn_flow(redeclare package
-      Medium = Medium, m_flow_nominal=m_flow_nominal)
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate HIn_flow(redeclare package Medium =
+               Medium, m_flow_nominal=m_flow_nominal)
     "Enthalpy flow rate" annotation (Placement(transformation(extent={{-60,
             -38},{-44,-22}})));
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate HOut_flow(redeclare package
-      Medium = Medium, m_flow_nominal=m_flow_nominal)
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate HOut_flow(redeclare package Medium =
+               Medium, m_flow_nominal=m_flow_nominal)
     "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{22,-38},{38,-22}})));
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate HInEnh_flow(redeclare package
-      Medium = Medium, m_flow_nominal=m_flow_nominal)
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate HInEnh_flow(redeclare package Medium =
+               Medium, m_flow_nominal=m_flow_nominal)
     "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{-60,0},{-44,16}})));
-  IBPSA.Fluid.Sensors.EnthalpyFlowRate HOutEnh_flow(redeclare package
-      Medium = Medium, m_flow_nominal=m_flow_nominal)
+  IBPSA.Fluid.Sensors.EnthalpyFlowRate HOutEnh_flow(redeclare package Medium =
+               Medium, m_flow_nominal=m_flow_nominal)
     "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{2,0},{18,16}})));
   Modelica.Blocks.Math.Add add(k2=-1) annotation (Placement(transformation(

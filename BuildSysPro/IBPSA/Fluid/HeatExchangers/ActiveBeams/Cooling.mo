@@ -272,17 +272,17 @@ Model of an active beam, based on the EnergyPlus beam model  <code>AirTerminal:S
 </p>
 <p>
 This model operates only in cooling mode. For a model that operates in both heating and cooling mode,
-use <a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
+use <a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating</a>.
 </p>
 <p>
 For a description of the equations, see the
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.UsersGuide\">
 User's Guide</a>.
 </p>
 <p>
 Performance data are available from
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Data\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Data\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Data</a>.
 </p>
 <h4>References</h4>

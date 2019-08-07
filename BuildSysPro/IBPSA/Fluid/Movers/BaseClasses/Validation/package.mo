@@ -2,11 +2,10 @@ within BuildSysPro.IBPSA.Fluid.Movers.BaseClasses;
 package Validation "Collection of validation models"
   extends Modelica.Icons.ExamplesPackage;
 
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains validation models for the classes in
-<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses\">
 IBPSA.Fluid.Movers.BaseClasses</a>.
 </p>
 <p>

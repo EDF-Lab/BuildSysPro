@@ -16,7 +16,7 @@ Model that demonstrates the use of an ideal heater and an ideal cooler, configur
 </p>
 <p>
 This example is identical to
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet</a>
 except that the heater and cooler models are configured to have a
 time constant of <i>60</i> seconds at nominal flow rate.

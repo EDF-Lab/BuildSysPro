@@ -65,7 +65,7 @@ that faces Norths, East, South and West.
 <li>
 March 24, 2015, by Michael Wetter:<br/>
 Assigned azimuth and tilt using the types from
-<a href=\"modelica://IBPSA.Types.Tilt\">
+<a href=\"modelica://BuildSysPro.IBPSA.Types.Tilt\">
 IBPSA.Types.Tilt</a>.
 </li>
 <li>

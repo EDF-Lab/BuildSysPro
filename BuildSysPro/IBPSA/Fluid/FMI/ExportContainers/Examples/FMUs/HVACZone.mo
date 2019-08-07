@@ -2,7 +2,7 @@ within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block HVACZone
   "Declaration of an FMU that exports a simple convective only HVAC system"
   extends IBPSA.Fluid.FMI.ExportContainers.HVACZone(redeclare final package
-                    Medium = MediumA, hvacAda(nPorts=2));
+      Medium =               MediumA, hvacAda(nPorts=2));
 
   replaceable package MediumA = IBPSA.Media.Air "Medium for air";
   replaceable package MediumW = IBPSA.Media.Water "Medium for water";
@@ -253,18 +253,18 @@ equation
 This example demonstrates how to export a model of an HVAC system
 that only provides convective cooling to a single thermal zone.
 The HVAC system is adapted from
-<a href=\"modelica://IBPSA.Examples.Tutorial.SpaceCooling.System3\">
+<a href=\"modelica://BuildSysPro.IBPSA.Examples.Tutorial.SpaceCooling.System3\">
 IBPSA.Examples.Tutorial.SpaceCooling.System3</a>,
 but flow resistances have been added to have the same configuration as
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones</a>.
 Having the same configuration is needed for the validation test
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
 IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC</a>.
 </p>
 <p>
 The example extends from
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
 IBPSA.Fluid.FMI.ExportContainers.HVACZone
 </a>
 which provides the input and output signals that are needed to interface

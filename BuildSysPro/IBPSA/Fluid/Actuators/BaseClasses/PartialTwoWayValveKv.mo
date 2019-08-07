@@ -81,7 +81,7 @@ Documentation(info="<html>
 <p>
 Partial model for valves with different opening characteristics,
 such as linear, equal percentage or quick opening. This partial extends from
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve</a>
 and also contains the governing equations for these three two way valve models.
 </p>
@@ -90,7 +90,7 @@ and also contains the governing equations for these three two way valve models.
 Models that extend this model need to provide a binding equation
 for the flow function <code>phi</code>.
 An example of such a code can be found in
-<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
 IBPSA.Fluid.Actuators.Valves.TwoWayLinear</a>.
 </p>
 </html>",

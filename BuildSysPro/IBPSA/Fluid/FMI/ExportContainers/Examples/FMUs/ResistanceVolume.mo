@@ -84,16 +84,16 @@ equation
 This example demonstrates how to export an FMU with a
 flow resistance and a control volume.
 The FMU has an instance of
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
 IBPSA.Fluid.FixedResistances.PressureDrop</a> and
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolume\">
 IBPSA.Fluid.MixingVolumes.MixingVolume</a>.
 </p>
 <p>
 The mass dynamics has been set to
 <code>massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState</code>.
 See the
-<a href=\"modelica://IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
 for the rationale.
 </p>
 </html>", revisions="<html>

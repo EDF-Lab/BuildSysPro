@@ -38,7 +38,7 @@ The sensor is ideal, i.e., it does not influence the fluid.
 </p>
 <p>
 Read the
-<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a>
 prior to using this model with one fluid port.
 </p>
@@ -65,7 +65,7 @@ OpenModelica.
 <li>
 August 31, 2013, by Michael Wetter:<br/>
 Revised model to use base class
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.IndexMassFraction\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.IndexMassFraction\">
 IBPSA.Fluid.BaseClasses.IndexMassFraction</a>.
 </li>
 <li>

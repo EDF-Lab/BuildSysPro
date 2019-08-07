@@ -293,9 +293,9 @@ all-or-none, variable"),
 <p><u><b>Validations</b></u></p>
 <p>Validated model according to air/air HP with TIL - Hubert Blervaque, Sila Filfli 02/2013</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

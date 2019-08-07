@@ -35,7 +35,7 @@ Added documentation.
 </html>", info="<html>
 <p>
 Example that demonstrates the use of the block
-<a href=\"modelica://IBPSA.Controls.Continuous.NumberOfRequests\">
+<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.NumberOfRequests\">
 IBPSA.Controls.Continuous.NumberOfRequests</a>.
 The parameters of the block are such that the output is incremented
 for each input signal that is strictly larger than <i>0</i>.

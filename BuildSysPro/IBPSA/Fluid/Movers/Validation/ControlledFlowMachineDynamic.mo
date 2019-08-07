@@ -2,8 +2,7 @@ within BuildSysPro.IBPSA.Fluid.Movers.Validation;
 model ControlledFlowMachineDynamic
   "Fans with different control signals as input and a dynamic speed signal"
   extends Modelica.Icons.Example;
-  extends
-    IBPSA.Fluid.Movers.Validation.BaseClasses.ControlledFlowMachine(
+  extends IBPSA.Fluid.Movers.Validation.BaseClasses.ControlledFlowMachine(
     fan4(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),
     fan1(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),
     fan2(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),

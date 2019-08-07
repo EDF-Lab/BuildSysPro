@@ -115,7 +115,7 @@ the current angle of incidence.
 </p>
 <p>
 This function is used in
-<a href=\"modelica://IBPSA.Fluid.Sources.Outside_CpLowRise\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Outside_CpLowRise\">
 Buildings.Fluid.Sources.Outside_CpLowRise</a>
 which can be used directly with components of this package.
 </p>

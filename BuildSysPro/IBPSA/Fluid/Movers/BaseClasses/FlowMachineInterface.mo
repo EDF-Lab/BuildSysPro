@@ -1,10 +1,9 @@
 within BuildSysPro.IBPSA.Fluid.Movers.BaseClasses;
 model FlowMachineInterface
   "Partial model with performance curves for fans or pumps"
-  extends Modelica.Blocks.Interfaces.BlockIcon;
+  extends Modelica.Blocks.Icons.Block;
 
-  import cha =
-    BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics;
+  import cha = BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics;
 
   parameter IBPSA.Fluid.Movers.Data.Generic per
     "Record with performance data" annotation (choicesAllMatching=true,
@@ -628,7 +627,7 @@ and efficiency of fans and pumps.
 The nominal hydraulic characteristic (volume flow rate versus total pressure)
 is given by a set of data points
 using the data record <code>per</code>, which is an instance of
-<a href=\"modelica://IBPSA.Fluid.Movers.Data.Generic\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Data.Generic\">
 IBPSA.Fluid.Movers.Data.Generic</a>.
 A cubic hermite spline with linear extrapolation is used to compute
 the performance at other operating points.
@@ -651,7 +650,7 @@ is computed based on the actual power consumption and the flow work.
 </ul>
 <p>
 For exceptions to this general rule, check the
-<a href=\"modelica://IBPSA.Fluid.Movers.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.UsersGuide\">
 User's Guide</a> for more information.
 </p>
 
@@ -715,7 +714,7 @@ avoid a translation warning.
 <li>
 April 21, 2014, by Filip Jorissen and Michael Wetter:<br/>
 Changed model to use
-<a href=\"modelica://IBPSA.Fluid.Movers.Data.Generic\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Data.Generic\">
 IBPSA.Fluid.Movers.Data.Generic</a>.
 April 19, 2014, by Filip Jorissen:<br/>
 Passed extra parameters to power() and efficiency()

@@ -450,15 +450,15 @@ else
       color={191,0,0},
       smooth=Smooth.None));
     connect(TauPlafond.Tponder, ParoiSousCombles.T_ext) annotation (Line(
-      points={{-43,89.8},{-6.3,89.8},{-6.3,86.9}},
+      points={{-44,90},{-6.3,90},{-6.3,86.9}},
       color={191,0,0},
       smooth=Smooth.None));
     connect(TauLNC.Tponder, MurLNC.T_ext) annotation (Line(
-      points={{-43,-50.2},{-6.3,-50.2},{-6.3,-53.1}},
+      points={{-44,-50},{-6.3,-50},{-6.3,-53.1}},
       color={191,0,0},
       smooth=Smooth.None));
     connect(TauPlancher.Tponder, PlancherBas.T_ext) annotation (Line(
-      points={{-43,-90.2},{34,-90.2},{34,-98.3},{53.1,-98.3}},
+      points={{-44,-90},{34,-90},{34,-98.3},{53.1,-98.3}},
       color={191,0,0},
       smooth=Smooth.None));
     connect(ParoiSousCombles.T_int, noeudAir.port_a) annotation (Line(
@@ -494,15 +494,15 @@ else
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauPlancher.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-87},{-57,-87}},
+      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-86},{-56,-86}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauLNC.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,-47},{-57,-47}},
+      points={{-90,40},{-52,40},{-52,-46},{-56,-46}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauPlafond.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,80},{-64,80},{-64,93},{-57,93}},
+      points={{-90,40},{-52,40},{-52,80},{-64,80},{-64,94},{-56,94}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(VitrageOuest.CLOTr, multiSum.u[1]) annotation (Line(
@@ -532,17 +532,17 @@ else
       color={255,0,0},
       smooth=Smooth.None));
   connect(TauPlancher.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,-93},{-60,-93},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
-          80,40},{80,22}},
+      points={{-56,-94},{-60,-94},{-60,-98},{30,-98},{30,-60},{40,-60},
+          {40,40},{80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(TauLNC.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,-53},{-60,-53},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
-          80,40},{80,22}},
+      points={{-56,-54},{-60,-54},{-60,-98},{30,-98},{30,-60},{40,-60},
+          {40,40},{80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(TauPlafond.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,87},{-60,87},{-60,82},{40,82},{40,40},{80,40},{80,22}},
+      points={{-56,86},{-60,86},{-60,82},{40,82},{40,40},{80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(PontsThermiques.port_b, noeudAir.port_a) annotation (Line(
@@ -671,9 +671,9 @@ graphics={
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

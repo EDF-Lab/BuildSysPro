@@ -86,12 +86,12 @@ This model describes a fan or pump with prescribed mass flow rate.
 The efficiency of the device is computed based
 on the efficiency and pressure curves that are defined
 in record <code>per</code>, which is of type
-<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
 IBPSA.Fluid.Movers.SpeedControlled_Nrpm</a>.
 </p>
 <p>
 See the
-<a href=\"modelica://IBPSA.Fluid.Movers.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.UsersGuide\">
 User's Guide</a> for more information.
 </p>
 </html>",

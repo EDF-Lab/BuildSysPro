@@ -39,7 +39,7 @@ equation
         Documentation(info="<html>
 <p>
 This example tests the implementation of
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.ModificationFactor\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.ModificationFactor\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.ModificationFactor</a>.
 </p>
 </html>", revisions="<html>

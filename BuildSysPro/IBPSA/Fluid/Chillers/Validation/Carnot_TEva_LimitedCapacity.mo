@@ -9,7 +9,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 Documentation(info="<html>
 <p>
 This example extends from
-<a href=\"modelica://IBPSA.Fluid.Chillers.Examples.Carnot_TEva\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Chillers.Examples.Carnot_TEva\">
 IBPSA.Fluid.Chillers.Examples.Carnot_TEva</a>
 but limits the cooling capacity.
 </p>

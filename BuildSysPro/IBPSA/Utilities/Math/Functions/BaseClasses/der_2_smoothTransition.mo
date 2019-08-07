@@ -30,7 +30,7 @@ annotation (
 Documentation(info="<html>
 <p>
 This function is the 2nd order derivative of
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.smoothTransition\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.smoothTransition\">
 IBPSA.Utilities.Math.Functions.BaseClasses.smoothTransition</a>.
 </p>
 <h4>Implementation</h4>

@@ -44,7 +44,7 @@ model Sink_T
         origin={-120,-80})));
 protected
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package       Medium = Medium)
+      package Medium =       Medium)
     "Internal connector for fluid properties for back flow";
   IBPSA.Fluid.FMI.Interfaces.PressureOutput p_in_internal
     "Internal connector for pressure";
@@ -98,7 +98,7 @@ These properties are used during reverse flow.
 </p>
 <p>
 For a system of components with the connectors of the
-<a href=\"modelica://IBPSA.Fluid.FMI\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI\">
 IBPSA.Fluid.FMI</a>
 package, this component is required to set the medium properties
 for the reverse flow.

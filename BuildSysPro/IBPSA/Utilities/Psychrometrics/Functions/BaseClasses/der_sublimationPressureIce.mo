@@ -23,7 +23,7 @@ algorithm
       Documentation(info="<html>
 <p>
 Derivative of function
-<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.sublimationPressureIce\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.sublimationPressureIce\">
 IBPSA.Utilities.Psychrometrics.Functions.sublimationPressureIce</a>.
 </p>
 </html>",

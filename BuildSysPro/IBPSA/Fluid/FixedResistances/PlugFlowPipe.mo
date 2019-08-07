@@ -238,17 +238,17 @@ The model also includes thermal inertia of the pipe wall.
 </p>
 <h4>Implementation</h4>
 <p>Heat losses are implemented by
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowHeatLoss\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowHeatLoss\">
 IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowHeatLoss</a>
 at each end of the pipe (see
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowCore\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowCore\">
 IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowCore</a>).
 Depending on the flow direction, the temperature difference due to heat losses
 is subtracted at the right fluid port.
 </p>
 <p>
 The pressure drop is implemented using
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.HydraulicDiameter\">
 IBPSA.Fluid.FixedResistances.HydraulicDiameter</a>.
 </p>
 <p>
@@ -260,7 +260,7 @@ Thanks to the vectorized implementation of the (design) outlet port,
 splits and junctions of pipes can be handled in a numerically efficient way.
 <br/>
 This mixing volume is not present in the
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowCore\">PlugFlowCore</a> model,
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowCore\">PlugFlowCore</a> model,
 which can be used in cases where mixing volumes at pipe junctions need to
 be added manually.
 </p>

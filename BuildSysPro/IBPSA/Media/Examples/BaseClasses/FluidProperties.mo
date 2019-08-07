@@ -2,7 +2,8 @@ within BuildSysPro.IBPSA.Media.Examples.BaseClasses;
 partial model FluidProperties
   "Model that tests the implementation of the fluid properties"
 
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium;
+  replaceable package Medium =
+      Modelica.Media.Interfaces.PartialMedium;
 
   parameter Modelica.SIunits.Temperature TMin
     "Minimum temperature for the simulation";

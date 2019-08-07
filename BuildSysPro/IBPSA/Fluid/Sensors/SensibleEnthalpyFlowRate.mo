@@ -111,18 +111,18 @@ specific sensible enthalpy <i>h<sub>out</sub></i> that is used to
 compute the sensible enthalpy flow rate
 <i>H&#775;<sub>sen</sub> = m&#775; h<sub>out</sub></i>
 is computed using a first order differential equation.
-See <a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
+See <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 
 <p>
 For a sensor that measures
 <i>H&#775;<sub>tot</sub></i>, use
-<a href=\"modelica://IBPSA.Fluid.Sensors.EnthalpyFlowRate\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.EnthalpyFlowRate\">
 IBPSA.Fluid.Sensors.EnthalpyFlowRate</a>.<br/>
 For a sensor that measures
 <i>H&#775;<sub>lat</sub></i>, use
-<a href=\"modelica://IBPSA.Fluid.Sensors.LatentEnthalpyFlowRate\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.LatentEnthalpyFlowRate\">
 IBPSA.Fluid.Sensors.LatentEnthalpyFlowRate</a>.
 </p>
 
@@ -138,7 +138,7 @@ revisions="<html>
 January 18, 2016 by Filip Jorissen:<br/>
 Using parameter <code>tauInv</code>
 since this now exists in
-<a href=\"modelica://IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
 This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/372\">#372</a>.
 </li>
@@ -157,7 +157,7 @@ This change was made so that all sensors use the same default value.
 <li>
 December 18, 2012, by Michael Wetter:<br/>
 Moved computation of <code>i_w</code> to new base class
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.IndexWater\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.IndexWater\">
 IBPSA.Fluid.BaseClasses.IndexWater</a>.
 The value of this parameter is now assigned dynamically and does not require to be specified
 by the user.

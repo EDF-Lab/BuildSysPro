@@ -71,7 +71,7 @@ equation
 <p>
 This component transports two fluid streams between four ports, without
 storing mass or energy. It is similar to
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
 IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>,
 but it has four ports instead of two.
 </p>
@@ -125,7 +125,7 @@ This is for issue
 January 22, 2016 by Michael Wetter:<br/>
 Removed assignment of <code>sensibleOnly</code> in <code>bal1</code> and <code>bal2</code>
 as this constant has been removed in
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
 IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>.
 </li>
 <li>

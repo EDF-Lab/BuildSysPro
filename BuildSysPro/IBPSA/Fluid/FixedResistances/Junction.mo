@@ -2,6 +2,7 @@ within BuildSysPro.IBPSA.Fluid.FixedResistances;
 model Junction
   "Flow splitter with fixed resistance at each port"
     extends IBPSA.Fluid.BaseClasses.PartialThreeWayResistance(
+    m_flow_small=mDyn_flow_nominal*1e-4,
     mDyn_flow_nominal=sum(abs(m_flow_nominal[:])/3),
     redeclare IBPSA.Fluid.FixedResistances.PressureDrop res1(
       from_dp=from_dp,
@@ -77,7 +78,7 @@ and an optional mixing volume at the junction.
 </p>
 <p>
 The pressure drop is implemented using the model
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
 IBPSA.Fluid.FixedResistances.PressureDrop</a>.
 If its nominal pressure drop is set to zero, then the pressure drop
 model will be removed.
@@ -100,7 +101,7 @@ If
 <code>energyDynamics &lt;&gt; Modelica.Fluid.Types.Dynamics.SteadyState</code>,
 then at the flow junction, a fluid volume is modeled.
 The fluid volume is implemented using the model
-<a href=\"modelica://IBPSA.Fluid.Delays.DelayFirstOrder\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Delays.DelayFirstOrder\">
 IBPSA.Fluid.Delays.DelayFirstOrder</a>.
 The fluid volume has the size
 </p>
@@ -159,7 +160,7 @@ to avoid flow reversal in large flow networks where such a setting may be useful
 <li>
 June 11, 2008 by Michael Wetter:<br/>
 Based class on
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.PartialThreeWayFixedResistance\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.PartialThreeWayFixedResistance\">
 PartialThreeWayFixedResistance</a>.
 </li>
 <li>

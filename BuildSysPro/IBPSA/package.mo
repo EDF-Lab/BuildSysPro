@@ -3,8 +3,8 @@ package IBPSA "Library with models for building energy and control systems"
   extends Modelica.Icons.Package;
 
 annotation (
-versionDate="2018-06-14",
-dateModified = "2018-06-14",
+versionDate="2018-09-28",
+dateModified = "2018-09-28",
 preferredView="info",
 Documentation(info="<html>
 <p>

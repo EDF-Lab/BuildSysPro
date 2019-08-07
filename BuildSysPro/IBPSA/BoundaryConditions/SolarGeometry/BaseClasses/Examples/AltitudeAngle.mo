@@ -65,13 +65,13 @@ Components used in this model are:
 </p>
 <ul>
 <li>
-<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination</a>
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination</a>
 </li>
 <li>
-<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.SolarHourAngle\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.SolarHourAngle</a>
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.SolarHourAngle\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.SolarHourAngle</a>
 </li>
 <li>
-<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.ZenithAngle\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.ZenithAngle</a>
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.ZenithAngle\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.ZenithAngle</a>
 </li>
 </ul>
 <br/>

@@ -110,8 +110,8 @@ model PlugFlowCore
     final show_T=false,
     final show_V_flow=false) "Heat loss for flow from port_a to port_b"
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare final package
-      Medium = Medium) "Mass flow sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare final package Medium =
+               Medium) "Mass flow sensor"
     annotation (Placement(transformation(extent={{-50,10},{-30,-10}})));
   IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowTransportDelay timDel(
     final length=length,
@@ -230,19 +230,19 @@ for the transport delay of the fluid.
 The
 <code>spatialDistribution</code> operator is used for the temperature wave propagation
 through the length of the pipe. This operator is contained in 
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlow\">BaseClasses.PlugFlow</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlow\">BaseClasses.PlugFlow</a>.
 </p>
 <p>
 This model does not include thermal inertia of the pipe wall.
 The wall inertia is implemented in
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.PlugFlowPipe\">PlugFlowPipe</a>, which uses this model.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PlugFlowPipe\">PlugFlowPipe</a>, which uses this model.
 <br/>
 The removal of the thermal inertia with a mixing volume can be desirable in the 
 case where mixing volumes are added manually at the pipe junctions. 
 </p>
 <p>
 The model
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowHeatLoss\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlowHeatLoss\">
 PlugFlowHeatLoss</a>
 implements a heat loss in design direction, but leaves the enthalpy unchanged
 in opposite flow direction. Therefore it is used in front of and behind the time delay.

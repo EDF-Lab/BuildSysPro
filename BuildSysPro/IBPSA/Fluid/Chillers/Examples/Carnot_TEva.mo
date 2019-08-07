@@ -48,8 +48,8 @@ model Carnot_TEva
   IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
         Medium1, nPorts=1) annotation (Placement(transformation(extent={
             {10,-10},{-10,10}}, origin={70,30})));
-  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package
-      Medium = Medium2) annotation (Placement(transformation(extent={{-10,
+  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package Medium =
+               Medium2) annotation (Placement(transformation(extent={{-10,
             -10},{10,10}}, origin={-40,-30})));
   Modelica.Blocks.Sources.Ramp TEvaLvg(
     duration=60,

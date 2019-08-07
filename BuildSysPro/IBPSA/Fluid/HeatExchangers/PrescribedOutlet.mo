@@ -202,7 +202,7 @@ If no flow resistance is requested, set <code>dp_nominal=0</code>.
 <p>
 For a model that uses a control signal <i>u &isin; [0, 1]</i> and multiplies
 this with the nominal heating or cooling power, use
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.HeaterCooler_u</a>
 
 </p>
@@ -228,10 +228,10 @@ IBPSA.Fluid.Humidifiers.SprayAirWasher_X</a>.
 <p>
 The model has been validated against the analytical solution in
 the examples
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet</a>
 and
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic</a>.
 </p>
 </html>",

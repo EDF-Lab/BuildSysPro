@@ -68,7 +68,7 @@ equation
 Example that demonstrates the use of the PID controller
 with hysteresis and off timer.
 The example is identical to
-<a href=\"modelica://IBPSA.Controls.Continuous.Examples.PIDHysteresis\">
+<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.Examples.PIDHysteresis\">
 IBPSA.Controls.Continuous.Examples.PIDHysteresis</a>,
 except that the controller also has an off timer.
 This timer keeps the control signal at <i>y=0</i>

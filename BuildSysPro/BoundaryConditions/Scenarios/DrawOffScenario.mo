@@ -17,7 +17,7 @@ protected
 
 public
   Modelica.Blocks.Interfaces.RealOutput drawoff_flow_rate(start=1e-10)
-    "Draw-off flow rate (L/s)"
+    "Draw-off flow rate (kg/s)"
     annotation (Placement(transformation(extent={{100,-12},{126,14}}),
         iconTransformation(extent={{100,-12},{126,14}})));
 
@@ -121,10 +121,12 @@ equation
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Davy Merlet, Kévin Deutz 01/2017</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Davy MERLET, Kévin DEUTZ, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Stéphanie Froidurot 05/2019 - Correction unité dans documentation</p>
 </html>"));
 end DrawOffScenario;

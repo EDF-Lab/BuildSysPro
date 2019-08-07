@@ -30,7 +30,7 @@ and <code>nDay = 86400</code> at the end of January 1.
 <h4>Validation</h4>
 <p>
 A validation with a more detailed calculation can be found at
-<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Examples.Declination\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Examples.Declination\">
 IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Examples.Declination</a>.
 </p>
 </html>", revisions="<html>

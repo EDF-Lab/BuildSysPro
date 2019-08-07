@@ -249,7 +249,7 @@ experiment(Tolerance=1e-06, StopTime=3600),
     Documentation(info="<html>
 <p>
 This model is similar than
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> but it has four
 instead of three rooms.
 The outdoor conditions are held constant at <i>10</i>&deg;C and

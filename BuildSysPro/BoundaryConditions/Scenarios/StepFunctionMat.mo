@@ -204,9 +204,9 @@ with n rows and two columns and a second table <code>table2 [i, j]</code> n rows
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Hassan Bouia 07/2012 </p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

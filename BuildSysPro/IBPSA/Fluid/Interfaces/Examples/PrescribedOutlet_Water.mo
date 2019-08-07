@@ -2,8 +2,7 @@ within BuildSysPro.IBPSA.Fluid.Interfaces.Examples;
 model PrescribedOutlet_Water
   "Test model for prescribed outlet state"
   extends Modelica.Icons.Example;
-  extends
-    IBPSA.Fluid.Interfaces.Examples.BaseClasses.PrescribedOutletState(
+  extends IBPSA.Fluid.Interfaces.Examples.BaseClasses.PrescribedOutletState(
     redeclare package Medium = IBPSA.Media.Water,
     steSta(use_X_wSet=false),
     heaHigPow(use_X_wSet=false),
@@ -28,7 +27,7 @@ __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/F
     Documentation(info="<html>
 <p>
 Model that demonstrates
-<a href=\"modelica://IBPSA.Fluid.Interfaces.PrescribedOutlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PrescribedOutlet\">
 IBPSA.Fluid.Interfaces.PrescribedOutlet</a>
 with temperature setpoint and water as the medium.
 </p>

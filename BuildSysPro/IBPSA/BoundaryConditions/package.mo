@@ -2,17 +2,12 @@ within BuildSysPro.IBPSA;
 package BoundaryConditions "Package with models for boundary conditions"
   extends Modelica.Icons.Package;
 
-
-
-
-
-
 annotation (preferredView="info",
 Documentation(info="<html>
 This package contains models to compute boundary conditions such as weather data.
 For models that set boundary conditions for fluid flow systems,
 see
-<a href=\"modelica://IBPSA.Fluid.Sources\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources\">
 IBPSA.Fluid.Sources</a>.
 </html>"),
   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),

@@ -156,7 +156,7 @@ See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/474\">#474</a> for 
 </p>
 <p>
 For a model that takes the relative humidity instead of the mass fraction as an input, see
-<a href=\"modelica://IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi\">
 IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi</a>.
 </p>
 <h4>References</h4>
@@ -204,7 +204,7 @@ I do not see any negative impact from removing this test.
 <li>
 July 24, 2014 by Michael Wetter:<br/>
 Revised computation of <code>rh_per</code> to use
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.smoothMin\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.smoothMin\">
 IBPSA.Utilities.Math.Functions.smoothMin</a> rather
 than <code>min</code>.
 </li>

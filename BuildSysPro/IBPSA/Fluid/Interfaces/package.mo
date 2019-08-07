@@ -2,24 +2,6 @@ within BuildSysPro.IBPSA.Fluid;
 package Interfaces "Package with interfaces for fluid models"
   extends Modelica.Icons.InterfacesPackage;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains basic classes that are used to build

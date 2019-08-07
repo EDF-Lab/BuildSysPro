@@ -48,10 +48,10 @@ experiment(Tolerance=1e-6, StopTime=1.0),
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This examples demonstrates the
-<a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.powerLaw\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.powerLaw\">
 Buildings.Airflow.Multizone.BaseClasses.powerLaw</a>
 and
-<a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM\">
 Buildings.Airflow.Multizone.BaseClasses.powerLawFixedM</a>
 functions.
 They need to return the same function value.

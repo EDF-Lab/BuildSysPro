@@ -35,7 +35,7 @@ Documentation(
 info="<html>
 <p>
 Implementation of the first derivative of the function
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.inverseXRegularized\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.inverseXRegularized</a>.
 </p>
 </html>",

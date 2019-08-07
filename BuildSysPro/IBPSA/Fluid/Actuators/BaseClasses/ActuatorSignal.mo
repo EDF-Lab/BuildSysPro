@@ -104,7 +104,7 @@ of the actuator.
 </p>
 <p>
 See
-<a href=\"modelica://IBPSA.Fluid.Actuators.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.UsersGuide\">
 IBPSA.Fluid.Actuators.UsersGuide</a>
 for a description of the filter.
 </p>

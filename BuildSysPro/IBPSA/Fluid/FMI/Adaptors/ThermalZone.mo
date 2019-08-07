@@ -2,7 +2,8 @@ within BuildSysPro.IBPSA.Fluid.FMI.Adaptors;
 model ThermalZone
   "Adaptor for connecting a thermal zone to signal ports which then can be exposed at an FMI interface"
 
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
+  replaceable package Medium =
+      Modelica.Media.Interfaces.PartialMedium
     "Medium model within the source" annotation (choicesAllMatching=true);
 
   // Don't use annotation(Dialog(connectorSizing=true)) for nPorts because
@@ -354,7 +355,7 @@ of all fluid connections to <code>ports</code> to be equal.
 The reason is that setting a pressure can lead to non-physical system models,
 for example if a mass flow rate is imposed and the HVAC system is connected
 to a model that sets a pressure boundary condition such as
-<a href=\"modelica://IBPSA.Fluid.Sources.Outside\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Outside\">
 IBPSA.Fluid.Sources.Outside</a>.
 Also, setting a pressure would make it impossible to use multiple instances
 of this model (one for each thermal zone) and build in Modelica an airflow network
@@ -367,7 +368,7 @@ The model has no pressure drop.
 <h4>Typical use</h4>
 <p>
 See
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
 IBPSA.Fluid.FMI.ExportContainers.ThermalZone
 </a>
 for a model that uses this model.

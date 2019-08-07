@@ -29,7 +29,7 @@ equation
       color={0,0,127}));
   annotation (
   Documentation(info="<html>
-<p>This model validates the computation of the solar declination, which is the angle between the equatorial plane and the solar beam. The time table <code><span style=\"font-family: Courier New,courier;\">solDecNOAA</span></code> outputs the solar declination according to the computation of the National Oceanic and Atmospheric Administration (NOAA), using their yearly calculator from <a href=\"http://www.esrl.noaa.gov/gmd/grad/solcalc/calcdetails.html\">http://www.esrl.noaa.gov/gmd/grad/solcalc/calcdetails.html</a>. The values differ slightly because the equation in <a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination</a> is an approximation. </p>
+<p>This model validates the computation of the solar declination, which is the angle between the equatorial plane and the solar beam. The time table <code><span style=\"font-family: Courier New,courier;\">solDecNOAA</span></code> outputs the solar declination according to the computation of the National Oceanic and Atmospheric Administration (NOAA), using their yearly calculator from <a href=\"http://www.esrl.noaa.gov/gmd/grad/solcalc/calcdetails.html\">http://www.esrl.noaa.gov/gmd/grad/solcalc/calcdetails.html</a>. The values differ slightly because the equation in <a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination\">IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Declination</a> is an approximation. </p>
 </html>", revisions="<html>
 <ul>
 <li>

@@ -105,7 +105,7 @@ to the value of the input signal <code>y_reset_in</code>.
 </li>
 </ul>
 <p>
-See <a href=\"modelica://IBPSA.Utilities.Math.Examples.IntegratorWithReset\">
+See <a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Examples.IntegratorWithReset\">
 IBPSA.Utilities.Math.Examples.IntegratorWithReset</a> for an example.
 </p>
 <h4>Implementation</h4>

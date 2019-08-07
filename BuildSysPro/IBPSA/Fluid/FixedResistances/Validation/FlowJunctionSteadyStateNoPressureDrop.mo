@@ -47,16 +47,16 @@ model FlowJunctionSteadyStateNoPressureDrop
     offset=1)     "Ramp mass flow signal"
     annotation (Placement(transformation(extent={{-92,-62},{-72,-42}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package
-      Medium = Medium, m_flow_nominal=1) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
+               Medium, m_flow_nominal=1) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package
-      Medium = Medium, m_flow_nominal=2) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package Medium =
+               Medium, m_flow_nominal=2) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package
-      Medium = Medium, m_flow_nominal=3) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package Medium =
+               Medium, m_flow_nominal=3) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-70},{0,-50}})));
 equation
   connect(bou3.ports[1], senTem3.port_a) annotation (Line(points={{-40,-60},{-40,

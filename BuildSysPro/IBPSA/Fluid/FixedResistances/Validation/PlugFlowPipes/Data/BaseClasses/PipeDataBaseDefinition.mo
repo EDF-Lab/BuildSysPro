@@ -15,7 +15,7 @@ revisions="<html>
 <ul>
 <li>
 Januar 19, 2016 by Carles Ribas:<br/>
-Move experiment documentation to the <a href=\"modelica://IBPSA.Experimental.Pipe.Data.PipeDatauLg150801\">
+Move experiment documentation to the <a href=\"modelica://BuildSysPro.IBPSA.Experimental.Pipe.Data.PipeDatauLg150801\">
 specific model</a>. Add parameter <code>n</code> to facilitate use of extends clause.
 </li>
 <li>

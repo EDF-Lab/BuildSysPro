@@ -94,7 +94,7 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
     alpha_ext=alpha_ext,
     hs_ext=hs_ext_ParoiExt,
     hs_int=hs_int_ParoiExt) "External walls"
-    annotation (Placement(transformation(extent={{-10,40},{10,60}})));
+    annotation (Placement(transformation(extent={{-10,20},{10,40}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleWindow vitrage(
     S=SurfaceVitree,
@@ -102,7 +102,7 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
     Abs=AbsVitrage,
     hs_ext=hs_ext_Vitrage,
     hs_int=hs_int_Vitrage) "Glazing surface"
-    annotation (Placement(transformation(extent={{-10,-42},{10,-22}})));
+    annotation (Placement(transformation(extent={{-10,-20},{10,0}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleWall plancher(
     caracParoi(
@@ -118,7 +118,7 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
     RadExterne=false,
     RadInterne=true,
     GLOext=false) "Lowest floor"
-    annotation (Placement(transformation(extent={{-10,-90},{10,-70}})));
+    annotation (Placement(transformation(extent={{-10,-60},{10,-40}})));
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleWall toiture(
     Tp=Tinit,
     RadExterne=true,
@@ -132,7 +132,7 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
     S=SToiture,
     hs_ext=hs_ext_Toiture,
     hs_int=hs_int_Toiture) "Roofs"
-    annotation (Placement(transformation(extent={{-10,78},{10,98}})));
+    annotation (Placement(transformation(extent={{-10,80},{10,100}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.SimpleWall plancherInt(
     caracParoi(
@@ -152,11 +152,10 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
         origin={68,-70})));
   BuildSysPro.Building.AirFlow.HeatTransfer.AirRenewal ventilationSimple(Qv=
         renouv*Vair)
-    annotation (Placement(transformation(extent={{-12,-116},{8,-96}})));
+    annotation (Placement(transformation(extent={{-10,-90},{10,-70}})));
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.ThermalBridge pontThermique(
     L=1, k=Psi_L*1)           annotation (
-      Placement(transformation(extent={{-12,-138},
-            {8,-118}})));
+      Placement(transformation(extent={{-10,-120},{10,-100}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Text annotation (
       Placement(transformation(extent={{-22,8},{-18,12}}), iconTransformation(
           extent={{-192,4},{-172,24}})));
@@ -165,7 +164,7 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
           extent={{60,-76},{80,-56}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.B_Coefficient coefficientBsol(b=b)
-    annotation (Placement(transformation(extent={{-50,-90},{-30,-70}})));
+    annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
   Modelica.Blocks.Math.Gain gainTransmisPlancher(k=1/NbNiveaux) annotation (
       Placement(transformation(
         extent={{-6,-6},{6,6}},
@@ -180,8 +179,8 @@ parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
 // Public components
 public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
-    "Air temperature" annotation (Placement(transformation(extent={{-132,70},{
-            -112,90}}), iconTransformation(extent={{-132,70},{-112,90}})));
+    "Air temperature" annotation (Placement(transformation(extent={{-130,70},{
+            -110,90}}), iconTransformation(extent={{-130,70},{-110,90}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int
     "Indoor air heat port" annotation (Placement(transformation(extent={{80,0},
             {100,20}}), iconTransformation(extent={{70,-50},{90,-30}})));
@@ -204,7 +203,7 @@ public
             {-80,70}})));
 BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Ts_ext[2]
     "Surface temperature for LW radiation (roof and external walls)"
-    annotation (Placement(transformation(extent={{-40,60},{-20,80}}),
+    annotation (Placement(transformation(extent={{-30,50},{-10,70}}),
         iconTransformation(extent={{-110,-50},{-90,-30}})));
 
 equation
@@ -218,75 +217,75 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, Text) annotation (Line(
-      points={{-122,80},{-50,80},{-50,10},{-20,10}},
+      points={{-120,80},{-50,80},{-50,10},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
 
 // Boundary conditions
   connect(coefficientBsol.port_int, Tint) annotation (Line(
-      points={{-49,-83},{-49,-91.5},{20,-91.5},{20,10}},
+      points={{-58,-54},{-58,-67.5},{20,-67.5},{20,10}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(coefficientBsol.port_ext, Text) annotation (Line(
-      points={{-49,-77},{-49,-69.5},{-20,-69.5},{-20,10}},
+      points={{-58,-46},{-58,-39.5},{-20,-39.5},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
 
 // Floor connections
   connect(plancher.T_int, Tint)
                            annotation (Line(
-      points={{9,-83},{9,-82.5},{20,-82.5},{20,10}},
+      points={{9,-53},{9,-52.5},{20,-52.5},{20,10}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(coefficientBsol.Tponder, plancher.T_ext) annotation (Line(
-      points={{-35,-80.2},{-33.5,-80.2},{-33.5,-83},{-9,-83}},
+      points={{-46,-50},{-33.5,-50},{-33.5,-53},{-9,-53}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(plancher.FluxAbsInt, gainTransmisPlancher.y) annotation (Line(
-      points={{3,-75},{28,-75},{28,-48.6}},
+      points={{3,-45},{28,-45},{28,-48.6}},
       color={0,0,127},
       smooth=Smooth.None));
 
 // Connexions de la toiture
-  connect(T_ext, toiture.T_ext) annotation (Line(points={{-122,80},{-56,80},{
-          -56,85},{-9,85}},
+  connect(T_ext, toiture.T_ext) annotation (Line(points={{-120,80},{-50,80},{
+          -50,87},{-9,87}},
                         color={191,0,0}));
-  connect(toiture.T_int, noeudAir.port_a) annotation (Line(points={{9,85},{20,
-          85},{20,10},{60,10}},             color={191,0,0}));
+  connect(toiture.T_int, noeudAir.port_a) annotation (Line(points={{9,87},{20,
+          87},{20,10},{60,10}},             color={191,0,0}));
 // Ventilation
   connect(ventilationSimple.port_b, Tint) annotation (Line(
-      points={{7,-106},{20,-106},{20,10}},
+      points={{9,-80},{20,-80},{20,10}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(ventilationSimple.port_a, Text) annotation (Line(
-      points={{-11,-106},{-20,-106},{-20,10}},
+      points={{-9,-80},{-20,-80},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
 
 // Glazing
   connect(vitrage.T_ext, Text)     annotation (Line(
-      points={{-9,-35},{-9,-30.5},{-20,-30.5},{-20,10}},
+      points={{-9,-13},{-9,-12.5},{-20,-12.5},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(vitrage.T_int, Tint)     annotation (Line(
-      points={{9,-35},{20,-35},{20,10}},
+      points={{9,-13},{20,-13},{20,10}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(vitrage.CLOTr, gainTransmisPlancherIntermediaire.u) annotation (Line(
-      points={{9,-27},{37.5,-27},{37.5,-52.8},{38,-52.8}},
+      points={{9,-5},{37.5,-5},{37.5,-52.8},{38,-52.8}},
       color={255,192,1},
       smooth=Smooth.None));
   connect(gainTransmisPlancher.u, vitrage.CLOTr) annotation (Line(
-      points={{28,-34.8},{28,-27},{9,-27}},
+      points={{28,-34.8},{28,-5},{9,-5}},
       color={255,170,85},
       smooth=Smooth.None));
 // External walls
   connect(paroiExt.T_int, Tint)     annotation (Line(
-      points={{9,47},{20,47},{20,10}},
+      points={{9,27},{20,27},{20,10}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(paroiExt.T_ext, Text)     annotation (Line(
-      points={{-9,47},{-20,47},{-20,10}},
+      points={{-9,27},{-20,27},{-20,10}},
       color={191,0,0},
       smooth=Smooth.None));
 
@@ -305,28 +304,29 @@ equation
       color={255,0,0},
       smooth=Smooth.None));
       // Connexion for external LWR calculation
-  connect(paroiExt.Ts_ext, Ts_ext[1]) annotation (Line(points={{-3,47},{-4.5,47},
-          {-4.5,65},{-30,65}},   color={191,0,0}));
-  connect(Ts_ext[2], toiture.Ts_ext) annotation (Line(points={{-30,75},{-4,75},
-          {-4,85},{-3,85}},color={191,0,0}));
+  connect(paroiExt.Ts_ext, Ts_ext[1]) annotation (Line(points={{-3,27},{-4.5,27},
+          {-4.5,55},{-20,55}},   color={191,0,0}));
+  connect(Ts_ext[2], toiture.Ts_ext) annotation (Line(points={{-20,65},{-4,65},
+          {-4,87},{-3,87}},color={191,0,0}));
     // Thermal bridge
   connect(pontThermique.T_int, Tint) annotation (
-     Line(points={{7,-128},{20,-128},{20,10}},
+     Line(points={{9,-110},{20,-110},{20,10}},
         color={191,0,0}));
   connect(pontThermique.T_ext, Text) annotation (
-     Line(points={{-11,-128},{-20,-128},{-20,10}},
+     Line(points={{-9,-110},{-20,-110},{-20,10}},
         color={191,0,0}));
   connect(FluxIncRoof, toiture.FluxIncExt) annotation (Line(points={{-100,100},
-          {-60,100},{-60,93},{-3,93}},
+          {-60,100},{-60,95},{-3,95}},
                                      color={255,192,1}));
   connect(FluxIncWall, paroiExt.FluxIncExt) annotation (Line(points={{-100,50},
-          {-60,50},{-60,55},{-3,55}}, color={255,192,1}));
+          {-60,50},{-60,35},{-3,35}}, color={255,192,1}));
   connect(FluxIncGlazing, vitrage.FluxIncExt) annotation (Line(points={{-100,10},
-          {-60,10},{-60,-27},{-3,-27}},     color={255,192,1}));
+          {-60,10},{-60,-5},{-3,-5}},       color={255,192,1}));
   connect(FluxTrGlazing, vitrage.FluxTr)
-    annotation (Line(points={{-100,-30},{-3,-30}}, color={255,192,1}));
+    annotation (Line(points={{-100,-30},{-60,-30},{-60,-8},{-3,-8}},
+                                                   color={255,192,1}));
   connect(T_ext, T_ext)
-    annotation (Line(points={{-122,80},{-122,80}},           color={191,0,0}));
+    annotation (Line(points={{-120,80},{-120,80}},           color={191,0,0}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-120,
             -120},{120,120}})),  Icon(coordinateSystem(preserveAspectRatio=false,
           extent={{-120,-120},{120,120}}), graphics={
@@ -446,9 +446,9 @@ equation
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis, Hassan Bouia 07/2015</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

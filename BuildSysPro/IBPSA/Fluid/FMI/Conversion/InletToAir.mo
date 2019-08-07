@@ -77,7 +77,7 @@ block InletToAir
 
 protected
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package       Medium = Medium)
+      package Medium =       Medium)
     "Internal connector for fluid properties for back flow";
 
   Modelica.Blocks.Interfaces.RealInput TAirZon_internal(
@@ -131,7 +131,7 @@ equation
     Documentation(info="<html>
 <p>
 Block that takes an inlet connector of type
-<a href=\"modelica://IBPSA.Fluid.FMI.Interfaces.Inlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Interfaces.Inlet\">
 IBPSA.Fluid.FMI.Interfaces.Inlet
 </a>
 and converts
@@ -163,7 +163,7 @@ and the return air properties are in the connector
 </p>
 <p>
 See
-<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.ThermalZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.ThermalZone\">
 IBPSA.Fluid.FMI.Adaptors.ThermalZone</a>
 for its usage.
 </p>

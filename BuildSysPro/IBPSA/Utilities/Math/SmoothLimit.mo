@@ -22,7 +22,7 @@ The output is bounded to be in <i>[lower, upper]</i>.
 </p>
 <p>
 Note that the limit need not be respected, such as illustrated in
-<a href=\"modelica://IBPSA.Utilities.Math.Examples.SmoothMin\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Examples.SmoothMin\">
 IBPSA.Utilities.Math.Examples.SmoothMin</a>.
 </p>
 </html>",

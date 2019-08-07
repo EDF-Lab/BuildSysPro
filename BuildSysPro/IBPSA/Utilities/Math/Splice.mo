@@ -61,7 +61,7 @@ equation
           textString="u1")}),
 Documentation(info="<html>
 <p>
-This block implements <a href=\"modelica://IBPSA.Utilities.Math.Functions.spliceFunction\">
+This block implements <a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.spliceFunction\">
 IBPSA.Utilities.Math.Functions.spliceFunction</a>, which provides a continuously differentiable transition between two arguments.
 </p>
 </html>",

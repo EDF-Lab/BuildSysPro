@@ -106,7 +106,7 @@ for <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/458\">#458</a>.
 September 7, 2016, by Michael Wetter:<br/>
 Moved function which was a protected function to make it public, as it
 is now called by
-<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.FlowMachineInterface\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.FlowMachineInterface\">
 IBPSA.Fluid.Movers.BaseClasses.FlowMachineInterface</a>.
 </li>
 </ul>

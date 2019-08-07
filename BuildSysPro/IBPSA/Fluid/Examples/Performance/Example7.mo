@@ -43,7 +43,7 @@ First implementation.
 </html>", info="<html>
 <p>
 See
-<a href=\"modelica://IBPSA.Fluid.Examples.Performance.Example6\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.Performance.Example6\">
 IBPSA.Fluid.Examples.Performance.Example6</a> for the documentation.
 </p>
 </html>"),

@@ -344,16 +344,16 @@ equation
 <p>This model returns as outputs:
 <ul>
 <li><b>G[10]</b> vector containing information for solar irradiance computation:</li>
-<ol>
-<li>Diffus horizontal irradiance</li>
-<li>Direct normal irradiance</li>
-<li>Direct horizontal irradiance</li>
-<li>Global horizontal irradiance</li>
-<li>Time in UTC at time = 0 (beginning of the simulation)</li>
-<li>Sun's direction cosine (6-sinH, 7-cosW, 8-cosS) (6-sinH, 7-cosW, 8-cosS)</li>
-<li>Solar azimuth angle</li>
-<li>Solar elevation angle</li>
-</ol>
+<ul>
+ <li>(1) Horizontal diffuse flux</li>
+ <li>(2) Normal direct flux</li>
+ <li>(3) Horizontal direct flux</li>
+ <li>(4) Horizontal global flux</li>
+ <li>(5) Time in UTC at time t = 0 (start of the simulation)</li>
+ <li>(6-7-8) Sun's direction cosines (6-sinH, 7-cosW, 8-cosS)</li>
+ <li>(9) Solar azimuth angle</li>
+ <li>(10) Solar elevation angle</li>
+</ul>
 <li><b>V[2]</b> vector containing information about wind</li>
 <ol>
 <li>Wind speed</li>
@@ -372,9 +372,9 @@ equation
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Aurélie Kaemmerlen 2010</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
+Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+BuildSysPro version 3.3.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

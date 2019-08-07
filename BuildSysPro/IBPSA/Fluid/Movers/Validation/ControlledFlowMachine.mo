@@ -1,8 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.Movers.Validation;
 model ControlledFlowMachine "Fans with different control signals as input"
   extends Modelica.Icons.Example;
-  extends
-    IBPSA.Fluid.Movers.Validation.BaseClasses.ControlledFlowMachine(
+  extends IBPSA.Fluid.Movers.Validation.BaseClasses.ControlledFlowMachine(
     fan4(
       addPowerToMedium=false,
       use_inputFilter=false,

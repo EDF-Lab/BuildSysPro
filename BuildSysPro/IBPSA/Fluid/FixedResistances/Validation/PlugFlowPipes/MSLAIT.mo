@@ -445,17 +445,17 @@ equation
     Documentation(info="<html>
 <p>
 The example contains
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.Data.PipeDataAIT151218\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.Data.PipeDataAIT151218\">
 experimental data</a> from a real district heating network.
 This data is used to validate this library's
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.PlugFlowPipe\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PlugFlowPipe\">
 IBPSA.Fluid.FixedResistances.PlugFlowPipe</a> in
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.PlugFlowAIT\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.PlugFlowAIT\">
 IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.PlugFlowAIT</a>.
 This model compares its performance with the original Modelica Standard Library
 pipes, using one discretization element per unit length of pipe.
 For a coarser discretization, please refer to
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.MSLAIT2Nodes\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.MSLAIT2Nodes\">
 MSLAIT2Nodes</a>.
 </p>
 <p>
@@ -464,23 +464,23 @@ Note that these three models are identical, except for the pipe model that is us
 <ul>
 <li>
 The model
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.MSLAIT\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.MSLAIT\">
 IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.MSLAIT</a>
 uses the pipe model from the Modelica Standard Library, with a fine discretization.
 See the parameter <code>nNodes</code>.
 </li>
 <li>
 The model
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.MSLAIT2Nodes\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.MSLAIT2Nodes\">
 IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.MSLAIT2Nodes</a>
 uses the same model as above, but sets <code>nNodes=2</code>.
 </li>
 <li>
 The model
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.PlugFlowAIT\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.PlugFlowAIT\">
 IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.PlugFlowAIT</a>
 uses the plug flow model
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.PlugFlowPipe\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PlugFlowPipe\">
 IBPSA.Fluid.FixedResistances.PlugFlowPipe</a>.
 </li>
 </ul>

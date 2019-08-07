@@ -19,8 +19,8 @@ model MixingVolumeZeroFlow
     use_m_flow_in=true,
     use_T_in=true) "Source" annotation (Placement(transformation(extent=
            {{-60,-32},{-40,-12}})));
-  IBPSA.Fluid.Sources.Boundary_pT sin(nPorts=4, redeclare package
-      Medium = Medium) "Sink"
+  IBPSA.Fluid.Sources.Boundary_pT sin(nPorts=4, redeclare package Medium =
+               Medium) "Sink"
     annotation (Placement(transformation(extent={{40,-44},{20,-24}})));
   Modelica.Blocks.Sources.Ramp ramp_m_flow(
     height=-1,
@@ -214,7 +214,7 @@ issue 282</a>.
 </html>", info="<html>
 <p>
 This model verifies whether the equations in
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 are consisent for all foreseeable cases.
 All <code>MixingVolume</code> instances contain the correct

@@ -18,7 +18,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
                      Documentation(info="<html>
 <p>
 Tests the correct implementation of function
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.trapezoidalIntegration\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.trapezoidalIntegration\">
 IBPSA.Utilities.Math.Functions.trapezoidalIntegration</a>.
 </p>
 <p>Integrands y1[7]={72, 70, 64, 54, 40, 22, 0} are the function values of y = -2*x^2-72 for x = {0,1,2,3,4,5,6}. The trapezoidal integration over the 7 integrand points should give a result of 286.</p>

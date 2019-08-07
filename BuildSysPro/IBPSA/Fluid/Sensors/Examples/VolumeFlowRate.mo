@@ -57,7 +57,7 @@ configured to be dynamic.
 Note that steady-state sensors can lead to numerical problems
 if used incorrectly.
 See
-<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>", revisions="<html>

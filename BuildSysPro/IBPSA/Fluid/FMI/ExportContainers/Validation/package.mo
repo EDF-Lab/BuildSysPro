@@ -5,7 +5,7 @@ package Validation "Collection of validation models"
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains validation models for the classes in
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers\">
 IBPSA.Fluid.FMI.ExportContainers</a>.
 </p>
 <p>

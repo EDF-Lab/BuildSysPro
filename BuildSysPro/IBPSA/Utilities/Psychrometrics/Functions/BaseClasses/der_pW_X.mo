@@ -27,7 +27,7 @@ algorithm
     Documentation(info="<html>
 <p>
 Derivative of function
-<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.pW_X\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.pW_X\">
 IBPSA.Utilities.Psychrometrics.Functions.pW_X</a>.
 </p>
 </html>", revisions="<html>

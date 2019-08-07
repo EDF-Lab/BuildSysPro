@@ -14,7 +14,7 @@ See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/907\">#907</a>.
 </html>", info="<html>
 <p>
 This model tests whether 
-<a href=\"modelica://IBPSA.Fluid.MassExchangers.ConstantEffectiveness\">IBPSA.Fluid.MassExchangers.ConstantEffectiveness</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MassExchangers.ConstantEffectiveness\">IBPSA.Fluid.MassExchangers.ConstantEffectiveness</a>
 works correctly at zero flow if both streams are zero.
 </p>
 </html>"), experiment(Tolerance=1e-06, StopTime=1),

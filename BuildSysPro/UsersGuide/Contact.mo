@@ -3,7 +3,7 @@ class Contact "Contact"
   extends Modelica.Icons.Contact;
 
  annotation (Documentation(info="<html>
-<dl><dt>The BuildSysPro Library (this Modelica package) is developed and licensed under the <a href=\"modelica://Modelica.UsersGuide.ModelicaLicense2\">Modelica License 2</a> by:</dt>
+<dl><dt>The BuildSysPro Library (this Modelica package) is developed and licensed under the <a href=\"modelica://BuildSysPro.UsersGuide.License\">3-Clause BSD-License</a> by:</dt>
 <dd>EDF R&amp;D</dd>
 <dd>TREE Department</dd>
 <dd>EDFLab les Renardières</dd>
@@ -13,9 +13,9 @@ class Contact "Contact"
 <dd>web: <a href=\"http://researchers.edf.com/\">http://researchers.edf.com/</a></dd>
 </dl>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : EDF (2015)<br>
 --------------------------------------------------------------</b></p></html>"));
 

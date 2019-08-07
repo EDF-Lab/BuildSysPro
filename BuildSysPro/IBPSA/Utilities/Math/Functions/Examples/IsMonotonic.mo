@@ -59,7 +59,7 @@ Documentation(
 info="<html>
 <p>
 This example tests the correct implementation of the function
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.isMonotonic\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.isMonotonic\">
 IBPSA.Utilities.Math.Functions.isMonotonic</a>.
 If the function is implemented incorrect, the example will stop
 with an error.

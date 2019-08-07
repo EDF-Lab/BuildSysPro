@@ -1,5 +1,5 @@
 #1
- double data1(8760,2) # Tester des commentaires
+ double data1(8760,2) #Columns : Time(s) ; Time(hour). Designed to be used with BuildSysPro.BoundaryConditions.Scenarios.ScenarioRT
          0         1
       3600         2
       7200         3
@@ -8762,7 +8762,7 @@
   31532400      8760
   
   #1
- double data2(8760,8) # Tester des commentaires
+ double data2(8760,8) # Columns: Time(hour); Control for heating/cooling; Ventilation setpoint; Lighting setpoint; Hot water consumption (%); occupancy rate; internal gains; water vapour	generation
          1          1          1          0          0        0.7        0.2          1
          2          1          1          0          0        0.7        0.2          1
          3          1          1          0          0        0.7        0.2          1

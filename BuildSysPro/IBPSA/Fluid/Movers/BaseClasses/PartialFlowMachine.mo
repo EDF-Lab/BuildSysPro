@@ -224,8 +224,8 @@ protected
     "Density of the inflowing fluid"
     annotation (Placement(transformation(extent={{-90,-74},{-70,-54}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare final package
-      Medium = Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo(redeclare final package Medium =
+               Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{-50,10},{-30,-10}})));
 
   Sensors.RelativePressure senRelPre(
@@ -525,7 +525,7 @@ This is for
 <li>
 November 3, 2016, by Michael Wetter:<br/>
 Set start value for <code>VMachine_flow</code> to avoid a warning in
-<a href=\"modelica://IBPSA.Fluid.Movers.Examples.MoverContinuous\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Examples.MoverContinuous\">
 IBPSA.Fluid.Movers.Examples.MoverContinuous</a>.
 </li>
 <li>

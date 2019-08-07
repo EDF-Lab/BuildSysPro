@@ -119,7 +119,7 @@ This model is based on the following assumptions:
 Heat losses are only considered in design flow direction.
 For heat loss consideration in both directions, use one of these models at
 both ends of a
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlow\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlow\">
 IBPSA.Fluid.FixedResistances.BaseClasses.PlugFlow</a> model.
 The outlet temperature is calculated as in the equation above,
 using the inlet temperature at <code>port_a</code> and the instantaneous

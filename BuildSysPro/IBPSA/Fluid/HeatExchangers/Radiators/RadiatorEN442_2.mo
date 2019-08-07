@@ -429,7 +429,7 @@ declarations in the <code>equation</code> section.
 <li>
 April 4, 2011 by Michael Wetter:<br/>
 Changed the implementation to use
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.regNonZeroPower\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.regNonZeroPower\">
 IBPSA.Utilities.Math.Functions.regNonZeroPower</a>.
 This allows formulating the model without any non-differentiable function
 inside the equation section.

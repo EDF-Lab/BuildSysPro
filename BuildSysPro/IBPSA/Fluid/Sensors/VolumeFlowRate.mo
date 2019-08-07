@@ -87,7 +87,7 @@ If the parameter <code>tau</code> is non-zero, then the measured
 density that is used to convert the mass flow rate into
 volumetric flow rate is computed using a first order differential equation.
 Setting <code>tau=0</code> is <i>not</i> recommend. See
-<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>", revisions="<html>
@@ -96,7 +96,7 @@ IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 January 18, 2016 by Filip Jorissen:<br/>
 Using parameter <code>tauInv</code>
 since this now exists in
-<a href=\"modelica://IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
 This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/372\">#372</a>.
 </li>

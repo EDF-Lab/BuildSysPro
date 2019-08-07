@@ -111,7 +111,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 Documentation(info="<html>
 <p>
 This model tests
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ConstantEffectiveness\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ConstantEffectiveness\">
 IBPSA.Fluid.HeatExchangers.ConstantEffectiveness</a>
 for different inlet conditions.
 </p>

@@ -25,8 +25,8 @@ model OneEffectiveAirLeakageArea "Model with an effective air leakage area"
         transformation(extent={{-80,20},{-60,40}})));
   Modelica.Blocks.Math.Gain Gain1(k=100) annotation (Placement(transformation(
           extent={{-40,20},{-20,40}})));
-  IBPSA.Airflow.Multizone.EffectiveAirLeakageArea cra(redeclare package
-      Medium = Medium, L=20E-4)
+  IBPSA.Airflow.Multizone.EffectiveAirLeakageArea cra(redeclare package Medium
+      =        Medium, L=20E-4)
     annotation (Placement(transformation(extent={{50,-40},{70,-20}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou(
     redeclare package Medium = Medium,

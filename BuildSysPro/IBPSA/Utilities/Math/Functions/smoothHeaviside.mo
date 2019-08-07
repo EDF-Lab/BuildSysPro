@@ -16,7 +16,7 @@ algorithm
 <p>
 Once Lipschitz continuously differentiable approximation to the
 <code>Heaviside(.,.)</code> function.
-See Example <a href=\"modelica://IBPSA.Utilities.Math.Examples.SmoothHeaviside\">
+See Example <a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Examples.SmoothHeaviside\">
 IBPSA.Utilities.Math.Examples.SmoothHeaviside</a>.
 </p>
 </html>", revisions="<html>

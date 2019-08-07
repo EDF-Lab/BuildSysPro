@@ -172,9 +172,9 @@ Added <code>min</code> attribute to parameter <code>P_nominal</code>.
 <li>
 January 26, 2016, by Michael Wetter:<br/>
 Implemented in the Annex 60 library the models
-<a href=\"modelica://IBPSA.Fluid.Chillers.Carnot_y\">IBPSA.Fluid.Chillers.Carnot_y</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Chillers.Carnot_y\">IBPSA.Fluid.Chillers.Carnot_y</a>
 and
-<a href=\"modelica://IBPSA.Fluid.HeatPumps.Carnot_y\">IBPSA.Fluid.HeatPumps.Carnot_y</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Carnot_y\">IBPSA.Fluid.HeatPumps.Carnot_y</a>
 and refactored these models to use the same base class.<br/>
 Implemented the removal of the flow direction dependency of
 <code>staA1</code>, <code>staB1</code>, <code>staA2</code> and <code>staB2</code> as the

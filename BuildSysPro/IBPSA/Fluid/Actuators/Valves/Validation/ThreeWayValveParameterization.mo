@@ -83,18 +83,18 @@ model ThreeWayValveParameterization
     offset=0) "Control signal"
     annotation (Placement(transformation(extent={{-80,100},{-60,120}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flowOpPoi(redeclare package
-      Medium = Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flowOpPoi(redeclare package Medium =
+               Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{20,80},{40,100}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flowKv(redeclare package
-      Medium = Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flowKv(redeclare package Medium =
+               Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flowCv(redeclare package
-      Medium = Medium) "Mass flow rate sensor" annotation (Placement(
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flowCv(redeclare package Medium =
+               Medium) "Mass flow rate sensor" annotation (Placement(
         transformation(extent={{20,-40},{40,-20}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate senM_flowAv(redeclare package
-      Medium = Medium) "Mass flow rate sensor" annotation (Placement(
+  IBPSA.Fluid.Sensors.MassFlowRate senM_flowAv(redeclare package Medium =
+               Medium) "Mass flow rate sensor" annotation (Placement(
         transformation(extent={{20,-94},{40,-74}})));
   IBPSA.Fluid.Sources.Boundary_pT sou3(
     redeclare package Medium = Medium,

@@ -24,8 +24,8 @@ model HeaterCooler_u "Model that demonstrates the ideal heater model"
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     "Steady-state model of the heater"
     annotation (Placement(transformation(extent={{0,90},{20,110}})));
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package
-      Medium = Medium, m_flow_nominal=m_flow_nominal)
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
+               Medium, m_flow_nominal=m_flow_nominal)
     "Temperature sensor"
     annotation (Placement(transformation(extent={{40,90},{60,110}})));
   Modelica.Blocks.Sources.TimeTable TSet(table=[0, 273.15 + 20; 120, 273.15
@@ -46,8 +46,8 @@ model HeaterCooler_u "Model that demonstrates the ideal heater model"
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial)
     "Dynamic model of the heater"
     annotation (Placement(transformation(extent={{0,-20},{20,0}})));
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package
-      Medium = Medium, m_flow_nominal=m_flow_nominal)
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package Medium =
+               Medium, m_flow_nominal=m_flow_nominal)
     "Temperature sensor"
     annotation (Placement(transformation(extent={{40,-20},{60,0}})));
 

@@ -14,11 +14,11 @@ equation
     Documentation(info="<html>
 <p>
 This example validates the conversion model
-<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.InletToAir\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.InletToAir\">
 IBPSA.Fluid.FMI.Conversion.InletToAir
 </a>.
 It is identical to
-<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir\">
 IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir</a>
 except that
 the medium has <code>C02</code> trace substances.

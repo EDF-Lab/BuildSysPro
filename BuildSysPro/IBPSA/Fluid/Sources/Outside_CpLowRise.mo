@@ -49,7 +49,7 @@ equation
 This model describes boundary conditions for
 pressure, enthalpy, and species concentration that can be obtained
 from weather data. The model is identical to
-<a href=\"modelica://IBPSA.Fluid.Sources.Outside\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Outside\">
 IBPSA.Fluid.Sources.Outside</a>,
 except that it adds the wind pressure to the
 pressure at the fluid port <code>ports</code>.
@@ -58,7 +58,7 @@ on Swami and Chandra (1987) and valid for low-rise buildings
 with rectangular shape.
 The same correlation is also implemented in CONTAM (Persily and Ivy, 2001).
 For other buildings, the model
-<a href=\"modelica://IBPSA.Fluid.Sources.Outside_Cp\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Outside_Cp\">
 IBPSA.Fluid.Sources.Outside_Cp</a> should be used that takes
 the wind pressure coefficient as an input or parameter.
 </p>
@@ -75,7 +75,7 @@ this model, and <i>y</i> is the length of the adjacent wall.
 The wind direction is computed relative to the azimuth of this surface,
 which is equal to the parameter <code>azi</code>.
 The surface azimuth is defined in
-<a href=\"modelica://IBPSA.Types.Azimuth\">
+<a href=\"modelica://BuildSysPro.IBPSA.Types.Azimuth\">
 IBPSA.Types.Azimuth</a>.
 For example, if an exterior wall is South oriented, i.e., its outside-facing
 surface is towards South, use
@@ -92,7 +92,7 @@ all low-rise buildings as this represents the average of
 various values reported in the literature.
 The computation of the actual wind pressure coefficient <i>C<sub>p</sub></i>
 is explained in the function
-<a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise\">
 Buildings.Airflow.Multizone.BaseClasses.windPressureLowRise</a>
 that is called by this model.
 </p>

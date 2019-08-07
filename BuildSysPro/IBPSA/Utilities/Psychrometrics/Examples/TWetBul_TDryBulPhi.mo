@@ -25,7 +25,7 @@ model TWetBul_TDryBulPhi "Model to test the wet bulb temperature computation"
     "Model for wet bulb temperature"
     annotation (Placement(transformation(extent={{0,0},{20,20}})));
   IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBulXi(redeclare package
-              Medium = Medium)
+      Medium =         Medium)
     "Model for wet bulb temperature using Xi as an input, used to verify consistency with wetBulPhi"
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
   IBPSA.Utilities.Psychrometrics.X_pTphi x_pTphi

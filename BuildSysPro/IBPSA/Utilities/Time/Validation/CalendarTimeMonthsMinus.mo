@@ -10,10 +10,10 @@ model CalendarTimeMonthsMinus
     info="<html>
 <p>
 This model validates the use of the
-<a href=\"modelica://IBPSA.Utilities.Time.CalendarTime\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Time.CalendarTime\">
 IBPSA.Utilities.Time.CalendarTime</a>.
 It is identical to
-<a href=\"modelica://IBPSA.Utilities.Time.Validation.CalendarTimeMonths\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Time.Validation.CalendarTimeMonths\">
 IBPSA.Utilities.Time.Validation.CalendarTimeMonths</a>
 except that the start and end time are different.
 </p>

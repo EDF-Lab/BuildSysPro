@@ -1,6 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Interfaces;
 connector Outlet "Connector for fluid outlet"
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
+  replaceable package Medium =
+      Modelica.Media.Interfaces.PartialMedium
     "Medium model" annotation (choicesAllMatching=true);
 
   parameter Boolean use_p_in = true
@@ -17,11 +18,11 @@ connector Outlet "Connector for fluid outlet"
     "Thermodynamic pressure in the connection point";
 
   input IBPSA.Fluid.FMI.Interfaces.FluidProperties backward(redeclare final
-      package       Medium = Medium) if allowFlowReversal
+      package Medium =       Medium) if allowFlowReversal
     "Inflowing properties";
 
   output IBPSA.Fluid.FMI.Interfaces.FluidProperties forward(redeclare final
-      package       Medium = Medium) "Outflowing properties";
+      package Medium =       Medium) "Outflowing properties";
 
   annotation (defaultComponentName="outlet",
   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},

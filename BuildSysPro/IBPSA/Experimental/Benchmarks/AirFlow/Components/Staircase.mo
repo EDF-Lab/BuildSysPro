@@ -35,19 +35,15 @@ model Staircase
     "Thermal conductor between fixed T and Volume"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a_toHallway(redeclare package
-              Medium =
-               Medium) "Upper fluid port to hallway element"
+      Medium = Medium) "Upper fluid port to hallway element"
     annotation (Placement(transformation(extent={{-110,50},{-90,70}})));
   Modelica.Fluid.Interfaces.FluidPort_b port_b_toHallway(redeclare package
-              Medium =
-               Medium) "Lower fluid port to hallway element"
+      Medium = Medium) "Lower fluid port to hallway element"
     annotation (Placement(transformation(extent={{-110,-70},{-90,-50}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_bot(redeclare package
-      Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_bot(redeclare package Medium =
         Medium) "Fluid port to lower staircase element"
     annotation (Placement(transformation(extent={{-10,-110},{10,-90}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_top(redeclare package
-      Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_top(redeclare package Medium =
         Medium) "Fluid port to higher staircase element"
     annotation (Placement(transformation(extent={{-10,88},{10,108}})));
   Airflow.Multizone.MediumColumn col2(
@@ -151,10 +147,10 @@ resistance in model <code>conRoom</code> and the capitancy of the mixing volume 
 value for <code>mSenFac</code>. The G-Value of <code>conRoom</code> is approximated by the area of
 one outside wall multiplied with a U-Value of<i> 1 W/(m&sup2; K)</i>. The value for <code>mSenFac</code>
 has been estimated from comparisons with other room models as shown in
-<a href=\"modelica://IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse\">
+<a href=\"modelica://BuildSysPro.IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse\">
 IBPSA.Experimental.Benchmarks.AirFlow.Examples.ZoneStepResponse</a>. For this model, a value for
 <code>mSenFac</code> slightly lower than in
-<a href=\"modelica://IBPSA.Experimental.Benchmarks.AirFlow.Components.SimpleZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Experimental.Benchmarks.AirFlow.Components.SimpleZone\">
 IBPSA.Experimental.Benchmarks.AirFlow.Components.SimpleZone</a> has been chosen.</p>
 <h4>Typical use and important parameters</h4>
 <p><code>port_a_toHallway</code> and <code>port_b_toHallway</code> should be connected to the
@@ -163,7 +159,7 @@ connected to another staircase model via its respective <code>port_a_bot</code> 
 <code>port_b_bot</code>. </p>
 <h4>References</h4>
 <p>Inspired by
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> </p>
 </html>",
    revisions="<html>

@@ -93,7 +93,7 @@ protected
 
    // Conditional connectors for the backward flowing medium
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package       Medium = Medium)
+      package Medium =       Medium)
     "Internal connector for fluid properties for back flow";
 
   Modelica.Blocks.Interfaces.RealOutput TAirZon_internal(
@@ -161,12 +161,12 @@ equation
 <p>
 Block that takes real inputs for properties of an air-based HVAC
 system and converts them to an outlet connector of type
-<a href=\"modelica://IBPSA.Fluid.FMI.Interfaces.Outlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Interfaces.Outlet\">
 IBPSA.Fluid.FMI.Interfaces.Outlet</a>.
 </p>
 <p>
 See
-<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.HVAC\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.HVAC\">
 IBPSA.Fluid.FMI.Adaptors.HVAC</a>
 for its usage.
 </p>

@@ -18,7 +18,7 @@ experiment(StartTime=-2, Tolerance=1e-6, StopTime=2),
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This examples demonstrates the
-<a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise\">
 IBPSA.Airflow.Multizone.BaseClasses.windPressureLowRise</a>
 function.
 </p>

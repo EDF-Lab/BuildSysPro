@@ -275,9 +275,9 @@ connect(SommeFluxSolaireInterne.y,RepartitionSolaireInterne.RayEntrant);
 <p>Validation in free evolution by comparison to the assembly model - Gilles Plessis 10/2011</p>
 <p>Validation in <a href=\"modelica://BuildSysPro.Building.Examples.TestZoneNWalls\"><code>TestZoneNWalls</code></a></p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

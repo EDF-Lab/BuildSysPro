@@ -107,7 +107,7 @@ for <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/404\">#404</a>.
 September 20, 2014, by Michael Wetter:<br/>
 Added <code>constrainedby</code> declaration for medium.
 Otherwise, the pedantic model check of
-<a href=\"modelica://IBPSA.Fluid.Movers.Validation.SpeedControlled_Nrpm_Data\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Validation.SpeedControlled_Nrpm_Data\">
 IBPSA.Fluid.Movers.Validation.SpeedControlled_Nrpm_Data</a>
 fails because water does not implemented the function
 <code>Xsaturation</code>.

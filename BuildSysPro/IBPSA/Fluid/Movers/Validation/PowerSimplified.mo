@@ -41,8 +41,8 @@ model PowerSimplified
     "Pump with mass flow rate as control signal" annotation (Placement(
         transformation(extent={{-60,-30},{-40,-10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT bou(nPorts=3, redeclare package
-      Medium = Medium) "Pressure source"
+  IBPSA.Fluid.Sources.Boundary_pT bou(nPorts=3, redeclare package Medium =
+               Medium) "Pressure source"
     annotation (Placement(transformation(extent={{-102,10},{-82,30}})));
 
   IBPSA.Fluid.FixedResistances.PressureDrop[3] res(
@@ -50,8 +50,8 @@ model PowerSimplified
     each m_flow_nominal=m_flow_nominal,
     each dp_nominal=40000) "Flow resistance"
     annotation (Placement(transformation(extent={{20,10},{40,30}})));
-  IBPSA.Fluid.Sources.Boundary_pT sink(nPorts=3, redeclare package
-      Medium = Medium)
+  IBPSA.Fluid.Sources.Boundary_pT sink(nPorts=3, redeclare package Medium =
+               Medium)
     annotation (Placement(transformation(extent={{100,10},{80,30}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=100,
@@ -119,10 +119,10 @@ Each pump has identical mass flow rate and pressure rise.
 </p>
 <p>
 Note that for the instances
-<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_dp\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_dp\">
 IBPSA.Fluid.Movers.FlowControlled_dp</a>
 and
-<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>,
 we had to assign the efficiencies (otherwise the default constant
 efficiency of <i>0.7</i> would have been used).

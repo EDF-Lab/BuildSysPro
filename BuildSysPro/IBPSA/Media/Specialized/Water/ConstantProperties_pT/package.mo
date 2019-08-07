@@ -55,7 +55,7 @@ Model for liquid water with constant properties at given nominal conditions.
 </p>
 <p>
 This water model is similar to
-<a href=\"modelica://IBPSA.Media.Water\">IBPSA.Media.Water</a> with regard to its
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Water\">IBPSA.Media.Water</a> with regard to its
 complexity. It also uses constant values for properties such as density and
 specific heat capacity. The main difference is that the constants <code>T_nominal</code>
 and <code>p_nominal</code> allow for user-provided nominal condition of the water model. The

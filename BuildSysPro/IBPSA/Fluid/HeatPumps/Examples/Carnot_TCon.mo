@@ -45,8 +45,8 @@ model Carnot_TCon
   IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
         Medium1, nPorts=1) annotation (Placement(transformation(extent={
             {10,-10},{-10,10}}, origin={50,30})));
-  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package
-      Medium = Medium2) annotation (Placement(transformation(extent={{-10,
+  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package Medium =
+               Medium2) annotation (Placement(transformation(extent={{-10,
             -10},{10,10}}, origin={-50,-30})));
   Modelica.Blocks.Sources.Ramp TConLvg(
     duration=60,

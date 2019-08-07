@@ -19,7 +19,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
 Documentation(info="<html>
 <p>
 This example tests the implementation of
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.powerLinearized\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.powerLinearized\">
 IBPSA.Utilities.Math.Functions.powerLinearized</a>.
 </p>
 </html>", revisions="<html>

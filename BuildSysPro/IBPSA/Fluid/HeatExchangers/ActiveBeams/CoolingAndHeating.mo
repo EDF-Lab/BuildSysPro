@@ -113,19 +113,19 @@ equation
           Documentation(info="<html>
 <p>
 This model is identical to
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Cooling</a>,
 except that an additional water stream and convector is added to allow for heating
 in addition to cooling.
 </p>
 <p>
 For a description of the equations, see the
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.UsersGuide\">
 User's Guide</a>.
 </p>
 <p>
 Performance data are available from
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.Data\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.Data\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.Data</a>.
 </p>
 </html>", revisions="<html>

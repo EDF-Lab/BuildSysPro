@@ -25,10 +25,10 @@ This model tests the inverse formulation of the flow functions.
 The pressure difference <code>dp</code> and <code>dpCalc</code> need to
 be equal up to the solver tolerance, except for a small neighborhood
 around the origin. In this neighborhood around the origin, the functions
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp</a>
 and
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow\">
 IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow</a>
 are not invertible.
 </p>

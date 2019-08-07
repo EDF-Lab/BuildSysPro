@@ -208,7 +208,7 @@ controller to short cycle.
 </p>
 <p>
 The controller is similar to
-<a href=\"modelica://IBPSA.Controls.Continuous.PIDHysteresis\">
+<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.PIDHysteresis\">
 IBPSA.Controls.Continuous.PIDHysteresis</a> but in addition,
 it has a timer that prevents the controller from switching to on
 too fast. When the controller switches off, the timer starts and

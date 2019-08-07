@@ -170,7 +170,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
     Documentation(info="<html>
 <p>
 This model tests
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir\">
 IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir</a>.
 After an initial transient, the temperature and humidity of the volume
 stabilizes.

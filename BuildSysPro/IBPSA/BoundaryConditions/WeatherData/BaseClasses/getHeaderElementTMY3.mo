@@ -73,7 +73,7 @@ A comma is used as the delimiter of the elements.
 <li>
 April 21, 2016, by Michael Wetter:<br/>
 Removed call to
-<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
 IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath</a>
 because this function calls
 <a href=\"modelica://Modelica.Utilities.Files.loadResource\">

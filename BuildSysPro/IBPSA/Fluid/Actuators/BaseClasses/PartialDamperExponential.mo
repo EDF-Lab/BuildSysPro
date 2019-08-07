@@ -126,7 +126,7 @@ models.
 </p>
 <p>
 For a description of the opening characteristics and typical parameter values, see the damper model
-<a href=\"modelica://IBPSA.Fluid.Actuators.Dampers.Exponential\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Dampers.Exponential\">
 IBPSA.Fluid.Actuators.Dampers.Exponential</a>.
 </p>
 </html>",
@@ -183,7 +183,7 @@ to coupled equations instead of an explicit solution.
 <li>
 June 22, 2008 by Michael Wetter:<br/>
 Extended range of control signal from 0 to 1 by implementing the function
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.exponentialDamper\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.exponentialDamper\">
 exponentialDamper</a>.
 </li>
 <li>

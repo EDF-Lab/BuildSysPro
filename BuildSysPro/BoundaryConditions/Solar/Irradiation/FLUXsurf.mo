@@ -124,12 +124,12 @@ annotation (Documentation(info="<html>
 <p><u><b>Instructions for use</b></u></p>
 <p>Model which takes as input the vector G from a weather reader to calculate the surface irradiance on a particular surface (tilt and orientation given). G contains:</p>
 <ul>
- <li> (1) Horizontal diffuse flux</li>
+ <li>(1) Horizontal diffuse flux</li>
  <li>(2) Normal direct flux</li>
  <li>(3) Horizontal direct flux</li>
  <li>(4) Horizontal global flux</li>
  <li>(5) Time in UTC at time t = 0 (start of the simulation)</li>
- <li>(6-7-8) Sun's direction cosines (6-sin_h, 7-cosW, 8-cosS)</li>
+ <li>(6-7-8) Sun's direction cosines (6-sinH, 7-cosW, 8-cosS)</li>
  <li>(9) Solar azimuth angle</li>
  <li>(10) Solar elevation angle</li>
 </ul>
@@ -145,9 +145,9 @@ Analytical Validation (Via Excel calculations) on the model parametrization: typ
  <li>Amy Lindsay 03/2013: validation du modèle de diffus HDKR sur données d'ensoleillement à PV ZEN </li>
  </ul>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
+Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+BuildSysPro version 3.3.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

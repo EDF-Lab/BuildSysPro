@@ -206,7 +206,7 @@ __Dymola_Commands(file=
     Documentation(info="<html>
 <p>
 This example demonstrates and tests the use of
-<a href=\"modelica://IBPSA.Fluid.Movers.Validation.FlowControlled_dp\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Validation.FlowControlled_dp\">
 IBPSA.Fluid.Movers.Validation.FlowControlled_dp</a>
 movers that use parameter
 <code>prescribeSystemPressure</code>.

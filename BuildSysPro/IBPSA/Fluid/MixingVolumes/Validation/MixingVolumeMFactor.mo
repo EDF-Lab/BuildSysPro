@@ -64,7 +64,7 @@ difference between using an <code>mSenFac = 10</code> and multiplying volume by 
 </ol>
 <p>
 See
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.Validation.MixingVolumeMassFlow\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.Validation.MixingVolumeMassFlow\">
 IBPSA.Fluid.MixingVolumes.Validation.MixingVolumeMassFlow</a>
 for the rational of the selected initial conditions for the volumes.
 </p>

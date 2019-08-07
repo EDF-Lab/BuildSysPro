@@ -12,7 +12,7 @@ defaultComponentPrefixes="parameter",
 defaultComponentName="per",
 Documentation(info="<html>
 <p>Data from:<a href=\"http://productfinder.wilo.com/com/en/c0000002200012eb000020023/_0000001d000149e80001003a/product.html\"> http://productfinder.wilo.com/com/en/c0000002200012eb000020023/_0000001d000149e80001003a/product.html</a></p>
-<p>See <a href=\"modelica://IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to6\">IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to6 </a>for more information about how the data is derived. </p>
+<p>See <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to6\">IBPSA.Fluid.Movers.Data.Pumps.Wilo.Stratos25slash1to6 </a>for more information about how the data is derived. </p>
 </html>",   revisions="<html>
 <ul>
 <li>

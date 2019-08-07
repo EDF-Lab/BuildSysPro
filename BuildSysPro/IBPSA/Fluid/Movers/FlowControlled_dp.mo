@@ -118,13 +118,13 @@ outlet minus inlet pressure.
 The efficiency of the device is computed based
 on the efficiency and pressure curves that are defined
 in record <code>per</code>, which is of type
-<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
 IBPSA.Fluid.Movers.SpeedControlled_Nrpm</a>.
 </p>
 <h4>Main equations</h4>
 <p>
 See the
-<a href=\"modelica://IBPSA.Fluid.Movers.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.UsersGuide\">
 User's Guide</a>.
 </p>
 <h4>Typical use and important parameters</h4>
@@ -148,7 +148,7 @@ A measurement of the pressure difference between the
 two points in system then needs to be connected
 to <code>RealInput dpMea</code>.
 This functionality is demonstrated in
-<a href=\"modelica://IBPSA.Fluid.Movers.Validation.FlowControlled_dpSystem\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Validation.FlowControlled_dpSystem\">
 IBPSA.Fluid.Movers.Validation.FlowControlled_dpSystem</a>.
 </p>
 </html>",
@@ -197,22 +197,22 @@ November 5, 2015, by Michael Wetter:<br/>
 Removed the parameters <code>use_powerCharacteristics</code> and <code>power</code>
 from the performance data record <code>per</code>
 because
-<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_dp\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_dp\">
 IBPSA.Fluid.Movers.FlowControlled_dp</a>
 and
-<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>
 fix the flow rate or head, which can give a flow work that is higher
 than the power consumption specified in this record.
 Hence, users should use the efficiency data for this model.
 The record has been moved to
-<a href=\"modelica://IBPSA.Fluid.Movers.Data.SpeedControlled_y\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Data.SpeedControlled_y\">
 IBPSA.Fluid.Movers.Data.SpeedControlled_y</a>
 as it makes sense to use it for the movers
-<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_Nrpm\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_Nrpm\">
 IBPSA.Fluid.Movers.FlowControlled_Nrpm</a>
 and
-<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_y\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_y\">
 IBPSA.Fluid.Movers.FlowControlled_y</a>.<br/>
 This is for
 <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/457\">

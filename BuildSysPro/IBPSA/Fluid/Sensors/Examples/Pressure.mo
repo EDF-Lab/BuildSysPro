@@ -34,8 +34,8 @@ model Pressure "Test model for the pressure sensor"
   IBPSA.Fluid.Sensors.Pressure senPre_b(redeclare package Medium =
         Medium) "Pressure sensor at resistance port b"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
-  IBPSA.Fluid.Sensors.RelativePressure senRelPre(redeclare package
-      Medium = Medium) "Pressure difference across resistance"
+  IBPSA.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium =
+               Medium) "Pressure difference across resistance"
     annotation (Placement(transformation(extent={{-2,-50},{18,-30}})));
 equation
   connect(ramp.y, masFloRat.m_flow_in) annotation (Line(

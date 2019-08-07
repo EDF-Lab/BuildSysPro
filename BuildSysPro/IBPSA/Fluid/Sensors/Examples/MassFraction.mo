@@ -34,8 +34,8 @@ model MassFraction "Test model for the mass fraction sensor"
     m_flow_nominal=10,
     dp_nominal=200) "Flow resistance"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
-  IBPSA.Fluid.Sensors.MassFractionTwoPort senMasFra1(redeclare package
-      Medium = Medium, m_flow_nominal=10)
+  IBPSA.Fluid.Sensors.MassFractionTwoPort senMasFra1(redeclare package Medium
+      =        Medium, m_flow_nominal=10)
     "Mass fraction sensor for the flowing medium"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
 equation

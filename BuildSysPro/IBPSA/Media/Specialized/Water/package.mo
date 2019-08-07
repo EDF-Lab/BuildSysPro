@@ -2,13 +2,11 @@ within BuildSysPro.IBPSA.Media.Specialized;
 package Water "Specialized implementation of water"
   extends Modelica.Icons.Package;
 
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains a specialized implementation of water.
 For typical building simulations, the media
-<a href=\"modelica://IBPSA.Media.Water\">IBPSA.Media.Water</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Water\">IBPSA.Media.Water</a>
 should be used as it leads generally to faster simulation.
 </p>
 </html>"),

@@ -1,6 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses;
 partial model PartialThreeWayValve "Partial three way valve"
   extends IBPSA.Fluid.BaseClasses.PartialThreeWayResistance(
+    m_flow_small=m_flow_nominal*1e-4,
     final mDyn_flow_nominal=m_flow_nominal,
     redeclare replaceable
       IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve res1
@@ -167,7 +168,7 @@ of <code>fraK=0.7</code>.
 </p>
 <p>
 Since this model uses two way valves to construct a three way valve, see
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve</a>
 for details regarding the valve implementation.
 </p>
@@ -219,7 +220,7 @@ February 20, 2012 by Michael Wetter:<br/>
 Renamed parameter <code>dp_nominal</code> to <code>dpValve_nominal</code>,
 and added new parameter <code>dpFixed_nominal=0</code>.
 See
-<a href=\"modelica://IBPSA.Fluid.Actuators.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.UsersGuide\">
 IBPSA.Fluid.Actuators.UsersGuide</a>.
 </li>
 <li>

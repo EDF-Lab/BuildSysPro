@@ -28,7 +28,7 @@ This class contains parameters that are used to
 compute the pressure drop in models that have one fluid stream.
 Note that the nominal mass flow rate is not declared here because
 the model
-<a href=\"modelica://IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
 PartialTwoPortInterface</a>
 already declares it.
 </html>",

@@ -5,14 +5,14 @@ model CO2TransportStep "Model that transport CO2 through buoyancy driven flow"
     volTop(nPorts=3),
     volEas(nPorts=6));
 
-  IBPSA.Fluid.Sensors.TraceSubstances CO2SenTop(redeclare package
-      Medium = Medium) "CO2 sensor"
+  IBPSA.Fluid.Sensors.TraceSubstances CO2SenTop(redeclare package Medium =
+               Medium) "CO2 sensor"
     annotation (Placement(transformation(extent={{20,120},{40,140}})));
-  IBPSA.Fluid.Sensors.TraceSubstances CO2SenWes(redeclare package
-      Medium = Medium) "CO2 sensor"
+  IBPSA.Fluid.Sensors.TraceSubstances CO2SenWes(redeclare package Medium =
+               Medium) "CO2 sensor"
     annotation (Placement(transformation(extent={{-102,10},{-82,30}})));
-  IBPSA.Fluid.Sensors.TraceSubstances CO2SenEas(redeclare package
-      Medium = Medium) "CO2 sensor"
+  IBPSA.Fluid.Sensors.TraceSubstances CO2SenEas(redeclare package Medium =
+               Medium) "CO2 sensor"
     annotation (Placement(transformation(extent={{58,10},{78,30}})));
   Modelica.Blocks.Sources.Pulse pulse(
     amplitude=8.18E-6,
@@ -54,7 +54,7 @@ equation
     Documentation(info="<html>
 <p>
 This model is based on
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 Buildings.Airflow.Multizone.Validation.ThreeRoomsContam</a>.
 In addition, a CO<sub>2</sub> source has been added to the left room
 in the bottom floor.
@@ -68,7 +68,7 @@ the other rooms, and eventually its concentration decays.
 <li>
 November 10, 2011, by Michael Wetter:<br/>
 Extended model from
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 Buildings.Airflow.Multizone.Validation.ThreeRoomsContam</a>
 and added documentation.
 </li>

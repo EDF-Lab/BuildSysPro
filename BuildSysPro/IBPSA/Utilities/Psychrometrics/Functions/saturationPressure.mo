@@ -46,7 +46,7 @@ This is for
 <li>
 August 19, 2015 by Michael Wetter:<br/>
 Changed <code>smoothOrder</code> from <i>5</i> to <i>1</i> as
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.spliceFunction\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.spliceFunction\">
 IBPSA.Utilities.Math.Functions.spliceFunction</a> is only once
 continuously differentiable.
 Inlined the function.

@@ -59,7 +59,7 @@ The input <code>m_flow_turbulent</code> determines the location of the regulariz
 <li>
 May 1, 2017, by Filip Jorissen:<br/>
 Revised implementation such that
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">basicFlowFunction_dp</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">basicFlowFunction_dp</a>
 is C2 continuous.
 See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/725\">#725</a>.
 </li>

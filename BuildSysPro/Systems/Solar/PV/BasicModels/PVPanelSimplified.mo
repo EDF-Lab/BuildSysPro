@@ -9,7 +9,7 @@ model PVPanelSimplified
     "PV panel tilt relative to the horizontal (0° upward, 180° toward the ground)"
     annotation (Dialog(tab="PV panels", group="PV system"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
-    "azimut du panneau PV - orientation par rapport au Sud (S=0°, E=-90°, O=90°, N=180°)"
+    "Azimut of the surface (orientation relative to the South : S=0°, E=-90°, O=90°, N=180°)"
     annotation (Dialog(tab="PV panels", group="PV system"));
 
   // PV panels characteristics
@@ -51,7 +51,7 @@ model PVPanelSimplified
 
   // Thermal exchanges
   parameter Integer convection_avant=2
-    "A convective coefficient is imposed = 1; The convection model default is used= 2"
+    "A convective coefficient is imposed = 1; The convection model default is used = 2"
     annotation (Dialog(
       compact=true,
       tab="Thermal exchanges",
@@ -450,9 +450,9 @@ equation
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

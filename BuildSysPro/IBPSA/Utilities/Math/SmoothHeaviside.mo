@@ -49,7 +49,7 @@ equation
 Documentation(info="<html>
 <p>
 Once Lipschitz continuously differentiable approximation to the <i>Heaviside(.,.)</i> function.
-See Example <a href=\"modelica://IBPSA.Utilities.Math.Examples.SmoothHeaviside\">
+See Example <a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Examples.SmoothHeaviside\">
 IBPSA.Utilities.Math.Examples.SmoothHeaviside</a>.
 </p>
 </html>",

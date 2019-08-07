@@ -13,7 +13,7 @@ model PowerExact
 info="<html>
 <p>
 This example is identical to
-<a href=\"modelica://IBPSA.Fluid.Movers.Validation.PowerSimplified\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Validation.PowerSimplified\">
 IBPSA.Fluid.Movers.Validation.PowerSimplified</a>, except that the
 performance data for the flow controlled pumps
 <code>pump_dp</code> and <code>pump_m_flow</code> contain

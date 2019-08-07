@@ -35,7 +35,7 @@ equation
         experiment(Tolerance=1e-6, StopTime=250),
         Documentation(info="<html>
         <p>
-        Test model for <a href=\"modelica://IBPSA.Fluid.HeatExchangers.BaseClasses.HANaturalCylinder\">
+        Test model for <a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.BaseClasses.HANaturalCylinder\">
         IBPSA.Fluid.HeatExchangers.BaseClasses.HANaturalCylinder</a>.
         </p>
         </html>"));

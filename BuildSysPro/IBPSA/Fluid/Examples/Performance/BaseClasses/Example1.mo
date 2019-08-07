@@ -98,10 +98,10 @@ equation
     Documentation(info="<html>
 <p>
 This partial model is extended by
-<a href=\"modelica://IBPSA.Fluid.Examples.Performance.Example1v1\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.Performance.Example1v1\">
 IBPSA.Fluid.Examples.Performance.Example1v1</a>
 and
-<a href=\"modelica://IBPSA.Fluid.Examples.Performance.Example1v2\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.Performance.Example1v2\">
 IBPSA.Fluid.Examples.Performance.Example1v2</a>
 and is created to avoid errors in the implementation of the two depending examples.
 </p>

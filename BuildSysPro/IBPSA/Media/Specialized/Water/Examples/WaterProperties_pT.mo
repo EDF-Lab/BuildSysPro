@@ -18,7 +18,7 @@ equation
       Documentation(info="<html>
 <p>
 This example checks the thermophysical properties of the medium
-<a href=\"modelica://IBPSA.Media.Specialized.Water.Examples.WaterProperties_pT\">
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Specialized.Water.Examples.WaterProperties_pT\">
 IBPSA.Media.Specialized.Water.Examples.WaterProperties_pT</a>.
 </p>
 </html>",

@@ -53,7 +53,7 @@ equation
 This example computes the solar incidence angle on a tilted surface.
 This model is also part of more extensive tests that run the
 model for different orientations. These tests are at
-<a href=\"modelica://IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle\">
 IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle</a>.
 </p>
 </html>", revisions="<html>
@@ -61,7 +61,7 @@ IBPSA.BoundaryConditions.SolarGeometry.Examples.IncidenceAngle</a>.
 <li>
 March 24, 2015, by Michael Wetter:<br/>
 Assigned azimuth and tilt using the types from
-<a href=\"modelica://IBPSA.Types.Tilt\">
+<a href=\"modelica://BuildSysPro.IBPSA.Types.Tilt\">
 IBPSA.Types.Tilt</a>.
 </li>
 <li>

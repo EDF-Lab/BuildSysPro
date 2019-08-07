@@ -3,13 +3,14 @@ model B_Coefficient
   "Simple boundary conditions (linear combination of temperature) for unheated space"
 parameter Real b=0.1 "Weighting coefficient";
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a port_ext
-    annotation (Placement(transformation(extent={{-100,20},{-80,40}}),
-        iconTransformation(extent={{-100,20},{-80,40}})));
+    annotation (Placement(transformation(extent={{-90,30},{-70,50}}),
+        iconTransformation(extent={{-90,30},{-70,50}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tponder
-    annotation (Placement(transformation(extent={{40,-12},{60,8}})));
+    annotation (Placement(transformation(extent={{30,-10},{50,10}}),
+        iconTransformation(extent={{30,-10},{50,10}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a port_int
-    annotation (Placement(transformation(extent={{-100,-40},{-80,-20}}),
-        iconTransformation(extent={{-100,-40},{-80,-20}})));
+    annotation (Placement(transformation(extent={{-90,-50},{-70,-30}}),
+        iconTransformation(extent={{-90,-50},{-70,-30}})));
 
 equation
   Tponder.T=b*port_ext.T+(1-b)*port_int.T;
@@ -42,9 +43,9 @@ It reprensents the unheated room losses by air renewal, adjusted to the wall sur
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis 02/2011</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
@@ -63,15 +64,15 @@ Author : Gilles PLESSIS, EDF (2011)<br>
           lineColor={255,255,255},
           textString="*(1-b)"),
         Text(
-          extent={{-94,42},{-30,16}},
-          lineColor={255,255,255},
-          textString="*b"),
-        Text(
           extent={{-32,12},{4,-10}},
           lineColor={255,255,255},
-          textString="+")}),
+          textString="+"),
+        Text(
+          extent={{-94,42},{-30,16}},
+          lineColor={255,255,255},
+          textString="*b")}),
               Diagram(coordinateSystem(preserveAspectRatio=true,
-          extent={{-100,-100},{100,100}}), graphics), Icon(
+          extent={{-100,-100},{100,100}})),           Icon(
         coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
             {100,100}}), graphics={Polygon(
           points={{-80,60},{-80,-56},{48,0},{-80,60}},

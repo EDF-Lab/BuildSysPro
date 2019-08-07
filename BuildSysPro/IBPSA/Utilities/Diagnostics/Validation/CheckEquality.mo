@@ -29,7 +29,7 @@ equation
     info="<html>
 <p>
 This model validates the use of the
-<a href=\"modelica://IBPSA.Utilities.Diagnostics.CheckEquality\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Diagnostics.CheckEquality\">
 IBPSA.Utilities.Diagnostics.CheckEquality</a>.
 </p>
 </html>",

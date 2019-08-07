@@ -11,6 +11,7 @@ model SensibleCooler_T
       final use_X_wSet=false,
       final energyDynamics=energyDynamics,
       final massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
+      final T_start=T_start,
       final X_start=Medium.X_default));
 
   parameter Modelica.SIunits.HeatFlowRate QMin_flow(max=0) = -Modelica.Constants.inf
@@ -90,11 +91,11 @@ Set <code>dp_nominal = 0</code> to disable the flow friction calculation.
 </p>
 <p>
 For a similar model that is a heater, use
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Heater_T\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Heater_T\">
 IBPSA.Fluid.HeatExchangers.Heater_T</a>.
 For a model that uses a control signal <i>u &isin; [0, 1]</i> and multiplies
 this with the nominal heating or cooling power, use
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.HeaterCooler_u\">
 IBPSA.Fluid.HeatExchangers.HeaterCooler_u</a>.
 </p>
 <h4>Limitations</h4>
@@ -111,15 +112,22 @@ will not change.
 <p>
 The model has been validated against the analytical solution in
 the examples
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet</a>
 and
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic\">
 IBPSA.Fluid.HeatExchangers.Validation.PrescribedOutlet_dynamic</a>.
 </p>
 </html>",
 revisions="<html>
 <ul>
+<li>
+September 10, 2018, by Michael Wetter:<br/>
+Corrected missing propagation of initial conditions.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1016\">
+IBPSA, #1016</a>.
+</li>
 <li>
 May 3, 2017, by Michael Wetter:<br/>
 First implementation.<br/>

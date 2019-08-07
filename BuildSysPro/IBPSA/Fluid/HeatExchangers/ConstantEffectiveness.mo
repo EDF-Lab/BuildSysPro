@@ -41,7 +41,7 @@ where <i>&epsilon;</i> is a constant effectiveness and
 </p>
 <p>
 For a heat and moisture exchanger, use
-<a href=\"modelica://IBPSA.Fluid.MassExchangers.ConstantEffectiveness\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MassExchangers.ConstantEffectiveness\">
 IBPSA.Fluid.MassExchangers.ConstantEffectiveness</a>
 instead of this model.
 </p>

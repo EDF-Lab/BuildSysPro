@@ -5,9 +5,9 @@ record Air30 = BuildSysPro.Utilities.Records.GenericSolid (
     c=1005) "3cm air gap non ventilated (standard ISO 6946 and RT2012)" annotation (
     Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

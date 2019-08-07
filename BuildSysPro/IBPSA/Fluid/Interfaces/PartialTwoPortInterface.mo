@@ -58,7 +58,7 @@ Thus, it can be used as a base class for a heat <i>and</i> mass transfer compone
 <p>
 The model is used by other models in this package that add heat transfer,
 mass transfer and pressure drop equations. See for example
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
 IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>.
 </p>
 </html>", revisions="<html>
@@ -67,7 +67,7 @@ IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>.
 November 3, 2016, by Michael Wetter:<br/>
 Renamed protected parameter <code>m_flow_start</code> to avoid
 a name clash with
-<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>
 which leads to an error as the definition were different,
 and also renamed protected parameter <code>dp_start</code>.

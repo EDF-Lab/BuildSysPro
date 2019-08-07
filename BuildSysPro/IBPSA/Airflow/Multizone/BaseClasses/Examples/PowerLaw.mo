@@ -23,7 +23,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ai
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This examples demonstrates the
-<a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.powerLaw\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.powerLaw\">
 Buildings.Airflow.Multizone.BaseClasses.powerLaw</a>
 function.
 </p>

@@ -3,10 +3,18 @@ model PVTransmissionFactors
   "Calculation of direct, diffuse and albedo transmission factors of incident rays on a photovoltaic module"
 
   //Model parameters
+  parameter Boolean use_incl_in=false "Prescribed or fixed PV panel tilt"
+                                                                         annotation(Evaluate=true,HideResult=true,
+  choices(choice=true "Prescribed", choice=false "Fixed", radioButtons=true));
+  parameter Boolean use_azimut_in=false "Prescribed or fixed PV panel azimut"
+                                                                             annotation(Evaluate=true,HideResult=true,
+  choices(choice=true "Prescribed", choice=false "Fixed", radioButtons=true));
+
+
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=30
-    "PV panel tilt relative to the horizontal (0° upward, 180° downward)";
+    "PV panel tilt relative to the horizontal (0° upward, 180° downward)" annotation(Dialog(enable=not use_incl_in));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
-    "PV panel azimuth - orientation relative to the South (S=0°, E=-90°, W=90°, N=180°)";
+    "PV panel azimuth - orientation relative to the South (S=0°, E=-90°, W=90°, N=180°)" annotation(Dialog(enable=not use_azimut_in));
   parameter Integer salete=0
     "0 - Clean panels, 1 - Slightly dirt panels, 2 - Intermediately dirt panels, 3 - Very dirt panels"
     annotation (Dialog(compact=true), choices(
@@ -43,10 +51,39 @@ public
         transformation(extent={{40,-30},{60,-10}}), iconTransformation(
           extent={{40,-40},{60,-20}})));
 
+
+  // Public connector for tilt and azimut
+  Modelica.Blocks.Interfaces.RealInput incl_in if use_incl_in
+    "PV panel tilt relative to the horizontal (0° upward, 180° downward)"
+           annotation (Placement(transformation(extent={{-110,-40},{-90,-20}}),
+           iconTransformation(extent={{-10,-10},{10,10}},
+        rotation=-90,
+        origin={-30,50})));
+  Modelica.Blocks.Interfaces.RealInput azimut_in if use_azimut_in
+    "PV panel azimuth - orientation relative to the South (S=0°, E=-90°, W=90°, N=180°)"
+           annotation (Placement(transformation(extent={{-110,-64},{-90,-44}}),
+            iconTransformation(extent={{-10,-10},{10,10}},
+        rotation=-90,
+        origin={0,50})));
+
+  //Internal connectors
+protected
+   Modelica.Blocks.Interfaces.RealInput incl_in_internal "Internal connector for optional configuration";
+   Modelica.Blocks.Interfaces.RealInput azimut_in_internal "Internal connector for optional configuration";
+
 equation
+  connect(incl_in, incl_in_internal);
+  if not use_incl_in then incl_in_internal=incl;
+  end if;
+
+  connect(azimut_in, azimut_in_internal);
+  if not use_azimut_in then azimut_in_internal=azimut;
+  end if;
+
+
   cosIncidence = BuildSysPro.BoundaryConditions.Solar.Utilities.CosI(
-    azimut=azimut,
-    incl=incl,
+    azimut=azimut_in_internal,
+    incl=incl_in_internal,
     CosDir=G[6:8]);
   angle_incidence = 180*acos(cosIncidence)/Modelica.Constants.pi;
 
@@ -71,21 +108,21 @@ equation
   FT_B = if noEvent(angle_incidence < 90) then transmittance_rel*(1 - (
     Modelica.Math.exp(-cosIncidence/a_r) - Modelica.Math.exp(-1/a_r)/(1 -
     Modelica.Math.exp(-1/a_r)))) else 0;
-  FT_D = transmittance_rel*(1 - Modelica.Math.exp(-1/a_r*(4/(3*Modelica.Constants.pi)
-    *(Modelica.Math.sin(incl*Modelica.Constants.pi/180) + (Modelica.Constants.pi
-     - incl*Modelica.Constants.pi/180 - Modelica.Math.sin(incl*Modelica.Constants.pi
-    /180))/(1 + Modelica.Math.cos(incl*Modelica.Constants.pi/180))) + c2*(
-    Modelica.Math.sin(incl*Modelica.Constants.pi/180) + (Modelica.Constants.pi
-     - incl*Modelica.Constants.pi/180 - Modelica.Math.sin(incl*Modelica.Constants.pi
-    /180))/(1 + Modelica.Math.cos(incl*Modelica.Constants.pi/180)))^2)));
-  FT_A = if noEvent(incl == 0) then 0 else transmittance_rel*(1 -
+  FT_D = if noEvent(abs(incl)<180) then transmittance_rel*(1 - Modelica.Math.exp(-1/a_r*(4/(3*Modelica.Constants.pi)
+    *(Modelica.Math.sin(incl_in_internal*Modelica.Constants.pi/180) + (Modelica.Constants.pi
+     - incl_in_internal*Modelica.Constants.pi/180 - Modelica.Math.sin(incl_in_internal*Modelica.Constants.pi
+    /180))/(1 + Modelica.Math.cos(incl_in_internal*Modelica.Constants.pi/180))) + c2*(
+    Modelica.Math.sin(incl_in_internal*Modelica.Constants.pi/180) + (Modelica.Constants.pi
+     - incl_in_internal*Modelica.Constants.pi/180 - Modelica.Math.sin(incl_in_internal*Modelica.Constants.pi
+    /180))/(1 + Modelica.Math.cos(incl_in_internal*Modelica.Constants.pi/180)))^2))) else 0;
+  FT_A = if noEvent(abs(incl)>0) then transmittance_rel*(1 -
     Modelica.Math.exp(-1/a_r*(4/(3*Modelica.Constants.pi)*(
-    Modelica.Math.sin(incl*Modelica.Constants.pi/180) + (incl*Modelica.Constants.pi
-    /180 - Modelica.Math.sin(incl*Modelica.Constants.pi/180))/(1 -
-    Modelica.Math.cos(incl*Modelica.Constants.pi/180))) + c2*(
-    Modelica.Math.sin(incl*Modelica.Constants.pi/180) + (incl*Modelica.Constants.pi
-    /180 - Modelica.Math.sin(incl*Modelica.Constants.pi/180))/(1 -
-    Modelica.Math.cos(incl*Modelica.Constants.pi/180)))^2)));
+    Modelica.Math.sin(incl_in_internal*Modelica.Constants.pi/180) + (incl_in_internal*Modelica.Constants.pi
+    /180 - Modelica.Math.sin(incl_in_internal*Modelica.Constants.pi/180))/(1 -
+    Modelica.Math.cos(incl_in_internal*Modelica.Constants.pi/180))) + c2*(
+    Modelica.Math.sin(incl_in_internal*Modelica.Constants.pi/180) + (incl_in_internal*Modelica.Constants.pi
+    /180 - Modelica.Math.sin(incl_in_internal*Modelica.Constants.pi/180))/(1 -
+    Modelica.Math.cos(incl_in_internal*Modelica.Constants.pi/180)))^2))) else 0;
 
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
@@ -214,13 +251,14 @@ PV"),                             Text(
 <p><u><b>Validations</b></u></p>
 <p>Model validated by simulation - Sergeï Agapoff (stagiaire Benoît Braisaz) 08/2012</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Serge&iuml; AGAPOFF, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",
       revisions="<html>
-<p>Agapoff Serge&iuml; 04/2012 : Création du modèle</p>
+<p>Agapoff Serge&iuml; 04/2012 : Model creation</p>
+<p>Stéphanie Froidurot 07/2019 : Adding the possibility to use fixed (parameter) or prescribed (input) tilt and azimut, controlled by booleans (use_incl_in and use_azimut_in).</p>
 </html>"));
 end PVTransmissionFactors;

@@ -3,8 +3,8 @@ block ReplaceableTwoPort
   "Container to export thermofluid flow models with two ports as an FMU"
   extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort;
   replaceable IBPSA.Fluid.Interfaces.PartialTwoPort com constrainedby
-    IBPSA.Fluid.Interfaces.PartialTwoPort(redeclare final package
-      Medium = Medium, final allowFlowReversal=allowFlowReversal)
+    IBPSA.Fluid.Interfaces.PartialTwoPort(redeclare final package Medium =
+               Medium, final allowFlowReversal=allowFlowReversal)
     "Component that holds the actual model"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
@@ -62,33 +62,33 @@ equation
 Block that serves as a container to export a thermofluid flow component.
 This block contains a replaceable model <code>com</code> that needs to
 be redeclared to export any model that has as its base class
-<a href=\"modelica://IBPSA.Fluid.Interfaces.PartialTwoPort\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialTwoPort\">
 IBPSA.Fluid.Interfaces.PartialTwoPort</a>.
 This allows exporting a large variety of thermofluid flow models
 with a simple redeclare.
 </p>
 <p>
 See for example
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.PressureDrop\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.PressureDrop\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.PressureDrop</a>
 or
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HeaterCooler_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HeaterCooler_u\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HeaterCooler_u</a>
 for how to use this block.
 </p>
 <p>
 Note that this block must not be used if the instance <code>com</code>
 sets a constant pressure. In such a situation, use
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort\">
 IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort</a>
 together with
-<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.Inlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.Inlet\">
 IBPSA.Fluid.FMI.Adaptors.Inlet</a>
 and
-<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.Outlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.Outlet\">
 IBPSA.Fluid.FMI.Adaptors.Outlet</a>
 and set the pressure to be equal to the port <code>p</code> of
-<a href=\"modelica://IBPSA.Fluid.FMI.Adaptors.Outlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Adaptors.Outlet\">
 IBPSA.Fluid.FMI.Adaptors.Outlet</a>.
 </p>
 </html>", revisions="<html>

@@ -2,16 +2,6 @@ within BuildSysPro.IBPSA.Fluid.Examples;
 package Performance "Package of examples that demonstrate computation speed performance"
 extends Modelica.Icons.ExamplesPackage;
 
-
-
-
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
 <p>
 This package contains examples that illustrate the Modelica conference paper

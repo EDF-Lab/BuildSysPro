@@ -3,7 +3,8 @@ model ThirdOrderStratifier
   "Model to reduce the numerical dissipation in a tank"
   extends Modelica.Blocks.Icons.Block;
 
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
+  replaceable package Medium =
+      Modelica.Media.Interfaces.PartialMedium
     "Medium model" annotation (choicesAllMatching=true);
 
   parameter Modelica.SIunits.MassFlowRate m_flow_small(min=0)
@@ -27,8 +28,7 @@ model ThirdOrderStratifier
           extent={{-140,-100},{-100,-60}})));
 
   Modelica.Fluid.Interfaces.FluidPort_a[nSeg + 2] fluidPort(redeclare each
-      package      Medium =
-                       Medium)
+      package Medium = Medium)
     "Fluid port, needed to get pressure, temperature and species concentration"
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
 
@@ -111,9 +111,9 @@ created when connecting fluid volumes in series.
 </p>
 <p>
 The model is used in conjunction with
-<a href=\"modelica://IBPSA.Fluid.Storage.Stratified\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Storage.Stratified\">
 IBPSA.Fluid.Storage.Stratified</a>.
-It computes a heat flux that needs to be added to each volume of <a href=\"modelica://IBPSA.Fluid.Storage.Stratified\">
+It computes a heat flux that needs to be added to each volume of <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Storage.Stratified\">
 IBPSA.Fluid.Storage.Stratified</a> in order to give the results that a third-order upwind discretization scheme (QUICK) would give.
 </p>
 <p>
@@ -132,7 +132,7 @@ Both approaches are implemented in the model.
 </p>
 <p>
 The model is used by
-<a href=\"modelica://IBPSA.Fluid.Storage.StratifiedEnhanced\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Storage.StratifiedEnhanced\">
 IBPSA.Fluid.Storage.StratifiedEnhanced</a>.
 </p>
 <h4>Limitations</h4>

@@ -60,7 +60,7 @@ equation
   annotation (    Documentation(info="<html>
 <p>
 This example model demonstrates the used of the
-<a href=\"modelica://IBPSA.Fluid.Interfaces.FourPortHeatMassExchanger\">FourPortHeatMassExchanger</a> model.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.FourPortHeatMassExchanger\">FourPortHeatMassExchanger</a> model.
 </p>
 </html>", revisions="<html>
 <ul>

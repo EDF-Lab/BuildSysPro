@@ -126,7 +126,7 @@ equation
     Icon(coordinateSystem(extent={{-120,-120},{120,120}})),
      Documentation(info="<html>
 <p>
-This example tests the implementation of <a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
+This example tests the implementation of <a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating</a>, but operates it only in heating mode.
 An air volume is maintained at a temperature above <i>22&circ;</i>C by a controller
 that regulates the water flow rate in the active beam.

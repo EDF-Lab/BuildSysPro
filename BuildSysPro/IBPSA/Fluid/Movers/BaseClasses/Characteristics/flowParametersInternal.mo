@@ -19,11 +19,11 @@ must have the same size.
 </p>
 <p>
 This record is identical to
-<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParameters\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParameters\">
 IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParameters</a>,
 except that it takes the size of the array as a parameter. This is required
 in Dymola 2014. Otherwise, the array size would need to be computed in
-<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.FlowMachineInterface\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.FlowMachineInterface\">
 IBPSA.Fluid.Movers.BaseClasses.FlowMachineInterface</a>
 in the <code>initial algorithm</code> section, which is not supported.
 </p>

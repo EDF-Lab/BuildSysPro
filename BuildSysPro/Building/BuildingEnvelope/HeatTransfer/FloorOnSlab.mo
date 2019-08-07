@@ -2,6 +2,8 @@
 model FloorOnSlab
   "Slab-on-grade floor model - generic floor model - conventional, resistive or water-based heating floor"
 
+  import SI = Modelica.SIunits;
+
 // Choice of model parameters
  parameter Integer ParoiActive=1 "Type of floor"
       annotation(Dialog(group="Type of floor",compact=true),
@@ -34,13 +36,13 @@ model FloorOnSlab
         "Sand/gravel ground lambda=2.0"),                                                                     Dialog(group=
           "Ground parameters"));
 
-  parameter Modelica.SIunits.Area S=1 "Floor surface" annotation (Dialog(group="Floor parameters"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=5.88
+  parameter SI.Area S=1 "Floor surface" annotation (Dialog(group="Floor parameters"));
+  parameter SI.CoefficientOfHeatTransfer hs_int=5.88
     "Coefficient of global surface exchange on the inner face" annotation (Dialog(group="Floor parameters"));
-  parameter Modelica.SIunits.Temperature Ts=293.15 "Ground temperature" annotation (Dialog(enable=CLfixe,group="Ground parameters"));
+  parameter SI.Temperature Ts=293.15 "Ground temperature" annotation (Dialog(enable=CLfixe,group="Ground parameters"));
 
 // Parameter common to the water-based heating floor and the electric radiant floor
- parameter Integer nP=1
+  parameter Integer nP=1
     "Number of the layer whose upper boundary is the site of power injection - must be strictly lower than n"
     annotation (Dialog(enable=not
                                  (ParoiActive==1), group="Type of floor"));
@@ -48,28 +50,34 @@ model FloorOnSlab
 // Parameters specific to the water-based heating floor
   parameter Integer nD=8 "Number of water floor discretization slices"
     annotation(Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
-  parameter Modelica.SIunits.Distance Ltube=128 "Floor heating coil length"
+  parameter SI.Distance Ltube=128 "Floor heating coil length"
     annotation(Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
-  parameter Modelica.SIunits.Distance DiametreInt=0.013
+  parameter SI.Distance DiametreInt=0.013
     "Inside diameter of the tube"
     annotation(Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
-  parameter Modelica.SIunits.Distance eT=0.0015 "Tube thickness"
+  parameter SI.Distance eT=0.0015 "Tube thickness"
     annotation (Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
-  parameter Modelica.SIunits.ThermalConductivity lambdaT=0.35
+  parameter SI.ThermalConductivity lambdaT=0.35
     "Thermal conductivity of the tube"
     annotation (Dialog(enable=ParoiActive==2, tab="Water-based heating floor parameters"));
 
 // Initialisation parameters
-  parameter Modelica.SIunits.Temperature Tp=293.15
+  parameter SI.Temperature Tp=293.15
     "Initial temperature of the floor" annotation (Dialog(group="Initialisation parameters"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     annotation (Dialog(group="Initialisation parameters"));
 
 // Ground parameters
-  parameter Modelica.SIunits.Length eSol=0.2 "Ground thickness"
+  parameter SI.Length eSol=0.2 "Ground thickness"
                        annotation (Dialog(enable=SurEquivalentTerre,group="Ground parameters"));
   parameter Integer mSol=5 "Number of meshes to model the ground"
                                             annotation (Dialog(group="Ground parameters",enable=SurEquivalentTerre));
+  // Wall U-value
+  final parameter SI.SurfaceCoefficientOfHeatTransfer U_value = BuildSysPro.Building.BuildingEnvelope.Functions.U_Wall(
+    wall_record=caracParoi,
+    hs_int=hs_int,
+    hs_ext=1e6)
+    "Wall U-value";
 
 // Components
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int
@@ -83,6 +91,8 @@ model FloorOnSlab
         iconTransformation(extent={{40,40},{20,60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.FixedTemperature TemperatureSol(T=Ts) if
     CLfixe annotation (Placement(transformation(extent={{-99,-9},{-81,9}})));
+
+
 
 protected
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor thermalConductor(G=hs_int*
@@ -271,9 +281,9 @@ Documentation(info="<html>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
@@ -296,6 +306,7 @@ Author : Gilles PLESSIS, EDF (2012)<br>
 </ul>
 <p><br>Amy Lindsay 03/2014 : changement des FluxSolInput en RealInput pour les flux absorbés intérieur pour éviter les confusions (ces flux absorbés en GLO ou en CLO peuvent non seulement provenir du soleil, mais aussi d'autres sources radiatives)</p>
 <p>Benoît Charrier 12/2015 : ajout du paramètre caracTerre permettant de changer les caractéristiques physiques du sol</p>
+<p>Mathias Bouquerel 07/2019 : the calculation of the wall U-value is added (takes into account the wall composition and heat transfer coefficients).</p>
 </html>"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
             100,100}}), graphics={       Text(

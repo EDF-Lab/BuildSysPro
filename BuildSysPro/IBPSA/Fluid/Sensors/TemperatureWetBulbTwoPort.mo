@@ -21,7 +21,7 @@ protected
   Medium.Temperature TMedWetBul(start=TWetBul_start)
     "Medium wet bulb temperature to which the sensor is exposed";
   IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBulMod(redeclare package
-              Medium = Medium, TWetBul(start=TWetBul_start))
+      Medium =         Medium, TWetBul(start=TWetBul_start))
     "Block for wet bulb temperature";
   Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
   Medium.MassFraction Xi[Medium.nXi]
@@ -103,7 +103,7 @@ between its fluid ports. The sensor is ideal, i.e., it does not influence the fl
 If the parameter <code>tau</code> is non-zero, then its output
 is computed using a first order differential equation.
 Setting <code>tau=0</code> is <i>not</i> recommend. See
-<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>",
@@ -113,7 +113,7 @@ revisions="<html>
 January 18, 2016 by Filip Jorissen:<br/>
 Using parameter <code>tauInv</code>
 since this now exists in
-<a href=\"modelica://IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor\">IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor</a>.
 This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/372\">#372</a>.
 </li>
@@ -140,7 +140,7 @@ Renamed output port to have the same interfaces as the dry bulb temperature sens
 May 5, 2008, by Michael Wetter:<br/>
 First implementation.
 Implementation is based on
-<a href=\"modelica://IBPSA.Fluid.Sensors.Temperature\">IBPSA.Fluid.Sensors.Temperature</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.Temperature\">IBPSA.Fluid.Sensors.Temperature</a>.
 </li>
 </ul>
 </html>"));

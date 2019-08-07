@@ -56,7 +56,7 @@ equation
 <p>
 This component computes the solar incidence angle on a tilted surface.
 For a definition of the parameters, see the User's Guide
-<a href=\"modelica://IBPSA.BoundaryConditions.UsersGuide\">IBPSA.BoundaryConditions.UsersGuide</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.UsersGuide\">IBPSA.BoundaryConditions.UsersGuide</a>.
 </p>
 </html>", revisions="<html>
 <ul>

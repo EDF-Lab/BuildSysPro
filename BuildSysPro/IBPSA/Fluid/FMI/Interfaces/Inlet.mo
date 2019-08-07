@@ -1,6 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Interfaces;
 connector Inlet "Connector for fluid inlet"
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
+  replaceable package Medium =
+      Modelica.Media.Interfaces.PartialMedium
     "Medium model" annotation (choicesAllMatching=true);
 
   parameter Boolean use_p_in = true
@@ -17,9 +18,9 @@ connector Inlet "Connector for fluid inlet"
     "Thermodynamic pressure in the connection point";
 
   input IBPSA.Fluid.FMI.Interfaces.FluidProperties forward(redeclare final
-      package       Medium = Medium) "Inflowing properties";
+      package Medium =       Medium) "Inflowing properties";
   output IBPSA.Fluid.FMI.Interfaces.FluidProperties backward(redeclare final
-      package       Medium = Medium) if allowFlowReversal
+      package Medium =       Medium) if allowFlowReversal
     "Outflowing properties";
 
 annotation (defaultComponentName="inlet",

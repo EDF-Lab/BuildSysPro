@@ -3,8 +3,8 @@ model PropertySource_h "Model that illustrates the use of PropertySource_h"
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Air (extraPropertiesNames={"CO2"});
 
-  IBPSA.Fluid.Sources.PropertySource_h proSouXi(redeclare package
-      Medium = Medium, use_Xi_in=true)
+  IBPSA.Fluid.Sources.PropertySource_h proSouXi(redeclare package Medium =
+               Medium, use_Xi_in=true)
     "Property source that prescribes Xi"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   IBPSA.Fluid.Sources.MassFlowSource_h bouXi(
@@ -79,7 +79,7 @@ equation
     Documentation(info="<html>
 <p>
 Example model that illustrates the use of
-the <a href=\"modelica://IBPSA.Fluid.Sources.PropertySource_h\">
+the <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.PropertySource_h\">
 IBPSA.Fluid.Sources.PropertySource_h</a> model.
 </p>
 </html>", revisions="<html>

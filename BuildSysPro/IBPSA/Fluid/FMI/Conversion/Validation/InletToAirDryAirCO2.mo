@@ -7,7 +7,7 @@ model InletToAirDryAirCO2
   annotation (Documentation(info="<html>
 <p>
 This validation test is identical to
-<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAirCO2\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAirCO2\">
 IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAirCO2</a>
 except that it uses a medium model without moisture.
 Hence, it tests whether the water vapor connectors are correctly removed.

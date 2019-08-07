@@ -15,7 +15,7 @@ algorithm
     Documentation(info="<html>
 <p>
 Derivative of function
-<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid\">
 IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid</a>.
 </p>
 </html>",

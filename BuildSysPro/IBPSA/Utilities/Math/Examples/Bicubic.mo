@@ -24,7 +24,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
     Documentation(info="<html>
 <p>
 This model tests the implementation of
-<a href=\"modelica://IBPSA.Utilities.Math.Bicubic\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Bicubic\">
 IBPSA.Utilities.Math.Bicubic</a>.
 </p>
 </html>", revisions="<html>

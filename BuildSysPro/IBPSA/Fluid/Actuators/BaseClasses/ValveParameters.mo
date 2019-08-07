@@ -127,7 +127,7 @@ August 12, 2014, by Michael Wetter:<br/>
 Changed attribute <code>min</code> of <code>dpValve_nominal</code>
 to <code>0</code>.
 This is needed as for example in
-<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable\">
 IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable</a>,
 <code>dpValve_nominal=0</code>.
 </li>

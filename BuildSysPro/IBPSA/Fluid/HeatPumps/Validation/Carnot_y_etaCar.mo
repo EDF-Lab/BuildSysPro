@@ -10,7 +10,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 Documentation(info="<html>
 <p>
 This example extends from
-<a href=\"modelica://IBPSA.Fluid.HeatPumps.Examples.Carnot_y\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Examples.Carnot_y\">
 IBPSA.Fluid.HeatPumps.Examples.Carnot_y</a>
 but uses the parameter <code>etaCar</code> instead of <code>COP_nominal</code>.
 </p>

@@ -119,10 +119,10 @@ a small air flow through the doors.
 </p>
 <p>
 This model uses
-<a href=\"modelica://IBPSA.Media.Specialized.Air.PerfectGas\">
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Specialized.Air.PerfectGas\">
 Buildings.Media.Specialized.Air.PerfectGas</a>
 as the medium because
-<a href=\"modelica://IBPSA.Media.Air\">
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Air\">
 Buildings.Media.Air</a>
 does not account for expansion if air the air is heated.
 </p>

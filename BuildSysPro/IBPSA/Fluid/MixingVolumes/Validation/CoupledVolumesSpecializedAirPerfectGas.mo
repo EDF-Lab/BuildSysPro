@@ -2,7 +2,8 @@ within BuildSysPro.IBPSA.Fluid.MixingVolumes.Validation;
 model CoupledVolumesSpecializedAirPerfectGas
   "Validation model for two coupled volumes with air as a perfect gas"
   extends IBPSA.Fluid.MixingVolumes.Validation.CoupledVolumesWater(
-      redeclare package Medium = IBPSA.Media.Specialized.Air.PerfectGas);
+      redeclare package Medium =
+        IBPSA.Media.Specialized.Air.PerfectGas);
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),

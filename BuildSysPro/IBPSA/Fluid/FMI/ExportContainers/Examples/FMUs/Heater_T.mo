@@ -40,7 +40,7 @@ equation
 This example demonstrates how to export an FMU with a heater
 that takes as an input signal the leaving fluid temperature.
 The FMU has an instance of
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.PrescribedOutlet\">
 IBPSA.Fluid.HeatExchangers.PrescribedOutlet</a>.
 </p>
 </html>", revisions="<html>

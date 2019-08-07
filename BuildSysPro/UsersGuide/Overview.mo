@@ -29,9 +29,9 @@ The interfaces of BuildSysPro are based on those from the Modelica standard libr
 <a href=\"https://modelica.org/events/modelica2014/proceedings/html/submissions/ECP140961161_PlessisKaemmerlenLindsay.pdf\">G. Plessis, A. Kaemmerlen, A. Lindsay, 2014. BuildSysPro: a Modelica library for modelling buildings and energy systems. Proceedings of the Modelica conference 2014, Lund, Sweden, 2014.</a>
 </p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

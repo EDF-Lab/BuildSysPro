@@ -17,7 +17,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
 Documentation(info="<html>
 <p>
 This example extends from
-<a href=\"modelica://IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon\">
 IBPSA.Fluid.HeatPumps.Examples.Carnot_TCon</a>
 but decreases the set point for the leaving condenser temperature
 to be below its inlet temperature, in which case the model provides no heating.

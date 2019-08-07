@@ -194,7 +194,7 @@ This model validates the scaling of the heat tranfer and pressure drop for
 </p>
 <p>
 It uses two instances of
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating</a>,
 one with
 <code>nBeams = 1</code> and one with

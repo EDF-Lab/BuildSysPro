@@ -50,16 +50,16 @@ model FlowJunction
     "Ramp pressure signal"
     annotation (Placement(transformation(extent={{-92,-62},{-72,-42}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package
-      Medium = Medium, m_flow_nominal=1) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
+               Medium, m_flow_nominal=1) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package
-      Medium = Medium, m_flow_nominal=2) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package Medium =
+               Medium, m_flow_nominal=2) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
 
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package
-      Medium = Medium, m_flow_nominal=3) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package Medium =
+               Medium, m_flow_nominal=3) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-70},{0,-50}})));
 
 equation

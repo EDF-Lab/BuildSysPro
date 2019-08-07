@@ -31,7 +31,7 @@ equation
         experiment(Tolerance=1e-6, StopTime=15),
         Documentation(info="<html>
         <p>
-        Test model for <a href=\"modelica://IBPSA.Fluid.HeatExchangers.BaseClasses.HACoilInside\">
+        Test model for <a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.BaseClasses.HACoilInside\">
         IBPSA.Fluid.HeatExchanger.BaseClassess.HACoilInside</a>.
         </p>
         </html>", revisions="<html>

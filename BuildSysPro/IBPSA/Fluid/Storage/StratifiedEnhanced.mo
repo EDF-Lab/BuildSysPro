@@ -84,7 +84,7 @@ This is a model of a stratified storage tank for thermal energy storage.
 </p>
 <p>
 See the
-<a href=\"modelica://IBPSA.Fluid.Storage.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Storage.UsersGuide\">
 IBPSA.Fluid.Storage.UsersGuide</a>
 for more information.
 </p>
@@ -124,7 +124,7 @@ this model can lead to a large overshoot in tank temperatures, leading to a viol
 second law.
 In this revision, the model that computes the volume outlet temperatures has been changed to a third order upwind scheme,
 which is implemented in
-<a href=\"modelica://IBPSA.Fluid.Storage.BaseClasses.ThirdOrderStratifier\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Storage.BaseClasses.ThirdOrderStratifier\">
 IBPSA.Fluid.Storage.BaseClasses.ThirdOrderStratifier</a>.
 </li>
 <li>

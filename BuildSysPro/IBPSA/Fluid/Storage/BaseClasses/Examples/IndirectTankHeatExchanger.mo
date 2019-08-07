@@ -23,8 +23,8 @@ model IndirectTankHeatExchanger
         rotation=90,
         origin={-19,8})));
 
-  IBPSA.Fluid.Sources.Boundary_pT bou1(nPorts=1, redeclare package
-      Medium = Medium) annotation (Placement(transformation(extent={{-72,
+  IBPSA.Fluid.Sources.Boundary_pT bou1(nPorts=1, redeclare package Medium =
+               Medium) annotation (Placement(transformation(extent={{-72,
             -42},{-52,-22}})));
   IBPSA.Fluid.Sources.MassFlowSource_T bou(
     m_flow=0.1,
@@ -62,7 +62,7 @@ equation
 Documentation(info="<html>
 <p>
 This model provides an example of how the
-<a href=\"modelica://IBPSA.Fluid.Storage.BaseClasses.IndirectTankHeatExchanger\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Storage.BaseClasses.IndirectTankHeatExchanger\">
 IBPSA.Fluid.Storage.BaseClasses.IndirectTankHeatExchanger</a>
 model is used. In the model water flows from a flow source through
 the heat exchanger to a low pressure environment. The stagnant fluid on the outside

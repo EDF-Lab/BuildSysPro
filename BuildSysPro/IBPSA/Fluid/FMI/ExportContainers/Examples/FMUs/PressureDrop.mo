@@ -16,7 +16,7 @@ block PressureDrop
 <p>
 This example demonstrates how to export an FMU with a fluid flow component.
 The FMU has an instance of
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
 IBPSA.Fluid.FixedResistances.PressureDrop</a>.
 </p>
 </html>", revisions="<html>

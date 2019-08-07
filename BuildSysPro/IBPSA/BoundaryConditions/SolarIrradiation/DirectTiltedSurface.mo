@@ -55,7 +55,7 @@ equation
 <p>
 This component computes the direct solar irradiation on a tilted surface.
 For a definition of the parameters, see the
-<a href=\"modelica://IBPSA.BoundaryConditions.UsersGuide\">User's Guide</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.UsersGuide\">User's Guide</a>.
 </p>
 </html>", revisions="<html>
 <ul>

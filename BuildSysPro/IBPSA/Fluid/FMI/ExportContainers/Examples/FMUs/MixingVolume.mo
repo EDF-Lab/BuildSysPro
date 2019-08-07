@@ -8,12 +8,12 @@ block MixingVolume "Declaration of an FMU that exports a control volume"
     "Nominal mass flow rate";
 
 protected
-  IBPSA.Fluid.FMI.Adaptors.Inlet bouIn(redeclare final package
-      Medium = Medium, final allowFlowReversal=allowFlowReversal)
+  IBPSA.Fluid.FMI.Adaptors.Inlet bouIn(redeclare final package Medium =
+               Medium, final allowFlowReversal=allowFlowReversal)
     "Boundary model for inlet" annotation (Placement(transformation(
           extent={{-80,-10},{-60,10}})));
-  IBPSA.Fluid.FMI.Adaptors.Outlet bouOut(redeclare final package
-      Medium = Medium, final allowFlowReversal=allowFlowReversal)
+  IBPSA.Fluid.FMI.Adaptors.Outlet bouOut(redeclare final package Medium =
+               Medium, final allowFlowReversal=allowFlowReversal)
     "Boundary component for outlet" annotation (Placement(
         transformation(extent={{60,-10},{80,10}})));
 
@@ -55,14 +55,14 @@ Documentation(info="<html>
 This example demonstrates how to export an FMU with a
 control volume.
 The FMU has an instance of
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolume\">
 IBPSA.Fluid.MixingVolumes.MixingVolume</a>.
 </p>
 <p>
 The mass dynamics has been set to
 <code>massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState</code>.
 See the
-<a href=\"modelica://IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
 for the rationale.
 </p>
 </html>", revisions="<html>

@@ -12,14 +12,14 @@ partial model PartialTwoPortVector "Partial component with two ports, one of whi
   Modelica.Fluid.Interfaces.FluidPort_a port_a(
     redeclare final package Medium = Medium,
     m_flow(min=if allowFlowReversal then -Modelica.Constants.inf else 0),
-    h_outflow(start=Medium.h_default))
+    h_outflow(start=Medium.h_default, nominal=Medium.h_default))
     "Fluid connector a (positive design flow direction is from port_a to ports_b)"
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
 
   Modelica.Fluid.Interfaces.FluidPorts_b ports_b[nPorts](
     redeclare each package Medium = Medium,
     each m_flow(max=if allowFlowReversal then +Modelica.Constants.inf else 0),
-    each h_outflow(start=Medium.h_default))
+    each h_outflow(start=Medium.h_default, nominal=Medium.h_default))
     "Fluid connectors b (positive design flow direction is from port_a to ports_b)"
     annotation (Placement(transformation(extent={{90,-40},{110,40}})));
   annotation (
@@ -46,6 +46,11 @@ users have not used this global definition to assign parameters.
 </html>", revisions="<html>
 <ul>
 <li>
+July 8, 2018, by Filip Jorissen:<br/>
+Added nominal value of <code>h_outflow</code> in <code>FluidPorts</code>.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/977\">#977</a>.
+</li>
+<li>
 November 19, 2015, by Michael Wetter:<br/>
 Removed parameters
 <code>port_a_exposesState</code> and
@@ -60,7 +65,7 @@ November 13, 2015, by Michael Wetter:<br/>
 Assinged <code>start</code> attribute for leaving
 enthalpy at <code>port_a</code> and <code>port_b</code>.
 This was done to make the model similar to
-<a href=\"modelica://IBPSA.Fluid.Interfaces.PartialFourPort\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialFourPort\">
 IBPSA.Fluid.Interfaces.PartialFourPort</a>.
 </li>
 <li>

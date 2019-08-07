@@ -21,7 +21,7 @@ Once continuously differentiable approximation to the <code>max(.,.)</code> func
 </p>
 <p>
 Note that the maximum need not be respected, such as illustrated in
-<a href=\"modelica://IBPSA.Utilities.Math.Examples.SmoothMin\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Examples.SmoothMin\">
 IBPSA.Utilities.Math.Examples.SmoothMin</a>.
 </p>
 </html>",

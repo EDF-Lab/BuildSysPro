@@ -93,7 +93,7 @@ and trace substances (if <code>Medium.nC &gt; 0</code>).
 </p>
 <p>
 For a system of components with the connectors of the
-<a href=\"modelica://IBPSA.Fluid.FMI\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI\">
 IBPSA.Fluid.FMI</a>
 package, this component is required to set the pressure
 and the mass flow rate of the system.

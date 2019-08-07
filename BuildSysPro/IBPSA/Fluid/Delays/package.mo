@@ -9,7 +9,7 @@ piping networks.
 </p>
 <p>
 The model
-<a href=\"modelica://IBPSA.Fluid.Delays.DelayFirstOrder\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Delays.DelayFirstOrder\">
 IBPSA.Fluid.Delays.DelayFirstOrder</a>
 approximates transport delays using a first order differential equation.
 </p>

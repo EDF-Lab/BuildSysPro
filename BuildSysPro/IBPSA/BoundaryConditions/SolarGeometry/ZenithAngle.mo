@@ -33,7 +33,7 @@ equation
 This component computes the zenith angle,
 which is the angle between the earth surface normal and the sun beam.
 For a definition of the parameters, see the User's Guide
-<a href=\"modelica://IBPSA.BoundaryConditions.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.UsersGuide\">
 IBPSA.BoundaryConditions.UsersGuide</a>.
 </p>
 </html>", revisions="<html>

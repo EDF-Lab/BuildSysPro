@@ -2,6 +2,7 @@ PIDFixed
 PIDDualMode
 PIDFixedDualMode
 PIDPrescribedSingleMode
+PIDSingleOrDualMode
 Deadband
 PBand
 PBandHysteresisSingleMode

@@ -379,7 +379,7 @@ This causes an error in the mass balance of about <i>0.5%</i>, but generally lea
 simpler equations because the pressure drop equations are then decoupled from the
 mass exchange in this component.
 The model
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.Validation.MixingVolumeAdiabaticCooling\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.Validation.MixingVolumeAdiabaticCooling\">
 IBPSA.Fluid.MixingVolumes.Validation.MixingVolumeAdiabaticCooling</a>
 shows that the relative error on the temperature difference between these
 two options of <code>simplify_mWat_flow</code> is less than
@@ -410,13 +410,13 @@ Input connectors of the model are
 The model can be used as a dynamic model or as a steady-state model.
 However, for a steady-state model with exactly two fluid ports connected,
 the model
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 provides a more efficient implementation.
 </p>
 <p>
 For a model that instantiates this model, see
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolume\">
 IBPSA.Fluid.MixingVolumes.MixingVolume</a>.
 </p>
 </html>", revisions="<html>

@@ -191,7 +191,7 @@ in which case a <code>kDam = m_flow_nominal/sqrt(dp_nominal)</code> characterist
 </p>
 <p>
 The model is similar to
-<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.TwoWayPressureIndependent\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.TwoWayPressureIndependent\">
 IBPSA.Fluid.Actuators.Valves.TwoWayPressureIndependent</a>, except for adaptations for damper parameters.
 Please see that documentation for more information.
 </p>

@@ -1,95 +1,121 @@
 ﻿within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
 model SimpleWall "Wall simple model"
 
-// Optional parameters
-parameter Boolean RadExterne=false
-    "Inclusion of flows which are absorbed on the outer face"
-    annotation(Dialog(group="Options",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
-parameter Boolean RadInterne=false
-    "Inclusion of flows which are absorbed on the inner face"
-    annotation(Dialog(group="Options",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
-parameter Boolean GLOext=false
-    "Inclusion of LW radiation (infrared) between the wall and the environment and the sky"
-    annotation(Dialog(group="Options",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
+  import SI = Modelica.SIunits;
 
-// General properties
-  parameter Modelica.SIunits.Area S=1 "Wall surface without windows"
-    annotation(Dialog(group="General properties of the wall"));
+  // Optional parameters
+  parameter Boolean RadInterne=false
+    "Inclusion of irradiation which is absorbed on the inner face"
+    annotation (Dialog(group="Options"),choices(choice=true "yes", choice=false "no", radioButtons=true));
+  parameter Boolean RadExterne=false
+    "Inclusion of irradiation which is absorbed on the outer face"
+    annotation (Dialog(group="Options"),choices(choice=true "yes", choice=false "no", radioButtons=true));
+  parameter Boolean GLOext=false
+    "Inclusion of LW radiation (infrared) between the wall, the environment and the sky"
+    annotation (Dialog(group="Options"),choices(choice=true "yes", choice=false "no", radioButtons=true));
 
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=25
+  // General properties
+  parameter SI.Area S=1 "Wall surface without windows"
+    annotation (Dialog(group="General properties of the wall"));
+  replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracParoi
+    "Wall composition"
+    annotation (choicesAllMatching=true, Dialog(group="General properties of the wall"));
+  parameter SI.CoefficientOfHeatTransfer hs_ext=25
     "Global or convective surface exchange coefficient on the outer face depending on the selected mode (GLOext)"
-     annotation(Dialog(group="General properties of the wall"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=7.69
+    annotation (Dialog(group="General properties of the wall"));
+  parameter SI.CoefficientOfHeatTransfer hs_int=7.69
     "Surface exchange coefficient on the inner face"
-    annotation(Dialog(group="General properties of the wall"));
+    annotation (Dialog(group="General properties of the wall"));
   parameter Real skyViewFactor=0
     "Average sky view factor between walls and the sky (example: skyViewFactor(flat roof)=1, skyViewfactor(vertical wall in clear environment)=0.5)"
-    annotation(Dialog(enable=GLOext,group="General properties of the wall"));
-// Optical properties
+    annotation (Dialog(enable=GLOext,group="General properties of the wall"));
   parameter Real alpha_ext=0.6
-    "Absorption coefficient of the outer wall in the visible"
-    annotation(Dialog(enable=RadExterne, group="General properties of the wall"));
+    "Absorption coefficient of the outer wall in the visible (around 0.3 for clear walls and 0.9 for dark shades)"
+    annotation (Dialog(enable=RadExterne, group="General properties of the wall"));
   parameter Real eps=0.9 "Emissivity of the outer surface of the wall in LWR (concrete 0.9)"
-    annotation(Dialog(enable=GLOext,  group="General properties of the wall"));
+    annotation (Dialog(enable=GLOext, group="General properties of the wall"));
 
-// Wall composition
-  replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracParoi
-    "Wall characteristics" annotation (choicesAllMatching=true,
-      Dialog(group="Type of wall"));
-
-// Initialisation
-  parameter Modelica.SIunits.Temperature Tp=293.15
+  // Initialization
+  parameter SI.Temperature Tp=293.15
     "Initial temperature of the wall"
-    annotation(Dialog(group="Initialisation"));
-
+    annotation (Dialog(group="Initialization"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
-    annotation (Dialog(group="Initialisation"));
-// Public components
+    annotation (Dialog(group="Initialization"));
+
+  // Wall U-value
+  final parameter SI.SurfaceCoefficientOfHeatTransfer U_value = BuildSysPro.Building.BuildingEnvelope.Functions.U_Wall(
+    wall_record=caracParoi,
+    hs_int=hs_int,
+    hs_ext=hs_ext)
+    "Wall U-value";
+
+  // Heat ports
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
-    "Outdoor temperature" annotation (Placement(transformation(extent={{-100,
-            -40},{-80,-20}}), iconTransformation(extent={{-100,-40},{-80,-20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int
-    "Indoor temperature" annotation (Placement(transformation(extent={{80,
-            -40},{100,-20}}), iconTransformation(extent={{80,-40},{100,-20}})));
+    "Outdoor air temperature"
+    annotation (Placement(transformation(extent={{-100,-40},{-80,-20}}),
+      iconTransformation(extent={{-100,-40},{-80,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Ts_ext
-    "Outdoor temperature on the surface of the wall" annotation (Placement(
-        transformation(extent={{-46,-40},{-26,-20}}), iconTransformation(extent=
-           {{-40,-40},{-20,-20}})));
+    "Outdoor temperature on the wall surface"
+    annotation (Placement(transformation(extent={{-40,-40},{-20,-20}}),
+      iconTransformation(extent={{-40,-40},{-20,-20}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_int
-    "Indoor temperature on the surface of the wall" annotation (Placement(
-        transformation(extent={{30,-40},{50,-20}}), iconTransformation(extent={
-            {20,-40},{40,-20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if  GLOext
+    "Indoor temperature on the wall surface"
+    annotation (Placement(transformation(extent={{30,-40},{50,-20}}),
+      iconTransformation(extent={{20,-40},{40,-20}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int
+    "Indoor air temperature"
+    annotation (Placement(transformation(extent={{80,-40},{100,-20}}),
+      iconTransformation(extent={{80,-40},{100,-20}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if GLOext
+    "Sky temperature"
     annotation (Placement(transformation(extent={{-100,-100},{-80,-80}}),
-        iconTransformation(extent={{-100,-100},{-80,-80}})));
+      iconTransformation(extent={{-100,-100},{-80,-80}})));
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt if
-    RadExterne "SWR incident surface flux on the outer face" annotation (
-      Placement(transformation(extent={{-118,12},{-80,50}}), iconTransformation(
-          extent={{-40,40},{-20,60}})));
-Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
-    RadInterne
+    RadExterne
+    "SWR incident surface flux on the outer face"
+    annotation (Placement(transformation(extent={{-120,10},{-80,50}}),
+      iconTransformation(extent={{-40,40},{-20,60}})));
+  Modelica.Blocks.Interfaces.RealInput FluxAbsInt if RadInterne
     "LWR and/or SWR flows which are absorbed by this wall on its inner face"
-    annotation (Placement(transformation(extent={{108,22},{70,60}}),
-        iconTransformation(extent={{40,40},{20,60}})));
-// Internal components
+    annotation (Placement(transformation(extent={{140,50},{100,90}}),
+      iconTransformation(extent={{40,40},{20,60}})));
+
+  // Internal components
+
+  // Solar irradiation
 protected
+  Modelica.Blocks.Math.Gain AbsMurExt(k=alpha_ext*S) if RadExterne
+    annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={-60,30})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt if
     RadExterne annotation (Placement(transformation(
-        extent={{8,8},{-8,-8}},
+        extent={{10,10},{-10,-10}},
         rotation=90,
-        origin={-36,4})));
+        origin={-30,10})));
+
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsInt if
+    RadInterne annotation (Placement(transformation(
+        extent={{10,10},{-10,-10}},
+        rotation=90,
+        origin={40,50})));
+
+  // Surface heat transfer on both wall faces
   BuildSysPro.BaseClasses.HeatTransfer.Components.LinearExtLWR EchangesGLOext(
     S=S,
     eps=eps,
     skyViewFactor=skyViewFactor) if GLOext
-    annotation (Placement(transformation(extent={{-68,-70},{-48,-50}})));
+    annotation (Placement(transformation(extent={{-70,-70},{-50,-50}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor Echange_a(
+    G=hs_ext*S)
+    annotation (Placement(transformation(extent={{-70,-40},{-50,-20}}, rotation=0)));
+  BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor Echange_b(
+    G=hs_int*S)
+    annotation (Placement(transformation(extent={{56,-40},{76,-20}}, rotation=0)));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor Echange_a(G=hs_ext*
-        S) annotation (Placement(transformation(extent={{-72,-40},{-52,-20}},
-          rotation=0)));
-  BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor Echange_b(G=hs_int*
-        S) annotation (Placement(transformation(extent={{56,-40},{76,-20}},
-          rotation=0)));
+  // Conduction heat transfer through the wall
   BuildSysPro.BaseClasses.HeatTransfer.Components.HomogeneousNLayersWall ParoiNCouchesHomogenes(
     S=S,
     Tinit=Tp,
@@ -98,44 +124,54 @@ protected
     m=caracParoi.m,
     e=caracParoi.e,
     mat=caracParoi.mat)
-    annotation (Placement(transformation(extent={{-10,0},{16,22}})));
-Modelica.Blocks.Math.Gain AbsMurExt(k=alpha_ext*S) if  RadExterne
-    annotation (Placement(
-        transformation(
-        extent={{-11,-11},{11,11}},
-        rotation=0,
-        origin={-57,31})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsInt if
-    RadInterne annotation (Placement(transformation(
-        extent={{8,8},{-8,-8}},
-        rotation=90,
-        origin={60,30})));
+    annotation (Placement(transformation(extent={{-10,0},{10,20}})));
 
 equation
   //slices connection in the case of a conventional wall
   connect(ParoiNCouchesHomogenes.port_a, Ts_ext);
   connect(ParoiNCouchesHomogenes.port_b, Ts_int);
 
-  connect(T_sky, EchangesGLOext.T_sky) annotation (Line(
-      points={{-90,-90},{-74,-90},{-74,-64},{-67,-64}},
+  // Solar irradiation
+  connect(FluxIncExt, AbsMurExt.u) annotation (Line(
+      points={{-100,30},{-72,30}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(AbsMurExt.y, prescribedCLOAbsExt.Q_flow) annotation (Line(
+      points={{-49,30},{-49,30.5},{-30,30.5},{-30,20}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(prescribedCLOAbsExt.port, Ts_ext) annotation (Line(
+      points={{-30,0},{-30,-30}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(T_ext, EchangesGLOext.T_ext)
-                                   annotation (Line(
-      points={{-90,-30},{-75,-30},{-75,-56},{-67,-56}},
+  connect(prescribedCLOAbsInt.Q_flow, FluxAbsInt) annotation (Line(
+      points={{40,60},{40,70},{120,70}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(prescribedCLOAbsInt.port, Ts_int) annotation (Line(
+      points={{40,40},{40,-30}},
       color={191,0,0},
       smooth=Smooth.None));
 
+  // Surface heat transfer on both wall faces
+  connect(T_sky, EchangesGLOext.T_sky) annotation (Line(
+      points={{-90,-90},{-80,-90},{-80,-64},{-69,-64}},
+      color={191,0,0},
+      smooth=Smooth.None));
+  connect(T_ext, EchangesGLOext.T_ext) annotation (Line(
+      points={{-90,-30},{-80,-30},{-80,-56},{-69,-56}},
+      color={191,0,0},
+      smooth=Smooth.None));
   connect(EchangesGLOext.Ts_ext, Ts_ext) annotation (Line(
-      points={{-49,-60},{-36,-60},{-36,-30}},
+      points={{-51,-60},{-30,-60},{-30,-30}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(Echange_a.port_b, Ts_ext) annotation (Line(
-      points={{-53,-30},{-36,-30}},
+      points={{-51,-30},{-30,-30}},
       color={255,0,0},
       smooth=Smooth.None));
   connect(T_ext, Echange_a.port_a) annotation (Line(
-      points={{-90,-30},{-71,-30}},
+      points={{-90,-30},{-69,-30}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(Echange_b.port_b, T_int) annotation (Line(
@@ -146,27 +182,7 @@ equation
       points={{57,-30},{40,-30}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(prescribedCLOAbsExt.port, Ts_ext)  annotation (Line(
-      points={{-36,-4},{-36,-17.4},{-36,-17.4},{-36,-30}},
-      color={191,0,0},
-      smooth=Smooth.None));
-  connect(AbsMurExt.y, prescribedCLOAbsExt.Q_flow)  annotation (Line(
-      points={{-44.9,31},{-44.9,30.5},{-36,30.5},{-36,12}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(FluxIncExt, AbsMurExt.u) annotation (Line(
-      points={{-99,31},{-70.2,31}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(prescribedCLOAbsInt.port, Ts_int) annotation (Line(
-      points={{60,22},{40,22},{40,-30}},
-      color={191,0,0},
-      smooth=Smooth.None));
-  connect(prescribedCLOAbsInt.Q_flow, FluxAbsInt) annotation (Line(
-      points={{60,38},{73.44,38},{73.44,41},{89,41}},
-      color={0,0,127},
-      smooth=Smooth.None));
-    annotation(Placement(transformation(
+    annotation (Placement(transformation(
         extent={{12,-12},{-12,12}},
         rotation=0,
         origin={50,52})),
@@ -218,14 +234,15 @@ equation
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis 03/2012</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",
       revisions="<html>
 <p>Amy Lindsay 03/2014 : changement des FluxSolInput en RealInput pour les flux absorbés intérieur pour éviter les confusions (ces flux absorbés en GLO ou en CLO peuvent non seulement provenir du soleil, mais aussi d'autres sources radiatives)</p>
+<p>Mathias Bouquerel 07/2019 : the calculation of the wall U-value is added (takes into account the wall composition and heat transfer coefficients).</p>
 </html>"),      Placement(transformation(extent={{46,-50},{66,-30}})),
 Documentation(info="<HTML>
 <p>

@@ -83,7 +83,7 @@ from <code>rooB</code> to <code>rooA</code>.
 <li>
 May 30, 2018, by Michael Wetter:<br/>
 Added example for instace of
-<a href=\"modelica://IBPSA.Airflow.Multizone.ZonalFlow_m_flow\">IBPSA.Airflow.Multizone.ZonalFlow_m_flow</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.ZonalFlow_m_flow\">IBPSA.Airflow.Multizone.ZonalFlow_m_flow</a>.
 </li>
 <li>
 December 22, 2014 by Michael Wetter:<br/>

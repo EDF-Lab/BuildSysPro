@@ -70,7 +70,7 @@ protected
 This component defines the interface for models that
 transport two fluid streams between four ports.
 It is similar to
-<a href=\"modelica://IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialTwoPortInterface\">
 IBPSA.Fluid.Interfaces.PartialTwoPortInterface</a>,
 but it has four ports instead of two.
 </p>

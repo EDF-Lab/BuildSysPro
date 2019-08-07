@@ -2,8 +2,7 @@ within BuildSysPro.IBPSA.Media.Specialized.Air.Examples;
 model PerfectGasTemperatureEnthalpyInversion
   "Model to check computation of h(T) and its inverse"
   extends Modelica.Icons.Example;
-  extends
-    IBPSA.Media.Examples.BaseClasses.TestTemperatureEnthalpyInversion(
+  extends IBPSA.Media.Examples.BaseClasses.TestTemperatureEnthalpyInversion(
      redeclare package Medium =
         IBPSA.Media.Specialized.Air.PerfectGas);
   annotation (

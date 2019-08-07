@@ -2,12 +2,6 @@ within BuildSysPro.IBPSA.Fluid.Examples;
 package FlowSystem
   extends Modelica.Icons.ExamplesPackage;
 
-
-
-
-
-
-
 annotation (Documentation(info="<html>
 <p>
 This package contains fluid flow models that demonstrate

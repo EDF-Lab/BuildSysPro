@@ -104,13 +104,13 @@ equation
 This example demonstrates how to configure a model with a heater
 and a fan that causes a pressure rise in the air stream.
 The model is identical with
-<a href=\"modelica://IBPSA.Fluid.FMI.Validation.HeaterFan\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Validation.HeaterFan\">
 IBPSA.Fluid.FMI.Validation.HeaterFan</a>
 except that reverse flow is not allowed due to the parameter
 <code>allowFlowReversal=false</code>.
 Consequently, the connectors for the fluid properties for the reverse flow
 are removed, and the blocks on the right hand side of the model
-<a href=\"modelica://IBPSA.Fluid.FMI.Validation.HeaterFan\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Validation.HeaterFan\">
 IBPSA.Fluid.FMI.Validation.HeaterFan</a>
 have been deleted.
 </p>

@@ -60,7 +60,7 @@ In the northern hemisphere at solar noon, the value of the wall solar azimuth an
 July 5, 2012, by Michael Wetter:<br/>
 Decreased <code>deltaX</code> from <i>1e-3</i> to <i>1e-4</i>, as
 the looser tolerance gives sharp changes in
-<a href=\"modelica://IBPSA.HeatTransfer.Windows.BaseClasses.Examples.Overhang\">
+<a href=\"modelica://BuildSysPro.IBPSA.HeatTransfer.Windows.BaseClasses.Examples.Overhang\">
 IBPSA.HeatTransfer.Windows.BaseClasses.Examples.Overhang</a>.
 </li>
 <li>

@@ -7,33 +7,28 @@ model TwoFloors "Test case for air flow between two floors"
     "Optional forcing of error control";
 
   Components.ZoneHallway zoneHallway(
-      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package
-              Medium =
-        Medium) "Single hallway element"
+      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package Medium
+      = Medium) "Single hallway element"
     annotation (Placement(transformation(extent={{42,-94},{62,-74}})));
   Components.SimpleZone simpleZone1_4(
       forceErrorControlOnFlow=forceErrorControlOnFlow,
       TRoom = 298.15,
     redeclare package Medium = Medium) "Single simple zone element"
     annotation (Placement(transformation(extent={{12,-94},{32,-74}})));
-  Components.OutsideEnvironment outsideEnvironment(redeclare package
-      Medium =
+  Components.OutsideEnvironment outsideEnvironment(redeclare package Medium =
         Medium) "Single outside environment element"
     annotation (Placement(transformation(extent={{72,-94},{92,-74}})));
   Components.ZoneHallway zoneHallway1(
-      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package
-              Medium =
-        Medium) "Single hallway element"
+      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package Medium
+      = Medium) "Single hallway element"
     annotation (Placement(transformation(extent={{42,-54},{62,-34}})));
   Components.ZoneHallway zoneHallway2(
-      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package
-              Medium =
-        Medium) "Single hallway element"
+      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package Medium
+      = Medium) "Single hallway element"
     annotation (Placement(transformation(extent={{42,-14},{62,6}})));
   Components.ZoneHallway zoneHallway3(
-      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package
-              Medium =
-        Medium) "Single hallway element"
+      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package Medium
+      = Medium) "Single hallway element"
     annotation (Placement(transformation(extent={{42,26},{62,46}})));
   Components.SimpleZone simpleZone1_3(
     forceErrorControlOnFlow=forceErrorControlOnFlow,
@@ -50,46 +45,38 @@ model TwoFloors "Test case for air flow between two floors"
     TRoom = 298.15,
     redeclare package Medium = Medium) "Single simple zone element"
     annotation (Placement(transformation(extent={{12,26},{32,46}})));
-  Components.OutsideEnvironment outsideEnvironment1(redeclare package
-      Medium =
+  Components.OutsideEnvironment outsideEnvironment1(redeclare package Medium =
         Medium) "Single outside environment element"
     annotation (Placement(transformation(extent={{72,-54},{92,-34}})));
-  Components.OutsideEnvironment outsideEnvironment2(redeclare package
-      Medium =
+  Components.OutsideEnvironment outsideEnvironment2(redeclare package Medium =
         Medium) "Single outside environment element"
     annotation (Placement(transformation(extent={{72,-14},{92,6}})));
-  Components.OutsideEnvironment outsideEnvironment3(redeclare package
-      Medium =
+  Components.OutsideEnvironment outsideEnvironment3(redeclare package Medium =
         Medium) "Single outside environment element"
     annotation (Placement(transformation(extent={{72,26},{92,46}})));
   Components.ZoneHallway zoneHallway4(
-      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package
-              Medium =
-        Medium) "Single hallway element"
+      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package Medium
+      = Medium) "Single hallway element"
     annotation (Placement(transformation(extent={{-62,-94},{-42,-74}})));
   Components.SimpleZone simpleZone2_4(
       forceErrorControlOnFlow=forceErrorControlOnFlow,
       TRoom = 298.15,
     redeclare package Medium = Medium) "Single simple zone element"
     annotation (Placement(transformation(extent={{-92,-94},{-72,-74}})));
-  Components.OutsideEnvironment outsideEnvironment4(redeclare package
-      Medium =
+  Components.OutsideEnvironment outsideEnvironment4(redeclare package Medium =
         Medium) "Single outside environment element"
     annotation (Placement(transformation(extent={{-32,-94},{-12,-74}})));
   Components.ZoneHallway zoneHallway5(
-      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package
-              Medium =
-        Medium) "Single hallway element"
+      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package Medium
+      = Medium) "Single hallway element"
     annotation (Placement(transformation(extent={{-62,-54},{-42,-34}})));
   Components.ZoneHallway zoneHallway6(
-      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package
-              Medium =
-        Medium) "Single hallway element"
+      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package Medium
+      = Medium) "Single hallway element"
     annotation (Placement(transformation(extent={{-62,-14},{-42,6}})));
   Components.ZoneHallway zoneHallway7(
-      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package
-              Medium =
-        Medium) "Single hallway element"
+      forceErrorControlOnFlow=forceErrorControlOnFlow, redeclare package Medium
+      = Medium) "Single hallway element"
     annotation (Placement(transformation(extent={{-62,26},{-42,46}})));
   Components.SimpleZone simpleZone2_3(
     forceErrorControlOnFlow=forceErrorControlOnFlow,
@@ -106,16 +93,13 @@ model TwoFloors "Test case for air flow between two floors"
     TRoom = 298.15,
     redeclare package Medium = Medium) "Single simple zone element"
     annotation (Placement(transformation(extent={{-92,26},{-72,46}})));
-  Components.OutsideEnvironment outsideEnvironment5(redeclare package
-      Medium =
+  Components.OutsideEnvironment outsideEnvironment5(redeclare package Medium =
         Medium) "Single outside environment element"
     annotation (Placement(transformation(extent={{-32,-54},{-12,-34}})));
-  Components.OutsideEnvironment outsideEnvironment6(redeclare package
-      Medium =
+  Components.OutsideEnvironment outsideEnvironment6(redeclare package Medium =
         Medium) "Single outside environment element"
     annotation (Placement(transformation(extent={{-32,-14},{-12,6}})));
-  Components.OutsideEnvironment outsideEnvironment7(redeclare package
-      Medium =
+  Components.OutsideEnvironment outsideEnvironment7(redeclare package Medium =
         Medium) "Single outside environment element"
     annotation (Placement(transformation(extent={{-32,26},{-12,46}})));
   Components.Staircase staircase1(redeclare package Medium = Medium)
@@ -410,12 +394,12 @@ equation
 <p>A reference model to compare to the floor model for a scalable air flow benchmark. </p>
 <h4>Validation</h4>
 <p>This model should give the same results as the
-<a href=\"modelica://IBPSA.Experimental.Benchmarks.AirFlow.Examples.MultipleFloorsVectors\">
+<a href=\"modelica://BuildSysPro.IBPSA.Experimental.Benchmarks.AirFlow.Examples.MultipleFloorsVectors\">
 IBPSA.Experimental.Benchmarks.AirFlow.Examples.MultipleFloorsVectors</a> model with
 <code>nZones</code> = <i>4</i> and <code>nFloors</code> = <i>2</i>. </p>
 <h4>References</h4>
 <p>Inspired by
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> </p>
 </html>", revisions="<html>
 <ul>

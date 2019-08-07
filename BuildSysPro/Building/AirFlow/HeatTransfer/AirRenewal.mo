@@ -151,9 +151,9 @@ connect(Qv_in, Qv_in_internal);
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Gilles Plessis 02/2012</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
+Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+BuildSysPro version 3.3.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

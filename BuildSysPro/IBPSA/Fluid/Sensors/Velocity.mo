@@ -95,7 +95,7 @@ If the parameter <code>tau</code> is non-zero, then the measured
 density that is used to convert the mass flow rate into
 volumetric flow rate is computed using a first order differential equation.
 Setting <code>tau=0</code> is <i>not</i> recommend. See
-<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 <h4>Typical use and important parameters</h4>
@@ -105,7 +105,7 @@ channel <code>crossSection</code> must be specified in <code>m<sub>2</sub></code
 circular flow channel (e.g. a round pipe) of diameter <code>diameter</code>, the
 cross sectional area can be specified as <code>crossSection = diameter *
 diameter / 4 * Modelica.Constants.pi</code>. See
-<a href=\"modelica://IBPSA.Fluid.Sensors.Examples.Velocity\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.Examples.Velocity\">
 IBPSA.Fluid.Sensors.Examples.Velocity</a> for an example implementation
 with <code>diameter = 0.1</code>.
 </p>
@@ -115,7 +115,7 @@ with <code>diameter = 0.1</code>.
 May 20, 2016, by Marcus Fuchs:<br/>
 First implementation.
 Implementation is based on
-<a href=\"modelica://IBPSA.Fluid.Sensors.VolumeFlowRate\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.VolumeFlowRate\">
 IBPSA.Fluid.Sensors.VolumeFlowRate</a>.
 </li>
 </ul>

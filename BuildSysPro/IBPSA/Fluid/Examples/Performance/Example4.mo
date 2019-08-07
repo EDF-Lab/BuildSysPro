@@ -139,7 +139,7 @@ port_a.m_flow + port_b.m_flow = -mWat_flow;
 </pre>
 <p>
 in
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 to
 </p>

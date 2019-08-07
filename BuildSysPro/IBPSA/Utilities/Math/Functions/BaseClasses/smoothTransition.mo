@@ -24,10 +24,7 @@ protected
 
 algorithm
  aX:= abs(x);
- y := a + aX*(b + aX*(c + aX*(d + aX*(e + aX*f))));
- if x < 0 then
-    y := -y;
- end if;
+ y := (if x >= 0 then 1 else -1) * (a + aX*(b + aX*(c + aX*(d + aX*(e + aX*f)))));
 annotation(smoothOrder=2,
   derivative(order=1,
           zeroDerivative=delta,
@@ -41,13 +38,13 @@ annotation(smoothOrder=2,
     Documentation(info="<html>
 <p>
 This function is used by
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.inverseXRegularized\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.inverseXRegularized</a>
 to provide a twice continuously differentiable transition between
 the different regions.
 The code has been implemented in a function as this allows
 to implement the function
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.inverseXRegularized\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.inverseXRegularized</a>
 in such a way that Dymola inlines it.
 However, this function will not be inlined as its body is too large.
@@ -60,14 +57,19 @@ the inverse of the smoothing parameter <code>deltaInv</code>
 are exposed as arguments to this function.
 Also,
 derivatives are provided in
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition\">
 IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition</a>
 and in
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.der_2_smoothTransition\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.der_2_smoothTransition\">
 IBPSA.Utilities.Math.Functions.BaseClasses.der_2__smoothTransition</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+September 12, 2018, by David Blum:<br/>
+Change if-statement to if-expression.  
+For issue <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1019\">#1019</a>.
+</li>
 <li>
 August 11, 2015, by Michael Wetter:<br/>
 First implementation.

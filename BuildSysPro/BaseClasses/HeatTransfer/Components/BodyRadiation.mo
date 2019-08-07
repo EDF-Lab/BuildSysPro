@@ -1,10 +1,33 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
 model BodyRadiation "Lumped thermal element for radiation heat transfer"
   extends BaseClasses.HeatTransfer.Interfaces.Element1D;
+  parameter Boolean Gr_as_input=false  "Prescribed Net radiation conductance between two surface"   annotation(Evaluate=true, HideResult=true, choices(choice=false "Fixed",
+        choice=true "Prescribed (needed for tracking)", radioButtons=true));
   parameter Real Gr(unit="m2")
-    "Net radiation conductance between two surfaces (see docu)";
+    "Net radiation conductance between two surfaces (see docu)" annotation(Dialog(enable=not Gr_as_input));
+
+public
+  Modelica.Blocks.Interfaces.RealInput Gr_in(unit="m2") if Gr_as_input
+    "Net radiation conductance between two surfaces (see docu)" annotation (Placement(transformation(
+        extent={{-16,-16},{16,16}},
+        rotation=-90,
+        origin={-20,96}), iconTransformation(
+        extent={{-6,-6},{6,6}},
+        rotation=-90,
+        origin={-20,84})));
+
+// Internal connector
+protected
+  Modelica.Blocks.Interfaces.RealInput Gr_internal "internal connector for optional configuration";
+
 equation
-  Q_flow = Gr*Modelica.Constants.sigma*(port_a.T^4 - port_b.T^4);
+  connect(Gr_in, Gr_internal);
+  if not Gr_as_input then Gr_internal=Gr;
+  end if;
+
+
+  Q_flow = Gr_internal*Modelica.Constants.sigma*(port_a.T^4 - port_b.T^4);
+
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={
@@ -91,11 +114,13 @@ equation
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Stéphanie Froidurot 07/2019 : Ajout de la possibilité de choisir entre Gr paramètre ou input.</p>
 </html>"),
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={

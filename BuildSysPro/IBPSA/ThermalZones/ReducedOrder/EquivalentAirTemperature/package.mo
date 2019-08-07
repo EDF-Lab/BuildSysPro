@@ -3,9 +3,6 @@ package EquivalentAirTemperature "Package with models for equivalent air tempera
   Part 1"
 extends Modelica.Icons.VariantsPackage;
 
-
-
-
   annotation (Documentation(info="<html>
 <p>
 This package contains models to calculate an equivalent air temperature

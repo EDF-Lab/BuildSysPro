@@ -47,7 +47,7 @@ which is typically the case for moist air models.
 </p>
 <p>
 Read the
-<a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a>
 prior to using this model with one fluid port.
 </p>

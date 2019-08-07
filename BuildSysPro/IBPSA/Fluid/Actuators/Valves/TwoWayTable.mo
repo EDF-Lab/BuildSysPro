@@ -85,7 +85,7 @@ a valve leakage of <i>l=0.0001</i>, then one would set
  </pre>
 <p>
 Note, however, that
-<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.TwoWayLinear\">
 IBPSA.Fluid.Actuators.Valves.TwoWayLinear</a> provides a more
 efficient implementation for this simple case.
 </p>
@@ -114,14 +114,14 @@ The last values must satisfy
 </ul>
 <p>
 This model is based on the partial valve model
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve</a>.
 Check this model for more information, such
 as the regularization near the origin.
 </p>
 <p>
 For an example that specifies an opening characteristics, see
-<a href=\"modelica://IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable\">
 IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable</a>.
 </p>
 </html>", revisions="<html>

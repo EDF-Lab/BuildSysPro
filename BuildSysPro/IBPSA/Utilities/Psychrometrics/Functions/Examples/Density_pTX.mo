@@ -28,7 +28,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
 info="<html>
 <p>
 Model that tests the implementation of
-<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
 IBPSA.Utilities.Psychrometrics.Functions.density_pTX</a>.
 </p>
 </html>",

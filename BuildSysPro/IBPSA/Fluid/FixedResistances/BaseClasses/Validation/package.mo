@@ -5,7 +5,7 @@ package Validation "Collection of validation models"
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains validation models for the classes in
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.BaseClasses\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.BaseClasses\">
 IBPSA.Fluid.FixedResistances.BaseClasses</a>.
 </p>
 <p>

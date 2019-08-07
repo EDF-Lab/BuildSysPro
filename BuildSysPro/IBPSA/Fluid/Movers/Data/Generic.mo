@@ -130,18 +130,18 @@ declaration such as
 </pre>
 <p>
 This data record can be used with
-<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
 IBPSA.Fluid.Movers.SpeedControlled_Nrpm</a>,
-<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_y\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_y\">
 IBPSA.Fluid.Movers.SpeedControlled_y</a>,
-<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_dp\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_dp\">
 IBPSA.Fluid.Movers.FlowControlled_dp</a>,
-<a href=\"modelica://IBPSA.Fluid.Movers.FlowControlled_m_flow\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.FlowControlled_m_flow\">
 IBPSA.Fluid.Movers.FlowControlled_m_flow</a>.
 </p>
 <p>
 An example that uses manufacturer data can be found in
-<a href=\"modelica://IBPSA.Fluid.Movers.Validation.Pump_Nrpm_stratos\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.Validation.Pump_Nrpm_stratos\">
 IBPSA.Fluid.Movers.Validation.Pump_Nrpm_stratos</a>.
 </p>
 <h4>Parameters in RPM</h4>
@@ -156,7 +156,7 @@ The parameters <code>speed_rpm_nominal</code>,
 </pre>
 <p>
 In addition, <code>speed_rpm_nominal</code> is used in
-<a href=\"modelica://IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
 IBPSA.Fluid.Movers.SpeedControlled_Nrpm</a>
 to normalize the control input signal.
 Otherwise, these speed parameters in RPM are not used in the models.

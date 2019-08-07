@@ -26,7 +26,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Co
     Documentation(info="<html>
 <p>
 Example that demonstrates the use of the block
-<a href=\"modelica://IBPSA.Controls.SetPoints.Table\">
+<a href=\"modelica://BuildSysPro.IBPSA.Controls.SetPoints.Table\">
 IBPSA.Controls.SetPoints.Table</a>.
 </p>
 </html>", revisions="<html>

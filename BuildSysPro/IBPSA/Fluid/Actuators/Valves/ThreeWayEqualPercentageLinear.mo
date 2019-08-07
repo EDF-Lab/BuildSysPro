@@ -35,16 +35,16 @@ Such opening characteristics were typical for valves from Landis &amp; Gyr (now
 Siemens).
 </p><p>
 This model is based on the partial valve models
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialThreeWayValve\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialThreeWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialThreeWayValve</a> and
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve</a>.
 See
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialThreeWayValve\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialThreeWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialThreeWayValve</a>
 for the implementation of the three way valve
 and see
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve</a>
 for the implementation of the regularization near the origin.
 </p>
@@ -56,7 +56,7 @@ February 20, 2012 by Michael Wetter:<br/>
 Renamed parameter <code>dp_nominal</code> to <code>dpValve_nominal</code>,
 and added new parameter <code>dpFixed_nominal</code>.
 See
-<a href=\"modelica://IBPSA.Fluid.Actuators.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.UsersGuide\">
 IBPSA.Fluid.Actuators.UsersGuide</a>.
 </li>
 <li>

@@ -13,7 +13,7 @@ Documentation(info="<html>
 Two way valve with linear opening characteristic.
 </p><p>
 This model is based on the partial valve model
-<a href=\"modelica://IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve\">
 IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve</a>.
 Check this model for more information, such
 as the regularization near the origin.
@@ -38,7 +38,7 @@ February 20, 2012 by Michael Wetter:<br/>
 Renamed parameter <code>dp_nominal</code> to <code>dpValve_nominal</code>,
 and added new parameter <code>dpFixed_nominal=0</code>.
 See
-<a href=\"modelica://IBPSA.Fluid.Actuators.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Actuators.UsersGuide\">
 IBPSA.Fluid.Actuators.UsersGuide</a>.
 </li>
 <li>

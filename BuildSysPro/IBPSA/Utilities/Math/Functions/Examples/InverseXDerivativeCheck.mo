@@ -35,10 +35,10 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
 Documentation(info="<html>
 <p>
 This model validates the implementation of
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.inverseXRegularized\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.inverseXRegularized</a>
 and its first order derivative
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition\">
 IBPSA.Utilities.Math.Functions.BaseClasses.der_smoothTransition</a>.
 If the derivative implementation is wrong, the simulation will stop with an error.
 </p>
@@ -48,7 +48,7 @@ revisions="<html>
 <li>
 June 22, 2016, by Filip Jorissen:<br/>
 Changed example such that it explicitly uses
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.BaseClasses.der_inverseXRegularized\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.BaseClasses.der_inverseXRegularized\">
 IBPSA.Utilities.Math.Functions.BaseClasses.der_inverseXRegularized</a>.
 </li>
 <li>

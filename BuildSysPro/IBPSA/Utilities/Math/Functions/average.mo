@@ -14,7 +14,7 @@ algorithm
 <ul>
 <li>November 28, 2013, by Marcus Fuchs:<br/>
 Implementation based on Michael Wetter&apos;s block
-<a href=\"modelica://IBPSA.Utilities.Math.Average\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Average\">
 IBPSA.Utilities.Math.Average</a>.
 </li>
 </ul>

@@ -19,7 +19,7 @@ First implementation.
 </html>", info="<html>
 <p>
 This model demonstrates the use of the
-<a href=\"modelica://IBPSA.Utilities.Time.CalendarTime\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Time.CalendarTime\">
 IBPSA.Utilities.Time.CalendarTime</a>
 block.
 </p>

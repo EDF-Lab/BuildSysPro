@@ -249,7 +249,7 @@ Set <code>dp_nominal = 0</code> to disable the flow friction calculation.
 <p>
 For a model that uses a control signal <i>u &isin; [0, 1]</i> and multiplies
 this with the nominal water mass flow rate, use
-<a href=\"modelica://IBPSA.Fluid.Humidifiers.Humidifier_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Humidifiers.Humidifier_u\">
 IBPSA.Fluid.Humidifiers.Humidifier_u</a>
 
 </p>

@@ -1287,7 +1287,7 @@ On a console window, type<pre>
 </pre>
 This will generate the weather data file <code>inputFile.mos</code>, which can be read
 by the model
-<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.ReaderTMY3\">
 IBPSA.BoundaryConditions.WeatherData.ReaderTMY3</a>.
 </li>
 </ol>
@@ -1331,10 +1331,10 @@ The atmospheric pressure,
 the ceiling height,
 </li>
 <li>
-the total sky cover pressure,
+the total sky cover,
 </li>
 <li>
-the opaque sky cover pressure,
+the opaque sky cover,
 </li>
 <li>
 the dry bulb temperature,
@@ -1371,7 +1371,7 @@ parameter <code>pAtm=101325</code> Pascals.
 The parameter <code>*Sou</code> configures the source of the data.
 For the atmospheric pressure, temperatures, relative humidity, wind speed and wind direction,
 the enumeration
-<a href=\"modelica://IBPSA.BoundaryConditions.Types.DataSource\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.Types.DataSource\">
 IBPSA.BoundaryConditions.Types.DataSource</a>
 is used as follows:
 </p>
@@ -1415,7 +1415,7 @@ is used as follows:
 Because global, diffuse and direct radiation are related to each other, the parameter
 <code>HSou</code> is treated differently.
 It is set to a value of the enumeration
-<a href=\"modelica://IBPSA.BoundaryConditions.Types.RadiationDataSource\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.Types.RadiationDataSource\">
 IBPSA.BoundaryConditions.Types.RadiationDataSource</a>,
 and allows the following configurations:
 </p>
@@ -1565,11 +1565,17 @@ Technical Report, NREL/TP-581-43156, revised May 2008.
 </html>", revisions="<html>
 <ul>
 <li>
+September 20, 2018, by Michael Wetter:<br/>
+Corrected documentation.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1022\">#1022</a>.
+</li>
+<li>
 December 4, 2017, by Michael Wetter:<br/>
 Removed function call to <code>getAbsolutePath</code>, as this causes in Dymola 2018FD01
 the error
 \"A call of loadResource with a non-literal string remains in the generated code; it will not work for an URI.\"
-when exporting <a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZone\">
+when exporting <a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZone\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZone</a>
 as an FMU. Instead, if the weather file is specified as a Modelica, URI, syntax such as
 <code>Modelica.Utilities.Files.loadResource(\"modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos\")</code>
@@ -1581,7 +1587,7 @@ This is for
 February 18, 2017, by Filip Jorissen:<br/>
 Infrared radiation on horizontal surface is now delayed by 30 minutes
 such that the results in
-<a href=\"modelica://IBPSA.BoundaryConditions.SkyTemperature.Examples.BlackBody\">TBlaSky</a>
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SkyTemperature.Examples.BlackBody\">TBlaSky</a>
 are consistent.
 This is for
 <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/648\">#648</a>.
@@ -1596,7 +1602,7 @@ This is for
 <li>
 April 21, 2016, by Michael Wetter:<br/>
 Introduced <code>absFilNam</code> to avoid multiple calls to
-<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
 IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath</a>.
 This is for
 <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/506\">Buildings, #506</a>.
@@ -1634,7 +1640,7 @@ Removed redundant but consistent
 <code>connect(TBlaSkyCom.TBlaSky, weaBus.TBlaSky)</code>
 statement.
 This avoids a warning if
-<a href=\"modelica://IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.Examples.SkyClearness\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.Examples.SkyClearness\">
 IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.Examples.SkyClearness</a>
 is translated in pedantic mode in Dymola 2016.
 This is for
@@ -1680,7 +1686,7 @@ This allows using the data reader without having to specify an absolute path,
 as long as the <code>IBPSA</code> library
 is on the <code>MODELICAPATH</code>.
 This change was implemented in
-<a href=\"modelica://IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath\">
 IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath</a>
 and improves this weather data reader.
 </li>

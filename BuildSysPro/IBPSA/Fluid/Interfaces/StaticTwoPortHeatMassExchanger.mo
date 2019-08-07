@@ -165,7 +165,7 @@ This is for
 January 22, 2016 by Michael Wetter:<br/>
 Removed assignment of <code>sensibleOnly</code> in <code>bal1</code> and <code>bal2</code>
 as this constant has been removed in
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger\">
 IBPSA.Fluid.Interfaces.StaticTwoPortHeatMassExchanger</a>.
 </li>
 <li>

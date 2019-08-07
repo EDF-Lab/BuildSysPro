@@ -181,7 +181,7 @@ Documentation(info="<html>
 <p>
 This is a partial model of an instantaneously mixed volume.
 It is used as the base class for all fluid volumes of the package
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes\">
 IBPSA.Fluid.MixingVolumes</a>.
 </p>
 
@@ -243,7 +243,7 @@ If the model is (i) operated in steady-state,
 (ii) has two fluid ports connected, and
 (iii) <code>prescribedHeatFlowRate=true</code> or <code>allowFlowReversal=false</code>,
 then the model uses
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 in order to use
 the same energy and mass balance implementation as is used as in
@@ -253,7 +253,7 @@ flow directions rather than the function
 <code>actualStream</code>, which is less efficient.
 However, the use of <code>inStream</code> has the disadvantage
 that <code>hOut</code> has to be computed, in
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>,
 using
 </p>
@@ -284,15 +284,15 @@ As the mass flow rate is by assumption very small, the fluid that leaves the com
 will have a very high temperature, violating the 2nd law.
 To avoid this situation, if
 <code>prescribedHeatFlowRate=false</code>, then the model
-<a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.ConservationEquation</a>
 is used instead of
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>.
 </p>
 <p>
 For simple models that uses this model, see
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes\">
 IBPSA.Fluid.MixingVolumes</a>.
 </p>
 </html>", revisions="<html>
@@ -348,7 +348,7 @@ calculation on the moisture balance.
 <li>
 July 1, 2015, by Filip Jorissen:<br/>
 Set <code>prescribedHeatFlowRate=prescribedHeatflowRate</code> for
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>.
 This results in equations that are solved more easily.
 See
@@ -389,7 +389,7 @@ to
  (prescribedHeatFlowRate or (not allowFlowReversal)) and ...
 </pre>
 The reason is that if there is no flow reversal, then
-<a href=\"modelica://IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 computes <code>hOut =  port_b.h_outflow;</code>, and hence
 it is correct to use <code>hOut</code> to compute
@@ -494,7 +494,7 @@ for steady-state component models, i.e., instead of <code>actualStream(...)</cod
 This changed required the introduction of a new parameter <code>m_flow_nominal</code> which
 is used for smoothing in the steady-state balance equations of the model with two fluid ports.
 This implementation also simplifies the implementation of
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolumeWaterPort\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolumeWaterPort\">
 IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolumeWaterPort</a>,
 which now uses the same equations as this model.
 </li>
@@ -520,7 +520,7 @@ Eliminated the base class <code>PartialLumpedVessel</code>.
 <li>
 October 12, 2009 by Michael Wetter:<br/>
 Changed base class to
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume\">
 IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume</a>.
 </li>
 </ul>

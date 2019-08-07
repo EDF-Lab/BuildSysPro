@@ -30,8 +30,8 @@ model RelativeHumidity "Test model for relative humidity sensor"
     offset=0.0175) "Humidity concentration"
                  annotation (Placement(transformation(extent={{-100,-20},{-80,0}})));
 
-  IBPSA.Fluid.Sensors.RelativeHumidity senRelHum(redeclare package
-      Medium = Medium)
+  IBPSA.Fluid.Sensors.RelativeHumidity senRelHum(redeclare package Medium =
+               Medium)
     "Relative humidity of the flow source if the medium were outflowing"
     annotation (Placement(transformation(extent={{-16,42},{4,62}})));
     Modelica.Blocks.Sources.Ramp m_flow(

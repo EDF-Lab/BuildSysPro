@@ -3,13 +3,14 @@ partial model TwoWayFlowElement "Flow resistance that uses the power law"
   extends IBPSA.Fluid.Interfaces.PartialFourPortInterface(
     redeclare final package Medium1 = Medium,
     redeclare final package Medium2 = Medium,
-    final allowFlowReversal1=false,
-    final allowFlowReversal2=false,
+    final allowFlowReversal1=true,
+    final allowFlowReversal2=true,
     final m1_flow_nominal=10/3600*1.2,
     final m2_flow_nominal=m1_flow_nominal);
   extends IBPSA.Airflow.Multizone.BaseClasses.ErrorControl;
 
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
+  replaceable package Medium =
+      Modelica.Media.Interfaces.PartialMedium
     annotation (choicesAllMatching=true);
 
   parameter Modelica.SIunits.Velocity vZer=0.001
@@ -131,6 +132,17 @@ for doors that can be open or closed as a function of an input signal.
 revisions="<html>
 <ul>
 <li>
+September 13, 2018, by Michael Wetter:<br/>
+Set <code>allowFlowReversal=true</code> as the flow can be slightly negative
+due to the regularization, in which case the <code>m_flow(min=0)</code>
+that is set in the base class
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.PartialFourPort\">
+IBPSA.Fluid.Interfaces.PartialFourPort</a>
+is violated.<br/>
+See
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/937\">#937</a>.
+</li>
+<li>
 November 3, 2016, by Michael Wetter:<br/>
 Removed start values for inflowing density
 to simplify the parameter window, and because this can usually
@@ -141,11 +153,11 @@ This is for
 <li>
 February 24, 2015 by Michael Wetter:<br/>
 Changed model to use
-<a href=\"modelica://IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.density_pTX\">
 Buildings.Utilities.Psychrometrics.Functions.density_pTX</a>
 for the density computation
 as
-<a href=\"modelica://IBPSA.Media.Air.density\">
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Air.density\">
 Buildings.Media.Air.density</a>
 does not depend on temperature.
 </li>

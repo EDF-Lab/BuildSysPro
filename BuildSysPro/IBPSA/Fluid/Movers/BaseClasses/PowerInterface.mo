@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.Movers.BaseClasses;
 model PowerInterface
   "Partial model to compute power draw and heat dissipation of fans and pumps"
-  extends Modelica.Blocks.Interfaces.BlockIcon;
+  extends Modelica.Blocks.Icons.Block;
 
   parameter Boolean homotopyInitialization = true "= true, use homotopy method"
     annotation(Evaluate=true, Dialog(tab="Advanced"));
@@ -108,7 +108,7 @@ equation
     Documentation(info="<html>
 <p>Block that implements the functions to compute the
 heat dissipation of fans and pumps. It is used by the model
-<a href=\"modelica://IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine\">
 IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine</a>.
 </p>
 </html>",

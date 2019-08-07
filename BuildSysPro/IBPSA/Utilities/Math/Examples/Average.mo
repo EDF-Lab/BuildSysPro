@@ -28,7 +28,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Ut
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This model tests the implementation of
-<a href=\"modelica://IBPSA.Utilities.Math.Average\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Average\">
 IBPSA.Utilities.Math.Average</a>.
 </p>
 </html>", revisions="<html>

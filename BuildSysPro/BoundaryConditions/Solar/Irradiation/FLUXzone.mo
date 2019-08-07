@@ -178,7 +178,7 @@ annotation (Documentation(info="<html>
 <p><u><b>Instructions for use</b></u></p>
 <p>Model which takes as input the vector G from a weather reader to calculate the surface irradiance on a particular surface (tilt and orientation given). G contains:</p>
 <ul>
- <li> (1) Horizontal diffuse flux</li>
+ <li>(1) Horizontal diffuse flux</li>
  <li>(2) Normal direct flux</li>
  <li>(3) Horizontal direct flux</li>
  <li>(4) Horizontal global flux</li>
@@ -192,9 +192,9 @@ annotation (Documentation(info="<html>
 <p><u><b>Validations</b></u></p>
 <p>Validated model (identical to the one used in the BESTEST except for the time base: UTC instead of true solar time (TST)) - Aurélie Kaemmerlen 09/2010</p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
+Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+BuildSysPro version 3.3.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

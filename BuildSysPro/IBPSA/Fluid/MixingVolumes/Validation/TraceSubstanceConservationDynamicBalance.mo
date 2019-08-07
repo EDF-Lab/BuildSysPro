@@ -74,10 +74,10 @@ Note, however, that there is some approximation error because
 in its default configuration, the conservation balance
 models simplify the treatment of the water that is added
 to the fluid.
-See <a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
+See <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 and
-<a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.StaticTwoPortConservationEquation</a>
 for a discussion.
 </p>

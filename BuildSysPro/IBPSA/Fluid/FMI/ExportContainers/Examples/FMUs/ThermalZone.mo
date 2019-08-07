@@ -2,7 +2,7 @@ within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 model ThermalZone
   "Declaration of an FMU that exports a thermal zone"
   extends IBPSA.Fluid.FMI.ExportContainers.ThermalZone(redeclare final package
-                    Medium = MediumA, nPorts=2);
+      Medium =               MediumA, nPorts=2);
 
   replaceable package MediumA = IBPSA.Media.Air "Medium for air";
 
@@ -67,8 +67,7 @@ model ThermalZone
     annotation (Placement(transformation(extent={{80,30},{100,50}})));
   Modelica.Blocks.Sources.Constant mWat_flow(k=0.0) "mass flow rate"
     annotation (Placement(transformation(extent={{10,70},{30,90}})));
-  Sensors.MassFlowRate senMasFlo[nPorts](redeclare final package
-      Medium =                                                            MediumA)
+  Sensors.MassFlowRate senMasFlo[nPorts](redeclare final package Medium = MediumA)
     "Mass flow rate sensor to connect thermal adapter with thermal zone."
     annotation (Placement(transformation(extent={{-88,110},{-68,130}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temSen
@@ -141,13 +140,13 @@ HVAC system only. The thermal zone is connected to an adaptor so that
 it can be coupled
 to an air-based HVAC system. The thermal zone is
 taken from
-<a href=\"modelica://IBPSA.Examples.Tutorial.SpaceCooling.System3\">
+<a href=\"modelica://BuildSysPro.IBPSA.Examples.Tutorial.SpaceCooling.System3\">
 IBPSA.Examples.Tutorial.SpaceCooling.System3
 </a>.
 </p>
 <p>
 The example extends from
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.ThermalZone\">
 IBPSA.Fluid.FMI.ExportContainers.ThermalZone
 </a>
 which provides

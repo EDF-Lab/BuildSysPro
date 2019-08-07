@@ -50,7 +50,7 @@ real line.
 </p>
 <p>
 See the plot of
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized\">
 IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized</a>
 for the graph.
 </p>
@@ -72,7 +72,7 @@ body of the function. However, assigning the values is optional
 as otherwise, at the expense of efficiency, the values will be
 computed each time the function is invoked.
 See
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized\">
 IBPSA.Utilities.Math.Functions.Examples.InverseXRegularized</a>
 for how to efficiently call this function.
 </p>

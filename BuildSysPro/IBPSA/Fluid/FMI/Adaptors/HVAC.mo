@@ -67,7 +67,7 @@ protected
     annotation (Placement(transformation(extent={{0,-10},{-20,10}})));
 
   IBPSA.Fluid.FMI.Conversion.AirToOutlet con[nPorts](redeclare each final
-      package       Medium = Medium, each final allowFlowReversal=true)
+      package Medium =       Medium, each final allowFlowReversal=true)
     "Converter between the different connectors"
     annotation (Placement(transformation(extent={{60,60},{80,80}})));
 
@@ -76,8 +76,8 @@ protected
     each allowFlowReversal=true) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
 
-  IBPSA.Fluid.FMI.BaseClasses.X_w_toX x_w_toX(redeclare final package
-      Medium = Medium) if Medium.nXi > 0 "Conversion from X_w to X"
+  IBPSA.Fluid.FMI.BaseClasses.X_w_toX x_w_toX(redeclare final package Medium =
+               Medium) if Medium.nXi > 0 "Conversion from X_w to X"
     annotation (Placement(transformation(extent={{40,-40},{20,-20}})));
 
   Modelica.Blocks.Sources.RealExpression hSup[nPorts](
@@ -307,7 +307,7 @@ of all fluid connections to <code>ports</code> to be equal.
 The reason is that setting a pressure can lead to non-physical system models,
 for example if a mass flow rate is imposed and the HVAC system is connected
 to a model that sets a pressure boundary condition such as
-<a href=\"modelica://IBPSA.Fluid.Sources.Outside\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Outside\">
 IBPSA.Fluid.Sources.Outside</a>.
 Also, setting a pressure would make it impossible to use multiple instances
 of this model (one for each thermal zone) and build in Modelica an airflow network
@@ -321,7 +321,7 @@ in models that are connected to <code>ports</code>.
 <h4>Typical use and important parameters</h4>
 <p>
 See
-<a href=\"modelica://IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.HVACZone\">
 IBPSA.Fluid.FMI.ExportContainers.HVACZone</a>
 for a model that uses this model.
 </p>

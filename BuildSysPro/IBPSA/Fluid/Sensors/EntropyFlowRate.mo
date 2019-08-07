@@ -78,7 +78,7 @@ specific entropy <i>s<sub>out</sub></i> that is used to
 compute the entropy flow rate
 <i>S&#775; = m&#775; s<sub>out</sub></i>
 is computed using a first order differential equation.
-See <a href=\"modelica://IBPSA.Fluid.Sensors.UsersGuide\">
+See <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>",
@@ -87,7 +87,7 @@ revisions="<html>
 <li>
 July 29, 2016, by Michael Wetter:<br/>
 First implementation based on
-<a href=\"modelica://IBPSA.Fluid.Sensors.EnthalpyFlowRate\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.EnthalpyFlowRate\">
 IBPSA.Fluid.Sensors.EnthalpyFlowRate</a>.
 </li>
 </ul>

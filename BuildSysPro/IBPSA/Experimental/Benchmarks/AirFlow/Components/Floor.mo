@@ -32,12 +32,10 @@ model Floor
     forceErrorControlOnFlow=forceErrorControlOnFlow,
     TRoom=TStaircase) "Staircase element for connection to other floors"
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_top(redeclare package
-      Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_top(redeclare package Medium =
         Medium) "Fluid port for connection to higher floors"
     annotation (Placement(transformation(extent={{60,90},{80,110}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_bot(redeclare package
-      Medium =
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_bot(redeclare package Medium =
         Medium) "Fluid port for connection to lower floors"
     annotation (Placement(transformation(extent={{60,-110},{80,-90}})));
   Experimental.Benchmarks.AirFlow.Components.ZoneHallway zoneHallway[nZones](
@@ -64,7 +62,7 @@ model Floor
     each TRoom=TRoom) "Vector of zone elements"
     annotation (Placement(transformation(extent={{-80,-40},{-60,-20}})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a_vent[nZones](redeclare each
-      package      Medium =
+      package Medium =
         Medium) "Port to connect mechanical ventilation equipment to each zone"
     annotation (Placement(transformation(extent={{-110,50},{-90,70}})));
   BoundaryConditions.WeatherData.Bus weaBus1 "Bus with weather data"
@@ -147,7 +145,7 @@ equation
   annotation ( Documentation(info="<html>
 <p>A floor model for a scalable air flow benchmark. </p>
 <h4>Assumptions and limitations</h4>
-<p>See e.g. <a href=\"modelica://IBPSA.Experimental.Benchmarks.AirFlow.Components.SimpleZone\">
+<p>See e.g. <a href=\"modelica://BuildSysPro.IBPSA.Experimental.Benchmarks.AirFlow.Components.SimpleZone\">
 IBPSA.Experimental.Benchmarks.AirFlow.Components.SimpleZone</a> for limitations and assumptions on
  the zone level representation.</p>
 <h4>Typical use and important parameters</h4>
@@ -160,7 +158,7 @@ model representation of air flows in a building regarding the number of floors o
 other. </p>
 <h4>References</h4>
 <p>Inspired by
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a> </p>
 </html>", revisions="<html>
 <ul>

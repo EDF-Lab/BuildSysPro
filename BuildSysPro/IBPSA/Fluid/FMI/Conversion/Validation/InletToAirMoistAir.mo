@@ -14,8 +14,8 @@ model InletToAirMoistAir
   Modelica.Blocks.Sources.Constant T(k=295.13) "Room temperature"
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
 
-  IBPSA.Fluid.FMI.Conversion.InletToAir conAir(redeclare package
-      Medium = Medium, allowFlowReversal=false) "Converter for air"
+  IBPSA.Fluid.FMI.Conversion.InletToAir conAir(redeclare package Medium =
+               Medium, allowFlowReversal=false) "Converter for air"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
 
   Source_T sou(
@@ -31,8 +31,8 @@ model InletToAirMoistAir
   Modelica.Blocks.Sources.Constant C[Medium.nC](each k=0.01) if
      Medium.nC > 0 "Trace substances for forward flow"
     annotation (Placement(transformation(extent={{-80,-90},{-60,-70}})));
-  IBPSA.Fluid.FMI.Conversion.InletToAir conAirRevFlo(redeclare package
-              Medium = Medium, allowFlowReversal=true)
+  IBPSA.Fluid.FMI.Conversion.InletToAir conAirRevFlo(redeclare package Medium
+      =                Medium, allowFlowReversal=true)
     "Converter for air with reverse flow" annotation (Placement(
         transformation(extent={{20,-40},{40,-20}})));
   Source_T souRev(
@@ -82,11 +82,11 @@ annotation (
     Documentation(info="<html>
 <p>
 This example validates the conversion model
-<a href=\"modelica://IBPSA.Fluid.FMI.Conversion.InletToAir\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.Conversion.InletToAir\">
 IBPSA.Fluid.FMI.Conversion.InletToAir
 </a>.
 The medium used is
-<a href=\"modelica://IBPSA.Media.Air\">
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Air\">
 IBPSA.Media.Air
 </a>
 without trace substances.

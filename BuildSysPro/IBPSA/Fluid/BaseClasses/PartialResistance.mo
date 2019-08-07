@@ -78,7 +78,7 @@ Models that extend this class need to implement an equation that relates
 </p>
 <p>
 See for example
-<a href=\"modelica://IBPSA.Fluid.FixedResistances.PressureDrop\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FixedResistances.PressureDrop\">
 IBPSA.Fluid.FixedResistances.PressureDrop</a> for a model that extends
 this base class.
 </p>
@@ -184,7 +184,7 @@ Changed base classes to allow easier initialization.
 April 13, 2009, by Michael Wetter:<br/>
 Extracted pressure drop computation and implemented it in the
 new model
-<a href=\"modelica://IBPSA.Fluid.BaseClasses.FlowModels.BasicFlowModel\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.BasicFlowModel\">
 IBPSA.Fluid.BaseClasses.FlowModels.BasicFlowModel</a>.
 </li>
 <li>

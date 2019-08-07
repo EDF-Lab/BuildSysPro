@@ -37,7 +37,7 @@ Documentation(
 info="<html>
 <p>
 Implementation of the first derivative of the function
-<a href=\"modelica://IBPSA.Utilities.Math.Functions.spliceFunction\">
+<a href=\"modelica://BuildSysPro.IBPSA.Utilities.Math.Functions.spliceFunction\">
 IBPSA.Utilities.Math.Functions.spliceFunction</a>.
 </p>
 </html>",

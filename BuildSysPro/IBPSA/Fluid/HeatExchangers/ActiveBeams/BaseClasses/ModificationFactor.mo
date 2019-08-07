@@ -107,7 +107,7 @@ equation
             Documentation(info="<html>
 <p>
 This model determines the three modification factors described in
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.ActiveBeams.UsersGuide\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.UsersGuide\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.UsersGuide</a>
 by comparing the actual values of air mass flow rate,
 water mass flow rate and room-water temperature difference with the nominal values.

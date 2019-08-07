@@ -2,11 +2,10 @@ within BuildSysPro.IBPSA.Fluid.MassExchangers;
 package Validation "Validation examples"
   extends Modelica.Icons.ExamplesPackage;
 
-
 annotation (Documentation(info="<html>
 <p>
 This package contains validation models for the classes in
-<a href=\"modelica://IBPSA.Fluid.MassExchangers\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MassExchangers\">
 IBPSA.Fluid.MassExchangers</a>.
 </p>
 <p>

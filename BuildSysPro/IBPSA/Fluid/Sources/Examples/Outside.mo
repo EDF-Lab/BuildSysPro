@@ -14,15 +14,15 @@ model Outside
     m_flow=-1,
     nPorts=1) "Sink"
     annotation (Placement(transformation(extent={{90,20},{70,40}})));
-  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package
-      Medium = Medium, m_flow_nominal=1) "Temperature sensor"
+  IBPSA.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package Medium =
+               Medium, m_flow_nominal=1) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,20},{60,40}})));
   IBPSA.Fluid.Sensors.RelativeHumidityTwoPort senRelHum(redeclare package
-              Medium = Medium, m_flow_nominal=1)
+      Medium =         Medium, m_flow_nominal=1)
     "Sensor for relative humidity"
     annotation (Placement(transformation(extent={{-20,20},{0,40}})));
-  IBPSA.Fluid.Sensors.MassFractionTwoPort senMasFra(redeclare package
-      Medium = Medium, m_flow_nominal=1)
+  IBPSA.Fluid.Sensors.MassFractionTwoPort senMasFra(redeclare package Medium =
+               Medium, m_flow_nominal=1)
     "Sensor for mass fraction of water"
     annotation (Placement(transformation(extent={{10,20},{30,40}})));
 equation

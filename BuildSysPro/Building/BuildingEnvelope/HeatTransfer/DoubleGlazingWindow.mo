@@ -394,9 +394,9 @@ equation
 <p>Model validated by verifying that the coefficients of absorption and transmission of direct and diffuse radiation as well as the input conductivities of Window model were well consistent with those determined via an Excel sheet based on the formulas of the standards used.</p>
 <p>Validated model - Aurélie Kaemmerlen 05/2011 </p>
 <p><b>--------------------------------------------------------------<br>
-Licensed by EDF under the Modelica License 2<br>
-Copyright &copy; EDF 2009 - 2018<br>
-BuildSysPro version 3.2.0<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2019<br>
+BuildSysPro version 3.3.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

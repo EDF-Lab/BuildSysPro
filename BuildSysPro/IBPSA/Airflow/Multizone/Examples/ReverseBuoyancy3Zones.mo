@@ -217,7 +217,7 @@ Added documentation.
 </html>", info="<html>
 <p>
 This model is similar than
-<a href=\"modelica://IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam\">
 IBPSA.Airflow.Multizone.Validation.ThreeRoomsContam</a>.
 However, the initial temperatures are such that at the start of the
 simulation, the flow direction between the three rooms reverses direction.

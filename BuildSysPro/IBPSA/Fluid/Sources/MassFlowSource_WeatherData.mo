@@ -163,7 +163,7 @@ input connector is disabled;
 if <code>use_m_flow_in</code> is true, then the <code>m_flow</code> parameter
 is ignored, and the value provided by the input connector is used instead.</p>
 <p>The same applies to the trace substances.</p>
-<p>The <a href=\"modelica://IBPSA.Utilities.Psychrometrics.X_pTphi\">
+<p>The <a href=\"modelica://BuildSysPro.IBPSA.Utilities.Psychrometrics.X_pTphi\">
 IBPSA.Utilities.Psychrometrics.X_pTphi</a> block is used with the input data
 including <code>pAtm</code>, <code>TDryBul</code>, <code>relHum</code> from
 weather bus <code>weaBus</code>, to calculate <code>X</code>.</p>

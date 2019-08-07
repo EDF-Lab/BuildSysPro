@@ -2,7 +2,8 @@ within BuildSysPro.IBPSA.Fluid.HeatExchangers.BaseClasses;
 model HANaturalCylinder
   "Calculates an hA value for natural convection around a cylinder"
   extends Modelica.Blocks.Icons.Block;
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
+  replaceable package Medium =
+      Modelica.Media.Interfaces.PartialMedium
     "Medium inside the tank";
   parameter Modelica.SIunits.Diameter ChaLen
     "Characteristic length of the cylinder";

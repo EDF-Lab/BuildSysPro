@@ -142,8 +142,8 @@ model Basic "Example implementation of flow system"
     redeclare package Medium = Medium,
     use_X_wSet=false) "Heating device" annotation (Placement(
         transformation(extent={{-70,-110},{-50,-90}})));
-  IBPSA.Fluid.Sources.Boundary_pT bou(nPorts=1, redeclare package
-      Medium = Medium) "Boundary for setting absolute temperature"
+  IBPSA.Fluid.Sources.Boundary_pT bou(nPorts=1, redeclare package Medium =
+               Medium) "Boundary for setting absolute temperature"
     annotation (Placement(transformation(extent={{-100,-140},{-80,-120}})));
   IBPSA.Fluid.FixedResistances.Junction spl(
     m_flow_nominal={10,10,10},
@@ -489,11 +489,11 @@ equation
 <p>
 Example model demonstrating the use of the <code>IBPSA</code> components in a larger system.
 This model is extended in
-<a href=\"modelica://IBPSA.Fluid.Examples.FlowSystem.Simplified1\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.FlowSystem.Simplified1\">
 IBPSA.Fluid.Examples.FlowSystem.Simplified1</a>,
-<a href=\"modelica://IBPSA.Fluid.Examples.FlowSystem.Simplified2\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.FlowSystem.Simplified2\">
 IBPSA.Fluid.Examples.FlowSystem.Simplified2</a>,
-<a href=\"modelica://IBPSA.Fluid.Examples.FlowSystem.Simplified3\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Examples.FlowSystem.Simplified3\">
 IBPSA.Fluid.Examples.FlowSystem.Simplified3</a>.
 In these examples, the flow network is simplified in three steps, which reduces the size of algebraic loops.
 </p>

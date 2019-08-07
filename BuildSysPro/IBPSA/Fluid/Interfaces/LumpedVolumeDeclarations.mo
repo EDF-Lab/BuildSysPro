@@ -50,11 +50,11 @@ lumped volume model.
 </p>
 <p>
 These parameters are used for example by
-<a href=\"modelica://IBPSA.Fluid.Interfaces.ConservationEquation\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Interfaces.ConservationEquation\">
 IBPSA.Fluid.Interfaces.ConservationEquation</a>,
-<a href=\"modelica://IBPSA.Fluid.MixingVolumes.MixingVolume\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes.MixingVolume\">
 IBPSA.Fluid.MixingVolumes.MixingVolume</a> and
-<a href=\"modelica://IBPSA.Fluid.HeatExchangers.Radiators.RadiatorEN442_2\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.Radiators.RadiatorEN442_2\">
 IBPSA.Fluid.HeatExchangers.Radiators.RadiatorEN442_2</a>.
 </p>
 </html>",

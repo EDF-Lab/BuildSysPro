@@ -2,13 +2,10 @@ within BuildSysPro.IBPSA.Fluid.FMI;
 package Validation "Collection of validation models"
   extends Modelica.Icons.ExamplesPackage;
 
-
-
-
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains validation models for the classes in
-<a href=\"modelica://IBPSA.Fluid.FMI\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI\">
 IBPSA.Fluid.FMI</a>.
 </p>
 <p>

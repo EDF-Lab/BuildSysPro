@@ -7,7 +7,8 @@ partial model DoorDiscretized
 
   parameter Modelica.SIunits.PressureDifference dp_turbulent(min=0) = 0.01
     "Pressure difference where laminar and turbulent flow relation coincide. Recommended: 0.01";
-  parameter Real CD=0.65 "|Orifice characteristics|Discharge coefficient";
+  parameter Real CD=0.65 "Discharge coefficient"
+    annotation (Dialog(group="Orifice characteristics"));
 
   Modelica.SIunits.PressureDifference dpAB[nCom](each nominal=1)
     "Pressure difference between compartments";
@@ -113,6 +114,10 @@ using the model for a door that can be open or closed.
 revisions="<html>
 <ul>
 <li>
+June 27, 2018, by Michael Wetter:<br/>
+Corrected old parameter annotation.
+</li>
+<li>
 June 6, 2018, by Michael Wetter:<br/>
 Removed term that assures non-zero flow rate in each path, and
 reformulated flow balance to ensure that model is symmetric.
@@ -138,7 +143,7 @@ Renamed protected parameters for consistency with the naming conventions.
 </li>
 <li><i>August 12, 2011</i> by Michael Wetter:<br/>
        Changed model to use the new function
-       <a href=\"modelica://IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM\">
+       <a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM\">
        Buildings.Airflow.Multizone.BaseClasses.powerLawFixedM</a>.
 </li>
 <li><i>July 20, 2010</i> by Michael Wetter:<br/>

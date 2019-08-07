@@ -2,17 +2,6 @@ within BuildSysPro.IBPSA.Fluid.Examples.Performance;
 package PressureDrop "Package with various configurations of pressure drop models to analyze symbolic processing"
   extends Modelica.Icons.ExamplesPackage;
 
-
-
-
-
-
-
-
-
-
-
-
 annotation (Documentation(info="<html>
 <p>
 This package contains examples that demonstrate how parameter

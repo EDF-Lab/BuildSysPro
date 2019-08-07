@@ -34,14 +34,14 @@ This example demonstrates how to export an FMU with a humidifier
 that takes as an input signal the normalized mass flow rate of water that
 will be added to the medium.
 The FMU has an instance of
-<a href=\"modelica://IBPSA.Fluid.Humidifiers.Humidifier_u\">
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Humidifiers.Humidifier_u\">
 IBPSA.Fluid.Humidifiers.Humidifier_u</a>.
 </p>
 <p>
 The mass dynamics has been set to
 <code>massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState</code>.
 See the
-<a href=\"modelica://IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.UsersGuide\">user's guide</a>
 for the rationale.
 </p>
 </html>", revisions="<html>

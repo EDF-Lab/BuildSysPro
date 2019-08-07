@@ -145,7 +145,7 @@ equation
 This component computes the hemispherical diffuse irradiation on a tilted surface using an anisotropic
 sky model proposed by Perez.
 For a definition of the parameters, see the
-<a href=\"modelica://IBPSA.BoundaryConditions.UsersGuide\">User's Guide</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.BoundaryConditions.UsersGuide\">User's Guide</a>.
 </p>
 <h4>References</h4>
 <ul>
