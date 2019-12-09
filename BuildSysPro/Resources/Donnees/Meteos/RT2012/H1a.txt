@@ -1,5 +1,5 @@
 #1											
-double data(8760,12) #Columns: Time(s); FDIRN(W/m2); FDIFH(W/m2); Tdry(°C); Tdew(W/m2); Tsky(°C); Patm(Pa); RH(0..1); WindSpeed(m/s); WindDir(°); Lat(°); Lon(°)											
+double data(8760,12) #Columns: Time(s); FDIRN(W/m2); FDIFH(W/m2); Tdry(°C); Tdew(°C); Tsky(°C); Patm(Pa); RH(0..1); WindSpeed(m/s); WindDir(°); Lat(°); Lon(°)											
 1800	0	0	4.615	4.479236047	-3.44	103100	0.98443601	1	0	48.8	2
 5400	0	0	3.915	3.767808968	-5.62	103100	0.983489991	1	0	48.8	2
 9000	0	0	3.425	3.404045267	-6.81	103100	0.992216341	0.35	0	48.8	2
