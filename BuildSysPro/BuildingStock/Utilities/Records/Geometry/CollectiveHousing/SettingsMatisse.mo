@@ -94,6 +94,15 @@ constant Modelica.SIunits.Area Surf_CloisonLegC2SDB=6.175;
 constant Modelica.SIunits.Area Surf_CloisonLegEntreeC2=2;
 constant Modelica.SIunits.Area Surf_CloisonLegEntreeSDB=9.75;
 
+// Internal doors
+
+constant Modelica.SIunits.Area Surf_PorteIntEntreeSejour=1.675;
+constant Modelica.SIunits.Area Surf_PorteIntEntreeCuisine=1.5;
+constant Modelica.SIunits.Area Surf_PorteIntEntreeC2=1.5;
+constant Modelica.SIunits.Area Surf_PorteIntEntreeC1=1.5;
+constant Modelica.SIunits.Area Surf_PorteIntEntreeSDB=1.5;
+
+
   annotation (Documentation(info="<html>
 <p><i><b>Record of geometric data for Matisse collective housing.</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -109,12 +118,13 @@ constant Modelica.SIunits.Area Surf_CloisonLegEntreeSDB=9.75;
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",
         revisions="<html>
 <p>Benoît Charrier 05/2015 : ajouts de paramètres pour l'assemblage d'un logement collectif</p>
+<p>Stéphanie Froidurot - 10/2020 : Add internal doors</p>
 </html>"));
 end SettingsMatisse;

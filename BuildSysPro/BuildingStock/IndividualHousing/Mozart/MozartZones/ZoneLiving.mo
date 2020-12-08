@@ -1,4 +1,4 @@
-within BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartZones;
+﻿within BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartZones;
 model ZoneLiving
 
   // Choice of RT (French building regulation)
@@ -242,17 +242,19 @@ public
      == true annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{-100,-60},{-80,-40}})));
   BuildSysPro.BoundaryConditions.Radiation.PintRadDistrib PintdistriRad(
-    np=8,
+    np=9,
     nf=2,
     Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_VitrageSudSejour,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_VitrageOuestSejour},
     Sp={BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondSejour,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurNordSejour,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurSudSejour,BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_RefendSejourCuisine,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurSudSejour,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_RefendSejourCuisine,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_RefendEntreeSejour,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurOuestSejour,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondSejour,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurLNCSejour}) if not
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurLNCSejour,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteIntEntreeSejour}) if not
     CLOintPlancher
     annotation (Placement(transformation(extent={{-2,-92},{18,-72}})));
 
@@ -310,6 +312,10 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
   Modelica.Blocks.Interfaces.RealOutput FLUXrefendEntree if not CLOintPlancher
     annotation (Placement(transformation(extent={{90,50},{110,70}}),
         iconTransformation(extent={{60,-50},{80,-30}})));
+  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree if  not CLOintPlancher
+    annotation (Placement(transformation(extent={{90,90},{110,110}}),
+        iconTransformation(extent={{60,-22},{80,-2}})));
+
   Modelica.Blocks.Interfaces.RealInput VENTSud if useOuverturePF annotation (Placement(
         transformation(extent={{-112,-22},{-88,2}}), iconTransformation(extent=
             {{-100,22},{-76,46}})));
@@ -317,6 +323,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         transformation(extent={{-112,-38},{-88,-14}}),
                                                     iconTransformation(extent={
             {-100,2},{-76,26}})));
+
 equation
   if CLOintPlancher==false then
     connect(multiSum.y, PintdistriRad.RayEntrant) annotation (Line(
@@ -335,37 +342,39 @@ equation
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[1], ParoiSousCombles.FluxAbsInt) annotation (
      Line(
-      points={{19,-84.875},{24,-84.875},{24,92.5},{2.1,92.5}},
+      points={{19,-84.8889},{24,-84.8889},{24,92.5},{2.1,92.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[2], MurNord.FluxAbsInt) annotation (Line(
-      points={{19,-84.625},{24,-84.625},{24,32.5},{2.1,32.5}},
+      points={{19,-84.6667},{24,-84.6667},{24,32.5},{2.1,32.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[3], MurSud.FluxAbsInt) annotation (Line(
-      points={{19,-84.375},{24,-84.375},{24,-7.5},{2.1,-7.5}},
+      points={{19,-84.4444},{24,-84.4444},{24,-7.5},{2.1,-7.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[4], FLUXrefendCuisine) annotation (Line(
-      points={{19,-84.125},{24,-84.125},{24,80},{100,80}},
+      points={{19,-84.2222},{24,-84.2222},{24,80},{100,80}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[5], FLUXrefendEntree) annotation (Line(
-      points={{19,-83.875},{24,-83.875},{24,60},{100,60}},
+      points={{19,-84},{24,-84},{24,60},{100,60}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[6], MurOuest.FluxAbsInt) annotation (Line(
-      points={{19,-83.625},{24,-83.625},{24,12.5},{2.1,12.5}},
+      points={{19,-83.7778},{24,-83.7778},{24,12.5},{2.1,12.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[7], PlancherBas.FluxAbsInt) annotation (Line(
-      points={{19,-83.375},{47.5,-83.375},{47.5,-89.9}},
+      points={{19,-83.5556},{47.5,-83.5556},{47.5,-89.9}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[8], MurLNC.FluxAbsInt) annotation (Line(
-      points={{19,-83.125},{24,-83.125},{24,-47.5},{2.1,-47.5}},
+      points={{19,-83.3333},{24,-83.3333},{24,-47.5},{2.1,-47.5}},
       color={0,0,127},
       smooth=Smooth.None));
+    connect(PintdistriRad.FLUXParois[9], FLUXporteEntree) annotation (Line(points={{19,
+            -83.1111},{24,-83.1111},{24,100},{100,100}}, color={0,0,127}));
 else
     connect(multiSum.y, PlancherBas.FluxAbsInt) annotation (Line(
       points={{-14,-73.02},{48,-73.02},{48,-89.9},{47.5,-89.9}},
@@ -588,6 +597,7 @@ else
       points={{-100,-26},{-70,-26},{-70,9},{-35.3,9}},
       color={0,0,127},
       smooth=Smooth.None));
+
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,120}}),
 graphics={
@@ -672,9 +682,11 @@ graphics={
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Stéphanie Froidurot - 10/2020 : Add flux for internal doors</p>
 </html>"));
 end ZoneLiving;

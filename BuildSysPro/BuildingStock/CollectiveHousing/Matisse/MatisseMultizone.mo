@@ -304,7 +304,7 @@ protected
         TauPonts=paraMaisonRT.TauPonts))
     annotation (Placement(transformation(extent={{-26,-28},{4,2}})));
 
-  BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseZones.ZoneR1 zoneC1_1(
+  BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseZones.ZoneR1 zoneC1(
     paraMaisonRT(
       PlancherMitoyen(
         n=paraMaisonRT.PlancherMitoyen.n,
@@ -412,7 +412,7 @@ protected
         TauPonts=paraMaisonRT.TauPonts))
     annotation (Placement(transformation(extent={{8,-28},{34,2}})));
 
-  BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseZones.ZoneR2 zoneC2_1(
+  BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseZones.ZoneR2 zoneC2(
     paraMaisonRT(
       PlancherMitoyen(
         n=paraMaisonRT.PlancherMitoyen.n,
@@ -903,6 +903,101 @@ protected
   BuildSysPro.BoundaryConditions.Solar.Irradiation.FLUXzone fLUXzone(beta=beta)
     annotation (Placement(transformation(extent={{-86,36},{-66,56}})));
 
+  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PorteSejourEntree(
+    ParoiInterne=true,
+    RadExterne=not CLOintPlancher,
+    Tp=Tp,
+    InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState,
+    hs_ext=paraMaisonRT.hsIntVert,
+    hs_int=paraMaisonRT.hsIntVert,
+    caracParoi(
+      n=paraMaisonRT.Cloisons.n,
+      m=paraMaisonRT.Cloisons.m,
+      e=paraMaisonRT.Cloisons.e,
+      mat=paraMaisonRT.Cloisons.mat,
+      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+    RadInterne=false,
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeSejour)
+    annotation (Placement(transformation(
+        extent={{-2.75,-2.75},{2.75,2.75}},
+        rotation=0,
+        origin={-29.25,-43.25})));
+  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PorteCuisineEntree(
+    ParoiInterne=true,
+    RadExterne=not CLOintPlancher,
+    Tp=Tp,
+    InitType=InitType,
+    hs_ext=paraMaisonRT.hsIntVert,
+    hs_int=paraMaisonRT.hsIntVert,
+    caracParoi(
+      n=paraMaisonRT.Cloisons.n,
+      m=paraMaisonRT.Cloisons.m,
+      e=paraMaisonRT.Cloisons.e,
+      mat=paraMaisonRT.Cloisons.mat,
+      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+    RadInterne=false,
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeCuisine)
+    annotation (Placement(transformation(
+        extent={{-2.75,-2.75},{2.75,2.75}},
+        rotation=-90,
+        origin={-5.25,-33.25})));
+  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PorteChambre1Entree(
+    ParoiInterne=true,
+    RadExterne=not CLOintPlancher,
+    Tp=Tp,
+    InitType=InitType,
+    hs_ext=paraMaisonRT.hsIntVert,
+    hs_int=paraMaisonRT.hsIntVert,
+    caracParoi(
+      n=paraMaisonRT.Cloisons.n,
+      m=paraMaisonRT.Cloisons.m,
+      e=paraMaisonRT.Cloisons.e,
+      mat=paraMaisonRT.Cloisons.mat,
+      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+    RadInterne=false,
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeC1)
+    annotation (Placement(transformation(
+        extent={{-2.75,-2.75},{2.75,2.75}},
+        rotation=-90,
+        origin={26.75,-35.25})));
+  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PorteChambre2Entree(
+    ParoiInterne=true,
+    RadExterne=not CLOintPlancher,
+    Tp=Tp,
+    InitType=InitType,
+    hs_ext=paraMaisonRT.hsIntVert,
+    hs_int=paraMaisonRT.hsIntVert,
+    caracParoi(
+      n=paraMaisonRT.Cloisons.n,
+      m=paraMaisonRT.Cloisons.m,
+      e=paraMaisonRT.Cloisons.e,
+      mat=paraMaisonRT.Cloisons.mat,
+      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+    RadInterne=false,
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeC2)
+    annotation (Placement(transformation(
+        extent={{-2.75,-2.75},{2.75,2.75}},
+        rotation=-90,
+        origin={42.75,-35.25})));
+  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PorteEntreeSDB(
+    ParoiInterne=true,
+    Tp=Tp,
+    InitType=InitType,
+    hs_ext=paraMaisonRT.hsIntVert,
+    hs_int=paraMaisonRT.hsIntVert,
+    caracParoi(
+      n=paraMaisonRT.Cloisons.n,
+      m=paraMaisonRT.Cloisons.m,
+      e=paraMaisonRT.Cloisons.e,
+      mat=paraMaisonRT.Cloisons.mat,
+      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+    RadInterne=false,
+    RadExterne=false,
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeSDB)
+    annotation (Placement(transformation(
+        extent={{-2.75,-2.75},{2.75,2.75}},
+        rotation=0,
+        origin={30.75,-53.25})));
 public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext annotation (
       Placement(transformation(extent={{-100,10},{-80,30}}), iconTransformation(
@@ -1015,13 +1110,13 @@ equation
         smooth=Smooth.None));
     connect(CloisonSejourCuisine.FluxAbsInt, zoneCuisine.FLUXcloisonSejour)
       annotation (Line(
-        points={{-28.425,-15.875},{-26.2125,-15.875},{-26.2125,-14.3636},{-23.6,
-            -14.3636}},
+        points={{-28.425,-15.875},{-26.2125,-15.875},{-26.2125,-14.3636},
+            {-23.6,-14.3636}},
         color={0,0,127},
         smooth=Smooth.None));
     connect(zoneSejour.FLUXcloisonEntree, CloisonSejourEntree.FluxAbsExt)
       annotation (Line(
-        points={{-34.3,-32},{-30.075,-32},{-30.075,-31.875}},
+        points={{-34.3,-36},{-30.075,-36},{-30.075,-31.875}},
         color={0,0,127},
         smooth=Smooth.Bezier));
     connect(zoneCuisine.FLUXcloisonChambre1, CloisonChambre1Cuisine.FluxAbsExt)
@@ -1030,46 +1125,55 @@ equation
         color={0,0,127},
         smooth=Smooth.Bezier));
 
-    connect(CloisonChambre1Cuisine.FluxAbsInt, zoneC1_1.FLUXcloisonCuisine)
+    connect(CloisonChambre1Cuisine.FluxAbsInt, zoneC1.FLUXcloisonCuisine)
       annotation (Line(
         points={{3.575,-15.875},{7.7875,-15.875},{7.7875,-14.3636},{11.9,
             -14.3636}},
         color={0,0,127},
         smooth=Smooth.Bezier));
-connect(CloisonChambre1Chambre2.FluxAbsInt, zoneC2_1.FLUXcloisonChambre1)
-    annotation (Line(
-      points={{37.575,-15.875},{40.7875,-15.875},{40.7875,-14.3636},{43.9,
+
+    connect(CloisonChambre1Chambre2.FluxAbsInt, zoneC2.FLUXcloisonChambre1)
+      annotation (Line(
+        points={{37.575,-15.875},{40.7875,-15.875},{40.7875,-14.3636},{43.9,
             -14.3636}},
-      color={0,0,127},
-      smooth=Smooth.None));
-    connect(zoneC1_1.FLUXcloisonChambre2, CloisonChambre1Chambre2.FluxAbsExt)
+        color={0,0,127},
+        smooth=Smooth.None));
+
+    connect(zoneC1.FLUXcloisonChambre2, CloisonChambre1Chambre2.FluxAbsExt)
       annotation (Line(
         points={{30.1,-14.3636},{33.05,-14.3636},{33.05,-15.875},{35.925,
             -15.875}},
         color={0,0,127},
         smooth=Smooth.None));
-    connect(zoneC2_1.FLUXcloisonEntree, CloisonChambre2Entree.FluxAbsExt)
+
+    connect(zoneC2.FLUXcloisonEntree, CloisonChambre2Entree.FluxAbsExt)
       annotation (Line(
-        points={{50.4,-28},{50.125,-28},{50.125,-38.425}},
+        points={{51.7,-28},{50.125,-28},{50.125,-38.425}},
         color={0,0,127},
         smooth=Smooth.None));
-    connect(zoneC2_1.FLUXcloisonSDB, CloisonChambre2SDB.FluxAbsExt) annotation (
-       Line(
+    connect(zoneC2.FLUXcloisonSDB, CloisonChambre2SDB.FluxAbsExt) annotation (
+        Line(
         points={{58.2,-28},{60.125,-28},{60.125,-38.425}},
         color={0,0,127},
         smooth=Smooth.None));
     connect(zoneCuisine.FLUXcloisonEntree, CloisonCuisineEntree.FluxAbsExt)
       annotation (Line(
-        points={{-12.5,-26.6364},{-12.5,-29.3182},{-11.875,-29.3182},{-11.875,
+        points={{-11.3,-26.6364},{-11.3,-29.3182},{-11.875,-29.3182},{-11.875,
             -32.425}},
         color={0,0,127},
         smooth=Smooth.None));
-    connect(zoneC1_1.FLUXcloisonEntree, CloisonChambre1Entree.FluxAbsExt)
+    connect(zoneC1.FLUXcloisonEntree, CloisonChambre1Entree.FluxAbsExt)
       annotation (Line(
         points={{19.7,-29.3636},{19.7,-31.6818},{18.125,-31.6818},{18.125,
             -34.425}},
         color={0,0,127},
         smooth=Smooth.None));
+
+     connect(zoneSejour.FLUXporteEntree, PorteSejourEntree.FluxAbsExt);
+     connect(zoneCuisine.FLUXporteEntree, PorteCuisineEntree.FluxAbsExt);
+     connect(zoneC2.FLUXporteEntree, PorteChambre2Entree.FluxAbsExt);
+     connect(zoneC1.FLUXporteEntree, PorteChambre1Entree.FluxAbsExt);
+
   end if;
 
   if GLOEXT==true then
@@ -1093,14 +1197,14 @@ connect(T_sky,zoneCuisine.T_sky)  annotation (Line(
       points={{-90,-10},{-74,-10},{-74,20},{-0.5,20},{-0.5,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
-connect(T_sky,zoneC1_1.T_sky)  annotation (Line(
-      points={{-90,-10},{-76,-10},{-76,20},{30.1,20},{30.1,0.636364}},
-      color={191,0,0},
-      smooth=Smooth.None));
-connect(T_sky,zoneC2_1.T_sky)  annotation (Line(
-      points={{-90,-10},{-76,-10},{-76,20},{62.1,20},{62.1,0.636364}},
-      color={191,0,0},
-      smooth=Smooth.None));
+    connect(T_sky, zoneC1.T_sky) annotation (Line(
+        points={{-90,-10},{-76,-10},{-76,20},{30.1,20},{30.1,0.636364}},
+        color={191,0,0},
+        smooth=Smooth.None));
+    connect(T_sky, zoneC2.T_sky) annotation (Line(
+        points={{-90,-10},{-76,-10},{-76,20},{62.1,20},{62.1,0.636364}},
+        color={191,0,0},
+        smooth=Smooth.None));
 
   end if;
 
@@ -1121,14 +1225,14 @@ connect(RenouvAir, zoneSDB.RenouvAir) annotation (Line(
       points={{-100,-80},{44.71,-80},{44.71,-63.2727}},
       color={0,0,127},
       smooth=Smooth.None));
-connect(RenouvAir, zoneC2_1.RenouvAir) annotation (Line(
-      points={{-100,-80},{88,-80},{88,28},{50.01,28},{50.01,-5.22727}},
-      color={0,0,127},
-      smooth=Smooth.None));
-connect(RenouvAir, zoneC1_1.RenouvAir) annotation (Line(
-      points={{-100,-80},{88,-80},{88,28},{23.99,28},{23.99,-4.95455}},
-      color={0,0,127},
-      smooth=Smooth.None));
+    connect(RenouvAir, zoneC2.RenouvAir) annotation (Line(
+        points={{-100,-80},{88,-80},{88,28},{50.01,28},{50.01,-5.22727}},
+        color={0,0,127},
+        smooth=Smooth.None));
+    connect(RenouvAir, zoneC1.RenouvAir) annotation (Line(
+        points={{-100,-80},{88,-80},{88,28},{23.99,28},{23.99,-4.95455}},
+        color={0,0,127},
+        smooth=Smooth.None));
 connect(RenouvAir, zoneCuisine.RenouvAir) annotation (Line(
       points={{-100,-80},{88,-80},{88,28},{-9.65,28},{-9.65,-5.22727}},
       color={0,0,127},
@@ -1144,14 +1248,14 @@ connect(fermetureCuisine, zoneCuisine.fermetureVolets) annotation (Line(
       points={{-30,100},{-30,80},{-13.25,80},{-13.25,-5.22727}},
       color={0,0,127},
       smooth=Smooth.None));
-connect(fermetureChambre1, zoneC1_1.fermetureVolets) annotation (Line(
-      points={{-10,100},{-10,80},{20,80},{20,-4.95455},{19.83,-4.95455}},
-      color={0,0,127},
-      smooth=Smooth.None));
-connect(fermetureChambre2, zoneC2_1.fermetureVolets) annotation (Line(
-      points={{10,100},{10,80},{58.07,80},{58.07,-5.22727}},
-      color={0,0,127},
-      smooth=Smooth.None));
+    connect(fermetureChambre1, zoneC1.fermetureVolets) annotation (Line(
+        points={{-10,100},{-10,80},{20,80},{20,-4.95455},{19.83,-4.95455}},
+        color={0,0,127},
+        smooth=Smooth.None));
+    connect(fermetureChambre2, zoneC2.fermetureVolets) annotation (Line(
+        points={{10,100},{10,80},{58.07,80},{58.07,-5.22727}},
+        color={0,0,127},
+        smooth=Smooth.None));
   end if;
   if useOuverture then
 connect(ouvertureSejour, zoneSejour.ouvertureFenetres) annotation (Line(
@@ -1162,11 +1266,11 @@ connect(ouvertureCuisine, zoneCuisine.ouvertureFenetres) annotation (Line(
         points={{-40,100},{-40,80},{-15.95,80},{-15.95,-5.22727}},
         color={255,0,255},
         smooth=Smooth.None));
-connect(ouvertureChambre1, zoneC1_1.ouvertureFenetres) annotation (Line(
+    connect(ouvertureChambre1, zoneC1.ouvertureFenetres) annotation (Line(
         points={{-20,100},{-20,80},{18.01,80},{18.01,-4.95455}},
         color={255,0,255},
         smooth=Smooth.None));
-connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
+    connect(ouvertureChambre2, zoneC2.ouvertureFenetres) annotation (Line(
         points={{0,100},{0,80},{56.25,80},{56.25,-5.22727}},
         color={255,0,255},
         smooth=Smooth.None));
@@ -1194,23 +1298,23 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
       points={{-65,50.2},{-16.7,50.2},{-16.7,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FluxIncExtRoof, zoneC1_1.FluxIncExtRoof) annotation (Line(
+  connect(fLUXzone.FluxIncExtRoof, zoneC1.FluxIncExtRoof) annotation (Line(
       points={{-65,54.4},{13.2,54.4},{13.2,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FluxIncExtNorth, zoneC1_1.FluxIncExtNorth) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, zoneC1.FluxIncExtNorth) annotation (Line(
       points={{-65,50.2},{16.06,50.2},{16.06,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FluxIncExtRoof, zoneC2_1.FluxIncExtRoof) annotation (Line(
+  connect(fLUXzone.FluxIncExtRoof, zoneC2.FluxIncExtRoof) annotation (Line(
       points={{-65,54.4},{42.6,54.4},{42.6,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FluxIncExtNorth, zoneC2_1.FluxIncExtNorth) annotation (Line(
+  connect(fLUXzone.FluxIncExtNorth, zoneC2.FluxIncExtNorth) annotation (Line(
       points={{-65,50.2},{45.46,50.2},{45.46,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
-  connect(fLUXzone.FluxIncExtEast, zoneC2_1.FluxIncExtEast) annotation (Line(
+  connect(fLUXzone.FluxIncExtEast, zoneC2.FluxIncExtEast) annotation (Line(
       points={{-65,42.4},{48.32,42.4},{48.32,0.5}},
       color={255,192,1},
       smooth=Smooth.None));
@@ -1234,11 +1338,11 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
       points={{-90,20},{-6.5,20},{-6.5,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(T_ext, zoneC1_1.T_ext) annotation (Line(
+  connect(T_ext, zoneC1.T_ext) annotation (Line(
       points={{-90,20},{24.9,20},{24.9,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(T_ext, zoneC2_1.T_ext) annotation (Line(
+  connect(T_ext, zoneC2.T_ext) annotation (Line(
       points={{-90,20},{56.9,20},{56.9,0.636364}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -1254,11 +1358,11 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
       points={{-60,72},{-28.84,72},{-28.84,2}},
       color={128,0,255},
       smooth=Smooth.None));
-  connect(T_int_common, zoneC1_1.T_int_common) annotation (Line(
+  connect(T_int_common, zoneC1.T_int_common) annotation (Line(
       points={{-60,72},{33.48,72},{33.48,0.636364}},
       color={128,0,255},
       smooth=Smooth.None));
-  connect(T_int_common, zoneC2_1.T_int_common) annotation (Line(
+  connect(T_int_common, zoneC2.T_int_common) annotation (Line(
       points={{-60,72},{65.48,72},{65.48,0.363636}},
       color={255,0,0},
       smooth=Smooth.None));
@@ -1281,8 +1385,8 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
       visible=false));
   connect(CloisonSejourCuisine.T_int, zoneCuisine.T_int_kitchen) annotation (
       Line(
-      points={{-26.775,-18.075},{-20.3875,-18.075},{-20.3875,-18.7273},{-12.35,
-          -18.7273}},
+      points={{-26.775,-18.075},{-20.3875,-18.075},{-20.3875,-18.7273},{
+          -12.35,-18.7273}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
@@ -1304,36 +1408,40 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
       color={191,0,0},
       smooth=Smooth.Bezier,
       visible=false));
-  connect(CloisonChambre1Cuisine.T_int, zoneC1_1.T_int_room1) annotation (Line(
+  connect(CloisonChambre1Cuisine.T_int, zoneC1.T_int_room1) annotation (Line(
       points={{5.225,-18.075},{11.6125,-18.075},{11.6125,-20.6364},{19.83,
           -20.6364}},
       color={255,0,0},
       smooth=Smooth.Bezier,
       visible=false));
-  connect(zoneC1_1.T_int_room1,CloisonChambre1Chambre2. T_ext) annotation (Line(
+
+  connect(zoneC1.T_int_room1, CloisonChambre1Chambre2.T_ext) annotation (Line(
       points={{19.83,-20.6364},{26.915,-20.6364},{26.915,-18.075},{34.275,
           -18.075}},
       color={191,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Chambre2.T_int, zoneC2_1.T_int_room2) annotation (Line(
+
+  connect(CloisonChambre1Chambre2.T_int, zoneC2.T_int_room2) annotation (Line(
       points={{39.225,-18.075},{46.6125,-18.075},{46.6125,-20.3636},{53.65,
           -20.3636}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(zoneC2_1.T_int_room2, CloisonChambre2SDB.T_ext) annotation (Line(
+
+  connect(zoneC2.T_int_room2, CloisonChambre2SDB.T_ext) annotation (Line(
       points={{53.65,-20.3636},{53.65,-28.1818},{57.925,-28.1818},{57.925,
           -36.775}},
       color={191,0,0},
       smooth=Smooth.None,
       visible=false));
+
   connect(CloisonChambre2SDB.T_int, zoneSDB.T_int_bathroom) annotation (Line(
       points={{57.925,-41.725},{57.925,-51.8182},{48.11,-51.8182}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre2Entree.T_ext, zoneC2_1.T_int_room2) annotation (Line(
+  connect(CloisonChambre2Entree.T_ext, zoneC2.T_int_room2) annotation (Line(
       points={{47.925,-36.775},{47.925,-34},{53.65,-34},{53.65,-20.3636}},
       color={191,0,0},
       smooth=Smooth.None,
@@ -1368,7 +1476,7 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
-  connect(CloisonChambre1Entree.T_ext, zoneC1_1.T_int_room1) annotation (Line(
+  connect(CloisonChambre1Entree.T_ext, zoneC1.T_int_room1) annotation (Line(
       points={{15.925,-32.775},{15.925,-20.6364},{19.83,-20.6364}},
       color={191,0,0},
       smooth=Smooth.None,
@@ -1390,12 +1498,12 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
       color={191,0,0},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-  connect(T_int_room1, zoneC1_1.T_int_room1) annotation (Line(
+  connect(T_int_room1, zoneC1.T_int_room1) annotation (Line(
       points={{-35,-105},{-35,-94},{19.83,-94},{19.83,-20.6364}},
       color={191,0,0},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
-  connect(T_int_room2, zoneC2_1.T_int_room2) annotation (Line(
+  connect(T_int_room2, zoneC2.T_int_room2) annotation (Line(
       points={{-15,-105},{-15,-94},{53.65,-94},{53.65,-20.3636}},
       color={191,0,0},
       smooth=Smooth.None,
@@ -1411,6 +1519,52 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
 
+  connect(zoneSejour.T_int_living, PorteSejourEntree.T_ext) annotation (Line(
+        points={{-49.21,-30.8},{-40.605,-30.8},{-40.605,-44.075},{-31.725,-44.075}},
+        color={191,0,0},
+        visible=false));
+  connect(PorteSejourEntree.T_int, zoneEntree.T_int_entrance) annotation (Line(
+        points={{-26.775,-44.075},{-19.3875,-44.075},{-19.3875,-43.5636},
+          {-10.27,-43.5636}},
+                      color={191,0,0},
+        visible=false));
+  connect(zoneCuisine.T_int_kitchen, PorteCuisineEntree.T_ext) annotation (Line(
+        points={{-12.35,-18.7273},{-12.35,-26},{-6.075,-26},{-6.075,-30.775}},
+        color={191,0,0},
+        visible=false));
+  connect(PorteCuisineEntree.T_int, zoneEntree.T_int_entrance) annotation (Line(
+        points={{-6.075,-35.725},{-6.075,-38},{-10.27,-38},{-10.27,-43.5636}},
+        color={191,0,0},
+        visible=false));
+  connect(zoneC1.T_int_room1, PorteChambre1Entree.T_ext) annotation (Line(
+      points={{19.83,-20.6364},{19.83,-28},{25.925,-28},{25.925,-32.775}},
+      color={191,0,0},
+      visible=false));
+  connect(PorteChambre1Entree.T_int, zoneEntree.T_int_entrance) annotation (
+      Line(points={{25.925,-37.725},{-6,-37.725},{-6,-43.5636},{-10.27,-43.5636}},
+        color={191,0,0},
+        visible=false));
+  connect(zoneC2.T_int_room2, PorteChambre2Entree.T_ext) annotation (Line(
+      points={{53.65,-20.3636},{47.825,-20.3636},{47.825,-32.775},{41.925,
+          -32.775}},
+      color={191,0,0},
+      visible=false));
+
+  connect(PorteChambre2Entree.T_int, zoneEntree.T_int_entrance) annotation (
+      Line(points={{41.925,-37.725},{15.9625,-37.725},{15.9625,-43.5636},
+          {-10.27,-43.5636}},
+                      color={191,0,0},
+        visible=false));
+  connect(zoneSDB.T_int_bathroom, PorteEntreeSDB.T_int) annotation (Line(points={{48.11,
+          -51.8182},{41.055,-51.8182},{41.055,-54.075},{33.225,-54.075}},
+        color={191,0,0},
+        visible=false));
+  connect(PorteEntreeSDB.T_ext, zoneEntree.T_int_entrance) annotation (Line(
+        points={{28.275,-54.075},{10.1375,-54.075},{10.1375,-43.5636},{-10.27,
+          -43.5636}},
+        color={191,0,0},
+        visible=false));
+
   connect(V, vENTzone.V) annotation (Line(
       points={{-120,-40},{-108,-40},{-108,-40.1},{-94.9,-40.1}},
       color={0,0,127},
@@ -1423,14 +1577,16 @@ connect(ouvertureChambre2, zoneC2_1.ouvertureFenetres) annotation (Line(
       points={{-73,-35.8},{-70,-35.8},{-70,16},{-12.5,16},{-12.5,0.636364}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(vENTzone.VENTNord, zoneC1_1.VENTNord) annotation (Line(
+  connect(vENTzone.VENTNord, zoneC1.VENTNord) annotation (Line(
       points={{-73,-35.8},{-70,-35.8},{-70,16},{19.7,16},{19.7,0.636364}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(vENTzone.VENTNord, zoneC2_1.VENTNord) annotation (Line(
+  connect(vENTzone.VENTNord, zoneC2.VENTNord) annotation (Line(
       points={{-73,-35.8},{-70,-35.8},{-70,16},{51.7,16},{51.7,0.636364}},
       color={0,0,127},
       smooth=Smooth.None));
+
+
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,120}}),
 graphics={
@@ -1527,11 +1683,12 @@ graphics={
 <p>Validated model by comparison of GV with Clim 2000 - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>",
         revisions="<html>
 <p>Stéphanie Froidurot 06/2018 : Correction connexions entre les zones (non cohérentes avec les flux radiatifs redistribués), correction noms des cloisons</p>
+<p>Stéphanie Froidurot - 10/2020 : Add internal doors + correction name of the zones C1 and C2</p></p>
 </html>"));
 end MatisseMultizone;

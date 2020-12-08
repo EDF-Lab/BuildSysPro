@@ -2,7 +2,7 @@ within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.Fr
 record Door =
   BuildSysPro.Utilities.Icons.Door (
     n=1,
-    m={6},
+    m={4},
     e={0.06},
     mat={BuildSysPro.Utilities.Data.Solids.MetalComplexDoor9()},
     positionIsolant={0}) "Exterior door Mozart GV(1989) -10%"
@@ -19,7 +19,7 @@ record Door =
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

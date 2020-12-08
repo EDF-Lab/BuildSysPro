@@ -10,8 +10,8 @@ record Ceiling_MTD_UnheatedRoom =
 <p>RT2012 : Parameters of MTD LNC ceilings for individual housing.</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Céline ILIAS, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

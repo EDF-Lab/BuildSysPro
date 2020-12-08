@@ -193,8 +193,8 @@ Documentation(info="<html>
 <p>Validated model - Hubert Blervaque 06/2012 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Hubert BLERVAQUE, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",

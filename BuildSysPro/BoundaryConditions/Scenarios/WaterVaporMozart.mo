@@ -213,7 +213,7 @@ In terms of occupancy , one adult and 2 children are coming back home for lunch 
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.3.0<br>
+BuildSysPro version 3.4.0<br>
 Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>

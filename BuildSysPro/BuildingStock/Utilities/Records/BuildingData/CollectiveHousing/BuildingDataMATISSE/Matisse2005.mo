@@ -36,10 +36,10 @@ record Matisse2005 =
     PontsTh_Bas=0.00,
     PontsTh_Haut=0.00,
     renouvAir=0.426,
-    hsExtVert=16.67,
-    hsIntVert=9.09,
-    hsExtHor=20,
-    hsIntHorHaut=11.11) "Settings of Matisse collective housing RT2005"
+    hsExtVert=25,
+    hsIntVert=7.69,
+    hsExtHor=25,
+    hsIntHorHaut=10) "Settings of Matisse collective housing RT2005"
   annotation (Documentation(info="<html>
 <p><i><b>Record of Matisse collective housing settings according to the date of construction</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -54,8 +54,8 @@ record Matisse2005 =
 <p>Validated model - Benoît Charrier, Philippe Petiot 06/2017</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Benoît CHARRIER, Philippe PETIOT, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>",

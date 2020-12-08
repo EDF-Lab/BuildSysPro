@@ -48,8 +48,8 @@ block IntegerExpression
 <p>Validated model - Hassan Bouia 07/2012 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 Initial model : <a href=\"Modelica.Blocks.Sources.IntegerExpression\">IntegerExpression</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p>

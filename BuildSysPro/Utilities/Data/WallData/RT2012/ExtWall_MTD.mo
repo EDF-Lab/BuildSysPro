@@ -2,7 +2,7 @@
 record ExtWall_MTD =
   BuildSysPro.Utilities.Icons.ExtWall (
     n=3,
-    m={4,3,1},
+    m={5,2,1},
     e={0.2,0.14,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.HollowBuildingBrick25(),
          BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene32(),
@@ -12,8 +12,8 @@ Documentation(info="<html>
 <p>RT2012 : Parameters of MTD external walls for individual housing.</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Céline ILIAS, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

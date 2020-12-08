@@ -1,4 +1,4 @@
-﻿within BuildSysPro.UsersGuide;
+within BuildSysPro.UsersGuide;
 partial model ModelTemplate
   "Model template with recommendations in terms of documentation and code-writing"
 
@@ -81,8 +81,8 @@ gamma = if Bool then D else 0;
 <p>Validated model (or not) - First name LAST NAME month/year <b>(MANDATORY)</b></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : First name LAST NAME, company (year of creation of the code)<br>
 --------------------------------------------------------------</b></p>
 </html>",

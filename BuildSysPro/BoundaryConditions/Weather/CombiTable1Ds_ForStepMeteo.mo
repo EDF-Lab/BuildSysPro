@@ -186,7 +186,7 @@ double tab2(5,2)   # another comment line
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.3.0<br>
+BuildSysPro version 3.4.0<br>
 Author : Hassan BOUIA, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

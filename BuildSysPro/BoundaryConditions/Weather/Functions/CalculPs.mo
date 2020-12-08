@@ -1,11 +1,11 @@
 ﻿within BuildSysPro.BoundaryConditions.Weather.Functions;
 function CalculPs "Compute the saturation pressure"
-  parameter Real Tmin=273.16;
-  parameter Real Tmax=647.3;
   output Real ps;
   input Real T;
 
 protected
+  Real Tmin=273.16;
+  Real Tmax=647.3;
   Real tk;
   Real a;
   Real b;
@@ -47,7 +47,7 @@ algorithm
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.3.0<br>
+BuildSysPro version 3.4.0<br>
 Author : EDF 2010<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -2,9 +2,9 @@
 package BuildSysPro "EDF's Modelica library for modelling buildings and energy systems"
 
   annotation (uses(Modelica(version="3.2.3")),
-  version="3.3.0",
-  versionDate="2019-08",
-  conversion(from(version={"3.2.0"},script="Convert_3.2.0_to_3.3.0.mos")),
+  version="3.4.0",
+  versionDate="2020-12",
+  conversion(from(version={"3.3.0"},script="Convert_3.3.0_to_3.4.0.mos")),
   Documentation(info="<html>
 <p>
 The <code>BuildSysPro</code> library is a free open-source Modelica library for modeling building and energy systems.
@@ -21,7 +21,7 @@ BuildSysPro contains classes to describe the whole building and its energy syste
 
 <p><b>-----------------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
+Copyright &copy; EDF 2009 - 2020<br>
 This Modelica package is <u>free</u> software and the use is completely at <u>your own risk</u>; it can be redistributed and/or modified under the terms of 3-clause BSD-license.<br>
 For license conditions (including the disclaimer of warranty) see <a href=\"modelica://BuildSysPro.UsersGuide.License\">BuildSysPro.UsersGuide.License</a>.<br>
 -----------------------------------------------------------------------</b></p>

@@ -2,7 +2,7 @@
 record Floor_MTD =
   BuildSysPro.Utilities.Icons.Floor (
     n=4,
-    m={2,4,2,1},
+    m={2,3,2,1},
     e={0.1,0.2,0.1,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.Polyurethane25(),
          BuildSysPro.Utilities.Data.Solids.Concrete(),
@@ -13,8 +13,8 @@ record Floor_MTD =
 <p>RT2012 : Parameters of MTD floors for individual housing.</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Céline ILIAS, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -276,8 +276,8 @@ connect(SommeFluxSolaireInterne.y,RepartitionSolaireInterne.RayEntrant);
 <p>Validation in <a href=\"modelica://BuildSysPro.Building.Examples.TestZoneNWalls\"><code>TestZoneNWalls</code></a></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

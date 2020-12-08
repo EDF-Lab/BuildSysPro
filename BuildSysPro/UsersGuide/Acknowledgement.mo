@@ -11,22 +11,22 @@ EDF R&amp;D's <strong>Modelling, Environment and Buildings</strong> group, from 
 The core development team of BuildSysPro is composed of:
 <ul>
 <li>
+Antoine Batard, EDF R&amp;D, France
+</li>
+<li>
 Hassan Bouia, EDF R&amp;D, France
 </li>
 <li>
 Mathias Bouquerel, EDF R&amp;D, France
 </li>
 <li>
-Benoit Charrier, EDF R&amp;D, France
+Benoît Charrier, EDF R&amp;D, France
 </li>
 <li>
 Denis Covalet, EDF R&amp;D, France
 </li>
 <li>
 Stéphanie Froidurot, EDF R&amp;D, France
-</li>
-<li>
-Mathieu Schumann, EDF R&amp;D, France
 </li>
 <li>
 Bénédicte Wall-Ribot, EDF R&amp;D, France
@@ -38,7 +38,22 @@ The following people have contributed or contribute actively to the development 
 Emmanuel Amy de la Bretèque, EDF R&amp;D, France
 </li>
 <li>
+Hubert Blervaque, EDF R&amp;D, France
+</li>
+<li>
+Emmanuel Boyère, EDF R&amp;D, France
+</li>
+<li>
+Matthieu Chiodetti, EDF R&amp;D, France
+</li>
+<li>
 Bernard Clémençon, EDF R&amp;D, France
+</li>
+<li>
+François Courtot, EDF R&amp;D, France
+</li>
+<li>
+Kevin Deutz, EDF R&amp;D, France
 </li>
 <li>
 Sila Filfli, EDF R&amp;D, France
@@ -50,13 +65,16 @@ Frédéric Gastiger, EDF R&amp;D, France
 Jean-Luc Hubert, EDF R&amp;D, France
 </li>
 <li>
+Céline Ilias, EDF R&amp;D, France
+</li>
+<li>
 Aurélie Kaemmerlen, EDF R&amp;D, France
 </li>
 <li>
 Amy Lindsay, EDF R&amp;D, France
 </li>
 <li>
-Gilles Plessis, EDF R&amp;D, France
+Rémi Le Berre, EDF R&amp;D, France
 </li>
 <li>
 Vincent Magnaudeix, EDF R&amp;D, France
@@ -66,11 +84,21 @@ Pierrick Mandrou, EDF R&amp;D, France
 </li>
 <li>
 Davy Merlet, EDF R&amp;D, France
-</li></ul></p>
+</li>
+<li>
+Gilles Plessis, EDF R&amp;D, France
+</li>
+<li>
+Mathieu Schumann, EDF R&amp;D, France
+</li>
+<li>
+Alberto Tejeda, EDF R&amp;D, France
+</li>
+</ul></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

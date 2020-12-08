@@ -14,9 +14,9 @@ record Mozart1989to2000 =
       Cloisons,
     redeclare replaceable parameter WallData.IndividualHousing.SupportingWall
       Refends,
-    hsExtVert=16.67,
-    hsIntVert=9.09,
-    hsIntHorHaut=11.11,
+    hsExtVert=25,
+    hsIntVert=7.69,
+    hsIntHorHaut=10,
     UvitrageAF=2.1,
     UvitrageSF=2.1,
     renouvAir=0.551,
@@ -39,8 +39,10 @@ record Mozart1989to2000 =
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p> 07/2020 - Correction of surface exchange coefficient on  walls (standardisation of all the record with values in agreement with ISO6946)</p>
 </html>"));

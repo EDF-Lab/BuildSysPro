@@ -2,7 +2,7 @@
 record ExtWall =
   BuildSysPro.Utilities.Icons.ExtWall (
     n=3,
-    m={5,2,1},
+    m={3,1,1},
     e={0.20,0.1,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.Concrete(),
          BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene38(),
@@ -21,7 +21,7 @@ record ExtWall =
 <p>Validated model - Benoît Charrier, Philippe Petiot 06/2017</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Benoît CHARRIER, Philippe PETIOT, EDF (2017)<br>
 --------------------------------------------------------------</b></p></html>"));

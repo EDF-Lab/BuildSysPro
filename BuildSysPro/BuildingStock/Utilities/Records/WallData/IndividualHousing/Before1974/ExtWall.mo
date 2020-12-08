@@ -2,7 +2,7 @@ within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.Be
 record ExtWall =
   BuildSysPro.Utilities.Icons.ExtWall (
     n=3,
-    m={1,5,1},
+    m={1,4,1},
     e={0.015,0.225,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.PlasteringMortar(),
          BuildSysPro.Utilities.Data.Solids.HollowBuildingBrick50(),
@@ -22,8 +22,8 @@ record ExtWall =
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -2,7 +2,7 @@ within BuildSysPro.BuildingStock.Utilities.Records.WallData.CollectiveHousing.Fr
 record Ceiling =
   BuildSysPro.Utilities.Icons.Ceiling (
     n=4,
-    m={1,2,4,1},
+    m={1,1,3,1},
     e={0.01,0.06,0.18,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.BitumenFelt(),
          BuildSysPro.Utilities.Data.Solids.ExtrudedPolystyrene30(),
@@ -25,7 +25,7 @@ record Ceiling =
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

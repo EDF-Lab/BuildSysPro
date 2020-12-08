@@ -207,14 +207,17 @@ public
      == true annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{60,-100},{80,-80}})));
   BuildSysPro.BoundaryConditions.Radiation.PintRadDistrib PintdistriRad(
-    np=6,
+    np=7,
     nf=2,
     Sp={BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondC3,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_CloisonLegEntreeC3,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurSudC3,BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurEstC3,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurSudC3,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurEstC3,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_CloisonLegC3SDB,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondC3},
-    Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_VitrageSudC3,BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_VitrageEstC3}) if not
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondC3,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteIntEntreeC3},
+    Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_VitrageSudC3,
+    BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_VitrageEstC3}) if not
     CLOintPlancher
     annotation (Placement(transformation(extent={{-2,-92},{18,-72}})));
 
@@ -278,13 +281,13 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         rotation=90,
         origin={-40,-88})));
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonEntree if not CLOintPlancher
-    annotation (Placement(transformation(extent={{84,78},{104,98}}),
+    annotation (Placement(transformation(extent={{84,58},{104,78}}),
         iconTransformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={0,90})));
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonSDB if not CLOintPlancher
-    annotation (Placement(transformation(extent={{84,60},{104,80}}),
+    annotation (Placement(transformation(extent={{84,40},{104,60}}),
         iconTransformation(extent={{-80,-10},{-100,10}})));
   Modelica.Blocks.Interfaces.RealInput VENTEst if
                                                useOuverturePF annotation (
@@ -293,6 +296,12 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={0,-90})));
+  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree if   not CLOintPlancher
+    annotation (Placement(transformation(extent={{84,80},{104,100}}),
+        iconTransformation(
+        extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={-52,90})));
 equation
   if CLOintPlancher==false then
     connect(multiSum.y, PintdistriRad.RayEntrant) annotation (Line(
@@ -311,29 +320,32 @@ equation
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[1], ParoiSousCombles.FluxAbsInt) annotation (
      Line(
-      points={{19,-84.8333},{24,-84.8333},{24,92.5},{2.1,92.5}},
+      points={{19,-84.8571},{24,-84.8571},{24,92.5},{2.1,92.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[2], FLUXcloisonEntree) annotation (Line(
-      points={{19,-84.5},{24,-84.5},{24,88},{94,88}},
+      points={{19,-84.5714},{24,-84.5714},{24,68},{94,68}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[3], MurSud.FluxAbsInt) annotation (Line(
-      points={{19,-84.1667},{24,-84.1667},{24,-7.5},{2.1,-7.5}},
+      points={{19,-84.2857},{24,-84.2857},{24,-7.5},{2.1,-7.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[4], MurEst.FluxAbsInt) annotation (Line(
-      points={{19,-83.8333},{24,-83.8333},{24,52.5},{2.1,52.5}},
+      points={{19,-84},{24,-84},{24,52.5},{2.1,52.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[5], FLUXcloisonSDB) annotation (Line(
-      points={{19,-83.5},{24,-83.5},{24,70},{94,70}},
+      points={{19,-83.7143},{24,-83.7143},{24,50},{94,50}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[6], PlancherBas.FluxAbsInt) annotation (Line(
-      points={{19,-83.1667},{47.5,-83.1667},{47.5,-89.9}},
+      points={{19,-83.4286},{47.5,-83.4286},{47.5,-89.9}},
       color={0,0,127},
       smooth=Smooth.None));
+    connect(PintdistriRad.FLUXParois[7], FLUXporteEntree) annotation (Line(
+      points={{19,-83.1429},{24,-83.1429},{24,90},{94,90}},
+      color={0,0,127}));
 else
     connect(multiSum.y, PlancherBas.FluxAbsInt) annotation (Line(
       points={{-14,-73.02},{48,-73.02},{48,-89.9},{47.5,-89.9}},
@@ -408,11 +420,11 @@ else
       color={191,0,0},
       smooth=Smooth.None));
     connect(TauPlafond.Tponder, ParoiSousCombles.T_ext) annotation (Line(
-      points={{-43,89.8},{-6.3,89.8},{-6.3,86.9}},
+      points={{-44,90},{-6.3,90},{-6.3,86.9}},
       color={191,0,0},
       smooth=Smooth.None));
     connect(TauPlancher.Tponder, PlancherBas.T_ext) annotation (Line(
-      points={{-43,-90.2},{34,-90.2},{34,-98.3},{53.1,-98.3}},
+      points={{-44,-90},{34,-90},{34,-98.3},{53.1,-98.3}},
       color={191,0,0},
       smooth=Smooth.None));
     connect(ParoiSousCombles.T_int, noeudAir.port_a) annotation (Line(
@@ -440,11 +452,11 @@ else
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauPlancher.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-87},{-57,-87}},
+      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-86},{-56,-86}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauPlafond.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,80},{-64,80},{-64,93},{-57,93}},
+      points={{-90,40},{-52,40},{-52,80},{-64,80},{-64,94},{-56,94}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(VitrageEst.CLOTr, multiSum.u[1]) annotation (Line(
@@ -474,12 +486,12 @@ else
       color={255,0,0},
       smooth=Smooth.None));
   connect(TauPlancher.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,-93},{-60,-93},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
+      points={{-56,-94},{-60,-94},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
           80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(TauPlafond.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,87},{-60,87},{-60,82},{40,82},{40,40},{80,40},{80,22}},
+      points={{-56,86},{-60,86},{-60,82},{40,82},{40,40},{80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(PontsThermiques.port_b, noeudAir.port_a) annotation (Line(
@@ -522,6 +534,7 @@ else
       points={{-100,-26},{-70,-26},{-70,49},{-36.3,49}},
       color={0,0,127},
       smooth=Smooth.None));
+
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,120}}),
 graphics={
@@ -606,9 +619,11 @@ graphics={
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Stéphanie Froidurot - 10/2020 : Add flux for internal doors</p>
 </html>"));
 end ZoneR3;

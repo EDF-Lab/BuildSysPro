@@ -36,10 +36,10 @@ record Matisse1989to2000_10pc =
     PontsTh_Bas=8.66,
     PontsTh_Haut=4.68,
     renouvAir=0.511,
-    hsExtVert=16.67,
-    hsIntVert=9.09,
-    hsExtHor=20,
-    hsIntHorHaut=11.11)
+    hsExtVert=25,
+    hsIntVert=7.69,
+    hsExtHor=25,
+    hsIntHorHaut=10)
   "Settings of Matisse collective housing from 1989 to 2000 -10%"
                                                              annotation (
     Documentation(info="<html>
@@ -57,8 +57,8 @@ record Matisse1989to2000_10pc =
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",

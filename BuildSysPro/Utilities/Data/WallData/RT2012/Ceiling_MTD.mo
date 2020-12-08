@@ -2,7 +2,7 @@
 record Ceiling_MTD =
   BuildSysPro.Utilities.Icons.Ceiling (
     n=2,
-    m={8,1},
+    m={5,1},
     e={0.40,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.MineralWool40(),
          BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
@@ -11,8 +11,8 @@ record Ceiling_MTD =
 <p>RT2012 : Parameters of MTD ceilings for individual housing.</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Céline ILIAS, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -2,7 +2,7 @@
 record Floor =
   BuildSysPro.Utilities.Icons.Floor (
     n=2,
-    m={2,4},
+    m={5,3},
     e={0.10,0.18},
     mat={BuildSysPro.Utilities.Data.Solids.FibreBoard44(),
          BuildSysPro.Utilities.Data.Solids.Concrete()},
@@ -20,8 +20,8 @@ record Floor =
 <p>Validated model - Benoît Charrier 12/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

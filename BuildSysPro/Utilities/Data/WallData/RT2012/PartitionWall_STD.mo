@@ -2,7 +2,7 @@
 record PartitionWall_STD =
   BuildSysPro.Utilities.Icons.VerticalInternalWall (
     n=3,
-    m={1,3,1},
+    m={1,2,1},
     e={0.02,0.14,0.02},
     mat={BuildSysPro.Utilities.Data.Solids.PlasterBoard(),
          BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene32(),
@@ -11,8 +11,8 @@ record PartitionWall_STD =
 <p>RT2012 : Parameters of STD LNC partition walls for individual housing.</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Céline ILIAS, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

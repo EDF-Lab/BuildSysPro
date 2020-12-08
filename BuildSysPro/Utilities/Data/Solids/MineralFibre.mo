@@ -5,8 +5,8 @@ record MineralFibre = BuildSysPro.Utilities.Records.GenericSolid (
     c=920) "Mineral fibre board (source Ca-Sis)" annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

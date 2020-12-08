@@ -219,7 +219,7 @@ public
      == true annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{60,100},{80,120}})));
   BuildSysPro.BoundaryConditions.Radiation.PintRadDistrib PintdistriRad(
-    np=6,
+    np=7,
     nf=1,
     Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_VitrageNordC1},
     Sp={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondC1,
@@ -227,7 +227,8 @@ public
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegEntreeC1,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegC1C2,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_CloisonLegC1Cuisine,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondC1}) if not
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondC1,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeC1}) if not
     CLOintPlancher
     annotation (Placement(transformation(extent={{-2,-92},{18,-72}})));
 
@@ -310,27 +311,40 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={-10,110})));
+  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree if   not CLOintPlancher
+    annotation (Placement(transformation(extent={{84,102},{104,122}}),
+        iconTransformation(
+        extent={{-10,-10},{10,10}},
+        rotation=-90,
+        origin={26,-110})));
 equation
-  connect(PintdistriRad.FLUXParois[2], MurNord.FluxAbsInt) annotation (
+
+
+  if CLOintPlancher == false then
+
+    connect(PintdistriRad.FLUXParois[2], MurNord.FluxAbsInt) annotation (
       Line(
-      points={{19,-84.5},{32,-84.5},{32,26.5},{2.1,26.5}},
+      points={{19,-84.5714},{32,-84.5714},{32,26.5},{2.1,26.5}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(PintdistriRad.FLUXParois[4], FLUXcloisonChambre2) annotation (Line(
-      points={{19,-83.8333},{32,-83.8333},{32,90},{96,90}},
+    connect(PintdistriRad.FLUXParois[4], FLUXcloisonChambre2) annotation (Line(
+      points={{19,-84},{32,-84},{32,90},{96,90}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(PintdistriRad.FLUXParois[3], FLUXcloisonEntree) annotation (Line(
-      points={{19,-84.1667},{32,-84.1667},{32,68},{96,68}},
+    connect(PintdistriRad.FLUXParois[3], FLUXcloisonEntree) annotation (Line(
+      points={{19,-84.2857},{32,-84.2857},{32,68},{96,68}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(PintdistriRad.FLUXParois[5], FLUXcloisonCuisine) annotation (
+    connect(PintdistriRad.FLUXParois[5], FLUXcloisonCuisine) annotation (
       Line(
-      points={{19,-83.5},{32,-83.5},{32,48},{96,48}},
+      points={{19,-83.7143},{32,-83.7143},{32,48},{96,48}},
       color={0,0,127},
       smooth=Smooth.None));
 
-  if CLOintPlancher == false then
+    connect(PintdistriRad.FLUXParois[7], FLUXporteEntree) annotation (Line(
+      points={{19,-83.1429},{32,-83.1429},{32,112},{94,112}},
+      color={0,0,127}));
+
     connect(multiSum.y, PintdistriRad.RayEntrant) annotation (Line(
       points={{-14,-73.02},{-14,-82},{-1,-82}},
       color={0,0,127},
@@ -343,27 +357,27 @@ equation
     if EmplacementBas==true then
       connect(PintdistriRad.FLUXParois[6], PlancherBasImmeuble.FluxAbsInt)
     annotation (Line(
-      points={{19,-83.1667},{67.5,-83.1667},{67.5,-89.9}},
+      points={{19,-83.4286},{67.5,-83.4286},{67.5,-89.9}},
       color={0,0,127},
       smooth=Smooth.None));
     else
       connect(PintdistriRad.FLUXParois[6], PlancherBas.FluxAbsInt)
     annotation (Line(
-      points={{19,-83.1667},{47.5,-83.1667},{47.5,-89.9}},
+      points={{19,-83.4286},{47.5,-83.4286},{47.5,-89.9}},
       color={0,0,127},
       smooth=Smooth.None));
     end if;
     if EmplacementHaut==true then
       connect(PintdistriRad.FLUXParois[1], PlafondImmeuble.FluxAbsInt)
     annotation (Line(
-      points={{19,-84.8333},{32,-84.8333},{32,80.5},{2.1,80.5}},
+      points={{19,-84.8571},{32,-84.8571},{32,80.5},{2.1,80.5}},
       color={0,0,127},
       smooth=Smooth.None));
     else
       connect(PintdistriRad.FLUXParois[1], Plafond.FluxAbsInt)
         annotation (
       Line(
-      points={{19,-84.8333},{32,-84.8333},{32,97.5},{2.1,97.5}},
+      points={{19,-84.8571},{32,-84.8571},{32,97.5},{2.1,97.5}},
       color={0,0,127},
       smooth=Smooth.None));
     end if;
@@ -454,7 +468,7 @@ if EmplacementBas==true then
           smooth=Smooth.None));
 
       connect(TauPlancher.Tponder, PlancherBasImmeuble.T_ext) annotation (Line(
-          points={{-43,-90.2},{28,-90.2},{28,-104},{73.1,-104},{73.1,-98.3}},
+          points={{-44,-90},{28,-90},{28,-104},{73.1,-104},{73.1,-98.3}},
           color={191,0,0},
           smooth=Smooth.None));
 else  connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
@@ -473,7 +487,7 @@ end if;
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauPlancher.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-87},{-57,-87}},
+      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-86},{-56,-86}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(VitrageNord.CLOTr, multiSum.u[1]) annotation (Line(
@@ -499,7 +513,7 @@ end if;
       color={255,0,0},
       smooth=Smooth.None));
   connect(TauPlancher.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,-93},{-60,-93},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
+      points={{-56,-94},{-60,-94},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
           80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -530,6 +544,7 @@ end if;
       points={{-100,-14},{-66,-14},{-66,23},{-36.3,23}},
       color={0,0,127},
       smooth=Smooth.None));
+
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             120}}),
@@ -616,9 +631,11 @@ graphics={
 <p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Stéphanie Froidurot - 10/2020 : Add flux for internal doors + correction code</p>
 </html>"));
 end ZoneR1;

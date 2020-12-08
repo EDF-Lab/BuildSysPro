@@ -548,7 +548,7 @@ To account for this time difference (switch between winter and summer time), the
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright &copy; EDF 2010 - 2015<br>
-BuildSysPro version 3.3.0<br>
+BuildSysPro version 3.4.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

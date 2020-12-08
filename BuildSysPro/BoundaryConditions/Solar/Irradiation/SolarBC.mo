@@ -393,7 +393,7 @@ Validated model - Gilles Plessis 03/2013.
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.3.0<br>
+BuildSysPro version 3.4.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

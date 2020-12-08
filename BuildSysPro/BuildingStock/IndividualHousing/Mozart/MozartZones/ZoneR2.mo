@@ -1,4 +1,4 @@
-within BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartZones;
+﻿within BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartZones;
 model ZoneR2
 
   // Choice of RT (French building regulation)
@@ -185,12 +185,15 @@ public
      == true annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{80,-60},{100,-40}})));
   BuildSysPro.BoundaryConditions.Radiation.PintRadDistrib PintdistriRad(
-    np=6,
+    np=7,
     nf=1,
     Sp={BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondC2,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurNordC2,BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_CloisonLegEntreeC2,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurEstC2,BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_CloisonLegC1C2,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondC2},
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurNordC2,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_CloisonLegEntreeC2,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurEstC2,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_CloisonLegC1C2,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherPlafondC2,
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteIntEntreeC2},
     Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_VitrageEstC2}) if not
     CLOintPlancher
     annotation (Placement(transformation(extent={{-2,-92},{18,-72}})));
@@ -243,14 +246,20 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
     annotation (Placement(transformation(extent={{-108,56},{-84,80}}),
         iconTransformation(extent={{100,48},{76,72}})));
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonEntree if not CLOintPlancher
-    annotation (Placement(transformation(extent={{86,78},{106,98}}),
+    annotation (Placement(transformation(extent={{86,66},{106,86}}),
         iconTransformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={-10,-70})));
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonC1 if not CLOintPlancher
-    annotation (Placement(transformation(extent={{86,60},{106,80}}),
+    annotation (Placement(transformation(extent={{86,48},{106,68}}),
         iconTransformation(extent={{-60,10},{-80,30}})));
+  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree if   not CLOintPlancher
+    annotation (Placement(transformation(extent={{86,84},{106,104}}),
+        iconTransformation(
+        extent={{-10,-10},{10,10}},
+        rotation=-90,
+        origin={-40,-70})));
 equation
   if CLOintPlancher==false then
     connect(multiSum.y, PintdistriRad.RayEntrant) annotation (Line(
@@ -264,30 +273,32 @@ equation
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[1], ParoiSousCombles.FluxAbsInt) annotation (
      Line(
-      points={{19,-84.8333},{26,-84.8333},{26,92.5},{2.1,92.5}},
+      points={{19,-84.8571},{26,-84.8571},{26,92.5},{2.1,92.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[2], MurNord.FluxAbsInt) annotation (Line(
-      points={{19,-84.5},{26,-84.5},{26,32.5},{2.1,32.5}},
+      points={{19,-84.5714},{26,-84.5714},{26,32.5},{2.1,32.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[3], FLUXcloisonEntree) annotation (Line(
-      points={{19,-84.1667},{26,-84.1667},{26,88},{96,88}},
+      points={{19,-84.2857},{26,-84.2857},{26,76},{96,76}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[4], MurEst.FluxAbsInt) annotation (Line(
-      points={{19,-83.8333},{26,-83.8333},{26,52.5},{2.1,52.5}},
+      points={{19,-84},{26,-84},{26,52.5},{2.1,52.5}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[5], FLUXcloisonC1) annotation (Line(
-      points={{19,-83.5},{26,-83.5},{26,70},{96,70}},
+      points={{19,-83.7143},{26,-83.7143},{26,58},{96,58}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(PintdistriRad.FLUXParois[6], PlancherBas.FluxAbsInt) annotation (Line(
-      points={{19,-83.1667},{47.5,-83.1667},{47.5,-89.9}},
+      points={{19,-83.4286},{47.5,-83.4286},{47.5,-89.9}},
       color={0,0,127},
       smooth=Smooth.None));
-else
+    connect(PintdistriRad.FLUXParois[7], FLUXporteEntree) annotation (Line(points={{19,
+            -83.1429},{26,-83.1429},{26,94},{96,94}},   color={0,0,127}));
+  else
     connect(multiSum.y, PlancherBas.FluxAbsInt) annotation (Line(
       points={{-14,-73.02},{48,-73.02},{48,-89.9},{47.5,-89.9}},
       color={0,0,127},
@@ -343,11 +354,11 @@ else
       color={191,0,0},
       smooth=Smooth.None));
     connect(TauPlafond.Tponder, ParoiSousCombles.T_ext) annotation (Line(
-      points={{-43,89.8},{-6.3,89.8},{-6.3,86.9}},
+      points={{-44,90},{-6.3,90},{-6.3,86.9}},
       color={191,0,0},
       smooth=Smooth.None));
     connect(TauPlancher.Tponder, PlancherBas.T_ext) annotation (Line(
-      points={{-43,-90.2},{34,-90.2},{34,-98.3},{53.1,-98.3}},
+      points={{-44,-90},{34,-90},{34,-98.3},{53.1,-98.3}},
       color={191,0,0},
       smooth=Smooth.None));
     connect(ParoiSousCombles.T_int, noeudAir.port_a) annotation (Line(
@@ -371,11 +382,11 @@ else
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauPlancher.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-87},{-57,-87}},
+      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-86},{-56,-86}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauPlafond.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,80},{-64,80},{-64,93},{-57,93}},
+      points={{-90,40},{-52,40},{-52,80},{-64,80},{-64,94},{-56,94}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(VitrageEst.CLOTr, multiSum.u[1]) annotation (Line(
@@ -401,12 +412,12 @@ else
       color={255,0,0},
       smooth=Smooth.None));
   connect(TauPlancher.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,-93},{-60,-93},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
+      points={{-56,-94},{-60,-94},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
           80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(TauPlafond.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,87},{-60,87},{-60,82},{40,82},{40,40},{80,40},{80,22}},
+      points={{-56,86},{-60,86},{-60,82},{40,82},{40,40},{80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(PontsThermiques.port_b, noeudAir.port_a) annotation (Line(
@@ -436,6 +447,7 @@ else
       points={{-100,-12},{-70,-12},{-70,49},{-36.3,49}},
       color={0,0,127},
       smooth=Smooth.None));
+
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,120}}),
 graphics={
@@ -520,9 +532,11 @@ graphics={
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Stéphanie Froidurot - 10/2020 : Add flux for internal doors</p>
 </html>"));
 end ZoneR2;

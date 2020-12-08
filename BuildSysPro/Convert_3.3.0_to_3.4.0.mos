@@ -1,0 +1,12 @@
+﻿convertElement("BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartMultizone", "zoneSejour3_1", "zoneSejour");
+convertElement("BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartMultizone", "zoneCuisine3_1", "zoneCuisine");
+convertElement("BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartMultizone", "zoneC1_3_1", "zoneC1");
+convertElement("BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartMultizone", "zoneC2_3_1", "zoneC2");
+convertElement("BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartMultizone", "zoneEntree3_1", "zoneEntree");
+convertElement("BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartMultizone", "zoneSDB3_1", "zoneSDB");
+convertElement("BuildSysPro.BuildingStock.IndividualHousing.Mozart.MozartMultizone", "zoneC3_3_1", "zoneC3");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "zoneC1_1", "zoneC1");
+convertElement("BuildSysPro.BuildingStock.CollectiveHousing.Matisse.MatisseMultizone", "zoneC2_1", "zoneC2");
+
+
+

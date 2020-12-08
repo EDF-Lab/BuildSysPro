@@ -36,10 +36,10 @@ record Matisse1974to1982 =
     PontsTh_Bas=8.66,
     PontsTh_Haut=4.68,
     renouvAir=0.703,
-    hsExtVert=16.67,
-    hsIntVert=9.09,
-    hsExtHor=20,
-    hsIntHorHaut=11.11)
+    hsExtVert=25,
+    hsIntVert=7.69,
+    hsExtHor=25,
+    hsIntHorHaut=10)
   "Settings of Matisse collective housing from 1974 to 1982" annotation (
     Documentation(info="<html>
 <p><i><b>Record of Matisse collective housing settings according to the date of construction</b></i></p>
@@ -56,8 +56,8 @@ record Matisse1974to1982 =
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",

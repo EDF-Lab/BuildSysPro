@@ -2,7 +2,7 @@
 record AtticWall =
   BuildSysPro.Utilities.Icons.Ceiling (
     n=2,
-    m={4,1},
+    m={2,1},
     e={0.18,0.01},
     mat={BuildSysPro.Utilities.Data.Solids.MineralWool40(),
          BuildSysPro.Utilities.Data.Solids.PlasterBoard()},
@@ -25,7 +25,7 @@ record AtticWall =
 <p>Validated model - Béatrice Suplice, Frédéric Gastiger 04/2016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Béatrice SUPLICE, Frédéric GASTIGER, EDF (2016)<br>
 --------------------------------------------------------------</b></p></html>"));

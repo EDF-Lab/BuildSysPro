@@ -36,10 +36,10 @@ record Matisse2012_STD =
     PontsTh_Bas=0.00,
     PontsTh_Haut=0.00,
     renouvAir=0.3,
-    hsExtVert=16.67,
-    hsIntVert=9.09,
-    hsExtHor=20,
-    hsIntHorHaut=11.11) "Settings of Matisse collective housing standard 2012"
+    hsExtVert=25,
+    hsIntVert=7.69,
+    hsExtHor=25,
+    hsIntHorHaut=10) "Settings of Matisse collective housing standard 2012"
   annotation (Documentation(info="<html>
 <p><i><b>Record of Matisse collective housing settings according to the date of construction</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -54,8 +54,8 @@ record Matisse2012_STD =
 <p>Validated model - Benoît Charrier 12/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>",

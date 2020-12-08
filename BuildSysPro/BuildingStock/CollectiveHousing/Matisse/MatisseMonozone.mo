@@ -271,6 +271,25 @@ protected
         rotation=90,
         origin={51,20})));
 
+  BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PortesInt(
+    ParoiInterne=true,
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteSeparations,
+    Tp=Tp,
+    InitType=InitType,
+    hs_ext=paraMaisonRT.hsIntVert,
+    hs_int=paraMaisonRT.hsIntVert,
+    caracParoi(
+      n=paraMaisonRT.Cloisons.n,
+      m=paraMaisonRT.Cloisons.m,
+      e=paraMaisonRT.Cloisons.e,
+      mat=paraMaisonRT.Cloisons.mat,
+      positionIsolant=paraMaisonRT.Cloisons.positionIsolant)) "Internal doors"
+                                                              annotation (
+      Placement(transformation(
+        extent={{-6,-6},{6,6}},
+        rotation=90,
+        origin={51,0})));
+
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall MurEst(
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurEst,
     RadExterne=false,
@@ -392,6 +411,7 @@ protected
   BuildSysPro.BoundaryConditions.Solar.Irradiation.FLUXzone fLUXzone(beta=beta)
     annotation (Placement(transformation(extent={{-86,56},{-66,76}})));
 
+
 public
   BuildSysPro.Building.AirFlow.HeatTransfer.AirNode noeudAir(V=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.VolumeMatisse,
       Tair=293.15)
@@ -455,8 +475,8 @@ equation
     end if;
     if EmplacementHaut==true then
         connect(PintdistriRad.FLUXParois[1], PlafondImmeuble.FluxAbsInt) annotation (Line(
-            points={{19,-84.8333},{26,-84.8333},{26,-84},{32,-84},{32,80.5},{
-              2.1,80.5}},
+            points={{19,-84.8333},{26,-84.8333},{26,-84},{32,-84},{32,80.5},
+              {2.1,80.5}},
             color={0,0,127},
             smooth=Smooth.None));
     else
@@ -629,6 +649,14 @@ end if;
       points={{52.8,14.6},{52.8,10},{64,10},{64,22},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
+  connect(noeudAir.port_a, PortesInt.T_ext) annotation (Line(
+      points={{80,22},{64,22},{64,-10},{52.8,-10},{52.8,-5.4}},
+      color={191,0,0}));
+  connect(PortesInt.T_int, Cloisons.T_ext)
+                                          annotation (Line(
+      points={{52.8,5.4},{52.8,14.6}},
+      color={191,0,0}));
+
 if EmplacementHaut==true then
     connect(T_ext, PlafondImmeuble.T_ext) annotation (Line(
         points={{-90,40},{-52,40},{-52,74.9},{-6.3,74.9}},
@@ -671,7 +699,7 @@ if EmplacementBas==true then
           smooth=Smooth.None));
 
       connect(TauPlancher.Tponder, PlancherBasImmeuble.T_ext) annotation (Line(
-          points={{-43,-90.2},{28,-90.2},{28,-104},{73.1,-104},{73.1,-98.3}},
+          points={{-44,-90},{28,-90},{28,-104},{73.1,-104},{73.1,-98.3}},
           color={191,0,0},
           smooth=Smooth.None));
 else  connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
@@ -685,11 +713,11 @@ else  connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
 
 end if;
     connect(TauLNC.Tponder, MurSudLNC.T_ext) annotation (Line(
-        points={{-43,-50.2},{-24.5,-50.2},{-24.5,-33.1},{-6.3,-33.1}},
+        points={{-44,-50},{-24.5,-50},{-24.5,-33.1},{-6.3,-33.1}},
         color={191,0,0},
         smooth=Smooth.None));
     connect(TauLNC.Tponder, Porte.T_ext) annotation (Line(
-        points={{-43,-50.2},{-24.5,-50.2},{-24.5,-51.75},{-6.3,-51.75}},
+        points={{-44,-50},{-24.5,-50},{-24.5,-51.75},{-6.3,-51.75}},
         color={191,0,0},
         smooth=Smooth.None));
 
@@ -702,11 +730,11 @@ end if;
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauPlancher.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-87},{-57,-87}},
+      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-86},{-56,-86}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauLNC.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,-47},{-57,-47}},
+      points={{-90,40},{-52,40},{-52,-46},{-56,-46}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(VitrageNord.CLOTr, multiSum.u[1]) annotation (Line(
@@ -732,13 +760,13 @@ end if;
       color={255,0,0},
       smooth=Smooth.None));
   connect(TauPlancher.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,-93},{-60,-93},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
-          80,40},{80,22}},
+      points={{-56,-94},{-60,-94},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},
+          {80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(TauLNC.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,-53},{-60,-53},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
-          80,40},{80,22}},
+      points={{-56,-54},{-60,-54},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},
+          {80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(PontsThermiques.port_b, noeudAir.port_a) annotation (Line(
@@ -760,6 +788,7 @@ end if;
       points={{-71,-11.8},{-62,-11.8},{-62,23},{-36.3,23}},
       color={0,0,127},
       smooth=Smooth.None));
+
 annotation (Placement(transformation(extent={{-12,-50},{8,-25}})),
 Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,120}}),
 graphics={
@@ -1038,9 +1067,11 @@ graphics={
 <p>Validated model by comparison of GV with Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p>Stéphanie Froidurot - 10/2020 : Add internal doors</p>
 </html>"));
 end MatisseMonozone;

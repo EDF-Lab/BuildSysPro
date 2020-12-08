@@ -2,7 +2,7 @@ within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.RT
 record Floor =
   BuildSysPro.Utilities.Icons.Floor (
     n=4,
-    m={2,4,1,2},
+    m={1,3,1,1},
     e={0.10,0.18,0.04,0.05},
     mat={BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene38(),
          BuildSysPro.Utilities.Data.Solids.Concrete(),
@@ -22,7 +22,7 @@ record Floor =
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

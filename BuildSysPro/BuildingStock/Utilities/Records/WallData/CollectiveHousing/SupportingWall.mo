@@ -2,7 +2,7 @@
 record SupportingWall =
   BuildSysPro.Utilities.Icons.VerticalInternalWall (
     n=1,
-    m={2},
+    m={3},
     e={0.16},
     mat={BuildSysPro.Utilities.Data.Solids.Concrete()},
     positionIsolant={0}) "Supporting wall collective housing"                                                               annotation (
@@ -19,8 +19,8 @@ record SupportingWall =
 <p>Validated model - Frédéric Gastiger 01/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Frédéric GASTIGER, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

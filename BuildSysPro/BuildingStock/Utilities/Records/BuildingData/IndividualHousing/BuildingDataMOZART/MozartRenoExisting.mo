@@ -20,9 +20,9 @@ record MozartRenoExisting =
     redeclare replaceable parameter
       BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.SupportingWall
       Refends,
-    hsExtVert=16.67,
-    hsIntVert=9.09,
-    hsIntHorHaut=11.11,
+    hsExtVert=25,
+    hsIntVert=7.69,
+    hsIntHorHaut=10,
     UvitrageAF=1.8,
     UvitrageSF=1.8,
     renouvAir=0.551,
@@ -46,8 +46,10 @@ record MozartRenoExisting =
 <p>Validated model - Béatrice Suplice, Frédéric Gastiger 04/2016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Béatrice SUPLICE, Frédéric GASTIGER, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
+</html>", revisions="<html>
+<p> 07/2020 - Correction of surface exchange coefficient on  walls (standardisation of all the record with values in agreement with ISO6946)</p>
 </html>"));

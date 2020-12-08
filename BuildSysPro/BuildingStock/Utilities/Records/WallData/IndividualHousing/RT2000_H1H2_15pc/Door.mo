@@ -2,7 +2,7 @@ within BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing.RT
 record Door =
   BuildSysPro.Utilities.Icons.Door (
     n=1,
-    m={4},
+    m={2},
     e={0.06},
     mat={BuildSysPro.Utilities.Data.Solids.InsulatingDoor()},
     positionIsolant={0}) "Exterior door Mozart Cref(RT2000 zones H1 H2) -15%"
@@ -19,7 +19,7 @@ record Door =
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));

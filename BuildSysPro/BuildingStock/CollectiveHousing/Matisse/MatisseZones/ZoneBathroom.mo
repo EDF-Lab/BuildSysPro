@@ -309,7 +309,7 @@ if EmplacementBas==true then
           smooth=Smooth.None));
 
       connect(TauPlancher.Tponder, PlancherBasImmeuble.T_ext) annotation (Line(
-          points={{-43,-90.2},{28,-90.2},{28,-104},{73.1,-104},{73.1,-98.3}},
+          points={{-44,-90},{28,-90},{28,-104},{73.1,-104},{73.1,-98.3}},
           color={191,0,0},
           smooth=Smooth.None));
 else  connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
@@ -323,16 +323,16 @@ else  connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
 
 end if;
     connect(TauLNC.Tponder, MurSudLNC.T_ext) annotation (Line(
-        points={{-43,-50.2},{-24.5,-50.2},{-24.5,-33.1},{-6.3,-33.1}},
+        points={{-44,-50},{-24.5,-50},{-24.5,-33.1},{-6.3,-33.1}},
         color={191,0,0},
         smooth=Smooth.None));
 
   connect(T_ext, TauPlancher.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-87},{-57,-87}},
+      points={{-90,40},{-52,40},{-52,-46},{-64,-46},{-64,-86},{-56,-86}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, TauLNC.port_ext) annotation (Line(
-      points={{-90,40},{-52,40},{-52,-47},{-57,-47}},
+      points={{-90,40},{-52,40},{-52,-46},{-56,-46}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(T_ext, renouvellementAir.port_a) annotation (Line(
@@ -354,13 +354,13 @@ end if;
       color={255,0,0},
       smooth=Smooth.None));
   connect(TauPlancher.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,-93},{-60,-93},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
-          80,40},{80,22}},
+      points={{-56,-94},{-60,-94},{-60,-98},{30,-98},{30,-60},{40,-60},
+          {40,40},{80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(TauLNC.port_int, noeudAir.port_a) annotation (Line(
-      points={{-57,-53},{-60,-53},{-60,-98},{30,-98},{30,-60},{40,-60},{40,40},{
-          80,40},{80,22}},
+      points={{-56,-54},{-60,-54},{-60,-98},{30,-98},{30,-60},{40,-60},
+          {40,40},{80,40},{80,22}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(PontsThermiques.port_b, noeudAir.port_a) annotation (Line(
@@ -463,8 +463,8 @@ graphics={
 <p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF 2009 - 2020<br>
+BuildSysPro version 3.4.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -15,12 +15,12 @@ The columns are :
 	Time(s)
 	FDIRN(W/m2) - direct normal solar irradiance
 	FDIFH(W/m2) - diffuse horizontal solar irradiance
-	Tdry(Â°C) - dry air temperature
-	Tdew(Â°C) - dew point temperature
-	Tsky(Â°C) - sky temperature
+	Tdry(°C) - dry air temperature
+	Tdew(°C) - dew point temperature
+	Tsky(°C) - sky temperature
 	Patm(Pa) - atmospheric pressure
 	RH(0..1) - relative humidity
 	WindSpeed(m/s) - wind speed
-	WindDir(Â°) - wind direction
-	Lat(Â°) - latitude
-	Lon(Â°) - longitude
+	WindDir(°) - wind direction
+	Lat(°) - latitude
+	Lon(°) - longitude
