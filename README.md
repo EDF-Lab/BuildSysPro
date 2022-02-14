@@ -2,13 +2,13 @@
 *BuildSysPro open source* is [EDF](https://www.edf.fr/en/the-edf-group/who-we-are/activities/research-and-development)'s Modelica library for buildings, districts and energy systems modelling. This is BuildSysPro's official repository.
 
 ### Release updates
-Current release is version 3.4.0.
+Current release is version 3.5.0.
 
 This release provides :
-- Correction of surface exchange coefficient on walls: standardization of all the record with values in agreement with ISO6946
-- Correction of the number of layers in the wall data: discretisation using Martin’s method.
-- Adding internal doors on the Mozart buildings (monozone and multizone).
-- Adding internal doors on the Matisse apartment (monozone and multizone).
+
+- Migration from Modelica version 3.2.3 to 4.0.0.
+- Correction of models following the BuildSysPro and OpenModelica compatibility study.
+- Adding new models.
 - other minor error corrections
 
 EDF is part of [IBPSA Project 1](https://ibpsa.github.io/project1/), and the [IBPSA library](https://github.com/ibpsa/modelica-ibpsa) is now integrated to BuildSysPro open source 3.4.0.
