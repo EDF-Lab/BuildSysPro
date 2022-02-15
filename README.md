@@ -13,7 +13,7 @@ This release provides :
 
 EDF is part of [IBPSA Project 1](https://ibpsa.github.io/project1/), and the [IBPSA library](https://github.com/ibpsa/modelica-ibpsa) is now integrated to BuildSysPro open source 3.5.0.
 
-BuildSysPro open source 3.5.0 is compatible with OpenModelica 1.9.3. When working with OpenModelica, specify your initial conditions carefully and use preferably Dassl, Euler or Runge-Kutta solvers.
+BuildSysPro open source 3.5.0 is compatible with OpenModelica 1.17.0. When working with OpenModelica, specify your initial conditions carefully and use preferably Dassl, Euler or Runge-Kutta solvers.
 
 ### License
 The BuildSysPro open source library is licensed by EDF under the [3-Clause BSD-License](https://opensource.org/licenses/BSD-3-Clause).
