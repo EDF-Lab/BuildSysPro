@@ -4,6 +4,7 @@ ScenarioRT
 WaterVaporMozart
 ScenarioAliquote
 InternalGains
+OccupancySchedule
 ScenarioDHW
 DrawOffScenario
 StepFunctionMat

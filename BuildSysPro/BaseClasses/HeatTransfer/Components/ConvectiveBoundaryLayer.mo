@@ -3,9 +3,9 @@ model ConvectiveBoundaryLayer
   "Convective boundary layer with variable exponent (TF75 C2K)"
   extends BaseClasses.HeatTransfer.Interfaces.Element1D;
 
-parameter Modelica.SIunits.CoefficientOfHeatTransfer h=5
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer h=5
     "Heat exchange coefficient";
-    parameter Modelica.SIunits.Area S=1 "Exchange surface";
+  parameter Modelica.Units.SI.Area S=1 "Exchange surface";
     parameter Real alpha=0.5 "Exponent of the exchange law";
 
 equation
@@ -26,8 +26,8 @@ Documentation(info="<html>
 <p>Validated model - EAB 04/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"),

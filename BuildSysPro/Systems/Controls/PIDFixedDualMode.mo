@@ -1,21 +1,23 @@
 ﻿within BuildSysPro.Systems.Controls;
 model PIDFixedDualMode "Heating and cooling setpoints"
-parameter Modelica.SIunits.Power PuissanceNom=1000
+  parameter Modelica.Units.SI.Power PuissanceNom=1000
     "Nominal power of the system";
-parameter Modelica.SIunits.Conversions.NonSIunits.Temperature_degC Tc=20
+  parameter Modelica.Units.NonSI.Temperature_degC Tc=20
     "Heating setpoint temperature";
-parameter Modelica.SIunits.Conversions.NonSIunits.Temperature_degC Tf=27
+  parameter Modelica.Units.NonSI.Temperature_degC Tf=27
     "Cooling setpoint temperature";
 parameter Real k(min=0) = 1000 "Gain of controller";
-parameter Modelica.SIunits.Time Ti(min=Modelica.Constants.small, start=0.5)=0.01
-    "Time constant of Integrator block";
-parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
-    "Time constant of Derivative block";
+  parameter Modelica.Units.SI.Time Ti(
+    min=Modelica.Constants.small,
+    start=0.5) = 0.01 "Time constant of Integrator block";
+  parameter Modelica.Units.SI.Time Td(
+    min=0,
+    start=0.1) = 0 "Time constant of Derivative block";
 
   Modelica.Blocks.Continuous.LimPID PID(
     Ni=0.1,
     yMin=0.,
-    initType=Modelica.Blocks.Types.InitPID.InitialState,
+    initType=Modelica.Blocks.Types.Init.InitialState,
     yMax=PuissanceNom,
     k=k,
     Ti=Ti,
@@ -39,7 +41,7 @@ parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
   Modelica.Blocks.Continuous.LimPID PID1(
     Ni=0.1,
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
-    initType=Modelica.Blocks.Types.InitPID.InitialState,
+    initType=Modelica.Blocks.Types.Init.InitialState,
     yMax=0,
     yMin=-PuissanceNom,
     k=k,
@@ -148,8 +150,8 @@ equation
 <p>Validated model (BESTEST) - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

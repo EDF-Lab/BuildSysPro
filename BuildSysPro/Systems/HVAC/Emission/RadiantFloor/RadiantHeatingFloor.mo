@@ -7,8 +7,8 @@ parameter Integer TypeChauffage=1 "Heating floor type" annotation(choices(choice
         "Water circulation",
       choice=2 "Electrical resistance",radioButtons=true));
 
-  parameter Modelica.SIunits.Area S=1 "Wall surface";
-  parameter Modelica.SIunits.Temperature Tp=293.15 "Initial wall temoerature";
+  parameter Modelica.Units.SI.Area S=1 "Wall surface";
+  parameter Modelica.Units.SI.Temperature Tp=293.15 "Initial wall temoerature";
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState;
 
   replaceable parameter BuildSysPro.Utilities.Data.WallData.RecentFloor
@@ -18,18 +18,21 @@ parameter Integer TypeChauffage=1 "Heating floor type" annotation(choices(choice
     "Number of the layer whose upper boundary is the site of power injection - must be between 2 layers!!!";
 
 // Parameters specific to a heating wall with water
-  parameter Modelica.SIunits.Distance Ltube=100 "Floor heating coil length"      annotation(Dialog(enable=TypeChauffage==1));
-   parameter Modelica.SIunits.Distance DiametreInt=0.013
-    "Inside diameter of the tube"                                                        annotation(Dialog(enable=TypeChauffage==1));
-  parameter Modelica.SIunits.Distance eT=0.0015 "Tube thickness"   annotation (Dialog(enable=TypeChauffage==1));
-  parameter Modelica.SIunits.ThermalConductivity lambdaT=0.35
-    "Thermal conductivity of the tube"                                                            annotation (Dialog(enable=TypeChauffage==1));
+  parameter Modelica.Units.SI.Distance Ltube=100 "Floor heating coil length"
+    annotation (Dialog(enable=TypeChauffage == 1));
+  parameter Modelica.Units.SI.Distance DiametreInt=0.013
+    "Inside diameter of the tube" annotation (Dialog(enable=TypeChauffage == 1));
+  parameter Modelica.Units.SI.Distance eT=0.0015 "Tube thickness"
+    annotation (Dialog(enable=TypeChauffage == 1));
+  parameter Modelica.Units.SI.ThermalConductivity lambdaT=0.35
+    "Thermal conductivity of the tube"
+    annotation (Dialog(enable=TypeChauffage == 1));
 
 protected
   parameter Integer nA=nP
     "Number of layers in the wall between A and the heating layer";
   parameter Integer[nA] mA=caracParoi.m[1:nA] "Number of meshes per layer";
-  parameter Modelica.SIunits.Length[nA] eA=caracParoi.e[1:nA]
+  parameter Modelica.Units.SI.Length[nA] eA=caracParoi.e[1:nA]
     "Thickness of the layers (from A to the heating layer)";
   parameter BuildSysPro.Utilities.Records.GenericSolid matA[nA]=caracParoi.mat[
       1:nA] "Constituent materials of the wall, from A to the heating layer"
@@ -38,7 +41,7 @@ protected
    parameter Integer nB=caracParoi.n-nP
     "Number of layers in the wall between the heating layer and B";
    parameter Integer[nB] mB=caracParoi.m[nA+1:end] "Number of meshes per layer";
-   parameter Modelica.SIunits.Length[nB] eB=caracParoi.e[nA+1:end]
+  parameter Modelica.Units.SI.Length[nB] eB=caracParoi.e[nA + 1:end]
     "Thickness of the layers (from the heating layer to B)";
   parameter BuildSysPro.Utilities.Records.GenericSolid[nB] matB=caracParoi.mat[
       nA + 1:end]
@@ -46,13 +49,13 @@ protected
     annotation (choicesAllMatching=true);
 
 protected
-  parameter Modelica.SIunits.SpecificHeatCapacity CpEau=4180
+  parameter Modelica.Units.SI.SpecificHeatCapacity CpEau=4180
     "Specific heat capacity of water";
-  parameter Modelica.SIunits.Density rhoEau=1000 "Density of water";
-  parameter Modelica.SIunits.Volume VEau=Ltube*Modelica.Constants.pi*(DiametreInt/2)^2
-    "Volume of water contained in the radiator";
-  parameter Modelica.SIunits.Area surfaceT=Ltube*Modelica.Constants.pi*(DiametreInt+2*eT)
-    "Tube exchange surface";
+  parameter Modelica.Units.SI.Density rhoEau=1000 "Density of water";
+  parameter Modelica.Units.SI.Volume VEau=Ltube*Modelica.Constants.pi*(
+      DiametreInt/2)^2 "Volume of water contained in the radiator";
+  parameter Modelica.Units.SI.Area surfaceT=Ltube*Modelica.Constants.pi*(
+      DiametreInt + 2*eT) "Tube exchange surface";
 
 public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a Ts_a
@@ -193,8 +196,8 @@ Documentation(info="<html>
 <p>Validated model - Hubert Blervaque 06/2012 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hubert BLERVAQUE, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",

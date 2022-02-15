@@ -4,10 +4,12 @@ model FLUXsurfMask
   parameter Boolean useEclairement=false
   annotation(choices(choice=true "With calculation of natural lighting",                                    choice=false
         "Without calculation of natural lighting",                                                                                                  radioButtons=true), Dialog(group="Options"));
-parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
-    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"   annotation(Dialog(group="Surface description"));
-parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
-    "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°"                                   annotation(Dialog(group="Surface description"));
+  parameter Modelica.Units.NonSI.Angle_deg azimut=0
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"
+    annotation (Dialog(group="Surface description"));
+  parameter Modelica.Units.NonSI.Angle_deg incl=90
+    "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°"
+    annotation (Dialog(group="Surface description"));
 
 parameter Real albedo=0.2 "Albedo of the environment" annotation(Dialog(group="Environment description"));
 parameter Integer diffus_isotrope=1 "Model for diffuse irradiance"
@@ -19,26 +21,31 @@ parameter Integer TypeMasque annotation(Dialog(group="Shading devices"),choices(
         "Vertical + horizontal",                                                                                choice=1
         "Horizontal overhang",choice=2 "No shading device", radioButtons=true));
 
-parameter Modelica.SIunits.Distance Av=0.5 "Overhang" annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
-parameter Modelica.SIunits.Distance Ha=0.3
+  parameter Modelica.Units.SI.Distance Av=0.5 "Overhang"
+    annotation (Dialog(enable=TypeMasque <> 2, group="Shading devices"));
+  parameter Modelica.Units.SI.Distance Ha=0.3
     "Distance between the overhang and the top of the surface (window)"
-                                                                       annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
-parameter Modelica.SIunits.Distance Lf=1 "Surface (window) width"
-                                                                 annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
-parameter Modelica.SIunits.Distance Hf=1 "Surface (window) height"
-                                                                  annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
-parameter Modelica.SIunits.Distance Dd=0.5 "Lateral overhang (right hand side)"
-                                                               annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
-parameter Modelica.SIunits.Distance Dg=0.5 "Lateral overhang (left hand side)"
-                                                              annotation(Dialog(enable=TypeMasque<>2,group="Shading devices"));
+    annotation (Dialog(enable=TypeMasque <> 2, group="Shading devices"));
+  parameter Modelica.Units.SI.Distance Lf=1 "Surface (window) width"
+    annotation (Dialog(enable=TypeMasque <> 2, group="Shading devices"));
+  parameter Modelica.Units.SI.Distance Hf=1 "Surface (window) height"
+    annotation (Dialog(enable=TypeMasque <> 2, group="Shading devices"));
+  parameter Modelica.Units.SI.Distance Dd=0.5
+    "Lateral overhang (right hand side)"
+    annotation (Dialog(enable=TypeMasque <> 2, group="Shading devices"));
+  parameter Modelica.Units.SI.Distance Dg=0.5
+    "Lateral overhang (left hand side)"
+    annotation (Dialog(enable=TypeMasque <> 2, group="Shading devices"));
 
 parameter Boolean MasqueLointain=false
 annotation(Dialog(group="Options"),choices(choice=true
         "With vertical distant mask",                                                             choice=false
         "Without vertical distant mask",                                                                                                  radioButtons=true));
-parameter Modelica.SIunits.Distance dE=5
-    "Distance from the surface (window) to the distant masks" annotation(Dialog(enable=MasqueLointain,group="Distant masks"));
-    parameter Modelica.SIunits.Distance hpE=2 "Height of the distant mask" annotation(Dialog(enable=MasqueLointain,group="Distant masks"));
+  parameter Modelica.Units.SI.Distance dE=5
+    "Distance from the surface (window) to the distant masks"
+    annotation (Dialog(enable=MasqueLointain, group="Distant masks"));
+  parameter Modelica.Units.SI.Distance hpE=2 "Height of the distant mask"
+    annotation (Dialog(enable=MasqueLointain, group="Distant masks"));
 
   Irradiation.FLUXsurf fLUXsurf(
     azimut=azimut,
@@ -134,8 +141,8 @@ Following masks are considered:
 <p>Non validated model - Aurélie Kaemmerlen 11/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",

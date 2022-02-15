@@ -7,7 +7,7 @@ model ToKelvin "Conversion block from degCelsius to Kelvin"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
 equation
-  Kelvin = Modelica.SIunits.Conversions.from_degC(Celsius);
+  Kelvin =Modelica.Units.Conversions.from_degC(Celsius);
 
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},
@@ -65,8 +65,8 @@ equation
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Celsius.ToKelvin\">ToKelvin</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"));

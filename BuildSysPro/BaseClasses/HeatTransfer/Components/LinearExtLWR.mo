@@ -3,7 +3,7 @@ model LinearExtLWR
   "Echanges thermique par rayonnement en grande longueur d'onde"
 
 // Paramètres publics
-parameter Modelica.SIunits.Area S=1 "Surface";
+  parameter Modelica.Units.SI.Area S=1 "Surface";
 parameter Real eps=0.5 "Emissivité";
 parameter Real skyViewFactor
     "Facteur de forme moyen entre les parois et le ciel (exemple: skyViewFactor(toiture terrase)=1, skyViewfactor(paroi verticale en environnement dégagé)=0.5)";
@@ -22,11 +22,11 @@ parameter Real skyViewFactor
 
 // Paramètres protégés
 protected
-  parameter Modelica.SIunits.Temperature TcielConst=263.15
+  parameter Modelica.Units.SI.Temperature TcielConst=263.15
     "Estimation de la température de Ciel";
-  parameter Modelica.SIunits.Temperature TenvConst=283.15
+  parameter Modelica.Units.SI.Temperature TenvConst=283.15
     "Estimation de la température d'environnement";
-  parameter Modelica.SIunits.Temperature TsurfConst=288.15
+  parameter Modelica.Units.SI.Temperature TsurfConst=288.15
     "Estimation de la température de surface des parois";
 
 // Composants internes
@@ -143,8 +143,8 @@ annotation (
 <p>Modèle validé - Gilles PLESSIS 12/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>

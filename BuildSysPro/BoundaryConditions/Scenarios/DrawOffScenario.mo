@@ -12,7 +12,7 @@ model DrawOffScenario
 protected
   Boolean tapping(start=false,fixed=true);
   Integer i(start=1,fixed=true) "Table row index";
-  Modelica.SIunits.Energy tapped_energy( start=0, fixed=true)
+  Modelica.Units.SI.Energy tapped_energy(start=0, fixed=true)
     "Amount of tapped energy from the tank";
 
 public
@@ -30,7 +30,7 @@ public
     annotation (Placement(transformation(extent={{-140,40},{-100,80}}),
         iconTransformation(extent={{-140,40},{-100,80}})));
 
-  constant Modelica.SIunits.SpecificHeatCapacityAtConstantPressure cp=4185
+  constant Modelica.Units.SI.SpecificHeatCapacityAtConstantPressure cp=4185
     "Specific heat capacity of water at constant pressure in J/(kg.K)";
   Real timeBouclage(start=0);
 
@@ -122,8 +122,8 @@ equation
 <p>Validated model - Davy Merlet, Kévin Deutz 01/2017</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Davy MERLET, Kévin DEUTZ, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

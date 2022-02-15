@@ -29,8 +29,8 @@ model MatisseMonozone
     choices(choice=true "Input", choice=false "Constant", radioButtons=true));
 
   // Walls
-  parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
-    annotation(Dialog(tab="Walls"));
+  parameter Modelica.Units.SI.Temperature Tp=293.15
+    "Initial temperature of walls" annotation (Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Type of initialization for walls"
     annotation (Dialog(tab="Walls"));
@@ -81,12 +81,11 @@ model MatisseMonozone
     enable=not useReduction));
 
   // Thermal bridges
-  parameter Modelica.SIunits.ThermalConductance G_ponts=
+  parameter Modelica.Units.SI.ThermalConductance G_ponts=
       BuildSysPro.BuildingStock.Utilities.Functions.CalculGThermalBridges(
       ValeursK=paraMaisonRT.ValeursK,
       LongueursPonts=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.LongueursPonts,
-      TauPonts=paraMaisonRT.TauPonts)
-    annotation (Dialog(tab="Thermal bridges"));
+      TauPonts=paraMaisonRT.TauPonts) annotation (Dialog(tab="Thermal bridges"));
 
  // Protected parameters
 protected
@@ -279,11 +278,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant)) "Internal doors"
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant)) "Internal doors"
                                                               annotation (
       Placement(transformation(
         extent={{-6,-6},{6,6}},
@@ -475,8 +474,8 @@ equation
     end if;
     if EmplacementHaut==true then
         connect(PintdistriRad.FLUXParois[1], PlafondImmeuble.FluxAbsInt) annotation (Line(
-            points={{19,-84.8333},{26,-84.8333},{26,-84},{32,-84},{32,80.5},
-              {2.1,80.5}},
+            points={{19,-84.8333},{26,-84.8333},{26,-84},{32,-84},{32,80.5},{
+              2.1,80.5}},
             color={0,0,127},
             smooth=Smooth.None));
     else
@@ -671,7 +670,8 @@ if EmplacementHaut==true then
         points={{-65,74.4},{-64,74.4},{-64,83.3},{-2.1,83.3}},
         color={255,192,1},
         smooth=Smooth.None));
-else  connect(Plafond.T_int, noeudAir.port_a) annotation (Line(
+else
+      connect(Plafond.T_int, noeudAir.port_a) annotation (Line(
           points={{6.3,91.9},{40,91.9},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
@@ -702,7 +702,8 @@ if EmplacementBas==true then
           points={{-44,-90},{28,-90},{28,-104},{73.1,-104},{73.1,-98.3}},
           color={191,0,0},
           smooth=Smooth.None));
-else  connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
+else
+      connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
           points={{53.1,-85.7},{53.1,-60},{40,-60},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
@@ -1061,14 +1062,35 @@ graphics={
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>Parameter <code>paraMaisonRT</code> allows the user to chose a specific French building regulation for the building, so that building envelope parameters (walls, windows, ventilation...) will be automatically filled with data from the choosen record.</p>
+<p>Detail of thermal bridge vectors :</p>
+<ul>
+<li>TauPonts[1] and ValeursK[1] : exterior wall / common wall</li>
+<li>TauPonts[2] and ValeursK[2] : unheated room wall / common wall</li>
+<li>TauPonts[3] and ValeursK[3] : exterior wall / intermediate floor</li>
+<li>TauPonts[4] and ValeursK[4] : exterior wall / intermediate ceiling</li>
+<li>TauPonts[5] and ValeursK[5] : unheated room wall / intermediate floor</li>
+<li>TauPonts[6] and ValeursK[6] : unheated room wall / intermediate ceiling</li>
+<li>TauPonts[7] and ValeursK[7] : door</li>
+<li>TauPonts[8] and ValeursK[8] : windows</li>
+</ul>
+<ul>
+<li>TauPontsPlancher[1] and ValeursKPlancher[1] : intermediate floor / exterior wall of basement</li>
+<li>TauPontsPlancher[2] and ValeursKPlancher[2] : intermediate floor / unheated room wall of basement</li>
+<li>TauPontsPlancher[3] and ValeursKPlancher[3] : intermediate floor / common wall of basement</li>
+</ul>
+<ul>
+<li>TauPontsPlafond[1] and ValeursKPlafond[1] : intermediate ceiling / exterior wall of ceiling</li>
+<li>TauPontsPlafond[2] and ValeursKPlafond[2] : intermediate ceiling / unheated room wall of ceiling</li>
+<li>TauPontsPlafond[3] and ValeursKPlafond[3] : intermediate ceiling / common wall of ceiling</li>
+</ul>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model by comparison of GV with Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

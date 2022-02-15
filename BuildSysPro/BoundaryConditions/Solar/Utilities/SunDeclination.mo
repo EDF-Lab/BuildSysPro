@@ -1,8 +1,8 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Utilities;
 function SunDeclination "Sun declination"
   input Real t0=0 "Time in seconds at t=0";
-  input Modelica.SIunits.Time t "Time in seconds";
-  output Modelica.SIunits.Angle delta "Sun's declination (angle in radians)";
+  input Modelica.Units.SI.Time t "Time in seconds";
+  output Modelica.Units.SI.Angle delta "Sun's declination (angle in radians)";
 protected
   constant Real pi=Modelica.Constants.pi;
   Real wd1=(2*pi/365.25)*mod((t+t0)/86400,365);
@@ -30,8 +30,8 @@ algorithm
 <p>Validated function - Hassan BOUIA 03/2013.  </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

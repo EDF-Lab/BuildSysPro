@@ -3,19 +3,22 @@ model DetailedMonozone
   "Single zone detailed model with adjustable inertia and average thermal transmission coefficient (Ubat, W/K.m²)"
 
 // General parameters
-parameter Modelica.SIunits.CoefficientOfHeatTransfer Ubat
-    "Ubat: surface thermal losses by transmission" annotation(Dialog(group="Global parameters"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer Ubat
+    "Ubat: surface thermal losses by transmission"
+    annotation (Dialog(group="Global parameters"));
 parameter Integer NbNiveau=1 "umber of levels, minimum = 1" annotation(Dialog(group="Global parameters"));
-parameter Modelica.SIunits.Volume Vair=240 "Air volume" annotation(Dialog(group="Global parameters"));
-parameter Modelica.SIunits.Area SH=100 "Living area" annotation(Dialog(group="Global parameters"));
+  parameter Modelica.Units.SI.Volume Vair=240 "Air volume"
+    annotation (Dialog(group="Global parameters"));
+  parameter Modelica.Units.SI.Area SH=100 "Living area"
+    annotation (Dialog(group="Global parameters"));
 parameter Real renouv(unit="1/h") "Ventilation and/or infiltration flow"    annotation(Dialog(group="Global parameters"));
 
 // Glazing parameters
-parameter Modelica.SIunits.Area[4] SurfaceVitree
+  parameter Modelica.Units.SI.Area[4] SurfaceVitree
     "Glazed surface (North, South, East, West)"
-                                 annotation(Dialog(group="Glazing"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer k
-    "Glazing thermal conductivity" annotation(Dialog(group="Glazing"));
+    annotation (Dialog(group="Glazing"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer k
+    "Glazing thermal conductivity" annotation (Dialog(group="Glazing"));
 parameter Real Tr=0.544 "Glazing transmission coefficient" annotation(Dialog(group="Glazing"));
 parameter Real AbsVitrage=0.1 "Glazing absorption coefficient" annotation(Dialog(group="Glazing"));
 parameter Real epsWindows=0.9 "Emissivity" annotation(Dialog(group="Glazing"));
@@ -23,24 +26,30 @@ parameter Real epsWindows=0.9 "Emissivity" annotation(Dialog(group="Glazing"));
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall paraPlafond
     "Ceiling parameters"
     annotation (choicesAllMatching=true, Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_Plafond=7
-    "Coefficient of CONVECTIVE surface exchange on the ceiling outer face"           annotation(Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_Plafond=10
-    "Coefficient of GLOBAL surface exchange on the ceiling inner face"             annotation(Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext_Plafond=7
+    "Coefficient of CONVECTIVE surface exchange on the ceiling outer face"
+    annotation (Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_int_Plafond=10
+    "Coefficient of GLOBAL surface exchange on the ceiling inner face"
+    annotation (Dialog(group="Walls"));
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall paraParoiV
     "Vertical walls parameters"
     annotation (choicesAllMatching=true, Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_paroiV=18
-    "Coefficient of CONVECTIVE surface exchange on vertical walls outer face"       annotation(Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_paroiV=7.7
-    "Coefficient of GLOBAL surface exchange on vertical walls inner face"          annotation(Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext_paroiV=18
+    "Coefficient of CONVECTIVE surface exchange on vertical walls outer face"
+    annotation (Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_int_paroiV=7.7
+    "Coefficient of GLOBAL surface exchange on vertical walls inner face"
+    annotation (Dialog(group="Walls"));
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall paraPlancher
     "Floor parameters"
     annotation (choicesAllMatching=true, Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_Plancher=5.88
-    "Coefficient of GLOBAL surface exchange on floors lower face"                    annotation(Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_Plancher=5.88
-    "Coefficient of GLOBAL surface exchange on floors upper face"                  annotation(Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext_Plancher=5.88
+    "Coefficient of GLOBAL surface exchange on floors lower face"
+    annotation (Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_int_Plancher=5.88
+    "Coefficient of GLOBAL surface exchange on floors upper face"
+    annotation (Dialog(group="Walls"));
 
 parameter Real b=0.1 "Weighting coefficient of regulatory boundary conditions"
                                                               annotation(Dialog(group="Walls"));
@@ -49,25 +58,26 @@ parameter Real alpha_ext=0.6
 parameter Real epsParois=0.7 "Outer walls emissivity in LWR" annotation(Dialog(group="Walls"));
 
 // Initialisation
-parameter Modelica.SIunits.Temperature Tinit=292.15
-    "Initialisation temperature"  annotation(Dialog(tab="Initialisation"));
+  parameter Modelica.Units.SI.Temperature Tinit=292.15
+    "Initialisation temperature" annotation (Dialog(tab="Initialisation"));
 
 // Internal parameters
 protected
-parameter Modelica.SIunits.Length hTotal=Vair*(NbNiveau/SH)
+  parameter Modelica.Units.SI.Length hTotal=Vair*(NbNiveau/SH)
     "Total building height";
-parameter Modelica.SIunits.Area Sdeper=4*hTotal*sqrt(SH/NbNiveau)+2*Splancher
-    "Total surface with losses";
-parameter Modelica.SIunits.Area Swin=sum(SurfaceVitree)
+  parameter Modelica.Units.SI.Area Sdeper=4*hTotal*sqrt(SH/NbNiveau) + 2*
+      Splancher "Total surface with losses";
+  parameter Modelica.Units.SI.Area Swin=sum(SurfaceVitree)
     "Total glazed surface with losses";
-parameter Modelica.SIunits.Area Sop=Sdeper-Swin
+  parameter Modelica.Units.SI.Area Sop=Sdeper - Swin
     "Total opaque walls surface with losses";
-parameter Modelica.SIunits.Area Splancher=SH/NbNiveau
+  parameter Modelica.Units.SI.Area Splancher=SH/NbNiveau
     "Total floor surface with losses";
-parameter Modelica.SIunits.CoefficientOfHeatTransfer Uplancher=1/(sum(paraPlancher.e./paraPlancher.mat.lambda)+1/hs_ext_Plancher+1/hs_int_Plancher)
-    "Floor Uvalue";
-parameter Modelica.SIunits.CoefficientOfHeatTransfer Ug= 1/(1/k+1/hs_ext_paroiV+1/hs_int_paroiV)
-    "Glazings Uvalue";
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer Uplancher=1/(sum(
+      paraPlancher.e ./ paraPlancher.mat.lambda) + 1/hs_ext_Plancher + 1/
+      hs_int_Plancher) "Floor Uvalue";
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer Ug=1/(1/k + 1/
+      hs_ext_paroiV + 1/hs_int_paroiV) "Glazings Uvalue";
 
   // Second order polynomial system resolution to find the value of alpha, multiplying factor of insulating layers in vertical walls and the ceiling
 parameter Real Anew=Ubat*Sdeper-Swin*Ug-b*Uplancher*Splancher
@@ -675,8 +685,8 @@ end if;
 <p>Validated model - Gilles Plessis, Hassan Bouia 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

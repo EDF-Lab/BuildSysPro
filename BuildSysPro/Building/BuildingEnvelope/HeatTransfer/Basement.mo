@@ -15,7 +15,7 @@ model Basement "Buried basement"
     annotation (choicesAllMatching=true);
   parameter BuildSysPro.Utilities.Records.GenericSolid mat_Pla
     annotation (choicesAllMatching=true);
-  parameter Modelica.SIunits.Temperature Tinit=281.15;
+  parameter Modelica.Units.SI.Temperature Tinit=281.15;
 protected
   final parameter Real Perimetre=2*(Longueur*Largeur);
   final parameter Real Splancher=Longueur*Largeur;
@@ -261,8 +261,8 @@ equation
 <p>Validated model - Hassan Bouia 09/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

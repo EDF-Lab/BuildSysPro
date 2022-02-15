@@ -1,8 +1,9 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Sources;
 model FixedHeatFlow "Fixed heat flow boundary condition"
-  parameter Modelica.SIunits.HeatFlowRate Q_flow "Fixed heat flow rate at port";
-  parameter Modelica.SIunits.Temperature T_ref=293.15 "Reference temperature";
-  parameter Modelica.SIunits.LinearTemperatureCoefficient alpha=0
+  parameter Modelica.Units.SI.HeatFlowRate Q_flow
+    "Fixed heat flow rate at port";
+  parameter Modelica.Units.SI.Temperature T_ref=293.15 "Reference temperature";
+  parameter Modelica.Units.SI.LinearTemperatureCoefficient alpha=0
     "Temperature coefficient of heat flow rate";
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b port
@@ -58,8 +59,8 @@ equation
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.FixedHeatFlow\">FixedHeatFlow</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -2,25 +2,26 @@
 function FullMask
   "Calculation of the sunny area for the full mask (horizontal+vertical)"
 
-input Modelica.SIunits.Distance Av "Overhang";
-input Modelica.SIunits.Distance Ha
+  input Modelica.Units.SI.Distance Av "Overhang";
+  input Modelica.Units.SI.Distance Ha
     "Distance between the overhang and the top of the surface (window)";
-input Modelica.SIunits.Distance Lf "Surface (window) width";
-input Modelica.SIunits.Distance Hf "Surface (window) height";
-input Modelica.SIunits.Distance Dd "Lateral overhang (right hand side)";
-input Modelica.SIunits.Distance Dg "Lateral overhang (left hand side)";
-input Modelica.SIunits.Conversions.NonSIunits.Angle_deg AzimutSoleil
+  input Modelica.Units.SI.Distance Lf "Surface (window) width";
+  input Modelica.Units.SI.Distance Hf "Surface (window) height";
+  input Modelica.Units.SI.Distance Dd "Lateral overhang (right hand side)";
+  input Modelica.Units.SI.Distance Dg "Lateral overhang (left hand side)";
+  input Modelica.Units.NonSI.Angle_deg AzimutSoleil
     "Solar azimuth angle (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°";
-input Modelica.SIunits.Conversions.NonSIunits.Angle_deg HauteurSoleil
-    "Solar elevation angle";
-input Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut
+  input Modelica.Units.NonSI.Angle_deg HauteurSoleil "Solar elevation angle";
+  input Modelica.Units.NonSI.Angle_deg azimut
     "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°";
 
-output Modelica.SIunits.Area A0 "Sunny surface of the window";
+  output Modelica.Units.SI.Area A0 "Sunny surface of the window";
 
 protected
-Modelica.SIunits.Distance X0 "Intermediate variable for the calculation of A0";
-Modelica.SIunits.Distance  Y0 "Intermediate variable for the calculation of A0";
+  Modelica.Units.SI.Distance X0
+    "Intermediate variable for the calculation of A0";
+  Modelica.Units.SI.Distance Y0
+    "Intermediate variable for the calculation of A0";
 constant Real Convert=Modelica.Constants.pi/180
     "Conversion factor degrees->radians";
 
@@ -73,8 +74,8 @@ Shading devices (near mask) with both overhang and lateral fin (such as egg crat
 <p>Validated model (according to the standard ISO13791-2004) - Aurélie Kaemmerlen 05/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>

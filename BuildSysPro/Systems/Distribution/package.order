@@ -1,2 +1,10 @@
 DistributionPipe
+HydraulicPipe
+CapacitiveHydraulicPipe
+ThreeWayValveFlow
+ThreeWayValveTemperature
+ThreeWayValveAndPump
+WaterCirculator
+Pump_fct
 PumpElecCons
+Fan

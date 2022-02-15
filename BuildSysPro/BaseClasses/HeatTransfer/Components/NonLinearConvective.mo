@@ -5,7 +5,7 @@ model NonLinearConvective
   parameter Real a "Multiplicative factor of the temperature difference";
   parameter Real n "Exponent of the exchange law";
   parameter Real b "Additional term of the exchange law";
-  parameter Modelica.SIunits.Area S "Exchange surface";
+  parameter Modelica.Units.SI.Area S "Exchange surface";
 
 equation
   Q_flow = if noEvent(abs(dT)>0) then S*(a*abs(dT)^n + b)*dT else 0;
@@ -24,8 +24,8 @@ equation
 <p>Validated model - EAB 04/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>",

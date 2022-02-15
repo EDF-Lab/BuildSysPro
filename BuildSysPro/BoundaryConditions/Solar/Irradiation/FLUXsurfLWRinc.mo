@@ -10,9 +10,9 @@ model FLUXsurfLWRinc
     annotation (Placement(transformation(extent={{-62,-10},{-32,20}})));
   Modelica.Blocks.Math.Add add
     annotation (Placement(transformation(extent={{44,-2},{58,12}})));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut
+  parameter Modelica.Units.NonSI.Angle_deg azimut
     "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°";
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl
+  parameter Modelica.Units.NonSI.Angle_deg incl
     "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°";
   parameter Real albedo=0.2 "Albedo of the environment";
 parameter Integer diffus_isotrope=1 "Model for diffuse irradiance"
@@ -99,8 +99,8 @@ equation
 <p>none</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author :   Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

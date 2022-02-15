@@ -26,9 +26,9 @@ parameter Boolean HR=true "Relative humidity in data file" annotation(choices(
 parameter Modelica.Blocks.Types.Smoothness Interpolation=Modelica.Blocks.Types.Smoothness.ContinuousDerivative
     "Data interpolation method" annotation(Dialog(tab="Advanced parameters"));
 
-parameter Modelica.SIunits.Time Tbouclage=31536000
+  parameter Modelica.Units.SI.Time Tbouclage=31536000
     "Weather data looped beyond Tbouclage if the simulation stop time is superior"
-    annotation(Dialog(tab="Advanced parameters"));
+    annotation (Dialog(tab="Advanced parameters"));
 
 parameter Real delta_t=3600
     "Time interval for piecewise constant interpolation method"
@@ -373,8 +373,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

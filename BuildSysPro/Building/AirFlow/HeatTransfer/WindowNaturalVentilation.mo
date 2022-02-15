@@ -1,9 +1,10 @@
 ﻿within BuildSysPro.Building.AirFlow.HeatTransfer;
 model WindowNaturalVentilation
 
-parameter Modelica.SIunits.Area Sfenetre = 1.5 "Average surface of a window"    annotation(Dialog(group="Windows description"));
-parameter Modelica.SIunits.Height Hfenetre=1.25 "Average height of a window"
-                                 annotation(Dialog(group="Windows description"));
+  parameter Modelica.Units.SI.Area Sfenetre=1.5 "Average surface of a window"
+    annotation (Dialog(group="Windows description"));
+  parameter Modelica.Units.SI.Height Hfenetre=1.25 "Average height of a window"
+    annotation (Dialog(group="Windows description"));
 parameter Real NbFenetres = 1 "Number of open windows"   annotation(Dialog(group="Windows description"));
 
 public
@@ -136,8 +137,8 @@ equation
 <p>Validated model compared to Clim2000 - Vincent Magnaudeix 06/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Vincent MAGNAUDEIX, EDF (2013))<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

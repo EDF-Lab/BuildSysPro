@@ -7,11 +7,11 @@ model Wall
     "Constituting materials of the wall (from outside to inside)"
     annotation (choicesAllMatching=true);
   parameter Integer mc[nc]=3*fill(1, nc) "Number of layers by material";
-  parameter Modelica.SIunits.Length[nc] ec=0.2*fill(1, nc)
+  parameter Modelica.Units.SI.Length[nc] ec=0.2*fill(1, nc)
     "Thickness of the layers (from outside to inside)";
-  parameter Modelica.SIunits.Area Sc=1 "Surface of the wall";
+  parameter Modelica.Units.SI.Area Sc=1 "Surface of the wall";
 
-  parameter Modelica.SIunits.Temperature Tinitc=293.15 "Initial temperature";
+  parameter Modelica.Units.SI.Temperature Tinitc=293.15 "Initial temperature";
   parameter BuildSysPro.Utilities.Types.InitCond InitTypec=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Initialization type";
 
@@ -64,8 +64,8 @@ equation
 <p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

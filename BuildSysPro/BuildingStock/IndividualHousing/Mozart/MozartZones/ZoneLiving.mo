@@ -17,8 +17,8 @@ parameter Boolean QVin=false
     "True : controlled air change rate; False : constant air change rate"                       annotation(Dialog(tab="Thermal flows"));
 
   // Walls
-parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
-    annotation(Dialog(tab="Walls"));
+  parameter Modelica.Units.SI.Temperature Tp=293.15
+    "Initial temperature of walls" annotation (Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Type of initialization for walls"
     annotation (Dialog(tab="Walls"));
@@ -63,7 +63,7 @@ parameter Real r21=paraMaisonRT.transmissionMenuiseriePortesFenetres
     annotation (Dialog(tab="Windows",enable=not useReduction1,group="Reduction factor if useReduction = false"));
 
   // Thermal bridges
-  parameter Modelica.SIunits.ThermalConductance G_ponts=
+  parameter Modelica.Units.SI.ThermalConductance G_ponts=
       Utilities.Functions.CalculGThermalBridges(
       ValeursK=paraMaisonRT.ValeursK,
       LongueursPonts=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.LongueursPontsSejour,
@@ -682,8 +682,8 @@ graphics={
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

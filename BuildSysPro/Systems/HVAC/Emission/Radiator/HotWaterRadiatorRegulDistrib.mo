@@ -2,7 +2,7 @@
 model HotWaterRadiatorRegulDistrib
   "Hot water radiator with control and distribution"
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
   parameter Integer Type=2
     "Radiator type for determination of inertia (water filling and radiator body) by a correlation based on rated power"
@@ -264,8 +264,8 @@ equation
 <p>Validated model - Hubert Blervaque, Sila Filfli 07/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

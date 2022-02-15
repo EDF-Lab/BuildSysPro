@@ -18,19 +18,18 @@ parameter Boolean QVin=false
     "True : controlled air change rate; False : constant air change rate"                       annotation(Dialog(tab="Thermal flows"));
 
   // Walls
-parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
-    annotation(Dialog(tab="Walls"));
+  parameter Modelica.Units.SI.Temperature Tp=293.15
+    "Initial temperature of walls" annotation (Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Type of initialization for walls"
     annotation (Dialog(tab="Walls"));
 
   // Thermal bridges
-  parameter Modelica.SIunits.ThermalConductance G_ponts=
+  parameter Modelica.Units.SI.ThermalConductance G_ponts=
       Utilities.Functions.CalculGThermalBridges(
       ValeursK=paraMaisonRT.ValeursK,
       LongueursPonts=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.LongueursPontsEntree,
-      TauPonts=paraMaisonRT.TauPonts)
-    annotation (Dialog(tab="Thermal bridges"));
+      TauPonts=paraMaisonRT.TauPonts) annotation (Dialog(tab="Thermal bridges"));
 
  // Protected parameters
 protected
@@ -238,7 +237,8 @@ if EmplacementHaut==true then
           points={{6.3,74.9},{40,74.9},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
-else  connect(Plafond.T_int, noeudAir.port_a) annotation (Line(
+else
+      connect(Plafond.T_int, noeudAir.port_a) annotation (Line(
           points={{6.3,91.9},{40,91.9},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
@@ -265,7 +265,8 @@ if EmplacementBas==true then
           points={{-43,-90.2},{28,-90.2},{28,-104},{73.1,-104},{73.1,-98.3}},
           color={191,0,0},
           smooth=Smooth.None));
-else  connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
+else
+      connect(PlancherBas.T_int, noeudAir.port_a) annotation (Line(
           points={{53.1,-85.7},{53.1,-60},{40,-60},{40,40},{80,40},{80,22}},
           color={255,0,0},
           smooth=Smooth.None));
@@ -414,8 +415,8 @@ graphics={
 <p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

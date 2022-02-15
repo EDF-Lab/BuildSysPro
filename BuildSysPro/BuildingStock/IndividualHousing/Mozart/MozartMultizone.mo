@@ -27,8 +27,8 @@ model MozartMultizone
     choices(choice=true "Input", choice=false "Constant", radioButtons=true));
 
   // Walls
-  parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
-    annotation(Dialog(tab="Walls"));
+  parameter Modelica.Units.SI.Temperature Tp=293.15
+    "Initial temperature of walls" annotation (Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Type of initialization for walls"
     annotation (Dialog(tab="Walls"));
@@ -163,6 +163,12 @@ protected
         mat=paraMaisonRT.Refends.mat,
         e=paraMaisonRT.Refends.e,
         positionIsolant=paraMaisonRT.Refends.positionIsolant),
+      PorteInt(
+        n=paraMaisonRT.PorteInt.n,
+        m=paraMaisonRT.PorteInt.m,
+        mat=paraMaisonRT.PorteInt.mat,
+        e=paraMaisonRT.PorteInt.e,
+        positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
       alphaExt=paraMaisonRT.alphaExt,
       eps=paraMaisonRT.eps,
       hsExtVert=paraMaisonRT.hsExtVert,
@@ -239,6 +245,12 @@ protected
         mat=paraMaisonRT.Refends.mat,
         e=paraMaisonRT.Refends.e,
         positionIsolant=paraMaisonRT.Refends.positionIsolant),
+      PorteInt(
+        n=paraMaisonRT.PorteInt.n,
+        m=paraMaisonRT.PorteInt.m,
+        mat=paraMaisonRT.PorteInt.mat,
+        e=paraMaisonRT.PorteInt.e,
+        positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
       alphaExt=paraMaisonRT.alphaExt,
       eps=paraMaisonRT.eps,
       hsExtVert=paraMaisonRT.hsExtVert,
@@ -315,6 +327,12 @@ protected
         mat=paraMaisonRT.Refends.mat,
         e=paraMaisonRT.Refends.e,
         positionIsolant=paraMaisonRT.Refends.positionIsolant),
+      PorteInt(
+        n=paraMaisonRT.PorteInt.n,
+        m=paraMaisonRT.PorteInt.m,
+        mat=paraMaisonRT.PorteInt.mat,
+        e=paraMaisonRT.PorteInt.e,
+        positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
       alphaExt=paraMaisonRT.alphaExt,
       eps=paraMaisonRT.eps,
       hsExtVert=paraMaisonRT.hsExtVert,
@@ -391,6 +409,12 @@ protected
         mat=paraMaisonRT.Refends.mat,
         e=paraMaisonRT.Refends.e,
         positionIsolant=paraMaisonRT.Refends.positionIsolant),
+      PorteInt(
+        n=paraMaisonRT.PorteInt.n,
+        m=paraMaisonRT.PorteInt.m,
+        mat=paraMaisonRT.PorteInt.mat,
+        e=paraMaisonRT.PorteInt.e,
+        positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
       alphaExt=paraMaisonRT.alphaExt,
       eps=paraMaisonRT.eps,
       hsExtVert=paraMaisonRT.hsExtVert,
@@ -467,6 +491,12 @@ protected
         mat=paraMaisonRT.Refends.mat,
         e=paraMaisonRT.Refends.e,
         positionIsolant=paraMaisonRT.Refends.positionIsolant),
+      PorteInt(
+        n=paraMaisonRT.PorteInt.n,
+        m=paraMaisonRT.PorteInt.m,
+        mat=paraMaisonRT.PorteInt.mat,
+        e=paraMaisonRT.PorteInt.e,
+        positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
       alphaExt=paraMaisonRT.alphaExt,
       eps=paraMaisonRT.eps,
       hsExtVert=paraMaisonRT.hsExtVert,
@@ -543,6 +573,12 @@ protected
         mat=paraMaisonRT.Refends.mat,
         e=paraMaisonRT.Refends.e,
         positionIsolant=paraMaisonRT.Refends.positionIsolant),
+      PorteInt(
+        n=paraMaisonRT.PorteInt.n,
+        m=paraMaisonRT.PorteInt.m,
+        mat=paraMaisonRT.PorteInt.mat,
+        e=paraMaisonRT.PorteInt.e,
+        positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
       alphaExt=paraMaisonRT.alphaExt,
       eps=paraMaisonRT.eps,
       hsExtVert=paraMaisonRT.hsExtVert,
@@ -618,6 +654,12 @@ protected
         mat=paraMaisonRT.Refends.mat,
         e=paraMaisonRT.Refends.e,
         positionIsolant=paraMaisonRT.Refends.positionIsolant),
+      PorteInt(
+        n=paraMaisonRT.PorteInt.n,
+        m=paraMaisonRT.PorteInt.m,
+        mat=paraMaisonRT.PorteInt.mat,
+        e=paraMaisonRT.PorteInt.e,
+        positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
       alphaExt=paraMaisonRT.alphaExt,
       eps=paraMaisonRT.eps,
       hsExtVert=paraMaisonRT.hsExtVert,
@@ -847,11 +889,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteIntEntreeSejour,
     RadInterne=false) annotation (Placement(transformation(
         extent={{-2.5,-3},{2.5,3}},
@@ -866,11 +908,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteIntEntreeCuisine,
     RadExterne=false) annotation (Placement(transformation(
         extent={{-3,-2.5},{3,2.5}},
@@ -885,11 +927,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteIntEntreeC1,
     RadExterne=false) annotation (Placement(transformation(
         extent={{-3,-2.5},{3,2.5}},
@@ -904,11 +946,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteIntEntreeC2,
     RadExterne=false) annotation (Placement(transformation(
         extent={{-3,-2.5},{3,2.5}},
@@ -923,11 +965,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteIntEntreeC3,
     RadInterne=false) annotation (Placement(transformation(
         extent={{-3,-2.5},{3,2.5}},
@@ -942,11 +984,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PorteIntEntreeSDB,
     RadInterne=false) annotation (Placement(transformation(
         extent={{-3,-2.5},{3,2.5}},
@@ -1730,14 +1772,26 @@ graphics={
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>Parameter <code>paraMaisonRT</code> allows the user to chose a specific French building regulation for the building, so that building envelope parameters (walls, windows, ventilation...) will be automatically filled with data from the choosen record.</p>
+<p>Detail of thermal bridge vectors :</p>
+<ul>
+<li>TauPonts[1] and ValeursK[1] : exterior wall / exterior wall</li>
+<li>TauPonts[2] and ValeursK[2] : exterior wall / supporting wall</li>
+<li>TauPonts[3] and ValeursK[3] : exterior wall / floor</li>
+<li>TauPonts[4] and ValeursK[4] : floor / crawlspace</li>
+<li>TauPonts[5] and ValeursK[5] : supporting wall / floor</li>
+<li>TauPonts[6] and ValeursK[6] : exterior wall / attic wall</li>
+<li>TauPonts[7] and ValeursK[7] : attic wall / attic</li>
+<li>TauPonts[8] and ValeursK[8] : door</li>
+<li>TauPonts[9] and ValeursK[9] : windows</li>
+</ul>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>For dates of contruction from 1974 to 1989, insulating materials thicknesses in floors are different between building stock site and Clim 2000 (cf <a href=\"modelica://BuildSysPro.BuildingStock.Utilities.Records.WallData.IndividualHousing\">Records.WallData.IndividualHousing</a> documentation).</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model by comparison of GV with Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

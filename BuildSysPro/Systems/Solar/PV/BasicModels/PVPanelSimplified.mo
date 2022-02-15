@@ -3,12 +3,12 @@ model PVPanelSimplified
   "Detailed physical model of photovoltaic panel (thermal capacity)"
 
   // Parameters of the PV system
-  parameter Modelica.SIunits.Area surface=20 "PV panels surface"
+  parameter Modelica.Units.SI.Area surface=20 "PV panels surface"
     annotation (Dialog(tab="PV panels", group="PV system"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=30
+  parameter Modelica.Units.NonSI.Angle_deg incl=30
     "PV panel tilt relative to the horizontal (0° upward, 180° toward the ground)"
     annotation (Dialog(tab="PV panels", group="PV system"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
+  parameter Modelica.Units.NonSI.Angle_deg azimut=0
     "Azimut of the surface (orientation relative to the South : S=0°, E=-90°, O=90°, N=180°)"
     annotation (Dialog(tab="PV panels", group="PV system"));
 
@@ -76,8 +76,8 @@ model PVPanelSimplified
       choice=1 "Wind considered through a meteo file",
       choice=2 "Wind considered, speed imposed",
       choice=3 "Wind neglected"));
-  parameter Modelica.SIunits.Velocity vitesse=1 "Wind speed imposed in m/s"
-                                annotation (Dialog(
+  parameter Modelica.Units.SI.Velocity vitesse=1 "Wind speed imposed in m/s"
+    annotation (Dialog(
       tab="Thermal exchanges",
       group="External conditions",
       enable=VitesseExt == 2));
@@ -90,7 +90,7 @@ model PVPanelSimplified
       enable=Integre == 1));
 
   // Indoors characteristics
-  parameter Modelica.SIunits.Temperature Tint=293.15
+  parameter Modelica.Units.SI.Temperature Tint=293.15
     "Indoor temperature of the building" annotation (Dialog(
       tab="Building",
       group="Indoor temperature of the building",
@@ -451,8 +451,8 @@ equation
 <p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -1,5 +1,10 @@
 AirNode
+DoorEnthalpy
 AirRenewal
+AirRenewal_DynProp
 EnthalpyFlow
 HeatRecoveryVentilation
 WindowNaturalVentilation
+VentilationFlow3CL_DPE
+Ventilation3CL_DPE
+Permea3CL_DPE

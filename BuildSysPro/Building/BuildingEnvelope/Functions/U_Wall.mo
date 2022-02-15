@@ -2,7 +2,7 @@
 function U_Wall
   "U-value calculated from the wall composition (GenericWall record)"
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
   input BuildSysPro.Utilities.Records.GenericWall wall_record
     "Wall composition record";

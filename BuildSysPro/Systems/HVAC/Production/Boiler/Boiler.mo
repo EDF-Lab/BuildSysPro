@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.Systems.HVAC.Production.Boiler;
 model Boiler
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
   import BuildSysPro.BaseClasses.Media.OLD_THERMHYGAERO.AirFunctions.Psat;
 
   parameter Real PCSI=1.11
@@ -19,8 +19,9 @@ model Boiler
   parameter SI.Power PertesT30K = 60 "Stop losses" annotation(Dialog(group = "Parameters provided on ATITA basis"));
   parameter SI.VolumeFlowRate V_flow= 1.02/3600 "Volume of water in the boiler"
                                                                   annotation(Dialog(group = "Parameters provided on ATITA basis"));
-  parameter Modelica.SIunits.Volume Veau(displayUnit="l") = 2.8E-3
-    "Volume d'eau contenue dans la chaudière"                     annotation(Dialog(group = "Parameters provided on ATITA basis"));
+  parameter Modelica.Units.SI.Volume Veau(displayUnit="l") = 2.8E-3
+    "Volume d'eau contenue dans la chaudière"
+    annotation (Dialog(group="Parameters provided on ATITA basis"));
   parameter SI.Mass mSec = 35 "Dry weight"                       annotation(Dialog(group = "Parameters provided on ATITA basis"));
   parameter SI.Power Paux = 24
     "Electrical power of auxiliary on nominal power (out circulation pump)"
@@ -485,8 +486,8 @@ Documentation(info="<html>
 <p>Validated model - Hubert Blervaque, Sila Filfli 07/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

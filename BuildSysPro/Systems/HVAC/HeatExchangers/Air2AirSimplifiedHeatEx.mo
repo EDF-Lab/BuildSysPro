@@ -16,9 +16,10 @@ parameter Real Efficacite=0.5 "Constant exchanger efficiency [0-1]"
     annotation(Dialog(group="Control",enable=not use_Efficacite_in));
 
 // Air properties
-parameter Modelica.SIunits.Density rho=1.24 "Air density" annotation(Dialog(group="Air properties"));
-parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005
-    "Specific heat capacity of air"                                                    annotation(Dialog(group="Air properties"));
+  parameter Modelica.Units.SI.Density rho=1.24 "Air density"
+    annotation (Dialog(group="Air properties"));
+  parameter Modelica.Units.SI.SpecificHeatCapacity Cp=1005
+    "Specific heat capacity of air" annotation (Dialog(group="Air properties"));
 
 // Public connectors
   Modelica.Blocks.Interfaces.RealInput Qv_in if use_Qv_in
@@ -40,7 +41,7 @@ Modelica.Blocks.Interfaces.RealInput Efficacite_in if use_Efficacite_in
         rotation=-90,
         origin={-54,28})));
 
-Modelica.SIunits.Temperature Tentree "Inlet temperature of the exchanger";
+  Modelica.Units.SI.Temperature Tentree "Inlet temperature of the exchanger";
 
 // Internal connectors
 protected
@@ -79,8 +80,8 @@ Documentation(info="<html>
 <p>Validated model - Lou Chesne 10/2011, Aurélie Kaemmerlen 10/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Lou CHESNE, Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

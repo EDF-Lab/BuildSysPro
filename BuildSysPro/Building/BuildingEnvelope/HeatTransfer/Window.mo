@@ -17,24 +17,29 @@ annotation(Dialog(group="Options",compact=true),choices(choice=true
         "With calculation of natural lighting",                                                             choice=false
         "Without calculation of natural lighting",                                                                                                  radioButtons=true));
   // General parameters
-  parameter Modelica.SIunits.Area S=1 "Glazing surface"
-                                                       annotation(Dialog(group="General parameters"));
-  parameter Modelica.SIunits.Length H=1 "Height of the window" annotation(Dialog(group="General parameters"));
-  parameter Modelica.SIunits.Length L=1 "Width of the window" annotation(Dialog(enable=useEclairement,group="General parameters"));
+  parameter Modelica.Units.SI.Area S=1 "Glazing surface"
+    annotation (Dialog(group="General parameters"));
+  parameter Modelica.Units.SI.Length H=1 "Height of the window"
+    annotation (Dialog(group="General parameters"));
+  parameter Modelica.Units.SI.Length L=1 "Width of the window"
+    annotation (Dialog(enable=useEclairement, group="General parameters"));
 
 // Coefficient of transmission and exchanges such as Uglazing = 3
-parameter Modelica.SIunits.CoefficientOfHeatTransfer k=6.06
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer k=6.06
     "Surface transmission coefficient k of the glazing - without convective exchanges; by default, k, hs_ext and hs_int lead to a Uvalue = 3 W/m2/K"
-                                                                                                      annotation(Dialog(group="General parameters"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=21
-    "Global or convective surface exchange coefficient on the outer face depending on the selected mode (GLOext)" annotation(Dialog(group="General parameters"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=8.29
-    "Surface exchange coefficient on the inner face" annotation(Dialog(group="General parameters"));
-parameter Modelica.SIunits.ThermalInsulance R_volet=0.2
-    "Additional thermal resistance (shutters closed)"                                                          annotation(Dialog(enable=useVolet,group="General parameters"));
-parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
+    annotation (Dialog(group="General parameters"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext=21
+    "Global or convective surface exchange coefficient on the outer face depending on the selected mode (GLOext)"
+    annotation (Dialog(group="General parameters"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_int=8.29
+    "Surface exchange coefficient on the inner face"
+    annotation (Dialog(group="General parameters"));
+  parameter Modelica.Units.SI.ThermalInsulance R_volet=0.2
+    "Additional thermal resistance (shutters closed)"
+    annotation (Dialog(enable=useVolet, group="General parameters"));
+  parameter Modelica.Units.NonSI.Angle_deg incl=90
     "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°"
-                                                                                                      annotation(Dialog(group="General parameters"));
+    annotation (Dialog(group="General parameters"));
 parameter Integer choix=1
     "Formula to weight the thermal transmission of direct flux depending on the angle of incidence"   annotation(Dialog(group="Optical properties"),choices(
         choice=1 "Fauconnier",
@@ -618,8 +623,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

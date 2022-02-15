@@ -11,13 +11,13 @@ parameter Boolean GLOext=false
     "Taking into account infrared radiation between the wall and the sky"
     annotation(Dialog(compact=true),choices(choice=true "Yes", choice=false "No", radioButtons=true));
 
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=25
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext=25
     "Convective surface heat exchange coefficient on the outside - depending on the settings (GLOext and VitesseVent), hs_ext can be purely convective or purely radiative";
 
-parameter Modelica.SIunits.Area S "Exchange surface";
-parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut
+  parameter Modelica.Units.SI.Area S "Exchange surface";
+  parameter Modelica.Units.NonSI.Angle_deg azimut
     "Azimut of the surface (relative to the south) - S=0°, E=-90°, W=90°, N=180°";
- parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
+  parameter Modelica.Units.NonSI.Angle_deg incl=90
     "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°";
 
 Modelica.Blocks.Interfaces.RealInput V[2] if VitesseVent
@@ -28,22 +28,23 @@ Modelica.Blocks.Interfaces.RealInput V[2] if VitesseVent
         origin={0,74})));
 
 protected
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hrad_cst = if GLOext then 0 else hs_ext;
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hrad_cst=if GLOext
+       then 0 else hs_ext;
 protected
   Modelica.Blocks.Interfaces.RealInput V_in[2]
     "Internal connector, needed if conditional connexion";
 public
- Modelica.SIunits.CoefficientOfHeatTransfer h_vent
+  Modelica.Units.SI.CoefficientOfHeatTransfer h_vent
     "Convective heat exchange coefficient on the outside";
 
 public
 function correlation
   input Real V[2] "Wind speed and direction";
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut
+    input Modelica.Units.NonSI.Angle_deg azimut
       "Azimut of the surface (relative to the south) - S=0°, E=-90°, W=90°, N=180°";
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
+    input Modelica.Units.NonSI.Angle_deg incl=90
       "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°";
-  output Modelica.SIunits.CoefficientOfHeatTransfer h_vent
+    output Modelica.Units.SI.CoefficientOfHeatTransfer h_vent
       "Convective surface heat exchange coefficient due to wind";
 
 //Coefficient a of the equation hcv = a*v^n+b
@@ -85,8 +86,8 @@ algorithm
 <p>Validated model - Aurélie Kaemmerlen 2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));
@@ -134,8 +135,8 @@ annotation(Dialog(enable=VitesseVent),
 <p>Validated model - Aurélie Kaemmerlen 2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

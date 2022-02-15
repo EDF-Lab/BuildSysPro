@@ -2,17 +2,17 @@
 model PIDFixed
   "PID control model connectable to an indoor air port of a building "
 
-  parameter Modelica.SIunits.Temperature Tc=293.15 "Setpoint temperature";
+  parameter Modelica.Units.SI.Temperature Tc=293.15 "Setpoint temperature";
 
   parameter Modelica.Blocks.Types.SimpleController controllerType=Modelica.Blocks.Types.SimpleController.PID
     "Type of controller";
   parameter Real k=30 "Gain of controller";
-  parameter Modelica.SIunits.Time Ti=60 "Time constant of Integrator block";
-  parameter Modelica.SIunits.Time Td=0 "Time constant of Derivative block";
+  parameter Modelica.Units.SI.Time Ti=60 "Time constant of Integrator block";
+  parameter Modelica.Units.SI.Time Td=0 "Time constant of Derivative block";
   parameter Real yMax=10000 "Upper limit of output";
   parameter Real yMin=0 "Lower limit of output";
   parameter Real Ni=0.1 "Ni*Ti is time constant of anti-windup compensation";
-  parameter Modelica.Blocks.Types.InitPID initType=Modelica.Blocks.Types.InitPID.InitialState
+  parameter Modelica.Blocks.Types.Init initType=Modelica.Blocks.Types.Init.InitialState
     "Type of initialization (1: no init, 2: steady state, 3: initial state, 4: initial output)";
   parameter Boolean limitsAtInit=true
     "= false, if limits are ignored during initializiation";
@@ -25,8 +25,7 @@ model PIDFixed
     yMax=yMax,
     yMin=yMin,
     Ni=Ni,
-    initType=initType,
-    limitsAtInit=limitsAtInit)
+    initType=initType)
     annotation (Placement(transformation(extent={{32,-4},{12,-24}})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
     annotation (Placement(transformation(extent={{-10,-38},{-30,-18}})));
@@ -84,8 +83,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p></html>",
       revisions="<html>

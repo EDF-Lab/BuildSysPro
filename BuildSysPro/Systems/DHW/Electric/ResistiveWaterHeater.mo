@@ -1,26 +1,26 @@
 within BuildSysPro.Systems.DHW.Electric;
 model ResistiveWaterHeater
   "Electric hot water tank with homogeneous temperature"
-  parameter Modelica.SIunits.Volume V=0.200 "Volume"
-    annotation(Dialog(group = "Tank"));
-  parameter Modelica.SIunits.Length d=0.50 "Diameter"
-    annotation(Dialog(group = "Tank"));
-  parameter Modelica.SIunits.Power P=2500 "Max electric power"
-    annotation(Dialog(group = "Regulation"));
-  parameter Modelica.SIunits.Temperature T_sp=273.15+60 "Setpoint temperature"
-    annotation(Dialog(group = "Regulation"));
-  parameter Modelica.SIunits.TemperatureDifference dT=3 "Hysteresis band"
-    annotation(Dialog(group = "Regulation"));
-  parameter Modelica.SIunits.Length e=0.04 "Thickness"
-    annotation(Dialog(group = "Insulating",tab="Other parameters"));
-  parameter Modelica.SIunits.ThermalConductivity lambda=0.04
+  parameter Modelica.Units.SI.Volume V=0.200 "Volume"
+    annotation (Dialog(group="Tank"));
+  parameter Modelica.Units.SI.Length d=0.50 "Diameter"
+    annotation (Dialog(group="Tank"));
+  parameter Modelica.Units.SI.Power P=2500 "Max electric power"
+    annotation (Dialog(group="Regulation"));
+  parameter Modelica.Units.SI.Temperature T_sp=273.15 + 60
+    "Setpoint temperature" annotation (Dialog(group="Regulation"));
+  parameter Modelica.Units.SI.TemperatureDifference dT=3 "Hysteresis band"
+    annotation (Dialog(group="Regulation"));
+  parameter Modelica.Units.SI.Length e=0.04 "Thickness"
+    annotation (Dialog(group="Insulating", tab="Other parameters"));
+  parameter Modelica.Units.SI.ThermalConductivity lambda=0.04
     "Thermal conductivity"
-    annotation(Dialog(group = "Insulating",tab="Other parameters"));
-  parameter Modelica.SIunits.Density rho=1000 "Density"
-    annotation(Dialog(group = "Fluid",tab="Other parameters"));
-  parameter Modelica.SIunits.SpecificHeatCapacity Cp=4185
+    annotation (Dialog(group="Insulating", tab="Other parameters"));
+  parameter Modelica.Units.SI.Density rho=1000 "Density"
+    annotation (Dialog(group="Fluid", tab="Other parameters"));
+  parameter Modelica.Units.SI.SpecificHeatCapacity Cp=4185
     "Specific heat capacity"
-    annotation(Dialog(group = "Fluid",tab="Other parameters"));
+    annotation (Dialog(group="Fluid", tab="Other parameters"));
   //Modelica.SIunits.Temperature T "Water temperature in the tank";
   Integer Hyst(start=0) "Hysteresis";
 
@@ -30,17 +30,17 @@ model ResistiveWaterHeater
 protected
   constant Real pi=Modelica.Constants.pi;
   constant Real coef36=1.0/3.6e6;
-  constant Modelica.SIunits.CoefficientOfHeatTransfer he=10
+  constant Modelica.Units.SI.CoefficientOfHeatTransfer he=10
     "Outside exchange coefficient";
 
-  parameter Modelica.SIunits.Area Sb=pi*d*d/4 "Surface of the tank base";
-  parameter Modelica.SIunits.Length H=V/Sb "Tank height";
-  parameter Modelica.SIunits.Area St=pi*d*H+2*Sb "Total exchange surface";
+  parameter Modelica.Units.SI.Area Sb=pi*d*d/4 "Surface of the tank base";
+  parameter Modelica.Units.SI.Length H=V/Sb "Tank height";
+  parameter Modelica.Units.SI.Area St=pi*d*H + 2*Sb "Total exchange surface";
 
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer h=1.0/(1/he+e/lambda)
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer h=1.0/(1/he + e/lambda)
     "Outside exchange coefficient";
-  parameter Modelica.SIunits.ThermalConductance KS=(1.1+0.05/V)*h*St;
-  parameter Modelica.SIunits.HeatCapacity C=rho*Cp*V;
+  parameter Modelica.Units.SI.ThermalConductance KS=(1.1 + 0.05/V)*h*St;
+  parameter Modelica.Units.SI.HeatCapacity C=rho*Cp*V;
 
 public
   Modelica.Blocks.Interfaces.RealInput T_cold
@@ -208,8 +208,8 @@ homogeneous"),
 <p>Validated model - Hassan Bouia 10/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

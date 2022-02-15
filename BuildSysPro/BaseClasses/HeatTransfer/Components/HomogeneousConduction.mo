@@ -2,18 +2,18 @@
 model HomogeneousConduction "1-D thermal conduction for homogeneous medium"
 
   parameter Integer n=1 "Number of states";
-  parameter Modelica.SIunits.Area S=1 "Surface of the element";
+  parameter Modelica.Units.SI.Area S=1 "Surface of the element";
   parameter BuildSysPro.Utilities.Records.GenericSolid mat
     "material of the element"
     annotation (choicesAllMatching=true);
-  parameter Modelica.SIunits.Length e=0.2
+  parameter Modelica.Units.SI.Length e=0.2
     "Thickness of the element (in the direction of the T gradient)";
 
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState;
 
-final parameter Modelica.SIunits.Density rho=mat.rho;
-  final parameter Modelica.SIunits.SpecificHeatCapacity Cp=mat.c;
-  final parameter Modelica.SIunits.ThermalConductivity lambda=mat.lambda;
+  final parameter Modelica.Units.SI.Density rho=mat.rho;
+  final parameter Modelica.Units.SI.SpecificHeatCapacity Cp=mat.c;
+  final parameter Modelica.Units.SI.ThermalConductivity lambda=mat.lambda;
 final parameter Real[2*n] r1=(fill(1, 2*n)*S*lambda*2*n)/e;
 final parameter Real[n] r2=(rho*Cp*e*S)/n*fill(1, n);
 
@@ -65,8 +65,8 @@ equation
 <p>Validated model - Emmanuel Amy de la Bretèque 06/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Emmanuel AMY DE LA BRETEQUE, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

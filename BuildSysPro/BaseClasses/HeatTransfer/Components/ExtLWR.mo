@@ -8,7 +8,7 @@ parameter Boolean backLWR=false "Model used to calculate exchanges with the soil
 parameter Boolean use_incl_in=false "Prescribed or fixed tilt of the surface relative to the horizontal" annotation(Evaluate=true,HideResult=true,
   choices(choice=true "Prescribed", choice=false "Fixed", radioButtons=true));
 
-parameter Modelica.SIunits.Area S=1 "Surface";
+  parameter Modelica.Units.SI.Area S=1 "Surface";
 parameter Real eps=0.5 "Emissivity";
 
 parameter Real incl=30
@@ -170,8 +170,8 @@ annotation (
 <p>Validated model (analytical verification + verification of the coherence of the exchanged fluxes profile) - Aurélie Kaemmerlen 09/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>

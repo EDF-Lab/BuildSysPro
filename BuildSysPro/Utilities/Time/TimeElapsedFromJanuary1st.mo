@@ -3,7 +3,7 @@ function TimeElapsedFromJanuary1st
   "Elapsed time in seconds from January 1st, 0h0min0s to the given date"
   input String date="01/01_00:00:00"
     "Date at t=0s (start of the simulation) in the form de dd/mm_hh:mm:ss";
-  output Modelica.SIunits.Time Instant0
+  output Modelica.Units.SI.Time Instant0
     "Elapsed time in seconds since 01/01_00:00:00";
   // t[5] : day, month, hour, minute, second (2 digits over 3)
 protected
@@ -32,8 +32,8 @@ annotation (
 <p>Validated function - Hassan BOUIA 03/2013. </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

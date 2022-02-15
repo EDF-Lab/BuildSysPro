@@ -11,10 +11,12 @@ model PVTransmissionFactors
   choices(choice=true "Prescribed", choice=false "Fixed", radioButtons=true));
 
 
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=30
-    "PV panel tilt relative to the horizontal (0° upward, 180° downward)" annotation(Dialog(enable=not use_incl_in));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut=0
-    "PV panel azimuth - orientation relative to the South (S=0°, E=-90°, W=90°, N=180°)" annotation(Dialog(enable=not use_azimut_in));
+  parameter Modelica.Units.NonSI.Angle_deg incl=30
+    "PV panel tilt relative to the horizontal (0° upward, 180° downward)"
+    annotation (Dialog(enable=not use_incl_in));
+  parameter Modelica.Units.NonSI.Angle_deg azimut=0
+    "PV panel azimuth - orientation relative to the South (S=0°, E=-90°, W=90°, N=180°)"
+    annotation (Dialog(enable=not use_azimut_in));
   parameter Integer salete=0
     "0 - Clean panels, 1 - Slightly dirt panels, 2 - Intermediately dirt panels, 3 - Very dirt panels"
     annotation (Dialog(compact=true), choices(
@@ -27,8 +29,7 @@ model PVTransmissionFactors
   //Intermediate variables
 protected
   Real cosIncidence "Cosine of incident rays angle relative to the normal";
-  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angle_incidence
-    "Angle of incidence in °";
+  Modelica.Units.NonSI.Angle_deg angle_incidence "Angle of incidence in °";
   Real transmittance_rel "Relative transmittance due to dirt";
   Real a_r "Parameter a_r";
   Real c2 "Coefficient c2";
@@ -252,8 +253,8 @@ PV"),                             Text(
 <p>Model validated by simulation - Sergeï Agapoff (stagiaire Benoît Braisaz) 08/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Serge&iuml; AGAPOFF, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",

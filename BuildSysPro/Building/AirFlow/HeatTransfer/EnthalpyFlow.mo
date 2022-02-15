@@ -11,9 +11,10 @@ parameter Real Qv=0
     "Constant volume flow rate for ventilation and/or infiltrations [m3/h]"                             annotation(Dialog(group="Ventilation/infiltration",enable=not use_Qv_in));
 
 // Propriétés de l'air
-parameter Modelica.SIunits.Density rhoair = 1.24 "Air density" annotation(Dialog(group="Air properties"));
-parameter Modelica.SIunits.SpecificHeatCapacity Cp=1005
-    "Air specific heat capacity"                                                     annotation(Dialog(group="Air properties"));
+  parameter Modelica.Units.SI.Density rhoair=1.24 "Air density"
+    annotation (Dialog(group="Air properties"));
+  parameter Modelica.Units.SI.SpecificHeatCapacity Cp=1005
+    "Air specific heat capacity" annotation (Dialog(group="Air properties"));
 
 // Connecteur public
   Modelica.Blocks.Interfaces.RealInput Qv_in if use_Qv_in
@@ -72,8 +73,8 @@ Documentation(info="<html>
 <p>Model validated - Gilles Plessis 02/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

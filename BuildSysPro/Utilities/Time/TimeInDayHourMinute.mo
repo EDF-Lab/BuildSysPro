@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.Utilities.Time;
 model TimeInDayHourMinute
 
-  Modelica.Blocks.Sources.Clock clock
+  Modelica.Blocks.Sources.ContinuousClock clock
     annotation (Placement(transformation(extent={{-30,30},{-10,50}})));
   Modelica.Blocks.Math.UnitConversions.To_day to_day
     annotation (Placement(transformation(extent={{10,60},{30,80}})));
@@ -40,8 +40,8 @@ equation
 <p>Validated function - Bernard Clemençon 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Bernard CLEMENCON, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"),

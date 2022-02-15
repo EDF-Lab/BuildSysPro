@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.BuildingStock.Utilities.Records.HeatTransfer;
 record h_surf_ISO6946 "Set of surface heat transfer coefficients from ISO 6946"
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
   parameter SI.CoefficientOfHeatTransfer h_ext_wall = 25.0;
   parameter SI.CoefficientOfHeatTransfer h_ext_roof = 25.0;
@@ -33,7 +33,7 @@ record h_surf_ISO6946 "Set of surface heat transfer coefficients from ISO 6946"
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2019<br>
-BuildSysPro version 3.4.0<br>
+BuildSysPro version 3.5.0<br>
 Author : Mathias BOUQUEREL, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

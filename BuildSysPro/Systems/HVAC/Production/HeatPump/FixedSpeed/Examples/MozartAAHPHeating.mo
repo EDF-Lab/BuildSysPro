@@ -2,10 +2,10 @@ within BuildSysPro.Systems.HVAC.Production.HeatPump.FixedSpeed.Examples;
 model MozartAAHPHeating
 extends Modelica.Icons.Example;
 //  Modelica.SIunits.Conversions.NonSIunits.Time_day day=time/24/3600;
-  Modelica.SIunits.Conversions.NonSIunits.Time_hour hour=time/3600;
+  Modelica.Units.NonSI.Time_hour hour=time/3600;
 //  Modelica.SIunits.Conversions.NonSIunits.Time_minute minute=time/60;
-  Modelica.SIunits.Energy CONSO;
-  Modelica.SIunits.Energy ChaleurFournie;
+  Modelica.Units.SI.Energy CONSO;
+  Modelica.Units.SI.Energy ChaleurFournie;
 
   BuildSysPro.BoundaryConditions.Weather.Meteofile meteofile
     annotation (Placement(transformation(extent={{-182,50},{-142,90}})));
@@ -76,8 +76,6 @@ extends Modelica.Icons.Example;
 
   BuildSysPro.Systems.HVAC.Production.HeatPump.FixedSpeed.HPHeatingAir2Air
     pACch(
-    Qnom=4000,
-    Choix=3,
     TauOn=30,
     dtminOn(displayUnit="min"),
     dtminOff(displayUnit="min"))
@@ -114,10 +112,6 @@ equation
       points={{-144,76},{-120,76},{-120,116},{-72,116}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(prescribedHeatFlow.port, cas1aAvecFlux1.T_int) annotation (Line(
-      points={{159,20.6},{20.5,20.6},{20.5,59.2},{-8,59.2}},
-      color={191,0,0},
-      smooth=Smooth.None));
   connect(cas1aAvecFlux1.T_int, temperatureSensor2.port) annotation (Line(
       points={{-8,59.2},{-8,60},{20,60},{20,-56},{46,-56}},
       color={191,0,0},
@@ -131,7 +125,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(pACch.Qfour, prescribedHeatFlow.Q_flow) annotation (Line(
-      points={{151.2,-38},{190,-38},{190,20.6},{179,20.6}},
+      points={{151.2,-38},{190,-38},{190,22},{180,22}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(temperatureSensor.T, zoneMorte.Variable) annotation (Line(
@@ -147,11 +141,13 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(booleanTable.y, pACch.SaisonChauffe) annotation (Line(
-      points={{74.7,7},{89.35,7},{89.35,-10.4},{102.6,-10.4}},
+      points={{74.7,7},{101.35,7},{101.35,-10.4},{102.6,-10.4}},
       color={255,0,255},
       smooth=Smooth.None));
+  connect(prescribedHeatFlow.port, cas1aAvecFlux1.T_int) annotation (Line(
+        points={{160,22},{20,22},{20,59.2},{-8,59.2}}, color={191,0,0}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-200,
-            -200},{200,200}}),      graphics),
+            -200},{200,200}})),
     experiment(StopTime=3.1536e+007, Interval=60),
     __Dymola_experimentSetupOutput(events=false),
     Documentation(info="<html>
@@ -168,9 +164,16 @@ equation
 <p>Validated model - Hubert Blervaque, Sila Filfli 05/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
+</html>",
+      revisions="<html>
+<h4>March 2021 (on version 3.4.0), by Hubert BLERVAQUE : </h4>
+<ul>
+<li>the parameters &quot;Choix&quot; and &quot;Qnom&quot; of the Heat pump are changed to the default values given by the component &quot;HPHeatingAir2Air&quot; for consistency</li>
+</ul>
+<p>No impact on simulation results </p>
 </html>"));
 end MozartAAHPHeating;

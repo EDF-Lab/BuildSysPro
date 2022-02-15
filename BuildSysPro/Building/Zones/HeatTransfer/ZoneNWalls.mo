@@ -5,7 +5,7 @@ model ZoneNWalls "Model of zone with N walls and NF windows"
 parameter Integer N=4 "Vertical walls number";
 parameter Integer NF=1 "Windows number";
 parameter Real albedo=0.2 "Environment albedo";
-parameter Modelica.SIunits.Temperature Tp=293.15
+  parameter Modelica.Units.SI.Temperature Tp=293.15
     "Initial temperatureof walls and air node";
 
 //Inputs and outputs of the model//
@@ -29,7 +29,8 @@ parameter Modelica.SIunits.Temperature Tp=293.15
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracPlaf
     "Ceiling characteristics" annotation (choicesAllMatching=true,
       Dialog(tab="Horizontal walls", group="Ceiling"));
-    parameter Modelica.SIunits.Area SPlaf=1 "Ceiling surface" annotation(Dialog(tab="Horizontal walls",group="Ceiling"));
+  parameter Modelica.Units.SI.Area SPlaf=1 "Ceiling surface"
+    annotation (Dialog(tab="Horizontal walls", group="Ceiling"));
     parameter Real azimutPlaf=0
     "Ceiling azimuth in relation to the South: S=0°, E=-90°, O=90°, N=180°"
                         annotation(Dialog(tab="Horizontal walls",group="Ceiling"));
@@ -37,10 +38,12 @@ parameter Modelica.SIunits.Temperature Tp=293.15
                              annotation(Dialog(tab="Horizontal walls",group="Ceiling"));
     parameter Real alphaPlaf=0.5 "Solar absorption coefficient of the ceiling"
                                                   annotation(Dialog(tab="Horizontal walls",group="Ceiling"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer hPlaf=1
-    "Global surface exchange coefficient on the face a" annotation(Dialog(tab="Horizontal walls",group="Ceiling"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer hintPlaf=1
-    "Global surface exchange coefficient on the face b" annotation(Dialog(tab="Horizontal walls",group="Ceiling"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hPlaf=1
+    "Global surface exchange coefficient on the face a"
+    annotation (Dialog(tab="Horizontal walls", group="Ceiling"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hintPlaf=1
+    "Global surface exchange coefficient on the face b"
+    annotation (Dialog(tab="Horizontal walls", group="Ceiling"));
 protected
   Building.BuildingEnvelope.HeatTransfer.Wall Plafond(
     caracParoi(
@@ -68,9 +71,11 @@ public
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracPlanch
     "Floor characteristics" annotation (choicesAllMatching=true,
       Dialog(tab="Horizontal walls", group="Floor"));
-    parameter Modelica.SIunits.Area SPlan=1 "Floor surface" annotation(Dialog(tab="Horizontal walls",group="Floor"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer hintPlan=1
-    "Global surface exchange coefficient on the inner face" annotation(Dialog(tab="Horizontal walls",group="Floor"));
+  parameter Modelica.Units.SI.Area SPlan=1 "Floor surface"
+    annotation (Dialog(tab="Horizontal walls", group="Floor"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hintPlan=1
+    "Global surface exchange coefficient on the inner face"
+    annotation (Dialog(tab="Horizontal walls", group="Floor"));
 protected
   Building.BuildingEnvelope.HeatTransfer.Wall Plancher(
     caracParoi(
@@ -91,8 +96,8 @@ public
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall
     caracParoiVert[N] "Vertical walls characteristics" annotation (
       choicesAllMatching=true, Dialog(tab="Vertical walls"));
-    parameter Modelica.SIunits.Area[N] SVert=ones(N) "Vertical walls surface"
-                             annotation(Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.Area[N] SVert=ones(N) "Vertical walls surface"
+    annotation (Dialog(tab="Vertical walls"));
     parameter Real[N] alphaVert=fill(0.5,N)
     "Solar absorption coefficient of vertical walls (departure South wall then in clockwise direction)"
      annotation(Dialog(tab="Vertical walls"));
@@ -101,10 +106,12 @@ public
                                                                                     annotation(Dialog(tab="Vertical walls"));
     parameter Real[N] inclVert=fill(90,N) "Vertical walls tilt"
                                         annotation(Dialog(tab="Vertical walls"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer hVert=25
-    "Global surface exchange coefficient on the outer face" annotation(Dialog(tab="Vertical walls"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer hintVert=8.29
-    "Global surface exchange coefficient on the inner face" annotation(Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hVert=25
+    "Global surface exchange coefficient on the outer face"
+    annotation (Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hintVert=8.29
+    "Global surface exchange coefficient on the inner face"
+    annotation (Dialog(tab="Vertical walls"));
 protected
   Building.BuildingEnvelope.HeatTransfer.Wall[N] paroisVerticales(
     caracParoi(
@@ -128,28 +135,29 @@ protected
     incl=inclVert);
 //Windows//
 public
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer[NF] Ufen=fill(3,NF)
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer[NF] Ufen=fill(3, NF)
     "Glazings thermal conductivity (from South window then in clockwise direction)"
-                                                                               annotation(Dialog(tab="Windows"));
+    annotation (Dialog(tab="Windows"));
     parameter Real[NF] tauFen= fill(0.5,NF)
     "Eenergy transmission coefficients (from South window then in clockwise direction)"
                                                                                        annotation(Dialog(tab="Windows"));
     parameter Real[NF] gFen= fill(0.6,NF)
     "Solar factors (from South window then in clockwise direction)"                         annotation(Dialog(tab="Windows"));
-    parameter Modelica.SIunits.Area[NF] SFen=ones(NF)
-    "Surface of each window (from South window then in clockwise direction)" annotation(Dialog(tab="Windows"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer hFen=25
+  parameter Modelica.Units.SI.Area[NF] SFen=ones(NF)
+    "Surface of each window (from South window then in clockwise direction)"
+    annotation (Dialog(tab="Windows"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hFen=25
     "Global surface exchange coefficient on the outer face (25 W/m²/K with the standard EN 410 and 673)"
-                                                                                                        annotation(Dialog(tab="Windows"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer hintFen=8.29
+    annotation (Dialog(tab="Windows"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hintFen=8.29
     "Global surface exchange coefficient on the inner face (8.29 W/m²/K with the standard EN 410 and 67)"
-                                                                                                        annotation(Dialog(tab="Windows"));
-    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg[NF]
-    azimutFen =                                                               zeros(NF)
+    annotation (Dialog(tab="Windows"));
+  parameter Modelica.Units.NonSI.Angle_deg[NF] azimutFen=zeros(NF)
     "Azimuth of each window in direction to the South: S=0°, E=-90°, O=90°, N=180°"
-                                                                                      annotation(Dialog(tab="Windows"));
-    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg[NF] inclFen=fill(90,NF)
-    "Windows tilt (from South window then in clockwise direction)"        annotation(Dialog(tab="Windows"));
+    annotation (Dialog(tab="Windows"));
+  parameter Modelica.Units.NonSI.Angle_deg[NF] inclFen=fill(90, NF)
+    "Windows tilt (from South window then in clockwise direction)"
+    annotation (Dialog(tab="Windows"));
 protected
     BuildSysPro.Building.BuildingEnvelope.HeatTransfer.DoubleGlazingWindow[NF] DVitrages(
     U=Ufen,
@@ -168,13 +176,13 @@ protected
 
 //Inner zone//
 public
-    parameter Modelica.SIunits.Volume Vzone=10 "Zone air volume [mCube]"
-                                annotation(Dialog(tab="Inner zone"));
+  parameter Modelica.Units.SI.Volume Vzone=10 "Zone air volume [mCube]"
+    annotation (Dialog(tab="Inner zone"));
 protected
   BuildSysPro.Building.AirFlow.HeatTransfer.AirNode noeudAir(Tair=Tp, V=Vzone);
 
 //Air renewal//
-    final constant Modelica.SIunits.Volume changUnit=1;
+  final constant Modelica.Units.SI.Volume changUnit=1;
 public
     parameter Real DebitRenouv=Vzone/changUnit "Air renewal hourly flow [m3/h]"
                                      annotation(Dialog(tab="Air renewal"));
@@ -276,8 +284,8 @@ connect(SommeFluxSolaireInterne.y,RepartitionSolaireInterne.RayEntrant);
 <p>Validation in <a href=\"modelica://BuildSysPro.Building.Examples.TestZoneNWalls\"><code>TestZoneNWalls</code></a></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

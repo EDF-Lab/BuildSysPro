@@ -1,6 +1,7 @@
 MeteoData
 GenericWall
 GenericSolid
+GenericBattery
 Parameters
 Variables
 SimulationOptions

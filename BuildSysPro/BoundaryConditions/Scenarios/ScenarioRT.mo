@@ -2,21 +2,25 @@
 model ScenarioRT
   "Residential scenarios for the french building regulation 2012"
 
-parameter Modelica.SIunits.Temp_C TconsChaud=19
-    "Setpoint temperature in heating mode" annotation(Dialog( group="Heating and cooling setpoints"));
-parameter Modelica.SIunits.Temp_C TconsChaudInf48Red=16
+  parameter Modelica.Units.NonSI.Temperature_degC TconsChaud=19
+    "Setpoint temperature in heating mode"
+    annotation (Dialog(group="Heating and cooling setpoints"));
+  parameter Modelica.Units.NonSI.Temperature_degC TconsChaudInf48Red=16
     "Setpoint temperature in heating mode for setback period shorter than 48h"
-                                                                            annotation(Dialog( group="Heating and cooling setpoints"));
-parameter Modelica.SIunits.Temp_C TconsChaudSup48Red=7
+    annotation (Dialog(group="Heating and cooling setpoints"));
+  parameter Modelica.Units.NonSI.Temperature_degC TconsChaudSup48Red=7
     "Setpoint temperature in heating mode for setback period longer than 48h"
-                                                                            annotation(Dialog( group="Heating and cooling setpoints"));
+    annotation (Dialog(group="Heating and cooling setpoints"));
 
-parameter Modelica.SIunits.Temp_C TconsRef=28
-    "Setpoint temperature in cooling mode" annotation(Dialog( group="Heating and cooling setpoints"));
-parameter Modelica.SIunits.Temp_C TconsRefInf48Red=30
-    "Setpoint temperature in cooling mode for setback period shorter than 48h"    annotation(Dialog( group="Heating and cooling setpoints"));
-parameter Modelica.SIunits.Temp_C TconsRefSup48Red=30
-    "Setpoint temperature in cooling mode for setback period longer than 48h"    annotation(Dialog( group="Heating and cooling setpoints"));
+  parameter Modelica.Units.NonSI.Temperature_degC TconsRef=28
+    "Setpoint temperature in cooling mode"
+    annotation (Dialog(group="Heating and cooling setpoints"));
+  parameter Modelica.Units.NonSI.Temperature_degC TconsRefInf48Red=30
+    "Setpoint temperature in cooling mode for setback period shorter than 48h"
+    annotation (Dialog(group="Heating and cooling setpoints"));
+  parameter Modelica.Units.NonSI.Temperature_degC TconsRefSup48Red=30
+    "Setpoint temperature in cooling mode for setback period longer than 48h"
+    annotation (Dialog(group="Heating and cooling setpoints"));
 parameter Boolean UtilApportThOcc=false
     "Internal heat gains due to human occupancy"                                   annotation(Dialog( group="Optional internal heat loads"),choices(choice=true "YES", choice=false "NO", radioButtons=true));
 parameter Boolean UtilApportThUsageSpe=false
@@ -137,20 +141,20 @@ protected
         rotation=90,
         origin={68,156})));
   Modelica.Blocks.Sources.Constant Tchaud1(k=
-        Modelica.SIunits.Conversions.from_degC(TconsChaud))
-                                                annotation (Placement(transformation(
+        Modelica.Units.Conversions.from_degC(TconsChaud)) annotation (Placement(
+        transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-172,104})));
   Modelica.Blocks.Sources.Constant Tchaud3(k=
-        Modelica.SIunits.Conversions.from_degC(TconsChaudSup48Red))
-                                                annotation (Placement(transformation(
+        Modelica.Units.Conversions.from_degC(TconsChaudSup48Red)) annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-172,44})));
   Modelica.Blocks.Sources.Constant Tchaud2(k=
-        Modelica.SIunits.Conversions.from_degC(TconsChaudInf48Red))
-                                                annotation (Placement(transformation(
+        Modelica.Units.Conversions.from_degC(TconsChaudInf48Red)) annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-172,74})));
@@ -158,21 +162,18 @@ protected
     annotation (Placement(transformation(extent={{-144,46},{-124,66}})));
   Modelica.Blocks.Logical.Switch switch2
     annotation (Placement(transformation(extent={{-110,70},{-90,90}})));
-  Modelica.Blocks.Sources.Constant TRef1(k=
-        Modelica.SIunits.Conversions.from_degC(TconsRef))
-                                                annotation (Placement(transformation(
+  Modelica.Blocks.Sources.Constant TRef1(k=Modelica.Units.Conversions.from_degC(
+        TconsRef)) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-174,10})));
-  Modelica.Blocks.Sources.Constant TRef2(k=
-        Modelica.SIunits.Conversions.from_degC(TconsRefInf48Red))
-                                                annotation (Placement(transformation(
+  Modelica.Blocks.Sources.Constant TRef2(k=Modelica.Units.Conversions.from_degC(
+        TconsRefInf48Red)) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-172,-20})));
-  Modelica.Blocks.Sources.Constant TRef3(k=
-        Modelica.SIunits.Conversions.from_degC(TconsRefSup48Red))
-                                                annotation (Placement(transformation(
+  Modelica.Blocks.Sources.Constant TRef3(k=Modelica.Units.Conversions.from_degC(
+        TconsRefSup48Red)) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-172,-50})));
@@ -548,7 +549,7 @@ To account for this time difference (switch between winter and summer time), the
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright &copy; EDF 2010 - 2015<br>
-BuildSysPro version 3.4.0<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

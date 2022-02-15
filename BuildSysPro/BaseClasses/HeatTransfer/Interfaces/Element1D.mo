@@ -2,8 +2,8 @@
 partial model Element1D
   "Partial heat transfer element with two HeatPort connectors that does not store energy"
 
-  Modelica.SIunits.HeatFlowRate Q_flow "Heat flow rate from port_a -> port_b";
-  Modelica.SIunits.TemperatureDifference dT "port_a.T - port_b.T";
+  Modelica.Units.SI.HeatFlowRate Q_flow "Heat flow rate from port_a -> port_b";
+  Modelica.Units.SI.TemperatureDifference dT "port_a.T - port_b.T";
 
 public
   HeatPort_a port_a annotation (Placement(transformation(extent={{-100,
@@ -26,8 +26,8 @@ equation
 <p>none</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Interfaces.Element1D\">Element1D</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"),

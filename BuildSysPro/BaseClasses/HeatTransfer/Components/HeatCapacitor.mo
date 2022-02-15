@@ -1,11 +1,11 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Components;
 model HeatCapacitor "Heat capacitor"
-  parameter Modelica.SIunits.HeatCapacity C
+  parameter Modelica.Units.SI.HeatCapacity C
     "Heat capacity of the element (= cp*m)";
 
- Modelica.SIunits.Temperature T( displayUnit="degC")
+  Modelica.Units.SI.Temperature T(displayUnit="degC")
     "Temperature of the element";
-  Modelica.SIunits.TemperatureSlope der_T(start=0)
+  Modelica.Units.SI.TemperatureSlope der_T(start=0)
     "Time derivative of the temperature (= der(T))";
 
   BaseClasses.HeatTransfer.Interfaces.HeatPort_a port annotation (Placement(
@@ -73,8 +73,8 @@ equation
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.HeatCapacitor\">HeatCapacitor</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -29,8 +29,8 @@ model MatisseMultizone
     choices(choice=true "Input", choice=false "Constant", radioButtons=true));
 
   // Walls
-  parameter Modelica.SIunits.Temperature Tp=293.15 "Initial temperature of walls"
-    annotation(Dialog(tab="Walls"));
+  parameter Modelica.Units.SI.Temperature Tp=293.15
+    "Initial temperature of walls" annotation (Dialog(tab="Walls"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Type of initialization for walls"
     annotation (Dialog(tab="Walls"));
@@ -911,11 +911,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     RadInterne=false,
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeSejour)
     annotation (Placement(transformation(
@@ -930,11 +930,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     RadInterne=false,
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeCuisine)
     annotation (Placement(transformation(
@@ -949,11 +949,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     RadInterne=false,
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeC1)
     annotation (Placement(transformation(
@@ -968,11 +968,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     RadInterne=false,
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeC2)
     annotation (Placement(transformation(
@@ -986,11 +986,11 @@ protected
     hs_ext=paraMaisonRT.hsIntVert,
     hs_int=paraMaisonRT.hsIntVert,
     caracParoi(
-      n=paraMaisonRT.Cloisons.n,
-      m=paraMaisonRT.Cloisons.m,
-      e=paraMaisonRT.Cloisons.e,
-      mat=paraMaisonRT.Cloisons.mat,
-      positionIsolant=paraMaisonRT.Cloisons.positionIsolant),
+      n=paraMaisonRT.PorteInt.n,
+      m=paraMaisonRT.PorteInt.m,
+      e=paraMaisonRT.PorteInt.e,
+      mat=paraMaisonRT.PorteInt.mat,
+      positionIsolant=paraMaisonRT.PorteInt.positionIsolant),
     RadInterne=false,
     RadExterne=false,
     S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PorteIntEntreeSDB)
@@ -1110,8 +1110,8 @@ equation
         smooth=Smooth.None));
     connect(CloisonSejourCuisine.FluxAbsInt, zoneCuisine.FLUXcloisonSejour)
       annotation (Line(
-        points={{-28.425,-15.875},{-26.2125,-15.875},{-26.2125,-14.3636},
-            {-23.6,-14.3636}},
+        points={{-28.425,-15.875},{-26.2125,-15.875},{-26.2125,-14.3636},{-23.6,
+            -14.3636}},
         color={0,0,127},
         smooth=Smooth.None));
     connect(zoneSejour.FLUXcloisonEntree, CloisonSejourEntree.FluxAbsExt)
@@ -1385,8 +1385,8 @@ connect(ouvertureCuisine, zoneCuisine.ouvertureFenetres) annotation (Line(
       visible=false));
   connect(CloisonSejourCuisine.T_int, zoneCuisine.T_int_kitchen) annotation (
       Line(
-      points={{-26.775,-18.075},{-20.3875,-18.075},{-20.3875,-18.7273},{
-          -12.35,-18.7273}},
+      points={{-26.775,-18.075},{-20.3875,-18.075},{-20.3875,-18.7273},{-12.35,
+          -18.7273}},
       color={255,0,0},
       smooth=Smooth.None,
       visible=false));
@@ -1524,8 +1524,8 @@ connect(ouvertureCuisine, zoneCuisine.ouvertureFenetres) annotation (Line(
         color={191,0,0},
         visible=false));
   connect(PorteSejourEntree.T_int, zoneEntree.T_int_entrance) annotation (Line(
-        points={{-26.775,-44.075},{-19.3875,-44.075},{-19.3875,-43.5636},
-          {-10.27,-43.5636}},
+        points={{-26.775,-44.075},{-19.3875,-44.075},{-19.3875,-43.5636},{
+          -10.27,-43.5636}},
                       color={191,0,0},
         visible=false));
   connect(zoneCuisine.T_int_kitchen, PorteCuisineEntree.T_ext) annotation (Line(
@@ -1551,8 +1551,8 @@ connect(ouvertureCuisine, zoneCuisine.ouvertureFenetres) annotation (Line(
       visible=false));
 
   connect(PorteChambre2Entree.T_int, zoneEntree.T_int_entrance) annotation (
-      Line(points={{41.925,-37.725},{15.9625,-37.725},{15.9625,-43.5636},
-          {-10.27,-43.5636}},
+      Line(points={{41.925,-37.725},{15.9625,-37.725},{15.9625,-43.5636},{
+          -10.27,-43.5636}},
                       color={191,0,0},
         visible=false));
   connect(zoneSDB.T_int_bathroom, PorteEntreeSDB.T_int) annotation (Line(points={{48.11,
@@ -1676,15 +1676,36 @@ graphics={
 <p><u><b>Instructions for use</b></u></p>
 <p>Parameter <code>EmplacementAppartement</code> allows the user to define the position of the appartment in the building (along with the <code>beta</code> parameter indicating the azimuth of the building). 1 to 3 is last floor, 4 to 6 is intermediate floor, 7 to 9 is ground floor. 1-4-7 are west corner appartments. 3-6-9 are east corner appartments. (for more details, see diagram in the case <code>beta</code>=0) </p>
 <p align=\"center\"><img src=\"modelica://BuildSysPro/Resources/Images/Batiments/Batiments types/Matisse/EmplacementAppart.png\"/> </p>
-<p>Parameter <code>paraMaisonRT</span> allows the user to chose a specific French building regulation for the building, so that building envelope parameters (walls, windows, ventilation...) will be automatically filled with data from the choosen record.</p>
+<p>Parameter <code>paraMaisonRT</code> allows the user to chose a specific French building regulation for the building, so that building envelope parameters (walls, windows, ventilation...) will be automatically filled with data from the choosen record.</p>
+<p>Detail of thermal bridge vectors :</p>
+<ul>
+<li>TauPonts[1] and ValeursK[1] : exterior wall / common wall</li>
+<li>TauPonts[2] and ValeursK[2] : unheated room wall / common wall</li>
+<li>TauPonts[3] and ValeursK[3] : exterior wall / intermediate floor</li>
+<li>TauPonts[4] and ValeursK[4] : exterior wall / intermediate ceiling</li>
+<li>TauPonts[5] and ValeursK[5] : unheated room wall / intermediate floor</li>
+<li>TauPonts[6] and ValeursK[6] : unheated room wall / intermediate ceiling</li>
+<li>TauPonts[7] and ValeursK[7] : door</li>
+<li>TauPonts[8] and ValeursK[8] : windows</li>
+</ul>
+<ul>
+<li>TauPontsPlancher[1] and ValeursKPlancher[1] : intermediate floor / exterior wall of basement</li>
+<li>TauPontsPlancher[2] and ValeursKPlancher[2] : intermediate floor / unheated room wall of basement</li>
+<li>TauPontsPlancher[3] and ValeursKPlancher[3] : intermediate floor / common wall of basement</li>
+</ul>
+<ul>
+<li>TauPontsPlafond[1] and ValeursKPlafond[1] : intermediate ceiling / exterior wall of ceiling</li>
+<li>TauPontsPlafond[2] and ValeursKPlafond[2] : intermediate ceiling / unheated room wall of ceiling</li>
+<li>TauPontsPlafond[3] and ValeursKPlafond[3] : intermediate ceiling / common wall of ceiling</li>
+</ul>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model by comparison of GV with Clim 2000 - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>",
         revisions="<html>

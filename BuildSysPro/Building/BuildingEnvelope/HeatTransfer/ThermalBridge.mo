@@ -1,7 +1,7 @@
 within BuildSysPro.Building.BuildingEnvelope.HeatTransfer;
 model ThermalBridge "Linear thermal bridge model"
-  parameter Modelica.SIunits.Length L "Length of the thermal bridge";
-parameter Modelica.SIunits.ThermalConductivity k
+  parameter Modelica.Units.SI.Length L "Length of the thermal bridge";
+  parameter Modelica.Units.SI.ThermalConductivity k
     "Thermal conductivity of the thermal bridge";
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
@@ -73,8 +73,8 @@ equation
 <p>Validated model - Gilles Plessis 08/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

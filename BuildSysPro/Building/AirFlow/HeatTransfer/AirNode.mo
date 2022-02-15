@@ -1,11 +1,11 @@
 ﻿within BuildSysPro.Building.AirFlow.HeatTransfer;
 model AirNode "Air node"
 
-  parameter Modelica.SIunits.Volume V "Air node volume [m3]";
-  parameter Modelica.SIunits.Temperature Tair "Initial air temperature";
-  constant Modelica.SIunits.SpecificHeatCapacityAtConstantVolume Cv=713
+  parameter Modelica.Units.SI.Volume V "Air node volume [m3]";
+  parameter Modelica.Units.SI.Temperature Tair "Initial air temperature";
+  constant Modelica.Units.SI.SpecificHeatCapacityAtConstantVolume Cv=713
     "Isochoric heat capacity of air [J/kg.K]";
-  constant Modelica.SIunits.Density rho=1.24 "Air density [kg/m3]";
+  constant Modelica.Units.SI.Density rho=1.24 "Air density [kg/m3]";
 
   BaseClasses.HeatTransfer.Components.HeatCapacitor VolAir(C=Cv*rho*V, T(start=
           Tair, displayUnit="degC")) annotation (Placement(transformation(
@@ -16,7 +16,7 @@ model AirNode "Air node"
 
 equation
   connect(VolAir.port, port_a) annotation (Line(
-      points={{-9,25},{-9,11.5},{-1,11.5},{-1,-47}},
+      points={{-10,26},{-10,11.5},{-1,11.5},{-1,-47}},
       color={191,0,0},
       smooth=Smooth.None));
   annotation(Diagram(coordinateSystem(extent={{-148.5,-105},{148.5,105}},
@@ -49,8 +49,8 @@ equation
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>

@@ -19,8 +19,8 @@ record SupportingWall =
 <p>Validated model - Frédéric Gastiger 01/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Frédéric GASTIGER, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

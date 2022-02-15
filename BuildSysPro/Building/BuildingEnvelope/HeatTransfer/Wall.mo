@@ -2,7 +2,7 @@
 model Wall
   "Generic wall model - conventional, resistive or water-based heating wall"
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
   // Type of wall
   parameter Integer ParoiActive=1
@@ -27,7 +27,7 @@ model Wall
     annotation (Dialog(group="Options"),choices(choice=true "yes", choice=false "no", radioButtons=true));
 
   // General properties
-  parameter SI.Conversions.NonSIunits.Angle_deg incl=90
+  parameter Modelica.Units.NonSI.Angle_deg incl=90
     "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°"
     annotation (Dialog(enable=GLOext, group="General properties of the wall"));
   parameter SI.Area S=1 "Wall surface without windows"
@@ -382,8 +382,8 @@ end if;
 <p>Validated model - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

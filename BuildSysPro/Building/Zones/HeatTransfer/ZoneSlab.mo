@@ -11,14 +11,16 @@ parameter Boolean ChoixPint=false
     "Consideration of LW radiation (infrared) between vertical walls and the sky"
     annotation(choices(choice=true "Yes: warnings, hext purely convective", choice=false "No", radioButtons=true));
 
- parameter Modelica.SIunits.Volume Vair "Volume d'air intérieur";
+  parameter Modelica.Units.SI.Volume Vair "Volume d'air intérieur";
  parameter Real beta=0
     "Vertical walls azimuth correction (azimutf=azimutf{0,90,180,-90}+beta)";
 
- parameter Modelica.SIunits.Temperature Tair=293.15
-    "Indoor air initial temperature" annotation(Dialog(enable = not  InitType== Utilitaires.Types.InitCond.SteadyState,group="Initialisation parameters"));
- parameter Modelica.SIunits.Temperature Tp=293.15 "Walls initial temperature"
-                                annotation (Dialog(group="Initialisation parameters"));
+  parameter Modelica.Units.SI.Temperature Tair=293.15
+    "Indoor air initial temperature" annotation (Dialog(enable=not InitType ==
+          Utilitaires.Types.InitCond.SteadyState, group=
+          "Initialisation parameters"));
+  parameter Modelica.Units.SI.Temperature Tp=293.15 "Walls initial temperature"
+    annotation (Dialog(group="Initialisation parameters"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     annotation (Dialog(group="Initialisation parameters"));
 
@@ -26,13 +28,19 @@ parameter Boolean ChoixPint=false
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall
     CaracParoiVert "Vertical walls characteristics" annotation (
       choicesAllMatching=true, Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.Area S1nv=1 "South wall surface (unglazed)"  annotation(Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.Area S2nv=1 "West wall surface (unglazed)"  annotation(Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.Area S3nv=1 "North wall surface (unglazed)"           annotation(Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.Area S4nv=1 "East wall surface (unglazed)"  annotation(Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.Area S1nv=1 "South wall surface (unglazed)"
+    annotation (Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.Area S2nv=1 "West wall surface (unglazed)"
+    annotation (Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.Area S3nv=1 "North wall surface (unglazed)"
+    annotation (Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.Area S4nv=1 "East wall surface (unglazed)"
+    annotation (Dialog(tab="Vertical walls"));
 
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hextv annotation(Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hintv annotation(Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hextv
+    annotation (Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hintv
+    annotation (Dialog(tab="Vertical walls"));
  parameter Real albedo=0.2 "Environment albedo" annotation(Dialog(tab="Vertical walls"));
  parameter Real alpha= 0.6
     "Outer surface absorption coefficient in the visible"                       annotation(Dialog(tab="Vertical walls"));
@@ -44,9 +52,12 @@ parameter Real eps=0.6 "Emissivity in LWR"
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall CaracPlaf
     "Ceiling characteristics" annotation (choicesAllMatching=true,
       Dialog(tab="Horizontal walls", group="Ceiling"));
-parameter Modelica.SIunits.Area Splaf=1 "surface du plafond" annotation(Dialog(tab="Horizontal walls", group="Ceiling"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hplaf annotation(Dialog(tab="Horizontal walls", group="Ceiling"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hintplaf annotation(Dialog(tab="Horizontal walls", group="Ceiling"));
+  parameter Modelica.Units.SI.Area Splaf=1 "surface du plafond"
+    annotation (Dialog(tab="Horizontal walls", group="Ceiling"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hplaf
+    annotation (Dialog(tab="Horizontal walls", group="Ceiling"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hintplaf
+    annotation (Dialog(tab="Horizontal walls", group="Ceiling"));
 parameter Real b=0.5 "Weighting coefficient of ceiling and floor temperatures";
 
 //Floor//
@@ -65,12 +76,14 @@ parameter Real b=0.5 "Weighting coefficient of ceiling and floor temperatures";
         "Yes: wall in contact with a material equivalent to the earth",                                                                          choice=false
         "No: conventional wall",                                                                                                    radioButtons=true));
 
- parameter Modelica.SIunits.Temperature Ts=293.15 "Ground temperature";
+  parameter Modelica.Units.SI.Temperature Ts=293.15 "Ground temperature";
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall CaracPlanch
     "Floor characteristics" annotation (choicesAllMatching=true,
       Dialog(tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.Area Splanch=1 "Floor surface" annotation(Dialog(tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hplanch annotation(Dialog(tab="Horizontal walls", group="Floor"));
+  parameter Modelica.Units.SI.Area Splanch=1 "Floor surface"
+    annotation (Dialog(tab="Horizontal walls", group="Floor"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hplanch
+    annotation (Dialog(tab="Horizontal walls", group="Floor"));
 
 // Parameter common to the water active wall and the electric radiant wall
  parameter Integer nP=1
@@ -81,16 +94,26 @@ parameter Real b=0.5 "Weighting coefficient of ceiling and floor temperatures";
 // Parameters specific to a heating wall with water
   parameter Integer nD=8 "Number of discretization slices of the water floor"
     annotation(Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.Distance Ltube=128 "Floor heating coil length"
-    annotation(Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.Distance DiametreInt=0.013
-    "Inner diameter of tube"
-    annotation(Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.Distance eT=0.0015 "Tube thickness"
-    annotation (Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.ThermalConductivity lambdaT=0.35
-    "Tube thermal conductivity"
-    annotation (Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
+  parameter Modelica.Units.SI.Distance Ltube=128 "Floor heating coil length"
+    annotation (Dialog(
+      enable=PlancherActif == 2,
+      tab="Horizontal walls",
+      group="Floor"));
+  parameter Modelica.Units.SI.Distance DiametreInt=0.013
+    "Inner diameter of tube" annotation (Dialog(
+      enable=PlancherActif == 2,
+      tab="Horizontal walls",
+      group="Floor"));
+  parameter Modelica.Units.SI.Distance eT=0.0015 "Tube thickness" annotation (
+      Dialog(
+      enable=PlancherActif == 2,
+      tab="Horizontal walls",
+      group="Floor"));
+  parameter Modelica.Units.SI.ThermalConductivity lambdaT=0.35
+    "Tube thermal conductivity" annotation (Dialog(
+      enable=PlancherActif == 2,
+      tab="Horizontal walls",
+      group="Floor"));
 
 // Components
   Modelica.Blocks.Interfaces.RealInput G[10]
@@ -433,8 +456,8 @@ annotation (Documentation(info="<html>
 <p>Validated model - Ludovic Darnaud 07/2010 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Ludovic DARNAUD, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

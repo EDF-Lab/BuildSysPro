@@ -1,12 +1,12 @@
 ﻿within BuildSysPro.Systems.HVAC.Emission.Examples;
 model RadiatorEN442_Test "Example to test the HotWaterRadiator model"
   extends Modelica.Icons.Example;
-  parameter Modelica.SIunits.EnergyFlowRate Pnom=411;
+  parameter Modelica.Units.SI.EnergyFlowRate Pnom=411;
   parameter Real nNom=1.225 "Slope at nominal point";
 
     // Variables
-     Modelica.SIunits.Temperature Tinlet;
-     Modelica.SIunits.Temperature Toutlet;
+  Modelica.Units.SI.Temperature Tinlet;
+  Modelica.Units.SI.Temperature Toutlet;
     // Components
   BuildSysPro.Systems.HVAC.Emission.Radiator.Radiator_EN442 Radiator(
     Pnom=Pnom,
@@ -82,8 +82,8 @@ Weight = 9 kg",
 <p>Validated model - Gilles Plessis 01/20016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

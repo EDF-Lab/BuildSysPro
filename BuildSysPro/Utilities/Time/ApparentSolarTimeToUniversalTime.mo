@@ -4,12 +4,10 @@ function ApparentSolarTimeToUniversalTime
 
 input Real t0=0 "Time in seconds at t=0";
 // input Real d0 "Number of the day in the month at t=0"; // deleted
-input Modelica.SIunits.Time t "Elapsed time since t=0 [s]";
+  input Modelica.Units.SI.Time t "Elapsed time since t=0 [s]";
 
-input Modelica.SIunits.Conversions.NonSIunits.Angle_deg long
-    "Longitude, in degrees [°]";
-output Modelica.SIunits.Conversions.NonSIunits.Time_hour tu
-    "Universal Time, in hours [h]";
+  input Modelica.Units.NonSI.Angle_deg long "Longitude, in degrees [°]";
+  output Modelica.Units.NonSI.Time_hour tu "Universal Time, in hours [h]";
 
 protected
           constant Real omega=2*Modelica.Constants.pi/365.25;
@@ -32,8 +30,8 @@ algorithm
 <p>Validated function - Aurélie Kaemmerlen 02/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

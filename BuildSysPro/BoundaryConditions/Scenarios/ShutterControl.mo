@@ -7,10 +7,12 @@ parameter Integer HeureOuvertureMatin = 8
 
 parameter Integer HeureFermetureSoir = 21
     "Shutters closing time in the evening"                                       annotation(Dialog(group="Night closure"));
-parameter Modelica.SIunits.Temperature Tfermeture=299.15
-    "Indoor temperature beyond which shutters are closed during the day"        annotation(Dialog(group="Summer comfort"));
-parameter Modelica.SIunits.Temperature Touverture=297.15
-    "Indoor temperature below which shutters are opened during the day"   annotation(Dialog(group="Summer comfort"));
+  parameter Modelica.Units.SI.Temperature Tfermeture=299.15
+    "Indoor temperature beyond which shutters are closed during the day"
+    annotation (Dialog(group="Summer comfort"));
+  parameter Modelica.Units.SI.Temperature Touverture=297.15
+    "Indoor temperature below which shutters are opened during the day"
+    annotation (Dialog(group="Summer comfort"));
 
 Real TauxOccultation "Shutters occultancy level during the day";
 Integer Hyst1 "Temperature hysteresis";
@@ -172,8 +174,8 @@ equation
 <p>Non-validated model - Vincent Magnaudeix 06/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Vincent MAGNAUDEIX, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

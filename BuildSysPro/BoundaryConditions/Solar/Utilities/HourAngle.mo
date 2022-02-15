@@ -1,9 +1,8 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Utilities;
 function HourAngle "Hour Angle (HA)"
-  input Modelica.SIunits.Time t0=0 "Time in seconds at t=0";
-  input Modelica.SIunits.Time t "Universal time in seconds";
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitude
-    "longitude in degrees";
+  input Modelica.Units.SI.Time t0=0 "Time in seconds at t=0";
+  input Modelica.Units.SI.Time t "Universal time in seconds";
+  input Modelica.Units.NonSI.Angle_deg longitude "longitude in degrees";
   output Real AH "Hour Angle in radians: HA = 15*TSV*pi/180";
 protected
   Real TSV=BuildSysPro.Utilities.Time.ApparentSolarTime(
@@ -29,8 +28,8 @@ algorithm
 <p>Validated function - Hassan BOUIA 03/2013 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

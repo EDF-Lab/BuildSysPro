@@ -1,16 +1,17 @@
 within BuildSysPro.Systems.HVAC.Emission.Examples;
 model MozartRFBoiler
 extends Modelica.Icons.Example;
-  Production.Boiler.Boiler boi
+  BuildSysPro.Systems.HVAC.Production.Boiler.Boiler boi(Pnom=2000, PInt=boi.Pnom
+        *boi.PLRInt/100)
     annotation (Placement(transformation(extent={{-138,-140},{-58,-60}})));
   Modelica.Blocks.Continuous.LimPID PID1(
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     yMin=0,
-    Ti(displayUnit="s") = 60,
+    Ti(displayUnit="s") = 1800,
     Td=0,
     yMax=100,
     k=100/4)
-    annotation (Placement(transformation(extent={{-146,-32},{-126,-12}})));
+    annotation (Placement(transformation(extent={{-140,-32},{-120,-12}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor
     temperatureSensor annotation (Placement(transformation(extent={{-82,-46},
             {-94,-34}})));
@@ -60,14 +61,17 @@ extends Modelica.Icons.Example;
       e={0.16,0.2,0.01},
       mat={BuildSysPro.Utilities.Data.Solids.ExpandedPolystyrene30(),
           BuildSysPro.Utilities.Data.Solids.Concrete(),
-          BuildSysPro.Utilities.Data.Solids.FloorTile()}))
+          BuildSysPro.Utilities.Data.Solids.FloorTile()},
+      positionIsolant={1,0,0}))
     annotation (Placement(transformation(extent={{-20,0},{100,80}})));
 
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor thermalConductor(
       G=20) annotation (Placement(transformation(extent={{34,100},{54,
             120}})));
-  Modelica.Blocks.Sources.BooleanTable booleanTable(startValue=true, table(
-        displayUnit="d") = {12096000,23673600})
+  Modelica.Blocks.Sources.BooleanTable booleanTable(
+    startValue=true,                                                 table(
+        displayUnit="d") = {12096000,23673600},
+    shiftTime(displayUnit="d"))
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-190,-50})));
@@ -83,6 +87,7 @@ extends Modelica.Icons.Example;
     annotation (Placement(transformation(extent={{-200,40},{-160,80}})));
 equation
 
+
   connect(Int.T_ext, thermalConductor.port_a) annotation (Line(
       points={{8,76},{8,110},{34,110}},
       color={191,0,0},
@@ -96,11 +101,11 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   connect(temperatureSensor.T, PID1.u_m) annotation (Line(
-      points={{-94,-40},{-136,-40},{-136,-34}},
+      points={{-94,-40},{-130,-40},{-130,-34}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(PID1.y, boi.PLR) annotation (Line(
-      points={{-125,-22},{-98,-22},{-98,-64}},
+      points={{-119,-22},{-98,-22},{-98,-64}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(boi.T_int, Int.T_int) annotation (Line(
@@ -116,7 +121,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(scenarioRT.TconsigneChaud, PID1.u_s) annotation (Line(
-      points={{-161.333,60},{-154,60},{-154,-22},{-148,-22}},
+      points={{-161.333,60},{-154,60},{-154,-22},{-142,-22}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(booleanTable.y, boi.SaisonChauffe) annotation (Line(
@@ -134,8 +139,11 @@ equation
       smooth=Smooth.None));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-200,-180},{200,
-            180}}),      graphics),
-    experiment(StopTime=3.1e+007, Interval=600),
+            180}})),
+    experiment(
+      StopTime=31536000,
+      Interval=600,
+      __Dymola_Algorithm="Dassl"),
     __Dymola_experimentSetupOutput,
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -150,9 +158,18 @@ equation
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
+</html>",
+      revisions="<html>
+<h4>March 2021 (on version 3.4.0), by Hubert BLERVAQUE : </h4>
+<ul>
+<li>the simulation &quot;Stop time&quot; changes from 31000000 sec to 31536000 sec (full year)</li>
+<li>the Integrator time constant Ti changes from 1 minute to 20 minutes</li>
+<li>the boiler nominal power changes from 17,2 kW to 2 kW</li>
+</ul>
+<p><br>These modifications have impacts on the simulation results.</p>
 </html>"));
 end MozartRFBoiler;

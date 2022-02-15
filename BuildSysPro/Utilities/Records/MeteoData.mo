@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.Utilities.Records;
 record MeteoData "Record to facilitate weather data entry"
 
-parameter Modelica.SIunits.Conversions.NonSIunits.Time_hour h0=-1
+  parameter Modelica.Units.NonSI.Time_hour h0=-1
     "Universal time (in hours) at t=0 / h0=-1 for Meteonorm because data are in TU+1";
     parameter Real d0 = 1 "Number of the day in the year at t=0";
 parameter Boolean Est = false
@@ -28,8 +28,8 @@ choice=1 "GLOH DIFH", choice=2 "DIRN DIFH",choice=3 "DIFH DIRH", choice=4
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

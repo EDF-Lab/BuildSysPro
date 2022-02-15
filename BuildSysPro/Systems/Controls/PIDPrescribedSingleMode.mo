@@ -38,13 +38,11 @@ parameter Integer chaud_froid=0 "0 - heating, 1 - cooling"
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     k=10000,
     Ni=0.1,
-    initType=Modelica.Blocks.Types.InitPID.SteadyState,
+    initType=Modelica.Blocks.Types.Init.SteadyState,
     Td=0.,
-    yMin= if chaud_froid==0 then 0. else -PuissanceNom,
-    limitsAtInit=true,
-    yMax= if chaud_froid==0 then PuissanceNom else 0,
-    Ti=1)
-    annotation (Placement(transformation(extent={{44,-10},{24,-30}})));
+    yMin=if chaud_froid == 0 then 0. else -PuissanceNom,
+    yMax=if chaud_froid == 0 then PuissanceNom else 0,
+    Ti=1) annotation (Placement(transformation(extent={{44,-10},{24,-30}})));
   BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
     annotation (Placement(transformation(extent={{0,-38},{-20,-18}})));
   BaseClasses.HeatTransfer.Sensors.TemperatureSensor temperatureSensor
@@ -197,8 +195,8 @@ equation
 <p>Validated model - Amy Lindsay 10/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -2,7 +2,7 @@ within BuildSysPro.Systems.HVAC.Emission.Radiator.Components;
 model BasedCharacteristicEquation2
   "Distinction between radiative and convective temperatures for heat transfers"
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
   extends
     BuildSysPro.Systems.HVAC.Emission.Radiator.Components.BasedCharacteristicEquation;
 
@@ -34,8 +34,8 @@ equation
   annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Authors : Gilles PLESSIS, Hassan BOUIA EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

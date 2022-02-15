@@ -1,7 +1,7 @@
 within BuildSysPro.Systems.HVAC.Emission.Radiator.Components;
 partial model BasedCharacteristicEquation
   "Partial model for characteristic equation of a radiator (EN442)"
- import SI = Modelica.SIunits;
+ import      Modelica.Units.SI;
   parameter SI.EnergyFlowRate Pnom=411
     "Nominal power for a DT=50 K, based on inlet temperature 75/65"
     annotation(Dialog(group = "EN442 - Nominal point"));
@@ -39,8 +39,8 @@ equation
   annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Authors : Gilles PLESSIS, Hassan BOUIA EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

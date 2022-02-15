@@ -1,8 +1,8 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.SolarMasks;
 function PointOnSurface "Function to determine if a point belongs to a surface"
 
-input Modelica.SIunits.Distance Lf "Surface width";
-input Modelica.SIunits.Distance Hf "Surface height";
+  input Modelica.Units.SI.Distance Lf "Surface width";
+  input Modelica.Units.SI.Distance Hf "Surface height";
 input Real X0 "X coordinate of the point";
 input Real Y0 "Y coordinate of the point";
 
@@ -33,8 +33,8 @@ end if;
 <p>Validated model - Aurélie Kaemmerlen 04/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>

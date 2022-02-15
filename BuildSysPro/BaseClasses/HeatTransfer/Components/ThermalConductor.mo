@@ -2,7 +2,7 @@
 model ThermalConductor
   "Lumped thermal element transporting heat without storing it"
   extends BaseClasses.HeatTransfer.Interfaces.Element1D;
-  parameter Modelica.SIunits.ThermalConductance G
+  parameter Modelica.Units.SI.ThermalConductance G
     "Constant thermal conductance of material";
 
 equation
@@ -65,8 +65,8 @@ equation
 <p>none</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.ThermalConductor\">ThermalConductor</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>"));

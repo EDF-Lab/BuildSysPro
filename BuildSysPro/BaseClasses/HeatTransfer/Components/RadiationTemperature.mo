@@ -2,10 +2,12 @@
 model RadiationTemperature "Radiative temperature of the room"
 
 parameter Integer np=6 "Number of walles exposed to the radiative flux" annotation(Dialog(group="Opaque walls"));
-parameter Modelica.SIunits.Area Sp[np]
-    "Vector of wall surfaces, respecting the order of connexions"                                       annotation(Dialog(group="Opaque walls"));
-parameter Modelica.SIunits.Emissivity Ep[np]
-    "Vector of wall emissivities, respecting the order of connexions"                                   annotation(Dialog(group="Opaque walls"));
+  parameter Modelica.Units.SI.Area Sp[np]
+    "Vector of wall surfaces, respecting the order of connexions"
+    annotation (Dialog(group="Opaque walls"));
+  parameter Modelica.Units.SI.Emissivity Ep[np]
+    "Vector of wall emissivities, respecting the order of connexions"
+    annotation (Dialog(group="Opaque walls"));
 Real SpEpTot=sum(Sp[i]*Ep[i] for i in 1:np);
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b ParoiEquivalente
@@ -67,8 +69,8 @@ info="<html>
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Initial models : RadiationTemperature and InfraredRadiationGainDistribution, Michael Wetter, Buildings, Copyright © The Regents of the University of California, through Lawrence Berkeley National Laboratory.<br>
 --------------------------------------------------------------</b></p>
 </html>",

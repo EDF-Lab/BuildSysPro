@@ -5,7 +5,7 @@ extends Modelica.Icons.Information;
 <p><b>This package with all of its subpackages is released under the &ldquo;3-clause BSD-license&rdquo; (if not explicitly noted otherwise).</b></p>
 
 
-<p>Copyright &copy; EDF 2009 - 2019</p>
+<p>Copyright &copy; EDF 2009 - 2020</p>
 
 <p>Redistribution and use in source and binary forms, with or without 
 modification, are permitted provided that the following conditions are 
@@ -33,6 +33,12 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
 
+<p><b>--------------------------------------------------------------<br>
+Licensed by EDF under a 3-clause BSD-license<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
+Author : EDF (2015)<br>
+--------------------------------------------------------------</b></p>
 
 </html>"));
 end License;

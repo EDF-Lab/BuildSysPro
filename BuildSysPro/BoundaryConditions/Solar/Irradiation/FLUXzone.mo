@@ -41,10 +41,10 @@ Modelica.Blocks.Interfaces.RealInput G[10]
     annotation (Placement(transformation(extent={{-133,-25},{-93,15}},
         rotation=0), iconTransformation(extent={{-113,-5},{-93,15}})));
 
-  Modelica.SIunits.HeatFlux DIRH;
-  Modelica.SIunits.HeatFlux DIRN;
-  Modelica.SIunits.HeatFlux GLOH;
-  Modelica.SIunits.HeatFlux DIFH;
+  Modelica.Units.SI.HeatFlux DIRH;
+  Modelica.Units.SI.HeatFlux DIRN;
+  Modelica.Units.SI.HeatFlux GLOH;
+  Modelica.Units.SI.HeatFlux DIFH;
   Real FLUX[15];
   Real DiffusSol[5];
   output Real sin_h;
@@ -193,8 +193,8 @@ annotation (Documentation(info="<html>
 <p>Validated model (identical to the one used in the BESTEST except for the time base: UTC instead of true solar time (TST)) - Aurélie Kaemmerlen 09/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

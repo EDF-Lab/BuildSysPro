@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.BoundaryConditions.Scenarios;
 model InternalGains "Fixed internal heat gains"
 
-parameter Modelica.SIunits.Power Pint=200 "Internal heat gains";
+  parameter Modelica.Units.SI.Power Pint=200 "Internal heat gains";
 
   Modelica.Blocks.Sources.Constant ConsignePint(k=Pint)
     "Time-invariant internal heat gains"
@@ -64,8 +64,8 @@ equation
 <p>Validated model (BESTEST) - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>

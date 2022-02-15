@@ -9,7 +9,7 @@ partial model ModelTemplate
 // Declaration of model parameters using associated units and range of variation if necessary
 parameter Real alpha( min=0, max=1)
     "Alpha coefficient - range of variation between 0 and 1";
-parameter Modelica.SIunits.Length L=2 "Length";
+  parameter Modelica.Units.SI.Length L=2 "Length";
   parameter BuildSysPro.Utilities.Types.FileNameIn Data=
       Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/Donnees/Meteos/RT2012/H1a.txt")
     "Path of weather data file";
@@ -23,7 +23,7 @@ parameter Modelica.SIunits.Length L=2 "Length";
          "Drop-down menu"), choicesAllMatching=true);
 
 // Declaration of variables
-Modelica.SIunits.Length D "Distance";
+  Modelica.Units.SI.Length D "Distance";
 
 // Used models
 
@@ -81,8 +81,8 @@ gamma = if Bool then D else 0;
 <p>Validated model (or not) - First name LAST NAME month/year <b>(MANDATORY)</b></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : First name LAST NAME, company (year of creation of the code)<br>
 --------------------------------------------------------------</b></p>
 </html>",

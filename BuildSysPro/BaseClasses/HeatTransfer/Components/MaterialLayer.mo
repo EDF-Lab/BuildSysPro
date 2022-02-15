@@ -2,12 +2,12 @@ within BuildSysPro.BaseClasses.HeatTransfer.Components;
 model MaterialLayer "Material layer"
   parameter BuildSysPro.Utilities.Records.GenericSolid mat "Material"
     annotation(choicesAllMatching=true,Dialog(enable=(not VariableMatProp)));
-  parameter Modelica.SIunits.Length e=0.05 "Thickness";
-  parameter Modelica.SIunits.Area S=1 "Surface";
-  parameter Modelica.SIunits.Temperature Tinit=293.15 "Initial temperature";
+  parameter Modelica.Units.SI.Length e=0.05 "Thickness";
+  parameter Modelica.Units.SI.Area S=1 "Surface";
+  parameter Modelica.Units.SI.Temperature Tinit=293.15 "Initial temperature";
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Initialization type";
-  Modelica.SIunits.Temperature T(start=Tinit,displayUnit="degC");
+  Modelica.Units.SI.Temperature T(start=Tinit, displayUnit="degC");
 protected
   parameter Real G=(2*mat.lambda*S)/e;
   parameter Real C=mat.rho*mat.c*e*S;
@@ -57,8 +57,8 @@ equation
 <p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

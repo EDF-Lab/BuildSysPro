@@ -3,7 +3,7 @@ model ASHRAE_vert
   "Generic non linear convective heat exchange coefficient from ASHRAE for a vertical wall"
   extends BaseClasses.HeatTransfer.Interfaces.Element1D;
 
-parameter Modelica.SIunits.Area S;
+  parameter Modelica.Units.SI.Area S;
 
 equation
 Q_flow = S*(1.24*dT^(1/3));
@@ -38,8 +38,8 @@ Q_flow = S*(1.24*dT^(1/3));
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

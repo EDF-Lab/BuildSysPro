@@ -38,7 +38,7 @@ choice=1 "AICVF", choice=2 "M324", choice=3 "User-defined"));
     columns2={2})
     annotation (Placement(transformation(extent={{-46,-16},{-14,16}})));
 
-  Modelica.Blocks.Sources.Clock clock
+  Modelica.Blocks.Sources.ContinuousClock clock
     annotation (Placement(transformation(extent={{-94,42},{-74,62}})));
 equation
   der(Conso)=Debit/3600;
@@ -106,8 +106,8 @@ equation
 <p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>

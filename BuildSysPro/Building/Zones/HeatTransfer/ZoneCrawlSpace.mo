@@ -2,7 +2,7 @@
 model ZoneCrawlSpace
   "Model of a zone on a crawl space in pure thermal modelling"
 
- parameter Modelica.SIunits.Volume Vair "Indoor air volume";
+  parameter Modelica.Units.SI.Volume Vair "Indoor air volume";
  parameter Real beta=0
     "Correction of vertical walls azimuth (azimuth=azimuth{0,90,180,-90}+beta)";
 
@@ -14,10 +14,12 @@ model ZoneCrawlSpace
     "Consideration of LW radiation (infrared) between vertical walls and the sky"
     annotation(choices(choice=true "Yes : warnings, hext purely convective", choice=false "No", radioButtons=true));
 
- parameter Modelica.SIunits.Temperature Tair=293.15
-    "Indoor air initial temperature" annotation(Dialog(enable = not  InitType== Utilitaires.Types.InitCond.SteadyState,group="Initialisation parameters"));
- parameter Modelica.SIunits.Temperature Tp=293.15 "Walls initial temperature"
-                                annotation (Dialog(group="Initialisation parameters"));
+  parameter Modelica.Units.SI.Temperature Tair=293.15
+    "Indoor air initial temperature" annotation (Dialog(enable=not InitType ==
+          Utilitaires.Types.InitCond.SteadyState, group=
+          "Initialisation parameters"));
+  parameter Modelica.Units.SI.Temperature Tp=293.15 "Walls initial temperature"
+    annotation (Dialog(group="Initialisation parameters"));
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     annotation (Dialog(group="Initialisation parameters"));
 
@@ -25,13 +27,19 @@ model ZoneCrawlSpace
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall
     CaracParoiVert "Vertical walls characteristics" annotation (
       choicesAllMatching=true, Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.Area S1nv=1 "South wall surface (unglazed)"  annotation(Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.Area S2nv=1 "West wall surface (unglazed)"  annotation(Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.Area S3nv=1 "North wall surface (unglazed)"           annotation(Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.Area S4nv=1 "East wall surface (unglazed)"  annotation(Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.Area S1nv=1 "South wall surface (unglazed)"
+    annotation (Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.Area S2nv=1 "West wall surface (unglazed)"
+    annotation (Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.Area S3nv=1 "North wall surface (unglazed)"
+    annotation (Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.Area S4nv=1 "East wall surface (unglazed)"
+    annotation (Dialog(tab="Vertical walls"));
 
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hextv annotation(Dialog(tab="Vertical walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hintv annotation(Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hextv
+    annotation (Dialog(tab="Vertical walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hintv
+    annotation (Dialog(tab="Vertical walls"));
 parameter Real albedo=0.2 "Environment albedo" annotation(Dialog(tab="Vertical walls"));
 parameter Real alpha= 0.6
     "Absorption coefficient of the outer surface in the visible"                       annotation(Dialog(tab="Vertical walls"));
@@ -43,9 +51,12 @@ parameter Real eps=0.6 "Emissivity in LWR"
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall CaracPlaf
     "Ceiling characteristics" annotation (choicesAllMatching=true,
       Dialog(tab="Horizontal walls", group="Ceiling"));
-      parameter Modelica.SIunits.Area Splaf=1 "Ceiling surface" annotation(Dialog(tab="Horizontal walls", group="Ceiling"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hplaf annotation(Dialog(tab="Horizontal walls", group="Ceiling"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hintplaf annotation(Dialog(tab="Horizontal walls", group="Ceiling"));
+  parameter Modelica.Units.SI.Area Splaf=1 "Ceiling surface"
+    annotation (Dialog(tab="Horizontal walls", group="Ceiling"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hplaf
+    annotation (Dialog(tab="Horizontal walls", group="Ceiling"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hintplaf
+    annotation (Dialog(tab="Horizontal walls", group="Ceiling"));
 
 parameter Real bCombles=0.5
     "Weighting coefficient of ceiling temperatures on lost roofs";
@@ -62,9 +73,12 @@ parameter Real bVS=0.5
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall CaracPlanch
     "Floor characteristics" annotation (choicesAllMatching=
         true, Dialog(tab="Horizontal walls", group="Plancher"));
-parameter Modelica.SIunits.Area Splanch=1 "Floor surface" annotation(Dialog(tab="Horizontal walls", group="Floor"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hplanch annotation(Dialog(tab="Horizontal walls", group="Floor"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hintplanch annotation(Dialog(tab="Horizontal walls", group="Floor"));
+  parameter Modelica.Units.SI.Area Splanch=1 "Floor surface"
+    annotation (Dialog(tab="Horizontal walls", group="Floor"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hplanch
+    annotation (Dialog(tab="Horizontal walls", group="Floor"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hintplanch
+    annotation (Dialog(tab="Horizontal walls", group="Floor"));
 
 // Parameter common to the water active floor and the electric radiant floor
  parameter Integer nP=1
@@ -75,16 +89,26 @@ parameter Modelica.SIunits.CoefficientOfHeatTransfer hintplanch annotation(Dialo
 // Parameters specific to a heating wall with water
   parameter Integer nD=8 "Number of discretization slices of the water floor"
     annotation(Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.Distance Ltube=128 "Floor heating coil length"
-    annotation(Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.Distance DiametreInt=0.013
-    "Inner diameter of tube"
-    annotation(Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.Distance eT=0.0015 "Tube thickness"
-    annotation (Dialog(enable=PlancherActif==2, tab="Horizontal walls", group="Floor"));
-  parameter Modelica.SIunits.ThermalConductivity lambdaT=0.35
-    "Tube thermal conductivity"
-    annotation (Dialog(enable=PlancherActif==2, tab="Parois Horizontales", group="Floor"));
+  parameter Modelica.Units.SI.Distance Ltube=128 "Floor heating coil length"
+    annotation (Dialog(
+      enable=PlancherActif == 2,
+      tab="Horizontal walls",
+      group="Floor"));
+  parameter Modelica.Units.SI.Distance DiametreInt=0.013
+    "Inner diameter of tube" annotation (Dialog(
+      enable=PlancherActif == 2,
+      tab="Horizontal walls",
+      group="Floor"));
+  parameter Modelica.Units.SI.Distance eT=0.0015 "Tube thickness" annotation (
+      Dialog(
+      enable=PlancherActif == 2,
+      tab="Horizontal walls",
+      group="Floor"));
+  parameter Modelica.Units.SI.ThermalConductivity lambdaT=0.35
+    "Tube thermal conductivity" annotation (Dialog(
+      enable=PlancherActif == 2,
+      tab="Parois Horizontales",
+      group="Floor"));
 // Components
   Modelica.Blocks.Interfaces.RealInput G[10]
     "Sun data : {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle, Solar elevation angle}"
@@ -440,8 +464,8 @@ annotation (Documentation(info="<html>
 <p>Validated model - Ludovic Darnaud 07/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Ludovic DARNAUD, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

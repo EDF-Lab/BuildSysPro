@@ -3,9 +3,9 @@ model Material "Material discretized in different layers with the same length"
   parameter BuildSysPro.Utilities.Records.GenericSolid mat "Material"
     annotation (choicesAllMatching=true);
   parameter Integer m=3 "Number of layers in the material";
-  parameter Modelica.SIunits.Length e=0.20 "Thickness";
-  parameter Modelica.SIunits.Area S=1 "Surface";
-  parameter Modelica.SIunits.Temperature Tinit=293.15 "Initial temperature";
+  parameter Modelica.Units.SI.Length e=0.20 "Thickness";
+  parameter Modelica.Units.SI.Area S=1 "Surface";
+  parameter Modelica.Units.SI.Temperature Tinit=293.15 "Initial temperature";
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState
     "Initialization type";
 
@@ -55,8 +55,8 @@ equation
 <p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

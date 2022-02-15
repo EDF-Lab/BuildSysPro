@@ -2,14 +2,16 @@
 model NightVentilation
   "Model of overventilation by windows opening for summer comfort"
 
-parameter Modelica.SIunits.Temperature Touverture=299.15
-    "Indoor temperature beyong which windows are opened"                        annotation(Dialog(group="Summer comfort"));
-parameter Modelica.SIunits.Temperature Tfermeture=293.15
-    "Indoor temperature beyong which windows are opened"                        annotation(Dialog(group="Summer comfort"));
+  parameter Modelica.Units.SI.Temperature Touverture=299.15
+    "Indoor temperature beyong which windows are opened"
+    annotation (Dialog(group="Summer comfort"));
+  parameter Modelica.Units.SI.Temperature Tfermeture=293.15
+    "Indoor temperature beyong which windows are opened"
+    annotation (Dialog(group="Summer comfort"));
 
-parameter Modelica.SIunits.Conversions.NonSIunits.Temperature_degC deltaT=1
+  parameter Modelica.Units.NonSI.Temperature_degC deltaT=1
     "Halfband of hysteresis on the condition that indoor temperature must be higher than outdoor temperature"
-                                                                           annotation(Dialog(group="Summer comfort"));
+    annotation (Dialog(group="Summer comfort"));
   Integer Hyst1 "Hysteresis on temperature";
   Integer Hyst2 "Hysteresis on temperature";
 
@@ -103,8 +105,8 @@ equation
 <p>Non-validated model - Vincent Magnaudeix 06/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Vincent MAGNAUDEIX, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

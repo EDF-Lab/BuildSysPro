@@ -3,7 +3,7 @@ record GenericWall "Walls generic structure - from outdoor to indoor"
 
 parameter Integer n=3 "Number of layers";
 parameter Integer[n] m=fill(1,n) "Number of meshes per layer";
-parameter Modelica.SIunits.Length[n] e=0.2*fill(1,n)
+  parameter Modelica.Units.SI.Length[n] e=0.2*fill(1, n)
     "Thickness of layers (ext to int)";
   parameter BuildSysPro.Utilities.Records.GenericSolid mat[n]
     "Materials of the wall - from outdoor to indoor"
@@ -33,8 +33,8 @@ parameter Modelica.SIunits.Length[n] e=0.2*fill(1,n)
 <p>Validated model - Aurélie Kaemmerlen, Gilles Plessis 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"),                                                                    Icon(graphics));

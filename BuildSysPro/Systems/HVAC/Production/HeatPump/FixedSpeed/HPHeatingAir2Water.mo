@@ -8,12 +8,12 @@ model HPHeatingAir2Water
                 choice=2 "Expert: 3 operating points"));
 
 // Parameterization based on the HP default template : Choice 1
-  parameter Modelica.SIunits.Power Qnom=6490
+  parameter Modelica.Units.SI.Power Qnom=6490
     "Nominal heating power in Enom temperature conditions"
-    annotation (Dialog(enable=(Choix==1), group="Parameterization choice 1"));
+    annotation (Dialog(enable=(Choix == 1), group="Parameterization choice 1"));
   parameter Real COPnom=4.3
     "Nominal coefficient of performance in Enom temperature conditions"
-    annotation (Dialog(enable=(Choix==1), group="Paramétrisation choix 1"));
+    annotation (Dialog(enable=(Choix==1), group="Parameterization choice 1"));
 
 // Expert parameterization : Choice 2
   parameter Real Enom[4] = {2,45,1800,4950}
@@ -21,29 +21,35 @@ model HPHeatingAir2Water
     annotation (Dialog(enable=(Choix==2), group="Parameterization choice 2"));
   parameter Real E1[4] = {-15,55,1980,2480}
     "Manufacturer data: {Text(°C), ToutputHP(°C), Electric power consumed (W), Supplied heat (W)}"
-    annotation (Dialog(enable=(Choix==2), group="Paramétrisation choix 2"));
+    annotation (Dialog(enable=(Choix==2), group="Parameterization choice 2"));
   parameter Real E2[4] = {20,25,1690,7750}
     "Manufacturer data: {Text(°C), ToutputHP(°C), Electric power consumed (W), Supplied heat (W)}"
-    annotation (Dialog(enable=(Choix==2), group="Paramétrisation choix 2"));
+    annotation (Dialog(enable=(Choix==2), group="Parameterization choice 2"));
 
 // Other parameters common to the different choices
-  parameter Modelica.SIunits.MassFlowRate MegRat=0.1
-    "Nominal water flow inside"    annotation (Dialog(group="Other parameters"));
-  parameter Modelica.SIunits.Power QfanextRat=0
+  parameter Modelica.Units.SI.MassFlowRate MegRat=0.1
+    "Nominal water flow inside" annotation (Dialog(group="Other parameters"));
+  parameter Integer PumpOperation=1 "Water pump operation"
+    annotation (Dialog(group="Other parameters"), choices(
+                choice=1 "Default: independant control (e.g at water outlet) => water pump must 
+                  operate all the time (except 'SaisonChauffe' = FALSE)",
+                choice=2 "High-level control (e.g at buffer tank or taken into account room needs) 
+                  => water pump could be switch off when no heat is provided"));
+  parameter Modelica.Units.SI.Power QfanextRat=0
     "Outdoor fan power, if QfanextRat included in Qa then choose 0"
     annotation (Dialog(group="Other parameters"));
   parameter Real Cdegi=0.9
     "Degradation coefficient due to icing: 10% of the defrosting time below 2°C"
     annotation (Dialog(group="Other parameters"));
-  parameter Modelica.SIunits.Time TauOn=120
+  parameter Modelica.Units.SI.Time TauOn=120
     "Switch-on time constant [GAR 2002]"
     annotation (Dialog(group="Other parameters"));
   parameter Real alpha=0.01
     "Percentage of standby power (Eco Design Draft report of Task 4: 1, 2 or 3% according to Henderson2000 work)"
     annotation (Dialog(group="Other parameters"));
-  parameter Modelica.SIunits.Time dtminOn=360 "Minimum operating time"
+  parameter Modelica.Units.SI.Time dtminOn=360 "Minimum operating time"
     annotation (Dialog(group="Other parameters"));
-  parameter Modelica.SIunits.Time dtminOff=360
+  parameter Modelica.Units.SI.Time dtminOff=360
     "Minimum stop time before restarting"
     annotation (Dialog(group="Other parameters"));
 
@@ -58,26 +64,26 @@ protected
   Real D1;
   Real C2;
   Real C1;
-  Modelica.SIunits.Power QcRat "Nominal heating output power";
-  Modelica.SIunits.Power QaRatC
+  Modelica.Units.SI.Power QcRat "Nominal heating output power";
+  Modelica.Units.SI.Power QaRatC
     "Nominal compressor power demand in heating mode";
-  Modelica.SIunits.Temperature TextRatC
+  Modelica.Units.SI.Temperature TextRatC
     "Outdoor air nominal temperature in heating mode";
-  Modelica.SIunits.Temperature TintRatC
+  Modelica.Units.SI.Temperature TintRatC
     "Nominal temperature of air at the indoor unit output in heating mode";
-  Modelica.SIunits.Power Qcflssdegi "Without defrosting";
-  Modelica.SIunits.Power Qcfl
+  Modelica.Units.SI.Power Qcflssdegi "Without defrosting";
+  Modelica.Units.SI.Power Qcfl
     "Heating power supplied at full load at no-nominal temperature";
-  Modelica.SIunits.Power Qafl
+  Modelica.Units.SI.Power Qafl
     "Nominal compressor power demand at full load at no-nominal temperature";
   Real Dt;
 
   Boolean w;
-  Modelica.SIunits.Time tOn;
-  Modelica.SIunits.Time dtOn;
-  Modelica.SIunits.Time tOff;
-  Modelica.SIunits.Time dtOff;
-  Modelica.SIunits.SpecificHeatCapacity CpLiq=4180;
+  Modelica.Units.SI.Time tOn;
+  Modelica.Units.SI.Time dtOn;
+  Modelica.Units.SI.Time tOff;
+  Modelica.Units.SI.Time dtOff;
+  Modelica.Units.SI.SpecificHeatCapacity CpLiq=4180;
 
 public
   Modelica.Blocks.Interfaces.RealOutput Qfour "Supplied heating power (W)"
@@ -108,7 +114,7 @@ public
         transformation(
         extent={{-20,-20},{20,20}},
         rotation=270,
-        origin={-22,100}), iconTransformation(
+        origin={-20,100}), iconTransformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={-70,90})));
@@ -148,10 +154,10 @@ equation
 
 // Defrost losses when Text < 2°C
   if (T_ext > 275.15) then
-      Qcfl = Qcflssdegi;
-    else
-      Qcfl = Cdegi*Qcflssdegi;
-    end if;
+    Qcfl = Qcflssdegi;
+  else
+    Qcfl = Cdegi*Qcflssdegi;
+  end if;
 
 // Calculate non-dimensionnal temperature difference
     Dt =T_ext/WaterIn[1] - TextRatC/TintRatC;
@@ -180,7 +186,7 @@ if SaisonChauffe then
     Qelec=if v then Qafl+QfanextRat else alpha*QaRatC;
     //The power supplied is determined by a dynamic with one time constant.
     Qfour = if v then Qcfl*(1-exp(-dtOn/TauOn)) else 0;
-    WaterOut[2] = if v then MegRat else 1E-10;
+    WaterOut[2] = if v then MegRat else if PumpOperation==2 then 1E-10 else MegRat;
     WaterOut[1] = if v then WaterIn[1] + Qfour/(MegRat*CpLiq) else WaterIn[1];
 else
     Qfour = 0;
@@ -294,11 +300,12 @@ all-or-none, variable"),
 <p>Validated model according to air/air HP with TIL - Hubert Blervaque, Sila Filfli 02/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>
-<p>Benoît Charrier 05/2015 : Suppression des connecteurs T &amp; m_flow.</p>
+<p>Beno&icirc;t Charrier 05/2015 : Suppression des connecteurs T &amp; m_flow.</p>
+<p>Hubert BLERVAQUE (externe) 03/2021 (on version 3.4.0): adding a parametrization option on the water pump operation, see &quot;PumpOperation&quot;</p>
 </html>"));
 end HPHeatingAir2Water;

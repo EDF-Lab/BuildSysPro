@@ -1,15 +1,16 @@
 ﻿within BuildSysPro.Systems.Solar.Thermal;
 model SolarThermalCollector
 
-parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg Azimut=0
-    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"             annotation (Dialog(group="Orientation of the solar collector"));
-parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg Inclinaison=30
+  parameter Modelica.Units.NonSI.Angle_deg Azimut=0
+    "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°"
+    annotation (Dialog(group="Orientation of the solar collector"));
+  parameter Modelica.Units.NonSI.Angle_deg Inclinaison=30
     "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°"
-                                                                                                        annotation (Dialog(group="Orientation of the solar collector"));
+    annotation (Dialog(group="Orientation of the solar collector"));
                                                                                                       parameter Real Albedo=0.2
     "Albedo of the environment"                                                                                                     annotation (Dialog(group="Orientation of the solar collector"));
-parameter Modelica.SIunits.Area Surface= 1 "Surface of the solar collector"
-                                                                annotation (Dialog(group="Characteristics of the solar collector"));
+  parameter Modelica.Units.SI.Area Surface=1 "Surface of the solar collector"
+    annotation (Dialog(group="Characteristics of the solar collector"));
 parameter Real FacteurOptique(min=0, max=1)=0.65
     "Optical factor (generally between 0,5 and 0,9)"                                annotation (Dialog(group="Characteristics of the solar collector"));
 parameter Real CoeffTransmission=4
@@ -99,8 +100,8 @@ equation
 <p>Validated model - Hubert Blervaque, Sila Filfli 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

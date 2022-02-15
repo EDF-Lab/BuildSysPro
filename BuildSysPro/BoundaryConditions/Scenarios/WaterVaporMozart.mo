@@ -25,7 +25,7 @@ public
     columns2={2,3,4,5,6,7,8,9,10},
     tableName1=tableName1_p)
     annotation (Placement(transformation(extent={{-66,44},{-34,76}})));
-  Modelica.Blocks.Sources.Clock clock
+  Modelica.Blocks.Sources.ContinuousClock clock
     annotation (Placement(transformation(extent={{-100,50},{-80,70}})));
   Modelica.Blocks.Interfaces.RealOutput SdB
     "Flow of water vapor in the bathroom, in kg/s"
@@ -212,8 +212,8 @@ In terms of occupancy , one adult and 2 children are coming back home for lunch 
 <p>Validated model  - Benoît Charrier 06/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Benoît CHARRIER, EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>

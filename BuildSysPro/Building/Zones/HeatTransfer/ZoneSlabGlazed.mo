@@ -5,10 +5,14 @@ model ZoneSlabGlazed
 extends ZoneSlab;
 
 //Windows//
-parameter Modelica.SIunits.Area S1v=1 "South wall glass surface"  annotation(Dialog(tab="Windows"));
-parameter Modelica.SIunits.Area S2v=1 "West wall glass surface"  annotation(Dialog(tab="Windows"));
-parameter Modelica.SIunits.Area S3v=1 "North wall glass surface" annotation(Dialog(tab="Windows"));
-parameter Modelica.SIunits.Area S4v=1 "East wall glass surface" annotation(Dialog(tab="Windows"));
+  parameter Modelica.Units.SI.Area S1v=1 "South wall glass surface"
+    annotation (Dialog(tab="Windows"));
+  parameter Modelica.Units.SI.Area S2v=1 "West wall glass surface"
+    annotation (Dialog(tab="Windows"));
+  parameter Modelica.Units.SI.Area S3v=1 "North wall glass surface"
+    annotation (Dialog(tab="Windows"));
+  parameter Modelica.Units.SI.Area S4v=1 "East wall glass surface"
+    annotation (Dialog(tab="Windows"));
 
 parameter Real U "Glazings thermal conductivity" annotation(Dialog(tab="Windows"));
 parameter Real tau "Glazings transmission coefficient" annotation(Dialog(tab="Windows"));
@@ -17,11 +21,12 @@ parameter Real AbsFen=0.1
 
 // For this model no diffuse / direct distinction
 protected
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hefen=21
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hefen=21
     "Outdoor exchange coefficient of windows";
- parameter Modelica.SIunits.CoefficientOfHeatTransfer hifen=8.29
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hifen=8.29
     "Indoor exchange coefficient of windows";
-parameter Modelica.SIunits.CoefficientOfHeatTransfer k=1/(1/U-1/hefen-1/hifen)
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer k=1/(1/U - 1/hefen - 1/
+      hifen)
     "Surface transmission coefficient of windows - without int / ext convection";
 
   BuildingEnvelope.HeatTransfer.Window                       FenSud(
@@ -192,8 +197,8 @@ annotation (Documentation(info="<html>
 <p>Validated model - Ludovic Darnaud 07/2010 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Ludovic DARNAUD, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

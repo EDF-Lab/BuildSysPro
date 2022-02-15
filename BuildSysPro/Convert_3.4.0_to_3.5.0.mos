@@ -1,0 +1,5 @@
+﻿convertClass("BuildSysPro.EnergyUsage.SwimmingPool","BuildSysPro.EnergyUsage.SwimmingPool.SwimmingPool");
+convertClass("BuildSysPro.EnergyUsage.Components","BuildSysPro.EnergyUsage.SwimmingPool.Components");
+convertClass("BuildSysPro.EnergyUsage.Components.ConvectiveLosses","BuildSysPro.EnergyUsage.SwimmingPool.Components.ConvectiveLosses");
+convertClass("BuildSysPro.EnergyUsage.Components.EvaporativeLosses","BuildSysPro.EnergyUsage.SwimmingPool.Components.EvaporativeLosses");
+convertClass("BuildSysPro.EnergyUsage.Components.FiltrationPump","BuildSysPro.EnergyUsage.SwimmingPool.Components.FiltrationPump");

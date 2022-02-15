@@ -12,7 +12,7 @@ extends Modelica.Icons.Example;
     annotation (Placement(transformation(extent={{-66,32},{-46,52}})));
   Modelica.Blocks.Sources.Sine sine(
     amplitude=20,
-    freqHz=2*3.14/3600/24,
+    f=2*3.14/3600/24,
     offset=283.15)
     annotation (Placement(transformation(extent={{-100,32},{-80,52}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression(y=if Text.T + 5
@@ -36,7 +36,7 @@ extends Modelica.Icons.Example;
     annotation (Placement(transformation(extent={{-64,-54},{-44,-34}})));
   Modelica.Blocks.Sources.Sine sine1(
     amplitude=20,
-    freqHz=2*3.14/3600/24,
+    f=2*3.14/3600/24,
     offset=283.15)
     annotation (Placement(transformation(extent={{-98,-54},{-78,-34}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature Tint1(T=293.15)
@@ -97,8 +97,8 @@ equation
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

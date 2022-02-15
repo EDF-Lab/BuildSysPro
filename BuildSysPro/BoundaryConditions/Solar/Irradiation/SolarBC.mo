@@ -1,9 +1,9 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
 model SolarBC "Calculation of solar irradiation for a building model"
   // Parameters section
-parameter Modelica.SIunits.Area[5] SurfacesVitrees
+  parameter Modelica.Units.SI.Area[5] SurfacesVitrees
     "Glazed surface areas (Ceiling, North, South, East, West)"
-                                 annotation(Dialog(group="Glazing"));
+    annotation (Dialog(group="Glazing"));
 parameter Real TrDir=0.544 "Direct transmission coefficient on normal incidence"                           annotation(Dialog(group="Glazing"));
 parameter Real TrDif=0.544 "Diffuse transmission coefficient on normal incidence"                           annotation(Dialog(group="Glazing"));
 parameter Integer choix=2 "Formula used" annotation(choices(
@@ -11,9 +11,9 @@ parameter Integer choix=2 "Formula used" annotation(choices(
         choice=2 "RT",
         choice=3 "Cardonnel",
         choice=4 "Weighting factor of cos i"),Dialog(group="Glazing"));
-parameter Modelica.SIunits.Area[5] SurfacesExterieures
+  parameter Modelica.Units.SI.Area[5] SurfacesExterieures
     "Surface areas of external walls (Roof, North, South, East, West)"
-                                 annotation(Dialog(group="Wall"));
+    annotation (Dialog(group="Wall"));
   parameter Real beta=0
     "Zone orientation azimut=beta+azimut, (if beta=0 : azimut={N=180,S=0,E=-90,O=90})";
   parameter Real albedo=0.2 "Albedo of the environment";
@@ -392,8 +392,8 @@ equation
 Validated model - Gilles Plessis 03/2013.
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

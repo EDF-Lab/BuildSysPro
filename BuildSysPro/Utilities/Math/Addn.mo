@@ -1,6 +1,6 @@
 ﻿within BuildSysPro.Utilities.Math;
 block Addn "Gives the n dimension sum of two n dimension inputs"
-      extends Modelica.Blocks.Interfaces.BlockIcon;
+      extends Modelica.Blocks.Icons.Block;
 
       parameter Real k1=+1 "Gain of upper input";
       parameter Real k2=+1 "Gain of lower input";
@@ -39,8 +39,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 11/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 Initial model : <a href=\"Modelica.Blocks.Math.Add\">Add</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p></html>"),

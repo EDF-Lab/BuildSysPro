@@ -9,18 +9,22 @@ model ZoneCrawlSpaceGlazedInternalPartitions
     "Supporting walls characteristics" annotation (choicesAllMatching=
         true, Dialog(tab="Inner walls", group="Supporting walls"));
 
-parameter Modelica.SIunits.Area SRef=1 "Supporting walls surfaces" annotation(Dialog(tab="Inner walls", group="Supporting walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hRef
-    "Supporting walls convective heat transfer coefficient"                                                              annotation(Dialog(tab="Inner walls", group="Supporting walls"));
+  parameter Modelica.Units.SI.Area SRef=1 "Supporting walls surfaces"
+    annotation (Dialog(tab="Inner walls", group="Supporting walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hRef
+    "Supporting walls convective heat transfer coefficient"
+    annotation (Dialog(tab="Inner walls", group="Supporting walls"));
 
 //Light partition walls
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracCleg
     "Light partition walls characteristics" annotation (
       choicesAllMatching=true, Dialog(tab="Inner walls", group=
           "Light partition walls"));
-parameter Modelica.SIunits.Area SCleg=1 "Light partition walls surface" annotation(Dialog(tab="Inner walls", group="Light partition walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hCleg
-    "Global exchange coefficient of light partition walls"                                                               annotation(Dialog(tab="Inner walls", group="Light partition walls"));
+  parameter Modelica.Units.SI.Area SCleg=1 "Light partition walls surface"
+    annotation (Dialog(tab="Inner walls", group="Light partition walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hCleg
+    "Global exchange coefficient of light partition walls"
+    annotation (Dialog(tab="Inner walls", group="Light partition walls"));
 
 //Components
 protected
@@ -95,8 +99,8 @@ equation
 <p>Validated model - Gilles Plessis 02/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

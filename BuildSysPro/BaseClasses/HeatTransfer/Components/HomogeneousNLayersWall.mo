@@ -4,15 +4,15 @@ model HomogeneousNLayersWall
 
   parameter Integer n=2 "Number of distinct layers";
   parameter Integer m[n]=3*fill(1, n) "Number of meshes by layer";
-  parameter Modelica.SIunits.Area S=1;
-    parameter Modelica.SIunits.Length[n] e=0.2*fill(1, n)
+  parameter Modelica.Units.SI.Area S=1;
+  parameter Modelica.Units.SI.Length[n] e=0.2*fill(1, n)
     "Layers thickness (from outside to inside)";
 
   parameter BuildSysPro.Utilities.Records.GenericSolid mat[n]
     "Constituting materials of the wall (from outside to inside)"
     annotation (choicesAllMatching=true);
 
-  parameter Modelica.SIunits.Temperature Tinit=293.15;
+  parameter Modelica.Units.SI.Temperature Tinit=293.15;
   parameter BuildSysPro.Utilities.Types.InitCond InitType=BuildSysPro.Utilities.Types.InitCond.SteadyState;
 
 //extends BuildSysPro.ModelesAvances.ParoiNCouchesHomogenesCrypte(
@@ -40,8 +40,8 @@ extends BuildSysPro.BaseClasses.HeatTransfer.Components.Wall(
 <p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -1,9 +1,7 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Utilities;
 function CosI "Cosine of the angle of incidence"
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut
-    "Surface azimuth in degree";
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl
-    "Surface tilt in degree";
+  input Modelica.Units.NonSI.Angle_deg azimut "Surface azimuth in degree";
+  input Modelica.Units.NonSI.Angle_deg incl "Surface tilt in degree";
   input Real CosDir[3] "Sun's direction cosines";
   output Real cosi "Cosine of the angle of incidence";
 protected
@@ -39,8 +37,8 @@ algorithm
 <p>Validated function - Hassan BOUIA 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

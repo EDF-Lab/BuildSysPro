@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
 block DirectAbs
   "Compute the direct solar irradiation absorbed by a glazing surface"
-extends Modelica.Blocks.Interfaces.BlockIcon;
+extends Modelica.Blocks.Icons.Block;
 
 parameter Integer choix=2 "Formula used" annotation(choices(
         choice=1 "Fauconnier",
@@ -94,8 +94,8 @@ end if;
 <p>Validated model (excel sheet comparison) - Aurélie Kaemmerlen 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

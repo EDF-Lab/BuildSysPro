@@ -7,16 +7,20 @@ parameter Boolean useVolet=false "Presence of a shutter" annotation(Dialog(group
 parameter Boolean GLOext=false
     "Inclusion of LW radiation (infrared) between the wall and the environment and the sky in linearized form"
     annotation(Dialog(group="Options",compact=true),choices(choice=true "yes", choice=false "no", radioButtons=true));
-    parameter Modelica.SIunits.Area S=1 "Glazing surface" annotation(Dialog(group="General properties"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=16
+  parameter Modelica.Units.SI.Area S=1 "Glazing surface"
+    annotation (Dialog(group="General properties"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext=16
     "Global or convective surface exchange coefficient on the outer face depending on the selected mode (GLOext)"
-                                                                                                        annotation(Dialog(group="General properties"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=8.29
-    "Surface exchange coefficient on the inner face" annotation(Dialog(group="General properties"));
-parameter Modelica.SIunits.ThermalInsulance R_volet=0.2
-    "Additional thermal resistance (shutters closed)"                                                          annotation(Dialog(group="General properties",enable=useVolet==true));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer k=1.43
-    "Glazing coefficient of surface transmission Ug  - without convective exchanges"  annotation(Dialog(group="General properties"));
+    annotation (Dialog(group="General properties"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_int=8.29
+    "Surface exchange coefficient on the inner face"
+    annotation (Dialog(group="General properties"));
+  parameter Modelica.Units.SI.ThermalInsulance R_volet=0.2
+    "Additional thermal resistance (shutters closed)"
+    annotation (Dialog(group="General properties", enable=useVolet == true));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer k=1.43
+    "Glazing coefficient of surface transmission Ug  - without convective exchanges"
+    annotation (Dialog(group="General properties"));
 parameter Real skyViewFactor=0
     "Sky view factor between glazings and the sky (exemple: skyViewFactor(flat roof)=1, skyViewfactor(vertical wall in clear environment)=0.5)"
                                                                                                         annotation(Dialog(enable=GLOext,group="General properties"));
@@ -237,8 +241,8 @@ equation
 <p>Validated model - Gilles Plessis 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

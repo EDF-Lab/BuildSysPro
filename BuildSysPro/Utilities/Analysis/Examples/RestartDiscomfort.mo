@@ -58,13 +58,14 @@ extends Modelica.Icons.Example;
     Ni=0.1,
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     Td=0.,
-    limitsAtInit=true,
     yMin=0.,
     Ti=0.06,
     k=600,
     yMax=120,
-    initType=Modelica.Blocks.Types.InitPID.SteadyState)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}}, rotation=180,
+    initType=Modelica.Blocks.Types.Init.SteadyState) annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
         origin={18,82})));
   BuildSysPro.BaseClasses.HeatTransfer.Sensors.TemperatureSensor ThermoAmbiance
     annotation (Placement(transformation(
@@ -85,13 +86,14 @@ extends Modelica.Icons.Example;
     Ni=0.1,
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     Td=0.,
-    limitsAtInit=true,
     yMin=0.,
     Ti=0.06,
     k=600,
     yMax=120,
-    initType=Modelica.Blocks.Types.InitPID.SteadyState)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}}, rotation=180,
+    initType=Modelica.Blocks.Types.Init.SteadyState) annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
         origin={24,-54})));
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow ChauffageEtClim1(T_ref=
         292.15) annotation (Placement(transformation(
@@ -308,8 +310,8 @@ Inconfort")}),
 <p>Validated model - Gilles Plessis 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

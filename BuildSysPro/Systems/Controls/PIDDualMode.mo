@@ -9,28 +9,30 @@ model PIDDualMode
     annotation(Evaluate=true,HideResult=true,Dialog(group="Model configuration"),
     choices(choice=true "Yes", choice=false "No", radioButtons=true));
 
-  parameter Modelica.SIunits.Power power_nom_heat=1000
+  parameter Modelica.Units.SI.Power power_nom_heat=1000
     "Nominal heating power of the system"
-    annotation(Dialog(group="Heating and cooling system parameters"));
-  parameter Modelica.SIunits.Power power_nom_cool=1000
+    annotation (Dialog(group="Heating and cooling system parameters"));
+  parameter Modelica.Units.SI.Power power_nom_cool=1000
     "Nominal cooling power of the system (defined as positive)"
-    annotation(Dialog(group="Heating and cooling system parameters"));
+    annotation (Dialog(group="Heating and cooling system parameters"));
 
-  parameter Modelica.SIunits.Conversions.NonSIunits.Temperature_degC T_heat_sp=20
-    "Heating setpoint temperature in °C"
-    annotation(Dialog(group="Heating and cooling system parameters", enable=not use_T_input));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Temperature_degC T_cool_sp=25
-    "Cooling setpoint temperature in °C"
-    annotation(Dialog(group="Heating and cooling system parameters", enable=not use_T_input));
+  parameter Modelica.Units.NonSI.Temperature_degC T_heat_sp=20
+    "Heating setpoint temperature in °C" annotation (Dialog(group=
+          "Heating and cooling system parameters", enable=not use_T_input));
+  parameter Modelica.Units.NonSI.Temperature_degC T_cool_sp=25
+    "Cooling setpoint temperature in °C" annotation (Dialog(group=
+          "Heating and cooling system parameters", enable=not use_T_input));
 
   parameter Real k(min=0) = 1e4 "Gain of controller"
     annotation(Dialog(group="PID parameters"));
-  parameter Modelica.SIunits.Time Ti(min=Modelica.Constants.small, start=0.5)=60
-    "Time constant of Integrator block"
-    annotation(Dialog(group="PID parameters"));
-  parameter Modelica.SIunits.Time Td(min=0, start= 0.1)=0
-    "Time constant of Derivative block"
-    annotation(Dialog(group="PID parameters"));
+  parameter Modelica.Units.SI.Time Ti(
+    min=Modelica.Constants.small,
+    start=0.5) = 60 "Time constant of Integrator block"
+    annotation (Dialog(group="PID parameters"));
+  parameter Modelica.Units.SI.Time Td(
+    min=0,
+    start=0.1) = 0 "Time constant of Derivative block"
+    annotation (Dialog(group="PID parameters"));
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_room annotation (
     Placement(transformation(extent={{20,76},{40,96}}), iconTransformation(
@@ -67,7 +69,7 @@ model PIDDualMode
     Ti=Ti,
     Td=Td,
     yMax=power_nom_heat,
-    initType=Modelica.Blocks.Types.InitPID.InitialState)
+    initType=Modelica.Blocks.Types.Init.InitialState)
     annotation (Placement(transformation(extent={{0,30},{-20,50}})));
   Modelica.Blocks.Continuous.LimPID PID_cool(
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
@@ -76,7 +78,7 @@ model PIDDualMode
     Ti=Ti,
     Td=Td,
     yMin=-power_nom_cool,
-    initType=Modelica.Blocks.Types.InitPID.InitialState)
+    initType=Modelica.Blocks.Types.Init.InitialState)
     annotation (Placement(transformation(extent={{0,10},{-20,-10}})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeating if
@@ -288,8 +290,8 @@ equation
 <p>Validations through comparaison with PIDFixedDualMode and PIDPrescribedSingleMode and simulations within MERUBBI project - Mathias Bouquerel 01/2017<p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Mathias BOUQUEREL, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>",

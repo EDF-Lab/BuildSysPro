@@ -134,8 +134,8 @@ equation
 <p>Validated model - Hassan Bouia 01/2016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

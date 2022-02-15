@@ -1,7 +1,7 @@
 within BuildSysPro.BoundaryConditions.Weather.Functions;
 function CalculTsky_withRH
   "Compute the sky temperature knowing the relative humidity"
-  input Modelica.SIunits.Time t "Time";
+  input Modelica.Units.SI.Time t "Time";
   input Real T_seche "Dry  bulb temperature [K]";
   input Real G[10] "Solar information vector";
   input Real Pvap "Water vapor pressure [Pa]";
@@ -9,8 +9,8 @@ function CalculTsky_withRH
 
 protected
   constant Real d2r=Modelica.Constants.pi/180;
-  constant Modelica.SIunits.HeatFlux Isc=1367 "Solar constant";
-  Modelica.SIunits.HeatFlux I0
+  constant Modelica.Units.SI.HeatFlux Isc=1367 "Solar constant";
+  Modelica.Units.SI.HeatFlux I0
     "Extraterrestrial irradiance on a horizontal surface (outside the atmosphere)";
 
   Real Kt "Clearness index";
@@ -44,8 +44,8 @@ algorithm
 <p>Validated model - Amy Lindsay 03/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

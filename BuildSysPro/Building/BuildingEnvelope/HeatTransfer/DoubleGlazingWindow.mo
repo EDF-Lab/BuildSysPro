@@ -13,34 +13,38 @@ parameter Boolean useOuverture=false    annotation(Dialog(group="Options",compac
         "With calculation of natural lighting",                                                             choice=false
         "Without calculation of natural lighting",                                                                                                  radioButtons=true));
 
-parameter Modelica.SIunits.CoefficientOfHeatTransfer U
-    "Thermal conductivity of the glazing" annotation(Dialog(group="Manufacturer data"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer U
+    "Thermal conductivity of the glazing"
+    annotation (Dialog(group="Manufacturer data"));
 parameter Real tau "Coefficient of energy transmission" annotation(Dialog(group="Manufacturer data"));
 parameter Real g "Solar factor" annotation(Dialog(group="Manufacturer data"));
 
 parameter Real eps=0.9 "Glazing emittance in LWR" annotation(Dialog(group="Manufacturer data"));
-parameter Modelica.SIunits.Area S=1 "Glazed surface";
-parameter Modelica.SIunits.Length H=1 "Height of the glazing";
-  parameter Modelica.SIunits.Length L=1 "Width of the glazing" annotation(Dialog(enable=useEclairement));
-parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl=90
+  parameter Modelica.Units.SI.Area S=1 "Glazed surface";
+  parameter Modelica.Units.SI.Length H=1 "Height of the glazing";
+  parameter Modelica.Units.SI.Length L=1 "Width of the glazing"
+    annotation (Dialog(enable=useEclairement));
+  parameter Modelica.Units.NonSI.Angle_deg incl=90
     "Tilt of the surface relative to the horizontal - toward the ground=180°, toward the sky=0°, vertical=90°";
 
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext=21
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext=21
     "Global or convective surface exchange coefficient on the outer face depending on the selected mode (GLOext)";
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int=8.29
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_int=8.29
     "Surface exchange coefficient on the inner face";
-parameter Modelica.SIunits.ThermalInsulance R_volet=0.2
-    "Additional thermal resistance (shutters closed))" annotation(Dialog(enable=useVolet));
+  parameter Modelica.Units.SI.ThermalInsulance R_volet=0.2
+    "Additional thermal resistance (shutters closed))"
+    annotation (Dialog(enable=useVolet));
 
 //// FenetreRad model parameters calculated
 protected
-parameter Modelica.SIunits.CoefficientOfHeatTransfer k=1/(1/U-1/heEN673-1/hi)
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer k=1/(1/U - 1/heEN673 -
+      1/hi)
     "Surface transmission coefficient k of the glazing - without convective exchanges";
-parameter Modelica.SIunits.CoefficientOfHeatTransfer heEN673=25
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer heEN673=25
     "Coefficient of global surface exchange on the outer face used to measure the glazing properties in EN 673 standard (determination of U)";
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer heEN410=23
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer heEN410=23
     "Coefficient of global surface exchange on the outer face used to measure the glazing properties in EN 410 standard (Luminous and solar characteristics of glazing)";
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hi=7.7
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hi=7.7
     "Coefficient of global surface exchange on the inner face used to measure the glazing properties (in 410 and 673)";
 
 parameter Real alpha=(g-tau)*(1/hi+1/heEN410+1/k)/(2/heEN410+1/k)
@@ -395,8 +399,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 05/2011 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

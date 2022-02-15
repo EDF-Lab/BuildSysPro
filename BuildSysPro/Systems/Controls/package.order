@@ -1,3 +1,4 @@
+PrescribedFilteredTemperature
 PIDFixed
 PIDDualMode
 PIDFixedDualMode
@@ -5,5 +6,8 @@ PIDPrescribedSingleMode
 PIDSingleOrDualMode
 Deadband
 PBand
+WaterDesignTemperature
 PBandHysteresisSingleMode
 Switch
+ControlOutletWaterTemperature
+ControlTemperature

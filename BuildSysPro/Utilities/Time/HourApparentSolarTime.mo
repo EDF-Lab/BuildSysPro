@@ -1,16 +1,13 @@
 ﻿within BuildSysPro.Utilities.Time;
 function HourApparentSolarTime "True Solar Time between 0 and 24"
 
-  input Modelica.SIunits.Conversions.NonSIunits.Time_hour h0
-    "Universal Time (in hours) at t=0";
+  input Modelica.Units.NonSI.Time_hour h0 "Universal Time (in hours) at t=0";
   input Real t0=0 "Time in second at t=0";
   //Real d0 "Number of the day at t=0"; // replaced by t0
-  input Modelica.SIunits.Time t "Elapsed time since t=0 [s]";
+  input Modelica.Units.SI.Time t "Elapsed time since t=0 [s]";
 
-input Modelica.SIunits.Conversions.NonSIunits.Angle_deg long
-    "Longitude, in degrees [°]";
-output Modelica.SIunits.Conversions.NonSIunits.Time_hour tsv
-    "True Solar Time, in hours [h]";
+  input Modelica.Units.NonSI.Angle_deg long "Longitude, in degrees [°]";
+  output Modelica.Units.NonSI.Time_hour tsv "True Solar Time, in hours [h]";
 
 protected
           constant Real omega=2*Modelica.Constants.pi/365.25;
@@ -35,8 +32,8 @@ algorithm
 <p>Validated function</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>",

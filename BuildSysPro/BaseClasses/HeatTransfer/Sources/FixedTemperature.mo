@@ -1,6 +1,6 @@
 ﻿within BuildSysPro.BaseClasses.HeatTransfer.Sources;
 model FixedTemperature "Fixed temperature boundary condition in Kelvin"
-  parameter Modelica.SIunits.Temperature T "Fixed temperature";
+  parameter Modelica.Units.SI.Temperature T "Fixed temperature";
 
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b port
                              annotation (Placement(transformation(
@@ -47,8 +47,8 @@ equation
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Sources.FixedTemperature\">FixedTemperature</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>
 </html>",

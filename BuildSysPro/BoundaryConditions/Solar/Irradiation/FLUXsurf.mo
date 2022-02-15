@@ -1,9 +1,9 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
 model FLUXsurf "Calculation of irradiance on a particular surface"
 
-parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg azimut
+  parameter Modelica.Units.NonSI.Angle_deg azimut
     "Surface azimuth (Orientation relative to the south) - S=0°, E=-90°, W=90°, N=180°";
-parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg incl
+  parameter Modelica.Units.NonSI.Angle_deg incl
     "Surface tilt - downwards = 180° skyward = 0°, vertical = 90°";
     parameter Boolean use_Albedo_in=false "Variable Albedo "
   annotation(choices(choice=true "yes", choice=false "no (constant)",radioButtons=true));
@@ -16,12 +16,12 @@ parameter Integer diffus_isotrope=1 "Model for diffuse irradiance"
 
 // Model parameterization: selection of a specific time, of time interval for measurement of fluxes and input data fluxes
 
-Modelica.SIunits.HeatFlux DIRH;
-Modelica.SIunits.HeatFlux DIRN;
-Modelica.SIunits.HeatFlux GLOH;
-Modelica.SIunits.HeatFlux DIFH;
+  Modelica.Units.SI.HeatFlux DIRH;
+  Modelica.Units.SI.HeatFlux DIRN;
+  Modelica.Units.SI.HeatFlux GLOH;
+  Modelica.Units.SI.HeatFlux DIFH;
 
-Modelica.SIunits.HeatFlux DiffusSol
+  Modelica.Units.SI.HeatFlux DiffusSol
     "Part of the diffuse irradiance from the ground reflection";
 
 output Real sin_h;
@@ -53,7 +53,7 @@ protected
   Modelica.Blocks.Interfaces.RealInput Albedo_in_internal
     "Internal connector required in the case of conditional connection";
   constant Real d2r=Modelica.Constants.pi/180;
-  constant Modelica.SIunits.HeatFlux Isc=1367 "solar constant";
+  constant Modelica.Units.SI.HeatFlux Isc=1367 "solar constant";
   final parameter Real coef1=0.5*(1 - cos(incl*d2r));
   final parameter Real coef2=0.5*(1 + cos(incl*d2r));
   final parameter Real coef3=sin(incl*d2r/2)^3;
@@ -67,7 +67,7 @@ protected
   // For the HDKR model
   Real AI "anisotropy index";
   Real f "correction factor for the horizon irradiance";
-  Modelica.SIunits.HeatFlux I0
+  Modelica.Units.SI.HeatFlux I0
     "extraterrestrial illumination on a horizontal surface (outside the atmosphere)";
 
 algorithm
@@ -146,8 +146,8 @@ Analytical Validation (Via Excel calculations) on the model parametrization: typ
  </ul>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2018<br>
-BuildSysPro version 3.4.0<br>
+Copyright © EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

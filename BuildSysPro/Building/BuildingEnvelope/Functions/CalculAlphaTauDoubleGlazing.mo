@@ -2,13 +2,13 @@
 function CalculAlphaTauDoubleGlazing
   "Calculation of absorption and transmission coefficients of a double glazing window"
 
-  input Modelica.SIunits.CoefficientOfHeatTransfer Uw
+  input Modelica.Units.SI.CoefficientOfHeatTransfer Uw
     "Heat transfert coefficient of the window";
   input Real g "Solar factor of the window [between 0 and 1]";
   input Real tau0 "Coefficient of energy transmission [between 0 and 1]";
-  input Modelica.SIunits.CoefficientOfHeatTransfer Hext=21
+  input Modelica.Units.SI.CoefficientOfHeatTransfer Hext=21
     "Global surface exchange coefficient on the outer face of the window";
-  input Modelica.SIunits.CoefficientOfHeatTransfer Hint=8.29
+  input Modelica.Units.SI.CoefficientOfHeatTransfer Hint=8.29
     "Global surface exchange coefficient on the inner face of the window";
   output Real alpha_dir "Direct absorption coefficient of the window";
   output Real alpha_dif "Diffuse absorption coefficient of the window";
@@ -71,8 +71,8 @@ algorithm
 <p>Validated model - Benoît Charrier 02/2016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Benoît CHARRIER, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

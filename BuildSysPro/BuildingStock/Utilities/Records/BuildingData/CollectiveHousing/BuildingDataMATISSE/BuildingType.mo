@@ -46,24 +46,34 @@ record BuildingType "List of Matisse collective housing construction dates"
     "Emissivity of exterior walls for long wavelength radiation"                     annotation(Dialog(tab="Walls",group="Exterior walls"));
 
   // Global exchange coefficients (convective and radiative)
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hsExtVert=25
-    "Surface exchange coefficient on the outer face of vertical walls"                annotation(Dialog(tab="Thermal flows",group="Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hsIntVert = 7.69
-    "Surface exchange coefficient on the inner face of vertical walls"                annotation(Dialog(tab="Thermal flows",group="Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hsExtHor=25
-    "Surface exchange coefficient on the outer face of horizontal walls"                annotation(Dialog(tab="Thermal flows",group="Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hsIntHorHaut=10
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hsExtVert=25
+    "Surface exchange coefficient on the outer face of vertical walls"
+    annotation (Dialog(tab="Thermal flows", group=
+          "Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hsIntVert=7.69
+    "Surface exchange coefficient on the inner face of vertical walls"
+    annotation (Dialog(tab="Thermal flows", group=
+          "Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hsExtHor=25
+    "Surface exchange coefficient on the outer face of horizontal walls"
+    annotation (Dialog(tab="Thermal flows", group=
+          "Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hsIntHorHaut=10
     "Surface exchange coefficient on the inner face of horizontal walls when the thermal flow is upwards"
-                                                                                                        annotation(Dialog(tab="Thermal flows",group="Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hsIntHorBas=5.88
+    annotation (Dialog(tab="Thermal flows", group=
+          "Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hsIntHorBas=5.88
     "Surface exchange coefficient on the inner face of horizontal walls when the thermal flow is downwards"
-                                                                                                        annotation(Dialog(tab="Thermal flows",group="Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
+    annotation (Dialog(tab="Thermal flows", group=
+          "Surface exchange coefficients (Warning : take care to consider or not long wavelength radiation exchanges according to GLOEXT parameter)"));
 
 // Glazings
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UvitrageAF
-    "Coefficient of heat transfert of the window with closing (conduction+convection)"     annotation (Dialog(tab="Windows"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UvitrageSF
-    "Coefficient of heat transfert of the window without closing (conduction+convection)"  annotation (Dialog(tab="Windows"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer UvitrageAF
+    "Coefficient of heat transfert of the window with closing (conduction+convection)"
+    annotation (Dialog(tab="Windows"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer UvitrageSF
+    "Coefficient of heat transfert of the window without closing (conduction+convection)"
+    annotation (Dialog(tab="Windows"));
 
   // Description of windows or French windows
   parameter Real transmissionMenuiserieFenetres=(1-0.3)*0.9
@@ -113,15 +123,35 @@ record BuildingType "List of Matisse collective housing construction dates"
 <p>Site of the building stock library</p>
 <p>Note H-E10-1996-02908-FR</p>
 <p><u><b>Instructions for use</b></u></p>
-<p>none</p>
+<p>Detail of thermal bridge vectors :</p>
+<ul>
+<li>TauPonts[1] and ValeursK[1] : exterior wall / common wall</li>
+<li>TauPonts[2] and ValeursK[2] : unheated room wall / common wall</li>
+<li>TauPonts[3] and ValeursK[3] : exterior wall / intermediate floor</li>
+<li>TauPonts[4] and ValeursK[4] : exterior wall / intermediate ceiling</li>
+<li>TauPonts[5] and ValeursK[5] : unheated room wall / intermediate floor</li>
+<li>TauPonts[6] and ValeursK[6] : unheated room wall / intermediate ceiling</li>
+<li>TauPonts[7] and ValeursK[7] : door</li>
+<li>TauPonts[8] and ValeursK[8] : windows</li>
+</ul>
+<ul>
+<li>TauPontsPlancher[1] and ValeursKPlancher[1] : intermediate floor / exterior wall of basement</li>
+<li>TauPontsPlancher[2] and ValeursKPlancher[2] : intermediate floor / unheated room wall of basement</li>
+<li>TauPontsPlancher[3] and ValeursKPlancher[3] : intermediate floor / common wall of basement</li>
+</ul>
+<ul>
+<li>TauPontsPlafond[1] and ValeursKPlafond[1] : intermediate ceiling / exterior wall of ceiling</li>
+<li>TauPontsPlafond[2] and ValeursKPlafond[2] : intermediate ceiling / unheated room wall of ceiling</li>
+<li>TauPontsPlafond[3] and ValeursKPlafond[3] : intermediate ceiling / common wall of ceiling</li>
+</ul>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>none</p>
 <p><u><b>Validations</b></u></p>
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",

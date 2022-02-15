@@ -29,6 +29,9 @@ Denis Covalet, EDF R&amp;D, France
 Stéphanie Froidurot, EDF R&amp;D, France
 </li>
 <li>
+Kods Grissa Nacib, EDF R&amp;D, France
+</li>
+<li>
 Bénédicte Wall-Ribot, EDF R&amp;D, France
 </li></ul></p>
 <p>
@@ -97,8 +100,8 @@ Alberto Tejeda, EDF R&amp;D, France
 </ul></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

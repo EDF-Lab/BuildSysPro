@@ -8,9 +8,9 @@ model HPHeatingAir2Air
                 choice=2 "Expert: 3 operating points"));
 
 // Parameterization based on the HP default template : Choice 1
-  parameter Modelica.SIunits.Power Qnom=1380.87
+  parameter Modelica.Units.SI.Power Qnom=1380.87
     "Nominal heating power in Enom temperature conditions"
-    annotation (Dialog(enable=(Choix==1), group="Parameterization choice 1"));
+    annotation (Dialog(enable=(Choix == 1), group="Parameterization choice 1"));
   parameter Real COPnom=4.18468
     "Nominal coefficient of performance in Enom temperature conditions"
     annotation (Dialog(enable=(Choix==1), group="Parameterization choice 1"));
@@ -27,21 +27,21 @@ model HPHeatingAir2Air
     annotation (Dialog(enable=(Choix==2), group="Parameterization choice 2"));
 
 // Other parameters common to the different choices
-  parameter Modelica.SIunits.Power QfanextRat=0
+  parameter Modelica.Units.SI.Power QfanextRat=0
     "Outdoor fan power, if QfanextRat included in Qa then choose 0"
     annotation (Dialog(group="Other parameters"));
   parameter Real Cdegi=0.9
     "Degradation coefficient due to icing: 10% of the defrosting time below 2°C"
     annotation (Dialog(group="Other parameters"));
-  parameter Modelica.SIunits.Time TauOn=120
+  parameter Modelica.Units.SI.Time TauOn=120
     "Switch-on time constant [GAR 2002]"
     annotation (Dialog(group="Other parameters"));
   parameter Real alpha=0.01
     "Percentage of standby power (Eco Design Draft report of Task 4: 1, 2 or 3% according to Henderson2000 work)"
     annotation (Dialog(group="Other parameters"));
-  parameter Modelica.SIunits.Time dtminOn=360 "Minimum operating time"
+  parameter Modelica.Units.SI.Time dtminOn=360 "Minimum operating time"
     annotation (Dialog(group="Other parameters"));
-  parameter Modelica.SIunits.Time dtminOff=360
+  parameter Modelica.Units.SI.Time dtminOff=360
     "Minimum stop time before restarting"
     annotation (Dialog(group="Other parameters"));
 
@@ -56,24 +56,25 @@ protected
   Real D1;
   Real C2;
   Real C1;
-  Modelica.SIunits.Power QcRat "Nominal heating output power";
-  Modelica.SIunits.Power QaRatC
+  Modelica.Units.SI.Power QcRat "Nominal heating output power";
+  Modelica.Units.SI.Power QaRatC
     "Nominal compressor power demand in heating mode";
-  Modelica.SIunits.Temperature TextRatC = if Choix==1 then 280.15 else Enom[1]+273.15
-    "Nominal temperature of outside air in heating mode";
-  Modelica.SIunits.Temperature TintRatC = if Choix==1 then 293.15 else Enom[2]+273.15
+  Modelica.Units.SI.Temperature TextRatC=if Choix == 1 then 280.15 else Enom[1]
+       + 273.15 "Nominal temperature of outside air in heating mode";
+  Modelica.Units.SI.Temperature TintRatC=if Choix == 1 then 293.15 else Enom[2]
+       + 273.15
     "ominal temperature of air at the indoor unit output in heating mode";
-  Modelica.SIunits.Power Qcflssdegi "Without defrosting";
-  Modelica.SIunits.Power Qcfl
+  Modelica.Units.SI.Power Qcflssdegi "Without defrosting";
+  Modelica.Units.SI.Power Qcfl
     "Heating power supplied at full load at no nominal temperature";
-  Modelica.SIunits.Power Qafl
+  Modelica.Units.SI.Power Qafl
     "Nominal compressor power demand at full load at no-nominal temperature";
   Real Dt;
   Boolean w;
-  Modelica.SIunits.Time tOn;
-  Modelica.SIunits.Time dtOn;
-  Modelica.SIunits.Time tOff;
-  Modelica.SIunits.Time dtOff;
+  Modelica.Units.SI.Time tOn;
+  Modelica.Units.SI.Time dtOn;
+  Modelica.Units.SI.Time tOff;
+  Modelica.Units.SI.Time dtOff;
 
 public
   Modelica.Blocks.Interfaces.RealOutput Qfour "Supplied heating power (W)"
@@ -213,8 +214,8 @@ all-or-none, variable"),
 <p>Validated model with TIL - Hubert Blervaque, Sila Filfli 05/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

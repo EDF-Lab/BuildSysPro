@@ -5,7 +5,7 @@ model ExtConvection
 parameter Real a;
 parameter Real n;
 parameter Real b;
-parameter Modelica.SIunits.Area S;
+  parameter Modelica.Units.SI.Area S;
 
   Modelica.Blocks.Interfaces.RealInput v "Wind speed [m/s]"
                                          annotation (Placement(transformation(
@@ -36,8 +36,8 @@ equation
 <p>Validated model - EAB 04/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

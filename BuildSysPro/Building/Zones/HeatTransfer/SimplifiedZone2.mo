@@ -4,52 +4,62 @@ model SimplifiedZone2
 
 // General properties
 parameter Integer NbNiveaux "Number of floors, minimum = 1" annotation(Dialog(group="Global parameters"));
-parameter Modelica.SIunits.Volume Vair=240 "Air volume" annotation(Dialog(group="Global parameters"));
-parameter Modelica.SIunits.Area SH=100 "Living surface area" annotation(Dialog(group="Global parameters"));
+  parameter Modelica.Units.SI.Volume Vair=240 "Air volume"
+    annotation (Dialog(group="Global parameters"));
+  parameter Modelica.Units.SI.Area SH=100 "Living surface area"
+    annotation (Dialog(group="Global parameters"));
     parameter Real renouv "Ventilation and/or infiltration flow [vol/h]" annotation(Dialog(group="Global parameters"));
-  parameter Modelica.SIunits.ThermalConductance
-    Psi_L "Thermal bridge coefficient" annotation(Dialog(group="Global parameters"));
+  parameter Modelica.Units.SI.ThermalConductance Psi_L
+    "Thermal bridge coefficient" annotation (Dialog(group="Global parameters"));
 
 // Glazing parameters
-parameter Modelica.SIunits.Area SurfaceVitree "Total glazed surface"
-                                 annotation(Dialog(group="Glazing"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer       U=1
-    "Glazing deperditive coefficient" annotation(Dialog(group="Glazing"));
+  parameter Modelica.Units.SI.Area SurfaceVitree "Total glazed surface"
+    annotation (Dialog(group="Glazing"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer U=1
+    "Glazing deperditive coefficient" annotation (Dialog(group="Glazing"));
 
 parameter Real AbsVitrage=0.1 "Absorptance" annotation(Dialog(group="Glazing"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_Vitrage=16.7
-    "Convective heat transfer coefficient on the outer face"                       annotation(Dialog(group="Glazing"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_Vitrage=9.1
-    "Convective heat transfer coefficient on the inner face"                       annotation(Dialog(group="Glazing"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext_Vitrage=16.7
+    "Convective heat transfer coefficient on the outer face"
+    annotation (Dialog(group="Glazing"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_int_Vitrage=9.1
+    "Convective heat transfer coefficient on the inner face"
+    annotation (Dialog(group="Glazing"));
 
 // Walls parameters
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracParoiExt
     "External walls definition"
     annotation (__Dymola_choicesAllMatching=true, Dialog(group="Walls"));
-parameter Modelica.SIunits.Area SParoiExt
-    "Deperditive surface area of vertical walls" annotation(Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_ParoiExt=25
-    "Convective heat transfer coefficient on the outer face for the vertical walls"      annotation(Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_ParoiExt=7.7
-    "Convective heat transfer coefficient on the inner face for the vertical walls"     annotation(Dialog(group="Walls"));
+  parameter Modelica.Units.SI.Area SParoiExt
+    "Deperditive surface area of vertical walls"
+    annotation (Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext_ParoiExt=25
+    "Convective heat transfer coefficient on the outer face for the vertical walls"
+    annotation (Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_int_ParoiExt=7.7
+    "Convective heat transfer coefficient on the inner face for the vertical walls"
+    annotation (Dialog(group="Walls"));
 
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracPlancher
     "Floor definition"
     annotation (__Dymola_choicesAllMatching=true, Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_inf_Plancher=25
-    "Convective heat transfer coefficient on the lower face for the floors"           annotation(Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_sup_Plancher=7.7
-    "Convective heat transfer coefficient on the upper face for the floors"         annotation(Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_inf_Plancher=25
+    "Convective heat transfer coefficient on the lower face for the floors"
+    annotation (Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_sup_Plancher=7.7
+    "Convective heat transfer coefficient on the upper face for the floors"
+    annotation (Dialog(group="Walls"));
   replaceable parameter BuildSysPro.Utilities.Records.GenericWall caracToiture
     "Roof definition"
     annotation (__Dymola_choicesAllMatching=true, Dialog(group="Walls"));
-    parameter Modelica.SIunits.Area SToiture
-    "Deperditive surface area of the roofs"
-                                         annotation(Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_ext_Toiture=25
-    "Convective heat transfer coefficient on the outer face for the roofs"          annotation(Dialog(group="Walls"));
-parameter Modelica.SIunits.CoefficientOfHeatTransfer hs_int_Toiture=7.7
-    "Convective heat transfer coefficient on the inner face for the roofs"              annotation(Dialog(group="Walls"));
+  parameter Modelica.Units.SI.Area SToiture
+    "Deperditive surface area of the roofs" annotation (Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_ext_Toiture=25
+    "Convective heat transfer coefficient on the outer face for the roofs"
+    annotation (Dialog(group="Walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hs_int_Toiture=7.7
+    "Convective heat transfer coefficient on the inner face for the roofs"
+    annotation (Dialog(group="Walls"));
 
 parameter Real b=1 "Weighting coefficient for non-heated zones"
                                                  annotation(Dialog(group="Walls"));
@@ -59,22 +69,23 @@ parameter Real alpha_ext=0.8 "Absorptance of outer walls SWR"
 parameter Real epsParois=0.9 "Outer walls emissivity in LWR" annotation(Dialog(group="Walls"));
 
 // Initialisation
-parameter Modelica.SIunits.Temperature Tinit=293.15
-    "Initialisation temperature"  annotation(Dialog(tab="Initialisation"));
+  parameter Modelica.Units.SI.Temperature Tinit=293.15
+    "Initialisation temperature" annotation (Dialog(tab="Initialisation"));
 
 // Internal parameters
 protected
-parameter Modelica.SIunits.CoefficientOfHeatTransfer       k=1/(1/U-1/hs_ext_Vitrage-1/hs_int_Vitrage)
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer k=1/(1/U - 1/
+      hs_ext_Vitrage - 1/hs_int_Vitrage)
     "Conductive heat transfer coefficient for the glazed surfaces";
-parameter Modelica.SIunits.Length hTotal=Vair*(NbNiveaux/SH)
+  parameter Modelica.Units.SI.Length hTotal=Vair*(NbNiveaux/SH)
     "Total building height";
-parameter Modelica.SIunits.Area Sdeper=4*hTotal*sqrt(SH/NbNiveaux)+2*Splancher
-    "Total deperditive surface area";
-parameter Modelica.SIunits.Area Swin=SurfaceVitree
+  parameter Modelica.Units.SI.Area Sdeper=4*hTotal*sqrt(SH/NbNiveaux) + 2*
+      Splancher "Total deperditive surface area";
+  parameter Modelica.Units.SI.Area Swin=SurfaceVitree
     "Total deperditive surface area of glazed surface";
-parameter Modelica.SIunits.Area Sop=Sdeper-Swin
+  parameter Modelica.Units.SI.Area Sop=Sdeper - Swin
     "Total deperditive surface area of opaque walls";
-parameter Modelica.SIunits.Area Splancher=SH/NbNiveaux
+  parameter Modelica.Units.SI.Area Splancher=SH/NbNiveaux
     "Total deperditive surface area of the lowest floor";
 
 // Internal components
@@ -447,8 +458,8 @@ equation
 <p>Validated model - Gilles Plessis, Hassan Bouia 07/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -8,24 +8,34 @@ model WaterTank
   parameter Integer ncSol=2 "Layer number of the solar power injection"
                                                                      annotation (Dialog(tab="Tank parameters"));
 
-  parameter Modelica.SIunits.Volume Volume(displayUnit="l")=0.3 "Tank capacity"  annotation (Dialog(group="Thermodynamic tank characteristics"));
-  parameter Modelica.SIunits.Length Hauteur=1.8 "Tank height"  annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
-  parameter Modelica.SIunits.Power Pmax=1500 "Electrical resistance power"   annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Modelica.Units.SI.Volume Volume(displayUnit="l") = 0.3
+    "Tank capacity"
+    annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Modelica.Units.SI.Length Hauteur=1.8 "Tank height"
+    annotation (Dialog(group="Caractéristiques du ballon thermodynamique"));
+  parameter Modelica.Units.SI.Power Pmax=1500 "Electrical resistance power"
+    annotation (Dialog(group="Thermodynamic tank characteristics"));
   parameter Boolean type_T_cold=false "Prescribed or fixed cold water temperature"   annotation(Evaluate=true,HideResult=true,Dialog(group="Thermodynamic tank characteristics"),choices(choice=true
         "Prescribed",                                                                       choice=false "Fixed",   radioButtons=true));
-  parameter Modelica.SIunits.Temperature T_cold_fixed=283.15 "Cold water temperature"     annotation (Dialog(group="Thermodynamic tank characteristics",enable=not type_T_cold));
-  parameter Modelica.SIunits.Temperature T_sp=337.15 "Setpoint temperature"  annotation (Dialog(group="Thermodynamic tank characteristics"));
+  parameter Modelica.Units.SI.Temperature T_cold_fixed=283.15
+    "Cold water temperature" annotation (Dialog(group=
+          "Thermodynamic tank characteristics", enable=not type_T_cold));
+  parameter Modelica.Units.SI.Temperature T_sp=337.15 "Setpoint temperature"
+    annotation (Dialog(group="Thermodynamic tank characteristics"));
 
-  parameter Modelica.SIunits.TemperatureDifference BP=3
-    "Hysteresis on both sides of T_sp"                                                     annotation (Dialog(tab="Tank parameters"));
+  parameter Modelica.Units.SI.TemperatureDifference BP=3
+    "Hysteresis on both sides of T_sp"
+    annotation (Dialog(tab="Tank parameters"));
 
-  parameter Modelica.SIunits.ThermalConductivity lambda=0.62
-    "Water conductivity"                                                          annotation (Dialog(tab="Tank parameters"));
-  parameter Modelica.SIunits.Density rho=1000 "Water density" annotation (Dialog(tab="Tank parameters"));
-  parameter Modelica.SIunits.SpecificHeatCapacity cp=4185
-    "Water specific heat capacity"                                                       annotation (Dialog(tab="Tank parameters"));
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer U=1
-    "Transmission coefficient of the tank"                                                               annotation (Dialog(tab="Tank parameters"));
+  parameter Modelica.Units.SI.ThermalConductivity lambda=0.62
+    "Water conductivity" annotation (Dialog(tab="Tank parameters"));
+  parameter Modelica.Units.SI.Density rho=1000 "Water density"
+    annotation (Dialog(tab="Tank parameters"));
+  parameter Modelica.Units.SI.SpecificHeatCapacity cp=4185
+    "Water specific heat capacity" annotation (Dialog(tab="Tank parameters"));
+  parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer U=1
+    "Transmission coefficient of the tank"
+    annotation (Dialog(tab="Tank parameters"));
   parameter Real ku=1.5e6 "Higher convection coefficient" annotation (Dialog(tab="Tank parameters"));
   parameter Real kd=10 "Higher convection coefficient" annotation (Dialog(tab="Tank parameters"));
 
@@ -38,10 +48,10 @@ model WaterTank
 
 protected
   Modelica.Blocks.Interfaces.RealInput T_cold_internal "Internal connector for optional configuration";
-  Modelica.SIunits.Temperature T[nc](start=fill(T_sp,nc));
-  Modelica.SIunits.Power puis[nc](start=fill(0,nc));
-  Modelica.SIunits.Power perte[nc](start=fill(0,nc));
-   Modelica.SIunits.Energy Conso;
+  Modelica.Units.SI.Temperature T[nc](start=fill(T_sp, nc));
+  Modelica.Units.SI.Power puis[nc](start=fill(0, nc));
+  Modelica.Units.SI.Power perte[nc](start=fill(0, nc));
+  Modelica.Units.SI.Energy Conso;
   Real diametre=sqrt(4*Volume/(pi*Hauteur));
   Real dz=Hauteur/nc;
   //Integer ncInj=integer(hInj/dz)+1;
@@ -238,8 +248,8 @@ equation
 <p>Validated model - Hubert Blervaque, Hassan Bouia 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hubert BLERVAQUE, Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

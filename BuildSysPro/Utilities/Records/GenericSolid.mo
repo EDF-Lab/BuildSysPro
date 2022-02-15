@@ -1,9 +1,9 @@
 within BuildSysPro.Utilities.Records;
 record GenericSolid "Generic structure for solid materials"
 
- Modelica.SIunits.ThermalConductivity lambda "Heat conductivity";
- Modelica.SIunits.Density rho "Density";
- Modelica.SIunits.SpecificHeatCapacity c "Specific heat capacity";
+  Modelica.Units.SI.ThermalConductivity lambda "Heat conductivity";
+  Modelica.Units.SI.Density rho "Density";
+  Modelica.Units.SI.SpecificHeatCapacity c "Specific heat capacity";
 
   annotation (Icon(graphics={
         Rectangle(
@@ -48,8 +48,8 @@ record GenericSolid "Generic structure for solid materials"
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 --------------------------------------------------------------</b></p>
 </html>"));

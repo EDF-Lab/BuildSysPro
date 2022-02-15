@@ -26,9 +26,9 @@ model CombiTimeTable
   annotation(Dialog(group="table data interpretation"));
   parameter Real offset[:]={0} "Offsets of output signals"
   annotation(Dialog(group="table data interpretation"));
-  parameter Modelica.SIunits.Time startTime=0
+  parameter Modelica.Units.SI.Time startTime=0
     "Output = offset for time < startTime"
-  annotation(Dialog(group="table data interpretation"));
+    annotation (Dialog(group="table data interpretation"));
   extends Modelica.Blocks.Interfaces.MO(final nout=max([size(columns, 1); size(offset, 1)]));
   final parameter Real t_min(fixed=false)
     "Minimum abscissa value defined in table";
@@ -165,8 +165,8 @@ initial equation
 
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : EDF<br>
 Initial model : <a href=\"Modelica.Blocks.Sources.CombiTimeTable\">CombiTimeTable</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p>

@@ -1,9 +1,8 @@
 ﻿within BuildSysPro.Utilities.Time;
 function ApparentSolarTime "Real Solar Time (RST)"
   input Real t0=0 "Time in seconds at t=0";
-  input Modelica.SIunits.Time t "Universal Time in seconds";
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitude
-    "Longitude in degrees";
+  input Modelica.Units.SI.Time t "Universal Time in seconds";
+  input Modelica.Units.NonSI.Angle_deg longitude "Longitude in degrees";
   output Real TSV "Real Solar Time in hrs (RST = UT + longitude/15 - TM)";
 algorithm
   TSV :=(t + t0)/3600 + longitude/15 -
@@ -29,8 +28,8 @@ algorithm
 <p>Validated function - Hassan BOUIA 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

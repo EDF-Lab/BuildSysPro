@@ -1,7 +1,7 @@
 ﻿within BuildSysPro.Systems.HVAC.Emission.Radiator;
 model Radiator_EN442 "Radiator model based on the EN442 standard"
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
   extends
     BuildSysPro.Systems.HVAC.Emission.Radiator.Components.CharacteristicEquation;
 
@@ -196,8 +196,8 @@ equation
 <p>Simple validation based on operating point - Gilles Plessis 01/2016 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Gilles PLESSIS, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

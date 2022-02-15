@@ -1,7 +1,7 @@
 within BuildSysPro.Systems.Distribution;
 model DistributionPipe "Modelization of a hot/cold distribution system"
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
   parameter Integer Choix=1  annotation(Dialog(group="Choice of calculation method"), choices(choice=1
         "Characteristics of pipe known",    choice=2
@@ -16,8 +16,9 @@ model DistributionPipe "Modelization of a hot/cold distribution system"
     "Thermal capacity of heat transfer fluid" annotation(Dialog(enable=(Choix==1), group="Choice 1 : Characteristics of pipe known"));
   parameter Real Rpnre= 0.8 "Ratio of non recoverable thermal losses"
                                                      annotation(Dialog(enable=(Choix==2), group="Choice 2 : Estimation by boiler power"));
-  parameter Modelica.SIunits.Power QfouNom=8000
-    "Rated power supplied by the production system (boiler)" annotation(Dialog(enable=(Choix==2), group="Choice 2 : Estimation by boiler power"));
+  parameter Modelica.Units.SI.Power QfouNom=8000
+    "Rated power supplied by the production system (boiler)" annotation (Dialog(
+        enable=(Choix == 2), group="Choice 2 : Estimation by boiler power"));
   parameter Real Cperte=0.025 "Default losses evaluated at 2.5% of QfouNom"
                                                   annotation(Dialog(enable=(Choix==2), group="Choice 2 : Estimation by boiler power"));
 
@@ -93,8 +94,8 @@ end if;
 <p>Validated model - Hubert Blervaque, Sila Filfli 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p></html>",
     revisions="<html>

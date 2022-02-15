@@ -11,7 +11,7 @@ model ScenarioAliquote
     annotation (Placement(transformation(extent={{-100,14},{-64,34}})));
   Modelica.Blocks.Sources.RealExpression Heure(y=integer(mod(time/3600, 24)))
     annotation (Placement(transformation(extent={{-100,50},{-64,68}})));
-  Modelica.Blocks.Tables.CombiTable2D Valeur(
+  Modelica.Blocks.Tables.CombiTable2Ds Valeur(
     tableOnFile=true,
     tableName="data",
     fileName=fileNameTable)
@@ -196,8 +196,8 @@ equation
 <p>Validated model - Hassan Bouia 03/2014</p>  
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2020<br>
-BuildSysPro version 3.4.0<br>
+Copyright &copy; EDF 2009 - 2021<br>
+BuildSysPro version 3.5.0<br>
 Author : Hassan BOUIA, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));
