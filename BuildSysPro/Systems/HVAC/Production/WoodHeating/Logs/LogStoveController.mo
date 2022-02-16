@@ -117,16 +117,21 @@ end if;
     DymolaStoredErrors,
     Documentation(info="<html>
 <p>PB50 LOG STOVE's REGULATOR</p>
-<p><u><b>Description</b></u></p>
-<p>Système de régulation (représentatif par exemple de charges manuelles successives de bûches) d'un poêle</p>
-<p><u><b>Modèle</b></u></p>
-<p>Le modèle se connecte sur  le modèle de PoeleSansRegulation</p>
-<p><br>This model's purpose is to be part of the PB50 model</p>
+<p>Regulation system(representative for exemple of successive manual loads of logs) of a stove</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The model connects to the stove without regulatuion </p>
+<p>This model's purpose is to be part of the PB50 model</p>
 <p>Tthe control is done according to the informations given by the user</p>
 <p>The user can decide to use a &quot;forced going&quot; mode when he's in the house</p>
 <p>The two outputs are the time of the start phase and the combustion rate</p>
-<p>This model has been developped by EIFER Institute in 09/2011</p>
-<p>Modèle détaillé dans la note : H-E14-2011-01955-FR</p>
+<p><u><b>Bibliography</b></u></p>
+<p>detailled model is the note :H-E14-2011-01955-FR</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - EIFER 09/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2021<br>

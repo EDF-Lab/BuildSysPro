@@ -549,15 +549,18 @@ end if;
           color={0,0,255},
           smooth=Smooth.None)}),
     Documentation(info="<html>
-<p><u><b>Description</b></u></p>
-<p>Poêle à bûches (par défaut 3,6 kg)</p>
-<p><u><b>Modèle</b></u></p>
-<p>Le modèle se connecte directement sur le noeud d'air du local chauffé. Il provient de différents travaux réalisés entre EDF R&amp;D et EIFER sur les effets de combustion de bois. </p>
-<p><br>The purpose of this model is to be part of the PB50 model</p>
-<p>This model is based on combustion's properties of wood log</p>
-<p>This model has been developped by EIFER in 07/2011</p>
-<p>Modèle détaillé dans la note : H-E14-2011-01955-FR</p>
-<p>Modèle validé - Hubert Blervaque 07/2011</p>
+<p>Log stove (by default 3,6 kg)</p>
+<p><u><b>Hypothesis and equations</b></u></p>
+<p>The model connects directly to the air node of the heated room. </p>
+<p><u><b>Bibliography</b></u></p>
+<p>detailled model is the note :H-E14-2011-01955-FR</p>
+<p><u><b>Instructions for use</b></u></p>
+<p>none</p>
+<p><u><b>Known limits / Use precautions</b></u></p>
+<p>none</p>
+<p><u><b>Validations</b></u></p>
+<p>Validated model - EIFER 07/2011</p>
+
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2021<br>
