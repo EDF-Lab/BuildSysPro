@@ -2,18 +2,18 @@
 *BuildSysPro open source* is [EDF](https://www.edf.fr/en/the-edf-group/who-we-are/activities/research-and-development)'s Modelica library for buildings, districts and energy systems modelling. This is BuildSysPro's official repository.
 
 ### Release updates
-Current release is version 3.4.0.
+Current release is version 3.5.0.
 
 This release provides :
-- Correction of surface exchange coefficient on walls: standardization of all the record with values in agreement with ISO6946
-- Correction of the number of layers in the wall data: discretisation using Martin’s method.
-- Adding internal doors on the Mozart buildings (monozone and multizone).
-- Adding internal doors on the Matisse apartment (monozone and multizone).
+
+- Migration from Modelica version 3.2.3 to 4.0.0.
+- Correction of models following the BuildSysPro and OpenModelica compatibility study.
+- Adding new models.
 - other minor error corrections
 
-EDF is part of [IBPSA Project 1](https://ibpsa.github.io/project1/), and the [IBPSA library](https://github.com/ibpsa/modelica-ibpsa) is now integrated to BuildSysPro open source 3.4.0.
+EDF is part of [IBPSA Project 1](https://ibpsa.github.io/project1/), and the [IBPSA library](https://github.com/ibpsa/modelica-ibpsa) is now integrated to BuildSysPro open source 3.5.0.
 
-BuildSysPro open source 3.4.0 is compatible with OpenModelica 1.9.3. When working with OpenModelica, specify your initial conditions carefully and use preferably Dassl, Euler or Runge-Kutta solvers.
+BuildSysPro open source 3.5.0 is compatible with OpenModelica 1.17.0. When working with OpenModelica, specify your initial conditions carefully and use preferably Dassl, Euler or Runge-Kutta solvers.
 
 ### License
 The BuildSysPro open source library is licensed by EDF under the [3-Clause BSD-License](https://opensource.org/licenses/BSD-3-Clause).
