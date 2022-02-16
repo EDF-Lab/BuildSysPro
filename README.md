@@ -8,7 +8,32 @@ This release provides :
 
 - Migration from Modelica version 3.2.3 to 4.0.0.
 - Correction of models following the BuildSysPro and OpenModelica compatibility study.
-- Adding new models.
+- Adding new  building models: 
+      - Simple air renewal model for a single zone with variable air properties, 
+      - Enthalpy transfer through a door, Ventilation model with default values from 3CL DPE v1.3 method, 
+      - Records allows to save the parameters needed to calculate the ventilation flow using 3CL-DPE method.
+- Adding new  system models: 
+      - On/Off control model for a heat generator, 
+      - according to the hydraulic circuit temperature, 
+      - Generic model of air temperature control based on a PID model,
+      - Wood Stove (BuildSysPro.Systems.HVAC.Production.WoodHeating)
+      - models of heatpumps with its components,
+      - A solar warter heater model,
+      - Solar wall models
+      - Storage : Lithium-Ion Battery;
+      - Distribution systems : HydraulicPipe, ThreeWayValveFlow, fan.
+- Adding new boundary conditions:
+     -    Weather : Cold water temperature reader,
+     -    Scenarios: occupancy schedule.
+- Adding new building stock models:
+    - GV calculation of BuildingR2,
+    - GenericFloor model,
+    - BuildingR2 model,
+    - Building date, assembly and settings of collective housing: Gaugun, Picasso and unheated room,
+    - Collective housing building  R+2 of 9 apartements and R+5 of 34 apartements.
+- Adding new utilities models:
+    - Description of the battery characteristics with different configurations,
+    - Cases of DHW analysis (Detect change in a signal value, Domestic hot water drawing queue, Measure of cold discomfort of DHW temperature relative to the setpoint).
 - other minor error corrections
 
 EDF is part of [IBPSA Project 1](https://ibpsa.github.io/project1/), and the [IBPSA library](https://github.com/ibpsa/modelica-ibpsa) is now integrated to BuildSysPro open source 3.5.0.
