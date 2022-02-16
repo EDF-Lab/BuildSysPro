@@ -13,11 +13,10 @@ This release provides :
      -  Enthalpy transfer through a door, Ventilation model with default values from 3CL DPE v1.3 method, 
      -  Records allows to save the parameters needed to calculate the ventilation flow using 3CL-DPE method.
 - Adding new  system models: 
-     -   On/Off control model for a heat generator, 
-     -  according to the hydraulic circuit temperature, 
+     -  On/Off control model for a heat generator, according to the hydraulic circuit temperature, 
      -  Generic model of air temperature control based on a PID model,
      -  Wood Stove (BuildSysPro.Systems.HVAC.Production.WoodHeating)
-     -  models of heatpumps with its components,
+     -  Models of heatpumps with its components,
      -  A solar warter heater model,
      -  Solar wall models
      -  Storage : Lithium-Ion Battery;
