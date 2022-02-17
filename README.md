@@ -10,15 +10,16 @@ This release provides :
 - Correction of models following the BuildSysPro and OpenModelica compatibility study.
 - Adding new  building models: 
      -  Simple air renewal model for a single zone with variable air properties, 
-     -  Enthalpy transfer through a door, Ventilation model with default values from 3CL DPE v1.3 method, 
+     -  Enthalpy transfer through a door, 
+     -  Ventilation model with default values from 3CL DPE v1.3 method, 
      -  Records allows to save the parameters needed to calculate the ventilation flow using 3CL-DPE method.
 - Adding new  system models: 
      -  On/Off control model for a heat generator, according to the hydraulic circuit temperature, 
      -  Generic model of air temperature control based on a PID model,
-     -  Wood Stove (BuildSysPro.Systems.HVAC.Production.WoodHeating)
+     -  Wood Stove,
      -  Models of heatpumps with its components,
      -  A solar warter heater model,
-     -  Solar wall models
+     -  Solar wall models,
      -  Storage : Lithium-Ion Battery;
      -  Distribution systems : HydraulicPipe, ThreeWayValveFlow, fan.
 - Adding new boundary conditions:
