@@ -18,7 +18,7 @@ This release provides :
      -  Generic model of air temperature control based on a PID model,
      -  Wood Stove,
      -  Models of heatpumps with its components,
-     -  A solar warter heater model,
+     -  A solar water heater model,
      -  Solar wall models,
      -  Storage : Lithium-Ion Battery;
      -  Distribution systems : HydraulicPipe, ThreeWayValveFlow, fan.
