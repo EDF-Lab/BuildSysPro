@@ -16,8 +16,8 @@ model MozartMultizoneHeatingSystem
   // Heat pump
   Modelica.Blocks.Sources.BooleanTable booleanTable(startValue = true, table = {12096000, 23673600}) annotation (
     Placement(visible = true, transformation(origin={-210,-70},    extent = {{-10, -10}, {10, 10}}, rotation = 0)));
-  BuildSysPro.Systems.HVAC.Production.HeatPump.FixedSpeed.HPHeatingAir2Water hPHeatingAir2Water
-    annotation (Placement(visible=true, transformation(
+  HPHeatingAir2Water hPHeatingAir2Water annotation (Placement(visible=true,
+        transformation(
         origin={-160,-120},
         extent={{-40,-40},{40,40}},
         rotation=0)));

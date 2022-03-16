@@ -1,5 +1,5 @@
 ﻿within BuildSysPro.BoundaryConditions.Scenarios;
-block OccupancySchedule "Occupancy schedule"
+block OccupancySchedule "Occupancy Schedule"
   extends Modelica.Blocks.Icons.Block;
 
   parameter Real occupancy[:]=3600*{7, 19}

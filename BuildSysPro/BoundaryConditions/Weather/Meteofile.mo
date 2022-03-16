@@ -209,7 +209,7 @@ equation
     GLOH = FluxMeteo[1];
     DIFH = FluxMeteo[2];
     DIRH=GLOH-DIFH;
-    DIRN=if noEvent(CosDir[1]>0) then DIRH/CosDir[1] else 0;
+    DIRN=if noEvent(CosDir[1]>0.01) then min(0.7^(1/CosDir[1])*1367.,DIRH/CosDir[1]) else 0;
   elseif CoupleFlux<2.5 then
     DIRN = FluxMeteo[1];
     DIFH = FluxMeteo[2];
@@ -219,11 +219,11 @@ equation
     DIFH = FluxMeteo[1];
     DIRH = FluxMeteo[2];
     GLOH=DIRH+DIFH;
-    DIRN=if noEvent(CosDir[1]>0) then DIRH/CosDir[1] else 0;
+    DIRN=if noEvent(CosDir[1]>0.01) then min(0.7^(1/CosDir[1])*1367.,DIRH/CosDir[1]) else 0;
   elseif CoupleFlux<4.5 then
     GLOH = FluxMeteo[1];
     DIRH = FluxMeteo[2];
-    DIRN=if noEvent(CosDir[1]>0) then DIRH/CosDir[1] else 0;
+    DIRN=if noEvent(CosDir[1]>0.01) then min(0.7^(1/CosDir[1])*1367.,DIRH/CosDir[1]) else 0;
     DIFH=GLOH-DIRH;
   else // CoupleFlux==5
     GLOH = FluxMeteo[1];

@@ -6,7 +6,7 @@ model NightVentilation
     "Indoor temperature beyong which windows are opened"
     annotation (Dialog(group="Summer comfort"));
   parameter Modelica.Units.SI.Temperature Tfermeture=293.15
-    "Indoor temperature beyong which windows are opened"
+    "Indoor temperature below which windows are closed"
     annotation (Dialog(group="Summer comfort"));
 
   parameter Modelica.Units.NonSI.Temperature_degC deltaT=1
