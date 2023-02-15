@@ -49,5 +49,5 @@ A set of [self-training documents](https://github.com/edf-enerbat/buildsyspro-do
 ### References
 1. Plessis G., Kaemmerlen A., Lindsay A. (2014) [BuildSysPro: a Modelica library for modelling buildings and energy systems](https://www.modelica.org/events/modelica2014/proceedings/html/submissions/ECP140961161_PlessisKaemmerlenLindsay.pdf). Modelica Conference 2014.
 2. Schumann M. (2015) [Vers une plate-forme de modélisation du bâtiment au quartier multiphysique avec Modelica et BuildSysPro](http://ibpsa.fr/jdownloads/Simurex/2015/Presentations/29_01_mathieuschumann.pdf) (*Towards a multiphysics modelling platform for buildings and districts with Modelica and BuildSysPro*), IBPSA France SIMUREX 2015 Conference.
-
-
+3. Bouquerel M., Bermes S., Brun A., Bouia H., Lecussan R., Charrier B. (2019) [Building Energy Modeling at District Scale through BIM Based Automatic Model Generation - Towards Building Envelope Optimization](http://www.ibpsa.org/proceedings/BS2019/BS2019_211008.pdf), Building Simulation Conference 2019.
+4. Bouquerel M., Ruben Deutz K., Charrier B., Duforestel T., Rousset M., Erich B., van Riessen G., Braun T. (2021) [Application of MyBEM, a BIM to BEM platform, to a building renovation concept with solar harvesting technologies](https://publications.ibpsa.org/proceedings/bs/2021/papers/bs2021_30153.pdf), Building Simulation Conference 2021.
