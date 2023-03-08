@@ -7,12 +7,12 @@ model PumpCurveDerivatives
   parameter Data.Pumps.Wilo.Stratos80slash1to12 per "Pump performance data"
     annotation (Placement(transformation(extent={{-120,80},{-100,100}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sou(redeclare package Medium = Medium,
-      nPorts=2) "Boundary condition with fixed pressure" annotation (
-      Placement(transformation(extent={{-120,-10},{-100,10}})));
+  IBPSA.Fluid.Sources.Boundary_pT sou(redeclare package Medium = Medium, nPorts=
+       2) "Boundary condition with fixed pressure"
+    annotation (Placement(transformation(extent={{-120,-10},{-100,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium,
-      nPorts=2) "Boundary condition with fixed pressure"
+  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium, nPorts=
+       2) "Boundary condition with fixed pressure"
     annotation (Placement(transformation(extent={{130,-10},{110,10}})));
 
   Modelica.Blocks.Sources.Ramp m_flow(
@@ -34,8 +34,8 @@ model PumpCurveDerivatives
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     per=per,
-    use_inputFilter=false) "Wilo Stratos pump" annotation (Placement(
-        transformation(extent={{-60,-50},{-40,-30}})));
+    use_inputFilter=false) "Wilo Stratos pump"
+    annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
 
   IBPSA.Fluid.Movers.FlowControlled_m_flow forcedPump1(
     redeclare package Medium = Medium,
@@ -78,8 +78,8 @@ model PumpCurveDerivatives
     "Derivative of dp for changing m_flow"
     annotation (Placement(transformation(extent={{0,-20},{20,0}})));
   IBPSA.Fluid.Sensors.RelativePressure relPre1(redeclare package Medium =
-        Medium) annotation (Placement(transformation(extent={{10,-10},{-10,
-            10}}, origin={-50,-70})));
+        Medium) annotation (Placement(transformation(extent={{10,-10},{-10,10}},
+          origin={-50,-70})));
   Modelica.Blocks.Continuous.Derivative ddp_dNrpm(
     initType=Modelica.Blocks.Types.Init.InitialState)
     "Derivative of dp for changing rpm"
@@ -142,7 +142,7 @@ equation
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Validation/PumpCurveDerivatives.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Validation/PumpCurveDerivatives.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

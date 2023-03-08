@@ -9,7 +9,6 @@ model MixingVolumeZeroFlow
     m_flow_nominal=1,
     V=1,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     allowFlowReversal=false)
     "Steady state mixing volume requiring solution of non-linear system"
     annotation (Placement(transformation(extent={{-10,-20},{10,0}})));
@@ -17,10 +16,10 @@ model MixingVolumeZeroFlow
     nPorts=1,
     redeclare package Medium = Medium,
     use_m_flow_in=true,
-    use_T_in=true) "Source" annotation (Placement(transformation(extent=
-           {{-60,-32},{-40,-12}})));
+    use_T_in=true) "Source"
+    annotation (Placement(transformation(extent={{-60,-32},{-40,-12}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(nPorts=4, redeclare package Medium =
-               Medium) "Sink"
+        Medium) "Sink"
     annotation (Placement(transformation(extent={{40,-44},{20,-24}})));
   Modelica.Blocks.Sources.Ramp ramp_m_flow(
     height=-1,
@@ -38,7 +37,7 @@ model MixingVolumeZeroFlow
     "Prescribed temperature"
     annotation (Placement(transformation(extent={{-56,34},{-44,46}})));
   Modelica.Blocks.Sources.Cosine cos1(
-    freqHz=1,
+    f=1,
     offset=283.15,
     amplitude=0.001) "Cosine input"
     annotation (Placement(transformation(extent={{-76,34},{-64,46}})));
@@ -48,7 +47,6 @@ model MixingVolumeZeroFlow
     m_flow_nominal=1,
     V=1,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     allowFlowReversal=false)
     "Steady state mixing volume with prescribed temperature input"
     annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
@@ -56,15 +54,14 @@ model MixingVolumeZeroFlow
     nPorts=1,
     redeclare package Medium = Medium,
     use_m_flow_in=true,
-    use_T_in=true) "Source" annotation (Placement(transformation(extent=
-           {{-60,-60},{-40,-40}})));
+    use_T_in=true) "Source"
+    annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume volLinSys(
     nPorts=2,
     redeclare package Medium = Medium,
     m_flow_nominal=1,
     V=1,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     allowFlowReversal=false,
     prescribedHeatFlowRate=false)
     "Steady state mixing volume requiring solution of linear system"
@@ -73,8 +70,8 @@ model MixingVolumeZeroFlow
     nPorts=1,
     redeclare package Medium = Medium,
     use_m_flow_in=true,
-    use_T_in=true) "Source" annotation (Placement(transformation(extent=
-           {{-60,-100},{-40,-80}})));
+    use_T_in=true) "Source"
+    annotation (Placement(transformation(extent={{-60,-100},{-40,-80}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalResistor theRes(R=0.001)
     "Thermal resistor for creating linear system" annotation (Placement(
         transformation(
@@ -95,7 +92,6 @@ model MixingVolumeZeroFlow
     m_flow_nominal=1,
     V=1,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     allowFlowReversal=false,
     prescribedHeatFlowRate=true)
     "Steady state mixing volume with fixed heat flow rate input"
@@ -172,7 +168,7 @@ equation
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
                     graphics={Text(
           extent={{12,30},{106,10}},
-          lineColor={28,108,200},
+          textColor={28,108,200},
           textString="<- vol.prescribedHeatFlowRate = true")}),
     experiment(
       Tolerance=1E-6, StopTime=2),
@@ -228,7 +224,6 @@ If you use Dymola, set <code>Advanced.Define.AimForHighAccuracy = false</code> t
 increase the chance of the error being produced for this simple example.
 </p>
 </html>"),
-    __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeZeroFlow.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeZeroFlow.mos"
         "Simulate and plot"));
 end MixingVolumeZeroFlow;

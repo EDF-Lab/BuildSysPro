@@ -6,17 +6,18 @@ package PropyleneGlycolWater
     replaceable function testDensity_TX_a
     "Evaluate density of antifreeze-water mixture"
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Temperature T "Temperature of antifreeze-water mixture";
-    input Modelica.SIunits.MassFraction X_a "Mass fraction of antifreeze";
-    output Modelica.SIunits.Density d "Density of antifreeze-water mixture";
+    input Modelica.Units.SI.Temperature T
+      "Temperature of antifreeze-water mixture";
+    input Modelica.Units.SI.MassFraction X_a "Mass fraction of antifreeze";
+    output Modelica.Units.SI.Density d "Density of antifreeze-water mixture";
     algorithm
     d := density_TX_a(T = T, X_a = X_a);
 
     annotation (Documentation(info="<html>
 <p>
 Function that makes
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.density_TX_a\">
-IBPSA.Media.Antifreeze.density_TX_a</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.PropyleneGlycolWater.density_TX_a\">
+IBPSA.Media.Antifreeze.PropyleneGlycolWater.density_TX_a</a>
 publicly accessible as needed for the validation model
 <a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties\">
 IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties</a>.
@@ -34,17 +35,19 @@ First implementation.
   function testDynamicViscosity_TX_a
     "Evaluate dynamic viscosity of antifreeze-water mixture"
       extends Modelica.Icons.Function;
-    input Modelica.SIunits.Temperature T "Temperature of antifreeze-water mixture";
-    input Modelica.SIunits.MassFraction X_a "Mass fraction of antifreeze";
-    output Modelica.SIunits.DynamicViscosity eta "Dynamic Viscosity of antifreeze-water mixture";
+    input Modelica.Units.SI.Temperature T
+      "Temperature of antifreeze-water mixture";
+    input Modelica.Units.SI.MassFraction X_a "Mass fraction of antifreeze";
+    output Modelica.Units.SI.DynamicViscosity eta
+      "Dynamic Viscosity of antifreeze-water mixture";
   algorithm
     eta := dynamicViscosity_TX_a(T = T, X_a = X_a);
 
     annotation (Documentation(info="<html>
 <p>
 Function that makes
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.dynamicViscosity_TX_a\">
-IBPSA.Media.Antifreeze.dynamicViscosity_TX_a</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.PropyleneGlycolWater.dynamicViscosity_TX_a\">
+IBPSA.Media.Antifreeze.PropyleneGlycolWater.dynamicViscosity_TX_a</a>
 publicly accessible as needed for the validation model
 <a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties\">
 IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties</a>.
@@ -62,17 +65,19 @@ First implementation.
   function testFusionTemperature_TX_a
     "Evaluate temperature of fusion of antifreeze-water mixture"
       extends Modelica.Icons.Function;
-    input Modelica.SIunits.Temperature T "Temperature of antifreeze-water mixture";
-    input Modelica.SIunits.MassFraction X_a "Mass fraction of antifreeze";
-    output Modelica.SIunits.Temperature Tf "Temperature of fusion of antifreeze-water mixture";
+    input Modelica.Units.SI.Temperature T
+      "Temperature of antifreeze-water mixture";
+    input Modelica.Units.SI.MassFraction X_a "Mass fraction of antifreeze";
+    output Modelica.Units.SI.Temperature Tf
+      "Temperature of fusion of antifreeze-water mixture";
   algorithm
     Tf := fusionTemperature_TX_a(T = T, X_a = X_a);
 
     annotation (Documentation(info="<html>
 <p>
 Function that makes
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.fusionTemperature_TX_a\">
-IBPSA.Media.Antifreeze.fusionTemperature_TX_a</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.PropyleneGlycolWater.fusionTemperature_TX_a\">
+IBPSA.Media.Antifreeze.PropyleneGlycolWater.fusionTemperature_TX_a</a>
 publicly accessible as needed for the validation model
 <a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties\">
 IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties</a>.
@@ -90,17 +95,19 @@ First implementation.
   function testSpecificHeatCapacityCp_TX_a
     "Evaluate specific heat capacity of antifreeze-water mixture"
       extends Modelica.Icons.Function;
-    input Modelica.SIunits.Temperature T "Temperature of antifreeze-water mixture";
-    input Modelica.SIunits.MassFraction X_a "Mass fraction of antifreeze";
-    output Modelica.SIunits.SpecificHeatCapacity cp "Specific heat capacity of antifreeze-water mixture";
+    input Modelica.Units.SI.Temperature T
+      "Temperature of antifreeze-water mixture";
+    input Modelica.Units.SI.MassFraction X_a "Mass fraction of antifreeze";
+    output Modelica.Units.SI.SpecificHeatCapacity cp
+      "Specific heat capacity of antifreeze-water mixture";
   algorithm
     cp := specificHeatCapacityCp_TX_a(T = T, X_a = X_a);
 
     annotation (Documentation(info="<html>
 <p>
 Function that makes
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.specificHeatCapacityCp_TX_a\">
-IBPSA.Media.Antifreeze.specificHeatCapacityCp_TX_a</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.PropyleneGlycolWater.specificHeatCapacityCp_TX_a\">
+IBPSA.Media.Antifreeze.PropyleneGlycolWater.specificHeatCapacityCp_TX_a</a>
 publicly accessible as needed for the validation model
 <a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties\">
 IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties</a>.
@@ -118,17 +125,19 @@ First implementation.
   function testThermalConductivity_TX_a
     "Evaluate thermal conductivity of antifreeze-water mixture"
       extends Modelica.Icons.Function;
-    input Modelica.SIunits.Temperature T "Temperature of antifreeze-water mixture";
-    input Modelica.SIunits.MassFraction X_a "Mass fraction of antifreeze";
-    output Modelica.SIunits.ThermalConductivity lambda "Thermal conductivity of antifreeze-water mixture";
+    input Modelica.Units.SI.Temperature T
+      "Temperature of antifreeze-water mixture";
+    input Modelica.Units.SI.MassFraction X_a "Mass fraction of antifreeze";
+    output Modelica.Units.SI.ThermalConductivity lambda
+      "Thermal conductivity of antifreeze-water mixture";
   algorithm
     lambda := thermalConductivity_TX_a(T = T, X_a = X_a);
 
     annotation (Documentation(info="<html>
 <p>
 Function that makes
-<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.thermalConductivity_TX_a\">
-IBPSA.Media.Antifreeze.thermalConductivity_TX_a</a>
+<a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.PropyleneGlycolWater.thermalConductivity_TX_a\">
+IBPSA.Media.Antifreeze.PropyleneGlycolWater.thermalConductivity_TX_a</a>
 publicly accessible as needed for the validation model
 <a href=\"modelica://BuildSysPro.IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties\">
 IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties</a>.

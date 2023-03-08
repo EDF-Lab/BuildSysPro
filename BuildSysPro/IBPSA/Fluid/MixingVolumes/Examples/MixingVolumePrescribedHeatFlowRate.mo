@@ -26,7 +26,6 @@ model MixingVolumePrescribedHeatFlowRate
     redeclare package Medium = Medium,
     m_flow_nominal=0.01,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     allowFlowReversal=true,
     prescribedHeatFlowRate=true)
     annotation (Placement(transformation(extent={{30,20},{50,40}})));
@@ -84,6 +83,6 @@ First implementation.
 </ul>
 </html>"),
 experiment(Tolerance=1E-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/Examples/MixingVolumePrescribedHeatFlowRate.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Examples/MixingVolumePrescribedHeatFlowRate.mos"
         "Simulate and plot"));
 end MixingVolumePrescribedHeatFlowRate;

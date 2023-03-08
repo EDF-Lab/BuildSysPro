@@ -5,7 +5,7 @@ model InternalHEXTwoUTube
 
   parameter Integer nSeg(min=1) = 10
     "Number of segments to use in vertical discretization of the boreholes";
-  parameter Modelica.SIunits.Length hSeg = borFieDat.conDat.hBor/nSeg
+  parameter Modelica.Units.SI.Length hSeg=borFieDat.conDat.hBor/nSeg
     "Length of the internal heat exchanger";
 
   package Medium =
@@ -36,25 +36,22 @@ model InternalHEXTwoUTube
     nPorts=2,
     redeclare package Medium = Medium,
     m_flow=borFieDat.conDat.mBor_flow_nominal,
-    T=293.15) annotation (Placement(transformation(extent={{-48,
-            0},{-28,20}})));
+    T=293.15) annotation (Placement(transformation(extent={{-48,0},{-28,20}})));
   IBPSA.Fluid.Sources.MassFlowSource_T boundary1(
     nPorts=2,
     redeclare package Medium = Medium,
     m_flow=borFieDat.conDat.mBor_flow_nominal,
-    T=288.15) annotation (Placement(transformation(extent={{54,4},
-            {34,-16}})));
-  IBPSA.Fluid.Sources.FixedBoundary bou(nPorts=4, redeclare package Medium =
-                       Medium) annotation (Placement(
-        transformation(extent={{-60,-14},{-40,-34}})));
+    T=288.15) annotation (Placement(transformation(extent={{54,4},{34,-16}})));
+  IBPSA.Fluid.Sources.Boundary_pT bou(nPorts=4, redeclare package Medium =
+        Medium)
+    annotation (Placement(transformation(extent={{-60,-14},{-40,-34}})));
   Real Rb_sim(unit="(m.K)/W") = ((senTem.T + senTem1.T + senTem2.T + senTem3.T)/4 - intHex.port_wall.T)/max(-intHex.port_wall.Q_flow / hSeg,1);
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package Medium =
-                       Medium, m_flow_nominal=borFieDat.conDat.mBor_flow_nominal)
+        Medium, m_flow_nominal=borFieDat.conDat.mBor_flow_nominal)
     annotation (Placement(transformation(extent={{16,2},{28,14}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
-                       Medium, m_flow_nominal=borFieDat.conDat.mBor_flow_nominal)
-    annotation (Placement(transformation(extent={{-24,-12},{-36,
-            0}})));
+        Medium, m_flow_nominal=borFieDat.conDat.mBor_flow_nominal)
+    annotation (Placement(transformation(extent={{-24,-12},{-36,0}})));
   Modelica.Blocks.Sources.RealExpression realExpression(y=Rb_sim)
     annotation (Placement(transformation(extent={{-10,-58},{10,-38}})));
   Modelica.Blocks.Sources.Constant Rb_ref(k=0.0443802)
@@ -62,18 +59,16 @@ model InternalHEXTwoUTube
   Modelica.Blocks.Math.Add error(k2=-1)
     annotation (Placement(transformation(extent={{22,-70},{42,-50}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package Medium =
-                       Medium, m_flow_nominal=borFieDat.conDat.mBor_flow_nominal)
-    annotation (Placement(transformation(extent={{-14,-22},{-26,
-            -10}})));
+        Medium, m_flow_nominal=borFieDat.conDat.mBor_flow_nominal)
+    annotation (Placement(transformation(extent={{-14,-22},{-26,-10}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package Medium =
-                       Medium, m_flow_nominal=borFieDat.conDat.mBor_flow_nominal)
+        Medium, m_flow_nominal=borFieDat.conDat.mBor_flow_nominal)
     annotation (Placement(transformation(extent={{16,-22},{28,-10}})));
-  parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFieDat(conDat=
-        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(
-         borCon=IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeParallel,
-        use_Rb=false)) "Borefield data" annotation (Placement(
-        transformation(extent={{-100,-100},{-80,-80}})));
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFieDat(conDat=
+        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(borCon=
+        IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeParallel,
+        use_Rb=false)) "Borefield data"
+    annotation (Placement(transformation(extent={{-100,-100},{-80,-80}})));
 equation
 
   connect(fixedTemperature.port, intHex.port_wall)
@@ -118,12 +113,17 @@ equation
             -100},{100,100}})),
             experiment(StopTime=100000, Tolerance=1e-6),
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/BaseClasses/Examples/InternalHEXTwoUTube.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/BaseClasses/Examples/InternalHEXTwoUTube.mos"
         "Simulate and plot"),
             Documentation(info="<html>
 This example simulates the interior thermal behavior of a double U-tube borehole segment.
 </html>", revisions="<html>
 <ul>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source FixedBoundary with Boundary_pT. This is for 
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 June 2018, by Damien Picard:<br/>
 First implementation.

@@ -13,13 +13,13 @@ protected
 algorithm
   cor :=deltaX/10;
   y := IBPSA.Utilities.Math.Functions.smoothMax(
-            x,
-            l + deltaX,
-            cor);
+    x,
+    l + deltaX,
+    cor);
   y := IBPSA.Utilities.Math.Functions.smoothMin(
-            y,
-            u - deltaX,
-            cor);
+    y,
+    u - deltaX,
+    cor);
   annotation (smoothOrder = 1,
   Documentation(info="<html>
 <p>

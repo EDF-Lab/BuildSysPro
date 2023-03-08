@@ -4,8 +4,8 @@ model HeaterCooler_u "Model that demonstrates the ideal heater model"
 
   package Medium = IBPSA.Media.Air;
 
-  parameter Modelica.SIunits.MassFlowRate
-    m_flow_nominal=3000/1000/20 "Nominal mass flow rate";
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=3000/1000/20
+    "Nominal mass flow rate";
 
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
@@ -25,15 +25,13 @@ model HeaterCooler_u "Model that demonstrates the ideal heater model"
     "Steady-state model of the heater"
     annotation (Placement(transformation(extent={{0,90},{20,110}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
-               Medium, m_flow_nominal=m_flow_nominal)
-    "Temperature sensor"
+        Medium, m_flow_nominal=m_flow_nominal) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,90},{60,110}})));
   Modelica.Blocks.Sources.TimeTable TSet(table=[0, 273.15 + 20; 120, 273.15
     +20; 120, 273.15 + 30; 1200, 273.15 + 30])
     "Setpoint"
     annotation (Placement(transformation(extent={{-60,140},{-40,160}})));
   IBPSA.Controls.Continuous.LimPID con1(
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
     Td=1,
     k=1,
     Ti=10) "Controller"
@@ -47,12 +45,10 @@ model HeaterCooler_u "Model that demonstrates the ideal heater model"
     "Dynamic model of the heater"
     annotation (Placement(transformation(extent={{0,-20},{20,0}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package Medium =
-               Medium, m_flow_nominal=m_flow_nominal)
-    "Temperature sensor"
+        Medium, m_flow_nominal=m_flow_nominal) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,-20},{60,0}})));
 
   IBPSA.Controls.Continuous.LimPID con2(
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
     Td=1,
     Ti=10,
     k=0.1) "Controller"
@@ -106,7 +102,7 @@ equation
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{200,
             200}}), graphics),
-    __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/Validation/HeaterCooler_u.mos" "Simulate and plot"),
+    __Dymola_Commands(file= "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/Validation/HeaterCooler_u.mos" "Simulate and plot"),
     Documentation(info="<html>
 <p>
 Model that demonstrates the use of an ideal heater.

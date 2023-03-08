@@ -2,21 +2,20 @@ within BuildSysPro.IBPSA.Fluid.HeatExchangers.BaseClasses;
 model HANaturalCylinder
   "Calculates an hA value for natural convection around a cylinder"
   extends Modelica.Blocks.Icons.Block;
-  replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium
+  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium inside the tank";
-  parameter Modelica.SIunits.Diameter ChaLen
+  parameter Modelica.Units.SI.Diameter ChaLen
     "Characteristic length of the cylinder";
 
-  parameter Modelica.SIunits.ThermalConductance hA_nominal(min=0)
+  parameter Modelica.Units.SI.ThermalConductance hA_nominal(min=0)
     "Convective heat transfer coefficient"
-   annotation(Dialog(tab="General", group="Nominal condition"));
-  parameter Modelica.SIunits.Temperature TFlu_nominal
+    annotation (Dialog(tab="General", group="Nominal condition"));
+  parameter Modelica.Units.SI.Temperature TFlu_nominal
     "Fluid temperature at hA_nominal"
-    annotation(Dialog(tab="General", group="Nominal condition"));
-  parameter Modelica.SIunits.Temperature TSur_nominal
+    annotation (Dialog(tab="General", group="Nominal condition"));
+  parameter Modelica.Units.SI.Temperature TSur_nominal
     "Surface temperature at hA_nominal"
-    annotation(Dialog(tab="General", group="Nominal condition"));
+    annotation (Dialog(tab="General", group="Nominal condition"));
 
   Modelica.Blocks.Interfaces.RealInput TSur(unit = "K")
     "Temperature of the external surface of the heat exchanger"
@@ -34,12 +33,12 @@ protected
     "isobaricExpansionCoefficient";
   parameter Real nu_nominal(unit = "m2/s", fixed=false)
     "Kinematic viscosity of the medium";
-  parameter Modelica.SIunits.DynamicViscosity mu_nominal(fixed=false)
+  parameter Modelica.Units.SI.DynamicViscosity mu_nominal(fixed=false)
     "Dynamic viscosity of the medium";
-  parameter Modelica.SIunits.Density rho_nominal(fixed=false)
+  parameter Modelica.Units.SI.Density rho_nominal(fixed=false)
     "Density of the medium";
 
-  parameter Modelica.SIunits.ThermalConductivity k_nominal(fixed=false)
+  parameter Modelica.Units.SI.ThermalConductivity k_nominal(fixed=false)
     "Thermal conductivity of the fluid";
 
   parameter Real Ra_nominal(fixed=false) "Rayleigh number";
@@ -48,16 +47,16 @@ protected
 
   parameter Real h_nominal(unit="W/(m2.K)", fixed=false)
     "Convection coefficient";
-  parameter Modelica.SIunits.Area A(fixed=false)
+  parameter Modelica.Units.SI.Area A(fixed=false)
     "Surface area, deduced from hA_nominal, fluid temperatures and characteristic length";
 
-  Modelica.SIunits.ThermalConductivity k "Thermal conductivity of the fluid";
+  Modelica.Units.SI.ThermalConductivity k "Thermal conductivity of the fluid";
   Real Gr "Grashof number";
   Real B(unit="1/K") "isobaricExpansionCoefficient";
   Real nu(unit = "m2/s") "Kinematic viscosity of the medium";
-  Modelica.SIunits.DynamicViscosity mu "Dynamic viscosity of the medium";
-  Modelica.SIunits.Density rho "Density of the medium";
-  constant Modelica.SIunits.Acceleration g= Modelica.Constants.g_n
+  Modelica.Units.SI.DynamicViscosity mu "Dynamic viscosity of the medium";
+  Modelica.Units.SI.Density rho "Density of the medium";
+  constant Modelica.Units.SI.Acceleration g=Modelica.Constants.g_n
     "Acceleration due to gravity";
 
   Medium.ThermodynamicState state
@@ -67,7 +66,7 @@ protected
   Real Nusselt "Nusselt number";
 
 function nusselt
-  input Modelica.SIunits.ThermalConductivity k "Thermal conductivity";
+    input Modelica.Units.SI.ThermalConductivity k "Thermal conductivity";
   input Real Pr "Prandlt number";
   input Real Ra "Rayleigh number";
   output Real Nu(min=0) "Nusselt number";
@@ -76,9 +75,9 @@ function nusselt
   Real den "Denominator";
 algorithm
     num := (0.387*IBPSA.Utilities.Math.Functions.smoothMax(
-              Ra,
-              1,
-              0.1)^(1/6));
+      Ra,
+      1,
+      0.1)^(1/6));
   den := ((1+(0.559/Pr)^(9/16))^(8/27));
   Nu := (0.6+num/den)^2;
   annotation(smoothOrder=1);
@@ -87,21 +86,19 @@ end nusselt;
 initial equation
 
   // Fluid properties
-  mu_nominal =
-    IBPSA.Fluid.HeatExchangers.BaseClasses.dynamicViscosityWater(T=0.5*(
-    TSur_nominal + TFlu_nominal));
+  mu_nominal = IBPSA.Fluid.HeatExchangers.BaseClasses.dynamicViscosityWater(T=
+    0.5*(TSur_nominal + TFlu_nominal));
   rho_nominal = Medium.density(
         Medium.setState_pTX(
           p = Medium.p_default,
           T = 0.5*(TSur_nominal+TFlu_nominal),
           X = Medium.X_default));
-  Pr_nominal =
-    IBPSA.Fluid.HeatExchangers.BaseClasses.prandtlNumberWater(T=0.5*(
-    TSur_nominal + TFlu_nominal));
+  Pr_nominal = IBPSA.Fluid.HeatExchangers.BaseClasses.prandtlNumberWater(T=0.5*
+    (TSur_nominal + TFlu_nominal));
 
   B_nominal =
-    IBPSA.Fluid.HeatExchangers.BaseClasses.isobaricExpansionCoefficientWater(
-     T=0.5*(TSur_nominal + TFlu_nominal));
+    IBPSA.Fluid.HeatExchangers.BaseClasses.isobaricExpansionCoefficientWater(T=
+    0.5*(TSur_nominal + TFlu_nominal));
   nu_nominal = mu_nominal/rho_nominal;
 
   Gr_nominal = Modelica.Constants.g_n * B_nominal * (TSur_nominal -
@@ -122,15 +119,14 @@ equation
              p = Medium.p_default,
              T = 0.5*(TSur+TFlu),
              X = Medium.X_default);
-  mu = IBPSA.Fluid.HeatExchangers.BaseClasses.dynamicViscosityWater(T=0.5
-    *(TSur + TFlu));
+  mu = IBPSA.Fluid.HeatExchangers.BaseClasses.dynamicViscosityWater(T=0.5*(TSur
+     + TFlu));
   rho = Medium.density(state);
-  Pr = IBPSA.Fluid.HeatExchangers.BaseClasses.prandtlNumberWater(T=0.5*(
-    TSur + TFlu));
+  Pr = IBPSA.Fluid.HeatExchangers.BaseClasses.prandtlNumberWater(T=0.5*(TSur +
+    TFlu));
 
-  B =
-    IBPSA.Fluid.HeatExchangers.BaseClasses.isobaricExpansionCoefficientWater(
-     T=0.5*(TSur + TFlu));
+  B = IBPSA.Fluid.HeatExchangers.BaseClasses.isobaricExpansionCoefficientWater(
+    T=0.5*(TSur + TFlu));
   nu = mu/rho;
 
   Gr = Modelica.Constants.g_n * B * (TSur - TFlu)*ChaLen^3/nu^2;
@@ -197,7 +193,7 @@ First implementation.
 </html>"),
     Icon(graphics={                       Text(
           extent={{-66,88},{60,-2}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid,
           textString="hA"),

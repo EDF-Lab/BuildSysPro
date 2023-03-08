@@ -20,32 +20,31 @@ block WallSolarAzimuth
     "Angle between projection of sun's rays and normal to vertical surface"
 annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 protected
-  constant Modelica.SIunits.Angle delta = 1*Modelica.Constants.pi/180
+  constant Modelica.Units.SI.Angle delta=1*Modelica.Constants.pi/180
     "Small angle";
-  constant Modelica.SIunits.Angle ninety= Modelica.Constants.pi/2-delta
+  constant Modelica.Units.SI.Angle ninety=Modelica.Constants.pi/2 - delta
     "+89 degree";
   constant Real deltaX = 1E-4 "Small number used for smoothing";
   Real alt_c "Cosine of altitude, bounded away from zero";
   Real rat "Ratio of cosines";
 equation
   alt_c = Modelica.Math.cos(IBPSA.Utilities.Math.Functions.smoothLimit(
-            x=alt,
-            l=-ninety,
-            u=ninety,
-            deltaX=delta));
+    x=alt,
+    l=-ninety,
+    u=ninety,
+    deltaX=delta));
   rat = Modelica.Math.cos(incAng)/alt_c;
   // Due to the smoothLimit, rat can be about 1E-3 greater than 1 or smaller than -1.
   // Hence, below we use another call to smoothLimit to ensure that the argument of
   // acos(.) is inside the interval [-1, 1].
-  verAzi = Modelica.Math.acos(
-    IBPSA.Utilities.Math.Functions.smoothLimit(
-            x=rat,
-            l=-1 + deltaX,
-            u=1 - deltaX,
-            deltaX=deltaX/10));
+  verAzi = Modelica.Math.acos(IBPSA.Utilities.Math.Functions.smoothLimit(
+    x=rat,
+    l=-1 + deltaX,
+    u=1 - deltaX,
+    deltaX=deltaX/10));
 
   annotation (Icon(graphics={Bitmap(extent={{-90,-90},{90,90}}, fileName=
-              "modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/SolarGeometry/BaseClasses/WallSolarAzimuth.png")}),
+              "modelica://BuildSysPro/IBPSA/Resources/Images/BoundaryConditions/SolarGeometry/BaseClasses/WallSolarAzimuth.png")}),
 defaultComponentName="wallSolAzi",
 Documentation(info="<html>
 <p>

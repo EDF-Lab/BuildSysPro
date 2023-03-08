@@ -4,12 +4,11 @@ model VectorFunctions "Test model for functions that take a vector as argument"
 
   IBPSA.Utilities.Math.Min minVec(nin=3)
     annotation (Placement(transformation(extent={{-20,20},{0,40}})));
-  Modelica.Blocks.Sources.Sine sine(freqHz=6)
+  Modelica.Blocks.Sources.Sine sine(f=6)
     annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
-  Modelica.Blocks.Sources.Sine sine1(
-                                    freqHz=8)
+  Modelica.Blocks.Sources.Sine sine1(f=8)
     annotation (Placement(transformation(extent={{-80,-20},{-60,0}})));
-  Modelica.Blocks.Sources.Sine sine2(freqHz=10)
+  Modelica.Blocks.Sources.Sine sine2(f=10)
     annotation (Placement(transformation(extent={{-80,-60},{-60,-40}})));
   IBPSA.Utilities.Math.Max maxVec(nin=3)
     annotation (Placement(transformation(extent={{-20,-60},{0,-40}})));
@@ -44,7 +43,7 @@ equation
       points={{-59,-50},{-40,-50},{-40,-8.66667},{-22,-8.66667}},
       color={0,0,127}));
   annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Examples/VectorFunctions.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Examples/VectorFunctions.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

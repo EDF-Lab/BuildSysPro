@@ -3,10 +3,9 @@ model FiniteDifference_1Week
   "Short term validation of ground temperature response model"
   extends Modelica.Icons.Example;
 
-  parameter Modelica.SIunits.Temperature T_start = 283.15
+  parameter Modelica.Units.SI.Temperature T_start=283.15
     "Initial soil temperature";
-  IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.Cylindrical
-    soi(
+  IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.Cylindrical soi(
     final steadyStateInitial=false,
     final soiDat=borFieDat.soiDat,
     final h=borFieDat.conDat.hBor,
@@ -15,14 +14,13 @@ model FiniteDifference_1Week
     final TInt_start=T_start,
     final TExt_start=T_start,
     gridFac=1.2,
-    final nSta=50) "Heat conduction in the soil" annotation (
-      Placement(transformation(extent={{-12,50},{8,70}})));
+    final nSta=50) "Heat conduction in the soil"
+    annotation (Placement(transformation(extent={{-12,50},{8,70}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo
     "Prescribed heat flow to soil for the discretized model"
     annotation (Placement(transformation(extent={{-50,50},{-30,70}})));
 
-  parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat(
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat(
     soiDat(
       kSoi=1,
       cSoi=1,
@@ -44,20 +42,21 @@ model FiniteDifference_1Week
       rTub=0.02,
       kTub=0.5,
       eTub=0.002,
-      xC=0.05)) "Borefield parameters" annotation (Placement(
-        transformation(extent={{-90,-88},{-70,-68}})));
+      xC=0.05)) "Borefield parameters"
+    annotation (Placement(transformation(extent={{-90,-88},{-70,-68}})));
 
   Modelica.Blocks.Sources.Sine sine(
-    freqHz=1/(24*3600),
+    f=1/(24*3600),
     startTime=21600,
     amplitude=1e8) "Heat flow signal"
     annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
   IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.GroundTemperatureResponse
     groTemRes(
+    nSeg=12,
     borFieDat=borFieDat,
     nCel=5,
-    tLoaAgg=30) "Heat conduction in the soil" annotation (
-      Placement(transformation(extent={{-50,-10},{-30,10}})));
+    tLoaAgg=30) "Heat conduction in the soil"
+    annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Modelica.Blocks.Sources.Constant groTem(k=T_start)
     "Ground temperature signal"
     annotation (Placement(transformation(extent={{-94,-46},{-74,-26}})));
@@ -92,7 +91,7 @@ equation
     annotation (Line(points={{50,60},{60,60},{60,88},{-66,88},{-66,-36},{-73,
           -36}},                                             color={0,0,127}));
   connect(temSenDis.T, deltaT.u1)
-    annotation (Line(points={{10,20},{20,20},{20,6},{28,6}}, color={0,0,127}));
+    annotation (Line(points={{11,20},{20,20},{20,6},{28,6}}, color={0,0,127}));
   connect(soi.port_a, temSenDis.port) annotation (Line(points={{-12,60},{-20,60},
           {-20,20},{-10,20}}, color={191,0,0}));
 
@@ -106,7 +105,7 @@ equation
     annotation (Line(points={{-51,0},{-71,0}}, color={0,0,127}));
   annotation (
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/Validation/FiniteDifference_1Week.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/Validation/FiniteDifference_1Week.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=604800.0),
     Documentation(info="<html>

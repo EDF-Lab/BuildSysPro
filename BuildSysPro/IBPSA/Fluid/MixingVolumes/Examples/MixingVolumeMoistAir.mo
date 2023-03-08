@@ -4,7 +4,7 @@ model MixingVolumeMoistAir "Test model for mixing volume with moist air input"
 
   package Medium = IBPSA.Media.Air;
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.001
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.001
     "Nominal mass flow rate";
 
   IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir vol1(
@@ -28,9 +28,8 @@ model MixingVolumeMoistAir "Test model for mixing volume with moist air input"
   IBPSA.Utilities.Psychrometrics.pW_X humRat(use_p_in=false)
     "Conversion from humidity ratio to partial water vapor pressure"
     annotation (Placement(transformation(extent={{-20,-120},{0,-100}})));
-  IBPSA.Utilities.Psychrometrics.TDewPoi_pW dewPoi
-    "Dew point temperature" annotation (Placement(transformation(extent=
-           {{12,-120},{32,-100}})));
+  IBPSA.Utilities.Psychrometrics.TDewPoi_pW dewPoi "Dew point temperature"
+    annotation (Placement(transformation(extent={{12,-120},{32,-100}})));
   Modelica.Thermal.HeatTransfer.Sensors.HeatFlowSensor heatFlowSensor
     annotation (Placement(transformation(extent={{64,120},{84,140}})));
   Modelica.Blocks.Continuous.Integrator QSen "Sensible heat transfer"
@@ -55,23 +54,19 @@ model MixingVolumeMoistAir "Test model for mixing volume with moist air input"
     k=1,
     Ti=1,
     Td=1,
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
     wd=0,
-    yMin=-1000) annotation (Placement(transformation(extent={{-40,120},{
-            -20,140}})));
+    yMin=-1000)
+    annotation (Placement(transformation(extent={{-40,120},{-20,140}})));
   IBPSA.Controls.Continuous.LimPID PI1(
     Ni=0.1,
     Ti=1,
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
     k=10,
     yMax=1,
     yMin=-1,
     Td=1) annotation (Placement(transformation(extent={{-50,-60},{-30,-40}})));
-  IBPSA.Fluid.Sensors.MassFlowRate mIn_flow(redeclare package Medium =
-        Medium)
+  IBPSA.Fluid.Sensors.MassFlowRate mIn_flow(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-  IBPSA.Fluid.Sensors.MassFlowRate mOut_flow(redeclare package Medium =
-        Medium)
+  IBPSA.Fluid.Sensors.MassFlowRate mOut_flow(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{84,-10},{104,10}})));
   Modelica.Blocks.Math.Add dM_flow(k2=-1) annotation (Placement(transformation(
           extent={{140,20},{160,40}})));
@@ -81,7 +76,7 @@ model MixingVolumeMoistAir "Test model for mixing volume with moist air input"
           extent={{-20,-60},{0,-40}})));
 
   IBPSA.Fluid.FixedResistances.PressureDrop res1(
-    redeclare each package Medium = Medium,
+    redeclare package Medium = Medium,
     from_dp=true,
     dp_nominal=2.5,
     m_flow_nominal=m_flow_nominal)
@@ -165,7 +160,7 @@ equation
             -160},{180,160}})),
 experiment(StopTime=600,
            Tolerance=1E-6),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/Examples/MixingVolumeMoistAir.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Examples/MixingVolumeMoistAir.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>
@@ -177,6 +172,12 @@ stabilizes.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 11, 2019 by Michael Wetter:<br/>
+Removed <code>each</code> statement.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1079\">#1079</a>.
+</li>
 <li>
 April 11, 2017, by Michael Wetter:<br/>
 Renamed variable used in result processing.<br/>

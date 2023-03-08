@@ -2,6 +2,11 @@ within BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseC
 package Validation "Models to validate borehole thermal resistances functions"
 extends Modelica.Icons.ExamplesPackage;
 
+
+
+
+
+
 annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains validation models for the classes in

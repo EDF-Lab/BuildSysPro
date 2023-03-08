@@ -20,7 +20,7 @@ equation
   connect(n.y, falFac.n) annotation (Line(points={{11,40},{24,40},{24,12},{38,12}},
         color={255,127,0}));
   annotation (  experiment(Tolerance=1e-6, StopTime=11.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Examples/FallingFactorial.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Examples/FallingFactorial.mos"
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This model tests the implementation of

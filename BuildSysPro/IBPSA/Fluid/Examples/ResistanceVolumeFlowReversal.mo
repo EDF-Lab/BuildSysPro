@@ -5,8 +5,8 @@ model ResistanceVolumeFlowReversal
 
   package Medium = Modelica.Media.Water.ConstantPropertyLiquidWater;
   parameter Real m_flow_nominal=0.1 "Gain value multiplied with input signal";
-  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium,
-      nPorts=1) "Boundary for pressure boundary condition"
+  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium, nPorts=
+       1) "Boundary for pressure boundary condition"
     annotation (Placement(transformation(extent={{-80,-30},{-60,-10}})));
   Movers.FlowControlled_m_flow pump(
     redeclare package Medium = Medium,
@@ -56,7 +56,6 @@ model ResistanceVolumeFlowReversal
     each m_flow_nominal=m_flow_nominal/nRes.k,
     each nPorts=2,
     each energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    each massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     each allowFlowReversal=true) "Mixing volumes for enthalpy circuit"
     annotation (Placement(transformation(extent={{60,-66},{40,-46}})));
 equation
@@ -97,7 +96,7 @@ equation
   end for;
   annotation (experiment(
       Tolerance=1e-6, StopTime=10000),
-       __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Examples/ResistanceVolumeFlowReversal.mos"
+       __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Examples/ResistanceVolumeFlowReversal.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>
@@ -119,7 +118,7 @@ This is illustrated by the results below.
 See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/216\">issue 216</a> for a discussion.
 </p>
 <p>
-Note that Dymola 2015FD01 can only reliable solve the last case. For the other
+Note that Dymola 2015FD01 can only reliably solve the last case. For the other
 two cases the Newton solver of the nonlinear system does not converge.
 </p>
 <p>

@@ -5,9 +5,9 @@ model TwoWayValveParameterization
 
  package Medium = IBPSA.Media.Water;
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.4
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.4
     "Design mass flow rate";
-  parameter Modelica.SIunits.PressureDifference dp_nominal = 4500
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=4500
     "Design pressure drop";
 
   parameter Real Kv_SI = m_flow_nominal/sqrt(dp_nominal)
@@ -17,20 +17,20 @@ model TwoWayValveParameterization
     "Kv (metric) flow coefficient [m3/h/(bar)^(1/2)]";
   parameter Real Cv = Kv_SI/(rhoStd*0.0631/1000/sqrt(6895))
     "Cv (US) flow coefficient [USG/min/(psi)^(1/2)]";
-  parameter Modelica.SIunits.Area Av = Kv_SI/sqrt(rhoStd)
+  parameter Modelica.Units.SI.Area Av=Kv_SI/sqrt(rhoStd)
     "Av (metric) flow coefficient";
 
-  parameter Modelica.SIunits.Density rhoStd=
-   Medium.density_pTX(101325, 273.15+4, Medium.X_default)
-   "Standard density";
+  parameter Modelica.Units.SI.Density rhoStd=Medium.density_pTX(
+      101325,
+      273.15 + 4,
+      Medium.X_default) "Standard density";
 
   IBPSA.Fluid.Actuators.Valves.TwoWayLinear valOPPoi(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     CvData=IBPSA.Fluid.Types.CvTypes.OpPoint,
     dpValve_nominal(displayUnit="kPa") = dp_nominal,
-    use_inputFilter=false)
-    "Valve model, linear opening characteristics"
+    use_inputFilter=false) "Valve model, linear opening characteristics"
     annotation (Placement(transformation(extent={{-10,30},{10,50}})));
     Modelica.Blocks.Sources.Ramp     y(duration=1)
                                             "Control signal"
@@ -55,8 +55,8 @@ model TwoWayValveParameterization
     redeclare package Medium = Medium,
     nPorts=4,
     p(displayUnit="Pa") = 300000 + 4500,
-    T=293.15) "Boundary condition for flow source" annotation (
-      Placement(transformation(extent={{-70,-10},{-50,10}})));
+    T=293.15) "Boundary condition for flow source"
+    annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     nPorts=4,
@@ -66,14 +66,14 @@ model TwoWayValveParameterization
     annotation (Placement(transformation(extent={{90,-10},{70,10}})));
 
   IBPSA.Fluid.Sensors.MassFlowRate senM_flowOpPoi(redeclare package Medium =
-               Medium) "Mass flow rate sensor"
+        Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{20,30},{40,50}})));
   IBPSA.Fluid.Sensors.MassFlowRate senM_flowKv(redeclare package Medium =
-               Medium) "Mass flow rate sensor"
+        Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
   IBPSA.Fluid.Sensors.MassFlowRate senM_flowCv(redeclare package Medium =
-               Medium) "Mass flow rate sensor" annotation (Placement(
-        transformation(extent={{20,-50},{40,-30}})));
+        Medium) "Mass flow rate sensor"
+    annotation (Placement(transformation(extent={{20,-50},{40,-30}})));
   Valves.TwoWayLinear valAv(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
@@ -82,8 +82,8 @@ model TwoWayValveParameterization
     Av=Av) "Valve model, linear opening characteristics"
     annotation (Placement(transformation(extent={{-10,-90},{10,-70}})));
   IBPSA.Fluid.Sensors.MassFlowRate senM_flowAv(redeclare package Medium =
-               Medium) "Mass flow rate sensor" annotation (Placement(
-        transformation(extent={{20,-90},{40,-70}})));
+        Medium) "Mass flow rate sensor"
+    annotation (Placement(transformation(extent={{20,-90},{40,-70}})));
 equation
   connect(y.y, valOPPoi.y)
                          annotation (Line(
@@ -132,7 +132,7 @@ equation
   connect(valAv.y, y.y) annotation (Line(points={{0,-68},{0,-60},{-20,-60},{-20,
           70},{-39,70}}, color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Actuators/Valves/Validation/TwoWayValveParameterization.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Actuators/Valves/Validation/TwoWayValveParameterization.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

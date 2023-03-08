@@ -5,22 +5,22 @@ model ScrollWaterToWater_TemperatureProtection
   package Medium1 = IBPSA.Media.Water "Medium model";
   package Medium2 = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m1_flow_nominal = 0.47
+  parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=0.47
     "Nominal mass flow rate on the condenser side";
-  parameter Modelica.SIunits.MassFlowRate m2_flow_nominal = 0.47
+  parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=0.47
     "Nominal mass flow rate on the evaporator side";
 
-  parameter Modelica.SIunits.MassFlowRate flowSource = 0.79
+  parameter Modelica.Units.SI.MassFlowRate flowSource=0.79
     "Mass flow rate on the condenser side";
-  parameter Modelica.SIunits.MassFlowRate flowLoad = 0.47
+  parameter Modelica.Units.SI.MassFlowRate flowLoad=0.47
     "Mass flow rate on the evaporator side";
 
-  IBPSA.Fluid.Sources.FixedBoundary sin2(redeclare package Medium =
-        Medium2, nPorts=1) "Source side sink" annotation (Placement(
-        transformation(extent={{-10,-10},{10,10}}, origin={-70,-40})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
-        Medium1, nPorts=1) "Load side sink" annotation (Placement(
-        transformation(extent={{10,-10},{-10,10}}, origin={58,20})));
+  IBPSA.Fluid.Sources.Boundary_pT sin2(redeclare package Medium = Medium2,
+      nPorts=1) "Source side sink" annotation (Placement(transformation(extent=
+            {{-10,-10},{10,10}}, origin={-70,-40})));
+  IBPSA.Fluid.Sources.Boundary_pT sin1(redeclare package Medium = Medium1,
+      nPorts=1) "Load side sink" annotation (Placement(transformation(extent={{
+            10,-10},{-10,10}}, origin={58,20})));
   Modelica.Blocks.Sources.Constant isOn(k=1)
     "Heat pump control signal"
     annotation (Placement(transformation(extent={{-52,-26},{-40,-14}})));
@@ -65,22 +65,19 @@ model ScrollWaterToWater_TemperatureProtection
       leaCoe=0.01),
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     TConMax=273.15 + 60,
-    enable_temperature_protection=true)
-    "Scroll water to water heat pump"
+    enable_temperature_protection=true) "Scroll water to water heat pump"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Sine yLoa(
     startTime=250,
-    freqHz=1/600,
+    f=1/600,
     amplitude=30,
     offset=313.15) "Load side fluid temperature"
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
-  Modelica.Blocks.Sources.Cosine
-                               ySou(
+  Modelica.Blocks.Sources.Cosine ySou(
     startTime=0,
     amplitude=20,
     offset=293.15,
-    freqHz=1/400)
-                 "Source side fluid temperature"
+    f=1/400) "Source side fluid temperature"
     annotation (Placement(transformation(extent={{100,-38},{80,-18}})));
 equation
   connect(mSou.y, sou.m_flow_in)
@@ -102,7 +99,7 @@ equation
   connect(loa.ports[1], heaPum.port_a1) annotation (Line(points={{-46,20},{-20,
           20},{-20,6},{-10,6}}, color={0,127,255}));
   annotation (    __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Validation/ScrollWaterToWater_Static.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatPumps/Validation/ScrollWaterToWater_Static.mos"
         "Simulate and plot"),
     experiment(
       Tolerance=1e-6, StopTime=1000),
@@ -118,6 +115,11 @@ requirements are not satisfied.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for 
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 May 30, 2017, by Filip Jorissen:<br/>
 First implementation.

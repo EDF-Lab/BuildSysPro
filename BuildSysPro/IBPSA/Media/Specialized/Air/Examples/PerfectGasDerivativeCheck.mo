@@ -4,13 +4,13 @@ model PerfectGasDerivativeCheck
 
    package Medium = IBPSA.Media.Specialized.Air.PerfectGas;
 
-    Modelica.SIunits.Temperature T "Temperature";
-    Modelica.SIunits.SpecificEnthalpy hLiqSym "Liquid phase enthalpy";
-    Modelica.SIunits.SpecificEnthalpy hLiqCod "Liquid phase enthalpy";
-    Modelica.SIunits.SpecificEnthalpy hSteSym "Water vapor enthalpy";
-    Modelica.SIunits.SpecificEnthalpy hSteCod "Water vapor enthalpy";
-    Modelica.SIunits.SpecificEnthalpy hAirSym "Dry air enthalpy";
-    Modelica.SIunits.SpecificEnthalpy hAirCod "Dry air enthalpy";
+  Modelica.Units.SI.Temperature T "Temperature";
+  Modelica.Units.SI.SpecificEnthalpy hLiqSym "Liquid phase enthalpy";
+  Modelica.Units.SI.SpecificEnthalpy hLiqCod "Liquid phase enthalpy";
+  Modelica.Units.SI.SpecificEnthalpy hSteSym "Water vapor enthalpy";
+  Modelica.Units.SI.SpecificEnthalpy hSteCod "Water vapor enthalpy";
+  Modelica.Units.SI.SpecificEnthalpy hAirSym "Dry air enthalpy";
+  Modelica.Units.SI.SpecificEnthalpy hAirCod "Dry air enthalpy";
     constant Real convT(unit="K/s3") = 270
     "Conversion factor to satisfy unit check";
 initial equation
@@ -35,7 +35,7 @@ equation
    annotation(experiment(
                  StartTime=0, StopTime=1,
                  Tolerance=1e-8),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Media/Specialized/Air/Examples/PerfectGasDerivativeCheck.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Media/Specialized/Air/Examples/PerfectGasDerivativeCheck.mos"
         "Simulate and plot"),
       Documentation(info="<html>
 <p>

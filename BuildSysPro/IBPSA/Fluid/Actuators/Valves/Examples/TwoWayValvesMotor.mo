@@ -9,15 +9,14 @@ model TwoWayValvesMotor
     l=0.05,
     m_flow_nominal=2,
     use_inputFilter=false,
-    dpValve_nominal=6000)
-    "Valve model, linear opening characteristics"
+    dpValve_nominal=6000) "Valve model, linear opening characteristics"
     annotation (Placement(transformation(extent={{0,50},{20,70}})));
   IBPSA.Fluid.Sources.Boundary_pT sou(
     redeclare package Medium = Medium,
     nPorts=4,
     use_p_in=true,
-    T=293.15) "Boundary condition for flow source" annotation (
-      Placement(transformation(extent={{-60,-10},{-40,10}})));
+    T=293.15) "Boundary condition for flow source"
+    annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     nPorts=4,
@@ -33,8 +32,7 @@ model TwoWayValvesMotor
     l=0.05,
     m_flow_nominal=2,
     use_inputFilter=false,
-    dpValve_nominal=6000)
-    "Valve model, quick opening characteristics"
+    dpValve_nominal=6000) "Valve model, quick opening characteristics"
     annotation (Placement(transformation(extent={{0,10},{20,30}})));
   IBPSA.Fluid.Actuators.Valves.TwoWayEqualPercentage valEqu(
     redeclare package Medium = Medium,
@@ -105,7 +103,7 @@ equation
       points={{10,-42},{10,-36},{-12,-36},{-12,0},{10,0},{10,-8}},
       color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StartTime=0, StopTime=600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Actuators/Valves/Examples/TwoWayValvesMotor.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Actuators/Valves/Examples/TwoWayValvesMotor.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

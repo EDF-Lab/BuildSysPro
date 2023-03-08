@@ -6,7 +6,7 @@ model Carnot_y_etaPL
       T2_start=278.15));
 
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Validation/Carnot_y_etaPL.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatPumps/Validation/Carnot_y_etaPL.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

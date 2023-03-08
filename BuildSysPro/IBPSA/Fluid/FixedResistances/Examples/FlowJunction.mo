@@ -9,8 +9,7 @@ model FlowJunction
     redeclare package Medium = Medium,
     m_flow_nominal={1,2,3},
     dp_nominal={5,10,15},
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Splitter"
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Splitter"
     annotation (Placement(transformation(extent={{10,-10},{30,10}})));
 
   IBPSA.Fluid.Sources.Boundary_pT bou1(
@@ -31,8 +30,8 @@ model FlowJunction
     redeclare package Medium = Medium,
     T=273.15 + 30,
     use_p_in=true,
-    nPorts=1) "Pressure boundary condition" annotation (Placement(
-        transformation(extent={{-60,-70},{-40,-50}})));
+    nPorts=1) "Pressure boundary condition"
+    annotation (Placement(transformation(extent={{-60,-70},{-40,-50}})));
 
     Modelica.Blocks.Sources.Ramp P1(
     offset=101320,
@@ -51,15 +50,15 @@ model FlowJunction
     annotation (Placement(transformation(extent={{-92,-62},{-72,-42}})));
 
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
-               Medium, m_flow_nominal=1) "Temperature sensor"
+        Medium, m_flow_nominal=1) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
 
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package Medium =
-               Medium, m_flow_nominal=2) "Temperature sensor"
+        Medium, m_flow_nominal=2) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
 
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem3(redeclare package Medium =
-               Medium, m_flow_nominal=3) "Temperature sensor"
+        Medium, m_flow_nominal=3) "Temperature sensor"
     annotation (Placement(transformation(extent={{-20,-70},{0,-50}})));
 
 equation
@@ -82,7 +81,7 @@ equation
   connect(senTem2.port_b, bou2.ports[1])
     annotation (Line(points={{60,0},{70,0}},        color={0,127,255}));
   annotation (experiment(Tolerance=1e-6, StopTime=100),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FixedResistances/Examples/FlowJunction.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FixedResistances/Examples/FlowJunction.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>
@@ -101,7 +100,7 @@ Removed import statement.
 October 14, 2017 by Michael Wetter:<br/>
 Updated documentation and added to Annex 60 library.<br/>
 This is for
-<a href=\"modelica://https://github.com/ibpsa/modelica-ibpsa/issues/451\">issue 451</a>.
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/451\">issue 451</a>.
 </li>
 <li>
 July 20, 2007 by Michael Wetter:<br/>

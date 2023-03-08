@@ -23,15 +23,15 @@ model VolumeFlowRate "Test model for the volume flow rate sensor"
     offset=10,
     duration=60)
     annotation (Placement(transformation(extent={{-90,-2},{-70,18}})));
-  IBPSA.Fluid.Sensors.VolumeFlowRate senDyn(redeclare package Medium =
-        Medium, m_flow_nominal=10)
-    "Sensor configured to use a dynamic model for the density"
+  IBPSA.Fluid.Sensors.VolumeFlowRate senDyn(
+    redeclare package Medium = Medium,
+    m_flow_nominal=10,
+    tau=1) "Sensor configured to use a dynamic model for the density"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   IBPSA.Fluid.Sensors.VolumeFlowRate senSteSta(
     redeclare package Medium = Medium,
     m_flow_nominal=10,
-    tau=0)
-    "Sensor configured to use a steady-state model for the density"
+    tau=0) "Sensor configured to use a steady-state model for the density"
     annotation (Placement(transformation(extent={{28,-10},{48,10}})));
 equation
   connect(ramp.y, masFloRat.m_flow_in) annotation (Line(
@@ -47,7 +47,7 @@ equation
       points={{48,0},{60,0}},
       color={0,127,255}));
     annotation (experiment(Tolerance=1e-6, StopTime=60),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sensors/Examples/VolumeFlowRate.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sensors/Examples/VolumeFlowRate.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

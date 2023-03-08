@@ -3,12 +3,12 @@ model X_pSatpphi "Model to test X_pSatpphi function"
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Air "Medium model"
            annotation (choicesAllMatching = true);
-  parameter Modelica.SIunits.Temperature T = 293.15 "Temperature";
-  parameter Modelica.SIunits.Pressure p = 101325 "Pressure of the fluid";
+  parameter Modelica.Units.SI.Temperature T=293.15 "Temperature";
+  parameter Modelica.Units.SI.Pressure p=101325 "Pressure of the fluid";
 
-  Modelica.SIunits.AbsolutePressure pSat "Saturation pressure";
+  Modelica.Units.SI.AbsolutePressure pSat "Saturation pressure";
   Real phi(min=0, max=1) "Relative humidity";
-  Modelica.SIunits.MassFraction X_w(
+  Modelica.Units.SI.MassFraction X_w(
     min=0,
     max=1,
     nominal=0.01) "Water vapor concentration per total mass of air";
@@ -18,18 +18,18 @@ equation
   phi = time*conv;
   pSat = Medium.saturationPressure(T);
   X_w = IBPSA.Utilities.Psychrometrics.Functions.X_pSatpphi(
-              pSat=pSat,
-              p=p,
-              phi=phi);
+    pSat=pSat,
+    p=p,
+    phi=phi);
 
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Functions/Examples/X_pSatpphi.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Functions/Examples/X_pSatpphi.mos"
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This example computes the water content of air for a relative humidity between
 <i>0</i> and <i>100%</i>,
-a temperature of <i>20&circ;C</i>
+a temperature of <i>20&deg;C</i>
 and atmospheric pressure.
 </p>
 </html>", revisions="<html>

@@ -8,17 +8,17 @@ model Floor
 
   parameter Integer nZones(min=1) = 4 "Number of zone elements";
 
-  parameter Modelica.SIunits.Temperature TRoom = 298.15
+  parameter Modelica.Units.SI.Temperature TRoom=298.15
     "Indoor air temperature of room in K";
-  parameter Modelica.SIunits.Temperature THallway = 293.15
+  parameter Modelica.Units.SI.Temperature THallway=293.15
     "Indoor air temperature of hallway in K";
-  parameter Modelica.SIunits.Temperature TStaircase = 293.15
+  parameter Modelica.Units.SI.Temperature TStaircase=293.15
     "Indoor air temperature of staircase in K";
-  parameter Modelica.SIunits.Height heightRooms = 3 "Height of rooms in m";
+  parameter Modelica.Units.SI.Height heightRooms=3 "Height of rooms in m";
 
-  parameter Modelica.SIunits.Length lengthZone = 5 "Length of room in m";
-  parameter Modelica.SIunits.Length widthZone = 5 "Width of room in m";
-  parameter Modelica.SIunits.Length widthHallway = 3 "Width of room in m";
+  parameter Modelica.Units.SI.Length lengthZone=5 "Length of room in m";
+  parameter Modelica.Units.SI.Length widthZone=5 "Width of room in m";
+  parameter Modelica.Units.SI.Length widthHallway=3 "Width of room in m";
   parameter Real doorOpening = 1
     "Opening of door (between 0:closed and 1:open)";
 
@@ -113,7 +113,7 @@ equation
       points={{20,-30},{34,-30},{34,-72},{-40,-72},{-40,-100}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
   end for;
@@ -122,7 +122,7 @@ equation
       points={{-40,-100},{-40,-72},{-90,-72},{-90,-26},{-81.8,-26}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   end for;
@@ -131,7 +131,7 @@ equation
       points={{-40,-100},{-40,-50},{-50,-50},{-50,-26},{-41.8,-26}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   end for;
@@ -139,7 +139,7 @@ equation
       points={{-40,-100},{-40,-72},{34,-72},{34,4},{58.2,4}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   annotation ( Documentation(info="<html>

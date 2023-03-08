@@ -30,7 +30,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation ( __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/BaseClasses/Examples/HANaturalCylinder.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/BaseClasses/Examples/HANaturalCylinder.mos"
         "Simulate and plot"),
         experiment(Tolerance=1e-6, StopTime=250),
         Documentation(info="<html>

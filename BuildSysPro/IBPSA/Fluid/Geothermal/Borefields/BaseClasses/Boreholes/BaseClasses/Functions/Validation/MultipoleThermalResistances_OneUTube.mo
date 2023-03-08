@@ -5,52 +5,52 @@ model MultipoleThermalResistances_OneUTube
 
   parameter Integer nPip=2 "Number of pipes";
   parameter Integer J=3 "Number of multipoles";
-  parameter Modelica.SIunits.Position[nPip] xPip={0.03, -0.03}
+  parameter Modelica.Units.SI.Position[nPip] xPip={0.03,-0.03}
     "x-Coordinates of pipes";
-  parameter Modelica.SIunits.Position[nPip] yPip={0.00, 0.02}
+  parameter Modelica.Units.SI.Position[nPip] yPip={0.00,0.02}
     "y-Coordinates of pipes";
-  parameter Modelica.SIunits.Radius rBor=0.07 "Borehole radius";
-  parameter Modelica.SIunits.Radius[nPip] rPip=fill(0.02, nPip)
+  parameter Modelica.Units.SI.Radius rBor=0.07 "Borehole radius";
+  parameter Modelica.Units.SI.Radius[nPip] rPip=fill(0.02, nPip)
     "Outter radius of pipes";
-  parameter Modelica.SIunits.ThermalConductivity kFil=1.5
+  parameter Modelica.Units.SI.ThermalConductivity kFil=1.5
     "Thermal conductivity of grouting material";
-  parameter Modelica.SIunits.ThermalConductivity kSoi=2.5
+  parameter Modelica.Units.SI.ThermalConductivity kSoi=2.5
     "Thermal conductivity of soil material";
-  parameter Real[nPip] RFluPip(unit="(m.K)/W")=
+  parameter Real[nPip] RFluPip(each unit="(m.K)/W")=
     fill(1.2/(2*Modelica.Constants.pi*kFil), nPip)
     "Fluid to pipe wall thermal resistances";
-  parameter Modelica.SIunits.Temperature TBor=0
+  parameter Modelica.Units.SI.Temperature TBor=0
     "Average borehole wall temperature";
 
-  parameter Real[nPip,nPip] RDelta_Ref=
+  parameter Real[nPip,nPip] RDelta_Ref(each unit="(m.K)/W")=
     {{1/3.680, 1/0.242},{1/0.242, 1/3.724}}
     "Reference delta-circuit thermal resistances";
-  parameter Real[nPip,nPip] R_Ref=
+  parameter Real[nPip,nPip] R_Ref(each unit="(m.K)/W")=
     {{0.25592, 0.01561},{0.01561, 0.25311}}
     "Reference internal thermal resistances";
 
-  Real[nPip,nPip] RDelta(unit="(m.K)/W")
+  Real[nPip,nPip] RDelta(each unit="(m.K)/W")
     "Delta-circuit thermal resistances";
-  Real[nPip,nPip] R(unit="(m.K)/W")
+  Real[nPip,nPip] R(each unit="(m.K)/W")
     "Internal thermal resistances";
 
 equation
   (RDelta,R) =
     IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseClasses.Functions.multipoleThermalResistances(
-                      nPip,
-                      J,
-                      xPip,
-                      yPip,
-                      rBor,
-                      rPip,
-                      kFil,
-                      kSoi,
-                      RFluPip,
-                      TBor);
+    nPip,
+    J,
+    xPip,
+    yPip,
+    rBor,
+    rPip,
+    kFil,
+    kSoi,
+    RFluPip,
+    TBor);
 
   annotation (
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/BaseClasses/Functions/Validation/MultipoleThermalResistances_OneUTube.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/BaseClasses/Functions/Validation/MultipoleThermalResistances_OneUTube.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=1.0),
     Documentation(info="<html>

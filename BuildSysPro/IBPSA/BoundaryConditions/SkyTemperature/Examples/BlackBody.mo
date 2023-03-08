@@ -3,7 +3,8 @@ model BlackBody "Test model for black body sky temperature"
   extends Modelica.Icons.Example;
 
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   IBPSA.BoundaryConditions.SkyTemperature.BlackBody TBlaSky
     "Black body sky temperature computed from temperature and sky cover"
@@ -11,8 +12,7 @@ model BlackBody "Test model for black body sky temperature"
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather data bus"
     annotation (Placement(transformation(extent={{0,0},{20,20}}),
         iconTransformation(extent={{0,0},{2,2}})));
-  IBPSA.BoundaryConditions.SkyTemperature.BlackBody TBlaSkyIrr(calTSky=
-        IBPSA.BoundaryConditions.Types.SkyTemperatureCalculation.HorizontalRadiation)
+  IBPSA.BoundaryConditions.SkyTemperature.BlackBody TBlaSkyIrr(calTSky=IBPSA.BoundaryConditions.Types.SkyTemperatureCalculation.HorizontalRadiation)
     "Black body sky temperature computation compued from horizontal infrared radiation"
     annotation (Placement(transformation(extent={{40,-20},{60,0}})));
 equation
@@ -21,7 +21,7 @@ equation
       points={{10,10},{-20,10}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   connect(weaBus.TDewPoi, TBlaSky.TDewPoi) annotation (Line(
@@ -41,7 +41,7 @@ equation
       points={{10,10},{24,10},{24,22},{38,22}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   connect(weaBus.TDewPoi, TBlaSkyIrr.TDewPoi) annotation (Line(
@@ -60,7 +60,7 @@ equation
       points={{10,10},{24,10},{24,-18},{38,-18}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   annotation (
@@ -92,6 +92,6 @@ First implementation.
 </ul>
 </html>"),
 experiment(Tolerance=1e-6, StartTime=0, StopTime=86400),
-    __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/SkyTemperature/Examples/BlackBody.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/SkyTemperature/Examples/BlackBody.mos"
         "Simulate and plot"));
 end BlackBody;

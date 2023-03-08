@@ -18,7 +18,7 @@ equation
       points={{-39,20},{-28,20},{-28,6},{-12,6}},
       color={0,0,127}));
   annotation ( experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Examples/QuadraticLinear.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Examples/QuadraticLinear.mos"
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This model tests the implementation of

@@ -11,9 +11,10 @@ model AltitudeAngle "Test model for altitude angle"
     "Solar hour angle"
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
-    "Weather data" annotation (Placement(transformation(extent={{-80,-10},
-            {-60,10}})));
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+    "Weather data"
+    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather bus"
     annotation (Placement(transformation(extent={{-44,-10},{-24,10}})));
   IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.AltitudeAngle altAng
@@ -31,21 +32,21 @@ equation
           1.13798e-15},{-47,5.55112e-16},{-34,5.55112e-16}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
   connect(weaBus.cloTim, decAng.nDay) annotation (Line(
       points={{-34,5.55112e-16},{-20,5.55112e-16},{-20,30},{-2,30}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   connect(weaBus.solTim, solHouAng.solTim) annotation (Line(
       points={{-34,5.55112e-16},{-20,5.55112e-16},{-20,-30},{-2,-30}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   connect(zen.zen, altAng.zen) annotation (Line(
@@ -53,7 +54,7 @@ equation
           1.27676e-15},{61.5,6.66134e-16},{66,6.66134e-16}},
       color={0,0,127}));
   annotation (experiment(Tolerance=1e-6, StopTime=86400),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/SolarGeometry/BaseClasses/Examples/AltitudeAngle.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/SolarGeometry/BaseClasses/Examples/AltitudeAngle.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

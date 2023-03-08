@@ -4,7 +4,7 @@ model Velocity "Test model for the flow velocity sensor"
 
   package Medium = IBPSA.Media.Air "Medium model";
 
-  parameter Modelica.SIunits.Area A = 0.1*0.1/4*Modelica.Constants.pi
+  parameter Modelica.Units.SI.Area A=0.1*0.1/4*Modelica.Constants.pi
     "Cross sectional area of flow channel";
 
   IBPSA.Fluid.Sources.Boundary_pT sin(
@@ -34,8 +34,7 @@ model Velocity "Test model for the flow velocity sensor"
     redeclare package Medium = Medium,
     m_flow_nominal=10,
     tau=0,
-    A=A)
-    "Sensor configured to use a steady-state model for the density"
+    A=A) "Sensor configured to use a steady-state model for the density"
     annotation (Placement(transformation(extent={{28,-10},{48,10}})));
 equation
   connect(ramp.y, masFloRat.m_flow_in) annotation (Line(
@@ -51,7 +50,7 @@ equation
       points={{48,0},{60,0}},
       color={0,127,255}));
     annotation (experiment(Tolerance=1e-6, StopTime=60),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sensors/Examples/Velocity.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sensors/Examples/Velocity.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

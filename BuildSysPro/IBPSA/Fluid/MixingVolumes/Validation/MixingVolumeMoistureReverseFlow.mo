@@ -37,7 +37,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
- __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeMoistureReverseFlow.mos"
+ __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeMoistureReverseFlow.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=10));
 end MixingVolumeMoistureReverseFlow;

@@ -6,8 +6,8 @@ partial model MixingVolumeReverseFlow
 
   constant Boolean prescribedHeatFlowRate = false
     "Flag that affects what steady state balance is used in the volume";
-  parameter Modelica.SIunits.Pressure dp_nominal = 10 "Nominal pressure drop";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 2.0
+  parameter Modelica.Units.SI.Pressure dp_nominal=10 "Nominal pressure drop";
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=2.0
     "Nominal mass flow rate";
 
   Modelica.Fluid.Sources.MassFlowSource_T sou(
@@ -26,8 +26,8 @@ partial model MixingVolumeReverseFlow
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={70,-20})));
-  replaceable IBPSA.Fluid.MixingVolumes.MixingVolume volDyn
-    constrainedby IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume(
+  replaceable IBPSA.Fluid.MixingVolumes.MixingVolume volDyn constrainedby
+    IBPSA.Fluid.MixingVolumes.MixingVolume(
     redeclare package Medium = Medium,
     V=1,
     nPorts=2,
@@ -36,16 +36,16 @@ partial model MixingVolumeReverseFlow
     "Volume with dynamic balance"
     annotation (Placement(transformation(extent={{10,0},{30,20}})));
 
-  replaceable IBPSA.Fluid.MixingVolumes.MixingVolume volSte
-    constrainedby IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume(
+  replaceable IBPSA.Fluid.MixingVolumes.MixingVolume volSte constrainedby
+    IBPSA.Fluid.MixingVolumes.MixingVolume(
     redeclare package Medium = Medium,
     final prescribedHeatFlowRate=prescribedHeatFlowRate,
     V=1,
     nPorts=2,
     m_flow_nominal=m_flow_nominal,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Volume with steady-state balance" annotation (Placement(
-        transformation(extent={{10,-50},{30,-30}})));
+    "Volume with steady-state balance"
+    annotation (Placement(transformation(extent={{10,-50},{30,-30}})));
 
   Modelica.Blocks.Math.Gain gain
     "Gain to add heat, moisture or trace substance flow rate"
@@ -92,6 +92,19 @@ The mass flow rate starts positive and reverses its direction at <i>t=5</i> seco
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 29, 2021, by Michael Wetter:<br/>
+Reformulated constraint of replaceable model to avoid access of
+component that is not in constraining type.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1473\">IBPSA, #1473</a>.
+</li>
+<li>
+December 23, 2019, by Michael Wetter:<br/>
+Changed constraining clause to ensure that heat port is present.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1268\">IBPSA, #1268</a>.
+</li>
 <li>
 January 19, 2016, by Michael Wetter:<br/>
 First implementation.

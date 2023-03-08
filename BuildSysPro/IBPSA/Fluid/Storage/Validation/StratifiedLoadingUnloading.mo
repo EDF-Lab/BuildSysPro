@@ -5,7 +5,7 @@ model StratifiedLoadingUnloading "Test model for stratified tank"
  package Medium = IBPSA.Media.Water "Medium model";
  constant Integer nSeg = 7 "Number of segments in tank";
 
- parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 1*1000/3600/4;
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=1*1000/3600/4;
 
   IBPSA.Fluid.Sources.Boundary_pT sou_1(
     p=300000 + 5000,
@@ -19,8 +19,7 @@ model StratifiedLoadingUnloading "Test model for stratified tank"
     T=273.15 + 20,
     m_flow=-0.028,
     use_m_flow_in=true,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{78,-2},{58,18}})));
+    nPorts=1) annotation (Placement(transformation(extent={{78,-2},{58,18}})));
   IBPSA.Fluid.Storage.StratifiedEnhanced tanEnh(
     redeclare package Medium = Medium,
     hTan=3,
@@ -36,8 +35,7 @@ model StratifiedLoadingUnloading "Test model for stratified tank"
     T=273.15 + 20,
     m_flow=-0.028,
     use_m_flow_in=true,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{78,-40},{58,-20}})));
+    nPorts=1) annotation (Placement(transformation(extent={{78,-40},{58,-20}})));
   IBPSA.Fluid.Storage.Stratified tan(
     redeclare package Medium = Medium,
     hTan=3,
@@ -54,20 +52,16 @@ model StratifiedLoadingUnloading "Test model for stratified tank"
     period=7200)
     annotation (Placement(transformation(extent={{20,80},{40,100}})));
   IBPSA.Fluid.Sensors.EnthalpyFlowRate HIn_flow(redeclare package Medium =
-               Medium, m_flow_nominal=m_flow_nominal)
-    "Enthalpy flow rate" annotation (Placement(transformation(extent={{-60,
-            -38},{-44,-22}})));
+        Medium, m_flow_nominal=m_flow_nominal) "Enthalpy flow rate"
+    annotation (Placement(transformation(extent={{-60,-38},{-44,-22}})));
   IBPSA.Fluid.Sensors.EnthalpyFlowRate HOut_flow(redeclare package Medium =
-               Medium, m_flow_nominal=m_flow_nominal)
-    "Enthalpy flow rate"
+        Medium, m_flow_nominal=m_flow_nominal) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{22,-38},{38,-22}})));
   IBPSA.Fluid.Sensors.EnthalpyFlowRate HInEnh_flow(redeclare package Medium =
-               Medium, m_flow_nominal=m_flow_nominal)
-    "Enthalpy flow rate"
+        Medium, m_flow_nominal=m_flow_nominal) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{-60,0},{-44,16}})));
   IBPSA.Fluid.Sensors.EnthalpyFlowRate HOutEnh_flow(redeclare package Medium =
-               Medium, m_flow_nominal=m_flow_nominal)
-    "Enthalpy flow rate"
+        Medium, m_flow_nominal=m_flow_nominal) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{2,0},{18,16}})));
   Modelica.Blocks.Math.Add add(k2=-1) annotation (Placement(transformation(
           extent={{20,40},{40,60}})));
@@ -146,7 +140,7 @@ equation
       points={{41,90},{90,90},{90,-22},{80,-22}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (                     __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Storage/Validation/StratifiedLoadingUnloading.mos"
+  annotation (                     __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Storage/Validation/StratifiedLoadingUnloading.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 This test model compares two tank models. The only difference between

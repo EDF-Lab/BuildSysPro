@@ -2,6 +2,7 @@ within BuildSysPro.IBPSA.Fluid;
 package FMI "Package with base classes that facilitate exporting models as an FMU"
   extends Modelica.Icons.Package;
 
+
   annotation (preferredView="info", Documentation(info="<html>
 <p>
 This package contains blocks that serve as containers for exporting
@@ -18,5 +19,5 @@ For more information, see the
 </p>
 </html>"),
   Icon(graphics={Bitmap(extent={{-90,-86},{84,88}}, fileName=
-            "modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/FMI/FMI_icon.png")}));
+            "modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/FMI/FMI_icon.png")}));
 end FMI;

@@ -106,7 +106,7 @@ equation
       points={{61,72},{94,72},{94,20},{86,20}},
       color={0,0,127}));
   annotation(experiment(Tolerance=1e-6, StopTime=360),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/Validation/ConstantEffectiveness.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/Validation/ConstantEffectiveness.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

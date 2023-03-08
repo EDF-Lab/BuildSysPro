@@ -3,27 +3,25 @@ model TwoElements
   "Thermal Zone with two elements for exterior and interior walls"
   extends OneElement(AArray={ATotExt,ATotWin,AInt});
 
-  parameter Modelica.SIunits.Area AInt "Area of interior walls"
-    annotation(Dialog(group="Interior walls"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer alphaInt
+  parameter Modelica.Units.SI.Area AInt "Area of interior walls"
+    annotation (Dialog(group="Interior walls"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hConInt
     "Convective coefficient of heat transfer of interior walls (indoor)"
-    annotation(Dialog(group="Interior walls"));
+    annotation (Dialog(group="Interior walls"));
   parameter Integer nInt(min = 1) "Number of RC-elements of interior walls"
     annotation(Dialog(group="Interior walls"));
-  parameter Modelica.SIunits.ThermalResistance RInt[nInt](
-    each min=Modelica.Constants.small)
+  parameter Modelica.Units.SI.ThermalResistance RInt[nInt](each min=Modelica.Constants.small)
     "Vector of resistances of interior walls, from port to center"
-    annotation(Dialog(group="Interior walls"));
-  parameter Modelica.SIunits.HeatCapacity CInt[nInt](
-    each min=Modelica.Constants.small)
+    annotation (Dialog(group="Interior walls"));
+  parameter Modelica.Units.SI.HeatCapacity CInt[nInt](each min=Modelica.Constants.small)
     "Vector of heat capacities of interior walls, from port to center"
-    annotation(Dialog(group="Interior walls"));
+    annotation (Dialog(group="Interior walls"));
   parameter Boolean indoorPortIntWalls = false
     "Additional heat port at indoor surface of interior walls"
     annotation(Dialog(group="Interior walls"),choices(checkBox = true));
 
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a intWallIndoorSurface if
-    indoorPortIntWalls "Auxiliary port at indoor surface of interior walls"
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a intWallIndoorSurface
+ if indoorPortIntWalls "Auxiliary port at indoor surface of interior walls"
     annotation (Placement(transformation(extent={{-130,-190},{-110,-170}}),
     iconTransformation(extent={{-130,-190},{-110,-170}})));
   BaseClasses.InteriorWall intWallRC(
@@ -34,21 +32,24 @@ model TwoElements
     annotation (Placement(transformation(extent={{182,-50},{202,-28}})));
 
 protected
-  Modelica.Thermal.HeatTransfer.Components.Convection convIntWall if AInt > 0
+  Modelica.Thermal.HeatTransfer.Components.Convection convIntWall(dT(start=0))
+                                                                  if AInt > 0
     "Convective heat transfer of interior walls"
     annotation (Placement(transformation(extent={{148,-30},{128,-50}})));
-  Modelica.Blocks.Sources.Constant alphaIntWall(k=AInt*alphaInt) if AInt > 0
+  Modelica.Blocks.Sources.Constant hConIntWall(k=AInt*hConInt) if AInt > 0
     "Coefficient of convective heat transfer for interior walls"
     annotation (Placement(transformation(
-    extent={{5,-5},{-5,5}},
-    rotation=-90,
-    origin={138,-61})));
+      extent={{5,-5},{-5,5}},
+      rotation=-90,
+      origin={138,-61})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor resExtWallIntWall(
-    final G=min(ATotExt, AInt)*alphaRad) if  ATotExt > 0 and AInt > 0
+    final G=min(ATotExt, AInt)*hRad, dT(start=0))
+                                          if ATotExt > 0 and AInt > 0
     "Resistor between exterior walls and interior walls"
     annotation (Placement(transformation(extent={{138,-116},{158,-96}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor resIntWallWin(
-    final G=min(ATotWin, AInt)*alphaRad) if  ATotWin > 0 and AInt > 0
+    final G=min(ATotWin, AInt)*hRad, dT(start=0))
+                                          if ATotWin > 0 and AInt > 0
     "Resistor between interior walls and windows"
     annotation (Placement(transformation(extent={{74,-118},{94,-98}})));
 
@@ -99,9 +100,9 @@ equation
     {-116,40}},
     color={191,0,0},
     smooth=Smooth.None));
-  connect(alphaIntWall.y, convIntWall.Gc)
-    annotation (Line(points={{138,-55.5},{138,-53.75},{138,-50}},
-    color={0,0,127}));
+  connect(hConIntWall.y, convIntWall.Gc)
+    annotation (Line(points={{138,-55.5},{138,-50},{138,-50}},
+                                                         color={0,0,127}));
   connect(intWallRC.port_a, intWallIndoorSurface)
     annotation (Line(points={{182,-40},{168,-40},{168,-82},{-120,-82},{-120,-180}},
     color={191,0,0}));
@@ -119,17 +120,32 @@ equation
     fillPattern=FillPattern.Solid),
   Text(
     extent={{173,-65},{224,-82}},
-    lineColor={0,0,255},
+    textColor={0,0,255},
     fillColor={215,215,215},
     fillPattern=FillPattern.Solid,
     textString="Interior Walls")}), Documentation(revisions="<html>
-  <ul>
-  <li>
-  April 18, 2015, by Moritz Lauster:<br/>
-  First implementation.
-  </li>
-  </ul>
-  </html>", info="<html>
+<ul>
+<li>
+March 7, 2022, by Michael Wetter:<br/>
+Removed <code>massDynamics</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1542\">#1542</a>.
+</li>
+<li>
+July 11, 2019, by Katharina Brinkmann:<br/>
+Renamed <code>alphaInt</code> to <code>hConInt</code>,
+<code>alphaIntWall</code> to <code>hConIntWall</code>
+</li>
+<li>
+January 25, 2019, by Michael Wetter:<br/>
+Added start value to avoid warning in JModelica.
+</li>
+<li>
+April 18, 2015, by Moritz Lauster:<br/>
+First implementation.
+</li>
+</ul>
+</html>",   info="<html>
   <p>This model distinguishes between internal
   thermal masses and exterior walls. While exterior walls contribute to heat
   transfer to the ambient, adiabatic conditions apply to internal masses.
@@ -143,7 +159,7 @@ equation
   The image below shows the RC-network of this model.
   </p>
   <p align=\"center\">
-  <img src=\"modelica://BuildSysPro/Resources/IBPSA/Images/ThermalZones/ReducedOrder/RC/TwoElements.png\" alt=\"image\"/>
+  <img src=\"modelica://BuildSysPro/IBPSA/Resources/Images/ThermalZones/ReducedOrder/RC/TwoElements.png\" alt=\"image\"/>
   </p>
   </html>"),
   Icon(coordinateSystem(extent={{-240,-180},{240,180}},
@@ -154,6 +170,6 @@ equation
   fillPattern=FillPattern.Solid,
   pattern=LinePattern.None), Text(
   extent={{-60,60},{64,-64}},
-  lineColor={0,0,0},
+  textColor={0,0,0},
   textString="2")}));
 end TwoElements;

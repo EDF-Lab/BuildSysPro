@@ -11,28 +11,28 @@ model AggregationWeightingFactors
     6.27297603019976, 2.43435015306157e-05;
     9.21672932384307, 3.00295537091117e-05]
     "Complete time matrix with TStep";
-  Modelica.SIunits.ThermalResistance[10] kappa
+  Modelica.Units.SI.ThermalResistance[10] kappa
     "Weight factor for each aggregation cell";
 
 equation
   kappa =
     IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.LoadAggregation.aggregationWeightingFactors(
-                    i=10,
-                    nTimTot=6,
-                    TStep=timSer,
-                    nu=cat(
-                      1,
-                      linspace(
-                        0.4,
-                        2,
-                        5),
-                      linspace(
-                        2.8,
-                        6,
-                        5)));
+    i=10,
+    nTimTot=6,
+    TStep=timSer,
+    nu=cat(
+      1,
+      linspace(
+        0.4,
+        2,
+        5),
+      linspace(
+        2.8,
+        6,
+        5)));
 
 annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/AggregationWeightingFactors.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/AggregationWeightingFactors.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

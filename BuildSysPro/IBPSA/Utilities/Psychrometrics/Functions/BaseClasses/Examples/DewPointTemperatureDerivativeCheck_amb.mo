@@ -6,7 +6,7 @@ model DewPointTemperatureDerivativeCheck_amb
   Real y "Function value";
   Real y_comp "Function value for comparison";
   Real err "Integration error";
-  Modelica.SIunits.Temperature T "Temperature";
+  Modelica.Units.SI.Temperature T "Temperature";
 initial equation
   y=y_comp;
 equation
@@ -17,7 +17,7 @@ equation
   assert(abs(err)/max(1, abs(y)) < 1E-2, "Derivative implementation has an error or solver tolerance is too low.");
 
 annotation (
-    __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Functions/BaseClasses/Examples/DewPointTemperatureDerivativeCheck_amb.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Functions/BaseClasses/Examples/DewPointTemperatureDerivativeCheck_amb.mos"
         "Simulate and plot"),
     experiment(
       StartTime=-1,

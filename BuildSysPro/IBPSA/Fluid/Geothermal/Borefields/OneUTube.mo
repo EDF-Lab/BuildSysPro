@@ -3,8 +3,7 @@ model OneUTube
   "Borefield model containing single U-tube boreholes"
   extends IBPSA.Fluid.Geothermal.Borefields.BaseClasses.PartialBorefield(
       redeclare
-      IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.OneUTube
-      borHol);
+      IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.OneUTube borHol);
 
   annotation (
   defaultComponentName="borFie",

@@ -3,18 +3,18 @@ function pressure
   "Pump or fan head away from the origin without correction for mover flow resistance"
   extends Modelica.Icons.Function;
 
-  input Modelica.SIunits.VolumeFlowRate V_flow "Volumetric flow rate";
+  input Modelica.Units.SI.VolumeFlowRate V_flow "Volumetric flow rate";
   input Real r_N(unit="1") "Relative revolution, r_N=N/N_nominal";
   input Real d[:] "Derivatives of flow rate vs. pressure at the support points";
-  input Modelica.SIunits.PressureDifference dpMax(displayUnit="Pa")
+  input Modelica.Units.SI.PressureDifference dpMax(displayUnit="Pa")
     "Maximum pressure drop at nominal speed, for regularisation";
-  input Modelica.SIunits.VolumeFlowRate V_flow_max
+  input Modelica.Units.SI.VolumeFlowRate V_flow_max
     "Maximum flow rate at nominal speed, for regularisation";
-  input
-    IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal
-    per "Pressure performance data";
+  input IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParametersInternal per
+    "Pressure performance data";
 
-  output Modelica.SIunits.PressureDifference dp(displayUnit="Pa") "Pressure raise";
+  output Modelica.Units.SI.PressureDifference dp(displayUnit="Pa")
+    "Pressure raise";
 
 protected
   constant Real delta = 0.05
@@ -22,7 +22,7 @@ protected
   constant Real delta2 = delta/2 "= delta/2";
   Real r_R(unit="1") "Relative revolution, bounded below by delta";
   Integer i "Integer to select data interval";
-  Modelica.SIunits.VolumeFlowRate rat "Ratio of V_flow/r_R";
+  Modelica.Units.SI.VolumeFlowRate rat "Ratio of V_flow/r_R";
 
 algorithm
   // For r_N < delta, we restrict r_N in the term V_flow/r_N.
@@ -56,15 +56,14 @@ algorithm
   // dp -> 0 as r_N -> 0 quadratically, because rat is bounded
   // by the above regularization
   if r_N>=0 then
-    dp := r_N^2*
-      IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-                x=rat,
-                x1=per.V_flow[i],
-                x2=per.V_flow[i + 1],
-                y1=per.dp[i],
-                y2=per.dp[i + 1],
-                y1d=d[i],
-                y2d=d[i + 1]);
+    dp := r_N^2*IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
+      x=rat,
+      x1=per.V_flow[i],
+      x2=per.V_flow[i + 1],
+      y1=per.dp[i],
+      y2=per.dp[i + 1],
+      y1d=d[i],
+      y2d=d[i + 1]);
   else
     dp:=-r_N^2*(dpMax-dpMax/V_flow_max*V_flow);
   end if;

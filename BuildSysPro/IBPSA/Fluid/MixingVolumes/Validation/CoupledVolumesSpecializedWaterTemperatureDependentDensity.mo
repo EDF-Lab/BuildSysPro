@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.MixingVolumes.Validation;
 model CoupledVolumesSpecializedWaterTemperatureDependentDensity
   "Validation model for two coupled volumes with water with temperature dependent density"
-  extends IBPSA.Fluid.MixingVolumes.Validation.CoupledVolumesWater(
-      redeclare package Medium =
+  extends IBPSA.Fluid.MixingVolumes.Validation.CoupledVolumesWater(redeclare
+      package Medium =
         IBPSA.Media.Specialized.Water.TemperatureDependentDensity);
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
@@ -27,6 +27,6 @@ First implementation for
       StopTime=3600,
       Tolerance=1e-06),
     __Dymola_Commands(
-      file="Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesSpecializedWaterTemperatureDependentDensity.mos"
+      file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesSpecializedWaterTemperatureDependentDensity.mos"
            "Simulate and plot"));
 end CoupledVolumesSpecializedWaterTemperatureDependentDensity;

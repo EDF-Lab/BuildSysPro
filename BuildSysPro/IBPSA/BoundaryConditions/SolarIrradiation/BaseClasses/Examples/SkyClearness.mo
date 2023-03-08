@@ -2,13 +2,14 @@ within BuildSysPro.IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.Example
 model SkyClearness "Test model for sky clearness"
   extends Modelica.Icons.Example;
 
-  IBPSA.BoundaryConditions.SolarGeometry.ZenithAngle zen(lat=0.34906585039887)
+  IBPSA.BoundaryConditions.SolarGeometry.ZenithAngle zen
     annotation (Placement(transformation(extent={{-40,-20},{-20,0}})));
   IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.SkyClearness skyCle
     annotation (Placement(transformation(extent={{40,0},{60,20}})));
 
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus
     annotation (Placement(transformation(extent={{-2,20},{18,40}})));
@@ -21,21 +22,21 @@ equation
       points={{-20,30},{8,30}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
-  connect(weaBus.HGloHor, skyCle.HGloHor) annotation (Line(
+  connect(weaBus.HDirNor, skyCle.HDirNor) annotation (Line(
       points={{8,30},{24,30},{24,16},{38,16}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   connect(weaBus.HDifHor, skyCle.HDifHor) annotation (Line(
       points={{8,30},{24,30},{24,10},{38,10}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
 
@@ -43,7 +44,7 @@ equation
       points={{8,30},{8,12},{-54,12},{-54,-10},{-40,-10}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   annotation (
@@ -61,6 +62,6 @@ First implementation.
 </ul>
 </html>"),
 experiment(StartTime=100000, Tolerance=1e-6, StopTime=3000000),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/SolarIrradiation/BaseClasses/Examples/SkyClearness.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/SolarIrradiation/BaseClasses/Examples/SkyClearness.mos"
         "Simulate and plot"));
 end SkyClearness;

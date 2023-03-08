@@ -2,24 +2,19 @@ within BuildSysPro.IBPSA.BoundaryConditions.SolarIrradiation.Examples;
 model DirectTiltedSurface
   "Test model for direct solar irradiation on a tilted surface"
   extends Modelica.Icons.Example;
-  parameter Modelica.SIunits.Angle lat=37/180*Modelica.Constants.pi "Latitude";
+
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
-  IBPSA.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirRoo(
-    til=IBPSA.Types.Tilt.Ceiling,
-    lat=0.6457718232379,
-    azi=0.78539816339745) "Direct irradiation on roof"
+  IBPSA.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirRoo(til=IBPSA.Types.Tilt.Ceiling,
+      azi=0.78539816339745) "Direct irradiation on roof"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
-  IBPSA.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirFlo(
-    til=IBPSA.Types.Tilt.Floor,
-    lat=0.6457718232379,
-    azi=0.78539816339745) "Direct irradiation on floor"
+  IBPSA.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirFlo(til=IBPSA.Types.Tilt.Floor,
+      azi=0.78539816339745) "Direct irradiation on floor"
     annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
-  IBPSA.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirWal(
-    til=IBPSA.Types.Tilt.Wall,
-    lat=0.6457718232379,
-    azi=0.78539816339745) "Direct irradiation on wall"
+  IBPSA.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirWal(til=IBPSA.Types.Tilt.Wall,
+      azi=0.78539816339745) "Direct irradiation on wall"
     annotation (Placement(transformation(extent={{20,-20},{40,0}})));
   IBPSA.Utilities.Diagnostics.AssertEquality assEqu
     "Assert to ensure that direct radiation received by floor construction is zero"
@@ -47,7 +42,7 @@ equation
       thickness=0.5));
   annotation (
 experiment(StartTime=1.82304e+07, Tolerance=1e-6, StopTime=1.83168e+07),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/SolarIrradiation/Examples/DirectTiltedSurface.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/SolarIrradiation/Examples/DirectTiltedSurface.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

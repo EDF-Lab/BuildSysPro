@@ -4,7 +4,7 @@ model MoverParameter
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Water;
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=2
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=2
     "Nominal mass flow rate";
 
   FlowControlled_m_flow pump_m_flow(
@@ -17,12 +17,12 @@ model MoverParameter
     "Pump with m_flow input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sou(redeclare package Medium = Medium,
-      nPorts=4) "Fluid source"
+  IBPSA.Fluid.Sources.Boundary_pT sou(redeclare package Medium = Medium, nPorts=
+       4) "Fluid source"
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium,
-      nPorts=4) "Fluid sink"
+  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium, nPorts=
+       4) "Fluid sink"
     annotation (Placement(transformation(extent={{80,-10},{60,10}})));
   SpeedControlled_y pump_y(
     redeclare package Medium = Medium,
@@ -59,7 +59,7 @@ model MoverParameter
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     "Pump with speed input"
     annotation (Placement(transformation(extent={{-10,30},{10,50}})));
-  parameter Modelica.SIunits.PressureDifference dp_nominal=10000
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=10000
     "Nominal pressure raise";
 equation
   connect(sou.ports[1], pump_m_flow.port_a) annotation (Line(
@@ -86,7 +86,7 @@ equation
           {60,40},{60,-3}}, color={0,127,255}));
   annotation (
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Examples/MoverParameter.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Examples/MoverParameter.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

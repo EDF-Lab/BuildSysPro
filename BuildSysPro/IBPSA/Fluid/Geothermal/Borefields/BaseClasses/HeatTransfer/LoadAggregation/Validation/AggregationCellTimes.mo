@@ -4,28 +4,31 @@ model AggregationCellTimes
   extends Modelica.Icons.Example;
 
   parameter Integer i = 6 "Number of aggregation cells";
-  parameter Modelica.SIunits.Time tLoaAgg=10 "Time resolution of load aggregation";
-  final parameter Modelica.SIunits.Time[i] nu(each fixed=false)
+  parameter Modelica.Units.SI.Time tLoaAgg=10
+    "Time resolution of load aggregation";
+  final parameter Modelica.Units.SI.Time[i] nu(each fixed=false)
     "Time vector for load aggregation";
-  final parameter Modelica.SIunits.Time[i] rCel(each fixed=false) "Cell widths";
+  final parameter Modelica.Units.SI.Time[i] rCel(each fixed=false)
+    "Cell widths";
 
-  Modelica.SIunits.Time nu_error,rCel_error "Error on chosen values";
+  Modelica.Units.SI.Time nu_error;
+  Modelica.Units.SI.Time rCel_error "Error on chosen values";
 
 initial equation
   (nu,rCel) =
     IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.LoadAggregation.aggregationCellTimes(
-                    i=i,
-                    lvlBas=2,
-                    nCel=2,
-                    tLoaAgg=tLoaAgg,
-                    timFin=12*tLoaAgg);
+    i=i,
+    lvlBas=2,
+    nCel=2,
+    tLoaAgg=tLoaAgg,
+    timFin=12*tLoaAgg);
 
 equation
   nu_error = 100.0-nu[i-1];
   rCel_error = 2.0-rCel[i];
 
 annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/AggregationCellTimes.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/AggregationCellTimes.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

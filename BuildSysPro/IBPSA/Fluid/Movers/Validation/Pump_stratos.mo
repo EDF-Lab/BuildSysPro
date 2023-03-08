@@ -28,7 +28,7 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{160,
             160}}), graphics),
 experiment(Tolerance=1e-06, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Validation/Pump_stratos.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Validation/Pump_stratos.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>This example demonstrates and tests the use of a flow machine that uses

@@ -1,9 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.MixingVolumes.Validation;
 model CoupledVolumesSpecializedAirPerfectGas
   "Validation model for two coupled volumes with air as a perfect gas"
-  extends IBPSA.Fluid.MixingVolumes.Validation.CoupledVolumesWater(
-      redeclare package Medium =
-        IBPSA.Media.Specialized.Air.PerfectGas);
+  extends IBPSA.Fluid.MixingVolumes.Validation.CoupledVolumesWater(redeclare
+      package Medium = IBPSA.Media.Specialized.Air.PerfectGas);
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
@@ -27,6 +26,6 @@ First implementation for
       StopTime=3600,
       Tolerance=1e-06),
     __Dymola_Commands(
-      file="Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesSpecializedAirPerfectGas.mos"
+      file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesSpecializedAirPerfectGas.mos"
            "Simulate and plot"));
 end CoupledVolumesSpecializedAirPerfectGas;

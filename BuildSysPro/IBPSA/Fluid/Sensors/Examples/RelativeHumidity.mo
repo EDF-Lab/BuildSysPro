@@ -9,8 +9,7 @@ model RelativeHumidity "Test model for relative humidity sensor"
     redeclare package Medium = Medium,
     use_p_in=false,
     T=293.15,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{80,10},{60,30}})));
+    nPorts=1) annotation (Placement(transformation(extent={{80,10},{60,30}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou(
     redeclare package Medium = Medium,
     m_flow=1,
@@ -31,7 +30,7 @@ model RelativeHumidity "Test model for relative humidity sensor"
                  annotation (Placement(transformation(extent={{-100,-20},{-80,0}})));
 
   IBPSA.Fluid.Sensors.RelativeHumidity senRelHum(redeclare package Medium =
-               Medium)
+        Medium, warnAboutOnePortConnection=false)
     "Relative humidity of the flow source if the medium were outflowing"
     annotation (Placement(transformation(extent={{-16,42},{4,62}})));
     Modelica.Blocks.Sources.Ramp m_flow(
@@ -63,7 +62,7 @@ equation
   connect(sou.Xi_in[1], XHum.y) annotation (Line(points={{-30,18},{-40,18},{-40,
           -10},{-79,-10}}, color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sensors/Examples/RelativeHumidity.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sensors/Examples/RelativeHumidity.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

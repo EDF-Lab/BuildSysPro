@@ -45,6 +45,6 @@ First implementation.
 </ul>
 </html>"),
   experiment(Tolerance=1e-6, StopTime=3.1536e+007),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/SolarGeometry/BaseClasses/Examples/Declination.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/SolarGeometry/BaseClasses/Examples/Declination.mos"
         "Simulate and plot"));
 end Declination;

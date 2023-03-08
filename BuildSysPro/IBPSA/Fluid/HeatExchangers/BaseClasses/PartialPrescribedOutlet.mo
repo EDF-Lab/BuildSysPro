@@ -5,16 +5,17 @@ partial model PartialPrescribedOutlet
   extends IBPSA.Fluid.Interfaces.TwoPortFlowResistanceParameters(final
       computeFlowResistance=(abs(dp_nominal) > Modelica.Constants.eps));
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal
-    "Nominal mass flow rate, used for regularization near zero flow"
-    annotation(Dialog(group = "Nominal condition"));
+  constant Boolean homotopyInitialization = true "= true, use homotopy method"
+    annotation(HideResult=true);
 
-  parameter Modelica.SIunits.Time tau(min=0) = 10
-    "Time constant at nominal flow rate (used if energyDynamics or massDynamics not equal Modelica.Fluid.Types.Dynamics.SteadyState)"
-    annotation(Dialog(tab = "Dynamics"));
+  // Dynamics
+  parameter Modelica.Fluid.Types.Dynamics energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState
+    "Type of energy balance: dynamic (3 initialization options) or steady state"
+    annotation(Evaluate=true, Dialog(tab = "Dynamics", group="Conservation equations"));
 
-  parameter Boolean homotopyInitialization = true "= true, use homotopy method"
-    annotation(Evaluate=true, Dialog(tab="Advanced"));
+  parameter Modelica.Units.SI.Time tau(min=0) = 10
+    "Time constant at nominal flow rate (used if energyDynamics not equal Modelica.Fluid.Types.Dynamics.SteadyState)"
+    annotation (Dialog(tab="Dynamics", enable=energyDynamics <> Modelica.Fluid.Types.Dynamics.SteadyState));
 
 protected
   IBPSA.Fluid.FixedResistances.PressureDrop preDro(
@@ -31,12 +32,18 @@ protected
 
   IBPSA.Fluid.Interfaces.PrescribedOutlet outCon(
     redeclare final package Medium = Medium,
+    final energyDynamics=energyDynamics,
     final allowFlowReversal=allowFlowReversal,
     final m_flow_small=m_flow_small,
     final show_T=false,
     final m_flow_nominal=m_flow_nominal,
     final tau=tau) "Model to set outlet conditions"
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
+initial equation
+  assert(homotopyInitialization, "In " + getInstanceName() +
+    ": The constant homotopyInitialization has been modified from its default value. This constant will be removed in future releases.",
+    level = AssertionLevel.warning);
+
 equation
   connect(port_a, preDro.port_a) annotation (Line(
       points={{-100,0},{-50,0}},
@@ -74,6 +81,21 @@ and connect its input signals, in they are enabled.
 </html>",
 revisions="<html>
 <ul>
+<li>
+March 10, 2022, by Michael Wetter:<br/>
+Propagated <code>energyDynamics</code> from instance <code>outCon</code>.
+</li>
+<li>
+April 29, 2021, by Michael Wetter:<br/>
+Removed duplicate declaration of <code>m_flow_nominal</code> which is already
+declared in the base class.<br/>
+</li>
+<li>
+April 14, 2020, by Michael Wetter:<br/>
+Changed <code>homotopyInitialization</code> to a constant.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1341\">IBPSA, #1341</a>.
+</li>
 <li>
 May 3, 2017, by Michael Wetter:<br/>
 Updated protected model for

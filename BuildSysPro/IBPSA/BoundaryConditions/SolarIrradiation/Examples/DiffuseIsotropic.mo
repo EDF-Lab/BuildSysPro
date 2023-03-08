@@ -5,7 +5,8 @@ model DiffuseIsotropic
   parameter Real rho=0.2 "Ground reflectance";
 
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather data bus"
     annotation (Placement(transformation(extent={{-11,-1},{9,21}}),
@@ -25,7 +26,7 @@ equation
       points={{-20,10},{-1,10}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
 
@@ -33,21 +34,21 @@ equation
       points={{-1,10},{40,10}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   connect(HDifWal.weaBus, weaBus) annotation (Line(
       points={{40,-30},{20,-30},{20,10},{-1,10}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
   connect(HDifFlo.weaBus, weaBus) annotation (Line(
       points={{40,-70},{20,-70},{20,10},{-1,10}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
   annotation (
@@ -67,6 +68,6 @@ First implementation.
 </ul>
 </html>"),
 experiment(StartTime=1.82304e+07, Tolerance=1e-6, StopTime=1.83168e+07),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/SolarIrradiation/Examples/DiffuseIsotropic.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/SolarIrradiation/Examples/DiffuseIsotropic.mos"
         "Simulate and plot"));
 end DiffuseIsotropic;

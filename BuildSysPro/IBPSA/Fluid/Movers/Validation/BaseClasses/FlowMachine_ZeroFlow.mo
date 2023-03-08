@@ -5,9 +5,9 @@ partial model FlowMachine_ZeroFlow
   replaceable package Medium = IBPSA.Media.Air constrainedby
     Modelica.Media.Interfaces.PartialMedium                 "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 1
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=1
     "Nominal mass flow rate";
-  parameter Modelica.SIunits.PressureDifference dp_nominal = 500
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=500
     "Nominal pressure difference";
 
   Modelica.Blocks.Sources.Ramp y(
@@ -21,21 +21,21 @@ partial model FlowMachine_ZeroFlow
     use_p_in=false,
     p=101325,
     T=293.15,
-    nPorts=4) annotation (Placement(transformation(extent={{-88,-46},{
-            -68,-26}})));
+    nPorts=4)
+    annotation (Placement(transformation(extent={{-88,-46},{-68,-26}})));
   IBPSA.Fluid.FixedResistances.PressureDrop dpSta(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=dp_nominal/2) "Pressure drop"
     annotation (Placement(transformation(extent={{58,70},{78,90}})));
   replaceable IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine floMacSta
-    constrainedby IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine(
-      redeclare package Medium = Medium, energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
+    constrainedby IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine(redeclare
+      package Medium = Medium, energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     "Static model of a flow machine"
     annotation (Placement(transformation(extent={{20,70},{40,90}})));
   replaceable IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine floMacDyn
-    constrainedby IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine(
-      redeclare package Medium = Medium, energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
+    constrainedby IBPSA.Fluid.Movers.BaseClasses.PartialFlowMachine(redeclare
+      package Medium = Medium, energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
     "Dynamic model of a flow machine"
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
   IBPSA.Fluid.FixedResistances.PressureDrop dpDyn(

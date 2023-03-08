@@ -13,20 +13,20 @@ model PartialWaterToWater
   replaceable package ref = IBPSA.Media.Refrigerants.R410A
     "Refrigerant model";
 
-  parameter Modelica.SIunits.MassFlowRate m1_flow_nominal
+  parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal
     "Nominal mass flow rate on condenser side";
-  parameter Modelica.SIunits.MassFlowRate m2_flow_nominal
+  parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal
     "Nominal mass flow rate on evaporator side";
 
-  parameter Modelica.SIunits.Pressure dp1_nominal = 1000
+  parameter Modelica.Units.SI.Pressure dp1_nominal=1000
     "Pressure drop at nominal mass flow rate on condenser side";
-  parameter Modelica.SIunits.Pressure dp2_nominal = 1000
+  parameter Modelica.Units.SI.Pressure dp2_nominal=1000
     "Pressure drop at nominal mass flow rate on evaporator side";
 
-  parameter Modelica.SIunits.ThermalConductance UACon
+  parameter Modelica.Units.SI.ThermalConductance UACon
     "Thermal conductance of condenser";
 
-  parameter Modelica.SIunits.ThermalConductance UAEva
+  parameter Modelica.Units.SI.ThermalConductance UAEva
     "Thermal conductance of evaporator";
 
   Modelica.Blocks.Sources.CombiTimeTable calDat(
@@ -38,10 +38,9 @@ model PartialWaterToWater
     "De-multiplex"
     annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
 
-  IBPSA.Fluid.Sources.FixedBoundary sin2(redeclare final package Medium =
-               Medium2, nPorts=1) "Boundary condition" annotation (
-      Placement(transformation(extent={{-10,-10},{10,10}}, origin={-50,
-            -40})));
+  IBPSA.Fluid.Sources.Boundary_pT sin2(redeclare final package Medium = Medium2,
+      nPorts=1) "Boundary condition" annotation (Placement(transformation(
+          extent={{-10,-10},{10,10}}, origin={-50,-40})));
   Modelica.Fluid.Sources.MassFlowSource_T Sou(
     redeclare final package Medium = Medium2,
     nPorts=1,
@@ -49,10 +48,9 @@ model PartialWaterToWater
     use_T_in=true)
     "Mass flow source"
     annotation (Placement(transformation(extent={{60,-16},{40,4}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare final package Medium =
-               Medium1, nPorts=1) "Pressure boundary condition"
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}},
-          origin={50,30})));
+  IBPSA.Fluid.Sources.Boundary_pT sin1(redeclare final package Medium = Medium1,
+      nPorts=1) "Pressure boundary condition" annotation (Placement(
+        transformation(extent={{10,-10},{-10,10}}, origin={50,30})));
 
   Modelica.Fluid.Sources.MassFlowSource_T loa(
     redeclare final package Medium = Medium1,
@@ -71,8 +69,8 @@ model PartialWaterToWater
     final dp1_nominal=dp1_nominal,
     final dp2_nominal=dp2_nominal,
     enable_variable_speed=false,
-    show_T=true) annotation (Placement(transformation(extent={{-10,-10},
-            {10,10}})));
+    show_T=true)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
   Modelica.Blocks.Sources.IntegerConstant isOn(k=1)
     "Control signal"
@@ -114,6 +112,11 @@ Source and load temperatures and flow rates are read from an external time table
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for 
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 October 31, 2016, by Massimo Cimmino:<br/>
 First implementation.

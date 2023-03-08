@@ -4,9 +4,9 @@ model SpeedControlled_y_linear
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.5
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.5
     "Nominal mass flow rate";
-  parameter Modelica.SIunits.PressureDifference dp_nominal = 10000
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=10000
     "Nominal pressure";
 
   Modelica.Blocks.Sources.Ramp y(
@@ -47,15 +47,13 @@ model SpeedControlled_y_linear
     redeclare package Medium = Medium,
     nPorts=1,
     m_flow=m_flow_nominal*0.01,
-    T=293.15)
-    annotation (Placement(transformation(extent={{-62,40},{-42,60}})));
+    T=293.15) annotation (Placement(transformation(extent={{-62,40},{-42,60}})));
   IBPSA.Fluid.Movers.SpeedControlled_y pumFixM_flow(
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     per(pressure(V_flow=2/1000*{0,m_flow_nominal}, dp={2*dp_nominal,0})),
     use_inputFilter=false) "Pump with fixed mass flow rate"
     annotation (Placement(transformation(extent={{40,40},{60,60}})));
-
   IBPSA.Fluid.Sources.Boundary_pT sou3(
     redeclare package Medium = Medium,
     use_p_in=false,
@@ -91,7 +89,7 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{160,
             160}})),
 experiment(Tolerance=1e-06, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Validation/SpeedControlled_y_linear.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Validation/SpeedControlled_y_linear.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

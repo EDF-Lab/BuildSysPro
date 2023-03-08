@@ -14,8 +14,7 @@ model SpecificEntropy "Test model for the entropy flow rate sensors"
     redeclare package Medium = Medium,
     use_h_in=false,
     h=20,
-    nPorts=1) "Flow boundary condition" annotation (Placement(
-        transformation(
+    nPorts=1) "Flow boundary condition" annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={70,-12})));
@@ -26,10 +25,10 @@ model SpecificEntropy "Test model for the entropy flow rate sensors"
     annotation (Placement(transformation(extent={{-80,-12},{-60,8}})));
 
   IBPSA.Fluid.Sensors.SpecificEntropy senFloSou(redeclare package Medium =
-               Medium) "Sensor at the flow source"
+        Medium, warnAboutOnePortConnection=false) "Sensor at the flow source"
     annotation (Placement(transformation(extent={{-10,0},{10,20}})));
   IBPSA.Fluid.Sensors.SpecificEntropyTwoPort senStr(redeclare package Medium =
-               Medium, m_flow_nominal=2) "Sensor in the fluid stream"
+        Medium, m_flow_nominal=2) "Sensor in the fluid stream"
     annotation (Placement(transformation(extent={{20,-22},{40,-2}})));
 equation
   connect(ramp.y, sou.m_flow_in) annotation (Line(
@@ -46,7 +45,7 @@ equation
       color={0,127,255}));
     annotation (
 experiment(Tolerance=1e-6, StopTime=60),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sensors/Examples/SpecificEntropy.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sensors/Examples/SpecificEntropy.mos"
         "Simulate and plot"),    Documentation(info="<html>
 <p>
 This example tests the specific entropy sensors.

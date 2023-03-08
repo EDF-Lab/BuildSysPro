@@ -7,14 +7,12 @@ model MixingVolumeInitialization "Test model for mixing volume initialization"
     redeclare package Medium = Medium,
     p=101330,
     nPorts=1,
-    T=293.15)
-    annotation (Placement(transformation(extent={{-60,10},{-40,30}})));
+    T=293.15) annotation (Placement(transformation(extent={{-60,10},{-40,30}})));
   IBPSA.Fluid.Sources.Boundary_pT sin1(
     redeclare package Medium = Medium,
     p=101320,
     nPorts=1,
-    T=293.15)
-    annotation (Placement(transformation(extent={{120,10},{100,30}})));
+    T=293.15) annotation (Placement(transformation(extent={{120,10},{100,30}})));
   Modelica.Fluid.Pipes.StaticPipe pipe1(
     redeclare package Medium = Medium,
     length=1,
@@ -52,7 +50,7 @@ equation
             -100},{180,100}}),      graphics),
 experiment(StopTime=0.001,
            Tolerance=1e-06),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeInitialization.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeInitialization.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

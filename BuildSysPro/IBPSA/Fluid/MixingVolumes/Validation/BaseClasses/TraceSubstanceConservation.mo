@@ -3,20 +3,17 @@ model TraceSubstanceConservation
   "This test checks if trace substance mass flow rates are conserved"
   extends Modelica.Icons.Example;
   constant String substanceName="CO2";
-  package Medium = IBPSA.Media.Air (extraPropertiesNames={
-          substanceName});
+  package Medium = IBPSA.Media.Air (extraPropertiesNames={substanceName});
   IBPSA.Fluid.Sources.MassFlowSource_h sou(
     redeclare package Medium = Medium,
     nPorts=1,
     m_flow=1,
     X={0.01,0.99},
-    C=fill(0.001, Medium.nC))
-    "Air source with moisture and trace substances" annotation (
-      Placement(transformation(extent={{-100,-10},{-80,10}})));
+    C=fill(0.001, Medium.nC)) "Air source with moisture and trace substances"
+    annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
 
   IBPSA.Fluid.MixingVolumes.MixingVolumeMoistAir vol(
     redeclare package Medium = Medium,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     m_flow_nominal=1,
     V=1,
     nPorts=2,
@@ -31,9 +28,8 @@ model TraceSubstanceConservation
     m_flow_nominal=1,
     tau=0,
     allowFlowReversal=false,
-    substanceName=substanceName)
-    "Measured inlet trace substance concentration" annotation (
-      Placement(transformation(extent={{-70,10},{-50,-10}})));
+    substanceName=substanceName) "Measured inlet trace substance concentration"
+    annotation (Placement(transformation(extent={{-70,10},{-50,-10}})));
   IBPSA.Fluid.Sensors.TraceSubstancesTwoPort senTraSubOut(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
@@ -42,9 +38,9 @@ model TraceSubstanceConservation
     substanceName=substanceName)
     "Measured outlet trace substance concentration"
     annotation (Placement(transformation(extent={{20,10},{40,-10}})));
-  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium =
-        Medium, nPorts=1) "Air sink" annotation (Placement(
-        transformation(extent={{100,-10},{80,10}})));
+  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium, nPorts=
+       1) "Air sink"
+    annotation (Placement(transformation(extent={{100,-10},{80,10}})));
   Sensors.MassFlowRate senMasFloIn(redeclare package Medium = Medium,
       allowFlowReversal=false) "Fluid mass flow rate at inlet"
     annotation (Placement(transformation(extent={{-40,10},{-20,-10}})));

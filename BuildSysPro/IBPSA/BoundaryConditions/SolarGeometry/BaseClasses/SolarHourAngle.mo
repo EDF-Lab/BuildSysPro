@@ -31,9 +31,9 @@ First implementation.
 </html>"),
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}), graphics={  Bitmap(extent={{-90,-90},{90,90}}, fileName=
-              "modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/SolarGeometry/BaseClasses/SolarHourAngle.png"),
+              "modelica://BuildSysPro/IBPSA/Resources/Images/BoundaryConditions/SolarGeometry/BaseClasses/SolarHourAngle.png"),
                               Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255})}));
+          textColor={0,0,255})}));
 end SolarHourAngle;

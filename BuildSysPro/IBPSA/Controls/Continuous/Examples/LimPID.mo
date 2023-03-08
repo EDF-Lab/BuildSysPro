@@ -10,16 +10,16 @@ model LimPID "Test model for PID controller with optional reverse action"
     Td=1,
     yMax=1,
     yMin=-1,
-    initType=Modelica.Blocks.Types.InitPID.InitialState)
+    initType=Modelica.Blocks.Types.Init.InitialState)
     annotation (Placement(transformation(extent={{-20,30},{0,50}})));
   IBPSA.Controls.Continuous.LimPID limPIDRev(
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
-    reverseAction=true,
+    reverseActing=false,
     Ti=1,
     Td=1,
     yMax=1,
     yMin=-1,
-    initType=Modelica.Blocks.Types.InitPID.InitialState)
+    initType=Modelica.Blocks.Types.Init.InitialState)
     "Controller with reverse action"
     annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
   Modelica.Blocks.Sources.Constant const(k=0.5)
@@ -34,8 +34,8 @@ model LimPID "Test model for PID controller with optional reverse action"
     Td=1,
     yMax=1,
     yMin=-1,
-    initType=Modelica.Blocks.Types.InitPID.InitialState)
-          annotation (Placement(transformation(extent={{-20,70},{0,90}})));
+    initType=Modelica.Blocks.Types.Init.InitialState)
+    annotation (Placement(transformation(extent={{-20,70},{0,90}})));
   IBPSA.Utilities.Diagnostics.AssertEquality assertEquality1(threShold=1e-3)
     annotation (Placement(transformation(extent={{60,60},{80,80}})));
 equation
@@ -75,7 +75,7 @@ equation
       points={{58,64},{30,64},{30,40},{1,40}},
       color={0,0,127}));
  annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Controls/Continuous/Examples/LimPID.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Controls/Continuous/Examples/LimPID.mos"
         "Simulate and plot"),
     Documentation(revisions="<html>
 <ul>

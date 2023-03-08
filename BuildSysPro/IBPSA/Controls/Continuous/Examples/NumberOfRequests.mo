@@ -5,9 +5,8 @@ model NumberOfRequests
   IBPSA.Controls.Continuous.NumberOfRequests numReq(
     nin=2,
     threShold=0,
-    kind=0)
-    annotation (Placement(transformation(extent={{0,20},{20,40}})));
-  Modelica.Blocks.Sources.Sine sine(freqHz=2)
+    kind=0) annotation (Placement(transformation(extent={{0,20},{20,40}})));
+  Modelica.Blocks.Sources.Sine sine(f=2)
     annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
   Modelica.Blocks.Sources.Pulse pulse(period=0.35)
     annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
@@ -17,7 +16,7 @@ equation
   connect(pulse.y, numReq.u[2]) annotation (Line(points={{-39,30},{-20,30},{-20,
           31},{-2,31}}, color={0,0,127}));
  annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Controls/Continuous/Examples/NumberOfRequests.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Controls/Continuous/Examples/NumberOfRequests.mos"
         "Simulate and plot"),
     Documentation(revisions="<html>
 <ul>
@@ -42,7 +41,7 @@ for each input signal that is strictly larger than <i>0</i>.
 The figure below shows the inputs and the output of the block.
 </p>
 <p align=\"center\">
-<img alt=\"Simulation results\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Controls/Continuous/Examples/NumberOfRequests.png\" border=\"1\" />
+<img alt=\"Simulation results\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Controls/Continuous/Examples/NumberOfRequests.png\" border=\"1\" />
 </p>
 </html>"));
 end NumberOfRequests;

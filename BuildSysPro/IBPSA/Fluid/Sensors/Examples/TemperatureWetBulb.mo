@@ -51,7 +51,7 @@ equation
   connect(XHum.y, sou.Xi_in[1]) annotation (Line(points={{-79,10},{-56,10},{-56,
           16},{-32,16}}, color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=120),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sensors/Examples/TemperatureWetBulb.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sensors/Examples/TemperatureWetBulb.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

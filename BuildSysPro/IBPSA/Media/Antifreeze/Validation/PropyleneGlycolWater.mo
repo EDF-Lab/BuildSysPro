@@ -5,14 +5,14 @@ model PropyleneGlycolWater
   extends IBPSA.Media.Antifreeze.Validation.BaseClasses.FluidProperties(
     redeclare package Medium =
         IBPSA.Media.Antifreeze.Validation.BaseClasses.PropyleneGlycolWater (
-         property_T=300, X_a=0.05),
+          property_T=300, X_a=0.05),
     nX_a=7,
     X_a={0.05,0.10,0.20,0.30,0.40,0.50,0.60},
     T_min=223.15,
     T_max=373.15);
 
    annotation(experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Media/Antifreeze/Validation/PropyleneGlycolWater.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Media/Antifreeze/Validation/PropyleneGlycolWater.mos"
         "Simulate and plot"),
       Documentation(info="<html>
 <p>

@@ -4,19 +4,19 @@ model Carnot_y "Test model for chiller based on Carnot_y efficiency"
  package Medium1 = IBPSA.Media.Water "Medium model";
  package Medium2 = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.Power P_nominal=10E3
+  parameter Modelica.Units.SI.Power P_nominal=10E3
     "Nominal compressor power (at y=1)";
-  parameter Modelica.SIunits.TemperatureDifference dTEva_nominal=-10
+  parameter Modelica.Units.SI.TemperatureDifference dTEva_nominal=-10
     "Temperature difference evaporator outlet-inlet";
-  parameter Modelica.SIunits.TemperatureDifference dTCon_nominal=10
+  parameter Modelica.Units.SI.TemperatureDifference dTCon_nominal=10
     "Temperature difference condenser outlet-inlet";
   parameter Real COPc_nominal = 3 "Chiller COP";
 
-  parameter Modelica.SIunits.MassFlowRate m2_flow_nominal=
-     -P_nominal*COPc_nominal/dTEva_nominal/4200
+  parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=-P_nominal*
+      COPc_nominal/dTEva_nominal/4200
     "Nominal mass flow rate at chilled water side";
-  parameter Modelica.SIunits.MassFlowRate m1_flow_nominal=
-    m2_flow_nominal*(COPc_nominal+1)/COPc_nominal
+  parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=m2_flow_nominal*(
+      COPc_nominal + 1)/COPc_nominal
     "Nominal mass flow rate at condenser water wide";
 
   IBPSA.Fluid.Chillers.Carnot_y chi(
@@ -26,7 +26,6 @@ model Carnot_y "Test model for chiller based on Carnot_y efficiency"
     dTEva_nominal=dTEva_nominal,
     dTCon_nominal=dTCon_nominal,
     use_eta_Carnot_nominal=true,
-    etaCarnot_nominal=0.3,
     dp1_nominal=6000,
     dp2_nominal=6000,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
@@ -39,21 +38,19 @@ model Carnot_y "Test model for chiller based on Carnot_y efficiency"
     redeclare package Medium = Medium1,
     use_T_in=true,
     m_flow=m1_flow_nominal,
-    T=298.15)
-    annotation (Placement(transformation(extent={{-60,6},{-40,26}})));
+    T=298.15) annotation (Placement(transformation(extent={{-60,6},{-40,26}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou2(
     nPorts=1,
     redeclare package Medium = Medium2,
     use_T_in=true,
     m_flow=m2_flow_nominal,
-    T=291.15)
-    annotation (Placement(transformation(extent={{60,-6},{40,14}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(nPorts=1, redeclare package Medium =
-               Medium1) annotation (Placement(transformation(extent={{10,
-            -10},{-10,10}}, origin={70,40})));
-  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package Medium =
-               Medium2) annotation (Placement(transformation(extent={{-10,
-            -10},{10,10}}, origin={-50,-20})));
+    T=291.15) annotation (Placement(transformation(extent={{60,-6},{40,14}})));
+  IBPSA.Fluid.Sources.Boundary_pT sin1(nPorts=1, redeclare package Medium =
+        Medium1) annotation (Placement(transformation(extent={{10,-10},{-10,10}},
+          origin={70,40})));
+  IBPSA.Fluid.Sources.Boundary_pT sin2(nPorts=1, redeclare package Medium =
+        Medium2) annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+          origin={-50,-20})));
   Modelica.Blocks.Sources.Ramp uCom(
     height=-1,
     duration=60,
@@ -102,10 +99,21 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Chillers/Examples/Carnot_y.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Chillers/Examples/Carnot_y.mos"
         "Simulate and plot"),
     Documentation(revisions="<html>
 <ul>
+<li>
+February 10, 2023, by Michael Wetter:<br/>
+Removed binding of parameter with same value as the default.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1692\">#1692</a>.
+</li>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 November 25, 2015 by Michael Wetter:<br/>
 Changed sign of <code>dTEva_nominal</code> to be consistent.

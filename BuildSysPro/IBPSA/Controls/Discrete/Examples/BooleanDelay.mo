@@ -13,7 +13,7 @@ equation
           -10}},
         color={255,0,255}));
  annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Controls/Discrete/Examples/BooleanDelay.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Controls/Discrete/Examples/BooleanDelay.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

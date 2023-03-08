@@ -5,7 +5,8 @@ model MassFlowSource_WeatherData
   package Medium = IBPSA.Media.Air "Medium model for air";
 
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
   IBPSA.Fluid.Sources.MassFlowSource_WeatherData sin_with_h(
     redeclare package Medium = Medium,
@@ -13,8 +14,8 @@ model MassFlowSource_WeatherData
     nPorts=1) "Mass flow source model receiving h and X from weather data through
      weather bus"
     annotation (Placement(transformation(extent={{96,-10},{76,10}})));
-  IBPSA.Fluid.Sources.Outside bou(redeclare package Medium = Medium,
-      nPorts=1) "Model with outside conditions"
+  IBPSA.Fluid.Sources.Outside bou(redeclare package Medium = Medium, nPorts=1)
+    "Model with outside conditions"
     annotation (Placement(transformation(extent={{-64,-10},{-44,10}})));
   IBPSA.Fluid.Sensors.RelativeHumidityTwoPort senRelHum(
     redeclare package Medium = Medium,
@@ -49,7 +50,7 @@ equation
       thickness=0.5));
   annotation (
 experiment(Tolerance=1e-6, StopTime=3.1536e+07),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sources/Examples/MassFlowSource_WeatherData.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sources/Examples/MassFlowSource_WeatherData.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

@@ -6,7 +6,7 @@ model WaterTemperatureEnthalpyInversion
       redeclare package Medium = IBPSA.Media.Water);
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Media/Examples/WaterTemperatureEnthalpyInversion.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Media/Examples/WaterTemperatureEnthalpyInversion.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

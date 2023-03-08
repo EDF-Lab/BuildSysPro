@@ -5,17 +5,17 @@ model Carnot_y "Test model for heat pump based on Carnot efficiency"
  package Medium2 = IBPSA.Media.Water "Medium model";
   parameter Real COP_nominal = 6 "Nominal COP";
 
-  parameter Modelica.SIunits.Power P_nominal=10E3
+  parameter Modelica.Units.SI.Power P_nominal=10E3
     "Nominal compressor power (at y=1)";
-  parameter Modelica.SIunits.TemperatureDifference dTEva_nominal=-10
+  parameter Modelica.Units.SI.TemperatureDifference dTEva_nominal=-10
     "Temperature difference evaporator outlet-inlet";
-  parameter Modelica.SIunits.TemperatureDifference dTCon_nominal=10
+  parameter Modelica.Units.SI.TemperatureDifference dTCon_nominal=10
     "Temperature difference condenser outlet-inlet";
-  parameter Modelica.SIunits.MassFlowRate m2_flow_nominal=
-     -P_nominal*(COP_nominal-1)/cp2_default/dTEva_nominal
+  parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=-P_nominal*(
+      COP_nominal - 1)/cp2_default/dTEva_nominal
     "Nominal mass flow rate at chilled water side";
-  parameter Modelica.SIunits.MassFlowRate m1_flow_nominal=
-      P_nominal*COP_nominal/cp1_default/dTCon_nominal
+  parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=P_nominal*
+      COP_nominal/cp1_default/dTCon_nominal
     "Nominal mass flow rate at condenser water wide";
   IBPSA.Fluid.HeatPumps.Carnot_y heaPum(
     redeclare package Medium1 = Medium1,
@@ -37,21 +37,19 @@ model Carnot_y "Test model for heat pump based on Carnot efficiency"
     redeclare package Medium = Medium1,
     use_T_in=true,
     m_flow=m1_flow_nominal,
-    T=298.15)
-    annotation (Placement(transformation(extent={{-60,6},{-40,26}})));
+    T=298.15) annotation (Placement(transformation(extent={{-60,6},{-40,26}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou2(
     nPorts=1,
     redeclare package Medium = Medium2,
     use_T_in=true,
     m_flow=m2_flow_nominal,
-    T=291.15)
-    annotation (Placement(transformation(extent={{60,-6},{40,14}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(nPorts=1, redeclare package Medium =
-               Medium1) annotation (Placement(transformation(extent={{10,
-            -10},{-10,10}}, origin={50,40})));
-  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package Medium =
-               Medium2) annotation (Placement(transformation(extent={{-10,
-            -10},{10,10}}, origin={-50,-20})));
+    T=291.15) annotation (Placement(transformation(extent={{60,-6},{40,14}})));
+  IBPSA.Fluid.Sources.Boundary_pT sin1(nPorts=1, redeclare package Medium =
+        Medium1) annotation (Placement(transformation(extent={{10,-10},{-10,10}},
+          origin={50,40})));
+  IBPSA.Fluid.Sources.Boundary_pT sin2(nPorts=1, redeclare package Medium =
+        Medium2) annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+          origin={-50,-20})));
   Modelica.Blocks.Sources.Ramp uCom(
     height=-1,
     duration=60,
@@ -70,15 +68,15 @@ model Carnot_y "Test model for heat pump based on Carnot efficiency"
     startTime=900,
     offset=273.15 + 15) "Evaporator inlet temperature"
     annotation (Placement(transformation(extent={{50,-40},{70,-20}})));
-  final parameter Modelica.SIunits.SpecificHeatCapacity cp1_default=
-    Medium1.specificHeatCapacityCp(Medium1.setState_pTX(
+  final parameter Modelica.Units.SI.SpecificHeatCapacity cp1_default=
+      Medium1.specificHeatCapacityCp(Medium1.setState_pTX(
       Medium1.p_default,
       Medium1.T_default,
       Medium1.X_default))
     "Specific heat capacity of medium 2 at default medium state";
 
-  final parameter Modelica.SIunits.SpecificHeatCapacity cp2_default=
-    Medium2.specificHeatCapacityCp(Medium2.setState_pTX(
+  final parameter Modelica.Units.SI.SpecificHeatCapacity cp2_default=
+      Medium2.specificHeatCapacityCp(Medium2.setState_pTX(
       Medium2.p_default,
       Medium2.T_default,
       Medium2.X_default))
@@ -113,10 +111,15 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Examples/Carnot_y.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatPumps/Examples/Carnot_y.mos"
         "Simulate and plot"),
     Documentation(revisions="<html>
 <ul>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for 
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 November 25, 2015 by Michael Wetter:<br/>
 Changed sign of <code>dTEva_nominal</code> to be consistent.

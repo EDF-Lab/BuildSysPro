@@ -1,25 +1,25 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block ResistanceVolume
   "Declaration of an FMU that exports a flow resistance and control volume"
-  extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(
-      redeclare package Medium = IBPSA.Media.Air);
+  extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(redeclare package
+      Medium = IBPSA.Media.Air);
 
-  parameter Modelica.SIunits.Volume V=1 "Volume";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=0.01
+  parameter Modelica.Units.SI.Volume V=1 "Volume";
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.01
     "Nominal mass flow rate";
-  parameter Modelica.SIunits.PressureDifference dp_nominal=100
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=100
     "Nominal pressure drop";
 
-  Modelica.Blocks.Sources.RealExpression dpCom(y=res.port_a.p - res.port_b.p) if
-       use_p_in "Pressure drop of the component"
+  Modelica.Blocks.Sources.RealExpression dpCom(y=res.port_a.p - res.port_b.p)
+    if use_p_in "Pressure drop of the component"
     annotation (Placement(transformation(extent={{-40,-90},{-20,-70}})));
 
 protected
   IBPSA.Fluid.FMI.Adaptors.Inlet bouIn(
     redeclare final package Medium = Medium,
     final allowFlowReversal=allowFlowReversal,
-    final use_p_in=use_p_in) "Boundary model for inlet" annotation (
-     Placement(transformation(extent={{-80,-10},{-60,10}})));
+    final use_p_in=use_p_in) "Boundary model for inlet"
+    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
   IBPSA.Fluid.FMI.Adaptors.Outlet bouOut(
     redeclare final package Medium = Medium,
     final allowFlowReversal=allowFlowReversal,
@@ -42,8 +42,7 @@ protected
     final allowFlowReversal=allowFlowReversal,
     final V=V,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Control volume"
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState) "Control volume"
     annotation (Placement(transformation(extent={{10,0},{30,20}})));
 
 equation
@@ -110,7 +109,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/ResistanceVolume.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/ResistanceVolume.mos"
         "Export FMU"),
     Icon(graphics={
         Rectangle(

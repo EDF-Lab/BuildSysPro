@@ -277,7 +277,7 @@ balance must be presented, and the medium needs to be compressible.
 <h4>References</h4>
 <p>
 Michael Wetter, Marcus Fuchs and Thierry Stephane Nouidui.<br/>
-<a href=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/FMI/UsersGuide/2015-WetterFuchsNouidui.pdf\">
+<a href=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/FMI/UsersGuide/2015-WetterFuchsNouidui.pdf\">
 Design choices for thermofluid flow components and systems that are exported as Functional Mockup Units</a>.<br/>
 <i>Proc. of the 11th International Modelica Conference</i>,
    p. 31-41,

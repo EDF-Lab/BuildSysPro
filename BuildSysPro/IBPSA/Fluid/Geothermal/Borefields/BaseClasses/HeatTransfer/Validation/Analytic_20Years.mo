@@ -3,8 +3,7 @@ model Analytic_20Years
   "Long term validation of ground temperature response model"
   extends Modelica.Icons.Example;
 
-  parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat(
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat(
     conDat(
       borCon=Types.BoreholeConfiguration.SingleUTube,
       nBor=1,
@@ -26,13 +25,14 @@ model Analytic_20Years
       kFil=0,
       cFil=Modelica.Constants.small,
       dFil=Modelica.Constants.small,
-      steadyState=true)) "Borefield parameters" annotation (
-      Placement(transformation(extent={{-80,-80},{-60,-60}})));
+      steadyState=true)) "Borefield parameters"
+    annotation (Placement(transformation(extent={{-80,-80},{-60,-60}})));
 
   IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.GroundTemperatureResponse
     groTemRes(
     tLoaAgg=3600,
     nCel=5,
+    nSeg=12,
     borFieDat=borFieDat,
     forceGFunCalc=true) "Ground temperature response of borehole"
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
@@ -43,7 +43,7 @@ model Analytic_20Years
     columns={2},
     smoothness=Modelica.Blocks.Types.Smoothness.ConstantSegments,
     fileName=Modelica.Utilities.Files.loadResource(
-      "modelica://BuildSysPro/Resources/IBPSA/Data/Fluid/Geothermal/Borefields/HeatTransfer/Validation/Analytic_20Years.txt"))
+      "modelica://BuildSysPro/IBPSA/Resources/Data/Fluid/Geothermal/Borefields/HeatTransfer/Validation/Analytic_20Years.txt"))
         "Table for heat injected, using constant segments"
     annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
 
@@ -60,7 +60,7 @@ model Analytic_20Years
     columns={3},
     smoothness=Modelica.Blocks.Types.Smoothness.LinearSegments,
     fileName=Modelica.Utilities.Files.loadResource(
-      "modelica://BuildSysPro/Resources/IBPSA/Data/Fluid/Geothermal/Borefields/HeatTransfer/Validation/Analytic_20Years.txt"),
+      "modelica://BuildSysPro/IBPSA/Resources/Data/Fluid/Geothermal/Borefields/HeatTransfer/Validation/Analytic_20Years.txt"),
     y(each unit="K",
       each displayUnit="degC"))
       "Table for resulting wall temperature using FFT and linearly interpolated"
@@ -89,7 +89,7 @@ equation
   connect(groTemRes.QBor_flow, timTabQ.y[1])
     annotation (Line(points={{-41,50},{-59,50}}, color={0,0,127}));
   annotation (experiment(StopTime=630720000,Tolerance=1e-6),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/Validation/Analytic_20Years.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/Validation/Analytic_20Years.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

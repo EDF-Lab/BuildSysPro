@@ -4,18 +4,19 @@ model InvertingBasicFlowFunction_m_flow
   extends Modelica.Icons.Example;
 
  parameter Real k = 0.5 "Flow coefficient";
- parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.5
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.5
     "Nominal mass flow rate";
 
- Modelica.SIunits.MassFlowRate m_flow "Mass flow rate";
- Modelica.SIunits.PressureDifference dp(displayUnit="Pa") "Pressure difference";
+  Modelica.Units.SI.MassFlowRate m_flow(start=0) "Mass flow rate";
+  Modelica.Units.SI.PressureDifference dp(displayUnit="Pa")
+    "Pressure difference";
 equation
   dp = 4*(time-0.5);
   dp = FlowModels.basicFlowFunction_m_flow(m_flow=m_flow, k=k, m_flow_turbulent=m_flow_nominal*0.3);
 
 annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/BaseClasses/FlowModels/Validation/InvertingBasicFlowFunction_m_flow.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/BaseClasses/FlowModels/Validation/InvertingBasicFlowFunction_m_flow.mos"
         "Simulate and plot"),
               Documentation(info="<html>
 <p>
@@ -32,6 +33,10 @@ after the symbolic manipulation.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 25, 2019, by Michael Wetter:<br/>
+Added start value to avoid warning in JModelica.
+</li>
 <li>
 January 22, 2016, by Michael Wetter:<br/>
 Corrected type declaration of pressure difference.

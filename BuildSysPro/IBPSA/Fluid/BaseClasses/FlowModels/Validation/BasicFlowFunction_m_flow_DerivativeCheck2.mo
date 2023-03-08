@@ -7,17 +7,17 @@ model BasicFlowFunction_m_flow_DerivativeCheck2
   IBPSA.Utilities.Diagnostics.CheckEquality cheEqu2(threShold=1e-3)
     "Block for checking integration error";
   parameter Real k = 0.35 "Flow coefficient";
-  parameter Modelica.SIunits.MassFlowRate m_flow_turbulent = 0.36
+  parameter Modelica.Units.SI.MassFlowRate m_flow_turbulent=0.36
     "Mass flow rate where transition to turbulent flow occurs";
-  Modelica.SIunits.PressureDifference dp "Pressure drop";
-  Modelica.SIunits.PressureDifference dp_comp "Comparison value for dp";
+  Modelica.Units.SI.PressureDifference dp "Pressure drop";
+  Modelica.Units.SI.PressureDifference dp_comp "Comparison value for dp";
   Real der_dp(unit="Pa/s") "1st order derivative of pressure drop";
   Real der_dp_comp(unit="Pa/s")
     "2nd order derivative of comparison value for pressure drop";
 
-  Modelica.SIunits.MassFlowRate m_flow "Mass flow rate";
+  Modelica.Units.SI.MassFlowRate m_flow "Mass flow rate";
 
-  Modelica.SIunits.PressureDifference err_dp "Integration error for dp";
+  Modelica.Units.SI.PressureDifference err_dp "Integration error for dp";
   Real err_der_dp(unit="Pa/s") "Integration error for der_dp";
 initial equation
   dp = dp_comp;
@@ -29,9 +29,9 @@ equation
   m_flow = time^3/8;
 
   dp = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-              m_flow=m_flow,
-              k=k,
-              m_flow_turbulent=m_flow_turbulent);
+    m_flow=m_flow,
+    k=k,
+    m_flow_turbulent=m_flow_turbulent);
 
   // Equate first and second order derivatives
   der_dp      = der(dp);
@@ -52,7 +52,7 @@ experiment(
       StartTime=-2,
       StopTime=2,
       Tolerance=1e-8),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/BaseClasses/FlowModels/Validation/BasicFlowFunction_m_flow_DerivativeCheck2.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/BaseClasses/FlowModels/Validation/BasicFlowFunction_m_flow_DerivativeCheck2.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

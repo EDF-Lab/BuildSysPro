@@ -44,8 +44,8 @@ algorithm
       coeff1 := R[6-i] + y*coeff1;
       coeff2 := S[6-i] + y*coeff2;
     end for;
-    Y0 := coeff1/coeff2 + 0.636619772*
-      IBPSA.Utilities.Math.Functions.besselJ0(x)*log(x);
+    Y0 := coeff1/coeff2 + 0.636619772*IBPSA.Utilities.Math.Functions.besselJ0(x)
+      *log(x);
   else
     z := 8/ax;
     y := z^2;

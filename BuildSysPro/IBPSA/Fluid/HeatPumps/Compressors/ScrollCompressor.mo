@@ -8,35 +8,31 @@ model ScrollCompressor
     final unit = "1")
     "Built-in volume ratio";
 
-  parameter Modelica.SIunits.VolumeFlowRate V_flow_nominal(min=0)
+  parameter Modelica.Units.SI.VolumeFlowRate V_flow_nominal(min=0)
     "Refrigerant volume flow rate at suction at full load conditions";
 
-  parameter Modelica.SIunits.MassFlowRate leaCoe(
-    min = 0)
+  parameter Modelica.Units.SI.MassFlowRate leaCoe(min=0)
     "Leakage mass flow rate at a pressure ratio of 1";
 
-  parameter Modelica.SIunits.Efficiency etaEle
+  parameter Modelica.Units.SI.Efficiency etaEle
     "Electro-mechanical efficiency of the compressor";
 
-  parameter Modelica.SIunits.Power PLos(min = 0)
+  parameter Modelica.Units.SI.Power PLos(min=0)
     "Constant part of the compressor power losses";
 
-  parameter Modelica.SIunits.TemperatureDifference dTSup(min = 0)
+  parameter Modelica.Units.SI.TemperatureDifference dTSup(min=0)
     "Superheating at compressor suction";
 
-  Modelica.SIunits.MassFlowRate m_flow
-    "Refrigerant mass flow rate";
+  Modelica.Units.SI.MassFlowRate m_flow "Refrigerant mass flow rate";
 
-  Modelica.SIunits.MassFlowRate mLea_flow "Refrigerant leakage mass flow rate";
+  Modelica.Units.SI.MassFlowRate mLea_flow "Refrigerant leakage mass flow rate";
 
-  Modelica.SIunits.Power PThe
-    "Theoretical power consumed by the compressor";
+  Modelica.Units.SI.Power PThe "Theoretical power consumed by the compressor";
 
-  Modelica.SIunits.Efficiency COP
-    "Heating COP of the compressor";
+  Modelica.Units.SI.Efficiency COP(start=5) "Heating COP of the compressor";
 
 protected
-  Modelica.SIunits.IsentropicExponent k(start = 1.2)
+  Modelica.Units.SI.IsentropicExponent k(start=1.2)
     "Isentropic exponent of the refrigerant";
 
   Real v_norm
@@ -51,10 +47,10 @@ equation
 
   // Limit compressor speed to the full load speed
   v_norm = IBPSA.Utilities.Math.Functions.smoothLimit(
-            y,
-            0.0,
-            1.0,
-            0.001);
+    y,
+    0.0,
+    1.0,
+    0.001);
 
   if isOn then
     // Suction pressure
@@ -64,9 +60,9 @@ equation
     // Refrigerant mass flow rate
     mLea_flow = leaCoe*PR;
     m_flow = v_norm*IBPSA.Utilities.Math.Functions.smoothMax(
-              V_flow_nominal/vSuc - mLea_flow,
-              1e-5*V_flow_nominal/vSuc,
-              1e-6*V_flow_nominal/vSuc);
+      V_flow_nominal/vSuc - mLea_flow,
+      1e-5*V_flow_nominal/vSuc,
+      1e-6*V_flow_nominal/vSuc);
 
     // Theoretical power of the compressor
     k = ref.isentropicExponentVap_Tv(TSuc, vSuc);
@@ -134,10 +130,14 @@ H. Jin.
 <i>
 Parameter estimation based models of water source heat pumps.
 </i>
-PhD Thesis. Oklahoma State University. Stillwater, Oklahoma, USA. 2012.
+PhD Thesis. Oklahoma State University. Stillwater, Oklahoma, USA. 2002.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 25, 2019, by Michael Wetter:<br/>
+Added start value to avoid warning in JModelica.
+</li>
 <li>
 May 30, 2017, by Filip Jorissen:<br/>
 Removed <code>pressure_error</code> as

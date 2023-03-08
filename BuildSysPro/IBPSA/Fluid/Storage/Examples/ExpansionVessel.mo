@@ -5,8 +5,8 @@ model ExpansionVessel "Test model for expansion vessel"
 // package Medium = Modelica.Media.Water.WaterIF97OnePhase_ph "Medium model";
  package Medium = IBPSA.Media.Water "Medium model";
 
-  IBPSA.Fluid.Storage.ExpansionVessel expVes(redeclare package Medium =
-        Medium, V_start=1) "Expansion vessel"
+  IBPSA.Fluid.Storage.ExpansionVessel expVes(redeclare package Medium = Medium,
+      V_start=1) "Expansion vessel"
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume vol(
     redeclare package Medium = Medium,
@@ -40,14 +40,20 @@ equation
       points={{40,-10},{40,-20},{70,-20},{70,-10}},
       color={0,127,255}));
   annotation (
-  __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Storage/Examples/ExpansionVessel.mos"
+  __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Storage/Examples/ExpansionVessel.mos"
         "Simulate and plot"),
     Documentation(info="<html>
-This model tests a pressure expansion vessel. The medium model that is used in this
-example changes its density as a function of temperature.
-To see the effect of the expansion vessel, delete the connecting line between
-the volume and the expansion vessel and check how much more the pressure increases
-as the fluid is heated.
+<p>
+This model tests a pressure expansion vessel.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+December 19, 2022 by Hongxiang Fu:<br/>
+Deleted outdated comment in documentation regarding compressible fluid.
+<a href=\"https://github.com/lbl-srg/modelica-buildings/issues/3198\">#3198</a>.
+</li>
+</ul>
 </html>"),
     experiment(Tolerance=1e-6, StopTime=7200));
 end ExpansionVessel;

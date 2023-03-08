@@ -8,10 +8,10 @@ function smoothMax
   output Real y "Result";
 algorithm
   y := IBPSA.Utilities.Math.Functions.regStep(
-            y1=x1,
-            y2=x2,
-            x=x1 - x2,
-            x_small=deltaX);
+    y1=x1,
+    y2=x2,
+    x=x1 - x2,
+    x_small=deltaX);
   annotation (
   Inline=true,
   smoothOrder=1,

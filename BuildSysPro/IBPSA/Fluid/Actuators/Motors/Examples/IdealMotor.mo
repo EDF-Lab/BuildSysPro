@@ -12,7 +12,7 @@ equation
     annotation (Line(points={{-59,30},{-22,30}}, color={0,0,127}));
   annotation (
 experiment(Tolerance=1e-6, StopTime=600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Actuators/Motors/Examples/IdealMotor.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Actuators/Motors/Examples/IdealMotor.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

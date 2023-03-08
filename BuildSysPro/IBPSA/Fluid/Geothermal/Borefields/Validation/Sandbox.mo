@@ -3,7 +3,7 @@ model Sandbox "Validation of BorefieldOneUTube based on the experiment of Beier 
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Water;
 
-  parameter Modelica.SIunits.Temperature T_start = 273.15 + 22.09
+  parameter Modelica.Units.SI.Temperature T_start=273.15 + 22.09
     "Initial temperature of the sandbox";
 
   // mSenFac is set to its numerical value because it is a constant in the borehole model.
@@ -23,44 +23,44 @@ model Sandbox "Validation of BorefieldOneUTube based on the experiment of Beier 
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     mSenFac=mSenFac,
     TExt0_start=T_start,
-    dT_dz=0) "Borehole" annotation (Placement(transformation(extent={{
-            40,-30},{60,-10}})));
+    dT_dz=0) "Borehole"
+    annotation (Placement(transformation(extent={{40,-30},{60,-10}})));
   IBPSA.Fluid.Movers.FlowControlled_m_flow pum(
     redeclare package Medium = Medium,
     T_start=T_start,
     addPowerToMedium=false,
     use_inputFilter=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     m_flow_nominal=borFieDat.conDat.mBorFie_flow_nominal,
     nominalValuesDefineDefaultPressureCurve=true,
-    inputType=IBPSA.Fluid.Types.InputType.Constant) annotation (
-      Placement(transformation(extent={{-20,-10},{0,-30}})));
+    inputType=IBPSA.Fluid.Types.InputType.Constant,
+    dp_nominal=60E3) "Circulation pump"
+    annotation (Placement(transformation(extent={{-20,-10},{0,-30}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort TBorFieIn(
     redeclare package Medium = Medium,
     T_start=T_start,
     m_flow_nominal=borFieDat.conDat.mBorFie_flow_nominal,
-    tau=0) "Inlet temperature of the borefield" annotation (Placement(
-        transformation(extent={{10,-30},{30,-10}})));
+    tau=0) "Inlet temperature of the borefield"
+    annotation (Placement(transformation(extent={{10,-30},{30,-10}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort TBorFieOut(
     redeclare package Medium = Medium,
     T_start=T_start,
     m_flow_nominal=borFieDat.conDat.mBorFie_flow_nominal,
-    tau=0) "Outlet temperature of the borefield" annotation (
-      Placement(transformation(extent={{70,-30},{90,-10}})));
-  IBPSA.Fluid.Geothermal.Borefields.Validation.BaseClasses.SandBox_Borefield
-    borFieDat "Borefield data" annotation (Placement(transformation(
-          extent={{-100,-100},{-80,-80}})));
-  IBPSA.Fluid.Sources.Boundary_ph sin(redeclare package Medium =
-        Medium, nPorts=1) "Sink"
-    annotation (Placement(transformation(extent={{60,0},{80,20}})));
+    tau=0) "Outlet temperature of the borefield"
+    annotation (Placement(transformation(extent={{70,-30},{90,-10}})));
+  parameter
+    IBPSA.Fluid.Geothermal.Borefields.Validation.BaseClasses.SandBox_Borefield borFieDat
+    "Borefield data"
+    annotation (Placement(transformation(extent={{-100,-100},{-80,-80}})));
+  IBPSA.Fluid.Sources.Boundary_ph sin(redeclare package Medium = Medium, nPorts=
+       1) "Sink" annotation (Placement(transformation(extent={{60,0},{80,20}})));
   Modelica.Blocks.Sources.CombiTimeTable sandBoxMea(
     tableOnFile=true,
     tableName="data",
     offset={0,0,0},
     columns={2,3,4},
     fileName=Modelica.Utilities.Files.loadResource(
-      "modelica://BuildSysPro/Resources/IBPSA/Data/Fluid/Geothermal/Borefields/HeatTransfer/Validation/Beier_Smith_Spitler_2011_SandBox.txt"))
+      "modelica://BuildSysPro/IBPSA/Resources/Data/Fluid/Geothermal/Borefields/HeatTransfer/Validation/Beier_Smith_Spitler_2011_SandBox.txt"))
     annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
   IBPSA.Fluid.HeatExchangers.HeaterCooler_u hea(
     redeclare package Medium = Medium,
@@ -71,8 +71,8 @@ model Sandbox "Validation of BorefieldOneUTube based on the experiment of Beier 
     Q_flow_nominal=1056,
     m_flow_nominal=borFieDat.conDat.mBorFie_flow_nominal,
     m_flow(start=borFieDat.conDat.mBorFie_flow_nominal),
-    p_start=100000) "Heater" annotation (Placement(transformation(
-          extent={{-50,-30},{-30,-10}})));
+    p_start=100000) "Heater"
+    annotation (Placement(transformation(extent={{-50,-30},{-30,-10}})));
 equation
   connect(TBorFieIn.port_b, borHol.port_a)
     annotation (Line(points={{30,-20},{40,-20}},   color={0,127,255}));
@@ -91,8 +91,7 @@ equation
           -14},{-52,-14}},
                         color={0,0,127}));
   annotation (experiment(Tolerance=1e-6, StopTime=186360),
-  __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/Validation/Sandbox.mos"
+  __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/Validation/Sandbox.mos"
         "Simulate and Plot"),
 Documentation(info="<html>
 <p>
@@ -127,6 +126,17 @@ spectral method to simulate borehole heat exchanger</i>. Geothermics 51:
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+November 15, 2022, by Michael Wetter:<br/>
+Set proper head for pump.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1659\">IBPSA, issue 1659</a>.
+</li>
+<li>
+April 8, 2021, by Michael Wetter:<br/>
+Added missing <code>parameter</code> keyword.<br/>
+For <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1464\">IBPSA, issue 1464</a>.
+</li>
 <li>
 July 18, 2018, by Massimo Cimmino:<br/>
 First implementation.

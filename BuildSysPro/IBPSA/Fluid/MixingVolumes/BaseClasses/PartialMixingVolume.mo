@@ -17,32 +17,34 @@ model PartialMixingVolume
   constant Boolean simplify_mWat_flow = true
     "Set to true to cause port_a.m_flow + port_b.m_flow = 0 even if mWat_flow is non-zero";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal(min=0)
-    "Nominal mass flow rate"
-    annotation(Dialog(group = "Nominal condition"));
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal(min=0)
+    "Nominal mass flow rate" annotation (Dialog(group="Nominal condition"));
   // Port definitions
   parameter Integer nPorts=0 "Number of ports"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
-  parameter Modelica.SIunits.MassFlowRate m_flow_small(min=0) = 1E-4*abs(m_flow_nominal)
-    "Small mass flow rate for regularization of zero flow"
-    annotation(Dialog(tab = "Advanced"));
+  parameter Modelica.Units.SI.MassFlowRate m_flow_small(min=0) = 1E-4*abs(
+    m_flow_nominal) "Small mass flow rate for regularization of zero flow"
+    annotation (Dialog(tab="Advanced"));
   parameter Boolean allowFlowReversal = true
     "= false to simplify equations, assuming, but not enforcing, no flow reversal. Used only if model has two ports."
     annotation(Dialog(tab="Assumptions"), Evaluate=true);
-  parameter Modelica.SIunits.Volume V "Volume";
+  parameter Modelica.Units.SI.Volume V "Volume";
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b ports[nPorts](
       redeclare each package Medium = Medium) "Fluid inlets and outlets"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},
       origin={0,-100})));
 
-  Medium.Temperature T = Medium.temperature_phX(p=p, h=hOut_internal, X=cat(1,Xi,{1-sum(Xi)}))
+  Medium.Temperature T = Medium.temperature_phX(
+    p=p,
+    h=hOut_internal,
+    X=if Medium.reducedX then cat(1, Xi, {1-sum(Xi)}) else Xi)
     "Temperature of the fluid";
   Modelica.Blocks.Interfaces.RealOutput U(unit="J")
     "Internal energy of the component";
-  Modelica.SIunits.Pressure p = if nPorts > 0 then ports[1].p else p_start
+  Modelica.Units.SI.Pressure p=if nPorts > 0 then ports[1].p else p_start
     "Pressure of the fluid";
   Modelica.Blocks.Interfaces.RealOutput m(unit="kg") "Mass of the component";
-  Modelica.SIunits.MassFraction Xi[Medium.nXi] = XiOut_internal
+  Modelica.Units.SI.MassFraction Xi[Medium.nXi]=XiOut_internal
     "Species concentration of the fluid";
   Modelica.Blocks.Interfaces.RealOutput mXi[Medium.nXi](each unit="kg")
     "Species mass of the component";
@@ -58,8 +60,12 @@ protected
     final m_flow_nominal=m_flow_nominal,
     final allowFlowReversal=allowFlowReversal,
     final m_flow_small=m_flow_small,
-    final prescribedHeatFlowRate=prescribedHeatFlowRate) if
-    useSteadyStateTwoPort "Model for steady-state balance if nPorts=2"
+    final prescribedHeatFlowRate=prescribedHeatFlowRate,
+    hOut(start=Medium.specificEnthalpy_pTX(
+          p=p_start,
+          T=T_start,
+          X=X_start))) if useSteadyStateTwoPort
+    "Model for steady-state balance if nPorts=2"
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
   IBPSA.Fluid.Interfaces.ConservationEquation dynBal(
     final simplify_mWat_flow=simplify_mWat_flow,
@@ -80,14 +86,14 @@ protected
     annotation (Placement(transformation(extent={{60,0},{80,20}})));
 
   // Density at start values, used to compute initial values and start guesses
-  parameter Modelica.SIunits.Density rho_start=Medium.density(
-   state=state_start) "Density, used to compute start and guess values";
+  parameter Modelica.Units.SI.Density rho_start=Medium.density(
+    state=state_start) "Density, used to compute start and guess values";
   final parameter Medium.ThermodynamicState state_default = Medium.setState_pTX(
       T=Medium.T_default,
       p=Medium.p_default,
       X=Medium.X_default[1:Medium.nXi]) "Medium state at default values";
   // Density at medium default values, used to compute the size of control volumes
-  final parameter Modelica.SIunits.Density rho_default=Medium.density(
+  final parameter Modelica.Units.SI.Density rho_default=Medium.density(
     state=state_default) "Density, used to compute fluid mass";
   final parameter Medium.ThermodynamicState state_start = Medium.setState_pTX(
       T=T_start,
@@ -126,7 +132,8 @@ equation
   // asserts
   if not allowFlowReversal then
     assert(ports[1].m_flow > -m_flow_small,
-"Model has flow reversal, but the parameter allowFlowReversal is set to false.
+  "In " + getInstanceName() + ": Model has flow reversal,
+  but the parameter allowFlowReversal is set to false.
   m_flow_small    = " + String(m_flow_small) + "
   ports[1].m_flow = " + String(ports[1].m_flow) + "
 ");
@@ -274,12 +281,12 @@ drives heat transfer such as by conduction,
 then the heat transfer would depend on upstream and the <i>downstream</i>
 temperatures for small mass flow rates.
 This can give wrong results. Consider for example a mass flow rate that is positive
-but very close to zero. Suppose the upstream temperature is <i>20</i>&circ;C,
-the downstream temperature is <i>10</i>&circ;C, and the heat port is
-connected through a heat conductor to a boundary condition of <i>20</i>&circ;C.
+but very close to zero. Suppose the upstream temperature is <i>20</i>&deg;C,
+the downstream temperature is <i>10</i>&deg;C, and the heat port is
+connected through a heat conductor to a boundary condition of <i>20</i>&deg;C.
 Then, <code>hOut = (port_b.h_outflow + port_a.h_outflow)/2</code> and hence
 the temperature <code>heatPort.T</code>
-is <i>15</i>&circ;C. Therefore, heat is added to the component.
+is <i>15</i>&deg;C. Therefore, heat is added to the component.
 As the mass flow rate is by assumption very small, the fluid that leaves the component
 will have a very high temperature, violating the 2nd law.
 To avoid this situation, if
@@ -297,6 +304,31 @@ IBPSA.Fluid.MixingVolumes</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+October 24, 2022, by Michael Wetter:<br/>
+Improved conversion from <code>Xi</code> to <code>X</code> so that it also works
+with media that have <code>reducedX=true</code>.<br/>
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1650\">#1650</a>.
+</li>
+<li>
+September 18, 2020, by Michael Wetter:<br/>
+Set start value for <code>steBal.hOut</code> so that <code>T_start</code>
+can be used which is not known in that instance.<br/>
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1397\">#1397</a>.
+</li>
+<li>
+February 21, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating state.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
+<li>
+October 30, 2019 by Filip Jorissen:<br/>
+Added <code>getInstanceName()</code> to flow
+reversal check.
+This if or <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1228\">
+issue 1228</a>.
+</li>
 <li>
 October 19, 2017, by Michael Wetter:<br/>
 Changed initialization of pressure from a <code>constant</code> to a <code>parameter</code>.<br/>
@@ -359,7 +391,7 @@ issue 282</a> for a discussion.
 June 9, 2015 by Michael Wetter:<br/>
 Set start value for <code>heatPort.T</code> and changed
 type of <code>T</code> to <code>Medium.Temperature</code> rather than
-<code>Modelica.SIunits.Temperature</code>
+<code>Modelica.Units.SI.Temperature</code>
 to avoid an
 error because of conflicting start values if
 <code>IBPSA.Fluid.Chillers.Carnot_y</code>
@@ -526,15 +558,22 @@ IBPSA.Fluid.MixingVolumes.BaseClasses.ClosedVolume</a>.
 </ul>
 </html>"),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}), graphics={Ellipse(
+            100}}), graphics={
+       Text(
+          extent={{-60,-26},{56,-58}},
+          textColor={255,255,255},
+          textString="V=%V"),
+        Text(
+          extent={{-152,100},{148,140}},
+          textString="%name",
+          textColor={0,0,255}),
+       Ellipse(
           extent={{-100,98},{100,-102}},
           lineColor={0,0,0},
           fillPattern=FillPattern.Sphere,
-          fillColor={170,213,255}), Text(
-          extent={{-58,14},{58,-18}},
-          lineColor={0,0,0},
-          textString="V=%V"),         Text(
-          extent={{-152,100},{148,140}},
-          textString="%name",
-          lineColor={0,0,255})}));
+          fillColor=DynamicSelect({170,213,255}, min(1, max(0, (1-(T-273.15)/50)))*{28,108,200}+min(1, max(0, (T-273.15)/50))*{255,0,0})),
+        Text(
+          extent={{62,28},{-58,-22}},
+          textColor={255,255,255},
+          textString=DynamicSelect("", String(T-273.15, format=".1f")))}));
 end PartialMixingVolume;

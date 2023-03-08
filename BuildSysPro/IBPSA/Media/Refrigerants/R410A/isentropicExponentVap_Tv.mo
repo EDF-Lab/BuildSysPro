@@ -1,28 +1,20 @@
 within BuildSysPro.IBPSA.Media.Refrigerants.R410A;
 function isentropicExponentVap_Tv
   "Function that calculates the isentropic exponent of R410A vapor based on temperature and specific volume"
-  input Modelica.SIunits.Temperature T
-    "Temperature of refrigerant";
-  input Modelica.SIunits.SpecificVolume v
-    "Specific volume of refrigerant";
-  output Modelica.SIunits.IsentropicExponent k
+  input Modelica.Units.SI.Temperature T "Temperature of refrigerant";
+  input Modelica.Units.SI.SpecificVolume v "Specific volume of refrigerant";
+  output Modelica.Units.SI.IsentropicExponent k
     "Specific isobaric heat capacity";
 
 protected
-  Modelica.SIunits.SpecificHeatCapacity cp
-    "Specific isobaric heat capacity";
+  Modelica.Units.SI.SpecificHeatCapacity cp "Specific isobaric heat capacity";
 
-  Modelica.SIunits.SpecificHeatCapacity cv
-    "Specific isochoric heat capacity";
+  Modelica.Units.SI.SpecificHeatCapacity cv "Specific isochoric heat capacity";
 
 algorithm
   // Evaluate the specific isobaric and isochoric heat capacities
-  cp :=
-    IBPSA.Media.Refrigerants.R410A.specificIsobaricHeatCapacityVap_Tv(T,
-    v);
-  cv :=
-    IBPSA.Media.Refrigerants.R410A.specificIsochoricHeatCapacityVap_Tv(
-    T, v);
+  cp := IBPSA.Media.Refrigerants.R410A.specificIsobaricHeatCapacityVap_Tv(T, v);
+  cv := IBPSA.Media.Refrigerants.R410A.specificIsochoricHeatCapacityVap_Tv(T, v);
 
   k := cp / cv;
 

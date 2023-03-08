@@ -82,16 +82,16 @@ model PressureDropsExplicit "Test of multiple resistances in series"
   IBPSA.Fluid.Sources.MassFlowSource_h bou1(
     redeclare package Medium = Medium,
     m_flow=1,
-    nPorts=1) "Mass flow boundary condition" annotation (Placement(
-        transformation(extent={{-80,-60},{-60,-40}})));
+    nPorts=1) "Mass flow boundary condition"
+    annotation (Placement(transformation(extent={{-80,-60},{-60,-40}})));
 
   IBPSA.Fluid.Sources.Boundary_pT sin1(
     redeclare package Medium = Medium,
     T=273.15 + 10,
     nPorts=2,
     use_p_in=false,
-    p=101325) "Pressure boundary condition" annotation (Placement(
-        transformation(extent={{120,-40},{100,-20}})));
+    p=101325) "Pressure boundary condition"
+    annotation (Placement(transformation(extent={{120,-40},{100,-20}})));
 
   IBPSA.Fluid.Sources.Boundary_ph sin2(
     redeclare package Medium = Medium,
@@ -114,25 +114,25 @@ model PressureDropsExplicit "Test of multiple resistances in series"
   annotation (Placement(transformation(extent={{-100,90},{-80,
             110}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo1(redeclare package Medium =
-        Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo1(redeclare package Medium = Medium)
+    "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{60,90},{80,110}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo2(redeclare package Medium =
-        Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo2(redeclare package Medium = Medium)
+    "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{60,50},{80,70}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo3(redeclare package Medium =
-        Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo3(redeclare package Medium = Medium)
+    "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{60,-20},{80,0}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo4(redeclare package Medium =
-        Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate senMasFlo4(redeclare package Medium = Medium)
+    "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{60,-60},{80,-40}})));
 
   IBPSA.Utilities.Diagnostics.AssertEquality assertEquality(threShold=1E-1)
-    "Assert equality of the two mass flow rates" annotation (Placement(
-        transformation(extent={{120,120},{140,140}})));
+    "Assert equality of the two mass flow rates"
+    annotation (Placement(transformation(extent={{120,120},{140,140}})));
 
   IBPSA.Utilities.Diagnostics.AssertEquality assertEquality1(threShold=1E-1)
     "Assert equality of the two mass flow rates"
@@ -221,7 +221,7 @@ equation
   annotation (Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{160,160}})),
 experiment(StartTime=-1, Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FixedResistances/Validation/PressureDropsExplicit.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FixedResistances/Validation/PressureDropsExplicit.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

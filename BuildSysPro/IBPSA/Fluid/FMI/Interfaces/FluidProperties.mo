@@ -1,8 +1,15 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Interfaces;
 connector FluidProperties "Type definition for fluid properties"
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium
-    "Medium model" annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air"),
+        choice(redeclare package Medium = IBPSA.Media.Water "Water"),
+        choice(redeclare package Medium =
+            IBPSA.Media.Antifreeze.PropyleneGlycolWater (
+          property_T=293.15,
+          X_a=0.40)
+          "Propylene glycol water, 40% mass fraction")));
 
   Medium.Temperature T "Temperature";
   IBPSA.Fluid.FMI.Interfaces.MassFractionConnector X_w if Medium.nXi > 0
@@ -45,6 +52,11 @@ outlet connector.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 April 15, 2015 by Michael Wetter:<br/>
 Changed connector variable to be temperature instead of

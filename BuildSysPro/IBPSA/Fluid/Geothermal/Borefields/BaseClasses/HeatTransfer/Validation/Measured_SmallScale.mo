@@ -6,12 +6,13 @@ model Measured_SmallScale
   parameter Real sizFac=375.0 "Scaling factor of the experiment";
   parameter
     IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.Validation.BaseClasses.SmallScale_Borefield
-    borFieDat "Borefield parameters" annotation (Placement(
-        transformation(extent={{-80,-80},{-60,-60}})));
+    borFieDat "Borefield parameters"
+    annotation (Placement(transformation(extent={{-80,-80},{-60,-60}})));
 
   IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.GroundTemperatureResponse
     groTemRes(
     nCel=5,
+    nSeg=12,
     borFieDat=borFieDat,
     forceGFunCalc=true,
     tLoaAgg=360000) "Ground temperature response of borehole"
@@ -21,7 +22,7 @@ model Measured_SmallScale
     tableOnFile=true,
     timeScale=sizFac^2,
     fileName=Modelica.Utilities.Files.loadResource(
-      "modelica://BuildSysPro/Resources/IBPSA/Data/Fluid/Geothermal/Borefields/HeatTransfer/Validation/Cimmino_Bernier_2015_SmallScale.txt"),
+      "modelica://BuildSysPro/IBPSA/Resources/Data/Fluid/Geothermal/Borefields/HeatTransfer/Validation/Cimmino_Bernier_2015_SmallScale.txt"),
     columns={2,3,4,5,6,7,8,9},
     tableName="data",
     offset={0,0,0,273.15,273.15,273.15,273.15,273.15})
@@ -55,7 +56,7 @@ equation
   connect(groTemRes.QBor_flow, scaFac.y)
     annotation (Line(points={{-11,0},{-19,0}}, color={0,0,127}));
   annotation (experiment(Tolerance=1e-6, StopTime=85050000000.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/Validation/Measured_SmallScale.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/Validation/Measured_SmallScale.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

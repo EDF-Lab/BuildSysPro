@@ -5,25 +5,24 @@ model CheckPressure "Test model for pressure check"
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.CheckPressure chePre
     "Block that checks the pressure"
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
-  IBPSA.Utilities.Time.ModelTime modTim
-    "Block that outputs simulation time" annotation (Placement(
-        transformation(extent={{-100,0},{-80,20}})));
-  IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim
-    "Block that converts time"
+  IBPSA.Utilities.Time.ModelTime modTim "Block that outputs simulation time"
+    annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
+  IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim(
+      weaDatStaTim=0, weaDatEndTim=31536000) "Block that converts time"
     annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
 protected
   Modelica.Blocks.Tables.CombiTable1Ds datRea(
     tableOnFile=true,
     tableName="tab1",
     fileName=Modelica.Utilities.Files.loadResource(
-       Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")),
+       Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")),
     columns=2:30,
     smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)
     "Data reader"
     annotation (Placement(transformation(extent={{-20,0},{0,20}})));
 equation
   connect(datRea.y[4], chePre.PIn) annotation (Line(
-      points={{1,9.24138},{10,9.24138},{10,10},{18,10}},
+      points={{1,10},{10,10},{10,10},{18,10}},
       color={0,0,127}));
   connect(modTim.y, conTim.modTim) annotation (Line(
       points={{-79,10},{-62,10}},
@@ -51,6 +50,6 @@ First implementation.
 </ul>
 </html>"),
   experiment(Tolerance=1e-6, StartTime=0, StopTime=8640000),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/CheckPressure.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/CheckPressure.mos"
         "Simulate and plot"));
 end CheckPressure;

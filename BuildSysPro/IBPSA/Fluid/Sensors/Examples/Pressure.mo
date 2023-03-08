@@ -28,14 +28,14 @@ model Pressure "Test model for the pressure sensor"
     offset=10,
     duration=1)
     annotation (Placement(transformation(extent={{-90,-2},{-70,18}})));
-  IBPSA.Fluid.Sensors.Pressure senPre_a(redeclare package Medium =
-        Medium) "Pressure sensor at resistance port a"
+  IBPSA.Fluid.Sensors.Pressure senPre_a(redeclare package Medium = Medium)
+    "Pressure sensor at resistance port a"
     annotation (Placement(transformation(extent={{-22,20},{-2,40}})));
-  IBPSA.Fluid.Sensors.Pressure senPre_b(redeclare package Medium =
-        Medium) "Pressure sensor at resistance port b"
+  IBPSA.Fluid.Sensors.Pressure senPre_b(redeclare package Medium = Medium)
+    "Pressure sensor at resistance port b"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
   IBPSA.Fluid.Sensors.RelativePressure senRelPre(redeclare package Medium =
-               Medium) "Pressure difference across resistance"
+        Medium) "Pressure difference across resistance"
     annotation (Placement(transformation(extent={{-2,-50},{18,-30}})));
 equation
   connect(ramp.y, masFloRat.m_flow_in) annotation (Line(
@@ -61,7 +61,7 @@ equation
       points={{18,-40},{30,-40},{30,0},{18,0}},
       color={0,127,255}));
     annotation (experiment(Tolerance=1e-6, StopTime=1),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sensors/Examples/Pressure.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sensors/Examples/Pressure.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

@@ -4,7 +4,7 @@ partial model PrescribedOutletState "Test model for prescribed outlet state"
   replaceable package Medium = IBPSA.Media.Air constrainedby
     Modelica.Media.Interfaces.PartialMedium                 "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=0.1
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.1
     "Nominal mass flow rate";
 
   IBPSA.Fluid.Sources.Boundary_pT sin(
@@ -92,26 +92,26 @@ partial model PrescribedOutletState "Test model for prescribed outlet state"
     redeclare package Medium = Medium,
     use_m_flow_in=true,
     T=293.15,
-    nPorts=1) "Flow source" annotation (Placement(transformation(
-          extent={{-90,76},{-70,96}})));
+    nPorts=1) "Flow source"
+    annotation (Placement(transformation(extent={{-90,76},{-70,96}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou2(
     redeclare package Medium = Medium,
     use_m_flow_in=true,
     T=293.15,
-    nPorts=1) "Flow source" annotation (Placement(transformation(
-          extent={{-90,-10},{-70,10}})));
+    nPorts=1) "Flow source"
+    annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou3(
     redeclare package Medium = Medium,
     use_m_flow_in=true,
     T=293.15,
-    nPorts=1) "Flow source" annotation (Placement(transformation(
-          extent={{-90,-70},{-70,-50}})));
+    nPorts=1) "Flow source"
+    annotation (Placement(transformation(extent={{-90,-70},{-70,-50}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou4(
     redeclare package Medium = Medium,
     use_m_flow_in=true,
     T=293.15,
-    nPorts=1) "Flow source" annotation (Placement(transformation(
-          extent={{-90,-100},{-70,-80}})));
+    nPorts=1) "Flow source"
+    annotation (Placement(transformation(extent={{-90,-100},{-70,-80}})));
 equation
 
   connect(m_flow.y, sou1.m_flow_in) annotation (Line(

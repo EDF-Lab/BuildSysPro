@@ -31,6 +31,6 @@ equation
       color={0,0,127}));
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Examples/TotalAirDryAir.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Examples/TotalAirDryAir.mos"
         "Simulate and plot"));
 end TotalAirDryAir;

@@ -3,22 +3,19 @@ model To_VolumeFraction "Example problem for conversion model"
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Air (extraPropertiesNames={"CO2"});
 
-  IBPSA.Fluid.Sensors.Conversions.To_VolumeFraction conMasVolFra(MMMea=
-        Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM)
+  IBPSA.Fluid.Sensors.Conversions.To_VolumeFraction conMasVolFra(MMMea=Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM)
     "Conversion from mass fraction CO2 to volume fraction CO2"
     annotation (Placement(transformation(extent={{148,0},{168,20}})));
   Modelica.Blocks.Sources.Constant volFra(k=1000E-6)
     "Set point for volume fraction of 700PPM CO2"
     annotation (Placement(transformation(extent={{-180,-20},{-160,0}})));
   IBPSA.Controls.Continuous.LimPID limPID(
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
-    reverseAction=true,
+    reverseActing=false,
     Ti=600,
     k=2,
-    Td=1) annotation (Placement(transformation(extent={{-100,-20},{-80,
-            0}})));
-  IBPSA.Fluid.Sensors.TraceSubstances senCO2(redeclare package Medium =
-        Medium, substanceName="CO2") "CO2 sensor"
+    Td=1) annotation (Placement(transformation(extent={{-100,-20},{-80,0}})));
+  IBPSA.Fluid.Sensors.TraceSubstances senCO2(redeclare package Medium = Medium,
+      substanceName="CO2") "CO2 sensor"
     annotation (Placement(transformation(extent={{120,0},{140,20}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume vol(
     nPorts=4,
@@ -26,8 +23,7 @@ model To_VolumeFraction "Example problem for conversion model"
     V=4*4*2.7,
     C_start={300E-6}*44.009544/28.9651159,
     m_flow_nominal=0.1,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Volume of air"
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Volume of air"
     annotation (Placement(transformation(extent={{90,60},{110,80}})));
   IBPSA.Fluid.Sources.TraceSubstancesFlowSource souCO2(
     use_m_flow_in=true,
@@ -43,18 +39,12 @@ model To_VolumeFraction "Example problem for conversion model"
     C={300E-6}*44.009544/28.9651159,
     nPorts=1) "Source of fresh air with 300 PPM CO2"
     annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin(
-    redeclare package Medium = Medium,
-    p=100000,
-    C={300E-6}*44.009544/28.9651159,
-    nPorts=1) "Sink for exhaust air" annotation (Placement(
-        transformation(extent={{10,-10},{-10,10}}, origin={170,40})));
   Modelica.Blocks.Math.Gain gai(k=50/3600) "Gain for mass flow rate"
     annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
   Modelica.Blocks.Sources.Constant nPeo(k=1) "Number of people"
     annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
   IBPSA.Fluid.Sensors.VolumeFlowRate senVolFlo(redeclare package Medium =
-               Medium, m_flow_nominal=0.1)
+        Medium, m_flow_nominal=0.1)
     annotation (Placement(transformation(extent={{20,-20},{40,0}})));
   Modelica.Blocks.Math.Gain norSet(k=1/1000E-6)
     "Normalization for set point (to scale control input)"
@@ -79,15 +69,20 @@ model To_VolumeFraction "Example problem for conversion model"
     initType=Modelica.Blocks.Types.Init.InitialState)
     "CO2 concentration in fresh air supply"
     annotation (Placement(transformation(extent={{60,-20},{80,0}})));
-
   IBPSA.Fluid.FixedResistances.PressureDrop res(
     redeclare package Medium = Medium,
     dp_nominal=10,
     m_flow_nominal=50/3600)
     "Pressure drop to decouple the state of the volume from the state of the boundary condition"
     annotation (Placement(transformation(extent={{122,30},{142,50}})));
-equation
+  IBPSA.Fluid.Sources.Boundary_pT sin(
+    redeclare package Medium = Medium,
+    C={300E-6}*44.009544/28.9651159,
+    p=100000,
+    nPorts=1) "Sink for exhaust air"
+    annotation (Placement(transformation(extent={{180,30},{160,50}})));
 
+equation
   connect(souCO2.m_flow_in, CO2Per.y) annotation (Line(
       points={{-22.1,70},{-39,70}},
       color={0,0,127}));
@@ -139,12 +134,11 @@ equation
   connect(vol.ports[4], res.port_a) annotation (Line(
       points={{103,60},{102,60},{102,38},{122,38},{122,40}},
       color={0,127,255}));
-  connect(res.port_b, sin.ports[1]) annotation (Line(
-      points={{142,40},{160,40}},
-      color={0,127,255}));
+  connect(sin.ports[1], res.port_b)
+    annotation (Line(points={{160,40},{142,40}}, color={0,127,255}));
   annotation (
 experiment(Tolerance=1e-8, StopTime=36000),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sensors/Conversions/Examples/To_VolumeFraction.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sensors/Conversions/Examples/To_VolumeFraction.mos"
         "Simulate and plot"),
   Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-200,-100},{200,100}})),
     Documentation(info="<html>
@@ -157,6 +151,11 @@ Note that for simplicity, we allow zero outside air flow rate if the CO<sub>2</s
 the setpoint, which does not comply with ASHRAE regulations.
 </html>", revisions="<html>
 <ul>
+<li>
+May 2, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 April 25, 2017 by Filip Jorissen:<br/>
 Increased model tolerance for

@@ -11,8 +11,7 @@ model MixingVolumeMFactor
     V=1,
     nPorts=2,
     m_flow_nominal=m_flow_nominal,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial)
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
     "Mixing volume using mSenFac = 10"
     annotation (Placement(transformation(extent={{-10,-40},{10,-20}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume vol1(
@@ -20,8 +19,7 @@ model MixingVolumeMFactor
     V=10,
     nPorts=2,
     m_flow_nominal=m_flow_nominal,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    massDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial)
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
     "MixingVolume with V = 10 instead of mSenFac = 10"
     annotation (Placement(transformation(extent={{-10,-80},{10,-60}})));
   IBPSA.Fluid.Sources.MassFlowSource_T boundaryMFactor(
@@ -92,6 +90,6 @@ First implementation.
 </html>"),
 experiment(Tolerance=1E-6, StopTime=100),
 __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeMFactor.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeMFactor.mos"
         "Simulate and plot"));
 end MixingVolumeMFactor;

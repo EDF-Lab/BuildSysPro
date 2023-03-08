@@ -4,8 +4,7 @@ model PropertySource_T "Model that illustrates the use of PropertySource_T"
   package Medium = IBPSA.Media.Air (extraPropertiesNames={"CO2"});
 
   IBPSA.Fluid.Sources.PropertySource_T proSouXi(redeclare package Medium =
-               Medium, use_Xi_in=true)
-    "Property source that prescribes Xi"
+        Medium, use_Xi_in=true) "Property source that prescribes Xi"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   IBPSA.Fluid.Sources.MassFlowSource_T bouXi(
     redeclare package Medium = Medium,
@@ -13,8 +12,8 @@ model PropertySource_T "Model that illustrates the use of PropertySource_T"
     use_m_flow_in=true) "Boundary for Xi test"
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_ph sin(redeclare package Medium = Medium,
-      nPorts=3) "Sink model"
+  IBPSA.Fluid.Sources.Boundary_ph sin(redeclare package Medium = Medium, nPorts=
+       3) "Sink model"
     annotation (Placement(transformation(extent={{80,-10},{60,10}})));
   IBPSA.Fluid.Sources.PropertySource_T proSouT(redeclare package Medium =
         Medium, use_T_in=true)
@@ -31,8 +30,8 @@ model PropertySource_T "Model that illustrates the use of PropertySource_T"
   IBPSA.Fluid.Sources.MassFlowSource_T bouC(
     redeclare package Medium = Medium,
     nPorts=1,
-    use_m_flow_in=true) "Boundary for C test" annotation (Placement(
-        transformation(extent={{-60,-50},{-40,-30}})));
+    use_m_flow_in=true) "Boundary for C test"
+    annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
   Modelica.Blocks.Sources.Constant T(k=Medium.T_default + 1)
     "Fixed temperature value"
     annotation (Placement(transformation(extent={{-40,50},{-20,70}})));
@@ -111,8 +110,7 @@ See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/881\">#881</a>.
 </li>
 </ul>
 </html>"),
-    __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Fluid/Sources/Examples/PropertySource_T.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sources/Examples/PropertySource_T.mos"
         "Simulate and plot"),
     experiment(
       StopTime=1,

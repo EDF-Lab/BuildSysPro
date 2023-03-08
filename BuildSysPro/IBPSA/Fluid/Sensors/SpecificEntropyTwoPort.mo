@@ -1,10 +1,12 @@
 within BuildSysPro.IBPSA.Fluid.Sensors;
 model SpecificEntropyTwoPort "Ideal two port sensor for the specific entropy"
   extends IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor;
-  extends Modelica.Icons.RotationalSensor;
-  parameter Modelica.SIunits.SpecificEntropy s_start=
-    Medium.specificEntropy_pTX(p=Medium.p_default, T=Medium.T_default, X=Medium.X_default)
-    "Initial or guess value of output (= state)"
+  extends Modelica.Icons.RoundSensor;
+  parameter Modelica.Units.SI.SpecificEntropy s_start=
+      Medium.specificEntropy_pTX(
+      p=Medium.p_default,
+      T=Medium.T_default,
+      X=Medium.X_default) "Initial or guess value of output (= state)"
     annotation (Dialog(group="Initialization"));
   Modelica.Blocks.Interfaces.RealOutput s(final quantity="SpecificEntropy",
                                           final unit="J/(kg.K)",
@@ -15,7 +17,7 @@ model SpecificEntropyTwoPort "Ideal two port sensor for the specific entropy"
         extent={{10,-10},{-10,10}},
         rotation=270)));
 protected
-  Modelica.SIunits.SpecificEntropy sMed(start=s_start)
+  Modelica.Units.SI.SpecificEntropy sMed(start=s_start)
     "Medium entropy to which the sensor is exposed";
   Medium.SpecificEntropy s_a_inflow
     "Specific entropy of inflowing fluid at port_a";
@@ -58,12 +60,16 @@ annotation (defaultComponentName="senSpeEnt",
         graphics={
         Text(
           extent={{120,120},{0,90}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="s"),
         Line(points={{0,100},{0,70}}, color={0,0,127}),
         Line(points={{-100,0},{-70,0}}, color={0,128,255}),
         Line(points={{70,0},{100,0}}, color={0,128,255}),
-        Ellipse(extent={{-70,70},{70,-70}}, lineColor={255,0,0})}),
+        Ellipse(extent={{-70,70},{70,-70}}, lineColor={255,0,0}),
+        Text(
+          extent={{-20,120},{-140,70}},
+          textColor={0,0,0},
+          textString=DynamicSelect("", String(s, format=".0f")))}),
   Documentation(info="<html>
 <p>
 This model outputs the specific entropy of the passing fluid.
@@ -76,6 +82,12 @@ IBPSA.Fluid.Sensors.UsersGuide</a> for an explanation.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+February 25, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating state.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
 <li>
 January 18, 2016 by Filip Jorissen:<br/>
 Using parameter <code>tauInv</code>

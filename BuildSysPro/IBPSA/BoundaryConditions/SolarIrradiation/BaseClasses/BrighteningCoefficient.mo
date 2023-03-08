@@ -106,9 +106,9 @@ equation
   F23 = -0.0220216*a1 - 0.0288748*a2 - 0.0260542*a3 - 0.0139754*a4 + 0.0012448*
     a5 + 0.0558651*a6 + 0.1310694*a7 + 0.2506212*a8;
   F1 = IBPSA.Utilities.Math.Functions.smoothMax(
-            0,
-            F11 + F12*skyBri + F13*zen,
-            0.01);
+    0,
+    F11 + F12*skyBri + F13*zen,
+    0.01);
   F2 = F21 + F22*skyBri + F23*zen;
   annotation (
     defaultComponentName="briCoe",
@@ -141,25 +141,25 @@ First implementation.
         Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255}),
+          textColor={0,0,255}),
         Text(
           extent={{-96,72},{-52,50}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="skyCle"),
         Text(
           extent={{-96,14},{-52,-8}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="skyBri"),
         Text(
           extent={{-96,-46},{-52,-68}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="zen"),
         Text(
           extent={{62,50},{106,28}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="F1"),
         Text(
           extent={{60,-30},{104,-52}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="F2")}));
 end BrighteningCoefficient;

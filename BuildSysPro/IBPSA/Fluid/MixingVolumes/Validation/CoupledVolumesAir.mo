@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.MixingVolumes.Validation;
 model CoupledVolumesAir
   "Validation model for two coupled volumes with air"
-  extends IBPSA.Fluid.MixingVolumes.Validation.CoupledVolumesWater(
-      redeclare package Medium = IBPSA.Media.Air);
+  extends IBPSA.Fluid.MixingVolumes.Validation.CoupledVolumesWater(redeclare
+      package Medium = IBPSA.Media.Air);
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
@@ -26,6 +26,6 @@ First implementation for
       StopTime=3600,
       Tolerance=1e-06),
     __Dymola_Commands(
-      file="Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesAir.mos"
+      file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesAir.mos"
            "Simulate and plot"));
 end CoupledVolumesAir;

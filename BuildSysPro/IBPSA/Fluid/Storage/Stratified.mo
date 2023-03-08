@@ -1,7 +1,6 @@
 within BuildSysPro.IBPSA.Fluid.Storage;
 model Stratified "Model of a stratified tank for thermal energy storage"
-  extends IBPSA.Fluid.Storage.BaseClasses.PartialStratified(vol(each
-        nPorts=3));
+  extends IBPSA.Fluid.Storage.BaseClasses.PartialStratified(vol(each nPorts=3));
 
   Modelica.Fluid.Interfaces.FluidPort_a fluPorVol[nSeg](
     redeclare each final package Medium = Medium)
@@ -40,6 +39,12 @@ IBPSA.Fluid.Storage.StratifiedEnhanced</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+March 7, 2022, by Michael Wetter:<br/>
+Set <code>final massDynamics=energyDynamics</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1542\">#1542</a>.
+</li>
 <li>
 June 7, 2018 by Filip Jorissen:<br/>
 Copied model from Buildings and update the model accordingly.
@@ -114,6 +119,7 @@ October 25, 2009 by Michael Wetter:<br/>
 Changed computation of heat transfer through top (and bottom) of tank. Now,
 the thermal resistance of the fluid is not taken into account, i.e., the
 top (and bottom) element is assumed to be mixed.
+</li>
 <li>
 October 23, 2009 by Michael Wetter:<br/>
 Fixed bug in computing heat conduction of top and bottom segment.
@@ -207,7 +213,7 @@ Icon(graphics={
           fillPattern=FillPattern.CrossDiag),
         Text(
           extent={{100,106},{134,74}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="QLoss"),
         Rectangle(
           extent={{-10,10},{10,-10}},

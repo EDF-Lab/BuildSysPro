@@ -4,7 +4,7 @@ model Carnot_y_etaPL
   extends Examples.Carnot_y(chi(a={0.7,0.3}));
 
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Chillers/Validation/Carnot_y_etaPL.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Chillers/Validation/Carnot_y_etaPL.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

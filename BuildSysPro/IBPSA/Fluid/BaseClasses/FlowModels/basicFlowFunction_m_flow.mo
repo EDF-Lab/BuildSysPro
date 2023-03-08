@@ -2,16 +2,16 @@ within BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels;
 function basicFlowFunction_m_flow
   "Function that computes pressure drop for given mass flow rate"
 
-  input Modelica.SIunits.MassFlowRate m_flow
+  input Modelica.Units.SI.MassFlowRate m_flow
     "Mass flow rate in design flow direction";
   input Real k(unit="")
     "Flow coefficient, k=m_flow/sqrt(dp), with unit=(kg.m)^(1/2)";
-  input Modelica.SIunits.MassFlowRate m_flow_turbulent(min=0)
+  input Modelica.Units.SI.MassFlowRate m_flow_turbulent(min=0)
     "Mass flow rate where transition to turbulent flow occurs";
-  output Modelica.SIunits.PressureDifference dp(displayUnit="Pa")
+  output Modelica.Units.SI.PressureDifference dp(displayUnit="Pa")
     "Pressure difference between port_a and port_b (= port_a.p - port_b.p)";
 protected
-  Modelica.SIunits.PressureDifference dp_turbulent = (m_flow_turbulent/k)^2
+  Modelica.Units.SI.PressureDifference dp_turbulent=(m_flow_turbulent/k)^2
     "Pressure where flow changes to turbulent";
   Real m_flowNorm = m_flow/m_flow_turbulent
     "Normalised mass flow rate";
@@ -19,11 +19,11 @@ protected
     "Square of normalised mass flow rate";
 
 algorithm
- dp :=if noEvent(abs(m_flow)>m_flow_turbulent)
+ dp := smooth(2, if noEvent(abs(m_flow)>m_flow_turbulent)
       then sign(m_flow)*(m_flow/k)^2
-      else (0.375 + (0.75-0.125*m_flowNormSq)*m_flowNormSq)*dp_turbulent*m_flowNorm;
+      else (0.375 + (0.75-0.125*m_flowNormSq)*m_flowNormSq)*dp_turbulent*m_flowNorm);
 
- annotation (LateInline=true,
+ annotation (Inline=false,
              smoothOrder=2,
              derivative(order=1, zeroDerivative=k, zeroDerivative=m_flow_turbulent)=
                IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der,
@@ -35,7 +35,7 @@ algorithm
           color={0,0,255},
           thickness=1), Text(
           extent={{-40,-40},{40,-80}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           fillPattern=FillPattern.Sphere,
           fillColor={232,0,0},
           textString="%name")}),
@@ -44,14 +44,14 @@ Documentation(info="<html>
 Function that computes the pressure drop of flow elements as
 </p>
 <p align=\"center\" style=\"font-style:italic;\">
-  &Delta;p = sign(m) (m &frasl; k)<sup>2</sup>
+  &Delta;p = sign(m&#775;) (m&#775; &frasl; k)<sup>2</sup>
 </p>
 <p>
 with regularization near the origin.
 Therefore, the flow coefficient is
 </p>
 <p align=\"center\" style=\"font-style:italic;\">
-  k = m &frasl; &radic;<span style=\"text-decoration:overline;\">&nbsp;&Delta;p &nbsp;</span>
+  k = m&#775; &frasl; &radic;<span style=\"text-decoration:overline;\">&nbsp;&Delta;p &nbsp;</span>
 </p>
 <p>
 The input <code>m_flow_turbulent</code> determines the location of the regularization.
@@ -59,6 +59,18 @@ The input <code>m_flow_turbulent</code> determines the location of the regulariz
 </html>",
 revisions="<html>
 <ul>
+<li>
+December 9, 2019, by Michael Wetter:<br/>
+Added <code>smooth(2, . )</code>, similar to
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp\">
+IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp</a>.<br/>
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/pull/1240\">#1240</a>.
+</li>
+<li>
+January 4, 2019, by Michael Wetter:<br/>
+Set `Inline=false`.<br/>
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1070\">#1070</a>.
+</li>
 <li>
 May 1, 2017, by Filip Jorissen:<br/>
 Revised implementation such that

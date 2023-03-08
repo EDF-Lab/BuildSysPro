@@ -21,19 +21,19 @@ equation
   x=2*time-1;
   xInv = if ( abs(x) > 0.1)   then 1 / x else 0;
   y = IBPSA.Utilities.Math.Functions.inverseXRegularized(
-              x=x,
-              delta=delta,
-              deltaInv=deltaInv,
-              a=a,
-              b=b,
-              c=c,
-              d=d,
-              e=e,
-              f=f);
+    x=x,
+    delta=delta,
+    deltaInv=deltaInv,
+    a=a,
+    b=b,
+    c=c,
+    d=d,
+    e=e,
+    f=f);
   dy_dt=der(y);
   d2y_dt2=der(dy_dt);
   annotation(experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/InverseXRegularized.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/InverseXRegularized.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

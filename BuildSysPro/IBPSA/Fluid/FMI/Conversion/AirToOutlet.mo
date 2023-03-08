@@ -5,7 +5,8 @@ block AirToOutlet
 
   replaceable package Medium =
     Modelica.Media.Interfaces.PartialMedium "Medium in the component"
-    annotation (choicesAllMatching = true);
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air")));
 
   parameter Boolean allowFlowReversal = true
     "= true to allow flow reversal, false restricts to design direction (inlet -> outlet)"
@@ -43,8 +44,8 @@ block AirToOutlet
 
   Modelica.Blocks.Interfaces.RealOutput TAirZon(
     final unit="K",
-    displayUnit="degC") if
-       allowFlowReversal
+    displayUnit="degC")
+    if allowFlowReversal
     "Temperature of the backward flowing medium in the connector outlet"
     annotation (Placement(
         visible=allowFloWReserval,
@@ -56,8 +57,8 @@ block AirToOutlet
         rotation=90,
         origin={-60,-120})));
   Modelica.Blocks.Interfaces.RealOutput X_wZon(
-    final unit="kg/kg") if
-       Medium.nXi > 0 and allowFlowReversal
+    final unit="kg/kg")
+    if Medium.nXi > 0 and allowFlowReversal
     "Water mass fraction per total air mass of the backward flowing medium in the connector outlet"
     annotation (Placement(
         visible=allowFloWReserval,
@@ -69,8 +70,8 @@ block AirToOutlet
         rotation=90,
         origin={0,-120})));
   Modelica.Blocks.Interfaces.RealOutput CZon[Medium.nC](
-    final quantity=Medium.extraPropertiesNames) if
-       allowFlowReversal
+    final quantity=Medium.extraPropertiesNames)
+    if allowFlowReversal
     "Trace substances of the backward flowing medium in the connector outlet"
     annotation (Placement(
         visible=allowFloWReserval,
@@ -93,7 +94,7 @@ protected
 
    // Conditional connectors for the backward flowing medium
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package Medium =       Medium)
+      package Medium = Medium)
     "Internal connector for fluid properties for back flow";
 
   Modelica.Blocks.Interfaces.RealOutput TAirZon_internal(
@@ -106,8 +107,8 @@ protected
     "Internal connector for zone water vapor mass fraction";
 
   Modelica.Blocks.Interfaces.RealOutput X_wZon_internal2(
-    final unit="kg/kg") = 0 if
-       Medium.nXi == 0 or not allowFlowReversal
+    final unit="kg/kg") = 0
+    if Medium.nXi == 0 or not allowFlowReversal
     "Internal connector for zone water vapor mass fraction, required if X_wZon is removed";
   Modelica.Blocks.Interfaces.RealOutput CZon_internal[Medium.nC]
     "Internal connector for trace substances";
@@ -173,6 +174,11 @@ for its usage.
 </html>", revisions="<html>
 <ul>
 <li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air only.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
+<li>
 November 8, 2016, by Michael Wetter:<br/>
 Corrected wrong argument type in function call of <code>Medium.temperature_phX</code>.
 </li>
@@ -185,20 +191,20 @@ First implementation.
     Icon(graphics={
         Text(
           extent={{-98,52},{-66,26}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="h"),
         Text(
           extent={{-92,94},{-28,68}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="m_flow"),
         Text(
           extent={{-104,-26},{-40,-52}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           visible=Medium.nXi > 0,
           textString="Xi"),
         Text(
           extent={{-104,-64},{-40,-90}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           visible=Medium.nC > 0,
           textString="C"),
         Polygon(

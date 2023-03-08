@@ -6,11 +6,11 @@ model SpeedControlled_y_pumpCurves
 
   // For OpenModelica, changed m_flow_nominal to a constant. Otherwise
   // the translation fails with "Error: Cyclically dependent parameters found"
-  constant Modelica.SIunits.MassFlowRate m_flow_nominal = 0.5
+  constant Modelica.Units.SI.MassFlowRate m_flow_nominal=0.5
     "Nominal mass flow rate";
   // For OpenModelica, changed dp_nominal to a constant. Otherwise
   // the compilation fails.
-  constant Modelica.SIunits.PressureDifference dp_nominal = 10000
+  constant Modelica.Units.SI.PressureDifference dp_nominal=10000
     "Nominal pressure";
 
    model pumpModel = IBPSA.Fluid.Movers.SpeedControlled_y (
@@ -50,8 +50,7 @@ model SpeedControlled_y_pumpCurves
     use_p_in=false,
     p=300000,
     T=293.15,
-    nPorts=4)
-    annotation (Placement(transformation(extent={{-70,78},{-50,98}})));
+    nPorts=4) annotation (Placement(transformation(extent={{-70,78},{-50,98}})));
 
   IBPSA.Fluid.Sources.Boundary_pT sou1(
     redeclare package Medium = Medium,
@@ -159,7 +158,7 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{160,
             160}})),
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Examples/SpeedControlled_y_pumpCurves.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Examples/SpeedControlled_y_pumpCurves.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

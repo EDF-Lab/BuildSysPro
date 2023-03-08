@@ -13,8 +13,7 @@ block SublimationPressureIce "Saturation pressure as a function of temperature"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
 equation
-  pSat = IBPSA.Utilities.Psychrometrics.Functions.sublimationPressureIce(
-    TSat);
+  pSat = IBPSA.Utilities.Psychrometrics.Functions.sublimationPressureIce(TSat);
     annotation (
     defaultComponentName="pSat",
     Documentation(info="<html>
@@ -29,8 +28,8 @@ The range of validity is between
 Wagner W., A. Saul, A. Pruss.
  <i>International equations for the pressure along the melting and along the sublimation curve of ordinary water substance</i>,
 equation 3.5. 1993.
-<a href=\"http://www.nist.gov/data/PDFfiles/jpcrd477.pdf\">
-http://www.nist.gov/data/PDFfiles/jpcrd477.pdf</a>.
+<a href=\"http://aip.scitation.org/doi/pdf/10.1063/1.555947?class=pdf\">
+http://aip.scitation.org/doi/pdf/10.1063/1.555947?class=pdf</a>.
 </p>
 </html>",
 revisions="<html>
@@ -44,12 +43,12 @@ First implementation.
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             100}}), graphics={Text(
           extent={{-92,22},{-56,-24}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           fillColor={0,0,0},
           fillPattern=FillPattern.Solid,
           textString="T"), Text(
           extent={{54,34},{90,-22}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           fillColor={0,0,0},
           fillPattern=FillPattern.Solid,
           textString="p"),

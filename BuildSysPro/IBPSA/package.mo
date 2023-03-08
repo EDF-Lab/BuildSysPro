@@ -2,16 +2,20 @@ within BuildSysPro;
 package IBPSA "Library with models for building energy and control systems"
   extends Modelica.Icons.Package;
 
+
+
 annotation (
 versionDate="2018-09-28",
 dateModified = "2018-09-28",
+conversion(from(version="3.0.0",
+                script="modelica://BuildSysPro/IBPSA/Resources/Scripts/Conversion/ConvertIBPSA_from_3.0_to_4.0.mos")),
 preferredView="info",
 Documentation(info="<html>
 <p>
 <img
 align=\"right\"
 alt=\"Logo of IBPSA\"
-src=\"modelica://BuildSysPro/Resources/IBPSA/Images/IBPSA-logo-text.png\" border=\"1\"/>
+src=\"modelica://BuildSysPro/IBPSA/Resources/Images/IBPSA-logo-text.png\" border=\"1\"/>
 The <code>IBPSA</code> library is a free library
 that provides more than 300 classes (models, functions, etc.) for the development of
 Modelica libraries for building and community energy and control systems.
@@ -88,5 +92,5 @@ to solve specific problems.
 </html>"),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
         graphics={Bitmap(extent={{-90,-90},{90,90}},
-        fileName="modelica://BuildSysPro/Resources/IBPSA/Images/IBPSA-logo.png")}));
+        fileName="modelica://BuildSysPro/Resources/Images/IBPSA-logo.png")}));
 end IBPSA;

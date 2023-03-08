@@ -4,15 +4,17 @@ function multipoleFmk "Complex matrix F_mk from Claesson and Hellstrom (2011)"
 
   input Integer nPip "Number of pipes";
   input Integer J "Number of multipoles";
-  input Real QPip_flow[nPip](unit="W/m") "Heat flow in pipes";
+  input Real QPip_flow[nPip](each unit="W/m") "Heat flow in pipes";
   input Real PRea[nPip,J] "Multipoles (Real part)";
   input Real PIma[nPip,J] "Multipoles (Imaginary part)";
-  input Modelica.SIunits.Radius rBor "Borehole radius";
-  input Modelica.SIunits.Radius rPip[nPip] "Outter radius of pipes";
-  input Modelica.SIunits.Position xPip[nPip] "x-Coordinates of pipes";
-  input Modelica.SIunits.Position yPip[nPip] "y-Coordinates of pipes";
-  input Modelica.SIunits.ThermalConductivity kFil "Thermal conductivity of grouting material";
-  input Modelica.SIunits.ThermalConductivity kSoi "Thermal conductivity of soil material";
+  input Modelica.Units.SI.Radius rBor "Borehole radius";
+  input Modelica.Units.SI.Radius rPip[nPip] "Outter radius of pipes";
+  input Modelica.Units.SI.Position xPip[nPip] "x-Coordinates of pipes";
+  input Modelica.Units.SI.Position yPip[nPip] "y-Coordinates of pipes";
+  input Modelica.Units.SI.ThermalConductivity kFil
+    "Thermal conductivity of grouting material";
+  input Modelica.Units.SI.ThermalConductivity kSoi
+    "Thermal conductivity of soil material";
 
   output Real FRea[nPip,J] "Multipole coefficients";
   output Real FIma[nPip,J] "Multipole coefficients";
@@ -45,21 +47,18 @@ algorithm
           P_nj := Complex(PRea[n, j], PIma[n, j]);
           // Third term
           if m <> n then
-            f := f + P_nj*
-              IBPSA.Utilities.Math.Functions.binomial(j + k - 1,
-              j - 1)*rPip[n]^j*(-rPip[m])^k/(zPip_i - zPip_j)^(
-              j + k);
+            f := f + P_nj*IBPSA.Utilities.Math.Functions.binomial(j + k - 1, j
+               - 1)*rPip[n]^j*(-rPip[m])^k/(zPip_i - zPip_j)^(j + k);
           end if;
           //Fourth term
           j_pend := min(k, j);
           for jp in 0:j_pend loop
             f := f + sigma*Modelica.ComplexMath.conj(P_nj)*
               IBPSA.Utilities.Math.Functions.binomial(j, jp)*
-              IBPSA.Utilities.Math.Functions.binomial(j + k -
-              jp - 1, j - 1)*rPip[n]^j*rPip[m]^k*zPip_i^(j - jp)
-              *Modelica.ComplexMath.conj(zPip_j)^(k - jp)/(rBor^
-              2 - zPip_i*Modelica.ComplexMath.conj(zPip_j))^(k +
-              j - jp);
+              IBPSA.Utilities.Math.Functions.binomial(j + k - jp - 1, j - 1)*
+              rPip[n]^j*rPip[m]^k*zPip_i^(j - jp)*Modelica.ComplexMath.conj(
+              zPip_j)^(k - jp)/(rBor^2 - zPip_i*Modelica.ComplexMath.conj(
+              zPip_j))^(k + j - jp);
           end for;
         end for;
       end for;

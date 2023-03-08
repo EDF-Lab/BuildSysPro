@@ -1,13 +1,10 @@
 within BuildSysPro.IBPSA.Fluid.MixingVolumes;
 model MixingVolumeMoistAir
   "Mixing volume with heat port for latent heat exchange, to be used if moisture is added or removed"
-  extends BaseClasses.PartialMixingVolume(
-    dynBal(
-      final use_mWat_flow = true,
-      final use_C_flow = use_C_flow),
-    steBal(final use_mWat_flow = true,
-      final use_C_flow = use_C_flow),
-    final initialize_p = not Medium.singleState);
+  extends IBPSA.Fluid.MixingVolumes.BaseClasses.PartialMixingVolume(
+    dynBal(final use_mWat_flow=true, final use_C_flow=use_C_flow),
+    steBal(final use_mWat_flow=true, final use_C_flow=use_C_flow),
+    final initialize_p=not Medium.singleState);
 
   parameter Boolean use_C_flow = false
     "Set to true to enable input connector for trace substance"

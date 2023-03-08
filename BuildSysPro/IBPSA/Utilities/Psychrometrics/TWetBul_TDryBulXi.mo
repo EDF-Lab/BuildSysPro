@@ -31,14 +31,13 @@ block TWetBul_TDryBulXi
     annotation (Placement(transformation(extent={{-120,-10},{-100,10}})));
 
 protected
-  Modelica.SIunits.Conversions.NonSIunits.Temperature_degC TDryBul_degC
+  Modelica.Units.NonSI.Temperature_degC TDryBul_degC
     "Dry bulb temperature in degree Celsius";
   Real rh_per(min=0) "Relative humidity in percentage";
 
-  Modelica.SIunits.MassFraction XiSat(start=0.01,
-                                      nominal=0.01)
+  Modelica.Units.SI.MassFraction XiSat(start=0.01, nominal=0.01)
     "Water vapor mass fraction at saturation";
-  Modelica.SIunits.MassFraction XiSatRefIn
+  Modelica.Units.SI.MassFraction XiSatRefIn
     "Water vapor mass fraction at saturation, referenced to inlet mass flow rate";
 
  parameter Integer iWat = sum({(
@@ -52,9 +51,8 @@ initial equation
 equation
   if approximateWetBulb then
     TDryBul_degC = TDryBul - 273.15;
-    rh_per = 100*p/
-      IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(TDryBul)
-      *Xi[iWat]/(Xi[iWat] + IBPSA.Utilities.Psychrometrics.Constants.k_mair
+    rh_per = 100*p/IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(
+      TDryBul)*Xi[iWat]/(Xi[iWat] + IBPSA.Utilities.Psychrometrics.Constants.k_mair
       *(1 - Xi[iWat]));
     TWetBul      = 273.15 + TDryBul_degC
        * Modelica.Math.atan(0.151977 * sqrt(rh_per + 8.313659))
@@ -66,19 +64,16 @@ equation
   else
     XiSatRefIn=(1-Xi[iWat])*XiSat/(1-XiSat);
     XiSat = IBPSA.Utilities.Psychrometrics.Functions.X_pSatpphi(
-            pSat=
-        IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
-         TWetBul),
-            p=p,
-            phi=1);
-    (TWetBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 - Xi[
-      iWat])*IBPSA.Utilities.Psychrometrics.Constants.cpAir + XiSatRefIn*
-      IBPSA.Utilities.Psychrometrics.Constants.cpSte + (Xi[iWat] -
-      XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.cpWatLiq) = (
-      TDryBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 - Xi[
-      iWat])*IBPSA.Utilities.Psychrometrics.Constants.cpAir + Xi[iWat]*
-      IBPSA.Utilities.Psychrometrics.Constants.cpSte) + (Xi[iWat] -
-      XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.h_fg;
+      pSat=IBPSA.Utilities.Psychrometrics.Functions.saturationPressureLiquid(
+        TWetBul),
+      p=p,
+      phi=1);
+    (TWetBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 - Xi[iWat])*
+      IBPSA.Utilities.Psychrometrics.Constants.cpAir + XiSatRefIn*IBPSA.Utilities.Psychrometrics.Constants.cpSte
+       + (Xi[iWat] - XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.cpWatLiq)
+      = (TDryBul - IBPSA.Utilities.Psychrometrics.Constants.T_ref)*((1 - Xi[
+      iWat])*IBPSA.Utilities.Psychrometrics.Constants.cpAir + Xi[iWat]*IBPSA.Utilities.Psychrometrics.Constants.cpSte)
+       + (Xi[iWat] - XiSatRefIn)*IBPSA.Utilities.Psychrometrics.Constants.h_fg;
     TDryBul_degC = 0;
     rh_per       = 0;
   end if;
@@ -88,24 +83,24 @@ annotation (
             100}}), graphics={
         Text(
           extent={{-92,100},{-62,56}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="TDryBul"),
         Text(
           extent={{-86,14},{-72,-6}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="Xi"),
         Text(
           extent={{-90,-72},{-72,-90}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="p"),
         Text(
           extent={{62,22},{92,-22}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="TWetBul"),
         Line(points={{78,-74},{-48,-74}}),
         Text(
           extent={{76,-78},{86,-94}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           fillColor={0,0,0},
           fillPattern=FillPattern.Solid,
           textString="T"),
@@ -119,7 +114,7 @@ annotation (
         Line(points={{-48,84},{-48,-74}}),
         Text(
           extent={{-44,82},{-22,64}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           fillColor={0,0,0},
           fillPattern=FillPattern.Solid,
           textString="X"),
@@ -145,7 +140,7 @@ then the block uses the approximation of Stull (2011) to compute
 the wet bulb temperature without requiring a nonlinear equation.
 Otherwise, the model will introduce one nonlinear equation.
 The approximation by Stull is valid for a relative humidity of <i>5%</i> to <i>99%</i>,
-a temperature range from <i>-20&circ;C</i> to <i>50&circ;C</i>
+a temperature range from <i>-20&deg;C</i> to <i>50&deg;C</i>
 and standard sea level pressure.
 For this range of data, the approximation error is <i>-1</i> Kelvin to <i>+0.65</i> Kelvin,
 with a mean error of less than <i>0.3</i> Kelvin.

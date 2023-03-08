@@ -60,7 +60,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-    __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/Examples/AirHeater_u.mos"
+    __Dymola_Commands(file= "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/Examples/AirHeater_u.mos"
         "Simulate and plot"),
     experiment(
       StopTime=172800,

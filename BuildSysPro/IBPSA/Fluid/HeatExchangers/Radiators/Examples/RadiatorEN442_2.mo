@@ -2,25 +2,24 @@ within BuildSysPro.IBPSA.Fluid.HeatExchangers.Radiators.Examples;
 model RadiatorEN442_2 "Test model for radiator"
   extends Modelica.Icons.Example;
  package Medium = IBPSA.Media.Water "Medium model";
- parameter Modelica.SIunits.Temperature TRoo = 20+273.15 "Room temperature"
+  parameter Modelica.Units.SI.Temperature TRoo=20 + 273.15 "Room temperature"
     annotation (Evaluate=false);
- parameter Modelica.SIunits.Power Q_flow_nominal = 500 "Nominal power";
-  parameter Modelica.SIunits.Temperature T_a_nominal=313.15
+  parameter Modelica.Units.SI.Power Q_flow_nominal=500 "Nominal power";
+  parameter Modelica.Units.SI.Temperature T_a_nominal=313.15
     "Radiator inlet temperature at nominal condition";
- parameter Modelica.SIunits.Temperature T_b_nominal = 303.15
+  parameter Modelica.Units.SI.Temperature T_b_nominal=303.15
     "Radiator outlet temperature at nominal condition";
- parameter Modelica.SIunits.MassFlowRate m_flow_nominal=
-    Q_flow_nominal/(T_a_nominal-T_b_nominal)/Medium.cp_const
-    "Nominal mass flow rate";
- parameter Modelica.SIunits.PressureDifference dp_nominal = 3000
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=Q_flow_nominal/(
+      T_a_nominal - T_b_nominal)/Medium.cp_const "Nominal mass flow rate";
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=3000
     "Pressure drop at m_flow_nominal";
 
   IBPSA.Fluid.Sources.Boundary_pT sou(
     nPorts=2,
     redeclare package Medium = Medium,
     use_p_in=true,
-    T=T_a_nominal) annotation (Placement(transformation(extent={{-64,-68},
-            {-44,-48}})));
+    T=T_a_nominal)
+    annotation (Placement(transformation(extent={{-64,-68},{-44,-48}})));
   FixedResistances.PressureDrop res2(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
@@ -35,8 +34,8 @@ model RadiatorEN442_2 "Test model for radiator"
     redeclare package Medium = Medium,
     nPorts=2,
     p(displayUnit="Pa") = 300000,
-    T=T_b_nominal) "Sink" annotation (Placement(transformation(extent=
-           {{90,-68},{70,-48}})));
+    T=T_b_nominal) "Sink"
+    annotation (Placement(transformation(extent={{90,-68},{70,-48}})));
 
   IBPSA.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad1(
     redeclare package Medium = Medium,
@@ -44,8 +43,7 @@ model RadiatorEN442_2 "Test model for radiator"
     T_b_nominal=T_b_nominal,
     Q_flow_nominal=Q_flow_nominal,
     TAir_nominal=TRoo,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Radiator"
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Radiator"
     annotation (Placement(transformation(extent={{-10,-2},{10,18}})));
   IBPSA.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad2(
     redeclare package Medium = Medium,
@@ -53,8 +51,8 @@ model RadiatorEN442_2 "Test model for radiator"
     T_a_nominal=T_a_nominal,
     T_b_nominal=T_b_nominal,
     Q_flow_nominal=Q_flow_nominal,
-    TAir_nominal=TRoo) "Radiator" annotation (Placement(
-        transformation(extent={{-10,-70},{10,-50}})));
+    TAir_nominal=TRoo) "Radiator"
+    annotation (Placement(transformation(extent={{-10,-70},{10,-50}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TBCCon1(T=TRoo)
     annotation (Placement(transformation(extent={{-32,28},{-20,40}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TBCCon2(T=TRoo)
@@ -103,7 +101,7 @@ equation
       points={{-20,34},{-2,34},{-2,15.2}},
       color={191,0,0}));
   annotation (
-    __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/Radiators/Examples/RadiatorEN442_2.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/Radiators/Examples/RadiatorEN442_2.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=10800),
     Documentation(info="<html>

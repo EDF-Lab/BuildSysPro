@@ -5,18 +5,17 @@ model Carnot_TEva_reverseFlow
  package Medium1 = IBPSA.Media.Water "Medium model";
  package Medium2 = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.TemperatureDifference dTEva_nominal=-10
+  parameter Modelica.Units.SI.TemperatureDifference dTEva_nominal=-10
     "Temperature difference evaporator inlet-outlet";
-  parameter Modelica.SIunits.TemperatureDifference dTCon_nominal=10
+  parameter Modelica.Units.SI.TemperatureDifference dTCon_nominal=10
     "Temperature difference condenser outlet-inlet";
   parameter Real COPc_nominal = 3 "Chiller COP";
-  parameter Modelica.SIunits.HeatFlowRate QEva_flow_nominal = -100E3
+  parameter Modelica.Units.SI.HeatFlowRate QEva_flow_nominal=-100E3
     "Evaporator heat flow rate";
-  parameter Modelica.SIunits.MassFlowRate m2_flow_nominal=
-    QEva_flow_nominal/dTEva_nominal/4200
-    "Nominal mass flow rate at chilled water side";
-  parameter Modelica.SIunits.MassFlowRate m1_flow_nominal=
-    m2_flow_nominal*(COPc_nominal+1)/COPc_nominal
+  parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=QEva_flow_nominal/
+      dTEva_nominal/4200 "Nominal mass flow rate at chilled water side";
+  parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=m2_flow_nominal*(
+      COPc_nominal + 1)/COPc_nominal
     "Nominal mass flow rate at condenser water wide";
 
   IBPSA.Fluid.Chillers.Carnot_TEva chi(
@@ -25,7 +24,6 @@ model Carnot_TEva_reverseFlow
     dTEva_nominal=dTEva_nominal,
     dTCon_nominal=dTCon_nominal,
     use_eta_Carnot_nominal=true,
-    etaCarnot_nominal=0.3,
     m1_flow_nominal=m1_flow_nominal,
     m2_flow_nominal=m2_flow_nominal,
     show_T=true,
@@ -41,24 +39,21 @@ model Carnot_TEva_reverseFlow
     m_flow=m1_flow_nominal,
     use_T_in=false,
     use_m_flow_in=true,
-    T=298.15)
-    annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
+    T=298.15) annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou2(
     nPorts=1,
     redeclare package Medium = Medium2,
     m_flow=m2_flow_nominal,
     use_T_in=false,
     use_m_flow_in=true,
-    T=295.15)
-    annotation (Placement(transformation(extent={{60,-16},{40,4}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
-        Medium1, nPorts=1) annotation (Placement(transformation(extent={
-            {10,-10},{-10,10}}, origin={80,30})));
-  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package Medium =
-               Medium2) annotation (Placement(transformation(extent={{-10,
-            -10},{10,10}}, origin={-40,-30})));
-  Modelica.Blocks.Sources.Constant
-                               TEvaLvg(k=273.15 + 10)
+    T=295.15) annotation (Placement(transformation(extent={{60,-16},{40,4}})));
+  IBPSA.Fluid.Sources.Boundary_pT sin1(redeclare package Medium = Medium1,
+      nPorts=1) annotation (Placement(transformation(extent={{10,-10},{-10,10}},
+          origin={80,30})));
+  IBPSA.Fluid.Sources.Boundary_pT sin2(nPorts=1, redeclare package Medium =
+        Medium2) annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+          origin={-40,-30})));
+  Modelica.Blocks.Sources.Constant TEvaLvg(k=273.15 + 10)
     "Control signal for evaporator leaving temperature"
     annotation (Placement(transformation(extent={{-40,30},{-20,50}})));
   Modelica.Blocks.Math.Gain mCon_flow(k=-1/cp1_default/dTEva_nominal)
@@ -67,8 +62,8 @@ model Carnot_TEva_reverseFlow
   Modelica.Blocks.Math.Add QCon_flow(k2=-1) "Condenser heat flow rate"
     annotation (Placement(transformation(extent={{40,-50},{60,-30}})));
 
-  final parameter Modelica.SIunits.SpecificHeatCapacity cp1_default=
-    Medium1.specificHeatCapacityCp(Medium1.setState_pTX(
+  final parameter Modelica.Units.SI.SpecificHeatCapacity cp1_default=
+      Medium1.specificHeatCapacityCp(Medium1.setState_pTX(
       Medium1.p_default,
       Medium1.T_default,
       Medium1.X_default))
@@ -77,7 +72,7 @@ model Carnot_TEva_reverseFlow
     duration=60,
     startTime=1800,
     height=-2*m2_flow_nominal,
-    offset=m2_flow_nominal) "Mass flow rate for evaporater"
+    offset=m2_flow_nominal) "Mass flow rate for evaporator"
     annotation (Placement(transformation(extent={{92,-8},{72,12}})));
 equation
   connect(sou1.ports[1], chi.port_a1)    annotation (Line(
@@ -110,7 +105,7 @@ equation
   connect(mEva_flow.y, sou2.m_flow_in)
     annotation (Line(points={{71,2},{62,2}},        color={0,0,127}));
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Chillers/Validation/Carnot_TEva_reverseFlow.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Chillers/Validation/Carnot_TEva_reverseFlow.mos"
         "Simulate and plot"),
     Documentation(
 info="<html>
@@ -127,6 +122,17 @@ This example checks the correct behavior if a mass flow rate attains zero.
 </html>",
 revisions="<html>
 <ul>
+<li>
+February 10, 2023, by Michael Wetter:<br/>
+Removed binding of parameter with same value as the default.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1692\">#1692</a>.
+</li>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 November 25, 2015, by Michael Wetter:<br/>
 First implementation.

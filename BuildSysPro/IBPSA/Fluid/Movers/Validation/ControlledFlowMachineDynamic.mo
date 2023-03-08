@@ -9,7 +9,7 @@ model ControlledFlowMachineDynamic
     fan3(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial));
   annotation (
 experiment(Tolerance=1e-6, StopTime=600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Validation/ControlledFlowMachineDynamic.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Validation/ControlledFlowMachineDynamic.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 This example demonstrates the use of the flow model with four different configurations.

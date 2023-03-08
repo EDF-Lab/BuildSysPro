@@ -1,43 +1,47 @@
 within BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseClasses;
 partial model PartialInternalHEX
   "Partial model to implement the internal heat exchanger of a borehole segment"
-  parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat
-    "Borefield parameters" annotation (Placement(transformation(
-          extent={{-100,-100},{-80,-80}})));
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat
+    "Borefield parameters"
+    annotation (Placement(transformation(extent={{-100,-100},{-80,-80}})));
   replaceable package Medium =
     Modelica.Media.Interfaces.PartialMedium "Medium"
-    annotation (choicesAllMatching = true);
+    annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Water "Water"),
+        choice(redeclare package Medium =
+            IBPSA.Media.Antifreeze.PropyleneGlycolWater (
+              property_T=293.15,
+              X_a=0.40)
+              "Propylene glycol water, 40% mass fraction")));
   constant Real mSenFac=1
     "Factor for scaling the sensible thermal mass of the volume";
   parameter Boolean dynFil=true
     "Set to false to remove the dynamics of the filling material"
     annotation (Dialog(tab="Dynamics"));
-  parameter Modelica.SIunits.Length hSeg
+  parameter Modelica.Units.SI.Length hSeg
     "Length of the internal heat exchanger";
-  parameter Modelica.SIunits.Volume VTubSeg = hSeg*Modelica.Constants.pi*(borFieDat.conDat.rTub-borFieDat.conDat.eTub)^2
+  parameter Modelica.Units.SI.Volume VTubSeg=hSeg*Modelica.Constants.pi*(
+      borFieDat.conDat.rTub - borFieDat.conDat.eTub)^2
     "Fluid volume in each tube";
-  parameter Modelica.SIunits.Temperature TFlu_start
-    "Start value of fluid temperature"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Temperature TGro_start
-    "Start value of grout temperature"
-    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.Units.SI.Temperature TFlu_start
+    "Start value of fluid temperature" annotation (Dialog(tab="Initialization"));
+  parameter Modelica.Units.SI.Temperature TGro_start
+    "Start value of grout temperature" annotation (Dialog(tab="Initialization"));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_wall
     "Thermal connection for borehole wall"
     annotation (Placement(transformation(extent={{-10,90},{10,110}})));
 protected
-  parameter Modelica.SIunits.SpecificHeatCapacity cpMed=
+  parameter Modelica.Units.SI.SpecificHeatCapacity cpMed=
       Medium.specificHeatCapacityCp(Medium.setState_pTX(
       Medium.p_default,
       Medium.T_default,
       Medium.X_default)) "Specific heat capacity of the fluid";
-  parameter Modelica.SIunits.ThermalConductivity kMed=
+  parameter Modelica.Units.SI.ThermalConductivity kMed=
       Medium.thermalConductivity(Medium.setState_pTX(
       Medium.p_default,
       Medium.T_default,
       Medium.X_default)) "Thermal conductivity of the fluid";
-  parameter Modelica.SIunits.DynamicViscosity muMed=Medium.dynamicViscosity(
+  parameter Modelica.Units.SI.DynamicViscosity muMed=Medium.dynamicViscosity(
       Medium.setState_pTX(
       Medium.p_default,
       Medium.T_default,
@@ -85,6 +89,11 @@ need to be declared in models which extend this partial model:
 </ul>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to water and glycolWater.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 July 10, 2018, by Alex Laferri&egrave;re:<br/>
 First implementation of partial model.

@@ -3,21 +3,28 @@ partial model PartialSource
   "Partial component source with one fluid connector"
 
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium
-      "Medium model within the source"
-     annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air"),
+        choice(redeclare package Medium = IBPSA.Media.Water "Water"),
+        choice(redeclare package Medium =
+            IBPSA.Media.Antifreeze.PropyleneGlycolWater (
+              property_T=293.15,
+              X_a=0.40)
+              "Propylene glycol water, 40% mass fraction")));
 
   parameter Integer nPorts=0 "Number of ports" annotation(Dialog(connectorSizing=true));
   parameter Boolean verifyInputs = false
     "Set to true to stop the simulation with an error if the medium temperature is outside its allowable range"
-    annotation(Dialog(tab="Advanced"));
+    annotation(Evaluate=true, Dialog(tab="Advanced"));
 
   Modelica.Fluid.Interfaces.FluidPorts_b ports[nPorts](
     redeclare each package Medium = Medium,
-    m_flow(each max=if flowDirection == Modelica.Fluid.Types.PortFlowDirection.Leaving
-             then 0 else +Modelica.Constants.inf,
-           each min=if flowDirection == Modelica.Fluid.Types.PortFlowDirection.Entering
-           then 0 else -Modelica.Constants.inf))
+    each m_flow(max=if flowDirection == Modelica.Fluid.Types.PortFlowDirection.Leaving
+                    then 0 else +Modelica.Constants.inf,
+                min=if flowDirection == Modelica.Fluid.Types.PortFlowDirection.Entering
+                    then 0 else -Modelica.Constants.inf))
+    "Fluid ports"
     annotation (Placement(transformation(extent={{90,40},{110,-40}})));
 
 protected
@@ -69,8 +76,25 @@ medium temperature is within the bounds <code>T_min</code> and <code>T_max</code
 where <code>T_min</code> and <code>T_max</code> are constants of the <code>Medium</code>.
 If the temperature is outside these bounds, the simulation will stop with an error.
 </p>
+<h4>Usage</h4>
+<p>
+This partial model provides medium selection for water, moist air and glycol.
+For a model that only provides moist air as a selection, use
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.BaseClasses.PartialAirSource\">
+IBPSA.Fluid.Sources.BaseClasses.PartialAirSource</a>.
+</p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 1, 2021, by Michael Wetter:<br/>
+Corrected misplaced <code>each</code> and added missing instance comment.<br/>
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1462\">IBPSA, #1462</a>.
+</li>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">IBPSA, #1050</a>.
+</li>
 <li>
 May 30, 2018, by Michael Wetter:<br/>
 Improved documentation.
@@ -78,7 +102,7 @@ Improved documentation.
 <li>
 February 2nd, 2018 by Filip Jorissen<br/>
 Initial version for refactoring inputs of sources.
-See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/882\">#882</a>.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/882\">IBPSA, #882</a>.
 </li>
 </ul>
 </html>"));

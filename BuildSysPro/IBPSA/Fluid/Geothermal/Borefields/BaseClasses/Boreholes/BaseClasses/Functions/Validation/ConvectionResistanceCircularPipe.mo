@@ -3,23 +3,23 @@ model ConvectionResistanceCircularPipe
   "Validation of the correlation used to evaluate the convection resistance in circular pipes"
   extends Modelica.Icons.Example;
 
-  parameter Modelica.SIunits.Height hSeg = 1.0 "Height of the element";
-  parameter Modelica.SIunits.Radius rTub = 0.02 "Tube radius";
-  parameter Modelica.SIunits.Length eTub = 0.002 "Tube thickness";
+  parameter Modelica.Units.SI.Height hSeg=1.0 "Height of the element";
+  parameter Modelica.Units.SI.Radius rTub=0.02 "Tube radius";
+  parameter Modelica.Units.SI.Length eTub=0.002 "Tube thickness";
   // thermal properties
-  parameter Modelica.SIunits.ThermalConductivity kMed = 0.6
+  parameter Modelica.Units.SI.ThermalConductivity kMed=0.6
     "Thermal conductivity of the fluid";
-  parameter Modelica.SIunits.DynamicViscosity muMed = 1.002e-3
+  parameter Modelica.Units.SI.DynamicViscosity muMed=1.002e-3
     "Dynamic viscosity of the fluid";
-  parameter Modelica.SIunits.SpecificHeatCapacity cpMed = 4182
+  parameter Modelica.Units.SI.SpecificHeatCapacity cpMed=4182
     "Specific heat capacity of the fluid";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 1
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=1
     "Nominal mass flow rate";
 
   Real Re "Reynolds number";
   Real Nu "Reynolds number";
-  Modelica.SIunits.MassFlowRate m_flow "Mass flow rate";
-  Modelica.SIunits.ThermalResistance RConv "Convection resistance";
+  Modelica.Units.SI.MassFlowRate m_flow "Mass flow rate";
+  Modelica.Units.SI.ThermalResistance RConv "Convection resistance";
 
 equation
 
@@ -27,19 +27,19 @@ equation
   Re = 2*m_flow/(muMed*Modelica.Constants.pi*(rTub-eTub));
   RConv =
     IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseClasses.Functions.convectionResistanceCircularPipe(
-                      hSeg=hSeg,
-                      rTub=rTub,
-                      eTub=eTub,
-                      kMed=kMed,
-                      muMed=muMed,
-                      cpMed=cpMed,
-                      m_flow=m_flow,
-                      m_flow_nominal=m_flow_nominal);
+    hSeg=hSeg,
+    rTub=rTub,
+    eTub=eTub,
+    kMed=kMed,
+    muMed=muMed,
+    cpMed=cpMed,
+    m_flow=m_flow,
+    m_flow_nominal=m_flow_nominal);
   Nu = 1/(kMed*Modelica.Constants.pi*hSeg*RConv);
 
   annotation (experiment(Tolerance=1e-6, StopTime=10000.0),
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/BaseClasses/Functions/Validation/ConvectionResistanceCircularPipe.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/BaseClasses/Functions/Validation/ConvectionResistanceCircularPipe.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

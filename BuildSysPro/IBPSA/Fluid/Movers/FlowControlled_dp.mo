@@ -7,46 +7,60 @@ model FlowControlled_dp
     preSou(dp_start=dp_start, control_dp=not prescribeSystemPressure),
     final stageInputs(each final unit="Pa") = heads,
     final constInput(final unit="Pa") = constantHead,
+    final _m_flow_nominal=m_flow_nominal,
     filter(
       final y_start=dp_start,
-      u_nominal=abs(dp_nominal),
       u(final unit="Pa"),
-      y(final unit="Pa")),
-    eff(per(final pressure=if per.havePressureCurve then per.pressure
-             else
+      y(final unit="Pa"),
+      x(each nominal=dp_nominal),
+      u_nominal=dp_nominal),
+    eff(per(
+        final pressure=if per.havePressureCurve then per.pressure else
             IBPSA.Fluid.Movers.BaseClasses.Characteristics.flowParameters(
-             V_flow={i/(nOri - 1)*2.0*m_flow_nominal/rho_default for i in
-                0:(nOri - 1)}, dp={i/(nOri - 1)*2.0*dp_nominal for i in (
-            nOri - 1):-1:0}), final use_powerCharacteristic=if per.havePressureCurve
-             then per.use_powerCharacteristic else false)));
+            V_flow={i/(nOri - 1)*2.0*m_flow_nominal/rho_default for i in 0:(
+            nOri - 1)}, dp={i/(nOri - 1)*2.0*dp_nominal for i in (nOri - 1):-1:
+            0}),
+        final etaHydMet=if (per.etaHydMet == IBPSA.Fluid.Movers.BaseClasses.Types.HydraulicEfficiencyMethod.Power_VolumeFlowRate
+             or per.etaHydMet == IBPSA.Fluid.Movers.BaseClasses.Types.HydraulicEfficiencyMethod.EulerNumber)
+             and not per.havePressureCurve then IBPSA.Fluid.Movers.BaseClasses.Types.HydraulicEfficiencyMethod.NotProvided
+             else per.etaHydMet,
+        final etaMotMet=if (per.etaMotMet == IBPSA.Fluid.Movers.BaseClasses.Types.MotorEfficiencyMethod.Efficiency_MotorPartLoadRatio
+             or per.etaMotMet == IBPSA.Fluid.Movers.BaseClasses.Types.MotorEfficiencyMethod.GenericCurve)
+             and (not per.haveWMot_nominal and not per.havePressureCurve) then
+            IBPSA.Fluid.Movers.BaseClasses.Types.MotorEfficiencyMethod.NotProvided
+             else per.etaMotMet), r_N(start=if abs(dp_nominal) > 1E-8 then
+            dp_start/dp_nominal else 0)));
 
-  parameter Modelica.SIunits.PressureDifference dp_start(
+  parameter Modelica.Units.SI.PressureDifference dp_start(
     min=0,
-    displayUnit="Pa")=0 "Initial value of pressure raise"
-    annotation(Dialog(tab="Dynamics", group="Filtered speed"));
+    displayUnit="Pa") = 0 "Initial value of pressure raise"
+    annotation (Dialog(tab="Dynamics", group="Filtered speed"));
+
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal(
+    final min=Modelica.Constants.small)
+    "Nominal mass flow rate" annotation (Dialog(group="Nominal condition"));
 
   // For air, we set dp_nominal = 600 as default, for water we set 10000
-  parameter Modelica.SIunits.PressureDifference dp_nominal(
-    min=0,
-    displayUnit="Pa")=
-      if rho_default < 500 then 500 else 10000 "Nominal pressure raise, used to normalized the filter if use_inputFilter=true,
+  parameter Modelica.Units.SI.PressureDifference dp_nominal(
+    final min=Modelica.Constants.small,
+    displayUnit="Pa") = if rho_default < 500 then 500 else 10000 "Nominal pressure raise, used to normalized the filter if use_inputFilter=true,
         to set default values of constantHead and heads, and
         and for default pressure curve if not specified in record per"
-    annotation(Dialog(group="Nominal condition"));
+    annotation (Dialog(group="Nominal condition"));
 
-  parameter Modelica.SIunits.PressureDifference constantHead(
+  parameter Modelica.Units.SI.PressureDifference constantHead(
     min=0,
-    displayUnit="Pa")=dp_nominal
-    "Constant pump head, used when inputType=Constant"
-    annotation(Dialog(enable=inputType == IBPSA.Fluid.Types.InputType.Constant));
+    displayUnit="Pa") = dp_nominal
+    "Constant pump head, used when inputType=Constant" annotation (Dialog(
+        enable=inputType == IBPSA.Fluid.Types.InputType.Constant));
 
   // By default, set heads proportional to sqrt(speed/speed_nominal)
-  parameter Modelica.SIunits.PressureDifference[:] heads(
+  parameter Modelica.Units.SI.PressureDifference[:] heads(
     each min=0,
-    each displayUnit="Pa")=
-    dp_nominal*{(per.speeds[i]/per.speeds[end])^2 for i in 1:size(per.speeds, 1)}
+    each displayUnit="Pa") = dp_nominal*{(per.speeds[i]/per.speeds[end])^2 for
+    i in 1:size(per.speeds, 1)}
     "Vector of head set points, used when inputType=Stages"
-    annotation(Dialog(enable=inputType == IBPSA.Fluid.Types.InputType.Stages));
+    annotation (Dialog(enable=inputType == IBPSA.Fluid.Types.InputType.Stages));
   parameter Boolean prescribeSystemPressure = false
     "=true, to control mover such that pressure difference is obtained across two remote points in system"
     annotation(Evaluate=true, Dialog(tab="Advanced"));
@@ -61,8 +75,8 @@ model FlowControlled_dp
         rotation=90,
         origin={-80,120})));
 
-  Modelica.Blocks.Interfaces.RealInput dp_in(final unit="Pa") if
-    inputType == IBPSA.Fluid.Types.InputType.Continuous
+  Modelica.Blocks.Interfaces.RealInput dp_in(final unit="Pa")
+    if inputType == IBPSA.Fluid.Types.InputType.Continuous
     "Prescribed pressure rise"
     annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
@@ -81,19 +95,19 @@ protected
   Modelica.Blocks.Math.Gain gain(final k=-1)
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=90,
-        origin={36,30})));
+        origin={44,30})));
 equation
   assert(inputSwitch.u >= -1E-3,
     "Pressure set point for mover cannot be negative. Obtained dp = " + String(inputSwitch.u));
 
   if use_inputFilter then
     connect(filter.y, gain.u) annotation (Line(
-      points={{34.7,88},{36,88},{36,42}},
+      points={{41,70.5},{44,70.5},{44,42}},
       color={0,0,127},
       smooth=Smooth.None));
   else
     connect(inputSwitch.y, gain.u) annotation (Line(
-      points={{1,50},{36,50},{36,42}},
+      points={{1,50},{44,50},{44,42}},
       color={0,0,127},
       smooth=Smooth.None));
   end if;
@@ -103,23 +117,24 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(preSou.dp_in, gain.y) annotation (Line(
-      points={{56,8},{56,14},{36,14},{36,19}},
+      points={{56,8},{56,14},{44,14},{44,19}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(senRelPre.p_rel, dp_actual) annotation (Line(points={{50.5,-26.35},{
           50.5,-38},{74,-38},{74,50},{110,50}},
                                            color={0,0,127}));
-  annotation (defaultComponentName="fan",
+  annotation (
+    Icon(graphics={
+        Text(
+          extent={{-40,126},{-160,76}},
+          textColor={0,0,127},
+          visible=inputType == IBPSA.Fluid.Types.InputType.Continuous or inputType == IBPSA.Fluid.Types.InputType.Stages,
+          textString=DynamicSelect("dp", if inputType == IBPSA.Fluid.Types.InputType.Continuous then String(dp_in, format=".0f") else String(stage)))}),
+  defaultComponentName="mov",
   Documentation(info="<html>
 <p>
 This model describes a fan or pump with prescribed head.
-The input connector provides the difference between
-outlet minus inlet pressure.
-The efficiency of the device is computed based
-on the efficiency and pressure curves that are defined
-in record <code>per</code>, which is of type
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.SpeedControlled_Nrpm\">
-IBPSA.Fluid.Movers.SpeedControlled_Nrpm</a>.
+The input connector provides the pressure rise from the inlet to the outlet.
 </p>
 <h4>Main equations</h4>
 <p>
@@ -154,6 +169,43 @@ IBPSA.Fluid.Movers.Validation.FlowControlled_dpSystem</a>.
 </html>",
       revisions="<html>
 <ul>
+<li>
+March 1, 2023, by Hongxiang Fu:<br/>
+Refactored the model with a new declaration for
+<code>m_flow_nominal</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1705\">#1705</a>.
+</li>
+<li>
+April 27, 2022, by Hongxiang Fu:<br/>
+Replaced <code>not use_powerCharacteristic</code> with the enumerations
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Types.HydraulicEfficiencyMethod\">
+IBPSA.Fluid.Movers.BaseClasses.Types.HydraulicEfficiencyMethod</a>
+and
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Types.MotorEfficiencyMethod\">
+IBPSA.Fluid.Movers.BaseClasses.Types.MotorEfficiencyMethod</a>.<br/>
+This is for
+<a href=\"https://github.com/lbl-srg/modelica-buildings/issues/2668\">#2668</a>.
+</li>
+<li>
+March 7, 2022, by Michael Wetter:<br/>
+Set <code>final massDynamics=energyDynamics</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1542\">#1542</a>.
+</li>
+<li>
+June 17, 2021, by Michael Wetter:<br/>
+Changed implementation of the filter.<br/>
+Removed parameter <code>y_start</code> which is not used because <code>dp_start</code> is used.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1498\">#1498</a>.
+</li>
+<li>
+February 21, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating stage.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
 <li>
 May 5, 2017, by Filip Jorissen:<br/>
 Added parameters, documentation and functionality for
@@ -251,37 +303,5 @@ Revised implementation to allow zero flow rate.
     by Michael Wetter:<br/>
        Added model to the IBPSA library.
 </ul>
-</html>"),
-    Icon(graphics={
-        Line(
-          points={{2,50},{100,50}},
-          color={0,0,0},
-          smooth=Smooth.None),
-        Text(
-          visible = inputType == IBPSA.Fluid.Types.InputType.Continuous,
-          extent={{20,142},{104,108}},
-          textString="dp_in"),
-        Text(extent={{60,66},{110,52}},
-          lineColor={0,0,127},
-          textString="dp"),
-        Rectangle(
-          visible=use_inputFilter,
-          extent={{-34,40},{32,100}},
-          lineColor={0,0,0},
-          fillColor={135,135,135},
-          fillPattern=FillPattern.Solid),
-        Ellipse(
-          visible=use_inputFilter,
-          extent={{-34,100},{32,40}},
-          lineColor={0,0,0},
-          fillColor={135,135,135},
-          fillPattern=FillPattern.Solid),
-        Text(
-          visible=use_inputFilter,
-          extent={{-22,92},{20,46}},
-          lineColor={0,0,0},
-          fillColor={135,135,135},
-          fillPattern=FillPattern.Solid,
-          textString="M",
-          textStyle={TextStyle.Bold})}));
+</html>"));
 end FlowControlled_dp;

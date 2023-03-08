@@ -22,14 +22,12 @@ model Delay
     T=293.15,
     redeclare package Medium = Medium,
     use_p_in=true,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{-58,-4},{-38,16}})));
+    nPorts=1) annotation (Placement(transformation(extent={{-58,-4},{-38,16}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     T=283.15,
     redeclare package Medium = Medium,
     use_p_in=true,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{78,-4},{58,16}})));
+    nPorts=1) annotation (Placement(transformation(extent={{78,-4},{58,16}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res2(
     from_dp=true,
     m_flow_nominal=5,
@@ -63,6 +61,6 @@ equation
       points={{26,6},{10,6}},
       color={0,127,255}));
     annotation (experiment(Tolerance=1e-6, StopTime=300),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Delays/Examples/Delay.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Delays/Examples/Delay.mos"
         "Simulate and plot"));
 end Delay;

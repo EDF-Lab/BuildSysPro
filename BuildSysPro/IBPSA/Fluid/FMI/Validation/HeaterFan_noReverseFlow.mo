@@ -11,11 +11,11 @@ model HeaterFan_noReverseFlow
     "= true to use a pressure from connector, false to output Medium.p_default"
     annotation(Evaluate=true);
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=Q_flow_nominal/1000/10
-    "Nominal mass flow rate";
-  parameter Modelica.SIunits.PressureDifference dp_nominal(displayUnit="Pa")=2000
-    "Pressure";
-  parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = 1000
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=Q_flow_nominal/1000/
+      10 "Nominal mass flow rate";
+  parameter Modelica.Units.SI.PressureDifference dp_nominal(displayUnit="Pa")=
+       2000 "Pressure";
+  parameter Modelica.Units.SI.HeatFlowRate Q_flow_nominal=1000
     "Heat flow rate at u=1, positive for heating";
 
   ExportContainers.Examples.FMUs.Fan floMac(
@@ -59,8 +59,8 @@ model HeaterFan_noReverseFlow
   Modelica.Blocks.Sources.Constant X_w_in(k=0.01) "Inlet mass fraction"
     annotation (Placement(transformation(extent={{-60,-30},{-40,-10}})));
 
-  Modelica.Blocks.Sources.Constant C[Medium.nC](each k=0.01) if
-     Medium.nC > 0 "Trace substances for forward flow"
+  Modelica.Blocks.Sources.Constant C[Medium.nC](each k=0.01)
+  if Medium.nC > 0 "Trace substances for forward flow"
     annotation (Placement(transformation(extent={{-60,-70},{-40,-50}})));
 equation
   connect(uHea.y, hea.u) annotation (Line(
@@ -128,7 +128,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/Validation/HeaterFan_noReverseFlow.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/Validation/HeaterFan_noReverseFlow.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=1.0));
 end HeaterFan_noReverseFlow;

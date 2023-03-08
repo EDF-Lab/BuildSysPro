@@ -22,6 +22,6 @@ First implementation.
   experiment(
   StartTime=-1,
   Tolerance=1e-6, StopTime=1),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Time/Examples/ModelTime.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Time/Examples/ModelTime.mos"
         "Simulate and plot"));
 end ModelTime;

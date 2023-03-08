@@ -30,10 +30,8 @@ model MixingVolumeHeatConduction "Test model for heat transfer to volume"
     redeclare package Medium = Medium,
     m_flow_nominal=0.01,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     allowFlowReversal=true,
-    nPorts=2)
-    annotation (Placement(transformation(extent={{30,20},{50,40}})));
+    nPorts=2) annotation (Placement(transformation(extent={{30,20},{50,40}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=1,
     offset=1,
@@ -79,6 +77,6 @@ First implementation.
 </ul>
 </html>"),
 experiment(Tolerance=1E-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/Examples/MixingVolumeHeatConduction.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Examples/MixingVolumeHeatConduction.mos"
         "Simulate and plot"));
 end MixingVolumeHeatConduction;

@@ -1,8 +1,15 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Interfaces;
 connector Outlet "Connector for fluid outlet"
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium
-    "Medium model" annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air"),
+        choice(redeclare package Medium = IBPSA.Media.Water "Water"),
+        choice(redeclare package Medium =
+            IBPSA.Media.Antifreeze.PropyleneGlycolWater (
+          property_T=293.15,
+          X_a=0.40)
+          "Propylene glycol water, 40% mass fraction")));
 
   parameter Boolean use_p_in = true
     "= true to use pressure connector, false to remove it"
@@ -18,11 +25,10 @@ connector Outlet "Connector for fluid outlet"
     "Thermodynamic pressure in the connection point";
 
   input IBPSA.Fluid.FMI.Interfaces.FluidProperties backward(redeclare final
-      package Medium =       Medium) if allowFlowReversal
-    "Inflowing properties";
+      package Medium = Medium) if allowFlowReversal "Inflowing properties";
 
   output IBPSA.Fluid.FMI.Interfaces.FluidProperties forward(redeclare final
-      package Medium =       Medium) "Outflowing properties";
+      package Medium = Medium) "Outflowing properties";
 
   annotation (defaultComponentName="outlet",
   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
@@ -34,7 +40,7 @@ connector Outlet "Connector for fluid outlet"
           fillColor={255,255,255}),
           Text(
           extent={{-58,134},{48,94}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="%name")}),
     Documentation(info="<html>
 <p>
@@ -93,6 +99,11 @@ and hence not required to be provided.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 April 29, 2015, by Michael Wetter:<br/>
 Redesigned to conditionally remove the pressure connector

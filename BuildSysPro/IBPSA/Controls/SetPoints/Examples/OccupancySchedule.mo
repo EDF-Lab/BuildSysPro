@@ -3,12 +3,11 @@ model OccupancySchedule "Test model for occupancy schedule with look-ahead"
   extends Modelica.Icons.Example;
   IBPSA.Controls.SetPoints.OccupancySchedule occSchDay "Day schedule"
     annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
-  IBPSA.Controls.SetPoints.OccupancySchedule occSchWee(occupancy=3600*{7,
-        19,31,43,55,67,79,91,103,115,127,139}, period=7*24*3600)
-    "Week schedule" annotation (Placement(transformation(extent={{-60,-40},
-            {-40,-20}})));
+  IBPSA.Controls.SetPoints.OccupancySchedule occSchWee(occupancy=3600*{7,19,31,
+        43,55,67,79,91,103,115,127,139}, period=7*24*3600) "Week schedule"
+    annotation (Placement(transformation(extent={{-60,-40},{-40,-20}})));
   annotation (experiment(StartTime=-86400, Tolerance=1e-6, StopTime=1.2096e+06),
-    __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Controls/SetPoints/Examples/OccupancySchedule.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Controls/SetPoints/Examples/OccupancySchedule.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>
@@ -18,7 +17,7 @@ is decreased. The red line hits zero when the schedule indicates an occupied tim
 and the blue line hits zero when the schedule indicates a non-occupied time.
 </p>
 <p align=\"center\">
-<img src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Controls/SetPoints/Examples/OccupancySchedule.png\" border=\"1\" alt=\"Time until next occupancy.\"/>
+<img src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Controls/SetPoints/Examples/OccupancySchedule.png\" border=\"1\" alt=\"Time until next occupancy.\"/>
 </p>
 </html>", revisions="<html>
 <ul>

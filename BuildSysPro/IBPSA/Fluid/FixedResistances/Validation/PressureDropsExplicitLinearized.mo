@@ -12,7 +12,7 @@ model PressureDropsExplicitLinearized
     res42(linearized=true));
   annotation (
 experiment(StartTime=-1, Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FixedResistances/Validation/PressureDropsExplicitLinearized.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FixedResistances/Validation/PressureDropsExplicitLinearized.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

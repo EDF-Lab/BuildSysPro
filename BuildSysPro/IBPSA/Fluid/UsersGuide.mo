@@ -154,7 +154,7 @@ In actuators such as valves and air dampers, <i>k</i> is a function of the contr
 
 <h4>Computation of mass and energy balance</h4>
 <p>
-Most models have parameters
+Some models have parameters
 <code>massDynamics</code> and <code>energyDynamics</code>
 that allow using a dynamic or a
 steady-state equation for the mass and energy balance.
@@ -186,7 +186,7 @@ For the mass balance, the following configurations can be selected:
 </tr>
 <tr>
   <td>SteadyStateInitial</td>
-  <td><i>dp(0)/dt</i></td>
+  <td><i>dp(0)/dt=0</i></td>
   <td>Unspecified</td>
   <td><i>dm(t)/dt = &sum; m&#775;(t)</i></td>
 </tr>
@@ -210,8 +210,8 @@ where <i>m(t)</i> is the mass of the control volume,
 <li>
 If a system model sets the pressure, such as if the volume is connected
 to a model that sets the pressure, e.g.,
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.FixedBoundary\">
-IBPSA.Fluid.Sources.FixedBoundary</a>,
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.Boundary_pT\">
+IBPSA.Fluid.Sources.Boundary_pT</a>,
 then due to the connection between the models, the
 pressure of the volume is the same as the pressure of the
 model for the boundary condition.

@@ -18,16 +18,14 @@ model CoupledVolumesWater
     m_flow_nominal=1,
     V=1,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{30,2},{50,22}})));
-  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium,
-      nPorts=1) "Pressure boundary condition"
+    nPorts=1) annotation (Placement(transformation(extent={{30,2},{50,22}})));
+  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium, nPorts=
+       1) "Pressure boundary condition"
     annotation (Placement(transformation(extent={{-78,-20},{-58,0}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
-    dp_nominal=100)
-    "Resistance to decouple initialization of pressure state"
+    dp_nominal=100) "Resistance to decouple initialization of pressure state"
     annotation (Placement(transformation(extent={{-40,-20},{-20,0}})));
 equation
   connect(bou.ports[1], res.port_a)
@@ -58,6 +56,6 @@ First implementation for
       StopTime=3600,
       Tolerance=1e-06),
     __Dymola_Commands(
-      file="Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesWater.mos"
+      file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesWater.mos"
            "Simulate and plot"));
 end CoupledVolumesWater;

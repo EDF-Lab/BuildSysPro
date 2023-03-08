@@ -15,13 +15,13 @@ model CubicHermite "Test problem for cubic hermite splines"
 initial algorithm
   // Get the derivative values at the support points
   d := IBPSA.Utilities.Math.Functions.splineDerivatives(
-              x=xd,
-              y=yd,
-              ensureMonotonicity=false);
+    x=xd,
+    y=yd,
+    ensureMonotonicity=false);
   dMonotone := IBPSA.Utilities.Math.Functions.splineDerivatives(
-              x=xd,
-              y=yd,
-              ensureMonotonicity=true);
+    x=xd,
+    y=yd,
+    ensureMonotonicity=true);
 algorithm
   x := xd[1] + time*1.2*(xd[size(xd, 1)] - xd[1]) - 0.5;
   // i is a counter that is used to pick the derivative of d or dMonotonic
@@ -34,25 +34,24 @@ algorithm
   end for;
   // Extrapolate or interpolate the data
   y := IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-              x=x,
-              x1=xd[i],
-              x2=xd[i + 1],
-              y1=yd[i],
-              y2=yd[i + 1],
-              y1d=d[i],
-              y2d=d[i + 1]);
-  yMonotone :=
-    IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-              x=x,
-              x1=xd[i],
-              x2=xd[i + 1],
-              y1=yd[i],
-              y2=yd[i + 1],
-              y1d=dMonotone[i],
-              y2d=dMonotone[i + 1]);
+    x=x,
+    x1=xd[i],
+    x2=xd[i + 1],
+    y1=yd[i],
+    y2=yd[i + 1],
+    y1d=d[i],
+    y2d=d[i + 1]);
+  yMonotone := IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
+    x=x,
+    x1=xd[i],
+    x2=xd[i + 1],
+    y1=yd[i],
+    y2=yd[i + 1],
+    y1d=dMonotone[i],
+    y2d=dMonotone[i + 1]);
   annotation (
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/CubicHermite.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/CubicHermite.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=1.0),
     Documentation(info="<html>
@@ -63,9 +62,9 @@ The example use interpolation with two different settings: One settings
 produces a monotone cubic hermite, whereas the other setting
 does not enforce monotonicity.
 The resulting plot should look as shown below, where for better visibility, the support points have been marked with black dots.
-Notice that the red curve is monotone increasing.
+Notice that the red curve is monotonically increasing.
 </p>
-<p align=\"center\"><img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Utilities/Math/Functions/Examples/cubicHermite.png\"/></p>
+<p align=\"center\"><img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Utilities/Math/Functions/Examples/cubicHermite.png\"/></p>
 </html>", revisions="<html>
 <ul>
 <li>

@@ -15,7 +15,7 @@ model InletToAirMoistAir
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
 
   IBPSA.Fluid.FMI.Conversion.InletToAir conAir(redeclare package Medium =
-               Medium, allowFlowReversal=false) "Converter for air"
+        Medium, allowFlowReversal=false) "Converter for air"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
 
   Source_T sou(
@@ -28,13 +28,12 @@ model InletToAirMoistAir
     annotation (Placement(transformation(extent={{-80,30},{-60,50}})));
   Modelica.Blocks.Sources.Constant X_w_in(k=0.01) "Inlet mass fraction"
     annotation (Placement(transformation(extent={{-80,-50},{-60,-30}})));
-  Modelica.Blocks.Sources.Constant C[Medium.nC](each k=0.01) if
-     Medium.nC > 0 "Trace substances for forward flow"
+  Modelica.Blocks.Sources.Constant C[Medium.nC](each k=0.01)
+  if Medium.nC > 0 "Trace substances for forward flow"
     annotation (Placement(transformation(extent={{-80,-90},{-60,-70}})));
-  IBPSA.Fluid.FMI.Conversion.InletToAir conAirRevFlo(redeclare package Medium
-      =                Medium, allowFlowReversal=true)
-    "Converter for air with reverse flow" annotation (Placement(
-        transformation(extent={{20,-40},{40,-20}})));
+  IBPSA.Fluid.FMI.Conversion.InletToAir conAirRevFlo(redeclare package Medium =
+        Medium, allowFlowReversal=true) "Converter for air with reverse flow"
+    annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
   Source_T souRev(
     redeclare package Medium = Medium,
     use_p_in=use_p_in,
@@ -105,7 +104,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/Conversion/Validation/InletToAirMoistAir.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/Conversion/Validation/InletToAirMoistAir.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=1.0));
 end InletToAirMoistAir;

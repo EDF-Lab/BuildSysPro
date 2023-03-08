@@ -1,22 +1,22 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block Heater_T
   "Declaration of an FMU that exports an ideal heater or cooler with prescribed outlet temperature"
-   extends IBPSA.Fluid.FMI.ExportContainers.ReplaceableTwoPort(
-      redeclare replaceable package Medium = IBPSA.Media.Air,
-      redeclare final IBPSA.Fluid.HeatExchangers.Heater_T com(
+   extends IBPSA.Fluid.FMI.ExportContainers.ReplaceableTwoPort(redeclare
+      replaceable package Medium = IBPSA.Media.Air, redeclare final
+      IBPSA.Fluid.HeatExchangers.Heater_T com(
       final m_flow_nominal=m_flow_nominal,
       final dp_nominal=if use_p_in then dp_nominal else 0,
       final QMax_flow=QMax_flow,
       final energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState));
 
-  parameter Modelica.SIunits.HeatFlowRate QMax_flow=Modelica.Constants.inf
+  parameter Modelica.Units.SI.HeatFlowRate QMax_flow=Modelica.Constants.inf
     "Maximum heat flow rate for heating (positive)";
-  parameter Modelica.SIunits.HeatFlowRate QMin_flow=-Modelica.Constants.inf
+  parameter Modelica.Units.SI.HeatFlowRate QMin_flow=-Modelica.Constants.inf
     "Maximum heat flow rate for cooling (negative)";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=0.01
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.01
     "Nominal mass flow rate";
-  parameter Modelica.SIunits.PressureDifference dp_nominal(displayUnit="Pa")=0
-    "Pressure";
+  parameter Modelica.Units.SI.PressureDifference dp_nominal(displayUnit="Pa")=
+       0 "Pressure";
 
   Modelica.Blocks.Interfaces.RealInput TSet(unit="K", displayUnit="degC")
     "Set point temperature of the fluid that leaves port_b"
@@ -64,7 +64,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/Heater_T.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/Heater_T.mos"
         "Export FMU"),
     Icon(graphics={
         Rectangle(
@@ -106,7 +106,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-56,74},{54,14}},
-          lineColor={255,255,255},
+          textColor={255,255,255},
           textString="TSet"),
         Rectangle(
           extent={{-100,61},{-68,58}},
@@ -116,14 +116,14 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-104,94},{-60,66}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="T"),
         Text(
           extent={{64,92},{108,64}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="Q"),
                    Text(
           extent={{26,-28},{70,-74}},
-          lineColor={255,255,255},
+          textColor={255,255,255},
           textString="+")}));
 end Heater_T;

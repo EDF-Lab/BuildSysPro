@@ -12,7 +12,7 @@ equation
   basPro.state.p=p;
   basPro.state.T=T;
    annotation(experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Media/Specialized/Water/Examples/TemperatureDependentDensityProperties.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Media/Specialized/Water/Examples/TemperatureDependentDensityProperties.mos"
         "Simulate and plot"),
       Documentation(info="<html>
 <p>

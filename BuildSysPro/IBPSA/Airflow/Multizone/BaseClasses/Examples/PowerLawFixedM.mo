@@ -1,17 +1,17 @@
 within BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.Examples;
 model PowerLawFixedM "Test model for power law function"
   extends Modelica.Icons.Example;
-  parameter Real k = 2/10^m "Flow coefficient, k = V_flow/ dp^m";
+  parameter Real C = 2/10^m "Flow coefficient, C = V_flow/ dp^m";
 
   constant Real m(min=0.5, max=1) = 0.5
     "Flow exponent, m=0.5 for turbulent, m=1 for laminar";
-  parameter Modelica.SIunits.PressureDifference dp_turbulent(min=0)=5
+  parameter Modelica.Units.SI.PressureDifference dp_turbulent(min=0) = 5
     "Pressure difference where regularization starts";
 
-  Modelica.SIunits.PressureDifference dp "Pressure difference";
-  Modelica.SIunits.VolumeFlowRate V_flow
+  Modelica.Units.SI.PressureDifference dp "Pressure difference";
+  Modelica.Units.SI.VolumeFlowRate V_flow
     "Volume flow rate computed with model powerLaw";
-  Modelica.SIunits.VolumeFlowRate VFixed_flow
+  Modelica.Units.SI.VolumeFlowRate VFixed_flow
     "Volume flow rate computed with model powerLawFixed";
 
   constant Real gamma(min=1) = 1.5
@@ -28,23 +28,23 @@ model PowerLawFixedM "Test model for power law function"
 equation
   dp = 10*(-1+2*time);
   V_flow = IBPSA.Airflow.Multizone.BaseClasses.powerLaw(
-              dp=dp,
-              k=k,
-              m=m,
-              dp_turbulent=dp_turbulent);
+    dp=dp,
+    C=C,
+    m=m,
+    dp_turbulent=dp_turbulent);
   VFixed_flow = IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM(
-              k=k,
-              dp=dp,
-              m=m,
-              a=a,
-              b=b,
-              c=c,
-              d=d,
-              dp_turbulent=dp_turbulent);
+    C=C,
+    dp=dp,
+    m=m,
+    a=a,
+    b=b,
+    c=c,
+    d=d,
+    dp_turbulent=dp_turbulent);
   assert(abs(V_flow-VFixed_flow) < 1E-10, "Error: The two implementations of the power law model need to give identical results");
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-  __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Airflow/Multizone/BaseClasses/Examples/PowerLawFixedM.mos"
+  __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Airflow/Multizone/BaseClasses/Examples/PowerLawFixedM.mos"
         "Simulate and plot"), Documentation(info="<html>
 <p>
 This examples demonstrates the

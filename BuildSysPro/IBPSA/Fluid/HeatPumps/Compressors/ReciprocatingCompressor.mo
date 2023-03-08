@@ -3,37 +3,33 @@ model ReciprocatingCompressor
   "Model for a reciprocating compressor, based on Jin (2002)"
   extends IBPSA.Fluid.HeatPumps.Compressors.BaseClasses.PartialCompressor;
 
-  parameter Modelica.SIunits.VolumeFlowRate pisDis
-    "Piston displacement";
+  parameter Modelica.Units.SI.VolumeFlowRate pisDis "Piston displacement";
 
   parameter Real cleFac(
     min = 0,
     final unit = "1")
     "Clearance factor";
 
-  parameter Modelica.SIunits.Efficiency etaEle
+  parameter Modelica.Units.SI.Efficiency etaEle
     "Electro-mechanical efficiency of the compressor";
 
-  parameter Modelica.SIunits.Power PLos(min = 0)
+  parameter Modelica.Units.SI.Power PLos(min=0)
     "Constant part of the compressor power losses";
 
-  parameter Modelica.SIunits.AbsolutePressure pDro
+  parameter Modelica.Units.SI.AbsolutePressure pDro
     "Pressure drop at suction and discharge of the compressor";
 
-  parameter Modelica.SIunits.TemperatureDifference dTSup(min = 0)
+  parameter Modelica.Units.SI.TemperatureDifference dTSup(min=0)
     "Superheating at compressor suction";
 
-  Modelica.SIunits.MassFlowRate m_flow
-    "Refrigerant mass flow rate";
+  Modelica.Units.SI.MassFlowRate m_flow "Refrigerant mass flow rate";
 
-  Modelica.SIunits.Power PThe
-    "Theoretical power consumed by the compressor";
+  Modelica.Units.SI.Power PThe "Theoretical power consumed by the compressor";
 
-  Modelica.SIunits.Efficiency COP
-    "Heating COP of the compressor";
+  Modelica.Units.SI.Efficiency COP(start=5) "Heating COP of the compressor";
 
 protected
-  Modelica.SIunits.IsentropicExponent k(start = 1.2)
+  Modelica.Units.SI.IsentropicExponent k(start=1.2)
     "Isentropic exponent of the refrigerant";
 
   Real pisDis_norm
@@ -42,17 +38,17 @@ protected
 equation
   // Limit compressor speed to the full load speed
   pisDis_norm = IBPSA.Utilities.Math.Functions.smoothLimit(
-            y,
-            0.0,
-            1.0,
-            0.001);
+    y,
+    0.0,
+    1.0,
+    0.001);
 
   if isOn then
     // Suction pressure
     pSuc = IBPSA.Utilities.Math.Functions.smoothMin(
-              pEva - pDro,
-              pCon - pDro,
-              0.01*ref.pCri);
+      pEva - pDro,
+      pCon - pDro,
+      0.01*ref.pCri);
     // Discharge pressure
     pDis = pCon + pDro;
     // Refrigerant mass flow rate
@@ -83,7 +79,7 @@ equation
     COP = 1.0;
   end if;
 
-  annotation (    defaultComponentName="scrCom",
+  annotation (defaultComponentName="scrCom",
     Documentation(info="<html>
 <p>
 Model for a reciprocating processor, as detailed in Jin (2002). The rate of heat transferred to the evaporator is given by:
@@ -115,10 +111,14 @@ H. Jin.
 <i>
 Parameter estimation based models of water source heat pumps.
 </i>
-PhD Thesis. Oklahoma State University. Stillwater, Oklahoma, USA. 2012.
+PhD Thesis. Oklahoma State University. Stillwater, Oklahoma, USA. 2002.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 25, 2019, by Michael Wetter:<br/>
+Added start value to avoid warning in JModelica.
+</li>
 <li>
 May 30, 2017, by Filip Jorissen:<br/>
 Removed <code>pressure_error</code> as

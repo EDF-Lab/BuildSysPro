@@ -10,14 +10,14 @@ initial equation
    y=x;
 equation
   x = IBPSA.Utilities.Math.Functions.regNonZeroPower(
-              time^3,
-              n,
-              delta);
+    time^3,
+    n,
+    delta);
   der(y)=der(x);
   assert(abs(x-y) < 1E-2, "Model has an error");
 
  annotation(experiment(StartTime=-1, StopTime=1.0, Tolerance=1E-08),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/RegNonZeroPowerDerivativeCheck.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/RegNonZeroPowerDerivativeCheck.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

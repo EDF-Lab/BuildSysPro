@@ -5,11 +5,11 @@ model SprayAirWasher_X
 
   package Medium = IBPSA.Media.Air;
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.1
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.1
     "Nominal mass flow rate";
 
-  parameter Modelica.SIunits.MassFlowRate mWat_flow_nominal = m_flow_nominal * 0.004
-    "Maximum humidification water mass flow rate";
+  parameter Modelica.Units.SI.MassFlowRate mWat_flow_nominal=m_flow_nominal*
+      0.004 "Maximum humidification water mass flow rate";
 
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
@@ -22,9 +22,8 @@ model SprayAirWasher_X
         origin={110,0})));
 
   replaceable IBPSA.Fluid.Humidifiers.SprayAirWasher_X hum(mWatMax_flow=
-       mWat_flow_nominal, massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    constrainedby
-    IBPSA.Fluid.HeatExchangers.BaseClasses.PartialPrescribedOutlet(
+        mWat_flow_nominal, energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
+    constrainedby IBPSA.Fluid.Humidifiers.SprayAirWasher_X(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=6000,
@@ -70,7 +69,7 @@ equation
           100,0},{100,1.11022e-15}},              color={0,127,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
             -100},{200,200}})),
-    __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Humidifiers/Validation/SprayAirWasher_X.mos"
+    __Dymola_Commands(file= "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Humidifiers/Validation/SprayAirWasher_X.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>
@@ -80,6 +79,13 @@ that is added to the air stream.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 29, 2021, by Michael Wetter:<br/>
+Reformulated constraint of replaceable model to avoid access of
+component that is not in constraining type.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1473\">IBPSA, #1473</a>.
+</li>
 <li>
 May 3, 2017, by Michael Wetter:<br/>
 First implementation.

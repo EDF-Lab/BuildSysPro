@@ -6,20 +6,20 @@ model ThermalZoneHVACNoExhaust
   replaceable package MediumA = IBPSA.Media.Air "Medium for air";
 
   IBPSA.Fluid.FMI.Adaptors.HVAC hvacAda(redeclare final package Medium =
-               MediumA, nPorts=2)
+        MediumA, nPorts=2)
     "Adaptor for an HVAC system that is exposed through an FMI interface"
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
 
-  parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = 30*6*6
+  parameter Modelica.Units.SI.HeatFlowRate Q_flow_nominal=30*6*6
     "Nominal heat loss of the room";
 
-  parameter Modelica.SIunits.Volume VRoo = 6*6*2.7 "Room volume";
+  parameter Modelica.Units.SI.Volume VRoo=6*6*2.7 "Room volume";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=VRoo*2*1.2/3600
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=VRoo*2*1.2/3600
     "Nominal mass flow rate";
 
-  IBPSA.Fluid.FMI.Adaptors.ThermalZone con(redeclare package Medium =
-        MediumA, nPorts=2) "Adaptor for thermal zone"
+  IBPSA.Fluid.FMI.Adaptors.ThermalZone con(redeclare package Medium = MediumA,
+      nPorts=2) "Adaptor for thermal zone"
     annotation (Placement(transformation(extent={{80,0},{100,20}})));
   Modelica.Blocks.Sources.Pulse TSet(
     amplitude=4,
@@ -28,7 +28,6 @@ model ThermalZoneHVACNoExhaust
     startTime=7*3600) "Setpoint for room temperature"
     annotation (Placement(transformation(extent={{-120,40},{-100,60}})));
   Controls.Continuous.LimPID conPI(
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
     k=1,
     yMax=1,
     yMin=0,
@@ -150,7 +149,6 @@ equation
           pattern=LinePattern.None,
           lineColor={0,0,127},
           horizontalAlignment=TextAlignment.Left,
-          fontSize=12,
           textString="Simplified model of
 an HVAC system
 in Modelica that could
@@ -160,7 +158,6 @@ be exposed as an FMU"),
           pattern=LinePattern.None,
           lineColor={0,0,127},
           horizontalAlignment=TextAlignment.Left,
-          fontSize=12,
           textString="Simplified model of
 a thermal zone that
 may be in an FMU
@@ -191,6 +188,12 @@ connected to the adaptor <code>hvacAda</code>, rather than the volume <code>vol<
 </html>", revisions="<html>
 <ul>
 <li>
+March 11, 2020, by Michael Wetter:<br/>
+Removed <code>fontSize</code> in annotation.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/pull/1318\">#1318</a>.
+</li>
+<li>
 November 29, 2016, by Michael Wetter:<br/>
 Added separate signal for outdoor temperature used by HVAC system. This is
 to improve clarity regarding what signals are exchanged, see also
@@ -202,7 +205,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/Adaptors/Examples/ThermalZoneHVACNoExhaust.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/Adaptors/Examples/ThermalZoneHVACNoExhaust.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=172800));
 end ThermalZoneHVACNoExhaust;

@@ -4,9 +4,9 @@ model StratifiedUnloadAtMinimumTemperature
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.Volume VTan=3 "Tank volume";
+  parameter Modelica.Units.SI.Volume VTan=3 "Tank volume";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 3*1000/3600
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=3*1000/3600
     "Nominal mass flow rate";
 
   constant Integer nSeg=5 "Number of volume segments";
@@ -19,38 +19,38 @@ model StratifiedUnloadAtMinimumTemperature
     dIns=0.2,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     nSeg=nSeg,
-    T_start=353.15) "Hot water storage tank" annotation (Placement(
-        transformation(extent={{-120,-130},{-100,-110}})));
-  IBPSA.Fluid.Sources.Boundary_pT loa(redeclare package Medium = Medium,
-      nPorts=1)
+    T_start=353.15) "Hot water storage tank"
+    annotation (Placement(transformation(extent={{-120,-130},{-100,-110}})));
+  IBPSA.Fluid.Sources.Boundary_pT loa(redeclare package Medium = Medium, nPorts=
+       1)
     "Load (imposed by a constant pressure boundary condition and the flow of masSou)"
     annotation (Placement(transformation(extent={{242,-70},{222,-50}})));
   IBPSA.Fluid.Sources.MassFlowSource_T masSou(
     nPorts=1,
     redeclare package Medium = Medium,
-    m_flow=m_flow_nominal) "Mass flow rate into the tank" annotation (
-      Placement(transformation(extent={{242,-130},{222,-110}})));
+    m_flow=m_flow_nominal) "Mass flow rate into the tank"
+    annotation (Placement(transformation(extent={{242,-130},{222,-110}})));
 
   IBPSA.Fluid.Actuators.Valves.TwoWayLinear valTop(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     dpValve_nominal=3000,
-    use_inputFilter=false) "Control valve at top" annotation (Placement(
-        transformation(extent={{112,-30},{132,-10}})));
+    use_inputFilter=false) "Control valve at top"
+    annotation (Placement(transformation(extent={{112,-30},{132,-10}})));
 
-  IBPSA.Fluid.Actuators.Valves.TwoWayLinear valMed(
+  IBPSA.Fluid.Actuators.Valves.TwoWayLinear valMid(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     dpValve_nominal=3000,
-    use_inputFilter=false) "Control valve at top" annotation (Placement(
-        transformation(extent={{132,-70},{152,-50}})));
+    use_inputFilter=false) "Control valve at middle"
+    annotation (Placement(transformation(extent={{132,-70},{152,-50}})));
 
   IBPSA.Fluid.Actuators.Valves.TwoWayLinear valBot(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     dpValve_nominal=3000,
-    use_inputFilter=false) "Control valve at top" annotation (Placement(
-        transformation(extent={{150,-110},{170,-90}})));
+    use_inputFilter=false) "Control valve at bottom"
+    annotation (Placement(transformation(extent={{150,-110},{170,-90}})));
 
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor TMid
     "Temperature tank middle"
@@ -65,8 +65,8 @@ model StratifiedUnloadAtMinimumTemperature
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
-    tau=0) "Outflowing temperature" annotation (Placement(
-        transformation(extent={{190,-70},{210,-50}})));
+    tau=0) "Outflowing temperature"
+    annotation (Placement(transformation(extent={{190,-70},{210,-50}})));
   Modelica.Blocks.Logical.Hysteresis onOffMid(uLow=273.15 + 40 - 0.05, uHigh=
         273.15 + 40 + 0.05)
     "Controller for valve at middle of tank"
@@ -114,7 +114,7 @@ equation
   connect(valTop.port_b, senTem.port_a) annotation (Line(points={{132,-20},{182,
           -20},{182,-60},{190,-60}},
                                    color={0,127,255}));
-  connect(valMed.port_b, senTem.port_a)
+  connect(valMid.port_b, senTem.port_a)
     annotation (Line(points={{152,-60},{190,-60}},
                                                  color={0,127,255}));
   connect(valBot.port_b, senTem.port_a) annotation (Line(points={{170,-100},{182,
@@ -125,7 +125,7 @@ equation
                                                  color={0,127,255}));
   connect(valTop.port_a, tan.fluPorVol[1]) annotation (Line(points={{112,-20},{-112.6,
           -20},{-112.6,-120}}, color={0,127,255}));
-  connect(valMed.port_a, tan.fluPorVol[3]) annotation (Line(points={{132,-60},{-112.6,
+  connect(valMid.port_a, tan.fluPorVol[3]) annotation (Line(points={{132,-60},{-112.6,
           -60},{-112.6,-120}},color={0,127,255}));
   connect(valBot.port_a, tan.fluPorVol[5]) annotation (Line(points={{150,-100},{
           -112.6,-100},{-112.6,-120}},
@@ -144,7 +144,7 @@ equation
           {48,112}},color={255,0,255}));
   connect(yTop.y, valTop.y) annotation (Line(points={{101,120},{122,120},{122,-8}},
                                color={0,0,127}));
-  connect(yMid.y, valMed.y) annotation (Line(points={{101,80},{142,80},{142,-48}},
+  connect(yMid.y, valMid.y) annotation (Line(points={{101,80},{142,80},{142,-48}},
                               color={0,0,127}));
   connect(not1.u, onOffBot.y) annotation (Line(points={{-22,60},{-26,60},{-26,40},
           {-29,40}},       color={255,0,255}));
@@ -171,7 +171,7 @@ equation
   annotation (Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-300,-140},{260,140}})),
        __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Storage/Examples/StratifiedUnloadAtMinimumTemperature.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Storage/Examples/StratifiedUnloadAtMinimumTemperature.mos"
         "Simulate and plot"),
     experiment(
       StopTime=21600,

@@ -2,7 +2,8 @@ within BuildSysPro.IBPSA.Fluid.Humidifiers;
 model SprayAirWasher_X
   "Spray air washer with leaving water mass fraction as input"
   extends IBPSA.Fluid.HeatExchangers.BaseClasses.PartialPrescribedOutlet(
-      outCon(
+      redeclare replaceable package Medium =
+        Modelica.Media.Interfaces.PartialCondensingGases, outCon(
       final T_start=293.15,
       final X_start=X_start,
       final use_TSet=true,
@@ -10,22 +11,15 @@ model SprayAirWasher_X
       final QMax_flow=Modelica.Constants.inf,
       final QMin_flow=-Modelica.Constants.inf,
       final mWatMax_flow=mWatMax_flow,
-      final mWatMin_flow=0,
-      final energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-      final massDynamics=massDynamics));
+      final mWatMin_flow=0));
 
-  parameter Modelica.SIunits.MassFlowRate mWatMax_flow(min=0) = Modelica.Constants.inf
+  parameter Modelica.Units.SI.MassFlowRate mWatMax_flow(min=0) = Modelica.Constants.inf
     "Maximum water mass flow rate addition (positive)"
     annotation (Evaluate=true);
 
-  parameter Modelica.SIunits.MassFraction X_start[Medium.nX] = Medium.X_default
+  parameter Modelica.Units.SI.MassFraction X_start[Medium.nX]=Medium.X_default
     "Start value of mass fractions m_i/m"
     annotation (Dialog(tab="Initialization"));
-
-  // Dynamics
-  parameter Modelica.Fluid.Types.Dynamics massDynamics = Modelica.Fluid.Types.Dynamics.SteadyState
-    "Type of mass balance: dynamic (3 initialization options) or steady state"
-    annotation(Evaluate=true, Dialog(tab = "Dynamics", group="Equations"));
 
   // Set maximum to a high value to avoid users mistakenly entering relative humidity.
   Modelica.Blocks.Interfaces.RealInput X_w(
@@ -40,12 +34,11 @@ model SprayAirWasher_X
     annotation (Placement(transformation(extent={{100,50},{120,70}})));
 
 protected
-  constant Modelica.SIunits.SpecificEnthalpy hSte = Medium.enthalpyOfLiquid(T=283.15)
-    "Enthalpy of water at 10 degree Celsius";
+  constant Modelica.Units.SI.SpecificEnthalpy hSte=Medium.enthalpyOfLiquid(T=
+      283.15) "Enthalpy of water at 10 degree Celsius";
 
-  Modelica.SIunits.SpecificEnthalpy hLea=
-    inStream(port_a.h_outflow) +
-    {hSte} * (port_b.Xi_outflow - inStream(port_a.Xi_outflow))
+  Modelica.Units.SI.SpecificEnthalpy hLea=inStream(port_a.h_outflow) + {hSte}*(
+      port_b.Xi_outflow - inStream(port_a.Xi_outflow))
     "Approximation of leaving enthalpy, based on dh/dx=h_fg";
 
   Modelica.Blocks.Sources.RealExpression TLea(y=
@@ -73,11 +66,11 @@ equation
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-100,98},{-64,80}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="X_w"),
         Text(
           extent={{32,116},{98,62}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="mWat_flow"),
         Rectangle(
           extent={{-100,62},{-70,58}},
@@ -190,6 +183,17 @@ is adiabatic.
 </html>",
 revisions="<html>
 <ul>
+<li>
+March 8, 2022, by Michael Wetter:<br/>
+Renamed parameter <code>massDynamics</code> to <code>energyDynamics</code> for consistency with other models.
+</li>
+<li>
+December 14, 2018, by Michael Wetter:<br/>
+Restricted base class for medium to one that implements
+the function <code>enthalpyOfLiquid</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1057\">#1057</a>.
+</li>
 <li>
 May 3, 2017, by Michael Wetter:<br/>
 First implementation.

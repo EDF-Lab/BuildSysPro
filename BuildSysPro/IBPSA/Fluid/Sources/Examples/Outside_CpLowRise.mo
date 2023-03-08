@@ -10,7 +10,8 @@ model Outside_CpLowRise
     Cp0=0.6) "Model with outside conditions"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
     annotation (Placement(transformation(extent={{-80,0},{-60,20}})));
   IBPSA.Fluid.Sources.Outside_CpLowRise north(
     redeclare package Medium = Medium,
@@ -51,12 +52,12 @@ equation
       color={255,204,51},
       thickness=0.5,
       smooth=Smooth.None));
-  annotation (__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sources/Examples/Outside_CpLowRise.mos"
+  annotation (__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sources/Examples/Outside_CpLowRise.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>
 This model demonstrates the use of a source for ambient conditions that computes
-the wind pressure on a facade of a low-rise building.
+the wind pressure on a facade of a low-rise building using the equation from Swami and Chandra (1987).
 Weather data are used for San Francisco, for a period of a week
 where the wind blows primarily from North-West.
 The plot shows that the wind pressure on the north- and west-facing

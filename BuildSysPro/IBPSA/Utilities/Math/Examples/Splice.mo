@@ -3,7 +3,7 @@ model Splice "Test model for splice"
   extends Modelica.Icons.Example;
   IBPSA.Utilities.Math.Splice splice(deltax=0.2)
     annotation (Placement(transformation(extent={{0,0},{20,20}})));
-  Modelica.Blocks.Sources.Sine sine(freqHz=0.5)
+  Modelica.Blocks.Sources.Sine sine(f=0.5)
     annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
   Modelica.Blocks.Sources.Constant const1(k=-0.5)
     annotation (Placement(transformation(extent={{-60,-40},{-40,-20}})));
@@ -21,7 +21,7 @@ equation
       points={{-39,50},{-20.5,50},{-20.5,16},{-2,16}},
       color={0,0,127}));
   annotation (experiment(Tolerance=1e-6, StopTime=2),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Examples/Splice.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Examples/Splice.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

@@ -5,7 +5,7 @@ model Carnot_TEva_etaPL
     chi(a={0.7,0.3},
     QEva_flow_min=-100000));
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Chillers/Validation/Carnot_TEva_etaPL.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Chillers/Validation/Carnot_TEva_etaPL.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

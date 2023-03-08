@@ -2,8 +2,8 @@ within BuildSysPro.IBPSA.Controls.SetPoints.Validation;
 model OccupancyScheduleNegativeStartTime
   "Test model for occupancy schedule with look-ahead"
   extends Modelica.Icons.Example;
-  IBPSA.Controls.SetPoints.OccupancySchedule occSchDay(occupancy=3600*{7,
-        24}) "Day schedule"
+  IBPSA.Controls.SetPoints.OccupancySchedule occSchDay(occupancy=3600*{7,24})
+    "Day schedule"
     annotation (Placement(transformation(extent={{-60,60},{-40,80}})));
   OccupancySchedule occSchDay1(occupancy=3600*{0,2})   "Day schedule"
     annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
@@ -15,7 +15,7 @@ model OccupancyScheduleNegativeStartTime
       StartTime=-112320,
       StopTime=207360,
       Tolerance=1e-06),
-    __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Controls/SetPoints/Validation/OccupancyScheduleNegativeStartTime.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Controls/SetPoints/Validation/OccupancyScheduleNegativeStartTime.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

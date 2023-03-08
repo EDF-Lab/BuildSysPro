@@ -40,7 +40,7 @@ equation
   connect(res.port_b, sin.ports[1])
     annotation (Line(points={{10,0},{10,0},{30,0}},    color={0,127,255}));
   annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FixedResistances/Examples/PressureDrop.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FixedResistances/Examples/PressureDrop.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

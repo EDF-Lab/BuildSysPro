@@ -5,10 +5,9 @@ model PrescribedOutlet_dynamic
     heaHigPow(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),
     cooLimPow(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),
     heaCooUnl(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial));
-
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
             -100},{200,200}}),                                                                    graphics),
-    __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/Validation/PrescribedOutlet_dynamic.mos"
+    __Dymola_Commands(file= "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/Validation/PrescribedOutlet_dynamic.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

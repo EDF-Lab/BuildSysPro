@@ -10,9 +10,8 @@ function infiniteLineSource
   output Real h_ils "Thermal response factor of borehole 1 on borehole 2";
 
 algorithm
-  h_ils := if t > 0.0 then
-    IBPSA.Utilities.Math.Functions.exponentialIntegralE1(dis^2/(4*
-    aSoi*t)) else 0.0;
+  h_ils := if t > 0.0 then IBPSA.Utilities.Math.Functions.exponentialIntegralE1(
+     dis^2/(4*aSoi*t)) else 0.0;
 annotation (
 Inline=true,
 Documentation(info="<html>
@@ -23,7 +22,7 @@ by a line heat source of infinite length and the temperature raise in the
 medium. The infinite line source solution is defined by
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/InfiniteLineSource_01.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/InfiniteLineSource_01.png\" />
 </p>
 <p>
 where <i>&Delta;T(t,r)</i> is the temperature raise after a time <i>t</i> of
@@ -36,7 +35,7 @@ source solution.
 The infinite line source solution is given by the exponential integral
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/InfiniteLineSource_02.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/InfiniteLineSource_02.png\" />
 </p>
 <p>
 where <i>&alpha;<sub>s</sub></i> is the ground thermal diffusivity. The

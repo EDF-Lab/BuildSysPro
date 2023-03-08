@@ -1,9 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.FixedResistances;
 model PressureDrop
   "Fixed flow resistance with dp and m_flow as parameter"
-  extends IBPSA.Fluid.BaseClasses.PartialResistance(final
-      m_flow_turbulent=if computeFlowResistance then deltaM*
-        m_flow_nominal_pos else 0);
+  extends IBPSA.Fluid.BaseClasses.PartialResistance(final m_flow_turbulent=if
+        computeFlowResistance then deltaM*m_flow_nominal_pos else 0);
 
   parameter Real deltaM(min=1E-6) = 0.3
     "Fraction of nominal mass flow rate where transition to turbulent occurs"
@@ -43,31 +42,29 @@ equation
         if from_dp then
           m_flow = homotopy(actual=
             IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-                  dp=dp,
-                  k=k,
-                  m_flow_turbulent=m_flow_turbulent), simplified=
-            m_flow_nominal_pos*dp/dp_nominal_pos);
+            dp=dp,
+            k=k,
+            m_flow_turbulent=m_flow_turbulent), simplified=m_flow_nominal_pos*
+            dp/dp_nominal_pos);
         else
           dp = homotopy(actual=
             IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-                  m_flow=m_flow,
-                  k=k,
-                  m_flow_turbulent=m_flow_turbulent), simplified=
-            dp_nominal_pos*m_flow/m_flow_nominal_pos);
+            m_flow=m_flow,
+            k=k,
+            m_flow_turbulent=m_flow_turbulent), simplified=dp_nominal_pos*
+            m_flow/m_flow_nominal_pos);
          end if;  // from_dp
       else // do not use homotopy
         if from_dp then
-          m_flow =
-            IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-                  dp=dp,
-                  k=k,
-                  m_flow_turbulent=m_flow_turbulent);
+          m_flow = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
+            dp=dp,
+            k=k,
+            m_flow_turbulent=m_flow_turbulent);
         else
-          dp =
-            IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-                  m_flow=m_flow,
-                  k=k,
-                  m_flow_turbulent=m_flow_turbulent);
+          dp = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
+            m_flow=m_flow,
+            k=k,
+            m_flow_turbulent=m_flow_turbulent);
         end if;  // from_dp
       end if; // homotopyInitialization
     end if; // linearized
@@ -83,12 +80,12 @@ The mass flow rate is
 </p>
 <p align=\"center\" style=\"font-style:italic;\">
 m&#775; = k
-&radic;<span style=\"text-decoration:overline;\">&Delta;P</span>,
+&radic;<span style=\"text-decoration:overline;\">&Delta;p</span>,
 </p>
 <p>
 where
 <i>k</i> is a constant and
-<i>&Delta;P</i> is the pressure drop.
+<i>&Delta;p</i> is the pressure drop.
 The constant <i>k</i> is equal to
 <code>k=m_flow_nominal/sqrt(dp_nominal)</code>,
 where <code>m_flow_nominal</code> and <code>dp_nominal</code>
@@ -113,7 +110,7 @@ The figure below shows the pressure drop for the parameters
 <code>deltaM=0.3</code>.
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/FixedResistances/PressureDrop.png\"/>
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/FixedResistances/PressureDrop.png\"/>
 </p>
 <h4>Important parameters</h4>
 <p>
@@ -166,7 +163,7 @@ IBPSA.Fluid.BaseClasses.FlowModels</a>,
 This package contains regularized implementations of the equation
 </p>
 <p align=\"center\" style=\"font-style:italic;\">
-  m = sign(&Delta;p) k  &radic;<span style=\"text-decoration:overline;\">&nbsp;&Delta;p &nbsp;</span>
+  m&#775; = sign(&Delta;p) k  &radic;<span style=\"text-decoration:overline;\">&nbsp;&Delta;p &nbsp;</span>
 </p>
 <p>
 and its inverse function.

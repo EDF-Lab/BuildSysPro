@@ -19,7 +19,7 @@ model InternalHEXTwoUTube
     final tau4=VTubSeg*rho4_nominal/m4_flow_nominal,
     vol1(
       final energyDynamics=energyDynamics,
-      final massDynamics=massDynamics,
+      final massDynamics=energyDynamics,
       final prescribedHeatFlowRate=false,
       final allowFlowReversal=allowFlowReversal1,
       final m_flow_small=m1_flow_small,
@@ -27,14 +27,14 @@ model InternalHEXTwoUTube
       final mSenFac=mSenFac),
     vol2(
       final energyDynamics=energyDynamics,
-      final massDynamics=massDynamics,
+      final massDynamics=energyDynamics,
       final prescribedHeatFlowRate=false,
       final m_flow_small=m2_flow_small,
       final V=VTubSeg,
       final mSenFac=mSenFac),
     vol3(
       final energyDynamics=energyDynamics,
-      final massDynamics=massDynamics,
+      final massDynamics=energyDynamics,
       final prescribedHeatFlowRate=false,
       final allowFlowReversal=allowFlowReversal3,
       final m_flow_small=m3_flow_small,
@@ -42,7 +42,7 @@ model InternalHEXTwoUTube
       final mSenFac=mSenFac),
     vol4(
       final energyDynamics=energyDynamics,
-      final massDynamics=massDynamics,
+      final massDynamics=energyDynamics,
       final prescribedHeatFlowRate=false,
       final m_flow_small=m4_flow_small,
       final V=VTubSeg,
@@ -141,26 +141,25 @@ protected
 initial equation
   (x,Rgb_val,Rgg1_val,Rgg2_val,RCondGro_val) =
     IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseClasses.Functions.internalResistancesTwoUTube(
-                  hSeg=hSeg,
-                  rBor=borFieDat.conDat.rBor,
-                  rTub=borFieDat.conDat.rTub,
-                  eTub=borFieDat.conDat.eTub,
-                  sha=borFieDat.conDat.xC,
-                  kFil=borFieDat.filDat.kFil,
-                  kSoi=borFieDat.soiDat.kSoi,
-                  kTub=borFieDat.conDat.kTub,
-                  use_Rb=borFieDat.conDat.use_Rb,
-                  Rb=borFieDat.conDat.Rb,
-                  kMed=kMed,
-                  muMed=muMed,
-                  cpMed=cpMed,
-                  m_flow_nominal=m1_flow_nominal,
-                  printDebug=false);
+    hSeg=hSeg,
+    rBor=borFieDat.conDat.rBor,
+    rTub=borFieDat.conDat.rTub,
+    eTub=borFieDat.conDat.eTub,
+    sha=borFieDat.conDat.xC,
+    kFil=borFieDat.filDat.kFil,
+    kSoi=borFieDat.soiDat.kSoi,
+    kTub=borFieDat.conDat.kTub,
+    use_Rb=borFieDat.conDat.use_Rb,
+    Rb=borFieDat.conDat.Rb,
+    kMed=kMed,
+    muMed=muMed,
+    cpMed=cpMed,
+    m_flow_nominal=m1_flow_nominal);
 
 equation
   assert(borFieDat.conDat.borCon == IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeParallel
      or borFieDat.conDat.borCon == IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeSeries,
-    "This model should be used for double U-type borefield, not single U-type. 
+    "This model should be used for double U-type borefield, not single U-type.
   Check that the conDat record has been correctly parametrized");
   connect(RVol1.y, RConv1.Rc) annotation (Line(
       points={{-30.7,64},{-34,64},{-34,46},{-8,46}},
@@ -224,23 +223,23 @@ equation
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
 <p>
-Model for the heat transfer between the fluid and within the borehole filling. 
-This model computes the dynamic response of the fluid in the tubes, 
-the heat transfer between the fluid and the borehole filling, 
+Model for the heat transfer between the fluid and within the borehole filling.
+This model computes the dynamic response of the fluid in the tubes,
+the heat transfer between the fluid and the borehole filling,
 and the heat storage within the fluid and the borehole filling.
 </p>
 <p>
-This model computes the different thermal resistances present 
-in a single-U-tube borehole using the method of Bauer et al. (2011) 
-and computing explicitely the fluid-to-ground thermal resistance 
-<i>R<sub>b</sub></i> and the 
+This model computes the different thermal resistances present
+in a single-U-tube borehole using the method of Bauer et al. (2011)
+and computing explicitely the fluid-to-ground thermal resistance
+<i>R<sub>b</sub></i> and the
 grout-to-grout resistance
 <i>R<sub>a</sub></i> as defined by Claesson and Hellstrom (2011)
-using the multipole method. 
+using the multipole method.
 </p>
 <h4>References</h4>
-<p>J. Claesson and G. Hellstrom. 
-<i>Multipole method to calculate borehole thermal resistances in a borehole heat exchanger. 
+<p>J. Claesson and G. Hellstrom.
+<i>Multipole method to calculate borehole thermal resistances in a borehole heat exchanger.
 </i>
 HVAC&amp;R Research,
 17(6): 895-911, 2011.</p>
@@ -254,9 +253,24 @@ International Journal Of Energy Research, 35:312-320, 2011.
 </html>", revisions="<html>
 <ul>
 <li>
+March 7, 2022, by Michael Wetter:<br/>
+Removed <code>massDynamics</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1542\">#1542</a>.
+</li>
+<li>
+February 28, 2022, by Massimo Cimmino:<br/>
+Removed <code>printDebug</code> parameter from call to
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseClasses.Functions.internalResistancesTwoUTube\">
+IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseClasses.Functions.internalResistancesTwoUTube</a>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1582\">IBPSA, #1582</a>.
+</li>
+<li>
 July 10, 2018, by Alex Laferri&egrave;re:<br/>
 Updated documentation following major changes to the IBPSA.Fluid.HeatExchangers.Ground package.
 Additionally, implemented a partial InternalHex model.
+</li>
 <li>
 June 18, 2014, by Michael Wetter:<br/>
 Added initialization for temperatures and derivatives of <code>capFil1</code>
@@ -268,7 +282,7 @@ Removed unused parameters <code>B0</code> and <code>B1</code>.
 </li>
 <li>
 January 24, 2014, by Michael Wetter:<br/>
-Revised implementation, added comments, replaced 
+Revised implementation, added comments, replaced
 <code>HeatTransfer.Windows.BaseClasses.ThermalConductor</code>
 with resistance models from the Modelica Standard Library.
 </li>

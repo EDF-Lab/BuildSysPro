@@ -14,8 +14,8 @@ model TwoWayValvePressureIndependent
     redeclare package Medium = Medium,
     use_p_in=true,
     T=293.15,
-    nPorts=3) "Boundary condition for flow source" annotation (
-      Placement(transformation(extent={{-70,-10},{-50,10}})));
+    nPorts=3) "Boundary condition for flow source"
+    annotation (Placement(transformation(extent={{-70,-10},{-50,10}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     p(displayUnit="Pa") = 3E5,
@@ -95,7 +95,7 @@ equation
       color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Actuators/Valves/Examples/TwoWayValvePressureIndependent.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Actuators/Valves/Examples/TwoWayValvePressureIndependent.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>Test model for pressure independent valves. Note that the leakage at full mass flow rate (<code>l2</code>) has been set to a large value for better visualization of the valve characteristics. To use common values, use the default values. </p>

@@ -6,9 +6,9 @@ model HeatingOnly
 
   package MediumW = IBPSA.Media.Water "Medium model for water";
 
-  IBPSA.Fluid.Sources.FixedBoundary sin_1(redeclare package Medium =
-        MediumW, nPorts=1) "Sink for chilled water" annotation (
-      Placement(transformation(extent={{100,90},{80,110}})));
+  IBPSA.Fluid.Sources.Boundary_pT sin_1(redeclare package Medium = MediumW,
+      nPorts=1) "Sink for chilled water"
+    annotation (Placement(transformation(extent={{100,90},{80,110}})));
   IBPSA.Fluid.Sources.MassFlowSource_T souAir(
     redeclare package Medium = MediumA,
     m_flow=0.0792,
@@ -16,9 +16,9 @@ model HeatingOnly
     nPorts=1,
     T=285.85) "Source for air"
     annotation (Placement(transformation(extent={{100,10},{80,30}})));
-  IBPSA.Fluid.Sources.FixedBoundary bou(redeclare package Medium =
-        MediumA, nPorts=1) "Sink for air" annotation (Placement(
-        transformation(extent={{100,-110},{80,-90}})));
+  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = MediumA,
+      nPorts=1) "Sink for air"
+    annotation (Placement(transformation(extent={{100,-110},{80,-90}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor theConWal(G=200)
     "Thermal conductor for wall"
     annotation (Placement(transformation(extent={{-60,-110},{-40,-90}})));
@@ -34,17 +34,14 @@ model HeatingOnly
   IBPSA.Controls.Continuous.LimPID conPID(
     yMax=0.094,
     Td=0,
-    reverseAction=false,
     Ti=100,
-    k=0.1,
-    controllerType=Modelica.Blocks.Types.SimpleController.PI)
-    "Controller" annotation (Placement(transformation(extent={{-70,-20},
-            {-50,0}})));
-  IBPSA.Fluid.Sources.FixedBoundary sou_1(
+    k=0.1) "Controller"
+    annotation (Placement(transformation(extent={{-70,-20},{-50,0}})));
+  IBPSA.Fluid.Sources.Boundary_pT sou_1(
     redeclare package Medium = MediumW,
     T=288.15,
-    nPorts=1) "Soure chilled water" annotation (Placement(
-        transformation(extent={{-40,90},{-20,110}})));
+    nPorts=1) "Soure chilled water"
+    annotation (Placement(transformation(extent={{-40,90},{-20,110}})));
   Modelica.Blocks.Math.Gain gain(k=1200)
     annotation (Placement(transformation(extent={{-68,-70},{-48,-50}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor senTem
@@ -56,11 +53,11 @@ model HeatingOnly
     nPorts=1,
     T=320.95) "Source for heating"
     annotation (Placement(transformation(extent={{-20,50},{0,70}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin_2(redeclare package Medium =
-        MediumW, nPorts=1) "Sink for hot water"
+  IBPSA.Fluid.Sources.Boundary_pT sin_2(redeclare package Medium = MediumW,
+      nPorts=1) "Sink for hot water"
     annotation (Placement(transformation(extent={{100,50},{80,70}})));
   Modelica.Blocks.Sources.Sine sine(
-    freqHz=1/86400,
+    f=1/86400,
     amplitude=1,
     phase=-1.5707963267949) "Source for thermal loads"
     annotation (Placement(transformation(extent={{-110,-70},{-90,-50}})));
@@ -70,8 +67,8 @@ model HeatingOnly
     m_flow_nominal=0.1,
     V=30,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    T_start=293.15) "Air volume for room" annotation (Placement(
-        transformation(extent={{50,-70},{70,-50}})));
+    T_start=293.15) "Air volume for room"
+    annotation (Placement(transformation(extent={{50,-70},{70,-50}})));
 
   IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating beaCooHea(
     redeclare package MediumWat = MediumW,
@@ -82,8 +79,7 @@ model HeatingOnly
     redeclare
       IBPSA.Fluid.HeatExchangers.ActiveBeams.Data.Trox.DID632A_nozzleH_length6ft_heating
       perHea,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Active beam"
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Active beam"
     annotation (Placement(transformation(extent={{26,48},{54,72}})));
 equation
   connect(TOut.port, theConWal.port_a)
@@ -121,18 +117,23 @@ equation
   connect(pumHea.m_flow_in, conPID.y) annotation (Line(points={{-22,68},{-40,68},
           {-40,-10},{-49,-10}}, color={0,0,127}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-120,
-            -120},{120,120}})),experiment(Tolerance=1e-6, StopTime=172800),__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/ActiveBeams/Examples/HeatingOnly.mos"
+            -120},{120,120}})),experiment(Tolerance=1e-6, StopTime=172800),__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/ActiveBeams/Examples/HeatingOnly.mos"
         "Simulate and plot"),
     Icon(coordinateSystem(extent={{-120,-120},{120,120}})),
      Documentation(info="<html>
 <p>
 This example tests the implementation of <a href=\"modelica://BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating\">
 IBPSA.Fluid.HeatExchangers.ActiveBeams.CoolingAndHeating</a>, but operates it only in heating mode.
-An air volume is maintained at a temperature above <i>22&circ;</i>C by a controller
+An air volume is maintained at a temperature above <i>22&deg;</i>C by a controller
 that regulates the water flow rate in the active beam.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 June 14, 2016, by Michael Wetter:<br/>
 Revised implementation.

@@ -8,17 +8,17 @@ model MultipleFloorsVectors
   parameter Integer nZones(min=1) = 4 "Number of zone elements per floor";
   parameter Integer nFloors(min=2) = 2 "Number of floors";
 
-  parameter Modelica.SIunits.Temperature TRoom = 298.15
+  parameter Modelica.Units.SI.Temperature TRoom=298.15
     "Indoor air temperature of room in K";
-  parameter Modelica.SIunits.Temperature THallway = 293.15
+  parameter Modelica.Units.SI.Temperature THallway=293.15
     "Indoor air temperature of hallway in K";
-  parameter Modelica.SIunits.Temperature TStaircase = 293.15
+  parameter Modelica.Units.SI.Temperature TStaircase=293.15
     "Indoor air temperature of staircase in K";
-  parameter Modelica.SIunits.Height heightRooms = 3 "Height of rooms in m";
+  parameter Modelica.Units.SI.Height heightRooms=3 "Height of rooms in m";
 
-  parameter Modelica.SIunits.Length lengthZone = 5 "Length of room in m";
-  parameter Modelica.SIunits.Length widthZone = 5 "Width of room in m";
-  parameter Modelica.SIunits.Length widthHallway = 3 "Width of room in m";
+  parameter Modelica.Units.SI.Length lengthZone=5 "Length of room in m";
+  parameter Modelica.Units.SI.Length widthZone=5 "Width of room in m";
+  parameter Modelica.Units.SI.Length widthHallway=3 "Width of room in m";
   parameter Real doorOpening = 1
     "Opening of door (between 0:closed and 1:open)";
 
@@ -39,7 +39,7 @@ model MultipleFloorsVectors
     "Vector of floor elements"
     annotation (Placement(transformation(extent={{-20,-20},{0,0}})));
 
-  BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
+  BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
     "Weather data reader for input into floor models"
     annotation (Placement(transformation(extent={{-80,-40},{-60,-20}})));
 equation
@@ -53,7 +53,7 @@ equation
       thickness=0.5));
   end for;
   annotation (    experiment(Tolerance=1e-6, StopTime=3600),
-    __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Experimental/Benchmarks/AirFlow/Examples/MultipleFloorsVectors.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Experimental/Benchmarks/AirFlow/Examples/MultipleFloorsVectors.mos"
         "Simulate and plot"),
     Documentation(revisions="<html>
 <ul>

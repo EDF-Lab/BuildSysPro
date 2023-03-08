@@ -11,19 +11,19 @@ model TemperatureTwoPort "Ideal two port temperature sensor"
         origin={0,110},
         extent={{10,-10},{-10,10}},
         rotation=270)));
-  parameter Modelica.SIunits.Temperature T_start=Medium.T_default
+  parameter Modelica.Units.SI.Temperature T_start=Medium.T_default
     "Initial or guess value of output (= state)"
     annotation (Dialog(group="Initialization"));
 
   parameter Boolean transferHeat = false
     "if true, temperature T converges towards TAmb when no flow"
     annotation(Evaluate=true, Dialog(group="Heat transfer"));
-  parameter Modelica.SIunits.Temperature TAmb=Medium.T_default
+  parameter Modelica.Units.SI.Temperature TAmb=Medium.T_default
     "Fixed ambient temperature for heat transfer"
-    annotation(Dialog(enable=transferHeat, group="Heat transfer"));
-  parameter Modelica.SIunits.Time tauHeaTra(min=1)=1200
+    annotation (Dialog(enable=transferHeat, group="Heat transfer"));
+  parameter Modelica.Units.SI.Time tauHeaTra(min=1) = 1200
     "Time constant for heat transfer, default 20 minutes"
-    annotation(Dialog(enable=transferHeat, group="Heat transfer"));
+    annotation (Dialog(enable=transferHeat, group="Heat transfer"));
 
 protected
   parameter Real tauHeaTraInv(final unit = "1/s")=
@@ -97,7 +97,7 @@ annotation (defaultComponentName="senTem",
           lineThickness=0.5),
         Text(
           extent={{102,140},{-18,90}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="T"),
         Line(
           points={{-12,60},{-12,-25}},
@@ -117,7 +117,11 @@ annotation (defaultComponentName="senTem",
           lineColor={0,0,0},
           fillPattern=FillPattern.Solid,
           fillColor={0,0,0},
-          visible=transferHeat)}),
+          visible=transferHeat),
+        Text(
+         extent={{-20,120},{-140,70}},
+          textColor={0,0,0},
+          textString=DynamicSelect("", String(T-273.15, format=".1f")))}),
     Documentation(info="<html>
 <p>
 This model outputs the temperature of the medium in the flow
@@ -156,8 +160,14 @@ the mass flow rate on should set <code>transferHeat=false</code>.
 </html>", revisions="<html>
 <ul>
 <li>
+February 21, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating state.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
+<li>
 October 23, 2017 by Filip Jorissen:<br/>
-Revised implementation of equations 
+Revised implementation of equations
 when <code>transferHeat=true</code>.
 See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/840\">#840</a>.
 </li>

@@ -11,8 +11,7 @@ model SHA1 "Model that verifies the SHA1 encryption C function"
     "Third test string";
   parameter String strIn4 = "1.23e+4"
     "Fourth test string";
-  parameter String strIn5 = Modelica.Utilities.Strings.repeat(1000,
-    string="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+  parameter String strIn5 = Modelica.Utilities.Strings.repeat(509, string="a")
     "Fifth test string";
 
   //Expected outputs
@@ -29,7 +28,7 @@ model SHA1 "Model that verifies the SHA1 encryption C function"
     "bdd220adb45b392f17915af70ed8a006c382b983"
     "Encryption result of fourth string";
   parameter String strEx5=
-    "34aa973cd4c4daa4f61eeb2bdbad27316534016f"
+    "edff7a135c2e06d4c8084e61b4516c901bd5fcd0"
     "Encryption result of fifth string";
 
   //Comparison results
@@ -37,29 +36,29 @@ model SHA1 "Model that verifies the SHA1 encryption C function"
 
 equation
   cmp1 = Modelica.Utilities.Strings.isEqual(
-            IBPSA.Utilities.Cryptographics.sha(strIn1),
-            strEx1,
-            false);
+    IBPSA.Utilities.Cryptographics.sha(strIn1),
+    strEx1,
+    false);
   cmp2 = Modelica.Utilities.Strings.isEqual(
-            IBPSA.Utilities.Cryptographics.sha(strIn2),
-            strEx2,
-            false);
+    IBPSA.Utilities.Cryptographics.sha(strIn2),
+    strEx2,
+    false);
   cmp3 = Modelica.Utilities.Strings.isEqual(
-            IBPSA.Utilities.Cryptographics.sha(strIn3),
-            strEx3,
-            false);
+    IBPSA.Utilities.Cryptographics.sha(strIn3),
+    strEx3,
+    false);
   cmp4 = Modelica.Utilities.Strings.isEqual(
-            IBPSA.Utilities.Cryptographics.sha(strIn4),
-            strEx4,
-            false);
+    IBPSA.Utilities.Cryptographics.sha(strIn4),
+    strEx4,
+    false);
   cmp5 = Modelica.Utilities.Strings.isEqual(
-            IBPSA.Utilities.Cryptographics.sha(strIn5),
-            strEx5,
-            false);
+    IBPSA.Utilities.Cryptographics.sha(strIn5),
+    strEx5,
+    false);
   cmpAll = cmp1 and cmp2 and cmp3 and cmp4 and cmp5;
 
   annotation(experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Cryptographics/Validation/SHA1.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Cryptographics/Validation/SHA1.mos"
         "Simulate and plot"),
       Documentation(info="<html>
 <p>
@@ -80,7 +79,7 @@ the following strings:
 <code>&#34;1.23e+4&#34;</code>
 </li>
 <li>
-<code>&#34;a&#34;</code> repeated a million consecutive times
+<code>&#34;a&#34;</code> repeated <i>509</i> times.
 </li>
 </ul>
 <p>
@@ -90,6 +89,11 @@ results, the <code>cmpAll</code> boolean variable will be <code>true</code>.
 </html>",
 revisions="<html>
 <ul>
+<li>
+January 13, 2019, by Michael Wetter:<br/>
+Reduced string length for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1081\">issue 1081</a>.
+</li>
 <li>
 May 30, 2018, by Alex Laferri&egrave;re:<br/>
 First implementation.

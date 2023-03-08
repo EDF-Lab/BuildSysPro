@@ -5,20 +5,20 @@ model Carnot_TEva_2ndLaw
 
   package Medium = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.TemperatureDifference dTEva_nominal=-4
+  parameter Modelica.Units.SI.TemperatureDifference dTEva_nominal=-4
     "Temperature difference evaporator outlet-inlet";
-  parameter Modelica.SIunits.TemperatureDifference dTCon_nominal=4
+  parameter Modelica.Units.SI.TemperatureDifference dTCon_nominal=4
     "Temperature difference condenser outlet-inlet";
   parameter Real COPc_nominal = 3 "Chiller COP";
-  parameter Modelica.SIunits.HeatFlowRate QEva_flow_nominal = -100E3
+  parameter Modelica.Units.SI.HeatFlowRate QEva_flow_nominal=-100E3
     "Evaporator heat flow rate";
-  final parameter Modelica.SIunits.MassFlowRate m2_flow_nominal=
-    QEva_flow_nominal/dTEva_nominal/4200
+  final parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=
+      QEva_flow_nominal/dTEva_nominal/4200
     "Nominal mass flow rate at chilled water side";
 
-  final parameter Modelica.SIunits.MassFlowRate m1_flow_nominal=
-    -m2_flow_nominal/dTCon_nominal*dTEva_nominal
-    "Nominal mass flow rate at condeser water side";
+  final parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=-
+      m2_flow_nominal/dTCon_nominal*dTEva_nominal
+    "Nominal mass flow rate at condenser water side";
 
   Modelica.Blocks.Sources.Constant TEvaIn(k=273.15 + 20)
     "Evaporator inlet temperature"
@@ -58,15 +58,15 @@ protected
         Modelica.Media.Interfaces.PartialMedium
       "Medium model";
 
-    parameter Modelica.SIunits.TemperatureDifference dTEva_nominal
+    parameter Modelica.Units.SI.TemperatureDifference dTEva_nominal
       "Temperature difference evaporator outlet-inlet";
-    parameter Modelica.SIunits.TemperatureDifference dTCon_nominal
+    parameter Modelica.Units.SI.TemperatureDifference dTCon_nominal
       "Temperature difference condenser outlet-inlet";
-    parameter Modelica.SIunits.HeatFlowRate QEva_flow_nominal
+    parameter Modelica.Units.SI.HeatFlowRate QEva_flow_nominal
       "Evaporator heat flow rate";
-    parameter Modelica.SIunits.MassFlowRate m1_flow_nominal
-      "Nominal mass flow rate at condeser water side";
-    parameter Modelica.SIunits.MassFlowRate m2_flow_nominal
+    parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal
+      "Nominal mass flow rate at condenser water side";
+    parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal
       "Nominal mass flow rate at chilled water side";
 
     IBPSA.Fluid.Sources.MassFlowSource_T sou1(
@@ -74,11 +74,11 @@ protected
       nPorts=1,
       use_m_flow_in=false,
       use_T_in=true,
-      m_flow=m1_flow_nominal) "Mass flow rate source" annotation (
-        Placement(transformation(extent={{-100,-20},{-80,0}})));
-    IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
-          Medium2, nPorts=1) "Pressure source" annotation (Placement(
-          transformation(extent={{-10,-10},{10,10}}, origin={-88,-50})));
+      m_flow=m1_flow_nominal) "Mass flow rate source"
+      annotation (Placement(transformation(extent={{-100,-20},{-80,0}})));
+    IBPSA.Fluid.Sources.Boundary_pT sin1(redeclare package Medium = Medium2,
+        nPorts=1) "Pressure source" annotation (Placement(transformation(extent=
+             {{-10,-10},{10,10}}, origin={-88,-50})));
     IBPSA.Fluid.Chillers.Carnot_TEva chi(
       redeclare package Medium1 = Medium1,
       redeclare package Medium2 = Medium2,
@@ -89,7 +89,6 @@ protected
       QEva_flow_nominal=QEva_flow_nominal,
       allowFlowReversal1=false,
       allowFlowReversal2=false,
-      etaCarnot_nominal=0.3,
       dp1_nominal=0,
       dp2_nominal=0,
       energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
@@ -100,31 +99,31 @@ protected
       m_flow=m2_flow_nominal,
       use_T_in=true,
       T=293.15,
-      nPorts=1) "Mass flow rate source" annotation (Placement(
-          transformation(extent={{102,-60},{82,-40}})));
+      nPorts=1) "Mass flow rate source"
+      annotation (Placement(transformation(extent={{102,-60},{82,-40}})));
     IBPSA.Fluid.Sensors.EntropyFlowRate S_a1(
       redeclare package Medium = Medium1,
       m_flow_nominal=m1_flow_nominal,
-      tau=0) "Entropy flow rate sensor" annotation (Placement(
-          transformation(extent={{-50,-20},{-30,0}})));
+      tau=0) "Entropy flow rate sensor"
+      annotation (Placement(transformation(extent={{-50,-20},{-30,0}})));
     IBPSA.Fluid.Sensors.EntropyFlowRate S_a2(
       redeclare package Medium = Medium1,
       m_flow_nominal=m1_flow_nominal,
-      tau=0) "Entropy flow rate sensor" annotation (Placement(
-          transformation(extent={{-30,-60},{-50,-40}})));
+      tau=0) "Entropy flow rate sensor"
+      annotation (Placement(transformation(extent={{-30,-60},{-50,-40}})));
     IBPSA.Fluid.Sensors.EntropyFlowRate S_a3(
       redeclare package Medium = Medium1,
       m_flow_nominal=m1_flow_nominal,
-      tau=0) "Entropy flow rate sensor" annotation (Placement(
-          transformation(extent={{58,-60},{38,-40}})));
+      tau=0) "Entropy flow rate sensor"
+      annotation (Placement(transformation(extent={{58,-60},{38,-40}})));
     IBPSA.Fluid.Sensors.EntropyFlowRate S_a4(
       redeclare package Medium = Medium1,
       m_flow_nominal=m1_flow_nominal,
       tau=0) "Entropy flow rate sensor"
       annotation (Placement(transformation(extent={{38,-20},{58,0}})));
-    IBPSA.Fluid.Sources.FixedBoundary sin2(redeclare package Medium =
-          Medium2, nPorts=1) "Pressure source" annotation (Placement(
-          transformation(extent={{10,-10},{-10,10}}, origin={88,-10})));
+    IBPSA.Fluid.Sources.Boundary_pT sin2(redeclare package Medium = Medium2,
+        nPorts=1) "Pressure source" annotation (Placement(transformation(extent=
+             {{10,-10},{-10,10}}, origin={88,-10})));
     Modelica.Blocks.Math.Add SIn_flow
       "Entropy carried by flow that goes into the chiller"
       annotation (Placement(transformation(extent={{60,40},{80,60}})));
@@ -217,7 +216,7 @@ equation
           -32},{40,16},{21,16}},                color={0,0,127}));
 
   annotation (experiment(Tolerance=1e-06, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Chillers/Validation/Carnot_TEva_2ndLaw.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Chillers/Validation/Carnot_TEva_2ndLaw.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>
@@ -226,6 +225,17 @@ despite of a very small temperature lift.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+February 10, 2023, by Michael Wetter:<br/>
+Removed binding of parameter with same value as the default.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1692\">#1692</a>.
+</li>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 January 9, 2017, by Michael Wetter:<br/>
 Renamed internal protected class <code>Chiller</code> to be upper-case.

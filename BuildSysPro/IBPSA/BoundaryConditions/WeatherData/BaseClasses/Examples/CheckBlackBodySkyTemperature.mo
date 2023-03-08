@@ -12,7 +12,7 @@ model CheckBlackBodySkyTemperature
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
 equation
   connect(TBlaBod.y, cheSkyBlaBodTem.TIn)
-    annotation (Line(points={{-19,0},{0,0},{18,0}}, color={0,0,127}));
+    annotation (Line(points={{-19,0},{18,0}}, color={0,0,127}));
   annotation (
 Documentation(info="<html>
 <p>
@@ -29,6 +29,6 @@ First implementation.
 </html>"),
   experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/CheckBlackBodySkyTemperature.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/CheckBlackBodySkyTemperature.mos"
         "Simulate and plot"));
 end CheckBlackBodySkyTemperature;

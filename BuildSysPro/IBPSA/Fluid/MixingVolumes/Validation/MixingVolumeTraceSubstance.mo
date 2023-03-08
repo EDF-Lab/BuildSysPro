@@ -5,8 +5,8 @@ model MixingVolumeTraceSubstance
  package Medium = IBPSA.Media.Air (extraPropertiesNames={"CO2"})
     "Medium model";
 
-  parameter Modelica.SIunits.Pressure dp_nominal = 10 "Nominal pressure drop";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.5
+  parameter Modelica.Units.SI.Pressure dp_nominal=10 "Nominal pressure drop";
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.5
     "Nominal mass flow rate";
 
   Modelica.Fluid.Sources.MassFlowSource_T sou(
@@ -86,7 +86,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
- __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeTraceSubstance.mos"
+ __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/MixingVolumeTraceSubstance.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=10));
 end MixingVolumeTraceSubstance;

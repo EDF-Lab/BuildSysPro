@@ -7,13 +7,13 @@ model CountAggregationCells "This validation case verifies the counting of the r
 equation
   i =
     IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.LoadAggregation.countAggregationCells(
-                    lvlBas=2,
-                    nCel=2,
-                    timFin=120,
-                    tLoaAgg=10);
+    lvlBas=2,
+    nCel=2,
+    timFin=120,
+    tLoaAgg=10);
 
 annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/CountAggregationCells.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/CountAggregationCells.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

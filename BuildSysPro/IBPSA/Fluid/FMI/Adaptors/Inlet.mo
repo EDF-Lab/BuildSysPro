@@ -2,8 +2,10 @@ within BuildSysPro.IBPSA.Fluid.FMI.Adaptors;
 model Inlet "Adaptor for connecting a fluid inlet to the FMI interface"
 
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium "Medium model within the source"
-     annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air"),
+        choice(redeclare package Medium = IBPSA.Media.Water "Water")));
 
   parameter Boolean allowFlowReversal = true
     "= true to allow flow reversal, false restricts to design direction (inlet -> outlet)"
@@ -16,8 +18,8 @@ model Inlet "Adaptor for connecting a fluid inlet to the FMI interface"
   IBPSA.Fluid.FMI.Interfaces.Inlet inlet(
     redeclare final package Medium = Medium,
     final allowFlowReversal=allowFlowReversal,
-    final use_p_in=use_p_in) "Fluid inlet" annotation (Placement(
-        transformation(extent={{-120,-10},{-100,10}})));
+    final use_p_in=use_p_in) "Fluid inlet"
+    annotation (Placement(transformation(extent={{-120,-10},{-100,10}})));
 
   Modelica.Fluid.Interfaces.FluidPort_b port_b(
     redeclare final package Medium=Medium) "Fluid port"
@@ -31,7 +33,7 @@ model Inlet "Adaptor for connecting a fluid inlet to the FMI interface"
         origin={0,-110})));
 protected
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package Medium =       Medium)
+      package Medium = Medium)
     "Internal connector for fluid properties for back flow";
   IBPSA.Fluid.FMI.Interfaces.PressureOutput p_in_internal
     "Internal connector for pressure";
@@ -102,7 +104,7 @@ equation
         Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255}),
+          textColor={0,0,255}),
         Line(
           points={{-100,0},{-60,0}},
           color={0,0,255}),
@@ -123,7 +125,7 @@ equation
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-20,6},{14,-12}},
-          lineColor={255,0,0},
+          textColor={255,0,0},
           fillColor={255,0,0},
           fillPattern=FillPattern.Solid,
           textString="m"),
@@ -134,14 +136,14 @@ equation
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-120,34},{-98,16}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="inlet"),
         Line(
           points={{0,-100},{0,-60}},
           color={0,127,127}),
         Text(
           extent={{2,-76},{24,-94}},
-          lineColor={0,127,127},
+          textColor={0,127,127},
           visible=use_p_in,
           textString="p")}),
     Documentation(info="<html>
@@ -164,6 +166,11 @@ for how to use this model.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air and water.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 November 8, 2016, by Michael Wetter:<br/>
 Corrected wrong argument type in function call of <code>Medium.temperature_phX</code> and

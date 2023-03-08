@@ -23,8 +23,7 @@ initial equation
  der_y = der_y_comp;
 equation
   x = time^3*gain;
-  y = IBPSA.Utilities.Math.Functions.inverseXRegularized(x=x, delta=
-    delta);
+  y = IBPSA.Utilities.Math.Functions.inverseXRegularized(x=x, delta=delta);
 
   der_y = der(y);
   der_y_comp = der(y_comp);
@@ -43,7 +42,7 @@ experiment(
       StartTime=-1.5,
       StopTime=1.5,
       Tolerance=1e-08),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/InverseXDerivative_2_Check.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/InverseXDerivative_2_Check.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

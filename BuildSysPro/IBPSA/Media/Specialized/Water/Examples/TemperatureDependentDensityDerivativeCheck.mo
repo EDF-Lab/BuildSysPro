@@ -7,13 +7,13 @@ model TemperatureDependentDensityDerivativeCheck
       IBPSA.Media.Specialized.Water.TemperatureDependentDensity
     "Medium model";
 
-    Modelica.SIunits.Temperature T "Temperature";
-    Modelica.SIunits.SpecificEnthalpy hLiqSym "Liquid phase enthalpy";
-    Modelica.SIunits.SpecificEnthalpy hLiqCod "Liquid phase enthalpy";
-    Modelica.SIunits.SpecificHeatCapacity cpSym "Specific heat capacity";
-    Modelica.SIunits.SpecificHeatCapacity cpCod "Specific heat capacity";
-    Modelica.SIunits.SpecificHeatCapacity cvSym "Specific heat capacity";
-    Modelica.SIunits.SpecificHeatCapacity cvCod "Specific heat capacity";
+  Modelica.Units.SI.Temperature T "Temperature";
+  Modelica.Units.SI.SpecificEnthalpy hLiqSym "Liquid phase enthalpy";
+  Modelica.Units.SI.SpecificEnthalpy hLiqCod "Liquid phase enthalpy";
+  Modelica.Units.SI.SpecificHeatCapacity cpSym "Specific heat capacity";
+  Modelica.Units.SI.SpecificHeatCapacity cpCod "Specific heat capacity";
+  Modelica.Units.SI.SpecificHeatCapacity cvSym "Specific heat capacity";
+  Modelica.Units.SI.SpecificHeatCapacity cvCod "Specific heat capacity";
     constant Real convT(unit="K/s3") = 270
     "Conversion factor to satisfy unit check";
 initial equation
@@ -46,7 +46,7 @@ equation
    annotation(experiment(
                  StartTime=0, StopTime=1,
                  Tolerance=1E-8),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Media/Specialized/Water/Examples/TemperatureDependentDensityDerivativeCheck.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Media/Specialized/Water/Examples/TemperatureDependentDensityDerivativeCheck.mos"
         "Simulate and plot"),
       Documentation(info="<html>
 <p>

@@ -11,15 +11,15 @@ initial equation
    y=x;
 equation
   x = IBPSA.Fluid.Actuators.BaseClasses.equalPercentage(
-              time,
-              R,
-              l,
-              delta);
+    time,
+    R,
+    l,
+    delta);
   der(y)=der(x);
   assert(abs(x-y) < 1E-2, "Model has an error");
 
  annotation(experiment(Tolerance=1e-6, StartTime=0, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Actuators/BaseClasses/Examples/EqualPercentageDerivativeCheck.mos" "Simulate and plot"),
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Actuators/BaseClasses/Examples/EqualPercentageDerivativeCheck.mos" "Simulate and plot"),
     Documentation(info="<html>
 <p>
 This example checks whether the function derivative

@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation;
 model AirToOutletFlowReversal
   "Validation model for air to outlet converter with flow reversal enabled"
-  extends IBPSA.Fluid.FMI.Conversion.Validation.AirToOutlet(
-      allowFlowReversal=true);
+  extends IBPSA.Fluid.FMI.Conversion.Validation.AirToOutlet(allowFlowReversal=
+        true);
   BoundaryCondition bouAirNoC(
     redeclare package Medium = IBPSA.Media.Air (
       X_default={0.015, 0.985}))
@@ -98,7 +98,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/Conversion/Validation/AirToOutletFlowReversal.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/Conversion/Validation/AirToOutletFlowReversal.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=1.0));
 end AirToOutletFlowReversal;

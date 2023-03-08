@@ -18,16 +18,16 @@ model Basic "Example implementation of flow system"
   IBPSA.Fluid.FixedResistances.PressureDrop pipSouth1(
     redeclare package Medium = Medium,
     dp_nominal=50000,
-    m_flow_nominal=4) "Pipe 1 to south of building" annotation (
-      Placement(transformation(
+    m_flow_nominal=4) "Pipe 1 to south of building" annotation (Placement(
+        transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-80,18})));
   IBPSA.Fluid.FixedResistances.PressureDrop pipSouth2(
     redeclare package Medium = Medium,
     dp_nominal=50000,
-    m_flow_nominal=3) "Pipe 2 to south of building" annotation (
-      Placement(transformation(
+    m_flow_nominal=3) "Pipe 2 to south of building" annotation (Placement(
+        transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-40,18})));
@@ -47,16 +47,16 @@ model Basic "Example implementation of flow system"
   IBPSA.Fluid.FixedResistances.PressureDrop pipNorth2(
     redeclare package Medium = Medium,
     dp_nominal=50000,
-    m_flow_nominal=5) "Pipe 2 to north of building" annotation (
-      Placement(transformation(
+    m_flow_nominal=5) "Pipe 2 to north of building" annotation (Placement(
+        transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={80,18})));
   IBPSA.Fluid.FixedResistances.PressureDrop pipNorth1(
     redeclare package Medium = Medium,
     dp_nominal=50000,
-    m_flow_nominal=3) "Pipe 1 to north of building" annotation (
-      Placement(transformation(
+    m_flow_nominal=3) "Pipe 1 to north of building" annotation (Placement(
+        transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={40,18})));
@@ -65,8 +65,8 @@ model Basic "Example implementation of flow system"
     each CvData=IBPSA.Fluid.Types.CvTypes.OpPoint,
     each dpValve_nominal=8e4,
     redeclare each package Medium = Medium,
-    each m_flow_nominal=1) "Valves on souther tabs section 1"
-    annotation (Placement(transformation(
+    each m_flow_nominal=1) "Valves on souther tabs section 1" annotation (
+      Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=270,
         origin={-80,60})));
@@ -75,8 +75,8 @@ model Basic "Example implementation of flow system"
     each CvData=IBPSA.Fluid.Types.CvTypes.OpPoint,
     each dpValve_nominal=8e4,
     redeclare each package Medium = Medium,
-    each m_flow_nominal=1) "Valves on souther tabs section 2"
-    annotation (Placement(transformation(
+    each m_flow_nominal=1) "Valves on souther tabs section 2" annotation (
+      Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=270,
         origin={-40,60})));
@@ -85,8 +85,8 @@ model Basic "Example implementation of flow system"
     each CvData=IBPSA.Fluid.Types.CvTypes.OpPoint,
     each dpValve_nominal=8e4,
     redeclare each package Medium = Medium,
-    each m_flow_nominal=1) "Valves on northern tabs section 1"
-    annotation (Placement(transformation(
+    each m_flow_nominal=1) "Valves on northern tabs section 1" annotation (
+      Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=270,
         origin={40,60})));
@@ -95,8 +95,8 @@ model Basic "Example implementation of flow system"
     each CvData=IBPSA.Fluid.Types.CvTypes.OpPoint,
     each dpValve_nominal=8e4,
     redeclare each package Medium = Medium,
-    each m_flow_nominal=1) "Valves on northern tabs section 2"
-    annotation (Placement(transformation(
+    each m_flow_nominal=1) "Valves on northern tabs section 2" annotation (
+      Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=270,
         origin={80,60})));
@@ -109,8 +109,7 @@ model Basic "Example implementation of flow system"
   Modelica.Blocks.Sources.Sine sine(
     amplitude=0.5,
     offset=0.5,
-    freqHz=0.001)
-    "Valve control signal"
+    f=0.001) "Valve control signal"
     annotation (Placement(transformation(extent={{-140,20},{-120,40}})));
   IBPSA.Fluid.Actuators.Valves.ThreeWayLinear valSouth(
     redeclare package Medium = Medium,
@@ -140,25 +139,23 @@ model Basic "Example implementation of flow system"
     m_flow_nominal=10,
     dp_nominal=100,
     redeclare package Medium = Medium,
-    use_X_wSet=false) "Heating device" annotation (Placement(
-        transformation(extent={{-70,-110},{-50,-90}})));
+    use_X_wSet=false) "Heating device"
+    annotation (Placement(transformation(extent={{-70,-110},{-50,-90}})));
   IBPSA.Fluid.Sources.Boundary_pT bou(nPorts=1, redeclare package Medium =
-               Medium) "Boundary for setting absolute temperature"
+        Medium) "Boundary for setting absolute temperature"
     annotation (Placement(transformation(extent={{-100,-140},{-80,-120}})));
   IBPSA.Fluid.FixedResistances.Junction spl(
     m_flow_nominal={10,10,10},
     dp_nominal={1000,10,10},
     redeclare package Medium = Medium,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Splitter" annotation (Placement(transformation(extent={{-40,-110},{
-            -20,-90}})));
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Splitter"
+    annotation (Placement(transformation(extent={{-40,-110},{-20,-90}})));
   IBPSA.Fluid.FixedResistances.Junction spl1(
     m_flow_nominal={10,10,10},
     dp_nominal={10,10,10},
     redeclare package Medium = Medium,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Splitter" annotation (Placement(transformation(extent={{-20,-120},{
-            -40,-140}})));
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Splitter"
+    annotation (Placement(transformation(extent={{-20,-120},{-40,-140}})));
   IBPSA.Fluid.Movers.FlowControlled_m_flow pumpHea(
     m_flow_nominal=10,
     redeclare
@@ -167,18 +164,18 @@ model Basic "Example implementation of flow system"
     redeclare package Medium = Medium,
     inputType=IBPSA.Fluid.Types.InputType.Stages,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Pump for circulating hot water" annotation (Placement(
-        transformation(extent={{-50,-140},{-70,-120}})));
+    "Pump for circulating hot water"
+    annotation (Placement(transformation(extent={{-50,-140},{-70,-120}})));
   Modelica.Blocks.Sources.Constant Thot(k=273.15 + 50) "Hot water temperature"
     annotation (Placement(transformation(extent={{-96,-98},{-84,-86}})));
   IBPSA.Fluid.Actuators.Valves.TwoWayLinear valHea(
-    each dpFixed_nominal=0,
-    each CvData=IBPSA.Fluid.Types.CvTypes.OpPoint,
+    dpFixed_nominal=0,
+    CvData=IBPSA.Fluid.Types.CvTypes.OpPoint,
     redeclare package Medium = Medium,
-    each m_flow_nominal=10,
-    each dpValve_nominal=1e4)
-    "Valve for allowing water to be drawn from hot water circuit"
-    annotation (Placement(transformation(
+    m_flow_nominal=10,
+    dpValve_nominal=1e4)
+    "Valve for allowing water to be drawn from hot water circuit" annotation (
+      Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=270,
         origin={-10,-86})));
@@ -186,13 +183,13 @@ model Basic "Example implementation of flow system"
     "Set point for valves"
     annotation (Placement(transformation(extent={{-140,-60},{-120,-40}})));
   IBPSA.Fluid.Actuators.Valves.TwoWayLinear valCoo(
-    each dpFixed_nominal=0,
-    each CvData=IBPSA.Fluid.Types.CvTypes.OpPoint,
+    dpFixed_nominal=0,
+    CvData=IBPSA.Fluid.Types.CvTypes.OpPoint,
     redeclare package Medium = Medium,
-    each m_flow_nominal=10,
-    each dpValve_nominal=1e4)
-    "Valve for allowing water to be drawn from cold water circuit"
-    annotation (Placement(transformation(
+    m_flow_nominal=10,
+    dpValve_nominal=1e4)
+    "Valve for allowing water to be drawn from cold water circuit" annotation (
+      Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=270,
         origin={12,-86})));
@@ -203,16 +200,14 @@ model Basic "Example implementation of flow system"
     m_flow_nominal={10,10,10},
     dp_nominal={1000,10,10},
     redeclare package Medium = Medium,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Splitter"
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Splitter"
     annotation (Placement(transformation(extent={{40,-110},{20,-90}})));
   IBPSA.Fluid.FixedResistances.Junction spl3(
     m_flow_nominal={10,10,10},
     dp_nominal={10,10,10},
     redeclare package Medium = Medium,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Splitter" annotation (Placement(transformation(extent={{20,-120},{40,
-            -140}})));
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "Splitter"
+    annotation (Placement(transformation(extent={{20,-120},{40,-140}})));
   IBPSA.Fluid.Movers.FlowControlled_m_flow pumpCoo(
     m_flow_nominal=10,
     redeclare
@@ -221,8 +216,8 @@ model Basic "Example implementation of flow system"
     redeclare package Medium = Medium,
     inputType=IBPSA.Fluid.Types.InputType.Stages,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "Pump for circulating cold water" annotation (Placement(
-        transformation(extent={{46,-140},{66,-120}})));
+    "Pump for circulating cold water"
+    annotation (Placement(transformation(extent={{46,-140},{66,-120}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume vol(
     nPorts=2,
     redeclare package Medium = Medium,
@@ -236,8 +231,8 @@ model Basic "Example implementation of flow system"
     redeclare each package Medium = Medium,
     each dp_nominal=50000,
     m_flow_nominal=valSouth1.m_flow_nominal)
-    "Pressure drop of southern tabs sections on collector 1"
-    annotation (Placement(transformation(
+    "Pressure drop of southern tabs sections on collector 1" annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-80,90})));
@@ -245,8 +240,8 @@ model Basic "Example implementation of flow system"
     redeclare each package Medium = Medium,
     each dp_nominal=50000,
     m_flow_nominal=valSouth2.m_flow_nominal)
-    "Pressure drop of southern tabs sections on collector 2"
-    annotation (Placement(transformation(
+    "Pressure drop of southern tabs sections on collector 2" annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-40,90})));
@@ -254,8 +249,8 @@ model Basic "Example implementation of flow system"
     redeclare each package Medium = Medium,
     each dp_nominal=50000,
     m_flow_nominal=valNorth1.m_flow_nominal)
-    "Pressure drop of northern tabs sections on collector 1"
-    annotation (Placement(transformation(
+    "Pressure drop of northern tabs sections on collector 1" annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={40,90})));
@@ -263,8 +258,8 @@ model Basic "Example implementation of flow system"
     redeclare each package Medium = Medium,
     each dp_nominal=50000,
     m_flow_nominal=valNorth2.m_flow_nominal)
-    "Pressure drop of northern tabs sections on collector 2"
-    annotation (Placement(transformation(
+    "Pressure drop of northern tabs sections on collector 2" annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={80,90})));
@@ -435,29 +430,29 @@ equation
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-110,86},{-94,74}},
-          lineColor={28,108,200},
+          textColor={28,108,200},
           textString="X4"),
         Text(
           extent={{-24,86},{-8,74}},
-          lineColor={28,108,200},
+          textColor={28,108,200},
           textString="X8"),
         Text(
           extent={{8,86},{24,74}},
-          lineColor={28,108,200},
+          textColor={28,108,200},
           textString="X4"),
         Text(
           extent={{96,86},{112,74}},
-          lineColor={28,108,200},
+          textColor={28,108,200},
           textString="X8"),
         Text(
           extent={{-66,122},{-36,130}},
-          lineColor={28,108,200},
+          textColor={28,108,200},
           fillColor={215,215,215},
           fillPattern=FillPattern.Solid,
           textString="South"),
         Text(
           extent={{34,122},{64,130}},
-          lineColor={28,108,200},
+          textColor={28,108,200},
           fillColor={215,215,215},
           fillPattern=FillPattern.Solid,
           textString="North"),
@@ -473,13 +468,13 @@ equation
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-64,-156},{-34,-148}},
-          lineColor={28,108,200},
+          textColor={28,108,200},
           fillColor={215,215,215},
           fillPattern=FillPattern.Solid,
           textString="Heat"),
         Text(
           extent={{36,-156},{66,-148}},
-          lineColor={28,108,200},
+          textColor={28,108,200},
           fillColor={215,215,215},
           fillPattern=FillPattern.Solid,
           textString="Cold")}),
@@ -518,6 +513,12 @@ The control model consists of dummy inputs.
 </html>", revisions="<html>
 <ul>
 <li>
+January 11, 2019 by Michael Wetter:<br/>
+Removed <code>each</code> statements.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1079\">#1079</a>.
+</li>
+<li>
 May 8, 2017, by Michael Wetter:<br/>
 Updated heater model.<br/>
 This is for
@@ -530,7 +531,6 @@ First implementation.
 </li>
 </ul>
 </html>"),
-    __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Fluid/Examples/FlowSystem/Basic.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Examples/FlowSystem/Basic.mos"
         "Simulate and plot"));
 end Basic;

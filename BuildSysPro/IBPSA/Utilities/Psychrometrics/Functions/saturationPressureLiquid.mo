@@ -2,11 +2,10 @@ within BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions;
 function saturationPressureLiquid
   "Return saturation pressure of water as a function of temperature T in the range of 273.16 to 373.16 K"
   extends Modelica.Icons.Function;
-  input Modelica.SIunits.Temperature TSat(displayUnit="degC",
-                                          nominal=300) "Saturation temperature";
-  output Modelica.SIunits.AbsolutePressure pSat(
-                                      displayUnit="Pa",
-                                      nominal=1000) "Saturation pressure";
+  input Modelica.Units.SI.Temperature TSat(displayUnit="degC", nominal=300)
+    "Saturation temperature";
+  output Modelica.Units.SI.AbsolutePressure pSat(displayUnit="Pa", nominal=1000)
+    "Saturation pressure";
 algorithm
   pSat := 611.657*Modelica.Math.exp(17.2799 - 4102.99/(TSat - 35.719));
 
@@ -25,8 +24,8 @@ according to Wagner <i>et al.</i> (1993). The range of validity is between
 Wagner W., A. Saul, A. Pruss.
  <i>International equations for the pressure along the melting and along the sublimation curve of ordinary water substance</i>,
 equation 3.5. 1993.
-<a href=\"http://www.nist.gov/data/PDFfiles/jpcrd477.pdf\">
-http://www.nist.gov/data/PDFfiles/jpcrd477.pdf</a>.
+<a href=\"http://aip.scitation.org/doi/pdf/10.1063/1.555947?class=pdf\">
+http://aip.scitation.org/doi/pdf/10.1063/1.555947?class=pdf</a>.
 </p>
 </html>",
 revisions="<html>

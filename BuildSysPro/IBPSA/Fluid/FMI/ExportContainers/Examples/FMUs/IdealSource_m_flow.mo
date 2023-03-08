@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block IdealSource_m_flow "Declaration of an FMU that exports a mass flow source and sink"
-   extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(
-      redeclare replaceable package Medium = IBPSA.Media.Air);
+   extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(redeclare
+      replaceable package Medium = IBPSA.Media.Air);
 
   Modelica.Blocks.Interfaces.RealInput m_flow_in(final unit="kg/s")
     "Prescribed mass flow rate"
@@ -43,7 +43,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/IdealSource_m_flow.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/IdealSource_m_flow.mos"
         "Export FMU"),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             100}}), graphics={
@@ -54,7 +54,7 @@ __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fl
           fillPattern=FillPattern.HorizontalCylinder),
                               Text(
           extent={{-94,110},{-50,52}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="m_flow"),
         Ellipse(
           extent={{-16,18},{24,-22}},

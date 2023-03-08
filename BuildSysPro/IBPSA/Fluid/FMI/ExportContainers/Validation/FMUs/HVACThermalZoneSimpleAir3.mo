@@ -2,7 +2,7 @@ within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs;
 block HVACThermalZoneSimpleAir3
   "Validation model for the convective HVAC system"
   extends IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs.HVACThermalZoneAir1(
-     redeclare package Medium = Modelica.Media.Air.SimpleAir (
+      redeclare package Medium = Modelica.Media.Air.SimpleAir (
           extraPropertiesNames={"CO2","VOC","CH2O"}));
 annotation (
     Documentation(info="<html>
@@ -20,6 +20,6 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/ExportContainers/Validation/FMUs/HVACThermalZoneSimpleAir3.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/ExportContainers/Validation/FMUs/HVACThermalZoneSimpleAir3.mos"
         "Export FMU"));
 end HVACThermalZoneSimpleAir3;

@@ -38,7 +38,7 @@ equation
   connect(m_flow.y, sou.m_flow_in)
     annotation (Line(points={{-71,8},{-52,8},{-52,8}},   color={0,0,127}));
   annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FixedResistances/Validation/LosslessPipe.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FixedResistances/Validation/LosslessPipe.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

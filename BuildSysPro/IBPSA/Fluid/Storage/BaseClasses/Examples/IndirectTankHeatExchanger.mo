@@ -17,21 +17,19 @@ model IndirectTankHeatExchanger
     dp_nominal=10000,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     TTan_nominal=293.15,
-    THex_nominal=323.15) "Heat exchanger" annotation (Placement(
-        transformation(
+    THex_nominal=323.15) "Heat exchanger" annotation (Placement(transformation(
         extent={{-12,-17},{12,17}},
         rotation=90,
         origin={-19,8})));
 
   IBPSA.Fluid.Sources.Boundary_pT bou1(nPorts=1, redeclare package Medium =
-               Medium) annotation (Placement(transformation(extent={{-72,
-            -42},{-52,-22}})));
+        Medium)
+    annotation (Placement(transformation(extent={{-72,-42},{-52,-22}})));
   IBPSA.Fluid.Sources.MassFlowSource_T bou(
     m_flow=0.1,
     nPorts=1,
     redeclare package Medium = Medium,
-    T=323.15) annotation (Placement(transformation(extent={{-72,34},{-52,
-            54}})));
+    T=323.15) annotation (Placement(transformation(extent={{-72,34},{-52,54}})));
 
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature watTem[3](each T=293.15)
     annotation (Placement(transformation(
@@ -56,7 +54,7 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   annotation (__Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Storage/BaseClasses/Examples/IndirectTankHeatExchanger.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Storage/BaseClasses/Examples/IndirectTankHeatExchanger.mos"
         "Simulate and plot"),
         experiment(Tolerance=1e-6, StopTime=15),
 Documentation(info="<html>

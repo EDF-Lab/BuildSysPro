@@ -6,13 +6,13 @@ model ZoneHallway
       Modelica.Media.Interfaces.PartialMedium
     "Medium in the component";
 
-  parameter Modelica.SIunits.Temperature TRoom = 293.15
+  parameter Modelica.Units.SI.Temperature TRoom=293.15
     "Indoor air temperature of room in K";
-  parameter Modelica.SIunits.Height heightRoom = 3 "Height of room in m";
-  parameter Modelica.SIunits.Length lengthRoom = 5 "Length of room in m";
-  parameter Modelica.SIunits.Length widthRoom = 3 "Width of room in m";
+  parameter Modelica.Units.SI.Height heightRoom=3 "Height of room in m";
+  parameter Modelica.Units.SI.Length lengthRoom=5 "Length of room in m";
+  parameter Modelica.Units.SI.Length widthRoom=3 "Width of room in m";
 
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValue = 1
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer UValue=1
     "Heat transfer coefficient for outside wall";
 
   parameter Boolean forceErrorControlOnFlow = true
@@ -44,11 +44,11 @@ model ZoneHallway
     densitySelection=IBPSA.Airflow.Multizone.Types.densitySelection.fromBottom)
     "Upper air column between top orifice to outside and indoor air volume"
     annotation (Placement(transformation(extent={{50,20},{70,40}})));
-  Modelica.Fluid.Interfaces.FluidPort_a port_a_toZone(redeclare package Medium
-      = Medium) "Direct connection to air volume without orifice"
+  Modelica.Fluid.Interfaces.FluidPort_a port_a_toZone(redeclare package Medium =
+        Medium) "Direct connection to air volume without orifice"
     annotation (Placement(transformation(extent={{-110,50},{-90,70}})));
-  Modelica.Fluid.Interfaces.FluidPort_b port_b_toZone(redeclare package Medium
-      = Medium) "Direct connection to air volume without orifice"
+  Modelica.Fluid.Interfaces.FluidPort_b port_b_toZone(redeclare package Medium =
+        Medium) "Direct connection to air volume without orifice"
     annotation (Placement(transformation(extent={{-110,-70},{-90,-50}})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a_toOutside(redeclare package
       Medium = Medium) "Indirect connection to air volume with orifice"

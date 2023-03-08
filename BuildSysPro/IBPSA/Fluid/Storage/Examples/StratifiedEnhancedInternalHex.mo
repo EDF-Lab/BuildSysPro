@@ -6,16 +6,15 @@ model StratifiedEnhancedInternalHex
   package MediumTan = IBPSA.Media.Water "Medium in the tank";
   package MediumHex = IBPSA.Media.Water "Medium in the heat exchanger";
 
- parameter Modelica.SIunits.PressureDifference dpHex_nominal=2500
+  parameter Modelica.Units.SI.PressureDifference dpHex_nominal=2500
     "Pressure drop across the heat exchanger at nominal conditions";
 
-  parameter Modelica.SIunits.MassFlowRate mHex_flow_nominal = 0.278
+  parameter Modelica.Units.SI.MassFlowRate mHex_flow_nominal=0.278
     "Mass flow rate of heat exchanger";
 
-  IBPSA.Fluid.Sources.Boundary_pT bouWat(redeclare package Medium =
-        MediumTan, nPorts=3)
-    "Boundary condition for water (used to set pressure)" annotation (
-      Placement(transformation(
+  IBPSA.Fluid.Sources.Boundary_pT bouWat(redeclare package Medium = MediumTan,
+      nPorts=3) "Boundary condition for water (used to set pressure)"
+    annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=180,
         origin={70,-12})));
@@ -23,14 +22,14 @@ model StratifiedEnhancedInternalHex
     redeclare package Medium = MediumHex,
     nPorts=3,
     use_p_in=true,
-    T=353.15) "Water from solar collector" annotation (Placement(
-        transformation(extent={{-10,-10},{10,10}}, origin={-30,40})));
+    T=353.15) "Water from solar collector" annotation (Placement(transformation(
+          extent={{-10,-10},{10,10}}, origin={-30,40})));
   IBPSA.Fluid.Sources.Boundary_pT toSolCol(
     redeclare package Medium = MediumHex,
     nPorts=3,
     p(displayUnit="Pa") = 3E5,
-    T=283.15) "Water to solar collector" annotation (Placement(
-        transformation(extent={{-10,-10},{10,10}}, origin={-72,-20})));
+    T=283.15) "Water to solar collector" annotation (Placement(transformation(
+          extent={{-10,-10},{10,10}}, origin={-72,-20})));
   IBPSA.Fluid.Storage.StratifiedEnhancedInternalHex tanSte(
     redeclare package Medium = MediumTan,
     m_flow_nominal=0.001,
@@ -56,8 +55,7 @@ model StratifiedEnhancedInternalHex
     redeclare package Medium = MediumHex,
     allowFlowReversal=false,
     m_flow_nominal=mHex_flow_nominal,
-    tau=0)
-    "Temperature sensor for outlet of steady-state heat exchanger"
+    tau=0) "Temperature sensor for outlet of steady-state heat exchanger"
     annotation (Placement(transformation(extent={{-20,0},{-40,20}})));
   Modelica.Blocks.Sources.Step step(
     height=dpHex_nominal,
@@ -87,8 +85,7 @@ model StratifiedEnhancedInternalHex
     mHex_flow_nominal=mHex_flow_nominal,
     energyDynamicsHex=Modelica.Fluid.Types.Dynamics.FixedInitial,
     TTan_nominal=293.15,
-    THex_nominal=323.15)
-    "Tank with heat exchanger configured as dynamic"
+    THex_nominal=323.15) "Tank with heat exchanger configured as dynamic"
     annotation (Placement(transformation(extent={{4,-28},{38,4}})));
   IBPSA.Fluid.Storage.StratifiedEnhancedInternalHex tanDynSol(
     redeclare package Medium = MediumTan,
@@ -111,7 +108,6 @@ model StratifiedEnhancedInternalHex
     THex_nominal=323.15)
     "Tank with heat exchanger configured as steady-state except for metal which is dynamic"
     annotation (Placement(transformation(extent={{6,-76},{40,-44}})));
-
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTemDynSol(
     redeclare package Medium = MediumHex,
     allowFlowReversal=false,
@@ -153,7 +149,7 @@ equation
   connect(step.y, solColSup.p_in)
     annotation (Line(points={{-59,48},{-52,48},{-42,48}}, color={0,0,127}));
   annotation ( __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Storage/Examples/StratifiedEnhancedInternalHex.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Storage/Examples/StratifiedEnhancedInternalHex.mos"
         "Simulate and plot"),
 experiment(Tolerance=1e-6, StopTime=1200),
 Documentation(info="<html>

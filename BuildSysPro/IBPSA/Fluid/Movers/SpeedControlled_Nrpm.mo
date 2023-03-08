@@ -5,20 +5,23 @@ model SpeedControlled_Nrpm
     final preVar=IBPSA.Fluid.Movers.BaseClasses.Types.PrescribedVariable.Speed,
     final nominalValuesDefineDefaultPressureCurve=false,
     final computePowerUsingSimilarityLaws=true,
-    final m_flow_nominal=max(per.pressure.V_flow)*rho_default,
     final stageInputs(each final unit="1") = per.speeds,
     final constInput(final unit="1") = per.constantSpeed,
     filter(
       final y_start=y_start,
-      u_nominal=1,
       u(final unit="1"),
       y(final unit="1")),
-    eff(per(final pressure=per.pressure, final use_powerCharacteristic=
-            per.use_powerCharacteristic)),
-    gaiSpe(u(final unit="1/min"), final k=1/per.speed_rpm_nominal));
+    eff(per(
+        final pressure=per.pressure,
+        final etaHydMet=per.etaHydMet,
+        final etaMotMet=per.etaMotMet), r_N(start=y_start)),
+    gaiSpe(u(final unit="rev/min"), final k=1/per.speed_rpm_nominal));
 
-  Modelica.Blocks.Interfaces.RealInput Nrpm(final unit="1/min") if
-    inputType == IBPSA.Fluid.Types.InputType.Continuous
+  parameter Real y_start(min=0, max=1, unit="1")=0 "Initial value of speed"
+    annotation(Dialog(tab="Dynamics", group="Filtered speed", enable=use_inputFilter));
+
+  Modelica.Blocks.Interfaces.RealInput Nrpm(final unit="rev/min")
+    if inputType == IBPSA.Fluid.Types.InputType.Continuous
     "Prescribed rotational speed"
     annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
@@ -32,7 +35,7 @@ protected
   Modelica.Blocks.Math.Gain gain(final k=-1) "Pressure gain"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=270,
-        origin={10,-20})));
+        origin={-10,-20})));
 initial equation
   assert(per.havePressureCurve,
    "SpeedControlled_Nrpm model requires to set the pressure vs. flow rate curve in record 'per'.");
@@ -42,55 +45,36 @@ equation
     annotation (Line(points={{0,120},{0,80},{-2.8,80}}, color={0,0,127}));
   connect(gaiSpe.y, inputSwitch.u) annotation (Line(points={{-16.6,80},{-26,80},
           {-26,50},{-22,50}}, color={0,0,127}));
-  connect(eff.dp, gain.u) annotation (Line(points={{-11,-50},{2,-50},{10,-50},{10,
-          -32}}, color={0,0,127}));
+  connect(eff.dp, gain.u) annotation (Line(points={{-11,-50},{-6,-50},{-6,-42},
+          {-10,-42},{-10,-32}},
+                 color={0,0,127}));
   connect(gain.y, preSou.dp_in)
-    annotation (Line(points={{10,-9},{10,14},{56,14},{56,8},{56,8}},
+    annotation (Line(points={{-10,-9},{-10,14},{56,14},{56,8}},
                                                      color={0,0,127}));
   if use_inputFilter then
-    connect(filter.y, eff.y_in) annotation (Line(points={{34.7,88},{38,88},{38,26},
-            {-26,26},{-26,-46}},      color={0,0,127}));
+    connect(filter.y, eff.y_in) annotation (Line(points={{41,70.5},{44,70.5},{44,
+            26},{-26,26},{-26,-46}},  color={0,0,127}));
   else
-    connect(inputSwitch.y, eff.y_in) annotation (Line(points={{1,50},{38,50},{38,
+    connect(inputSwitch.y, eff.y_in) annotation (Line(points={{1,50},{44,50},{44,
             26},{-26,26},{-26,-46}},
                                    color={0,0,127}));
   end if;
-  annotation (defaultComponentName="pump",
+  annotation (defaultComponentName="mov",
     Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},{100,
-            100}}), graphics={
-            Text(
-              extent={{26,136},{124,114}},
-          textString="Nrpm [rpm]",
-          lineColor={0,0,127}),
-        Rectangle(
-          visible=use_inputFilter,
-          extent={{-34,40},{32,100}},
-          lineColor={0,0,0},
-          fillColor={135,135,135},
-          fillPattern=FillPattern.Solid),
-        Ellipse(
-          visible=use_inputFilter,
-          extent={{-34,100},{32,40}},
-          lineColor={0,0,0},
-          fillColor={135,135,135},
-          fillPattern=FillPattern.Solid),
+            100}}),
+      graphics={
         Text(
-          visible=use_inputFilter,
-          extent={{-22,92},{20,46}},
-          lineColor={0,0,0},
-          fillColor={135,135,135},
-          fillPattern=FillPattern.Solid,
-          textString="M",
-          textStyle={TextStyle.Bold})}),
+          extent={{-40,126},{-160,76}},
+          textColor={0,0,127},
+          visible=inputType == IBPSA.Fluid.Types.InputType.Continuous or inputType == IBPSA.Fluid.Types.InputType.Stages,
+          textString=DynamicSelect("Nrpm", if inputType == IBPSA.Fluid.Types.InputType.Continuous then String(Nrpm, format=".0f") else String(stage)))}),
     Documentation(info="<html>
+<p>
 This model describes a fan or pump with prescribed speed in revolutions per minute.
 The head is computed based on the performance curve that take as an argument
 the actual volume flow rate divided by the maximum flow rate and the relative
 speed of the fan.
-The efficiency of the device is computed based
-on the efficiency curves that take as an argument
-the actual volume flow rate divided by the maximum possible volume flow rate, or
-based on the motor performance curves.
+</p>
 <br/>
 <p>
 See the
@@ -100,6 +84,43 @@ User's Guide</a> for more information.
 </html>",
       revisions="<html>
 <ul>
+<li>
+March 1, 2023, by Hongxiang Fu:<br/>
+Removed the modification of <code>m_flow_nominal</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1705\">#1705</a>.
+</li>
+<li>
+March 8, 2022, by Hongxiang Fu:<br/>
+Refactored the model by replacing <code>not use_powerCharacteristic</code>
+with the enumeration
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Movers.BaseClasses.Types.HydraulicEfficiencyMethod\">
+IBPSA.Fluid.Movers.BaseClasses.Types.HydraulicEfficiencyMethod</a>.
+This is for
+<a href=\"https://github.com/lbl-srg/modelica-buildings/issues/2668\">#2668</a>.
+March 7, 2022, by Michael Wetter:<br/>
+Set <code>final massDynamics=energyDynamics</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1542\">#1542</a>.
+</li>
+<li>
+January 5, 2022, by Jianjun Hu:<br/>
+Changed the rotational speed unit to be consistent with the one in the Modelica Standard Library.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1570\">#1570</a>.
+</li>
+<li>
+June 17, 2021, by Michael Wetter:<br/>
+Changed implementation of the filter.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1498\">#1498</a>.
+</li>
+<li>
+February 21, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating stage.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
 <li>
 March 24, 2017, by Michael Wetter:<br/>
 Renamed <code>filteredSpeed</code> to <code>use_inputFilter</code>.<br/>

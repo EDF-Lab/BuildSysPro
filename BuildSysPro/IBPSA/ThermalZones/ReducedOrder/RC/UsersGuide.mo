@@ -100,21 +100,21 @@ package UsersGuide "User's Guide"
   Instead of using Stefan&apos;s Law for radiation exchange
   </p>
   <p align=\"center\" style=\"font-style:italic;\">
-  Q = &epsilon; &sigma; (T<sub>1<sup>4</sup></sub> - T<sub>2<sup>4</sup></sub>)
+  Q = &epsilon; &sigma; (T<sub>1<sup>4</sup></sub> - T<sub>2<sup>4</sup></sub>),
   </p>
-  <p>,
+  <p>
   the models use a linearized approach
   </p>
   <p align=\"center\" style=\"font-style:italic;\">
-  Q = &alpha; <sub>rad</sub> (T<sub>1</sub> - T<sub>2</sub>),
+  Q = h <sub>rad</sub> (T<sub>1</sub> - T<sub>2</sub>),
   </p>
   <p>
   where
   the radiative heat transfer coefficient
-  <i>&alpha;<sub>rad</sub></i> is often set to
+  <i>h<sub>rad</sub></i> is often set to
   </p>
   <p align=\"center\" style=\"font-style:italic;\">
-  &alpha;<sub>rad</sub> = 4 &epsilon; &sigma; T<sub>m<sup>3</sup></sub>
+  h<sub>rad</sub> = 4 &epsilon; &sigma; T<sub>m<sup>3</sup></sub>
   </p>
   <p>
   where <i>T<sub>m</sub></i>
@@ -165,6 +165,17 @@ package UsersGuide "User's Guide"
   </p>
   </li>
   </ul>
+  <h4>Modeling of latent heat gains</h4>
+  <p>
+  All zone models in <a href=\"modelica://BuildSysPro.IBPSA.ThermalZones.ReducedOrder.RC\">
+  IBPSA.ThermalZones.ReducedOrder.RC</a> have a parameter <code>use_moisture_balance</code>.
+  If set to <code>true</code>, the input connector <code>QLat_flow</code> is enabled.
+  This input connector can be used to set the latent heat gain of the zone. The model assumes this
+  latent heat gain to be at <i>37</i>&deg;C, e.g., near the skin temperature.
+  For other latent sources that are near <i>20</i>&deg;C, this assumption of the temperature
+  leads to an error of around <i>2</i>%, which in most cases is considerably smaller than
+  the uncertainty of <code>QLat_flow</code>.
+  </p>
   <h4>Typical use and important parameter</h4>
   <p>
   The models in this package are typically used in combination with models from
@@ -205,7 +216,7 @@ package UsersGuide "User's Guide"
   Calculation of transient thermal response of rooms and buildings - modelling of
   rooms.</p>
   <p>M. Lauster, A. Bruentjen, H. Leppmann, M. Fuchs, R. Streblow, D. Mueller.
-  <a href=\"modelica://BuildSysPro/Resources/IBPSA/Images/ThermalZones/ReducedOrder/RC/UsersGuide/BauSIM2014_208-2_p1192.pdf\">Improving a Low Order Building Model for Urban Scale Applications</a>.
+  <a href=\"modelica://BuildSysPro/IBPSA/Resources/Images/ThermalZones/ReducedOrder/RC/UsersGuide/BauSIM2014_208-2_p1192.pdf\">Improving a Low Order Building Model for Urban Scale Applications</a>.
   <i>Proceedings of BauSim 2014: 5th German-Austrian IBPSA Conference</i>,
   p. 511-518, Aachen, Germany. Sep. 22-24, 2014.</p>
   <p>M. Lauster, J. Teichmann, M. Fuchs, R. Streblow, D. Mueller. Low Order
@@ -213,7 +224,7 @@ package UsersGuide "User's Guide"
   Scale. <i>Building and Environment</i>, 73, 223-231, 2014.
   <a href=\"http://dx.doi.org/10.1016/j.buildenv.2013.12.016\">doi:10.1016/j.buildenv.2013.12.016</a></p>
   <p>M. Lauster, M. Fuchs, M. Huber, P. Remmen, R. Streblow, D. Mueller.
-  <a href=\"modelica://BuildSysPro/Resources/IBPSA/Images/ThermalZones/ReducedOrder/RC/UsersGuide/p2241.pdf\">Adaptive Thermal Building Models and Methods for Scalable Simulations of Multiple Buildings using Modelica</a>.
+  <a href=\"modelica://BuildSysPro/IBPSA/Resources/Images/ThermalZones/ReducedOrder/RC/UsersGuide/p2241.pdf\">Adaptive Thermal Building Models and Methods for Scalable Simulations of Multiple Buildings using Modelica</a>.
   <i>Proceedings of BS2015: 14th Conference of International Building Performance
   Simulation Association</i>, p. 339-346, Hyderabad, India. Dec. 7-9, 2015. </p>
   </html>"));

@@ -20,17 +20,17 @@ model QuinticHermite "Example model using quintic Hermite spline"
 equation
   y2 = exp(a*x2);
 
-  y = noEvent(smooth(2, if x > x2 then exp(a*x) elseif x < x1 then -
-    time else IBPSA.Utilities.Math.Functions.quinticHermite(
-              x=x,
-              x1=x1,
-              x2=x2,
-              y1=y1,
-              y2=y2,
-              y1d=y1d,
-              y2d=y2d,
-              y1dd=y1dd,
-              y2dd=y2dd)));
+  y = noEvent(smooth(2, if x > x2 then exp(a*x) elseif x < x1 then -time else
+    IBPSA.Utilities.Math.Functions.quinticHermite(
+    x=x,
+    x1=x1,
+    x2=x2,
+    y1=y1,
+    y2=y2,
+    y1d=y1d,
+    y2d=y2d,
+    y1dd=y1dd,
+    y2dd=y2dd)));
   dy=der(y);
   ddy=der(dy);
   annotation (experiment(Tolerance=1E-6, StopTime=3),
@@ -46,6 +46,6 @@ First implementation.
 </li>
 </ul>
 </html>"),
-    __Dymola_Commands(file="Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/QuinticHermite.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/QuinticHermite.mos"
         "Simulate and plot"));
 end QuinticHermite;

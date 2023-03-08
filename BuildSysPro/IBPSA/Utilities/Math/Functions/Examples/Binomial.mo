@@ -18,7 +18,7 @@ equation
 
   annotation (
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/Binomial.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/Binomial.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=15.9),
     Documentation(info="<html>

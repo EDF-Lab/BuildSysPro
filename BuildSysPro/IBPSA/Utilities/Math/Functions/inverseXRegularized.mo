@@ -17,18 +17,18 @@ function inverseXRegularized
  output Real y "Function value";
 
 algorithm
-  y := if (x > delta or x < -delta) then 1/x elseif (x < delta/2 and x >
-    -delta/2) then x/(delta*delta) else
+  y := if (x > delta or x < -delta) then 1/x elseif (x < delta/2 and x > -delta
+    /2) then x/(delta*delta) else
     IBPSA.Utilities.Math.Functions.BaseClasses.smoothTransition(
-            x=x,
-            delta=delta,
-            deltaInv=deltaInv,
-            a=a,
-            b=b,
-            c=c,
-            d=d,
-            e=e,
-            f=f);
+    x=x,
+    delta=delta,
+    deltaInv=deltaInv,
+    a=a,
+    b=b,
+    c=c,
+    d=d,
+    e=e,
+    f=f);
 
   annotation (smoothOrder=2,
   derivative(order=1,

@@ -1,10 +1,10 @@
 within BuildSysPro.IBPSA.Fluid.Sensors;
 model MassFraction "Ideal one port mass fraction sensor"
-  extends IBPSA.Fluid.Sensors.BaseClasses.PartialAbsoluteSensor(
-      redeclare replaceable package Medium =
+  extends IBPSA.Fluid.Sensors.BaseClasses.PartialAbsoluteSensor(redeclare
+      replaceable package Medium =
         Modelica.Media.Interfaces.PartialCondensingGases);
   extends IBPSA.Fluid.BaseClasses.IndexMassFraction(substanceName="water");
-  extends Modelica.Icons.RotationalSensor;
+  extends Modelica.Icons.RoundSensor;
 
   Modelica.Blocks.Interfaces.RealOutput X(min=-1e-3,
                                           max=1.001,
@@ -25,25 +25,45 @@ annotation (defaultComponentName="senMasFra",
         Text(
           extent={{-150,80},{150,120}},
           textString="%name",
-          lineColor={0,0,255}),
+          textColor={0,0,255}),
         Text(
           extent={{160,-30},{60,-60}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="X"),
-        Line(points={{70,0},{100,0}}, color={0,0,127})}),
+        Line(points={{70,0},{100,0}}, color={0,0,127}),
+        Text(
+          extent={{180,90},{60,40}},
+          textColor={0,0,0},
+          textString=DynamicSelect("", String(X, leftJustified=false, significantDigits=3)))}),
   Documentation(info="<html>
 <p>
 This model outputs the mass fraction of the fluid connected to its port.
 The sensor is ideal, i.e., it does not influence the fluid.
 </p>
 <p>
+To measure mass fraction in a duct or pipe, use
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.MassFractionTwoPort\">IBPSA.Fluid.Sensors.MassFractionTwoPort</a>
+rather than this sensor.
 Read the
 <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a>
-prior to using this model with one fluid port.
+prior to using this model to see about potential numerical problems if this sensor is used incorrectly
+in a system model.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+September 21, 2020, by Michael Wetter:<br/>
+Introduced parameter <code>warnAboutOnePortConnection</code> and updated documentation.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1399\">#1399</a>.
+</li>
+<li>
+February 25, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating state.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
 <li>
 January 26, 2016, by Michael Wetter:<br/>
 Corrected wrong assignment

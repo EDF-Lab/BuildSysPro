@@ -1,8 +1,7 @@
 within BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.Examples;
 model LocalCivilTime "Test model for calculate local civil time"
   extends Modelica.Icons.Example;
-  IBPSA.Utilities.Time.ModelTime modTim
-    "Block that outputs the model time"
+  IBPSA.Utilities.Time.ModelTime modTim "Block that outputs the model time"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   IBPSA.BoundaryConditions.WeatherData.BaseClasses.LocalCivilTime locTim(timZon=-21600,
       lon=-1.5293932423067)
@@ -26,6 +25,6 @@ First implementation.
 </ul>
 </html>"),
   experiment(Tolerance=1e-6, StartTime=0, StopTime=172800),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/LocalCivilTime.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/LocalCivilTime.mos"
         "Simulate and plot"));
 end LocalCivilTime;

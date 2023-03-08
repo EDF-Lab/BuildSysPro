@@ -1,21 +1,21 @@
 within BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses;
-function getTimeZoneTMY3 "Gets the time zone from a TMY3 weather data file"
+impure function getTimeZoneTMY3 "Gets the time zone from a TMY3 weather data file"
   extends Modelica.Icons.Function;
  input String filNam "Name of weather data file"
  annotation (Dialog(
         loadSelector(filter="Weather files (*.mos)", caption=
             "Select weather file")));
- output Modelica.SIunits.Time timZon "Time zone from the weather file";
+  output Modelica.Units.SI.Time timZon "Time zone from the weather file";
 protected
  Integer nexInd "Next index, used for error handling";
  String element "String representation of the returned element";
 algorithm
   element :=
     IBPSA.BoundaryConditions.WeatherData.BaseClasses.getHeaderElementTMY3(
-            filNam=filNam,
-            start="#LOCATION",
-            name="longitude",
-            position=9);
+    filNam=filNam,
+    start="#LOCATION",
+    name="longitude",
+    position=9);
    (nexInd, timZon) :=Modelica.Utilities.Strings.Advanced.scanReal(
     string=element,
     startIndex=1,
@@ -32,6 +32,10 @@ algorithm
 This function returns the time zone of the TMY3 weather data file.
 </html>", revisions="<html>
 <ul>
+<li>
+December 11, 2021, by Michael Wetter:<br/>
+Added <code>impure</code> declaration for MSL 4.0.0.
+</li>
 <li>
 September 24, 2015, by Marcus Fuchs:<br/>
 Replace Dymola specific annotation by <code>loadSelector</code>

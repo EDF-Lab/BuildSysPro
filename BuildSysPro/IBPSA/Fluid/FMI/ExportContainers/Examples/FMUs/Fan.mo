@@ -1,16 +1,16 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block Fan "Declaration of an FMU that exports a fan"
-   extends IBPSA.Fluid.FMI.ExportContainers.ReplaceableTwoPort(
-      redeclare replaceable package Medium = IBPSA.Media.Air,
-      redeclare final Movers.FlowControlled_dp com(
+   extends IBPSA.Fluid.FMI.ExportContainers.ReplaceableTwoPort(redeclare
+      replaceable package Medium = IBPSA.Media.Air, redeclare final
+      Movers.FlowControlled_dp com(
       final m_flow_nominal=m_flow_nominal,
       final use_inputFilter=false,
       energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState));
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=0.01
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.01
     "Nominal mass flow rate";
-  parameter Modelica.SIunits.PressureDifference dp_nominal(displayUnit="Pa")=500
-    "Pressure drop at nominal mass flow rate";
+  parameter Modelica.Units.SI.PressureDifference dp_nominal(displayUnit="Pa")=
+       500 "Pressure drop at nominal mass flow rate";
 
   Modelica.Blocks.Interfaces.RealInput dp_in(min=0, final unit="Pa")
     "Prescribed pressure rise"
@@ -54,7 +54,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/Fan.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/Fan.mos"
         "Export FMU"),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
         graphics={

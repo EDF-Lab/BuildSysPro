@@ -4,12 +4,12 @@ block ReplaceableTwoPort
   extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort;
   replaceable IBPSA.Fluid.Interfaces.PartialTwoPort com constrainedby
     IBPSA.Fluid.Interfaces.PartialTwoPort(redeclare final package Medium =
-               Medium, final allowFlowReversal=allowFlowReversal)
+        Medium, final allowFlowReversal=allowFlowReversal)
     "Component that holds the actual model"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
-  Modelica.Blocks.Sources.RealExpression dpCom(y=com.port_a.p - com.port_b.p) if
-       use_p_in "Pressure drop of the component"
+  Modelica.Blocks.Sources.RealExpression dpCom(y=com.port_a.p - com.port_b.p)
+    if use_p_in "Pressure drop of the component"
     annotation (Placement(transformation(extent={{-40,-90},{-20,-70}})));
 
 protected
@@ -25,8 +25,8 @@ protected
     final use_p_in=use_p_in) "Boundary component for outlet"
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
 
-  Modelica.Blocks.Math.Feedback pOut if
-       use_p_in "Pressure at component outlet"
+  Modelica.Blocks.Math.Feedback pOut
+    if use_p_in "Pressure at component outlet"
     annotation (Placement(transformation(extent={{-10,-70},{10,-50}})));
 equation
   connect(pOut.u1, bouIn.p) annotation (Line(

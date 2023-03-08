@@ -3,6 +3,9 @@ model DoorDiscretizedOpen
   "Door model using discretization along height coordinate"
   extends IBPSA.Airflow.Multizone.BaseClasses.DoorDiscretized;
 
+  parameter Real CD=0.65 "Discharge coefficient"
+    annotation (Dialog(group="Orifice characteristics"));
+
 protected
   constant Real mFixed = 0.5 "Fixed value for flow coefficient";
   constant Real gamma(min=1) = 1.5
@@ -18,18 +21,18 @@ protected
 equation
   m=mFixed;
   A = wOpe*hOpe;
-  kVal = CD*dA*sqrt(2/rho_default);
+  CVal = CD*dA*sqrt(2/rho_default);
   // orifice equation
   for i in 1:nCom loop
     dV_flow[i] = IBPSA.Airflow.Multizone.BaseClasses.powerLawFixedM(
-            k=kVal,
-            dp=dpAB[i],
-            m=mFixed,
-            a=a,
-            b=b,
-            c=c,
-            d=d,
-            dp_turbulent=dp_turbulent);
+      C=CVal,
+      dp=dpAB[i],
+      m=mFixed,
+      a=a,
+      b=b,
+      c=c,
+      d=d,
+      dp_turbulent=dp_turbulent);
   end for;
 
   annotation (defaultComponentName="doo",
@@ -52,6 +55,17 @@ for a door that can either be open or closed.
 </html>",
 revisions="<html>
 <ul>
+<li>
+January 8, 2019, by Michael Wetter:<br/>
+Moved parameter <code>CD</code> from
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.BaseClasses.DoorDiscretized\">
+IBPSA.Airflow.Multizone.BaseClasses.DoorDiscretized</a>
+to
+<a href=\"modelica://BuildSysPro.IBPSA.Airflow.Multizone.DoorDiscretizedOpen\">
+IBPSA.Airflow.Multizone.DoorDiscretizedOpen</a>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/971\">#971</a>.
+</li>
 <li>
 December 14, 2012 by Michael Wetter:<br/>
 Renamed protected parameters for consistency with the naming conventions.

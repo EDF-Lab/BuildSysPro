@@ -16,7 +16,7 @@ equation
       points={{-39,0},{-11,0}},
       color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Examples/SaturationPressureLiquid.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Examples/SaturationPressureLiquid.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 This examples is a unit test for the saturation pressure computation of liquid water.

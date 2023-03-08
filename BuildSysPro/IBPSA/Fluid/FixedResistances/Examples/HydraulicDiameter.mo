@@ -54,7 +54,7 @@ equation
   connect(resLarPip.port_b, sin.ports[2]) annotation (Line(points={{10,-40},{20,
           -40},{20,-2},{30,-2}}, color={0,127,255}));
   annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FixedResistances/Examples/HydraulicDiameter.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FixedResistances/Examples/HydraulicDiameter.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

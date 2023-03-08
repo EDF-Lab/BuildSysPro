@@ -6,9 +6,10 @@ model Damper
 
   IBPSA.Fluid.Actuators.Dampers.Exponential res(
     redeclare package Medium = Medium,
+    use_inputFilter=false,
+    dpDamper_nominal=10,
     m_flow_nominal=1,
-    use_inputFilter=false)
-    "A damper with quadratic relationship between m_flow and dp"
+    k1=0.45) "A damper with quadratic relationship between m_flow and dp"
     annotation (Placement(transformation(extent={{0,30},{20,50}})));
 
     Modelica.Blocks.Sources.Ramp yRam(
@@ -21,11 +22,11 @@ model Damper
     redeclare package Medium = Medium,
     p(displayUnit="Pa") = 101335,
     T=293.15,
-    nPorts=4) "Pressure boundary condition" annotation (Placement(
-        transformation(extent={{-60,-10},{-40,10}})));
+    nPorts=4) "Pressure boundary condition"
+    annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium =
-        Medium, nPorts=4) "Pressure boundary condition"
+  IBPSA.Fluid.Sources.Boundary_pT sin(redeclare package Medium = Medium, nPorts=
+       4) "Pressure boundary condition"
     annotation (Placement(transformation(extent={{94,-10},{74,10}})));
 
   IBPSA.Fluid.Actuators.Dampers.PressureIndependent preIndDpFixed_nominal(
@@ -33,7 +34,7 @@ model Damper
     redeclare package Medium = Medium,
     m_flow_nominal=1,
     dpFixed_nominal=5,
-    dp_nominal=10)
+    dpDamper_nominal=10)
     "A damper with a mass flow proportional to the input signal and using dpFixed_nominal"
     annotation (Placement(transformation(extent={{0,-90},{20,-70}})));
 
@@ -42,7 +43,7 @@ model Damper
     redeclare package Medium = Medium,
     m_flow_nominal=1,
     dpFixed_nominal=0,
-    dp_nominal=10,
+    dpDamper_nominal=10,
     from_dp=false)
     "A damper with a mass flow proportional to the input signal and using from_dp = false"
     annotation (Placement(transformation(extent={{0,-50},{20,-30}})));
@@ -50,7 +51,7 @@ model Damper
   IBPSA.Fluid.Actuators.Dampers.PressureIndependent preInd(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
-    dp_nominal=10,
+    dpDamper_nominal=10,
     use_inputFilter=false)
     "A damper with a mass flow proportional to the input signal"
     annotation (Placement(transformation(extent={{0,-10},{20,10}})));
@@ -85,7 +86,7 @@ equation
   connect(preIndDpFixed_nominal.y, yRam.y) annotation (Line(points={{10,-68},{
           10,-60},{30,-60},{30,70},{1,70}}, color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Actuators/Dampers/Examples/Damper.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Actuators/Dampers/Examples/Damper.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

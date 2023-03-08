@@ -1,41 +1,42 @@
 within BuildSysPro.IBPSA.Fluid.Chillers.BaseClasses;
 partial model Carnot
-  extends IBPSA.Fluid.Interfaces.PartialFourPortInterface(
-      m1_flow_nominal=QCon_flow_nominal/cp1_default/dTCon_nominal,
-      m2_flow_nominal=QEva_flow_nominal/cp2_default/dTEva_nominal);
+  extends IBPSA.Fluid.Interfaces.PartialFourPortInterface(m1_flow_nominal=
+        QCon_flow_nominal/cp1_default/dTCon_nominal, m2_flow_nominal=
+        QEva_flow_nominal/cp2_default/dTEva_nominal);
 
-  parameter Modelica.SIunits.HeatFlowRate QEva_flow_nominal(max=0)
+  constant Boolean homotopyInitialization = true "= true, use homotopy method"
+    annotation(HideResult=true);
+
+  parameter Modelica.Units.SI.HeatFlowRate QEva_flow_nominal(max=0)
     "Nominal cooling heat flow rate (QEva_flow_nominal < 0)"
     annotation (Dialog(group="Nominal condition"));
-  parameter Modelica.SIunits.HeatFlowRate QCon_flow_nominal(min=0)
-    "Nominal heating flow rate"
-    annotation (Dialog(group="Nominal condition"));
+  parameter Modelica.Units.SI.HeatFlowRate QCon_flow_nominal(min=0)
+    "Nominal heating flow rate" annotation (Dialog(group="Nominal condition"));
 
-  parameter Modelica.SIunits.TemperatureDifference dTEva_nominal(
-    final max=0) = -10 "Temperature difference evaporator outlet-inlet"
+  parameter Modelica.Units.SI.TemperatureDifference dTEva_nominal(final max=0)=
+       -10 "Temperature difference evaporator outlet-inlet"
     annotation (Dialog(group="Nominal condition"));
-  parameter Modelica.SIunits.TemperatureDifference dTCon_nominal(
-    final min=0) = 10 "Temperature difference condenser outlet-inlet"
+  parameter Modelica.Units.SI.TemperatureDifference dTCon_nominal(final min=0)=
+       10 "Temperature difference condenser outlet-inlet"
     annotation (Dialog(group="Nominal condition"));
 
   // Efficiency
   parameter Boolean use_eta_Carnot_nominal = true
     "Set to true to use Carnot effectiveness etaCarnot_nominal rather than COP_nominal"
     annotation(Dialog(group="Efficiency"));
-  parameter Real etaCarnot_nominal(unit="1") = COP_nominal/
-    (TUseAct_nominal/(TCon_nominal+TAppCon_nominal - (TEva_nominal-TAppEva_nominal)))
-    "Carnot effectiveness (=COP/COP_Carnot) used if use_eta_Carnot_nominal = true"
+  parameter Real etaCarnot_nominal(unit="1") = 0.3
+    "Carnot effectiveness (=COP/COP_Carnot) used during simulation if use_eta_Carnot_nominal = true"
     annotation (Dialog(group="Efficiency", enable=use_eta_Carnot_nominal));
 
   parameter Real COP_nominal(unit="1") = etaCarnot_nominal*TUseAct_nominal/
     (TCon_nominal+TAppCon_nominal - (TEva_nominal-TAppEva_nominal))
-    "Coefficient of performance at TEva_nominal and TCon_nominal, used if use_eta_Carnot_nominal = false"
+    "Coefficient of performance at TEva_nominal and TCon_nominal, used during simulation if use_eta_Carnot_nominal = false"
     annotation (Dialog(group="Efficiency", enable=not use_eta_Carnot_nominal));
 
-  parameter Modelica.SIunits.Temperature TCon_nominal = 303.15
+  parameter Modelica.Units.SI.Temperature TCon_nominal=303.15
     "Condenser temperature used to compute COP_nominal if use_eta_Carnot_nominal=false"
     annotation (Dialog(group="Efficiency", enable=not use_eta_Carnot_nominal));
-  parameter Modelica.SIunits.Temperature TEva_nominal = 278.15
+  parameter Modelica.Units.SI.Temperature TEva_nominal=278.15
     "Evaporator temperature used to compute COP_nominal if use_eta_Carnot_nominal=false"
     annotation (Dialog(group="Efficiency", enable=not use_eta_Carnot_nominal));
 
@@ -43,23 +44,22 @@ partial model Carnot
     "Coefficients for efficiency curve (need p(a=a, yPL=1)=1)"
     annotation (Dialog(group="Efficiency"));
 
-  parameter Modelica.SIunits.Pressure dp1_nominal(displayUnit="Pa")
+  parameter Modelica.Units.SI.Pressure dp1_nominal(displayUnit="Pa")
     "Pressure difference over condenser"
     annotation (Dialog(group="Nominal condition"));
-  parameter Modelica.SIunits.Pressure dp2_nominal(displayUnit="Pa")
+  parameter Modelica.Units.SI.Pressure dp2_nominal(displayUnit="Pa")
     "Pressure difference over evaporator"
     annotation (Dialog(group="Nominal condition"));
 
-  parameter Modelica.SIunits.TemperatureDifference TAppCon_nominal(min=0) = if cp1_default < 1500 then 5 else 2
+  parameter Modelica.Units.SI.TemperatureDifference TAppCon_nominal(min=0)=
+    if cp1_default < 1500 then 5 else 2
     "Temperature difference between refrigerant and working fluid outlet in condenser"
     annotation (Dialog(group="Efficiency"));
 
-  parameter Modelica.SIunits.TemperatureDifference TAppEva_nominal(min=0) = if cp2_default < 1500 then 5 else 2
+  parameter Modelica.Units.SI.TemperatureDifference TAppEva_nominal(min=0)=
+    if cp2_default < 1500 then 5 else 2
     "Temperature difference between refrigerant and working fluid outlet in evaporator"
     annotation (Dialog(group="Efficiency"));
-
-  parameter Boolean homotopyInitialization=true "= true, use homotopy method"
-    annotation (Dialog(tab="Advanced"));
 
   parameter Boolean from_dp1=false
     "= true, use m_flow = f(dp) else dp = f(m_flow)"
@@ -82,17 +82,17 @@ partial model Carnot
     "Fraction of nominal flow rate where flow transitions to laminar"
     annotation (Dialog(tab="Flow resistance", group="Evaporator"));
 
-  parameter Modelica.SIunits.Time tau1=60
+  parameter Modelica.Units.SI.Time tau1=60
     "Time constant at nominal flow rate (used if energyDynamics1 <> Modelica.Fluid.Types.Dynamics.SteadyState)"
     annotation (Dialog(tab="Dynamics", group="Condenser"));
-  parameter Modelica.SIunits.Time tau2=60
+  parameter Modelica.Units.SI.Time tau2=60
     "Time constant at nominal flow rate (used if energyDynamics2 <> Modelica.Fluid.Types.Dynamics.SteadyState)"
     annotation (Dialog(tab="Dynamics", group="Evaporator"));
 
-  parameter Modelica.SIunits.Temperature T1_start=Medium1.T_default
+  parameter Modelica.Units.SI.Temperature T1_start=Medium1.T_default
     "Initial or guess value of set point"
     annotation (Dialog(tab="Dynamics", group="Condenser"));
-  parameter Modelica.SIunits.Temperature T2_start=Medium2.T_default
+  parameter Modelica.Units.SI.Temperature T2_start=Medium2.T_default
     "Initial or guess value of set point"
     annotation (Dialog(tab="Dynamics", group="Evaporator"));
 
@@ -124,8 +124,8 @@ partial model Carnot
 
   Real etaPL(final unit = "1")=
     if evaluate_etaPL
-      then 1
-    else IBPSA.Utilities.Math.Functions.polynomial(a=a, x=yPL)
+      then IBPSA.Utilities.Math.Functions.polynomial(a=a, x=yPL)
+      else 1
     "Efficiency due to part load (etaPL(yPL=1)=1)";
 
   Real COP(min=0, final unit="1") = etaCarnot_nominal_internal * COPCar * etaPL
@@ -136,12 +136,12 @@ partial model Carnot
     x2=TConAct - TEvaAct,
     deltaX=0.25) "Carnot efficiency";
 
-  Modelica.SIunits.Temperature TConAct(start=TCon_nominal + TAppCon_nominal)=
-    Medium1.temperature(staB1) + QCon_flow/QCon_flow_nominal*TAppCon_nominal
+  Modelica.Units.SI.Temperature TConAct(start=TCon_nominal + TAppCon_nominal)=
+       Medium1.temperature(staB1) + QCon_flow/QCon_flow_nominal*TAppCon_nominal
     "Condenser temperature used to compute efficiency, taking into account pinch temperature between fluid and refrigerant";
 
-  Modelica.SIunits.Temperature TEvaAct(start=TEva_nominal - TAppEva_nominal)=
-    Medium2.temperature(staB2) - QEva_flow/QEva_flow_nominal*TAppEva_nominal
+  Modelica.Units.SI.Temperature TEvaAct(start=TEva_nominal - TAppEva_nominal)=
+       Medium2.temperature(staB2) - QEva_flow/QEva_flow_nominal*TAppEva_nominal
     "Evaporator temperature used to compute efficiency, taking into account pinch temperature between fluid and refrigerant";
 
 protected
@@ -158,30 +158,30 @@ protected
   // For Carnot_y, computing etaPL = f(yPL) introduces a nonlinear equation.
   // The parameter below avoids this if a = {1}.
   final parameter Boolean evaluate_etaPL=
-    (size(a, 1) == 1 and abs(a[1] - 1)  < Modelica.Constants.eps)
+    not ((size(a, 1) == 1 and abs(a[1] - 1)  < Modelica.Constants.eps))
     "Flag, true if etaPL should be computed as it depends on yPL"
     annotation(Evaluate=true);
 
-  final parameter Modelica.SIunits.Temperature TUseAct_nominal=
-    if COP_is_for_cooling
-      then TEva_nominal - TAppEva_nominal
-      else TCon_nominal + TAppCon_nominal
+  final parameter Modelica.Units.SI.Temperature TUseAct_nominal=if
+      COP_is_for_cooling then TEva_nominal - TAppEva_nominal else TCon_nominal
+       + TAppCon_nominal
     "Nominal evaporator temperature for chiller or condenser temperature for heat pump, taking into account pinch temperature between fluid and refrigerant";
-  Modelica.SIunits.Temperature TUseAct=if COP_is_for_cooling then TEvaAct else TConAct
+  Modelica.Units.SI.Temperature TUseAct=if COP_is_for_cooling then TEvaAct
+       else TConAct
     "Temperature of useful heat (evaporator for chiller, condenser for heat pump), taking into account pinch temperature between fluid and refrigerant";
 
-  final parameter Modelica.SIunits.SpecificHeatCapacity cp1_default=
-    Medium1.specificHeatCapacityCp(Medium1.setState_pTX(
-      p = Medium1.p_default,
-      T = Medium1.T_default,
-      X = Medium1.X_default))
+  final parameter Modelica.Units.SI.SpecificHeatCapacity cp1_default=
+      Medium1.specificHeatCapacityCp(Medium1.setState_pTX(
+      p=Medium1.p_default,
+      T=Medium1.T_default,
+      X=Medium1.X_default))
     "Specific heat capacity of medium 1 at default medium state";
 
-  final parameter Modelica.SIunits.SpecificHeatCapacity cp2_default=
-    Medium2.specificHeatCapacityCp(Medium2.setState_pTX(
-      p = Medium2.p_default,
-      T = Medium2.T_default,
-      X = Medium2.X_default))
+  final parameter Modelica.Units.SI.SpecificHeatCapacity cp2_default=
+      Medium2.specificHeatCapacityCp(Medium2.setState_pTX(
+      p=Medium2.p_default,
+      T=Medium2.T_default,
+      X=Medium2.X_default))
     "Specific heat capacity of medium 2 at default medium state";
 
   Medium1.ThermodynamicState staA1 = Medium1.setState_phX(
@@ -225,9 +225,13 @@ initial equation
   assert(dTCon_nominal > 0,
     "Parameter dTCon_nominal must be positive.");
 
-  assert(abs(IBPSA.Utilities.Math.Functions.polynomial(a=a, x=1) - 1) <
-    0.01, "Efficiency curve is wrong. Need etaPL(y=1)=1.");
+  assert(abs(IBPSA.Utilities.Math.Functions.polynomial(a=a, x=1) - 1) < 0.01,
+    "Efficiency curve is wrong. Need etaPL(y=1)=1.");
   assert(etaCarnot_nominal_internal < 1,   "Parameters lead to etaCarnot_nominal > 1. Check parameters.");
+
+  assert(homotopyInitialization, "In " + getInstanceName() +
+    ": The constant homotopyInitialization has been modified from its default value. This constant will be removed in future releases.",
+    level = AssertionLevel.warning);
 
 equation
   connect(port_a2, eva.port_a)
@@ -331,24 +335,30 @@ whose coefficient of performance COP changes
 with temperatures in the same way as the Carnot efficiency changes.
 </p>
 <p>
-The model allows to either specify the Carnot effectivness
-<i>&eta;<sub>Carnot,0</sub></i>, or
-a <i>COP<sub>0</sub></i>
-at the nominal conditions, together with
-the evaporator temperature <i>T<sub>eva,0</sub></i> and
-the condenser temperature <i>T<sub>con,0</sub></i>, in which
-case the model computes the Carnot effectivness as
+Set <code>use_eta_Carnot_nominal=true</code> to specify directly
+the Carnot effectiveness <i>&eta;<sub>Carnot,0</sub></i>,
+in which case the value of the parameter <code>COP_nominal</code>
+will not affect the simulation.
+If <code>use_eta_Carnot_nominal=false</code>, the model will use
+the value of the parameter <code>COP_nominal</code>
+together with the specified nominal temperatures
+to compute the Carnot effectiveness as
 </p>
 <p align=\"center\" style=\"font-style:italic;\">
 &eta;<sub>Carnot,0</sub> =
   COP<sub>0</sub>
-&frasl;  (T<sub>use,0</sub> &frasl; (T<sub>con,0</sub>-T<sub>eva,0</sub>)),
+&frasl;  (T<sub>use,0</sub> &frasl; (T<sub>con,0</sub> + T<sub>app,con,0</sub> - (T<sub>eva,0</sub>-T<sub>app,eva,0</sub>))),
 </p>
 <p>
 where
-<i>T<sub>use</sub></i> is the temperature of the the useful heat,
-e.g., the evaporator temperature for a chiller or the condenser temperature
-for a heat pump.
+<i>T<sub>eva,0</sub></i> is the evaporator temperature,
+<i>T<sub>con,0</sub></i> is the condenser temperature,
+<i>T<sub>app,eva,0</sub></i> is the evaporator approach temperature,
+<i>T<sub>app,con,0</sub></i> is the condenser approach temperature, and
+<i>T<sub>use,0</sub></i> is the temperature of the the useful heat.
+If <code>COP_is_for_cooling=true</code>,
+then <i>T<sub>use,0</sub></i> is the condenser temperature of a heat pump plus the approach temperature,
+otherwise it is the evaporator temperature minus the approach temperature of a chiller.
 </p>
 <p>
 The COP is computed as the product
@@ -363,7 +373,7 @@ a polynomial.
 This polynomial has the form
 </p>
 <p align=\"center\" style=\"font-style:italic;\">
-  &eta;<sub>PL</sub> = a<sub>1</sub> + a<sub>2</sub> y + a<sub>3</sub> y<sup>2</sup> + ...
+  &eta;<sub>PL</sub> = a<sub>1</sub> + a<sub>2</sub> y + a<sub>3</sub> y<sup>2</sup> + ...,
 </p>
 <p>
 where <i>y &isin; [0, 1]</i> is
@@ -380,6 +390,29 @@ and the part load ratio are set up.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+February 3, 2023, by Michael Wetter:<br/>
+Changed parameter binding
+<code>etaCarnot_nominal(unit=\"1\") = COP_nominal/(TUseAct_nominal/(TCon_nominal+TAppCon_nominal - (TEva_nominal-TAppEva_nominal)))</code>
+to
+<code>etaCarnot_nominal(unit=\"1\") = 0.3</code> to avoid a circular assignment.<br/>
+Improved documentation.<br/>
+This is for
+<a href=\"https://github.com/lbl-srg/modelica-buildings/issues/3226\">Buildings, #3226</a>.
+</li>
+<li>
+April 14, 2020, by Michael Wetter:<br/>
+Changed <code>homotopyInitialization</code> to a constant.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1341\">IBPSA, #1341</a>.
+</li>
+<li>
+September 12, 2019, by Michael Wetter:<br/>
+Corrected value of <code>evaluate_etaPL</code> and how it is used.
+This correction only affects protected variables and does not affect the results.<br/>
+This is for <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1200\">
+#1200</a>.
+</li>
 <li>
 June 16, 2017, by Michael Wetter:<br/>
 Added temperature difference between fluids in condenser and evaporator

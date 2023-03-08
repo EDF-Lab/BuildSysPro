@@ -130,10 +130,9 @@ First implementation.
       final reset=reset,
       yMax=1,
       yMin=0,
-      controllerType=Modelica.Blocks.Types.SimpleController.PI,
       Ti=1,
-      k=10) "PI controller" annotation (Placement(transformation(extent=
-             {{-10,-10},{10,10}})));
+      k=10) "PI controller"
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
     Modelica.Blocks.Math.Gain gain(k=5000)
                                           "Gain for heat flow rate"
       annotation (Placement(transformation(extent={{30,-10},{50,10}})));
@@ -202,7 +201,7 @@ equation
           {-42,-10}}, color={0,0,127}));
  annotation (
 experiment(Tolerance=1e-06, StopTime=600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Controls/Continuous/Examples/LimPIDWithReset.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Controls/Continuous/Examples/LimPIDWithReset.mos"
         "Simulate and plot"),
     Documentation(
 info="<html>

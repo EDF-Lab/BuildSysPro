@@ -4,12 +4,15 @@ model InternalResistancesOneUTube "Validation of InternalResistancesOneUTube"
 
   parameter Integer nSeg(min=1) = 10
     "Number of segments to use in vertical discretization of the boreholes";
-  parameter Modelica.SIunits.Length hSeg = borFieDat.conDat.hBor/nSeg
+  parameter Modelica.Units.SI.Length hSeg=borFieDat.conDat.hBor/nSeg
     "Length of the internal heat exchanger";
-  parameter Modelica.SIunits.ThermalResistance Rgb_val=0.0430511 "Grout node to borehole wall thermal resistance";
-  parameter Modelica.SIunits.ThermalResistance Rgg_val=0.00605573 "Grout node to grout node thermal resistance";
-  parameter Modelica.SIunits.ThermalResistance RCondGro_val=0.14285 "Pipe to grout node thermal resistance";
-  parameter Modelica.SIunits.Temperature T_start=298.15 "Initial temperature";
+  parameter Modelica.Units.SI.ThermalResistance Rgb_val=0.0430511
+    "Grout node to borehole wall thermal resistance";
+  parameter Modelica.Units.SI.ThermalResistance Rgg_val=0.00605573
+    "Grout node to grout node thermal resistance";
+  parameter Modelica.Units.SI.ThermalResistance RCondGro_val=0.14285
+    "Pipe to grout node thermal resistance";
+  parameter Modelica.Units.SI.Temperature T_start=298.15 "Initial temperature";
 
   IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseClasses.InternalResistancesOneUTube
     intRes1UTub(
@@ -37,11 +40,10 @@ model InternalResistancesOneUTube "Validation of InternalResistancesOneUTube"
     offset=T_start)
                    "Temperature ramp of pipe 1"
     annotation (Placement(transformation(extent={{-70,30},{-50,50}})));
-  parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFieDat(conDat=
-        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(
-         use_Rb=false)) "Borefield data" annotation (Placement(
-        transformation(extent={{-100,-100},{-80,-80}})));
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFieDat(conDat=
+        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(use_Rb=
+        false)) "Borefield data"
+    annotation (Placement(transformation(extent={{-100,-100},{-80,-80}})));
 equation
 
   connect(TWal.port, intRes1UTub.port_wall)
@@ -55,7 +57,7 @@ equation
   annotation (
   experiment(StopTime=3600, Tolerance=1e-6),
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/BaseClasses/Examples/InternalResistancesOneUTube.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/BaseClasses/Examples/InternalResistancesOneUTube.mos"
         "Simulate and plot"),
   Documentation(info="<html>
   This example tests the implementation of

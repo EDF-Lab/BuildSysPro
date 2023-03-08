@@ -6,14 +6,14 @@ model SpeedControlled_y
     gain(k=1),
     redeclare IBPSA.Fluid.Movers.SpeedControlled_y floMacSta(
       redeclare package Medium = Medium,
-      per(pressure(V_flow={0,m_flow_nominal,2*m_flow_nominal}/1.2, dp={2
-              *dp_nominal,dp_nominal,0})),
+      per(pressure(V_flow={0,m_flow_nominal,2*m_flow_nominal}/1.2, dp={2*
+              dp_nominal,dp_nominal,0})),
       use_inputFilter=false,
       energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState),
     redeclare IBPSA.Fluid.Movers.SpeedControlled_y floMacDyn(
       redeclare package Medium = Medium,
-      per(pressure(V_flow={0,m_flow_nominal,2*m_flow_nominal}/1.2, dp={2
-              *dp_nominal,dp_nominal,0})),
+      per(pressure(V_flow={0,m_flow_nominal,2*m_flow_nominal}/1.2, dp={2*
+              dp_nominal,dp_nominal,0})),
       use_inputFilter=false,
       energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial));
 
@@ -28,7 +28,7 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{160,
             160}})),
 experiment(Tolerance=1e-08, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Validation/SpeedControlled_y.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Validation/SpeedControlled_y.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

@@ -7,7 +7,7 @@ model AirProperties
     TMin=273.15 - 30,
     TMax=273.15 + 60);
 
-  Modelica.SIunits.SpecificEnthalpy hLiq "Specific enthalpy of liquid";
+  Modelica.Units.SI.SpecificEnthalpy hLiq "Specific enthalpy of liquid";
 
 equation
   // Check the implementation of the base properties
@@ -20,7 +20,7 @@ equation
     assert(abs(h-hLiq) < 1e-8, "Error in enthalpy computation.");
   end if;
    annotation(experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Media/Examples/AirProperties.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Media/Examples/AirProperties.mos"
         "Simulate and plot"),
       Documentation(info="<html>
 <p>

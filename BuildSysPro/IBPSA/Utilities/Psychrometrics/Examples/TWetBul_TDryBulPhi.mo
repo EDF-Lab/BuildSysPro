@@ -5,9 +5,8 @@ model TWetBul_TDryBulPhi "Model to test the wet bulb temperature computation"
   package Medium = IBPSA.Media.Air "Medium model"
            annotation (choicesAllMatching = true);
 
-  IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi wetBulPhi(
-      redeclare package Medium = Medium)
-    "Model for wet bulb temperature"
+  IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi wetBulPhi(redeclare package
+      Medium = Medium) "Model for wet bulb temperature"
     annotation (Placement(transformation(extent={{0,40},{20,60}})));
   Modelica.Blocks.Sources.Constant p(k=101325) "Pressure"
                                     annotation (Placement(transformation(extent={{-80,-20},
@@ -20,22 +19,21 @@ model TWetBul_TDryBulPhi "Model to test the wet bulb temperature computation"
   Modelica.Blocks.Sources.Constant TDryBul(k=273.15 + 29.4)
     "Dry bulb temperature"          annotation (Placement(transformation(extent={{-80,60},
             {-60,80}})));
-  IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi wetBulPhiApp(
-      redeclare package Medium = Medium, approximateWetBulb=true)
+  IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulPhi wetBulPhiApp(redeclare
+      package Medium = Medium, approximateWetBulb=true)
     "Model for wet bulb temperature"
     annotation (Placement(transformation(extent={{0,0},{20,20}})));
   IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBulXi(redeclare package
-      Medium =         Medium)
+      Medium = Medium)
     "Model for wet bulb temperature using Xi as an input, used to verify consistency with wetBulPhi"
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
-  IBPSA.Utilities.Psychrometrics.X_pTphi x_pTphi
-    "Computes mass fraction" annotation (Placement(transformation(
-          extent={{-22,-36},{-10,-24}})));
+  IBPSA.Utilities.Psychrometrics.X_pTphi x_pTphi "Computes mass fraction"
+    annotation (Placement(transformation(extent={{-22,-36},{-10,-24}})));
 
 protected
   block Assertions
     extends Modelica.Blocks.Icons.Block;
-    constant Modelica.SIunits.Temperature dT_max=0.1
+    constant Modelica.Units.SI.Temperature dT_max=0.1
       "Maximum allowed deviation with reference result";
 
     Modelica.Blocks.Interfaces.RealInput phi "Relative humidity"
@@ -103,7 +101,7 @@ equation
   connect(assertions.phi, phi.y) annotation (Line(points={{58,16},{50,16},{40,16},
           {40,30},{-59,30}}, color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Examples/TWetBul_TDryBulPhi.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Examples/TWetBul_TDryBulPhi.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

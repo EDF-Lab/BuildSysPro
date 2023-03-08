@@ -20,15 +20,13 @@ model Stratified "Test model for stratified tank"
     T=273.15 + 50,
     redeclare package Medium = Medium,
     use_T_in=true,
-    nPorts=2)
-    annotation (Placement(transformation(extent={{-60,-2},{-40,18}})));
+    nPorts=2) annotation (Placement(transformation(extent={{-60,-2},{-40,18}})));
   IBPSA.Fluid.Sources.Boundary_pT sin_1(
     redeclare package Medium = Medium,
     T=273.15 + 20,
     use_p_in=true,
     p=300000,
-    nPorts=2)
-    annotation (Placement(transformation(extent={{90,-2},{70,18}})));
+    nPorts=2) annotation (Placement(transformation(extent={{90,-2},{70,18}})));
   IBPSA.Fluid.FixedResistances.PressureDrop res_1(
     from_dp=true,
     redeclare package Medium = Medium,
@@ -50,10 +48,10 @@ model Stratified "Test model for stratified tank"
     m_flow_nominal=0.1)
     annotation (Placement(transformation(extent={{38,-38},{58,-18}})));
   IBPSA.Fluid.Sensors.EnthalpyFlowRate HOut_flow(redeclare package Medium =
-               Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
+        Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{6,2},{22,18}})));
   IBPSA.Fluid.Sensors.EnthalpyFlowRate HOut_flow1(redeclare package Medium =
-               Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
+        Medium, m_flow_nominal=0.1) "Enthalpy flow rate"
     annotation (Placement(transformation(extent={{18,-36},{34,-20}})));
   Modelica.Blocks.Continuous.Integrator dH
     "Differenz in enthalpy (should be zero at steady-state)"
@@ -65,10 +63,10 @@ model Stratified "Test model for stratified tank"
     "Pressure boundary condition"
                  annotation (Placement(transformation(extent={{20,60},{40,80}})));
   Modelica.Blocks.Sources.Sine sine(
-    freqHz=1/86400,
+    f=1/86400,
     amplitude=10,
-    offset=273.15 + 20) annotation (Placement(transformation(extent={{-90,62},{
-            -70,82}})));
+    offset=273.15 + 20)
+    annotation (Placement(transformation(extent={{-90,62},{-70,82}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature TBCSid2
     "Boundary condition for tank" annotation (Placement(transformation(extent={
             {-40,50},{-28,62}})));
@@ -142,7 +140,7 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   annotation(experiment(Tolerance=1e-08, StopTime=10800),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Storage/Examples/Stratified.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Storage/Examples/Stratified.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 This test model compares two tank models. The only difference between

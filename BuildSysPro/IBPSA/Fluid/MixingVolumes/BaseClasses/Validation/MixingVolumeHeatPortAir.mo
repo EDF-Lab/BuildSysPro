@@ -3,7 +3,7 @@ model MixingVolumeHeatPortAir
   "Validation model for setting the initialization of the pressure for air"
   extends
     IBPSA.Fluid.MixingVolumes.BaseClasses.Validation.MixingVolumeHeatPortWater(
-     redeclare package Medium = IBPSA.Media.Air);
+      redeclare package Medium = IBPSA.Media.Air);
 
   annotation (Documentation(info="<html>
 <p>
@@ -21,6 +21,6 @@ First implementation for
 </html>"),
 experiment(Tolerance=1E-6, StopTime=1.0),
 __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/BaseClasses/Validation/MixingVolumeHeatPortAir.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/BaseClasses/Validation/MixingVolumeHeatPortAir.mos"
         "Simulate and plot"));
 end MixingVolumeHeatPortAir;

@@ -3,7 +3,7 @@ model PumpsSeries "Two flow machines in series"
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Water;
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=1
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=1
     "Nominal mass flow rate";
 
   IBPSA.Fluid.Movers.SpeedControlled_y floMac1(
@@ -18,15 +18,14 @@ model PumpsSeries "Two flow machines in series"
     use_p_in=false,
     p(displayUnit="Pa") = 300000,
     T=293.15,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{-92,50},{-72,70}})));
+    nPorts=1) annotation (Placement(transformation(extent={{-92,50},{-72,70}})));
 
   parameter Medium.ThermodynamicState state_start = Medium.setState_pTX(
       T=Medium.T_default,
       p=Medium.p_default,
       X=Medium.X_default) "Start state";
-  parameter Modelica.SIunits.Density rho_nominal=Medium.density(
-     state_start) "Density, used to compute fluid mass";
+  parameter Modelica.Units.SI.Density rho_nominal=Medium.density(state_start)
+    "Density, used to compute fluid mass";
 
   IBPSA.Fluid.Movers.SpeedControlled_y floMac2(
     redeclare package Medium = Medium,
@@ -45,8 +44,7 @@ model PumpsSeries "Two flow machines in series"
     use_p_in=false,
     p(displayUnit="Pa") = 300000 + 4000,
     T=293.15,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{156,50},{136,70}})));
+    nPorts=1) annotation (Placement(transformation(extent={{156,50},{136,70}})));
 equation
   connect(const1.y, floMac1.y) annotation (Line(
       points={{-19,90},{-10.2,90},{-10.2,72}},
@@ -64,7 +62,7 @@ equation
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{160,
             160}})),
-    __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Examples/PumpsSeries.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Examples/PumpsSeries.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 This example tests the configuration of two flow machines that are installed in series.

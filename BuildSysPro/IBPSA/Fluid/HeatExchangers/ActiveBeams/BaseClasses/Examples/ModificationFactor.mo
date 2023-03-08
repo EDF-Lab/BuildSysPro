@@ -15,15 +15,15 @@ model ModificationFactor
     duration=1,
     offset=20) "Ramp input signal"
     annotation (Placement(transformation(extent={{-80,-40},{-60,-20}})));
-  IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.ModificationFactor
-    mod(nBeams=1, per(
+  IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.ModificationFactor mod(nBeams=1,
+      per(
       Q_flow_nominal=0.094*2*4200,
       mAir_flow_nominal=0.0792,
       mWat_flow_nominal=0.094,
       dT_nominal=27.8,
       dpWat_nominal=10000,
-      dpAir_nominal=100)) "Modification factor" annotation (
-      Placement(transformation(extent={{-10,-10},{10,10}})));
+      dpAir_nominal=100)) "Modification factor"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 equation
   connect(ramp.y, mod.mAir_flow) annotation (Line(points={{-59,30},{-59,30},{-52,
           30},{-52,3},{-12,3}}, color={0,0,127}));
@@ -34,7 +34,7 @@ equation
   connect(const1.y, mod.TRoo) annotation (Line(points={{-59,-70},{-20,-70},{-20,
           -8.8},{-12,-8.8}}, color={0,0,127}));
   annotation (            experiment(Tolerance=1e-6, StopTime=1.0),
-            __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/ActiveBeams/BaseClasses/Examples/ModificationFactor.mos"
+            __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/ActiveBeams/BaseClasses/Examples/ModificationFactor.mos"
         "Simulate and plot"),
         Documentation(info="<html>
 <p>

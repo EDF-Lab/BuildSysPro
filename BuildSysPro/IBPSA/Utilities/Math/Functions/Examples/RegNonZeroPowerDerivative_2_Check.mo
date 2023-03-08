@@ -22,9 +22,9 @@ initial equation
 equation
   x = time^3*gain;
   y = IBPSA.Utilities.Math.Functions.regNonZeroPower(
-              x=x,
-              n=n,
-              delta=delta);
+    x=x,
+    n=n,
+    delta=delta);
 
   der_y = der(y);
   der_y_comp = der(y_comp);
@@ -36,7 +36,7 @@ equation
   assert(abs(der_err) < 1E-3, "Error in implementation.");
 
  annotation(experiment(StartTime=-1, StopTime=1.0, Tolerance=1E-8),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/RegNonZeroPowerDerivative_2_Check.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/RegNonZeroPowerDerivative_2_Check.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

@@ -4,9 +4,9 @@ model ThreeWayValveParameterization
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Water "Medium in the component";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.4
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.4
     "Design mass flow rate";
-  parameter Modelica.SIunits.PressureDifference dp_nominal = 4500
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=4500
     "Design pressure drop";
 
   parameter Real Kv_SI = m_flow_nominal/sqrt(dp_nominal)
@@ -16,12 +16,13 @@ model ThreeWayValveParameterization
     "Kv (metric) flow coefficient [m3/h/(bar)^(1/2)]";
   parameter Real Cv = Kv_SI/(rhoStd*0.0631/1000/sqrt(6895))
     "Cv (US) flow coefficient [USG/min/(psi)^(1/2)]";
-  parameter Modelica.SIunits.Area Av = Kv_SI/sqrt(rhoStd)
+  parameter Modelica.Units.SI.Area Av=Kv_SI/sqrt(rhoStd)
     "Av (metric) flow coefficient";
 
-  parameter Modelica.SIunits.Density rhoStd=
-   Medium.density_pTX(101325, 273.15+4, Medium.X_default)
-   "Standard density";
+  parameter Modelica.Units.SI.Density rhoStd=Medium.density_pTX(
+      101325,
+      273.15 + 4,
+      Medium.X_default) "Standard density";
 
   IBPSA.Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear valOPPoi(
     redeclare package Medium = Medium,
@@ -30,8 +31,8 @@ model ThreeWayValveParameterization
     dpValve_nominal(displayUnit="kPa") = 4500,
     use_inputFilter=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Three way valve with operating point as parameter" annotation (
-      Placement(transformation(extent={{-10,80},{10,100}})));
+    "Three way valve with operating point as parameter"
+    annotation (Placement(transformation(extent={{-10,80},{10,100}})));
 
   IBPSA.Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear valKv(
     redeclare package Medium = Medium,
@@ -50,8 +51,8 @@ model ThreeWayValveParameterization
     Cv=Cv,
     use_inputFilter=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Three way valve with Cv-value as parameter" annotation (
-      Placement(transformation(extent={{-10,-40},{10,-20}})));
+    "Three way valve with Cv-value as parameter"
+    annotation (Placement(transformation(extent={{-10,-40},{10,-20}})));
 
   IBPSA.Fluid.Actuators.Valves.ThreeWayEqualPercentageLinear valAv(
     redeclare package Medium = Medium,
@@ -60,23 +61,23 @@ model ThreeWayValveParameterization
     use_inputFilter=false,
     CvData=IBPSA.Fluid.Types.CvTypes.Av,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Three way valve with Av-value as parameter" annotation (
-      Placement(transformation(extent={{-10,-94},{10,-74}})));
+    "Three way valve with Av-value as parameter"
+    annotation (Placement(transformation(extent={{-10,-94},{10,-74}})));
 
   IBPSA.Fluid.Sources.Boundary_pT sou1(
     redeclare package Medium = Medium,
     nPorts=4,
     use_p_in=false,
     p(displayUnit="Pa") = 300000 + 4500,
-    T=293.15) "Boundary condition for flow source" annotation (
-      Placement(transformation(extent={{-68,20},{-48,40}})));
+    T=293.15) "Boundary condition for flow source"
+    annotation (Placement(transformation(extent={{-68,20},{-48,40}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     nPorts=4,
     use_p_in=false,
     p=300000,
-    T=293.15) "Boundary condition for flow sink" annotation (
-      Placement(transformation(extent={{120,-10},{100,10}})));
+    T=293.15) "Boundary condition for flow sink"
+    annotation (Placement(transformation(extent={{120,-10},{100,10}})));
     Modelica.Blocks.Sources.Ramp y(
     duration=1,
     height=1,
@@ -84,25 +85,25 @@ model ThreeWayValveParameterization
     annotation (Placement(transformation(extent={{-80,100},{-60,120}})));
 
   IBPSA.Fluid.Sensors.MassFlowRate senM_flowOpPoi(redeclare package Medium =
-               Medium) "Mass flow rate sensor"
+        Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{20,80},{40,100}})));
   IBPSA.Fluid.Sensors.MassFlowRate senM_flowKv(redeclare package Medium =
-               Medium) "Mass flow rate sensor"
+        Medium) "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{20,20},{40,40}})));
   IBPSA.Fluid.Sensors.MassFlowRate senM_flowCv(redeclare package Medium =
-               Medium) "Mass flow rate sensor" annotation (Placement(
-        transformation(extent={{20,-40},{40,-20}})));
+        Medium) "Mass flow rate sensor"
+    annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
 
   IBPSA.Fluid.Sensors.MassFlowRate senM_flowAv(redeclare package Medium =
-               Medium) "Mass flow rate sensor" annotation (Placement(
-        transformation(extent={{20,-94},{40,-74}})));
+        Medium) "Mass flow rate sensor"
+    annotation (Placement(transformation(extent={{20,-94},{40,-74}})));
   IBPSA.Fluid.Sources.Boundary_pT sou3(
     redeclare package Medium = Medium,
     nPorts=4,
     use_p_in=false,
     p(displayUnit="Pa") = 300000 + 4500,
-    T=293.15) "Boundary condition for flow source" annotation (
-      Placement(transformation(extent={{-70,-20},{-50,0}})));
+    T=293.15) "Boundary condition for flow source"
+    annotation (Placement(transformation(extent={{-70,-20},{-50,0}})));
 equation
   connect(sou1.ports[1], valOPPoi.port_1) annotation (Line(points={{-48,33},{-32,
           33},{-32,90},{-10,90}}, color={0,127,255}));
@@ -149,7 +150,7 @@ equation
                          color={0,0,127}));
   annotation (
   experiment(Tolerance=1e-6, StopTime=1.0),
-    __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Actuators/Valves/Validation/ThreeWayValveParameterization.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Actuators/Valves/Validation/ThreeWayValveParameterization.mos"
         "Simulate and plot"),
     Diagram(coordinateSystem(extent={{-100,-140},{140,140}})),
     Documentation(info="<html>

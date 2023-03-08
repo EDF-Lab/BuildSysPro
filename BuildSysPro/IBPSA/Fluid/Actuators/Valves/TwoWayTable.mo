@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.Actuators.Valves;
 model TwoWayTable "Two way valve with table-specified flow characteristics"
   extends BaseClasses.PartialTwoWayValveKv(
-    phi=phiLooUp.y[1],
+    phi=max(0.1*l, phiLooUp.y[1]),
     final l = phiLooUp.table[1, 2]);
   parameter Data.Generic flowCharacteristics "Table with flow characteristics"
     annotation (choicesAllMatching=true, Placement(transformation(extent={{-80,
@@ -11,9 +11,9 @@ model TwoWayTable "Two way valve with table-specified flow characteristics"
   // 1/k^2, the flowCharacteristics.phi[1] must not be zero.
   // We therefore set a lower bound.
 protected
-  Modelica.Blocks.Tables.CombiTable1D phiLooUp(
+  Modelica.Blocks.Tables.CombiTable1Dv phiLooUp(
     final tableOnFile=false,
-    final table=[flowCharacteristics.y, cat(
+    final table=[flowCharacteristics.y,cat(
         1,
         {max(flowCharacteristics.phi[1], 1E-8)},
         {flowCharacteristics.phi[i] for i in 2:size(flowCharacteristics.phi, 1)})],
@@ -32,11 +32,13 @@ initial equation
     Modelica.Constants.eps,
     "flowCharateristics.phi[end] must be 1.");
 
-  // Assert that the sequences are strictly monotonic increasing
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x=
-    flowCharacteristics.y, strict=true), "The values for y in flowCharacteristics must be strictly monotone increasing.");
-  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x=
-    flowCharacteristics.phi, strict=true), "The values for phi in flowCharacteristics must be strictly monotone increasing.");
+  // Assert that the sequences are strictly increasing
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x=flowCharacteristics.y,
+    strict=true),
+    "The values for y in flowCharacteristics must be strictly increasing.");
+  assert(IBPSA.Utilities.Math.Functions.isMonotonic(x=flowCharacteristics.phi,
+    strict=true),
+    "The values for phi in flowCharacteristics must be strictly increasing.");
 
 equation
   connect(phiLooUp.u[1], y_actual) annotation (Line(
@@ -95,21 +97,21 @@ requirements, otherwise the model stops with an error:
 </p>
 <ul>
 <li>
-The arrays in
-<code>flowCharacteristics.y</code> and <code>flowCharacteristics.phi</code>
-must be strictly monotonic increasing.
+Their arrays
+<code>y</code> and <code>phi</code>
+must be strictly increasing.
 </li>
 <li>
 The first value must satisfy
-<code>flowCharacteristics.y[1]=0</code>, and
-<code>flowCharacteristics.phi[1]</code> must be equal to the
+<code>y[1]=0</code>, and
+<code>phi[1]</code> must be equal to the
 leakage flow rate, which must be bigger than zero.
 Otherwise, a default value of <code>1E-8</code> is used.
 </li>
 <li>
 The last values must satisfy
-<code>flowCharacteristics.y[end]=1</code> and
-<code>flowCharacteristics.phi[end]=1</code>.
+<code>y[end]=1</code> and
+<code>phi[end]=1</code>.
 </li>
 </ul>
 <p>
@@ -126,6 +128,29 @@ IBPSA.Fluid.Actuators.Valves.Examples.TwoWayValveTable</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+June 10, 2021, by Michael Wetter:<br/>
+Changed implementation of the filter and changed the parameter <code>order</code> to a constant
+as most users need not change this value.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1498\">#1498</a>.
+</li>
+<li>
+August 7, 2020, by Ettore Zanetti:<br/>
+changed the computation of <code>phi</code> using
+<code>max(0.1*l, . )</code> to avoid
+phi=0.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1376\">
+issue 1376</a>.
+</li>
+<li>
+November 9, 2019, by Filip Jorissen:<br/>
+Guarded the computation of <code>phi</code> using
+<code>max(0, . )</code> to avoid
+negative phi.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1223\">
+issue 1223</a>.
+</li>
 <li>
 January 26, 2016, by Michael Wetter:<br/>
 Removed equality comparison for <code>Real</code> in the
@@ -152,16 +177,16 @@ First implementation.
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             100}}), graphics={
         Rectangle(
-          origin={-70,83},
+          origin={-56,-85},
           lineColor={64,64,64},
           fillColor={255,215,136},
           fillPattern=FillPattern.Solid,
           extent={{-12,-11},{12,11}},
           radius=5.0),
         Line(
-          points={{-70,94},{-70,72}}),
+          points={{-68,-90},{-44,-90}}),
         Line(
-          points={{-82,86},{-58,86}}),
+          points={{-56,-74},{-56,-96}}),
         Line(
-          points={{-82,78},{-58,78}})}));
+          points={{-68,-82},{-44,-82}})}));
 end TwoWayTable;

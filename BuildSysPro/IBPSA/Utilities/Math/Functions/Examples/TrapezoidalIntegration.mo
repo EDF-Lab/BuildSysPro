@@ -7,13 +7,13 @@ model TrapezoidalIntegration
   //Real y2[7] = {0.3333, 1.0, 3.0, 9.9, 27.0, 81.0, 243.0}; // //function values of y = 3^(3x-1) for x=0:0.3333:2
 algorithm
   y := IBPSA.Utilities.Math.Functions.trapezoidalIntegration(
-              N=7,
-              f=y1,
-              deltaX=1);
+    N=7,
+    f=y1,
+    deltaX=1);
  assert(y - 286.0 < 1E-4,
    "Error. Function should have returned 286.");
   annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/TrapezoidalIntegration.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/TrapezoidalIntegration.mos"
         "Simulate and plot"),
                      Documentation(info="<html>
 <p>

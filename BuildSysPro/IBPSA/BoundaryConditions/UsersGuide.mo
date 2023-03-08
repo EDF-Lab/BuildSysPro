@@ -61,9 +61,9 @@ with your model.
 </ol>
 <h4>Conventions for surface azimuth and tilt</h4>
 <p>To compute the solar irradiation, parameters such as the surface azimuth and the surface tilt are defined as shown in the following three figures. </p>
-<p align=\"center\"><img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/ear_ray.png\"/> </p>
-<p align=\"center\"><img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/zen_sun.png\"/> </p>
-<p align=\"center\"><img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/BoundaryConditions/zen_pla.png\"/> </p>
+<p align=\"center\"><img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/BoundaryConditions/ear_ray.png\"/> </p>
+<p align=\"center\"><img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/BoundaryConditions/zen_sun.png\"/> </p>
+<p align=\"center\"><img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/BoundaryConditions/zen_pla.png\"/> </p>
 <p>
 For the surface azimuth and tilt, the enumerations
 <a href=\"modelica://BuildSysPro.IBPSA.Types.Azimuth\">
@@ -74,10 +74,14 @@ IBPSA.Types.Tilt</a>
 can be used.
 </p>
 <p>
-Note that a ceiling has a tilt of <i>0</i>, and also the solar collector models
+Note that a ceiling has a tilt of <i>0</i>
+<!-- @include_Buildings
+, and also the solar collector models
 in
 <a href=\"IBPSA.Fluid.SolarCollectors\">IBPSA.Fluid.SolarCollectors</a>
-require a tilt of <i>0</i> if they are facing straight upwards.
+require a tilt of <i>0</i>
+-->
+if they are facing straight upwards.
 This is correct because
 the solar irradiation on a ceiling construction is on the other-side surface,
 which faces upwards toward the sky. Hence, a construction is considered

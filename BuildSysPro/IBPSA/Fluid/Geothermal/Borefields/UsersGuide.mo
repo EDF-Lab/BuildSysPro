@@ -32,8 +32,7 @@ resistance matches the specified value.
 <li>
 User-defined vertical discretization of boreholes are supported.
 However, the borehole wall temperature
-is identical for each borehole and along the
-depth, as the ground temperature response model only computes the average borehole wall temperature
+is identical for each borehole, as the ground temperature response model only computes the average borehole wall temperature
 for all boreholes combined.
 </li>
 <li>
@@ -60,7 +59,7 @@ boreholes have the same length <code>hBor</code>, the same radius
 ground surface (also known as the inactive borehole length).
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/BorefieldGeometry_01.png\" width=\"610\"/>
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/BorefieldGeometry_01.png\" width=\"610\"/>
 </p>
 
 <h4>How to use the borefield models</h4>
@@ -163,9 +162,6 @@ The conductivity, capacitance and density of the grout and pipe material are con
 There is no heat extraction or injection prior to the simulation start.
 </li>
 <li>
-The undisturbed ground temperature is the same all along the length of the boreholes.
-</li>
-<li>
 All of the boreholes in the borefield have uniform dimensions (including the pipe dimensions).
 </li>
 <li>
@@ -174,8 +170,9 @@ Inside the boreholes, the non-advective heat transfer is only in the radial dire
 </ul>
 <p>
 The borefield models are constructed in two main parts: the borehole(s) and the ground heat transfer.
-The former is modeled as a vertical discretization of borehole segments, all of them sharing a common
-uniform borehole wall temperature. The thermal effects of the circulating fluid (including the convection resistance),
+The former is modeled as a vertical discretization of borehole segments, where a uniform temperature increase or decrease
+(due to heat injection or extraction) is superimposed to the far-field ground temperature to obtain the borehole wall
+temperature. The thermal effects of the circulating fluid (including the convection resistance),
 of the pipes and of the filling material are all taken into consideration, which allows modeling
 short-term thermal effects in the borehole. The borehole segments do not take into account axial effects,
 thus only radial (horizontal) effects are considered within the borehole(s). The thermal
@@ -185,7 +182,7 @@ The capacitance is only present if the <code>dynFil</code> parameter is set to <
 The figure below shows an example for a borehole section within a single U-tube configuration.
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/BoreholeResistances_01.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/BoreholeResistances_01.png\" />
 </p>
 <p>
 The second main part of the borefield models is the ground heat transfer, which shares a thermal boundary
@@ -194,7 +191,7 @@ is modeled analytically as a convolution integral between the heat flux at the b
 and the borefield's thermal response factor.
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/LoadAggregation_12.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/LoadAggregation_12.png\" />
 </p>
 <p>
 The model uses a load aggregation technique to reduce the time required to calculate
@@ -220,8 +217,9 @@ IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.ThermalResponseFactor
 <p>
 D. Picard, L. Helsen.
 <i>Advanced Hybrid Model for Borefield Heat
-Exchanger Performance Evaluation, an Implementation in Modelica</i>
+Exchanger Performance Evaluation; an Implementation in Modelica</i>
 Proc. of the 10th Intertional ModelicaConference, p. 857-866. Lund, Sweden. March 2014.
+<a href=\"https://lirias.kuleuven.be/retrieve/270880\">https://lirias.kuleuven.be/retrieve/270880</a>.
 </p>
 </html>"));
 

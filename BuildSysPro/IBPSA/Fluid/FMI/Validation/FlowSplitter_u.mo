@@ -3,7 +3,7 @@ model FlowSplitter_u "Flow splitter"
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Air "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=0.1
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.1
     "Nominal mass flow rate";
 
   parameter Boolean use_p_in = false
@@ -35,8 +35,8 @@ model FlowSplitter_u "Flow splitter"
   Modelica.Blocks.Sources.Constant X_w_in(k=0.01) "Inlet mass fraction"
     annotation (Placement(transformation(extent={{-80,-30},{-60,-10}})));
 
-  Modelica.Blocks.Sources.Constant C[Medium.nC](each k=0.01) if
-     Medium.nC > 0 "Trace substances for forward flow"
+  Modelica.Blocks.Sources.Constant C[Medium.nC](each k=0.01)
+  if Medium.nC > 0 "Trace substances for forward flow"
     annotation (Placement(transformation(extent={{-80,-60},{-60,-40}})));
   ExportContainers.Examples.FMUs.FlowSplitter_u floSpl(
     redeclare package Medium = Medium,
@@ -93,7 +93,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/Validation/FlowSplitter_u.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/Validation/FlowSplitter_u.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=1.0));
 end FlowSplitter_u;

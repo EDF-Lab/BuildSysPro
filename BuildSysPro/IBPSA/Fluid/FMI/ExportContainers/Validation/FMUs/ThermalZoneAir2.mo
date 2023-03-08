@@ -1,8 +1,7 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs;
 block ThermalZoneAir2 "Validation of simple thermal zone"
   extends IBPSA.Fluid.FMI.ExportContainers.Validation.FMUs.ThermalZoneAir1(
-     redeclare package Medium = IBPSA.Media.Air (
-          extraPropertiesNames={"CO2"}));
+      redeclare package Medium = IBPSA.Media.Air (extraPropertiesNames={"CO2"}));
   annotation (Documentation(info="<html>
 <p>
 This example validates that
@@ -19,6 +18,6 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/ExportContainers/Validation/FMUs/ThermalZoneAir2.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/ExportContainers/Validation/FMUs/ThermalZoneAir2.mos"
         "Export FMU"));
 end ThermalZoneAir2;

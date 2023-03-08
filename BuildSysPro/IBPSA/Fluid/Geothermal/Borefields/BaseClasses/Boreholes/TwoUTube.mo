@@ -8,15 +8,11 @@ model TwoUTube "Double U-tube borehole heat exchanger"
     redeclare each final package Medium = Medium,
     each final borFieDat=borFieDat,
     each final hSeg=borFieDat.conDat.hBor/nSeg,
-    final dp1_nominal={if i == 1 and borFieDat.conDat.borCon ==
-        IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeParallel
-         then dp_nominal elseif i == 1 and borFieDat.conDat.borCon ==
-        IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeSeries
+    final dp1_nominal={if i == 1 and borFieDat.conDat.borCon == IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeParallel
+         then dp_nominal elseif i == 1 and borFieDat.conDat.borCon == IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeSeries
          then dp_nominal/2 else 0 for i in 1:nSeg},
-    final dp3_nominal={if i == 1 and borFieDat.conDat.borCon ==
-        IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeParallel
-         then dp_nominal elseif i == 1 and borFieDat.conDat.borCon ==
-        IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeSeries
+    final dp3_nominal={if i == 1 and borFieDat.conDat.borCon == IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeParallel
+         then dp_nominal elseif i == 1 and borFieDat.conDat.borCon == IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeSeries
          then dp_nominal/2 else 0 for i in 1:nSeg},
     each final dp2_nominal=0,
     each final dp4_nominal=0,
@@ -172,10 +168,10 @@ equation
         grid={2,2},
         initialScale=0.5), graphics={Text(
           extent={{60,72},{84,58}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString=""), Text(
           extent={{50,-32},{90,-38}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="")}),
     Documentation(info="<html>
 <p>

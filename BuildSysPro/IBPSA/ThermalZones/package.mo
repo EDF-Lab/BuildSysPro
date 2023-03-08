@@ -2,6 +2,7 @@ within BuildSysPro.IBPSA;
 package ThermalZones "Models for BuildingPhysics"
     extends Modelica.Icons.Package;
 
+
 annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
           {100,100}}), graphics={
       Rectangle(

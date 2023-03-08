@@ -3,20 +3,21 @@ model ReaderTMY3HDirNor
   "Test model for calculating the direct normal radiation"
   extends Modelica.Icons.Example;
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDatInpCon(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
       HSou=IBPSA.BoundaryConditions.Types.RadiationDataSource.Input_HGloHor_HDifHor)
     "Weather data reader with radiation data obtained from the inputs' connectors"
     annotation (Placement(transformation(extent={{68,-10},{88,10}})));
 protected
-    Modelica.Blocks.Sources.Sine HGloHor1(
-    freqHz=1/86400,
+  Modelica.Blocks.Sources.Sine HGloHor1(
+    f=1/86400,
     startTime=25200,
     offset=0,
     amplitude=100) "Horizontal global radiation"
     annotation (Placement(transformation(extent={{-88,-30},{-68,-10}})));
 
-    Modelica.Blocks.Sources.Sine HGloHor(
-    freqHz=1/86400,
+  Modelica.Blocks.Sources.Sine HGloHor(
+    f=1/86400,
     startTime=68428,
     offset=0,
     amplitude=100) "Horizontal global radiation"
@@ -38,7 +39,7 @@ equation
   connect(gaiHDifHor.y, weaDatInpCon.HDifHor_in) annotation (Line(points={{21,20},
           {21,20},{50,20},{50,-7.6},{67,-7.6}},   color={0,0,127}));
   annotation (experiment(StopTime=86400, Tolerance=1e-06),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/WeatherData/Validation/ReaderTMY3HDirNor.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/WeatherData/Validation/ReaderTMY3HDirNor.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

@@ -25,11 +25,13 @@ block IntegratorWithReset "Output the integral of the input signal"
                  enable=reset == IBPSA.Types.Reset.Parameter,
                  group="Integrator reset"));
 
-  Modelica.Blocks.Interfaces.RealInput y_reset_in if reset == IBPSA.Types.Reset.Input
+  Modelica.Blocks.Interfaces.RealInput y_reset_in
+    if reset == IBPSA.Types.Reset.Input
     "Input signal for state to which integrator is reset, enabled if reset = IBPSA.Types.Reset.Input"
     annotation (Placement(transformation(extent={{-140,-100},{-100,-60}})));
 
-  Modelica.Blocks.Interfaces.BooleanInput trigger if reset <> IBPSA.Types.Reset.Disabled
+  Modelica.Blocks.Interfaces.BooleanInput trigger
+    if reset <> IBPSA.Types.Reset.Disabled
     "Resets the integrator output when trigger becomes true"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}}, rotation=90,
         origin={0,-120}), iconTransformation(
@@ -150,25 +152,25 @@ Icon(coordinateSystem(
         graphics={
           Text(
             extent={{-88,-94},{212,-54}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="y_reset_in",
           visible=reset == IBPSA.Types.Reset.Input,
           horizontalAlignment=TextAlignment.Left),
         Bitmap(extent={{-54,-50},{60,50}}, fileName=
-              "modelica://BuildSysPro/Resources/IBPSA/Images/Utilities/Math/int.png"),
+              "modelica://BuildSysPro/IBPSA/Resources/Images/Utilities/Math/int.png"),
           Text(
             extent={{-88,56},{206,92}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="k=%k",
           horizontalAlignment=TextAlignment.Left),
           Text(
             extent={{-92,-12},{208,28}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           horizontalAlignment=TextAlignment.Left,
           textString="u"),
           Text(
             extent={{70,-14},{370,26}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           horizontalAlignment=TextAlignment.Left,
           textString="y")}));
 end IntegratorWithReset;

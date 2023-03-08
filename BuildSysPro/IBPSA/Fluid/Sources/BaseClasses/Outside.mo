@@ -1,7 +1,9 @@
 within BuildSysPro.IBPSA.Fluid.Sources.BaseClasses;
 partial model Outside
   "Boundary that takes weather data, and optionally trace substances, as an input"
-  extends Modelica.Fluid.Sources.BaseClasses.PartialSource;
+  extends IBPSA.Fluid.Sources.BaseClasses.PartialAirSource(final verifyInputs=
+        true);
+
   parameter Boolean use_C_in = false
     "Get the trace substances from the input connector"
     annotation(Evaluate=true, HideResult=true);
@@ -15,33 +17,25 @@ partial model Outside
     "Prescribed boundary trace substances"
     annotation (Placement(transformation(extent={{-140,-100},{-100,-60}})));
 
-  IBPSA.BoundaryConditions.WeatherData.Bus weaBus
-    "Bus with weather data" annotation (Placement(transformation(extent=
-           {{-110,-10},{-90,10}}), iconTransformation(extent={{-120,-18},
-            {-80,22}})));
+  IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Bus with weather data"
+    annotation (Placement(transformation(extent={{-110,-10},{-90,10}}),
+        iconTransformation(extent={{-120,-18},{-80,22}})));
 protected
   final parameter Boolean singleSubstance = (Medium.nX == 1)
     "True if single substance medium";
   IBPSA.Utilities.Psychrometrics.X_pTphi x_pTphi if not singleSubstance
     "Block to compute water vapor concentration";
 
-  Modelica.Blocks.Interfaces.RealInput X_in_internal[Medium.nX](
-    each final unit="kg/kg",
-    final quantity=Medium.substanceNames)
-    "Needed to connect to conditional connector";
   Modelica.Blocks.Interfaces.RealInput T_in_internal(final unit="K",
                                                      displayUnit="degC")
     "Needed to connect to conditional connector";
-  Modelica.Blocks.Interfaces.RealInput p_in_internal(final unit="Pa")
-    "Needed to connect to conditional connector";
-  Modelica.Blocks.Interfaces.RealInput C_in_internal[Medium.nC](
-       quantity=Medium.extraPropertiesNames)
-    "Needed to connect to conditional connector";
+  Modelica.Blocks.Interfaces.RealInput h_internal = Medium.specificEnthalpy(
+    Medium.setState_pTX(p_in_internal, T_in_internal, X_in_internal));
 
 equation
   // Check medium properties
   Modelica.Fluid.Utilities.checkBoundary(Medium.mediumName, Medium.substanceNames,
-    Medium.singleState, true, medium.X, "Boundary_pT");
+    Medium.singleState, true, X_in_internal, "Boundary_pT");
 
   // Conditional connectors for trace substances
   connect(C_in, C_in_internal);
@@ -61,25 +55,37 @@ equation
   if singleSubstance then
     X_in_internal = ones(Medium.nX);
   end if;
-  // Assign medium properties
-  medium.p = p_in_internal;
-  medium.T = T_in_internal;
-  medium.Xi = X_in_internal[1:Medium.nXi];
+
+  connect(X_in_internal[1:Medium.nXi], Xi_in_internal);
+
   ports.C_outflow = fill(C_in_internal, nPorts);
+
+  if not verifyInputs then
+    h_internal    = Medium.h_default;
+    p_in_internal = Medium.p_default;
+    X_in_internal = Medium.X_default;
+    T_in_internal = Medium.T_default;
+  end if;
+
+  // Assign medium properties
+  connect(medium.h, h_internal);
+  connect(medium.Xi, Xi_in_internal);
+
+  for i in 1:nPorts loop
+    ports[i].p          = p_in_internal;
+    ports[i].h_outflow  = h_internal;
+    ports[i].Xi_outflow = Xi_in_internal;
+  end for;
+
   annotation (
     Icon(coordinateSystem(
         preserveAspectRatio=true,
         extent={{-100,-100},{100,100}},
         grid={2,2}), graphics={
-        Ellipse(
-          extent={{-98,100},{102,-100}},
-          lineColor={0,0,0},
-          fillPattern=FillPattern.Sphere,
-          fillColor={0,127,255}),
         Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255}),
+          textColor={0,0,255}),
         Line(
           visible=use_C_in,
           points={{-100,-80},{-60,-80}},
@@ -87,10 +93,21 @@ equation
         Text(
           visible=use_C_in,
           extent={{-164,-90},{-62,-130}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid,
-          textString="C")}),
+          textString="C"),
+        Ellipse(
+          extent={{-100,100},{100,-100}},
+          lineColor={0,0,0},
+          fillPattern=FillPattern.Sphere,
+          fillColor=DynamicSelect({0,127,255},
+            min(1, max(0, (1-(weaBus.TDryBul-273.15)/50)))*{28,108,200}+
+            min(1, max(0, (weaBus.TDryBul-273.15)/50))*{255,0,0})),
+        Text(
+          extent={{62,28},{-58,-22}},
+          textColor={255,255,255},
+          textString=DynamicSelect("", String(weaBus.TDryBul-273.15, format=".1f")))}),
     Documentation(info="<html>
 <p>
 This is the base class for models that describes boundary conditions for
@@ -112,6 +129,30 @@ with exception of boundary pressure, do not have an effect.
 </html>",
 revisions="<html>
 <ul>
+<li>
+January 09, 2023, by Jianjun Hu:<br/>
+Changed base class to constrain medium to moist air.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1681\">IBPSA, #1681</a>.
+</li>
+<li>
+February 25, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating state.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
+<li>
+November 14, 2019, by Michael Wetter:<br/>
+Removed duplicate connector.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1248\"> #1248</a>.
+</li>
+<li>
+January 14, 2019 by Jianjun Hu:<br/>
+Changed to extend <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sources.BaseClasses.PartialSource\">
+IBPSA.Fluid.Sources.BaseClasses.PartialSource</a>. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\"> #1050</a>.
+</li>
 <li>
 May 30, 2017 by Jianjun Hu:<br/>
 Corrected <code>X_in_internal = zeros()</code> to be <code>X_in_internal = ones()</code>.

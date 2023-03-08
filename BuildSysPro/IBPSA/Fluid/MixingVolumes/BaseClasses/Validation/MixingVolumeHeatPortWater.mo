@@ -9,13 +9,11 @@ model MixingVolumeHeatPortWater
   parameter Integer nEle(min=2)= 3 "Number of volumes"
     annotation(Evaluate=true);
 
-  replaceable
-    IBPSA.Fluid.MixingVolumes.BaseClasses.MixingVolumeHeatPort vol[nEle]
+  replaceable IBPSA.Fluid.MixingVolumes.BaseClasses.MixingVolumeHeatPort vol[nEle]
     constrainedby IBPSA.Fluid.MixingVolumes.BaseClasses.MixingVolumeHeatPort(
     redeclare each package Medium = Medium,
     each energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    final initialize_p={(i == 1 and not Medium.singleState) for i in 1
-        :nEle},
+    final initialize_p={(i == 1 and not Medium.singleState) for i in 1:nEle},
     each m_flow_nominal=1,
     each V=1,
     each nPorts=2) "Mixing volume"
@@ -24,12 +22,11 @@ model MixingVolumeHeatPortWater
   IBPSA.Fluid.FixedResistances.PressureDrop res(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
-    dp_nominal=1000) "Pressure drop" annotation (Placement(
-        transformation(extent={{-40,-10},{-20,10}})));
+    dp_nominal=1000) "Pressure drop"
+    annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium =
-        Medium, nPorts=1) "Boundary condition" annotation (Placement(
-        transformation(
+  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium, nPorts=
+       1) "Boundary condition" annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=180,
         origin={-70,0})));
@@ -40,9 +37,8 @@ model MixingVolumeHeatPortWater
     dp_nominal=1000) "Pressure drop"
     annotation (Placement(transformation(extent={{40,-10},{20,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT bou1(redeclare package Medium =
-        Medium, nPorts=1) "Boundary condition" annotation (Placement(
-        transformation(
+  IBPSA.Fluid.Sources.Boundary_pT bou1(redeclare package Medium = Medium,
+      nPorts=1) "Boundary condition" annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={70,0})));
@@ -81,6 +77,6 @@ First implementation for
 </html>"),
 experiment(Tolerance=1E-6, StopTime=1.0),
 __Dymola_Commands(file=
-  "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MixingVolumes/BaseClasses/Validation/MixingVolumeHeatPortWater.mos"
+  "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/BaseClasses/Validation/MixingVolumeHeatPortWater.mos"
   "Simulate and plot"));
 end MixingVolumeHeatPortWater;

@@ -5,25 +5,25 @@ model ReciprocatingWaterToWater_ScalingFactor
   package Medium1 = IBPSA.Media.Water "Medium model";
   package Medium2 = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m1_flow_nominal = 0.47
+  parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=0.47
     "Nominal mass flow rate on the condenser side";
-  parameter Modelica.SIunits.MassFlowRate m2_flow_nominal = 0.47
+  parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=0.47
     "Nominal mass flow rate on the evaporator side";
 
-  parameter Modelica.SIunits.MassFlowRate flowSource = 0.79
+  parameter Modelica.Units.SI.MassFlowRate flowSource=0.79
     "Mass flow rate on the condenser side";
-  parameter Modelica.SIunits.MassFlowRate flowLoad = 0.47
+  parameter Modelica.Units.SI.MassFlowRate flowLoad=0.47
     "Mass flow rate on the evaporator side";
 
   parameter Real scaling_factor = 2.41
     "Scaling factor for heat pump capacity";
 
-  IBPSA.Fluid.Sources.FixedBoundary sin2(redeclare package Medium =
-        Medium2, nPorts=2) "Source side sink" annotation (Placement(
-        transformation(extent={{-10,-10},{10,10}}, origin={-32,20})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
-        Medium1, nPorts=2) "Load side sink" annotation (Placement(
-        transformation(extent={{10,-10},{-10,10}}, origin={44,20})));
+  IBPSA.Fluid.Sources.Boundary_pT sin2(redeclare package Medium = Medium2,
+      nPorts=2) "Source side sink" annotation (Placement(transformation(extent=
+            {{-10,-10},{10,10}}, origin={-50,0})));
+  IBPSA.Fluid.Sources.Boundary_pT sin1(redeclare package Medium = Medium1,
+      nPorts=2) "Load side sink" annotation (Placement(transformation(extent={{
+            10,-10},{-10,10}}, origin={50,0})));
   Modelica.Fluid.Sources.MassFlowSource_T loa(
     redeclare package Medium = Medium1,
     m_flow=flowLoad,
@@ -54,14 +54,14 @@ model ReciprocatingWaterToWater_ScalingFactor
     redeclare package ref = IBPSA.Media.Refrigerants.R410A,
     enable_variable_speed=false,
     per=IBPSA.Fluid.HeatPumps.Data.ReciprocatingWaterToWater.Generic(
-                etaEle=0.696,
-                PLos=100,
-                dTSup=9.82,
-                UACon=2210,
-                UAEva=1540,
-                pisDis=0.00162,
-                cleFac=0.069,
-                pDro=99290),
+        etaEle=0.696,
+        PLos=100,
+        dTSup=9.82,
+        UACon=2210,
+        UAEva=1540,
+        pisDis=0.00162,
+        cleFac=0.069,
+        pDro=99290),
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     enable_temperature_protection=false)
     "Reciprocating water to water heat pump"
@@ -78,14 +78,14 @@ model ReciprocatingWaterToWater_ScalingFactor
     m1_flow_nominal=m1_flow_nominal*scaling_factor,
     m2_flow_nominal=m2_flow_nominal*scaling_factor,
     per=IBPSA.Fluid.HeatPumps.Data.ReciprocatingWaterToWater.Generic(
-                etaEle=0.696,
-                PLos=100,
-                dTSup=9.82,
-                UACon=2210,
-                UAEva=1540,
-                pisDis=0.00162,
-                cleFac=0.069,
-                pDro=99290),
+        etaEle=0.696,
+        PLos=100,
+        dTSup=9.82,
+        UACon=2210,
+        UAEva=1540,
+        pisDis=0.00162,
+        cleFac=0.069,
+        pDro=99290),
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     enable_temperature_protection=false)
     "Reciprocating water to water heat pump with transient effects"
@@ -118,26 +118,23 @@ model ReciprocatingWaterToWater_ScalingFactor
     annotation (Placement(transformation(extent={{80,70},{100,90}})));
   Modelica.Blocks.Math.RealToInteger realToInteger
     annotation (Placement(transformation(extent={{-40,70},{-20,90}})));
-  Modelica.Blocks.Sources.RealExpression mLoa1(
-                                              y=flowLoad)
+  Modelica.Blocks.Sources.RealExpression mLoa1(y=flowLoad)
     "Load side mass flwo rate"
     annotation (Placement(transformation(extent={{-100,30},{-80,50}})));
-  Modelica.Blocks.Sources.RealExpression mSou1(
-                                              y=flowSource)
+  Modelica.Blocks.Sources.RealExpression mSou1(y=flowSource)
     "Source side mass flow rate"
     annotation (Placement(transformation(extent={{100,44},{80,64}})));
 equation
   connect(heaPum.port_a2, sou.ports[1])
     annotation (Line(points={{10,46},{40,46}},           color={0,127,255}));
-  connect(heaPum.port_b1, sin1.ports[1]) annotation (Line(points={{10,58},{20,
-          58},{20,24},{26,24},{34,24},{34,22}},
-                            color={0,127,255}));
+  connect(heaPum.port_b1, sin1.ports[1]) annotation (Line(points={{10,58},{20,58},
+          {20,2},{40,2}},   color={0,127,255}));
   connect(heaPum.port_a1, loa.ports[1])
     annotation (Line(points={{-10,58},{-34,58},{-40,58}},color={0,127,255}));
-  connect(heaPum.port_b2, sin2.ports[1]) annotation (Line(points={{-10,46},{-22,
-          46},{-22,22}},            color={0,127,255}));
-  connect(sin2.ports[2], heaPum1.port_b2) annotation (Line(points={{-22,18},{-22,
-          18},{-22,-60},{-10,-60}}, color={0,127,255}));
+  connect(heaPum.port_b2, sin2.ports[1]) annotation (Line(points={{-10,46},{-20,
+          46},{-20,2},{-40,2}},     color={0,127,255}));
+  connect(sin2.ports[2], heaPum1.port_b2) annotation (Line(points={{-40,-2},{-20,
+          -2},{-20,-60},{-10,-60}}, color={0,127,255}));
   connect(mLoa.y, loa1.m_flow_in)
     annotation (Line(points={{-79,-40},{-68,-40},{-60,-40}}, color={0,0,127}));
   connect(sou1.ports[1], heaPum1.port_a2)
@@ -157,7 +154,7 @@ equation
   connect(loa1.ports[1], heaPum1.port_a1) annotation (Line(points={{-40,-48},{
           -26,-48},{-10,-48}}, color={0,127,255}));
   connect(heaPum1.port_b1, sin1.ports[2]) annotation (Line(points={{10,-48},{20,
-          -48},{20,18},{34,18}}, color={0,127,255}));
+          -48},{20,-2},{40,-2}}, color={0,127,255}));
   connect(N.y, realToInteger.u)
     annotation (Line(points={{-77,80},{-42,80}}, color={0,0,127}));
   connect(realToInteger.y, heaPum.stage) annotation (Line(points={{-19,80},{-16,
@@ -168,7 +165,7 @@ equation
           66},{-60,66}}, color={0,0,127}));
   connect(mSou1.y, sou.m_flow_in)
     annotation (Line(points={{79,54},{69.5,54},{60,54}}, color={0,0,127}));
-  annotation (    __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Validation/ReciprocatingWaterToWater_ScalingFactor.mos"
+  annotation (    __Dymola_Commands(file= "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatPumps/Validation/ReciprocatingWaterToWater_ScalingFactor.mos"
         "Simulate and plot"),
     experiment(
       Tolerance=1e-6, StopTime=1000),
@@ -186,6 +183,11 @@ capacity of the non-scaled heat pump model.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for 
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 December 5, 2016, by Massimo Cimmino:<br/>
 First implementation.

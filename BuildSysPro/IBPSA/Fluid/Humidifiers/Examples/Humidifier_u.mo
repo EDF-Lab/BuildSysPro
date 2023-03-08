@@ -4,8 +4,8 @@ model Humidifier_u "Model that demonstrates the ideal humidifier model"
 
   package Medium = IBPSA.Media.Air;
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=
-     3000/1000/20 "Nominal mass flow rate";
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=3000/1000/20
+    "Nominal mass flow rate";
 
   IBPSA.Fluid.Sources.MassFlowSource_T sou(
     redeclare package Medium = Medium,
@@ -24,8 +24,7 @@ model Humidifier_u "Model that demonstrates the ideal humidifier model"
     "Steady-state model of the humidifier"
     annotation (Placement(transformation(extent={{0,90},{20,110}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem1(redeclare package Medium =
-               Medium, m_flow_nominal=m_flow_nominal)
-    "Temperature sensor"
+        Medium, m_flow_nominal=m_flow_nominal) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,90},{60,110}})));
   Modelica.Blocks.Sources.TimeTable TSet(table=[0, 273.15 + 30; 120, 273.15 +
         30; 120, 273.15 + 25; 1200, 273.15 + 25]) "Setpoint"
@@ -34,8 +33,7 @@ model Humidifier_u "Model that demonstrates the ideal humidifier model"
     Td=1,
     k=1,
     Ti=10,
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
-    reverseAction=true) "Controller"
+    reverseActing=false) "Controller"
     annotation (Placement(transformation(extent={{40,140},{60,160}})));
   IBPSA.Fluid.Humidifiers.Humidifier_u humDyn(
     redeclare package Medium = Medium,
@@ -43,19 +41,16 @@ model Humidifier_u "Model that demonstrates the ideal humidifier model"
     dp_nominal=6000,
     mWat_flow_nominal=m_flow_nominal*0.005,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     T_start=303.15) "Dynamic model of the humidifier"
     annotation (Placement(transformation(extent={{0,-20},{20,0}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem2(redeclare package Medium =
-               Medium, m_flow_nominal=m_flow_nominal)
-    "Temperature sensor"
+        Medium, m_flow_nominal=m_flow_nominal) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,-20},{60,0}})));
   IBPSA.Controls.Continuous.LimPID con2(
     Td=1,
     Ti=10,
     k=0.1,
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
-    reverseAction=true) "Controller"
+    reverseActing=false) "Controller"
     annotation (Placement(transformation(extent={{40,30},{60,50}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
@@ -106,7 +101,7 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{200,
             200}}), graphics),
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Humidifiers/Examples/Humidifier_u.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Humidifiers/Examples/Humidifier_u.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

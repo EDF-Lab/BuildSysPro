@@ -3,11 +3,10 @@ model Polynomial
   extends Modelica.Icons.Example;
   Real x "Function value";
 equation
-  x = IBPSA.Utilities.Math.Functions.polynomial(x=time^3 - 2, a={2,4,-4,
-    5});
+  x = IBPSA.Utilities.Math.Functions.polynomial(x=time^3 - 2, a={2,4,-4,5});
 
  annotation(experiment(StartTime=0, StopTime=4, Tolerance=1E-6),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/Polynomial.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/Polynomial.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

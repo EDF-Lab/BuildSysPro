@@ -6,11 +6,14 @@ partial model ZonalFlow "Flow across zonal boundaries of a room"
     final allowFlowReversal1=false,
     final allowFlowReversal2=false,
     final m1_flow_nominal=10/3600*1.2,
-    final m2_flow_nominal=m1_flow_nominal);
+    final m2_flow_nominal=m1_flow_nominal,
+    final m1_flow_small=1E-4*abs(m1_flow_nominal),
+    final m2_flow_small=1E-4*abs(m2_flow_nominal));
 
-   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium
-    annotation (choicesAllMatching = true);
+   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
+    "Medium in the component"
+    annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air")));
 
 equation
   // Energy balance (no storage, no heat loss/gain)
@@ -69,6 +72,18 @@ Models that extend this model need to provide an equation for
 </html>",
 revisions="<html>
 <ul>
+<li>
+May 12, 2020, by Michael Wetter:<br/>
+Changed assignment of <code>m1_flow_small</code> and
+<code>m2_flow_small</code> to <code>final</code>.
+These quantities are not used in this model and models that extend from it.
+Hence there is no need for the user to change the value.
+</li>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air only.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 August 18, 2014, by Michael Wetter:<br/>
 Removed parameter <code>forceErrorControlOnFlow</code> as it was not used.

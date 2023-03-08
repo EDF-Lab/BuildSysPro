@@ -3,18 +3,18 @@ function basicFlowFunction_m_flow_der
   "1st derivative of function that computes pressure drop for given mass flow rate"
   extends Modelica.Icons.Function;
 
-  input Modelica.SIunits.MassFlowRate m_flow
+  input Modelica.Units.SI.MassFlowRate m_flow
     "Mass flow rate in design flow direction";
   input Real k(unit="")
     "Flow coefficient, k=m_flow/sqrt(dp), with unit=(kg.m)^(1/2)";
-  input Modelica.SIunits.MassFlowRate m_flow_turbulent(min=0)
+  input Modelica.Units.SI.MassFlowRate m_flow_turbulent(min=0)
     "Mass flow rate where transition to turbulent flow occurs";
   input Real m_flow_der(unit="kg/s2")
     "Derivative of mass flow rate in design flow direction";
   output Real dp_der
     "Derivative of pressure difference between port_a and port_b (= port_a.p - port_b.p)";
 protected
-  Modelica.SIunits.PressureDifference dp_turbulent = (m_flow_turbulent/k)^2
+  Modelica.Units.SI.PressureDifference dp_turbulent=(m_flow_turbulent/k)^2
     "Pressure where flow changes to turbulent";
   Real m_flowNormSq = (m_flow/m_flow_turbulent)^2
     "Square of normalised mass flow rate";
@@ -23,7 +23,7 @@ algorithm
            then sign(m_flow)*2*m_flow/k^2
            else (0.375  + (2.25 - 0.625*m_flowNormSq)*m_flowNormSq)*dp_turbulent/m_flow_turbulent)*m_flow_der;
 
- annotation (LateInline=true,
+ annotation (Inline=false,
              smoothOrder=1,
              derivative(order=2, zeroDerivative=k, zeroDerivative=m_flow_turbulent)=
              IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der2,
@@ -37,6 +37,11 @@ with respect to the mass flow rate.
 </html>",
 revisions="<html>
 <ul>
+<li>
+January 4, 2019, by Michael Wetter:<br/>
+Set `Inline=false`.<br/>
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1070\">#1070</a>.
+</li>
 <li>
 May 1, 2017, by Filip Jorissen:<br/>
 Revised implementation such that

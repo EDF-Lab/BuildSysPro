@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.Examples;
 model GetAbsolutePath "Test model to get the absolute path of a URI"
   extends Modelica.Icons.Example;
-  parameter String f = "modelica://IBPSA/package.mo"
+  parameter String f = Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/IBPSA/package.mo")
    "Name of a file that exists";
   parameter String fAbs=
     IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath(uri=f)
@@ -13,7 +13,7 @@ initial algorithm
 
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/GetAbsolutePath.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/GetAbsolutePath.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>
@@ -21,6 +21,10 @@ This model tests the function that gets the absolute path of a URI.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+December 11, 2021, by Michael Wetter:<br/>
+Added <code>loadResource</code> call.
+</li>
 <li>
 November 18, 2016, by Michael Wetter:<br/>
 Removed tests that assumed that the regression test is run

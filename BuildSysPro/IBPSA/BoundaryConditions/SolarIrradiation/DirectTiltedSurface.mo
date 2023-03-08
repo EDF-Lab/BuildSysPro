@@ -3,8 +3,7 @@ block DirectTiltedSurface "Direct solar irradiation on a tilted surface"
   extends
     IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.PartialSolarIrradiation;
 
-  parameter Modelica.SIunits.Angle lat "Latitude";
-  parameter Modelica.SIunits.Angle azi "Surface azimuth";
+  parameter Modelica.Units.SI.Angle azi "Surface azimuth";
 
   Modelica.Blocks.Interfaces.RealOutput inc(
     final quantity="Angle",
@@ -15,11 +14,10 @@ block DirectTiltedSurface "Direct solar irradiation on a tilted surface"
 protected
   SolarGeometry.IncidenceAngle incAng(
     final azi=azi,
-    final til=til,
-    final lat=lat) "Incidence angle"
+    final til=til) "Incidence angle"
     annotation (Placement(transformation(extent={{-50,-30},{-30,-10}})));
-  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.DirectTiltedSurface
-    HDirTil "Direct irradition on tilted surface"
+  IBPSA.BoundaryConditions.SolarIrradiation.BaseClasses.DirectTiltedSurface HDirTil
+    "Direct irradition on tilted surface"
     annotation (Placement(transformation(extent={{0,-20},{40,20}})));
 
 equation
@@ -31,7 +29,7 @@ equation
       points={{-100,5.55112e-16},{-80,5.55112e-16},{-80,12},{-4,12}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   connect(incAng.y, inc) annotation (Line(
@@ -46,7 +44,7 @@ equation
       points={{-100,5.55112e-16},{-80,5.55112e-16},{-80,-20},{-50,-20}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   annotation (
@@ -59,6 +57,12 @@ For a definition of the parameters, see the
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+September 6, 2021, by Ettore Zanetti:<br/>
+Removed parameter <code>lat</code> as it is now obtained from the weather data bus.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1477\">IBPSA, #1477</a>.
+</li>
 <li>
 April 21, 2016, by Michael Wetter:<br/>
 Removed duplicate instance <code>weaBus</code>.
@@ -80,5 +84,5 @@ First implementation.
             100}}), graphics={Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255})}));
+          textColor={0,0,255})}));
 end DirectTiltedSurface;

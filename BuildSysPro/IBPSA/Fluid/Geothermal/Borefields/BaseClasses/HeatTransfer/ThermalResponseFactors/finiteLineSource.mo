@@ -3,13 +3,13 @@ function finiteLineSource
   "Finite line source solution of Claesson and Javed"
   extends Modelica.Icons.Function;
 
-  input Modelica.SIunits.Time t "Time";
-  input Modelica.SIunits.ThermalDiffusivity aSoi "Ground thermal diffusivity";
-  input Modelica.SIunits.Distance dis "Radial distance between borehole axes";
-  input Modelica.SIunits.Height len1 "Length of emitting borehole";
-  input Modelica.SIunits.Height burDep1 "Buried depth of emitting borehole";
-  input Modelica.SIunits.Height len2 "Length of receiving borehole";
-  input Modelica.SIunits.Height burDep2 "Buried depth of receiving borehole";
+  input Modelica.Units.SI.Time t "Time";
+  input Modelica.Units.SI.ThermalDiffusivity aSoi "Ground thermal diffusivity";
+  input Modelica.Units.SI.Distance dis "Radial distance between borehole axes";
+  input Modelica.Units.SI.Height len1 "Length of emitting borehole";
+  input Modelica.Units.SI.Height burDep1 "Buried depth of emitting borehole";
+  input Modelica.Units.SI.Height len2 "Length of receiving borehole";
+  input Modelica.Units.SI.Height burDep2 "Buried depth of receiving borehole";
   input Boolean includeRealSource = true "True if contribution of real source is included";
   input Boolean includeMirrorSource = true "True if contribution of mirror source is included";
 
@@ -18,10 +18,10 @@ function finiteLineSource
 protected
   Real lowBou(unit="m-1") "Lower bound of integration";
   // Upper bound is infinite
-  Real uppBou(unit="m-1") = 100.0 "Upper bound of integration";
-  Modelica.SIunits.Distance disMin
+  Real uppBou(unit="m-1") = max(100.0, 10.0/dis) "Upper bound of integration";
+  Modelica.Units.SI.Distance disMin
     "Minimum distance between sources and receiving line";
-  Modelica.SIunits.Time timTre "Time treshold for evaluation of the solution";
+  Modelica.Units.SI.Time timTre "Time treshold for evaluation of the solution";
 
 algorithm
 
@@ -49,34 +49,34 @@ algorithm
     if t >= timTre then
       lowBou := 1.0/sqrt(4*aSoi*t);
       h_21 := Modelica.Math.Nonlinear.quadratureLobatto(
-                      function
+        function
           IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.ThermalResponseFactors.finiteLineSource_Integrand(
-                        dis=dis,
-                        len1=len1,
-                        burDep1=burDep1,
-                        len2=len2,
-                        burDep2=burDep2,
-                        includeRealSource=includeRealSource,
-                        includeMirrorSource=includeMirrorSource),
-                      lowBou,
-                      uppBou,
-                      1.0e-6);
+          dis=dis,
+          len1=len1,
+          burDep1=burDep1,
+          len2=len2,
+          burDep2=burDep2,
+          includeRealSource=includeRealSource,
+          includeMirrorSource=includeMirrorSource),
+        lowBou,
+        uppBou,
+        1.0e-6);
     else
       // Linearize the solution at times below the time treshold.
       lowBou := 1.0/sqrt(4*aSoi*timTre);
       h_21 := t/timTre*Modelica.Math.Nonlinear.quadratureLobatto(
-                      function
+        function
           IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.ThermalResponseFactors.finiteLineSource_Integrand(
-                        dis=dis,
-                        len1=len1,
-                        burDep1=burDep1,
-                        len2=len2,
-                        burDep2=burDep2,
-                        includeRealSource=includeRealSource,
-                        includeMirrorSource=includeMirrorSource),
-                      lowBou,
-                      uppBou,
-                      1.0e-6);
+          dis=dis,
+          len1=len1,
+          burDep1=burDep1,
+          len2=len2,
+          burDep2=burDep2,
+          includeRealSource=includeRealSource,
+          includeMirrorSource=includeMirrorSource),
+        lowBou,
+        uppBou,
+        1.0e-6);
     end if;
   end if;
 
@@ -93,7 +93,7 @@ temperature surface.
 The finite line source solution is defined by:
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/FiniteLineSource_01.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/FiniteLineSource_01.png\" />
 </p>
 <p>
 where <i>&Delta;T<sub>1-2</sub>(t,r,H<sub>1</sub>,D<sub>1</sub>,H<sub>2</sub>,D<sub>2</sub>)</i>
@@ -106,7 +106,7 @@ rate per unit length, <i>k<sub>s</sub></i> is the soil thermal conductivity and
 The finite line source solution is given by:
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/FiniteLineSource_02.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/FiniteLineSource_02.png\" />
 </p>
 <p>
 where <i>&alpha;<sub>s</sub></i> is the ground thermal diffusivity and
@@ -117,6 +117,13 @@ The integral is solved numerically, with the integrand defined in
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+March 17, 2019, by Massimo Cimmino:<br/>
+Modified the upper bound of integration to avoid underestimating the value of
+the integral.
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1107\">IBPSA, issue 1107</a>.
+</li>
 <li>
 March 22, 2018 by Massimo Cimmino:<br/>
 First implementation.

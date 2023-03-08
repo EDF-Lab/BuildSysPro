@@ -12,7 +12,7 @@ Documentation(info="<html>
 This function evaluates the integral of the error function, given by:
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/ErrorFunctionIntegral_01.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/ErrorFunctionIntegral_01.png\" />
 </p>
 </html>", revisions="<html>
 <ul>

@@ -5,7 +5,7 @@ model Carnot_TCon_etaPL
     heaPum(a={0.7,0.3}),
     TConLvg(height=10, offset=273.15 + 25));
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Validation/Carnot_TCon_etaPL.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatPumps/Validation/Carnot_TCon_etaPL.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

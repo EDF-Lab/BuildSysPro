@@ -3,16 +3,13 @@ model Cylindrical
   "Comparison of the Cylindrical with the GroundTemperatureResponse"
   extends Modelica.Icons.Example;
 
-  parameter Modelica.SIunits.Temperature T_start = 295.15
+  parameter Modelica.Units.SI.Temperature T_start=295.15
     "Initial soil temperature";
-  parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat=
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat=
       IBPSA.Fluid.Geothermal.Borefields.Validation.BaseClasses.SandBox_Borefield()
-         annotation (Placement(transformation(extent={{-80,60},{-60,
-            80}})));
+    annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
 
-  IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.Cylindrical
-    soi(
+  IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.Cylindrical soi(
     final steadyStateInitial=false,
     final soiDat=borFieDat.soiDat,
     final h=1,
@@ -48,7 +45,7 @@ equation
 
   annotation (
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/Validation/Cylindrical.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/Validation/Cylindrical.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=360000.0),
     Documentation(info="<html>

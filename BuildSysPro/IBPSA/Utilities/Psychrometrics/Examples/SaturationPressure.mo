@@ -5,8 +5,7 @@ model SaturationPressure "Model to test the wet bulb temperature computation"
  package Medium = IBPSA.Media.Air "Medium model"
            annotation (choicesAllMatching = true);
 
-  IBPSA.Utilities.Psychrometrics.SaturationPressure pSat
-    "Saturation pressure"
+  IBPSA.Utilities.Psychrometrics.SaturationPressure pSat "Saturation pressure"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Ramp T(
     height=373.15 - 190,
@@ -18,7 +17,7 @@ equation
       points={{-39,0},{-11,0}},
       color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Examples/SaturationPressure.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Examples/SaturationPressure.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 This examples is a unit test for the saturation pressure computation.

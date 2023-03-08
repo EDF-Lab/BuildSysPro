@@ -3,8 +3,7 @@ model TwoUTubes
   "Borefield model containing double U-tube boreholes"
   extends IBPSA.Fluid.Geothermal.Borefields.BaseClasses.PartialBorefield(
       redeclare
-      IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.TwoUTube
-      borHol);
+      IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.TwoUTube borHol);
   annotation (
   defaultComponentName="borFie",
   Documentation(info="<html>

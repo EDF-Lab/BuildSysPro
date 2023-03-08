@@ -9,7 +9,7 @@ Active beams are devices used for heating, cooling and ventilation of spaces.
 A schematic diagram of an active beam unit is given below.
 </p>
 <p align=\"center\" >
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/HeatExchangers/ActiveBeams/schematicAB.png\" border=\"1\"/>
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/HeatExchangers/ActiveBeams/schematicAB.png\" border=\"1\"/>
 </p>
 <p>
 The active beam unit consists of a primary air plenum, a mixing chamber, a heat exchanger (coil) and several nozzles.

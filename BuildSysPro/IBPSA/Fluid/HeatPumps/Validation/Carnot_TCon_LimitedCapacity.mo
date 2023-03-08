@@ -3,7 +3,7 @@ model Carnot_TCon_LimitedCapacity
   "Test model for Carnot_TCon with limited heating capacity"
   extends Examples.Carnot_TCon(heaPum(QCon_flow_max=250000));
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Validation/Carnot_TCon_LimitedCapacity.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatPumps/Validation/Carnot_TCon_LimitedCapacity.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

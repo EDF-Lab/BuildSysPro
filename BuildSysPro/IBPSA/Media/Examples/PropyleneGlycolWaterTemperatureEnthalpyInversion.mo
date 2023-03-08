@@ -4,11 +4,11 @@ model PropyleneGlycolWaterTemperatureEnthalpyInversion
   extends Modelica.Icons.Example;
   extends IBPSA.Media.Examples.BaseClasses.TestTemperatureEnthalpyInversion(
       redeclare package Medium =
-        IBPSA.Media.Antifreeze.PropyleneGlycolWater (X_a=0.60, property_T=
-           293.15));
+        IBPSA.Media.Antifreeze.PropyleneGlycolWater (
+          X_a=0.60, property_T=293.15));
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Media/Examples/PropyleneGlycolWaterTemperatureEnthalpyInversion.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Media/Examples/PropyleneGlycolWaterTemperatureEnthalpyInversion.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

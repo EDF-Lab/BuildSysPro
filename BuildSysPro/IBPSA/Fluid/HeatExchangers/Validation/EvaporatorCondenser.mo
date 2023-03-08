@@ -4,7 +4,7 @@ model EvaporatorCondenser "Test model for the evaporator or condenser model"
 
   package Medium = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.01
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.01
     "Nominal mass flow rate";
 
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ref(T=283.15)
@@ -33,7 +33,6 @@ model EvaporatorCondenser "Test model for the evaporator or condenser model"
     m_flow(start=0.1),
     dp(start=10),
     UA=100,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     dp_nominal=0,
     tau=5,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
@@ -49,8 +48,7 @@ model EvaporatorCondenser "Test model for the evaporator or condenser model"
     m_flow_nominal=m_flow_nominal,
     redeclare package Medium = Medium,
     tau=0.01,
-    initType=Modelica.Blocks.Types.Init.SteadyState)
-    "Temperature sensor"
+    initType=Modelica.Blocks.Types.Init.SteadyState) "Temperature sensor"
     annotation (Placement(transformation(extent={{24,-10},{44,10}})));
 equation
   connect(ref.port, heaFlo.port_a)
@@ -65,7 +63,7 @@ equation
     annotation (Line(points={{10,0},{18,0},{24,0}}, color={0,127,255}));
   connect(senTem.port_b, sin.ports[1])
     annotation (Line(points={{44,0},{52,0},{58,0}}, color={0,127,255}));
-  annotation (    __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/Validation/EvaporatorCondenser.mos"
+  annotation (    __Dymola_Commands(file= "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/Validation/EvaporatorCondenser.mos"
         "Simulate and plot"),
     experiment(
       Tolerance=1e-6, StopTime=100),

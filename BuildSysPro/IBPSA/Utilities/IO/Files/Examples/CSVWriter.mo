@@ -4,7 +4,8 @@ model CSVWriter "Example of csv writer use"
   CombiTimeTableWriter combiTimeTableWriter(
     nin=2,
     samplePeriod=0.3,
-    fileName="test.csv")
+    fileName="test.csv",
+    significantDigits=10)
     "Model that writes two inputs to csv file in a format that can be read by a combiTimeTable"
     annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
   IBPSA.Utilities.IO.Files.CSVWriter csvWriter(
@@ -30,6 +31,11 @@ equation
   Documentation(revisions="<html>
 <ul>
 <li>
+October 8, 2018 by Filip Jorissen:<br/>
+Using implementation of the parameter <code>significantDigits</code>.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1041\">#1041</a>.
+</li>
+<li>
 May 10, 2018 by Filip Jorissen:<br/>
 First implementation.
 See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/924\">#924</a>.
@@ -40,7 +46,6 @@ See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/924\">#924</a>.
 This model demonstrates the use of the csv file writer.
 </p>
 </html>"),
-    __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Utilities/IO/Files/Examples/CSVWriter.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/IO/Files/Examples/CSVWriter.mos"
         "Simulate and plot"));
 end CSVWriter;

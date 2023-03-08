@@ -2,7 +2,7 @@ within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block HVACZone
   "Declaration of an FMU that exports a simple convective only HVAC system"
   extends IBPSA.Fluid.FMI.ExportContainers.HVACZone(redeclare final package
-      Medium =               MediumA, hvacAda(nPorts=2));
+      Medium = MediumA, hvacAda(nPorts=2));
 
   replaceable package MediumA = IBPSA.Media.Air "Medium for air";
   replaceable package MediumW = IBPSA.Media.Water "Medium for water";
@@ -16,43 +16,45 @@ block HVACZone
   parameter Real eps = 0.8 "Heat recovery effectiveness";
 
   /////////////////////////////////////////////////////////
-  // Air temperatures at design conditions
-  parameter Modelica.SIunits.Temperature TASup_nominal = 273.15+18
+  // Design air conditions
+  parameter Modelica.Units.SI.Temperature TASup_nominal=291.15
     "Nominal air temperature supplied to room";
-  parameter Modelica.SIunits.Temperature TRooSet = 273.15+24
+  parameter Modelica.Units.SI.DimensionlessRatio wASup_nominal=0.012
+    "Nominal air humidity ratio supplied to room [kg/kg] assuming 90% relative humidity";
+  parameter Modelica.Units.SI.Temperature TRooSet=297.15
     "Nominal room air temperature";
-  parameter Modelica.SIunits.Temperature TOut_nominal = 273.15+30
+  parameter Modelica.Units.SI.Temperature TOut_nominal=303.15
     "Design outlet air temperature";
-  parameter Modelica.SIunits.Temperature THeaRecLvg=
-    TOut_nominal - eps*(TOut_nominal-TRooSet)
-    "Air temperature leaving the heat recovery";
+  parameter Modelica.Units.SI.Temperature THeaRecLvg=TOut_nominal - eps*(
+      TOut_nominal - TRooSet) "Air temperature leaving the heat recovery";
+  parameter Modelica.Units.SI.DimensionlessRatio wHeaRecLvg=0.0135
+    "Air humidity ratio leaving the heat recovery [kg/kg]";
 
   /////////////////////////////////////////////////////////
   // Cooling loads and air mass flow rates
   parameter Real UA(unit="W/K") = 10E3 "Average UA-value of the room";
-  parameter Modelica.SIunits.HeatFlowRate QRooInt_flow=
-     1000 "Internal heat gains of the room";
-  parameter Modelica.SIunits.HeatFlowRate QRooC_flow_nominal=
-    -QRooInt_flow-UA/30*(TOut_nominal-TRooSet)
-    "Nominal cooling load of the room";
-  parameter Modelica.SIunits.MassFlowRate mA_flow_nominal=
-    1.3*QRooC_flow_nominal/1006/(TASup_nominal-TRooSet)
+  parameter Modelica.Units.SI.HeatFlowRate QRooInt_flow=1000
+    "Internal heat gains of the room";
+  parameter Modelica.Units.SI.HeatFlowRate QRooC_flow_nominal=-QRooInt_flow -
+      UA/30*(TOut_nominal - TRooSet) "Nominal cooling load of the room";
+  parameter Modelica.Units.SI.MassFlowRate mA_flow_nominal=1.3*
+      QRooC_flow_nominal/1006/(TASup_nominal - TRooSet)
     "Nominal air mass flow rate, increased by factor 1.3 to allow for recovery after temperature setback";
-  parameter Modelica.SIunits.TemperatureDifference dTFan = 2
+  parameter Modelica.Units.SI.TemperatureDifference dTFan=2
     "Estimated temperature raise across fan that needs to be made up by the cooling coil";
-  parameter Modelica.SIunits.HeatFlowRate QCoiC_flow_nominal=4*
-    (QRooC_flow_nominal + mA_flow_nominal*(TASup_nominal-THeaRecLvg-dTFan)*1006)
-    "Cooling load of coil, taking into account economizer, and increased due to latent heat removal";
+  parameter Modelica.Units.SI.HeatFlowRate QCoiC_flow_nominal=mA_flow_nominal*(
+      TASup_nominal - THeaRecLvg - dTFan)*1006 + mA_flow_nominal*(wASup_nominal
+       - wHeaRecLvg)*2458.3e3
+    "Cooling load of coil, taking into account outside air sensible and latent heat removal";
 
   /////////////////////////////////////////////////////////
   // Water temperatures and mass flow rates
-  parameter Modelica.SIunits.Temperature TWSup_nominal = 273.15+16
+  parameter Modelica.Units.SI.Temperature TWSup_nominal=285.15
     "Water supply temperature";
-  parameter Modelica.SIunits.Temperature TWRet_nominal = 273.15+12
+  parameter Modelica.Units.SI.Temperature TWRet_nominal=289.15
     "Water return temperature";
-  parameter Modelica.SIunits.MassFlowRate mW_flow_nominal=
-    QCoiC_flow_nominal/(TWRet_nominal-TWSup_nominal)/4200
-    "Nominal water mass flow rate";
+  parameter Modelica.Units.SI.MassFlowRate mW_flow_nominal=-QCoiC_flow_nominal/
+      (TWRet_nominal - TWSup_nominal)/4200 "Nominal water mass flow rate";
   /////////////////////////////////////////////////////////
   // HVAC models
   Modelica.Blocks.Sources.Constant zero(k=0) "Zero output signal"
@@ -88,14 +90,14 @@ block HVACZone
     redeclare package Medium2 = MediumA,
     m1_flow_nominal=mW_flow_nominal,
     m2_flow_nominal=mA_flow_nominal)
-    "Cooling coil (with sensible cooling only)" annotation (
-      Placement(transformation(
+    "Cooling coil (with sensible cooling only)" annotation (Placement(
+        transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
         origin={-18,94})));
 
-  IBPSA.Fluid.Sources.Outside out(redeclare package Medium =
-        MediumA, nPorts=2) "Outside air boundary condition"
+  IBPSA.Fluid.Sources.Outside out(redeclare package Medium = MediumA, nPorts=2)
+    "Outside air boundary condition"
     annotation (Placement(transformation(extent={{-112,84},{-92,104}})));
   Sources.MassFlowSource_T souWat(
     redeclare package Medium = MediumW,
@@ -103,8 +105,8 @@ block HVACZone
     use_m_flow_in=true,
     T=TWSup_nominal) "Source for water flow rate"
     annotation (Placement(transformation(extent={{-30,6},{-10,26}})));
-  Sources.FixedBoundary sinWat(
-    redeclare package Medium = MediumW, nPorts=1) "Sink for water circuit"
+  IBPSA.Fluid.Sources.Boundary_pT sinWat(redeclare package Medium = MediumW,
+      nPorts=1) "Sink for water circuit"
     annotation (Placement(transformation(extent={{-72,40},{-52,60}})));
   Modelica.Blocks.Sources.Constant mAir_flow(k=mA_flow_nominal)
     "Fan air flow rate"
@@ -134,7 +136,7 @@ block HVACZone
   BoundaryConditions.WeatherData.ReaderTMY3 weaDat(
     pAtmSou=IBPSA.BoundaryConditions.Types.DataSource.Parameter,
     TDryBul=TOut_nominal,
-    filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
+    filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
     TDryBulSou=IBPSA.BoundaryConditions.Types.DataSource.File,
     computeWetBulbTemperature=false) "Weather data reader"
     annotation (Placement(transformation(extent={{-152,130},{-132,150}})));
@@ -218,7 +220,7 @@ equation
       color={255,204,51},
       thickness=0.5,
       smooth=Smooth.None), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
   connect(TOut,weaBus. TDryBul)
@@ -245,22 +247,26 @@ equation
             {160,160}}), graphics={
         Text(
           extent={{-24,-132},{26,-152}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="TOut")}),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-160,-160},{160,160}})),
     Documentation(info="<html>
 <p>
 This example demonstrates how to export a model of an HVAC system
 that only provides convective cooling to a single thermal zone.
+<!-- @include_Buildings
 The HVAC system is adapted from
 <a href=\"modelica://BuildSysPro.IBPSA.Examples.Tutorial.SpaceCooling.System3\">
 IBPSA.Examples.Tutorial.SpaceCooling.System3</a>,
 but flow resistances have been added to have the same configuration as
 <a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones\">
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones</a>.
+-->
+<!-- @include_Buildings
 Having the same configuration is needed for the validation test
 <a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
 IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC</a>.
+-->
 </p>
 <p>
 The example extends from
@@ -277,6 +283,18 @@ ports which are exposed at the FMU interface.
 </html>", revisions="<html>
 <ul>
 <li>
+September 21, 2021 by David Blum:<br/>
+Correct supply and return water parameterization.<br/>
+Use explicit calculation of sensible and latent load to determine design load
+on cooling coil.<br/>
+This is for <a href=\"https://github.com/lbl-srg/modelica-buildings/issues/2624\">#2624</a>.
+</li>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
+<li>
 November 11, 2016, by Michael Wetter:<br/>
 Made the cooling coil replaceable because the Buildings library
 uses the model for validation with a cooling coil model that is not
@@ -288,6 +306,6 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/HVACZone.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/HVACZone.mos"
         "Export FMU"));
 end HVACZone;

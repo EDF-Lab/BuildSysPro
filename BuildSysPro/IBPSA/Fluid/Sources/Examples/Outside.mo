@@ -3,11 +3,12 @@ model Outside
   "Test model for source and sink with outside weather data"
   extends Modelica.Icons.Example;
   package Medium = IBPSA.Media.Air "Medium model for air";
-  IBPSA.Fluid.Sources.Outside bou(redeclare package Medium = Medium,
-      nPorts=1) "Model with outside conditions"
+  IBPSA.Fluid.Sources.Outside bou(redeclare package Medium = Medium, nPorts=1)
+    "Model with outside conditions"
     annotation (Placement(transformation(extent={{-50,20},{-30,40}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sin(
     redeclare package Medium = Medium,
@@ -15,15 +16,13 @@ model Outside
     nPorts=1) "Sink"
     annotation (Placement(transformation(extent={{90,20},{70,40}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTem(redeclare package Medium =
-               Medium, m_flow_nominal=1) "Temperature sensor"
+        Medium, m_flow_nominal=1) "Temperature sensor"
     annotation (Placement(transformation(extent={{40,20},{60,40}})));
   IBPSA.Fluid.Sensors.RelativeHumidityTwoPort senRelHum(redeclare package
-      Medium =         Medium, m_flow_nominal=1)
-    "Sensor for relative humidity"
+      Medium = Medium, m_flow_nominal=1) "Sensor for relative humidity"
     annotation (Placement(transformation(extent={{-20,20},{0,40}})));
   IBPSA.Fluid.Sensors.MassFractionTwoPort senMasFra(redeclare package Medium =
-               Medium, m_flow_nominal=1)
-    "Sensor for mass fraction of water"
+        Medium, m_flow_nominal=1) "Sensor for mass fraction of water"
     annotation (Placement(transformation(extent={{10,20},{30,40}})));
 equation
   connect(weaDat.weaBus, bou.weaBus)      annotation (Line(
@@ -49,7 +48,7 @@ equation
       smooth=Smooth.None));
   annotation (
 experiment(Tolerance=1e-6, StopTime=3.1536e+07),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sources/Examples/Outside.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sources/Examples/Outside.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

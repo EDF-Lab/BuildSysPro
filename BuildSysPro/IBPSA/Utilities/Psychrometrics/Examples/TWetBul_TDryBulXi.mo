@@ -11,7 +11,7 @@ model TWetBul_TDryBulXi
     offset=273.15 + 30) "Dry bulb temperature"
                  annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
   IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBul(redeclare package
-      Medium =         Medium) "Model for wet bulb temperature"
+      Medium = Medium) "Model for wet bulb temperature"
     annotation (Placement(transformation(extent={{0,20},{20,40}})));
   Modelica.Blocks.Sources.Constant p(k=101325) "Pressure"
                                     annotation (Placement(transformation(extent={{-80,-20},
@@ -22,7 +22,7 @@ model TWetBul_TDryBulXi
     offset=0.0175) "Humidity concentration"
                  annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
   IBPSA.Utilities.Psychrometrics.TWetBul_TDryBulXi wetBulApp(redeclare package
-      Medium =         Medium, approximateWetBulb=true)
+      Medium = Medium, approximateWetBulb=true)
     "Model for wet bulb temperature"
     annotation (Placement(transformation(extent={{0,-20},{20,0}})));
 equation
@@ -48,7 +48,7 @@ equation
       points={{-59,70},{-20,70},{-20,-2},{-1,-2}},
       color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Examples/TWetBul_TDryBulXi.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Examples/TWetBul_TDryBulXi.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 This examples is a unit test for the wet bulb computation.

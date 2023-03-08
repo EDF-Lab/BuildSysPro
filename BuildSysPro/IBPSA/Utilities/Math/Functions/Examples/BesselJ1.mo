@@ -9,7 +9,7 @@ equation
 
   annotation (
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/BesselJ1.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/BesselJ1.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=30.0),
     Documentation(info="<html>

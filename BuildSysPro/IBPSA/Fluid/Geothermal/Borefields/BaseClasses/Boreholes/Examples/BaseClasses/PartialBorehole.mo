@@ -5,13 +5,12 @@ partial model PartialBorehole "Partial model for borehole example models"
 
   parameter Integer nSeg(min=1) = 10
     "Number of segments to use in vertical discretization of the boreholes";
-  parameter Modelica.SIunits.Temperature T_start = 273.15 + 22
+  parameter Modelica.Units.SI.Temperature T_start=273.15 + 22
     "Initial soil temperature";
 
-  parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFieDat
-    "Borefield parameters" annotation (Placement(transformation(
-          extent={{-80,-80},{-60,-60}})));
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFieDat
+    "Borefield parameters"
+    annotation (Placement(transformation(extent={{-80,-80},{-60,-60}})));
 
   replaceable
     IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseClasses.PartialBorehole
@@ -24,8 +23,8 @@ partial model PartialBorehole "Partial model for borehole example models"
     nSeg=nSeg,
     TGro_start={T_start for i in 1:nSeg},
     TFlu_start={Medium.T_default for i in 1:nSeg})
-    "Borehole connected to a discrete ground model" annotation (
-     Placement(transformation(
+    "Borehole connected to a discrete ground model" annotation (Placement(
+        transformation(
         extent={{-14,-14},{14,14}},
         rotation=0,
         origin={0,0})));
@@ -35,8 +34,8 @@ partial model PartialBorehole "Partial model for borehole example models"
     nPorts=1,
     use_T_in=false,
     m_flow=borFieDat.conDat.mBor_flow_nominal,
-    T=303.15) "Source" annotation (Placement(transformation(
-          extent={{-76,-10},{-56,10}}, rotation=0)));
+    T=303.15) "Source" annotation (Placement(transformation(extent={{-76,-10},{
+            -56,10}}, rotation=0)));
 
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
@@ -44,19 +43,19 @@ partial model PartialBorehole "Partial model for borehole example models"
     use_T_in=false,
     nPorts=1,
     p=101330,
-    T=283.15) "Sink" annotation (Placement(transformation(
-          extent={{90,-12},{70,8}}, rotation=0)));
+    T=283.15) "Sink" annotation (Placement(transformation(extent={{90,-12},{70,
+            8}}, rotation=0)));
 
   IBPSA.Fluid.Sensors.TemperatureTwoPort TBorIn(
     m_flow_nominal=borFieDat.conDat.mBor_flow_nominal,
     redeclare package Medium = Medium,
-    tau=0) "Inlet borehole temperature" annotation (Placement(
-        transformation(extent={{-50,-10},{-30,10}})));
+    tau=0) "Inlet borehole temperature"
+    annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   IBPSA.Fluid.Sensors.TemperatureTwoPort TBorOut(
     m_flow_nominal=borFieDat.conDat.mBor_flow_nominal,
     redeclare package Medium = Medium,
-    tau=0) "Outlet borehole temperature" annotation (Placement(
-        transformation(extent={{30,-10},{50,10}})));
+    tau=0) "Outlet borehole temperature"
+    annotation (Placement(transformation(extent={{30,-10},{50,10}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature preTem[nSeg](each T=T_start)
     "Prescribed temperature" annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
@@ -77,8 +76,8 @@ equation
   annotation(Documentation(info="<html>
 <p>
 This partial model is used for examples using boreholes models which extend
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.partialBorehole\">
-IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.partialBorehole</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.Examples.BaseClasses.PartialBorehole\">
+IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.Examples.BaseClasses.PartialBorehole</a>.
 </p>
 </html>", revisions="<html>
 <ul>

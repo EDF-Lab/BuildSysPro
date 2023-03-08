@@ -2,10 +2,11 @@ within BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.Examples;
 model phi_pTX "Model to test phi_pTX"
   extends Modelica.Icons.Example;
 
-  parameter Modelica.SIunits.Pressure p = 101325 "Pressure of the medium";
-  Modelica.SIunits.Temperature T "Temperature";
-  Modelica.SIunits.MassFraction X_w "Mass fraction";
+  parameter Modelica.Units.SI.Pressure p=101325 "Pressure of the medium";
+  Modelica.Units.SI.Temperature T "Temperature";
+  Modelica.Units.SI.MassFraction X_w "Mass fraction";
   Real phi "Relative humidity";
+  Real X_inv "Inverse computation of mass fraction";
   constant Real convT(unit="1/s") = 0.999 "Conversion factor";
   constant Real convX(unit="1/s") = 0.02 "Conversion factor";
 equation
@@ -17,11 +18,26 @@ equation
     T = 293.15+convT*(time-0.5)*10;
   end if;
   phi = IBPSA.Utilities.Psychrometrics.Functions.phi_pTX(
-              p=p,
-              T=T,
-              X_w=X_w);
+    p=p,
+    T=T,
+    X_w=X_w);
+  X_inv = IBPSA.Utilities.Psychrometrics.Functions.X_pTphi(
+    p=p,
+    T=T,
+    phi=phi);
+  assert(abs(X_inv-X_w) < 1e-5,
+    "Inconsistency in the inverse implementation of phi_pTX: X_pTphi");
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Functions/Examples/phi_pTX.mos"
-        "Simulate and plot"));
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Functions/Examples/phi_pTX.mos"
+        "Simulate and plot"),
+    Documentation(revisions="<html>
+<ul>
+<li>
+April 4, 2019 by Filip Jorissen:<br/>
+Added inverse implementation check
+for <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1110\">#1110</a>.
+</li>
+</ul>
+</html>"));
 end phi_pTX;

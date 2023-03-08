@@ -3,7 +3,7 @@ model TwoWayPressureIndependent "Model of a pressure-independent two way valve"
   extends IBPSA.Fluid.Actuators.BaseClasses.PartialTwoWayValve(
     final linearized=false,
     from_dp=true,
-    phi=l + y_actual*(1 - l));
+    phi=max(0.1*l, l + y_actual*(1 - l)));
 
   parameter Real l2(min=1e-10) = 0.01
     "Gain for mass flow increase if pressure is above nominal pressure"
@@ -18,17 +18,24 @@ protected
     "Parameter for avoiding unnecessary computations";
   constant Real y2dd = 0
     "Second derivative at second support point";
-  Modelica.SIunits.MassFlowRate m_flow_set
-    "Requested mass flow rate";
-  Modelica.SIunits.PressureDifference dp_min(displayUnit="Pa")
+  Modelica.Units.SI.MassFlowRate m_flow_set "Requested mass flow rate";
+  Modelica.Units.SI.PressureDifference dp_min(displayUnit="Pa")
     "Minimum pressure difference required for delivering requested mass flow rate";
-  Modelica.SIunits.PressureDifference dp_x, dp_x1, dp_x2, dp_y2, dp_y1
+  Modelica.Units.SI.PressureDifference dp_x;
+  Modelica.Units.SI.PressureDifference dp_x1;
+  Modelica.Units.SI.PressureDifference dp_x2;
+  Modelica.Units.SI.PressureDifference dp_y2;
+  Modelica.Units.SI.PressureDifference dp_y1
     "Support points for interpolation flow functions";
-  Modelica.SIunits.MassFlowRate m_flow_x, m_flow_x1, m_flow_x2, m_flow_y2, m_flow_y1
+  Modelica.Units.SI.MassFlowRate m_flow_x;
+  Modelica.Units.SI.MassFlowRate m_flow_x1;
+  Modelica.Units.SI.MassFlowRate m_flow_x2;
+  Modelica.Units.SI.MassFlowRate m_flow_y2;
+  Modelica.Units.SI.MassFlowRate m_flow_y1
     "Support points for interpolation flow functions";
-  Modelica.SIunits.MassFlowRate m_flow_smooth
+  Modelica.Units.SI.MassFlowRate m_flow_smooth
     "Smooth interpolation result between two flow regimes";
-  Modelica.SIunits.PressureDifference dp_smooth
+  Modelica.Units.SI.PressureDifference dp_smooth
     "Smooth interpolation result between two flow regimes";
 
 equation
@@ -40,9 +47,9 @@ equation
     k = kVal;
   end if;
   dp_min = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-            m_flow=m_flow_set,
-            k=k,
-            m_flow_turbulent=m_flow_turbulent);
+    m_flow=m_flow_set,
+    k=k,
+    m_flow_turbulent=m_flow_turbulent);
 
   if from_dp then
     m_flow_x=0;
@@ -57,35 +64,33 @@ equation
     dp_x2 = deltax*dp_min;
     // min function ensures that m_flow_y1 does not increase further for dp_x > dp_x1
     m_flow_y1 = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-              dp=min(dp, dp_min + dp_x1),
-              k=k,
-              m_flow_turbulent=m_flow_turbulent);
+      dp=min(dp, dp_min + dp_x1),
+      k=k,
+      m_flow_turbulent=m_flow_turbulent);
     // max function ensures that m_flow_y2 does not decrease further for dp_x < dp_x2
     m_flow_y2 = m_flow_set + coeff1*max(dp_x,dp_x2);
 
-    m_flow_smooth = noEvent(smooth(2, if dp_x <= dp_x1 then m_flow_y1
-       elseif dp_x >= dp_x2 then m_flow_y2 else
+    m_flow_smooth = noEvent(smooth(2, if dp_x <= dp_x1 then m_flow_y1 elseif
+      dp_x >= dp_x2 then m_flow_y2 else
       IBPSA.Utilities.Math.Functions.quinticHermite(
-              x=dp_x,
-              x1=dp_x1,
-              x2=dp_x2,
-              y1=m_flow_y1,
-              y2=m_flow_y2,
-              y1d=
-        IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der(
-                dp=dp_min + dp_x1,
-                k=k,
-                m_flow_turbulent=m_flow_turbulent,
-                dp_der=1),
-              y2d=coeff1,
-              y1dd=
-        IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2(
-                dp=dp_min + dp_x1,
-                k=k,
-                m_flow_turbulent=m_flow_turbulent,
-                dp_der=1,
-                dp_der2=0),
-              y2dd=y2dd)));
+      x=dp_x,
+      x1=dp_x1,
+      x2=dp_x2,
+      y1=m_flow_y1,
+      y2=m_flow_y2,
+      y1d=IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der(
+        dp=dp_min + dp_x1,
+        k=k,
+        m_flow_turbulent=m_flow_turbulent,
+        dp_der=1),
+      y2d=coeff1,
+      y1dd=IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp_der2(
+        dp=dp_min + dp_x1,
+        k=k,
+        m_flow_turbulent=m_flow_turbulent,
+        dp_der=1,
+        dp_der2=0),
+      y2dd=y2dd)));
   else
     dp_x=0;
     dp_x1=0;
@@ -99,35 +104,33 @@ equation
     m_flow_x2 = deltax*m_flow_set;
     // min function ensures that dp_y1 does not increase further for m_flow_x > m_flow_x1
     dp_y1 = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow(
-              m_flow=min(m_flow, m_flow_set + m_flow_x1),
-              k=k,
-              m_flow_turbulent=m_flow_turbulent);
+      m_flow=min(m_flow, m_flow_set + m_flow_x1),
+      k=k,
+      m_flow_turbulent=m_flow_turbulent);
     // max function ensures that dp_y2 does not decrease further for m_flow_x < m_flow_x2
     dp_y2 = dp_min + coeff2*max(m_flow_x, m_flow_x2);
 
-    dp_smooth = noEvent(smooth(2, if m_flow_x <= m_flow_x1 then dp_y1
-       elseif m_flow_x >= m_flow_x2 then dp_y2 else
+    dp_smooth = noEvent(smooth(2, if m_flow_x <= m_flow_x1 then dp_y1 elseif
+      m_flow_x >= m_flow_x2 then dp_y2 else
       IBPSA.Utilities.Math.Functions.quinticHermite(
-              x=m_flow_x,
-              x1=m_flow_x1,
-              x2=m_flow_x2,
-              y1=dp_y1,
-              y2=dp_y2,
-              y1d=
-        IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der(
-                m_flow=m_flow_set + m_flow_x1,
-                k=k,
-                m_flow_turbulent=m_flow_turbulent,
-                m_flow_der=1),
-              y2d=coeff2,
-              y1dd=
-        IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der2(
-                m_flow=m_flow_set + m_flow_x1,
-                k=k,
-                m_flow_turbulent=m_flow_turbulent,
-                m_flow_der=1,
-                m_flow_der2=0),
-              y2dd=y2dd)));
+      x=m_flow_x,
+      x1=m_flow_x1,
+      x2=m_flow_x2,
+      y1=dp_y1,
+      y2=dp_y2,
+      y1d=IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der(
+        m_flow=m_flow_set + m_flow_x1,
+        k=k,
+        m_flow_turbulent=m_flow_turbulent,
+        m_flow_der=1),
+      y2d=coeff2,
+      y1dd=IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_m_flow_der2(
+        m_flow=m_flow_set + m_flow_x1,
+        k=k,
+        m_flow_turbulent=m_flow_turbulent,
+        m_flow_der=1,
+        m_flow_der2=0),
+      y2dd=y2dd)));
   end if;
 
   if homotopyInitialization then
@@ -147,35 +150,6 @@ equation
     end if;
   end if;
   annotation (defaultComponentName="val",
-  Icon(coordinateSystem(preserveAspectRatio=true,  extent={{-100,-100},
-            {100,100}}),       graphics={
-        Polygon(
-          points={{2,-2},{-76,60},{-76,-60},{2,-2}},
-          lineColor={0,0,0},
-          fillColor={0,0,0},
-          fillPattern=FillPattern.Solid),
-        Polygon(
-          points={{-50,40},{0,-2},{54,40},{54,40},{-50,40}},
-          lineColor={0,0,255},
-          pattern=LinePattern.None,
-          fillColor={255,255,255},
-          fillPattern=FillPattern.Solid),
-        Polygon(
-          points={{-52,-42},{0,-4},{60,40},{60,-42},{-52,-42}},
-          lineColor={0,0,255},
-          pattern=LinePattern.None,
-          fillColor={255,255,255},
-          fillPattern=FillPattern.Solid),
-        Polygon(
-          points={{0,-2},{82,60},{82,-60},{0,-2}},
-          lineColor={0,0,0},
-          fillColor={255,255,255},
-          fillPattern=FillPattern.Solid),
-        Line(
-          points={{0,40},{0,-4}}),
-        Line(
-          visible=not use_inputFilter,
-          points={{0,100},{0,40}})}),
 Documentation(info="<html>
 <p>
 Two way valve with a pressure-independent valve opening characteristic.
@@ -245,6 +219,34 @@ can serve both puroposes.
 </html>",
 revisions="<html>
 <ul>
+<li>
+June 10, 2021, by Michael Wetter:<br/>
+Changed implementation of the filter and changed the parameter <code>order</code> to a constant
+as most users need not change this value.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1498\">#1498</a>.
+</li>
+<li>
+August 7, 2020, by Ettore Zanetti:<br/>
+changed the computation of <code>phi</code> using
+<code>max(0.1*l, . )</code> to avoid
+phi=0.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1376\">
+issue 1376</a>.
+</li>
+<li>
+November 9, 2019, by Filip Jorissen:<br/>
+Guarded the computation of <code>phi</code> using
+<code>max(0, . )</code> to avoid
+negative phi.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1223\">
+issue 1223</a>.
+</li>
+<li>
+October 25, 2019, by Jianjun Hu:<br/>
+Removed icon graphics annotation. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1225\">#1225</a>.
+</li>
 <li>
 April 14, 2017, by Filip Jorissen:<br/>
 Revised implementation using <code>cubicHermite</code>

@@ -4,8 +4,7 @@ model PropertySource_h "Model that illustrates the use of PropertySource_h"
   package Medium = IBPSA.Media.Air (extraPropertiesNames={"CO2"});
 
   IBPSA.Fluid.Sources.PropertySource_h proSouXi(redeclare package Medium =
-               Medium, use_Xi_in=true)
-    "Property source that prescribes Xi"
+        Medium, use_Xi_in=true) "Property source that prescribes Xi"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   IBPSA.Fluid.Sources.MassFlowSource_h bouXi(
     redeclare package Medium = Medium,
@@ -13,8 +12,8 @@ model PropertySource_h "Model that illustrates the use of PropertySource_h"
     use_m_flow_in=true) "Boundary for Xi test"
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_ph sin(redeclare package Medium = Medium,
-      nPorts=3) "Sink model"
+  IBPSA.Fluid.Sources.Boundary_ph sin(redeclare package Medium = Medium, nPorts=
+       3) "Sink model"
     annotation (Placement(transformation(extent={{80,-10},{60,10}})));
   IBPSA.Fluid.Sources.PropertySource_h proSouH(redeclare package Medium =
         Medium, use_h_in=true)
@@ -31,8 +30,8 @@ model PropertySource_h "Model that illustrates the use of PropertySource_h"
   IBPSA.Fluid.Sources.MassFlowSource_h bouC(
     redeclare package Medium = Medium,
     nPorts=1,
-    use_m_flow_in=true) "Boundary for C test" annotation (Placement(
-        transformation(extent={{-60,-50},{-40,-30}})));
+    use_m_flow_in=true) "Boundary for C test"
+    annotation (Placement(transformation(extent={{-60,-50},{-40,-30}})));
   Modelica.Blocks.Sources.Constant h(
     k=Medium.h_default + 1e3)
     "Fixed specific enthalpy value"
@@ -91,8 +90,7 @@ See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/881\">#881</a>.
 </li>
 </ul>
 </html>"),
-    __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Fluid/Sources/Examples/PropertySource_h.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sources/Examples/PropertySource_h.mos"
         "Simulate and plot"),
     experiment(
       StopTime=1,

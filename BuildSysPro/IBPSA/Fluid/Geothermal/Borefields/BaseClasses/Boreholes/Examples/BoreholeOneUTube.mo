@@ -3,19 +3,18 @@ model BoreholeOneUTube "Test for the single U-tube borehole model"
   extends Modelica.Icons.Example;
   extends
     IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.Examples.BaseClasses.PartialBorehole(
-     redeclare
-      IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.OneUTube
-      borHol(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial));
+      redeclare
+      IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.OneUTube borHol(
+        energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial));
 
   annotation (
-    __Dymola_Commands( file=
-          "Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/Examples/BoreholeOneUTube.mos"
+    __Dymola_Commands( file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/Examples/BoreholeOneUTube.mos"
         "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,
             100}})),
     Documentation(info="<html>
 <p>
-This example illustrates the use of the 
+This example illustrates the use of the
 <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.OneUTube\">
 IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.OneUTubes</a>
 model. It simulates the behavior of a borehole with a prescribed

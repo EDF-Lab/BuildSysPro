@@ -4,39 +4,36 @@ model RectangularBorefield "Example model of a rectangular borefield"
 
   package Medium = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.Time tLoaAgg=300
+  parameter Modelica.Units.SI.Time tLoaAgg=300
     "Time resolution of load aggregation";
 
-  parameter Modelica.SIunits.Temperature TGro = 283.15
-    "Ground temperature";
-  parameter Modelica.SIunits.Velocity v_nominal = 1 "Nominal velocity";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = nBorHol*v_nominal*rTub^2*3.14*1000
-    "Nominal mass flow rate";
-  parameter Modelica.SIunits.Pressure dpBorFie_nominal = (hBor+(xBorFie+yBorFie)/2)*2
-    "Pressure losses for the entire borefield";
-  parameter Modelica.SIunits.Pressure dpHex_nominal = 10000 "Pressure drop heat exchanger";
-  parameter Modelica.SIunits.Pressure dp_nominal = dpBorFie_nominal + dpHex_nominal
-    "Total pressure drop";
+  parameter Modelica.Units.SI.Temperature TGro=283.15 "Ground temperature";
+  parameter Modelica.Units.SI.Velocity v_nominal=1 "Nominal velocity";
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=nBorHol*v_nominal*
+      rTub^2*3.14*1000 "Nominal mass flow rate";
+  parameter Modelica.Units.SI.Pressure dpBorFie_nominal=(hBor + (xBorFie +
+      yBorFie)/2)*2 "Pressure losses for the entire borefield";
+  parameter Modelica.Units.SI.Pressure dpHex_nominal=10000
+    "Pressure drop heat exchanger";
+  parameter Modelica.Units.SI.Pressure dp_nominal=dpBorFie_nominal +
+      dpHex_nominal "Total pressure drop";
 
-  parameter Modelica.SIunits.Height hBor = 100 "Total height of the borehole";
-  parameter Modelica.SIunits.Radius rTub = 0.02 "Outer radius of the tubes";
-  parameter Modelica.SIunits.Length xBorFie = 10 "Borefield length";
-  parameter Modelica.SIunits.Length yBorFie = 30 "Borefield width";
-  parameter Modelica.SIunits.Length dBorHol = 5 "Distance between two boreholes";
+  parameter Modelica.Units.SI.Height hBor=100 "Total height of the borehole";
+  parameter Modelica.Units.SI.Radius rTub=0.02 "Outer radius of the tubes";
+  parameter Modelica.Units.SI.Length xBorFie=10 "Borefield length";
+  parameter Modelica.Units.SI.Length yBorFie=30 "Borefield width";
+  parameter Modelica.Units.SI.Length dBorHol=5 "Distance between two boreholes";
 
   final parameter Integer nXBorHol = integer((xBorFie+dBorHol)/dBorHol) "Number of boreholes in x-direction";
   final parameter Integer nYBorHol = integer((yBorFie+dBorHol)/dBorHol) "Number of boreholes in y-direction";
   final parameter Integer nBorHol = nXBorHol*nYBorHol "Number of boreholes";
 
-  final parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Filling.Bentonite filDat
+  final parameter IBPSA.Fluid.Geothermal.Borefields.Data.Filling.Bentonite filDat
     annotation (Placement(transformation(extent={{20,40},{40,60}})));
-  final parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Soil.SandStone soiDat
-    "Soil data"
-    annotation (Placement(transformation(extent={{50,40},{70,60}})));
-  final parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Template conDat(
+  final parameter IBPSA.Fluid.Geothermal.Borefields.Data.Soil.SandStone soiDat
+    "Soil data" annotation (Placement(transformation(extent={{50,40},{70,60}})));
+  final parameter IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Template
+    conDat(
     final borCon=IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.SingleUTube,
     final use_Rb=false,
     final mBor_flow_nominal=m_flow_nominal/(nXBorHol*nYBorHol),
@@ -49,12 +46,11 @@ model RectangularBorefield "Example model of a rectangular borefield"
     final eTub=0.002,
     final xC=0.05,
     final dp_nominal=dpBorFie_nominal,
-    final cooBor={{dBorHol*mod((i - 1), nXBorHol),dBorHol*floor((i - 1)
-        /nXBorHol)} for i in 1:nBorHol}) "Borefield configuration"
+    final cooBor={{dBorHol*mod((i - 1), nXBorHol),dBorHol*floor((i - 1)/
+        nXBorHol)} for i in 1:nBorHol}) "Borefield configuration"
     annotation (Placement(transformation(extent={{80,40},{100,60}})));
 
-  final parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat(
+  final parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Template borFieDat(
     final filDat=filDat,
     final soiDat=soiDat,
     final conDat=conDat) "Borefield parameters"
@@ -68,16 +64,15 @@ model RectangularBorefield "Example model of a rectangular borefield"
     allowFlowReversal=false) "Geothermal borefield"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
 
-  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium =
-        Medium, nPorts=1) "Pressure boundary condition" annotation (
-      Placement(transformation(extent={{-60,-70},{-40,-50}})));
+  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium, nPorts=
+       1) "Pressure boundary condition"
+    annotation (Placement(transformation(extent={{-60,-70},{-40,-50}})));
 
   IBPSA.Fluid.Movers.FlowControlled_m_flow pum(
     redeclare package Medium = Medium,
     addPowerToMedium=false,
     use_inputFilter=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     inputType=IBPSA.Fluid.Types.InputType.Constant,
     m_flow_nominal=borFieDat.conDat.mBorFie_flow_nominal,
     allowFlowReversal=false)
@@ -89,8 +84,8 @@ model RectangularBorefield "Example model of a rectangular borefield"
     m_flow(start=borFieDat.conDat.mBorFie_flow_nominal),
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
     dp_nominal=dpHex_nominal,
-    allowFlowReversal=false) "Heater" annotation (Placement(
-        transformation(extent={{-40,-10},{-20,10}})));
+    allowFlowReversal=false) "Heater"
+    annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Modelica.Blocks.Sources.Constant TSou(k=293.15)
     "Temperature of water that goes into the borefield"
     annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
@@ -128,7 +123,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/Examples/RectangularBorefield.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/Examples/RectangularBorefield.mos"
         "Simulate and plot"),
   experiment(
       StopTime=2678400,Tolerance=1e-6));

@@ -19,8 +19,8 @@ model MassFraction "Test model for the mass fraction sensor"
     nPorts=1) "Flow boundary condition"
     annotation (Placement(transformation(extent={{-80,0},{-60,20}})));
 
-  IBPSA.Fluid.Sensors.MassFraction senMasFra2(redeclare package Medium =
-        Medium) "Mass fraction sensor for the volume"
+  IBPSA.Fluid.Sensors.MassFraction senMasFra2(redeclare package Medium = Medium,
+      warnAboutOnePortConnection=false) "Mass fraction sensor for the volume"
     annotation (Placement(transformation(extent={{20,36},{40,56}})));
   IBPSA.Fluid.MixingVolumes.MixingVolume vol(
     redeclare package Medium = Medium,
@@ -34,8 +34,8 @@ model MassFraction "Test model for the mass fraction sensor"
     m_flow_nominal=10,
     dp_nominal=200) "Flow resistance"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
-  IBPSA.Fluid.Sensors.MassFractionTwoPort senMasFra1(redeclare package Medium
-      =        Medium, m_flow_nominal=10)
+  IBPSA.Fluid.Sensors.MassFractionTwoPort senMasFra1(redeclare package Medium =
+        Medium, m_flow_nominal=10)
     "Mass fraction sensor for the flowing medium"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
 equation
@@ -55,7 +55,7 @@ equation
       points={{12.6667,10},{30,10},{30,36}},
       color={0,127,255}));
     annotation (experiment(Tolerance=1e-6, StopTime=10),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sensors/Examples/MassFraction.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sensors/Examples/MassFraction.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

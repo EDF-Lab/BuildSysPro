@@ -5,11 +5,10 @@ model Borefields
 
   package Medium = IBPSA.Media.Water;
 
-  parameter Modelica.SIunits.Time tLoaAgg=300
+  parameter Modelica.Units.SI.Time tLoaAgg=300
     "Time resolution of load aggregation";
 
-  parameter Modelica.SIunits.Temperature TGro = 283.15
-    "Ground temperature";
+  parameter Modelica.Units.SI.Temperature TGro=283.15 "Ground temperature";
   IBPSA.Fluid.Geothermal.Borefields.TwoUTubes borFie2UTubPar(
     redeclare package Medium = Medium,
     borFieDat=borFie2UTubParDat,
@@ -24,8 +23,8 @@ model Borefields
     nPorts=1,
     use_T_in=false,
     m_flow=borFie2UTubParDat.conDat.mBorFie_flow_nominal,
-    T=303.15) "Source" annotation (Placement(transformation(extent={{-92,
-            -10},{-72,10}}, rotation=0)));
+    T=303.15) "Source" annotation (Placement(transformation(extent={{-92,-10},{
+            -72,10}}, rotation=0)));
   IBPSA.Fluid.Sensors.TemperatureTwoPort T2UTubParIn(
     redeclare package Medium = Medium,
     m_flow_nominal=borFie2UTubParDat.conDat.mBorFie_flow_nominal,
@@ -38,17 +37,17 @@ model Borefields
     use_T_in=false,
     nPorts=1,
     p=101330,
-    T=283.15) "Sink" annotation (Placement(transformation(extent={{90,
-            -10},{70,10}}, rotation=0)));
+    T=283.15) "Sink" annotation (Placement(transformation(extent={{90,-10},{70,
+            10}}, rotation=0)));
   IBPSA.Fluid.Sensors.TemperatureTwoPort T2UTubParOut(
     redeclare package Medium = Medium,
     m_flow_nominal=borFie2UTubParDat.conDat.mBorFie_flow_nominal,
     tau=0)
     "Outlet temperature of the borefield with 2-UTube in parallel configuration"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
-  IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFieUTubDat(conDat=
-        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(
-        borCon=IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.SingleUTube))
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFieUTubDat(conDat=
+        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(borCon=
+        IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.SingleUTube))
     annotation (Placement(transformation(extent={{70,-100},{90,-80}})));
 
   IBPSA.Fluid.Geothermal.Borefields.TwoUTubes borFie2UTubSer(
@@ -65,8 +64,8 @@ model Borefields
     nPorts=1,
     use_T_in=false,
     m_flow=borFie2UTubSerDat.conDat.mBorFie_flow_nominal,
-    T=303.15) "Source" annotation (Placement(transformation(extent={{-92,
-            50},{-72,70}}, rotation=0)));
+    T=303.15) "Source" annotation (Placement(transformation(extent={{-92,50},{-72,
+            70}}, rotation=0)));
   IBPSA.Fluid.Sensors.TemperatureTwoPort T2UTubSerIn(
     redeclare package Medium = Medium,
     m_flow_nominal=borFie2UTubSerDat.conDat.mBorFie_flow_nominal,
@@ -79,17 +78,17 @@ model Borefields
     use_T_in=false,
     nPorts=1,
     p=101330,
-    T=283.15) "Sink" annotation (Placement(transformation(extent={{90,
-            50},{70,70}}, rotation=0)));
+    T=283.15) "Sink" annotation (Placement(transformation(extent={{90,50},{70,
+            70}}, rotation=0)));
   IBPSA.Fluid.Sensors.TemperatureTwoPort T2UTubSerOut(
     redeclare package Medium = Medium,
     m_flow_nominal=borFie2UTubSerDat.conDat.mBorFie_flow_nominal,
     tau=0)
     "Outlet temperature of the borefield with 2-UTube in serie configuration"
     annotation (Placement(transformation(extent={{42,50},{62,70}})));
-  IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFie2UTubParDat(conDat=
-        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(
-        borCon=IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeParallel))
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFie2UTubParDat(conDat=
+        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(borCon=
+        IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeParallel))
     "Data from the borefield with 2-UTube in parallel borehole configuration"
     annotation (Placement(transformation(extent={{70,-40},{90,-20}})));
   IBPSA.Fluid.Geothermal.Borefields.OneUTube borFieUTub(
@@ -98,21 +97,19 @@ model Borefields
     tLoaAgg=tLoaAgg,
     dynFil=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    TExt0_start=TGro)
-    "Borefield with a U-tube borehole configuration" annotation (
-      Placement(transformation(extent={{-10,-70},{10,-50}})));
+    TExt0_start=TGro) "Borefield with a U-tube borehole configuration"
+    annotation (Placement(transformation(extent={{-10,-70},{10,-50}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou(
     redeclare package Medium = Medium,
     nPorts=1,
     use_T_in=false,
     m_flow=borFieUTubDat.conDat.mBorFie_flow_nominal,
-    T=303.15) "Source" annotation (Placement(transformation(extent={{-92,
-            -70},{-72,-50}}, rotation=0)));
+    T=303.15) "Source" annotation (Placement(transformation(extent={{-92,-70},{
+            -72,-50}}, rotation=0)));
   IBPSA.Fluid.Sensors.TemperatureTwoPort TUTubIn(
     redeclare package Medium = Medium,
     m_flow_nominal=borFieUTubDat.conDat.mBorFie_flow_nominal,
-    tau=0)
-    "Inlet temperature of the borefield with UTube configuration"
+    tau=0) "Inlet temperature of the borefield with UTube configuration"
     annotation (Placement(transformation(extent={{-60,-70},{-40,-50}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
@@ -120,17 +117,16 @@ model Borefields
     use_T_in=false,
     nPorts=1,
     p=101330,
-    T=283.15) "Sink" annotation (Placement(transformation(extent={{90,
-            -70},{70,-50}}, rotation=0)));
+    T=283.15) "Sink" annotation (Placement(transformation(extent={{90,-70},{70,
+            -50}}, rotation=0)));
   IBPSA.Fluid.Sensors.TemperatureTwoPort TUTubOut(
     redeclare package Medium = Medium,
     m_flow_nominal=borFieUTubDat.conDat.mBorFie_flow_nominal,
-    tau=0)
-    "Inlet temperature of the borefield with UTube configuration"
+    tau=0) "Inlet temperature of the borefield with UTube configuration"
     annotation (Placement(transformation(extent={{40,-70},{60,-50}})));
-  IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFie2UTubSerDat(conDat=
-        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(
-        borCon=IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeSeries))
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Borefield.Example borFie2UTubSerDat(conDat=
+        IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Example(borCon=
+        IBPSA.Fluid.Geothermal.Borefields.Types.BoreholeConfiguration.DoubleUTubeSeries))
     "Data from the borefield with 2-UTube in serie borehole configuration"
     annotation (Placement(transformation(extent={{70,20},{90,40}})));
 
@@ -159,7 +155,7 @@ equation
     annotation (Line(points={{10,-60},{40,-60}},          color={0,127,255}));
   connect(TUTubOut.port_b, sin.ports[1])
     annotation (Line(points={{60,-60},{70,-60}},          color={0,127,255}));
-  annotation (__Dymola_Commands(file="Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/Examples/Borefields.mos"
+  annotation (__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/Examples/Borefields.mos"
         "Simulate and plot"),
   Documentation(info="<html>
 <p>
@@ -170,6 +166,11 @@ the thermal behaviour of the circulating fluid in each case.
 </html>",
 revisions="<html>
 <ul>
+<li>
+April 8, 2021, by Michael Wetter:<br/>
+Added missing <code>parameter</code> keyword.<br/>
+For <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1464\">IBPSA, issue 1464</a>.
+</li>
 <li>
 June 2018, by Damien Picard:<br/>
 First implementation.

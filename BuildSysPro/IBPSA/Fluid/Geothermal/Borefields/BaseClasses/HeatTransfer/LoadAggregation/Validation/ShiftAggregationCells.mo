@@ -3,7 +3,7 @@ model ShiftAggregationCells "This validation case test the cell shifting procedu
   extends Modelica.Icons.Example;
 
   discrete Integer curCel "Current occupied cell";
-  discrete Modelica.SIunits.HeatFlowRate[5] QAggShi_flow
+  discrete Modelica.Units.SI.HeatFlowRate[5] QAggShi_flow
     "Shifted vector of aggregated loads";
 
 initial equation
@@ -14,22 +14,22 @@ equation
   when (sample(4, 1)) then
     (curCel,QAggShi_flow) =
       IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.LoadAggregation.shiftAggregationCells(
-                      i=5,
-                      QAgg_flow=pre(QAggShi_flow),
-                      rCel={1,1,1,2,2},
-                      nu={1,2,3,5,7},
-                      curTim=time);
+      i=5,
+      QAgg_flow=pre(QAggShi_flow),
+      rCel={1,1,1,2,2},
+      nu={1,2,3,5,7},
+      curTim=time);
   end when;
 
 annotation (experiment(StartTime=3.5,StopTime=5.5,Tolerance=1e-6),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/ShiftAggregationCells.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/ShiftAggregationCells.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>
 This validation case replicates the load-shifting procedure illustred in the figure below by Cimmino (2014).
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/LoadAggregation_01.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/LoadAggregation_01.png\" />
 </p>
 <h4>References</h4>
 <p>

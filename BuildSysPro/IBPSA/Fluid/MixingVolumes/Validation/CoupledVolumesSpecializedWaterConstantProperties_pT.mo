@@ -1,8 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.MixingVolumes.Validation;
 model CoupledVolumesSpecializedWaterConstantProperties_pT
   "Validation model for two coupled volumes with water with constant properties"
-  extends IBPSA.Fluid.MixingVolumes.Validation.CoupledVolumesWater(
-      redeclare package Medium =
+  extends IBPSA.Fluid.MixingVolumes.Validation.CoupledVolumesWater(redeclare
+      package Medium =
         IBPSA.Media.Specialized.Water.ConstantProperties_pT);
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
@@ -27,6 +27,6 @@ First implementation for
       StopTime=3600,
       Tolerance=1e-06),
     __Dymola_Commands(
-      file="Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesSpecializedWaterConstantProperties_pT.mos"
+      file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MixingVolumes/Validation/CoupledVolumesSpecializedWaterConstantProperties_pT.mos"
            "Simulate and plot"));
 end CoupledVolumesSpecializedWaterConstantProperties_pT;

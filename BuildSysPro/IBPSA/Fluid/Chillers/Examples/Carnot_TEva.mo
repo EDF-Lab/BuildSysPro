@@ -5,16 +5,15 @@ model Carnot_TEva
  package Medium1 = IBPSA.Media.Water "Medium model";
  package Medium2 = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.TemperatureDifference dTEva_nominal=-10
+  parameter Modelica.Units.SI.TemperatureDifference dTEva_nominal=-10
     "Temperature difference evaporator outlet-inlet";
-  parameter Modelica.SIunits.TemperatureDifference dTCon_nominal=10
+  parameter Modelica.Units.SI.TemperatureDifference dTCon_nominal=10
     "Temperature difference condenser outlet-inlet";
   parameter Real COPc_nominal = 3 "Chiller COP";
-  parameter Modelica.SIunits.HeatFlowRate QEva_flow_nominal = -100E3
+  parameter Modelica.Units.SI.HeatFlowRate QEva_flow_nominal=-100E3
     "Evaporator heat flow rate";
-  parameter Modelica.SIunits.MassFlowRate m2_flow_nominal=
-    QEva_flow_nominal/dTEva_nominal/4200
-    "Nominal mass flow rate at chilled water side";
+  parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=QEva_flow_nominal/
+      dTEva_nominal/4200 "Nominal mass flow rate at chilled water side";
 
   IBPSA.Fluid.Chillers.Carnot_TEva chi(
     redeclare package Medium1 = Medium1,
@@ -27,7 +26,6 @@ model Carnot_TEva
     allowFlowReversal1=false,
     allowFlowReversal2=false,
     use_eta_Carnot_nominal=true,
-    etaCarnot_nominal=0.3,
     dp1_nominal=6000,
     dp2_nominal=6000) "Chiller model"
     annotation (Placement(transformation(extent={{10,-10},{30,10}})));
@@ -36,21 +34,19 @@ model Carnot_TEva
     redeclare package Medium = Medium1,
     use_T_in=false,
     use_m_flow_in=true,
-    T=298.15)
-    annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
+    T=298.15) annotation (Placement(transformation(extent={{-50,-4},{-30,16}})));
   IBPSA.Fluid.Sources.MassFlowSource_T sou2(
     nPorts=1,
     redeclare package Medium = Medium2,
     m_flow=m2_flow_nominal,
     use_T_in=false,
-    T=295.15)
-    annotation (Placement(transformation(extent={{80,-16},{60,4}})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
-        Medium1, nPorts=1) annotation (Placement(transformation(extent={
-            {10,-10},{-10,10}}, origin={70,30})));
-  IBPSA.Fluid.Sources.FixedBoundary sin2(nPorts=1, redeclare package Medium =
-               Medium2) annotation (Placement(transformation(extent={{-10,
-            -10},{10,10}}, origin={-40,-30})));
+    T=295.15) annotation (Placement(transformation(extent={{80,-16},{60,4}})));
+  IBPSA.Fluid.Sources.Boundary_pT sin1(redeclare package Medium = Medium1,
+      nPorts=1) annotation (Placement(transformation(extent={{10,-10},{-10,10}},
+          origin={70,30})));
+  IBPSA.Fluid.Sources.Boundary_pT sin2(nPorts=1, redeclare package Medium =
+        Medium2) annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+          origin={-40,-30})));
   Modelica.Blocks.Sources.Ramp TEvaLvg(
     duration=60,
     startTime=1800,
@@ -63,8 +59,8 @@ model Carnot_TEva
   Modelica.Blocks.Math.Add QCon_flow(k2=-1) "Condenser heat flow rate"
     annotation (Placement(transformation(extent={{48,-50},{68,-30}})));
 
-  final parameter Modelica.SIunits.SpecificHeatCapacity cp1_default=
-    Medium1.specificHeatCapacityCp(Medium1.setState_pTX(
+  final parameter Modelica.Units.SI.SpecificHeatCapacity cp1_default=
+      Medium1.specificHeatCapacityCp(Medium1.setState_pTX(
       Medium1.p_default,
       Medium1.T_default,
       Medium1.X_default))
@@ -96,7 +92,7 @@ equation
   connect(chi.port_b1, sin1.ports[1]) annotation (Line(points={{30,6},{50,6},{
           50,30},{60,30}}, color={0,127,255}));
   annotation (experiment(Tolerance=1e-6, StopTime=3600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Chillers/Examples/Carnot_TEva.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Chillers/Examples/Carnot_TEva.mos"
         "Simulate and plot"),
     Documentation(
 info="<html>
@@ -110,6 +106,17 @@ a temperature difference equal to <code>dTEva_nominal</code>.
 </html>",
 revisions="<html>
 <ul>
+<li>
+February 10, 2023, by Michael Wetter:<br/>
+Removed binding of parameter with same value as the default.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1692\">#1692</a>.
+</li>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 November 25, 2015, by Michael Wetter:<br/>
 First implementation.

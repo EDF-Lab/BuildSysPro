@@ -16,8 +16,7 @@ model OneUTube "Single U-tube borehole heat exchanger"
     each final energyDynamics=energyDynamics,
     each final dynFil=dynFil,
     each final mSenFac=mSenFac,
-    final dp1_nominal={if i == 1 then dp_nominal else 0 for i in 1:
-        nSeg},
+    final dp1_nominal={if i == 1 then dp_nominal else 0 for i in 1:nSeg},
     each final dp2_nominal=0,
     each final m1_flow_nominal=m_flow_nominal,
     each final m2_flow_nominal=m_flow_nominal,
@@ -28,8 +27,8 @@ model OneUTube "Single U-tube borehole heat exchanger"
     each final p1_start=p_start,
     each final p2_start=p_start,
     final TFlu_start=TFlu_start,
-    final TGro_start=TGro_start) "Borehole segments" annotation (
-      Placement(transformation(extent={{-10,-10},{10,10}})));
+    final TGro_start=TGro_start) "Borehole segments"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
 equation
   connect(port_a, intHex[1].port_a1) annotation (Line(
@@ -89,7 +88,7 @@ equation
         grid={2,2},
         initialScale=0.5), graphics={Text(
           extent={{60,72},{84,58}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="")}),
     Documentation(info="<html>
 <p>

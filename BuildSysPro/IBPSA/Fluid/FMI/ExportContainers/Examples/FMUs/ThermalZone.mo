@@ -2,36 +2,35 @@ within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 model ThermalZone
   "Declaration of an FMU that exports a thermal zone"
   extends IBPSA.Fluid.FMI.ExportContainers.ThermalZone(redeclare final package
-      Medium =               MediumA, nPorts=2);
+      Medium = MediumA, nPorts=2);
 
   replaceable package MediumA = IBPSA.Media.Air "Medium for air";
 
-  parameter Modelica.SIunits.Volume V=6*10*3 "Room volume";
+  parameter Modelica.Units.SI.Volume V=6*10*3 "Room volume";
 
   /////////////////////////////////////////////////////////
   // Air temperatures at design conditions
-  parameter Modelica.SIunits.Temperature TASup_nominal = 273.15+18
+  parameter Modelica.Units.SI.Temperature TASup_nominal=273.15 + 18
     "Nominal air temperature supplied to room";
-  parameter Modelica.SIunits.Temperature TRooSet = 273.15+24
+  parameter Modelica.Units.SI.Temperature TRooSet=273.15 + 24
     "Nominal room air temperature";
-  parameter Modelica.SIunits.Temperature TOut_nominal = 273.15+30
+  parameter Modelica.Units.SI.Temperature TOut_nominal=273.15 + 30
     "Design outlet air temperature";
 
   /////////////////////////////////////////////////////////
   // Cooling loads and air mass flow rates
-  parameter Modelica.SIunits.HeatFlowRate QRooInt_flow=
-     1000 "Internal heat gains of the room";
-  parameter Modelica.SIunits.HeatFlowRate QRooC_flow_nominal=
-    -QRooInt_flow-10E3/30*(TOut_nominal-TRooSet)
-    "Nominal cooling load of the room";
-  parameter Modelica.SIunits.MassFlowRate mA_flow_nominal=
-    1.3*QRooC_flow_nominal/1006/(TASup_nominal-TRooSet)
+  parameter Modelica.Units.SI.HeatFlowRate QRooInt_flow=1000
+    "Internal heat gains of the room";
+  parameter Modelica.Units.SI.HeatFlowRate QRooC_flow_nominal=-QRooInt_flow -
+      10E3/30*(TOut_nominal - TRooSet) "Nominal cooling load of the room";
+  parameter Modelica.Units.SI.MassFlowRate mA_flow_nominal=1.3*
+      QRooC_flow_nominal/1006/(TASup_nominal - TRooSet)
     "Nominal air mass flow rate, increased by factor 1.3 to allow for recovery after temperature setback";
 
   BoundaryConditions.WeatherData.ReaderTMY3 weaDat(
     pAtmSou=IBPSA.BoundaryConditions.Types.DataSource.Parameter,
     TDryBul=TOut_nominal,
-    filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
+    filNam=Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"),
     TDryBulSou=IBPSA.BoundaryConditions.Types.DataSource.File,
     computeWetBulbTemperature=false) "Weather data reader"
     annotation (Placement(transformation(extent={{100,150},{80,170}})));
@@ -79,7 +78,7 @@ equation
       color={255,204,51},
       thickness=0.5,
       smooth=Smooth.None), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
   connect(theCon.port_b,vol. heatPort)
@@ -90,7 +89,7 @@ equation
                                                             color={191,0,0}));
   connect(TAirOut.T, weaBus.TDryBul) annotation (Line(points={{-32,120},{-40,120},
           {-40,160},{-10,160}}, color={0,0,127}), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
   connect(TAirOut.port, theCon.port_a)
@@ -115,7 +114,7 @@ equation
             {160,180}}), graphics={
         Text(
           extent={{-22,-112},{28,-132}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="TOut")}),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-160,-140},{160,180}}),
         graphics={
@@ -129,7 +128,6 @@ equation
           pattern=LinePattern.None,
           lineColor={0,0,127},
           horizontalAlignment=TextAlignment.Left,
-          fontSize=12,
           textString="Simplified model of
 a thermal zone.")}),
     Documentation(info="<html>
@@ -138,11 +136,13 @@ This example demonstrates how to export a model
 that contains one thermal zone with convective heat input from the
 HVAC system only. The thermal zone is connected to an adaptor so that
 it can be coupled
-to an air-based HVAC system. The thermal zone is
+to an air-based HVAC system.
+<!-- @include_Buildings
+The thermal zone is
 taken from
 <a href=\"modelica://BuildSysPro.IBPSA.Examples.Tutorial.SpaceCooling.System3\">
-IBPSA.Examples.Tutorial.SpaceCooling.System3
-</a>.
+IBPSA.Examples.Tutorial.SpaceCooling.System3</a>.
+-->
 </p>
 <p>
 The example extends from
@@ -160,6 +160,12 @@ exposed at the FMU interface.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+March 11, 2020, by Michael Wetter:<br/>
+Removed <code>fontSize</code> in annotation.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/pull/1318\">#1318</a>.
+</li>
 <li>
 December 4, 2017, by Michael Wetter:<br/>
 Added call to <code>Modelica.Utilities.Files.loadResource</code>
@@ -184,6 +190,6 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/ThermalZone.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/ThermalZone.mos"
         "Export FMU"));
 end ThermalZone;

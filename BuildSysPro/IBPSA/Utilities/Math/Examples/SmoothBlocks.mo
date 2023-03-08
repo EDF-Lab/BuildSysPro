@@ -5,11 +5,10 @@ model SmoothBlocks "Test model for smooth min and smooth max functions"
             -20,40},{0,60}})));
   Modelica.Blocks.Math.Max max annotation (Placement(transformation(extent={{
             -20,0},{0,20}})));
-  Modelica.Blocks.Sources.Sine sine(freqHz=8)
+  Modelica.Blocks.Sources.Sine sine(f=8)
     annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
-  Modelica.Blocks.Sources.Sine sine1(freqHz=1)
-                                     annotation (Placement(transformation(
-          extent={{-100,0},{-80,20}})));
+  Modelica.Blocks.Sources.Sine sine1(f=1)
+    annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
   Diagnostics.AssertEquality assEquMax(threShold=0.08)
     annotation (Placement(transformation(extent={{40,20},{60,40}})));
   IBPSA.Utilities.Math.SmoothMin smoMin(deltaX=0.5)
@@ -45,7 +44,7 @@ equation
   connect(Min.y, assEquMin.u2) annotation (Line(points={{1,-70},{20,-70},{20,
           -56},{38,-56}}, color={0,0,127}));
   annotation(experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Examples/SmoothBlocks.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Examples/SmoothBlocks.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

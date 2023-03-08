@@ -46,6 +46,6 @@ First implementation.
 </html>"),
 experiment(Tolerance=1e-06, StopTime=1),
 __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Examples/MoverContinuous.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Examples/MoverContinuous.mos"
         "Simulate and plot"));
 end MoverContinuous;

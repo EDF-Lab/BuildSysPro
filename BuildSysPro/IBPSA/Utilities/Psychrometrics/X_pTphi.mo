@@ -15,7 +15,7 @@ block X_pTphi
     "Steam mass fraction"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 protected
-  Modelica.SIunits.AbsolutePressure pSat "Saturation pressure";
+  Modelica.Units.SI.AbsolutePressure pSat "Saturation pressure";
   parameter Integer i_w=
    sum({(
      if Modelica.Utilities.Strings.isEqual(
@@ -34,9 +34,9 @@ initial equation
 equation
   pSat = IBPSA.Media.Air.saturationPressure(T);
   X[i_w] = IBPSA.Utilities.Psychrometrics.Functions.X_pSatpphi(
-          pSat=pSat,
-          p=p_in_internal,
-          phi=phi);
+    pSat=pSat,
+    p=p_in_internal,
+    phi=phi);
   //sum(X[:]) = 1; // The formulation with a sum in an equation section leads to a nonlinear equation system
   X[i_nw] =  1 - X[i_w];
   annotation (Documentation(info="<html>
@@ -84,14 +84,14 @@ First implementation.
 </html>"), Icon(graphics={
         Text(
           extent={{-96,16},{-54,-22}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="T"),
         Text(
           extent={{-86,-18},{-36,-100}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="phi"),
         Text(
           extent={{26,56},{90,-54}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="X_steam")}));
 end X_pTphi;

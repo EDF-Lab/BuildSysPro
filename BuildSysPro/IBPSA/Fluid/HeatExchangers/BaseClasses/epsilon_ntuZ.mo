@@ -17,9 +17,9 @@ algorithm
    // a is constraining Z since eps is not defined for Z=1.
     a := smooth(1, if Z < 0.97 then Z else
       IBPSA.Utilities.Math.Functions.smoothMin(
-              x1=Z,
-              x2=0.98,
-              deltaX=0.01));
+      x1=Z,
+      x2=0.98,
+      deltaX=0.01));
     eps := (1 - Modelica.Math.exp(-NTU*(1 - a)))/(1 - a*Modelica.Math.exp(-NTU*(
       1 - a)));
   elseif (flowRegime == Integer(f.CrossFlowUnmixed)) then

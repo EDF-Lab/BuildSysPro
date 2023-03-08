@@ -1,28 +1,29 @@
 within BuildSysPro.IBPSA.Fluid.Sensors;
 model LatentEnthalpyFlowRate
   "Ideal enthalphy flow rate sensor that outputs the latent enthalpy flow rate only"
-  extends IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor(
-      redeclare replaceable package Medium =
-        Modelica.Media.Interfaces.PartialCondensingGases);
+  extends IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor(redeclare
+      replaceable package Medium =
+        Modelica.Media.Interfaces.PartialCondensingGases, tau=0);
   extends IBPSA.Fluid.BaseClasses.IndexMassFraction(final substanceName="water");
-  extends Modelica.Icons.RotationalSensor;
+  extends Modelica.Icons.RoundSensor;
   Modelica.Blocks.Interfaces.RealOutput H_flow(final unit="W")
     "Latent enthalpy flow rate, positive if from port_a to port_b"
     annotation (Placement(transformation(
         origin={0,110},
         extent={{-10,-10},{10,10}},
         rotation=90)));
-  parameter Modelica.SIunits.SpecificEnthalpy h_out_start=
-    Medium.specificEnthalpy_pTX(
-      p=Medium.p_default, T=Medium.T_default, X=Medium.X_default)
-    -Medium.enthalpyOfNonCondensingGas(T=Medium.T_default)
+  parameter Modelica.Units.SI.SpecificEnthalpy h_out_start=
+      Medium.specificEnthalpy_pTX(
+      p=Medium.p_default,
+      T=Medium.T_default,
+      X=Medium.X_default) - Medium.enthalpyOfNonCondensingGas(T=Medium.T_default)
     "Initial or guess value of measured specific latent enthalpy"
     annotation (Dialog(group="Initialization"));
 
 protected
-  Modelica.SIunits.SpecificEnthalpy hMed_out(start=h_out_start)
+  Modelica.Units.SI.SpecificEnthalpy hMed_out(start=h_out_start)
     "Medium latent enthalpy to which the sensor is exposed";
-  Modelica.SIunits.SpecificEnthalpy h_out(start=h_out_start)
+  Modelica.Units.SI.SpecificEnthalpy h_out(start=h_out_start)
     "Medium latent enthalpy that is used to compute the enthalpy flow rate";
 
   Medium.MassFraction XiActual[Medium.nXi]
@@ -76,7 +77,7 @@ annotation (defaultComponentName="senLatEnt",
         Line(points={{0,100},{0,70}}, color={0,0,127}),
         Text(
           extent={{180,151},{20,99}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="HL_flow"),
         Ellipse(
           extent={{-70,70},{70,-70}},
@@ -98,7 +99,11 @@ annotation (defaultComponentName="senLatEnt",
         Line(points={{-22.9,32.8},{-40.2,57.3}}),
         Line(points={{-37.6,13.7},{-65.8,23.9}}),
         Line(points={{22.9,32.8},{40.2,57.3}}),
-        Line(points={{37.6,13.7},{65.8,23.9}})}),
+        Line(points={{37.6,13.7},{65.8,23.9}}),
+        Text(
+         extent={{-20,120},{-140,70}},
+          textColor={0,0,0},
+          textString=DynamicSelect("", String(H_flow, leftJustified=false, significantDigits=3)))}),
   Documentation(info="<html>
 <p>
 This model outputs the <i>latent</i> enthalphy flow rate of the medium in the flow
@@ -139,6 +144,18 @@ The sensor can only be used with medium models that implement the function
 </html>",
 revisions="<html>
 <ul>
+<li>
+October 19, 2020, by Antoine Gautier:<br/>
+Changed default value for <code>tau</code> from <code>1</code> to <code>0</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1406\">#1406</a>.
+</li>
+<li>
+February 25, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating state.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
 <li>
 January 18, 2016 by Filip Jorissen:<br/>
 Using parameter <code>tauInv</code>

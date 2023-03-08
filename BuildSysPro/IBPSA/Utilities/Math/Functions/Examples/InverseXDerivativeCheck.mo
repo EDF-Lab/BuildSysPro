@@ -16,13 +16,12 @@ initial equation
  y = y_comp;
 equation
   x = time^3*gain;
-  y = IBPSA.Utilities.Math.Functions.inverseXRegularized(x=x, delta=
-    delta);
+  y = IBPSA.Utilities.Math.Functions.inverseXRegularized(x=x, delta=delta);
   der(y_comp) =
     IBPSA.Utilities.Math.Functions.BaseClasses.der_inverseXRegularized(
-              x=x,
-              delta=delta,
-              x_der=der(x));
+    x=x,
+    delta=delta,
+    x_der=der(x));
   err = y-y_comp;
   assert(abs(err) < 1E-3, "Error in implementation.");
 annotation (
@@ -30,7 +29,7 @@ experiment(
       StartTime=-1,
       StopTime=1.0,
       Tolerance=1e-08),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/InverseXDerivativeCheck.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/InverseXDerivativeCheck.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

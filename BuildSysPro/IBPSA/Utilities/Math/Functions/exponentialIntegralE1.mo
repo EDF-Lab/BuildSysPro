@@ -12,8 +12,8 @@ protected
 
 algorithm
 
-  E1 := if x < 1 then IBPSA.Utilities.Math.Functions.polynomial(x, a1) -
-    log(x) else IBPSA.Utilities.Math.Functions.polynomial(x, a2)/(
+  E1 := if x < 1 then IBPSA.Utilities.Math.Functions.polynomial(x, a1) - log(x)
+     else IBPSA.Utilities.Math.Functions.polynomial(x, a2)/(
     IBPSA.Utilities.Math.Functions.polynomial(x, b2)*x*exp(x));
 
 annotation (

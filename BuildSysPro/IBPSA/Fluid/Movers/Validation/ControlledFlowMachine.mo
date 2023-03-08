@@ -18,7 +18,7 @@ model ControlledFlowMachine "Fans with different control signals as input"
 
   annotation (
 experiment(Tolerance=1e-6, StopTime=600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Validation/ControlledFlowMachine.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Validation/ControlledFlowMachine.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 This example demonstrates the use of the flow model with four different configurations.

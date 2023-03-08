@@ -17,9 +17,9 @@ initial algorithm
   // Get the derivative values at the support points
 
   dMonotone := IBPSA.Utilities.Math.Functions.splineDerivatives(
-              x=xd,
-              y=yd,
-              ensureMonotonicity=true);
+    x=xd,
+    y=yd,
+    ensureMonotonicity=true);
 
 algorithm
   i := 1;
@@ -30,13 +30,13 @@ algorithm
   end for;
   // Extrapolate or interpolate the data
   y := IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-              x=u,
-              x1=xd[i],
-              x2=xd[i + 1],
-              y1=yd[i],
-              y2=yd[i + 1],
-              y1d=dMonotone[i],
-              y2d=dMonotone[i + 1]);
+    x=u,
+    x1=xd[i],
+    x2=xd[i + 1],
+    y1=yd[i],
+    y2=yd[i + 1],
+    y1d=dMonotone[i],
+    y2d=dMonotone[i + 1]);
 annotation (
   defaultComponentName="cubSpl",
   Documentation(info="<html>

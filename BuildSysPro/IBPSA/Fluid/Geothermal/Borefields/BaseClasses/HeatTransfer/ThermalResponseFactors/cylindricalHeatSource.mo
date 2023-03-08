@@ -3,10 +3,10 @@ function cylindricalHeatSource
   "Cylindrical heat source solution from Carslaw and Jaeger"
   extends Modelica.Icons.Function;
 
-  input Modelica.SIunits.Time t "Time";
-  input Modelica.SIunits.ThermalDiffusivity aSoi "Ground thermal diffusivity";
-  input Modelica.SIunits.Distance dis "Radial distance between borehole axes";
-  input Modelica.SIunits.Radius rBor "Radius of emitting borehole";
+  input Modelica.Units.SI.Time t "Time";
+  input Modelica.Units.SI.ThermalDiffusivity aSoi "Ground thermal diffusivity";
+  input Modelica.Units.SI.Distance dis "Radial distance between borehole axes";
+  input Modelica.Units.SI.Radius rBor "Radius of emitting borehole";
 
   output Real G "Thermal response factor of borehole 1 on borehole 2";
 
@@ -16,12 +16,12 @@ protected
 
 algorithm
   G := Modelica.Math.Nonlinear.quadratureLobatto(
-                  function
+    function
       IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.ThermalResponseFactors.cylindricalHeatSource_Integrand(
-       Fo=Fo, p=p),
-                  a=1e-12,
-                  b=100,
-                  tolerance=1e-6);
+      Fo=Fo, p=p),
+    a=1e-12,
+    b=100,
+    tolerance=1e-6);
 
 annotation (
 Inline=true,
@@ -33,7 +33,7 @@ injected by a cylindrical heat source of infinite length and the temperature
 raise in the medium. The cylindrical heat source solution is defined by
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/CylindricalHeatSource_01.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/CylindricalHeatSource_01.png\" />
 </p>
 <p>
 where <i>&Delta;T(t,r)</i> is the temperature raise after a time <i>t</i> of
@@ -48,11 +48,12 @@ is the cylindrical heat source solution.
 The cylindrical heat source solution is given by:
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Geothermal/Borefields/CylindricalHeatSource_02.png\" />
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Geothermal/Borefields/CylindricalHeatSource_02.png\" />
 </p>
 <p>
 The integral is solved numerically, with the integrand defined in
-<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.ThermalResponseFactors.cylindricalHeatSource_Integrand\">IBPSA.Fluid.Geothermal.Borefields.BaseClasses.ThermalResponseFactors.cylindricalHeatSource_Integrand</a>.
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.ThermalResponseFactors.cylindricalHeatSource_Integrand\">
+IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.ThermalResponseFactors.cylindricalHeatSource_Integrand</a>.
 </p>
 </html>", revisions="<html>
 <ul>

@@ -15,7 +15,7 @@ equation
 
   annotation (
     __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Functions/Examples/FallingFactorial.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Functions/Examples/FallingFactorial.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=13.9),
     Documentation(info="<html>

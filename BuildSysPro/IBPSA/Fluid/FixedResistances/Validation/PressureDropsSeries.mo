@@ -6,7 +6,7 @@ model PressureDropsSeries "Test of multiple resistances in series"
 
    parameter Integer nRes(min=2) = 10 "Number of resistances";
 
-   parameter Modelica.SIunits.PressureDifference dp_nominal = 5
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=5
     "Nominal pressure drop for each resistance";
 
    Modelica.Blocks.Sources.Ramp P(
@@ -49,7 +49,7 @@ equation
       points={{-20,30},{-5.55112e-16,30}},
       color={0,127,255}));
   annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FixedResistances/Validation/PressureDropsSeries.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FixedResistances/Validation/PressureDropsSeries.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

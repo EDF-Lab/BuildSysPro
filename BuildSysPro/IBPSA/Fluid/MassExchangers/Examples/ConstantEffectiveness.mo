@@ -21,8 +21,7 @@ model ConstantEffectiveness
     T=273.15 + 5,
     use_p_in=true,
     use_T_in=true,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{40,-70},{60,-50}})));
+    nPorts=1) annotation (Placement(transformation(extent={{40,-70},{60,-50}})));
     Modelica.Blocks.Sources.Ramp TWat(
     height=10,
     duration=60,
@@ -39,16 +38,14 @@ model ConstantEffectiveness
     X={0.012,1 - 0.012},
     use_p_in=true,
     p=300000,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{84,2},{64,22}})));
+    nPorts=1) annotation (Placement(transformation(extent={{84,2},{64,22}})));
   IBPSA.Fluid.Sources.Boundary_pT sou_1(
     redeclare package Medium = Medium1,
     T=273.15 + 50,
     X={0.012,1 - 0.012},
     use_T_in=true,
     p=100000,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{-60,40},{-40,60}})));
+    nPorts=1) annotation (Placement(transformation(extent={{-60,40},{-40,60}})));
     Modelica.Blocks.Sources.Ramp PSin_1(
     duration=60,
     startTime=240,
@@ -64,8 +61,7 @@ model ConstantEffectiveness
     m2_flow_nominal=5,
     dp1_nominal=100,
     dp2_nominal=100,
-    show_T=true)
-    annotation (Placement(transformation(extent={{6,-4},{26,16}})));
+    show_T=true) annotation (Placement(transformation(extent={{6,-4},{26,16}})));
 
 equation
   connect(PIn.y,sou_2. p_in) annotation (Line(
@@ -96,7 +92,7 @@ equation
           6.66134e-16}},
       color={0,127,255}));
  annotation(experiment(Tolerance=1e-6, StopTime=360),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/MassExchangers/Examples/ConstantEffectiveness.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/MassExchangers/Examples/ConstantEffectiveness.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

@@ -3,8 +3,9 @@ model HVAC
   "Adaptor for connecting an HVAC system to signal ports which then can be exposed at an FMI interface"
 
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium "Medium model within the source"
-     annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air")));
 
   // Don't use annotation(Dialog(connectorSizing=true)) for nPorts because
   // otherwise, in IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones
@@ -34,8 +35,8 @@ model HVAC
         rotation=90,
         origin={-60,-120})));
   Modelica.Blocks.Interfaces.RealOutput X_wZon[nPorts](
-    each final unit="kg/kg") if
-       Medium.nXi > 0
+    each final unit="kg/kg")
+    if Medium.nXi > 0
     "Water mass fraction per total air mass of the backward flowing medium in the connector outlet"
     annotation (Placement(transformation(extent={{20,20},{-20,-20}},
         rotation=90,
@@ -67,7 +68,7 @@ protected
     annotation (Placement(transformation(extent={{0,-10},{-20,10}})));
 
   IBPSA.Fluid.FMI.Conversion.AirToOutlet con[nPorts](redeclare each final
-      package Medium =       Medium, each final allowFlowReversal=true)
+      package Medium = Medium, each final allowFlowReversal=true)
     "Converter between the different connectors"
     annotation (Placement(transformation(extent={{60,60},{80,80}})));
 
@@ -77,7 +78,7 @@ protected
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
 
   IBPSA.Fluid.FMI.BaseClasses.X_w_toX x_w_toX(redeclare final package Medium =
-               Medium) if Medium.nXi > 0 "Conversion from X_w to X"
+        Medium) if Medium.nXi > 0 "Conversion from X_w to X"
     annotation (Placement(transformation(extent={{40,-40},{20,-20}})));
 
   Modelica.Blocks.Sources.RealExpression hSup[nPorts](
@@ -87,14 +88,14 @@ protected
 
   RealVectorExpression XiSup[nPorts](
     each final n = Medium.nXi,
-    final y={inStream(ports[i].Xi_outflow) for i in 1:nPorts}) if
-       Medium.nXi > 0 "Water vapor concentration of supply air"
+    final y={inStream(ports[i].Xi_outflow) for i in 1:nPorts})
+    if Medium.nXi > 0 "Water vapor concentration of supply air"
     annotation (Placement(transformation(extent={{-40,30},{-20,50}})));
 
   RealVectorExpression CSup[nPorts](
     each final n=Medium.nC,
-    final y={inStream(ports[i].C_outflow) for i in 1:nPorts}) if
-       Medium.nC > 0 "Trace substance concentration of supply air"
+    final y={inStream(ports[i].C_outflow) for i in 1:nPorts})
+    if Medium.nC > 0 "Trace substance concentration of supply air"
     annotation (Placement(transformation(extent={{-40,10},{-20,30}})));
 
   ///////////////////////////////////////////////////////////////////////////
@@ -125,12 +126,12 @@ protected
           borderPattern=BorderPattern.Raised),
         Text(
           extent={{-96,15},{96,-15}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="%y"),
         Text(
           extent={{-150,90},{140,50}},
           textString="%name",
-          lineColor={0,0,255})}), Documentation(info="<html>
+          textColor={0,0,255})}), Documentation(info="<html>
 <p>
 The (time varying) vector <code>Real</code> output signal of this block can be defined in its
 parameter menu via variable <code>y</code>. The purpose is to support the
@@ -194,7 +195,7 @@ equation
         Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255}),
+          textColor={0,0,255}),
         Rectangle(
           extent={{-90,20},{40,14}},
           lineColor={0,0,0},
@@ -228,7 +229,7 @@ equation
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-92,-42},{-6,-98}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="[%nPorts]",
           horizontalAlignment=TextAlignment.Left),
         Ellipse(
@@ -242,9 +243,9 @@ equation
           fillColor={0,0,255},
           fillPattern=FillPattern.Solid),
             Bitmap(extent={{30,-102},{92,-40}},fileName=
-            "modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/FMI/FMI_icon.png"),
+            "modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/FMI/FMI_icon.png"),
             Bitmap(extent={{-96,52},{-24,108}},fileName=
-            "modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/FMI/modelica_icon.png")}),
+            "modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/FMI/modelica_icon.png")}),
     Documentation(info="<html>
 <p>
 Adaptor that can be used to connect an HVAC system (with acausal ports)
@@ -327,6 +328,11 @@ for a model that uses this model.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air only.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 September 13, 2017, by Michael Wetter:<br/>
 Removed erroneous <code>each</code>.

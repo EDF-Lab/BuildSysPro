@@ -25,6 +25,6 @@ First implementation.
 </ul>
 </html>"),
   experiment(Tolerance=1e-6, StopTime=86400),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/EquationOfTime.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/EquationOfTime.mos"
         "Simulate and plot"));
 end EquationOfTime;

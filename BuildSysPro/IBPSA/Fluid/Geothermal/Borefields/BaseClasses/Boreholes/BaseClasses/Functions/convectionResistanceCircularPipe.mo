@@ -1,34 +1,39 @@
 within BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseClasses.Functions;
 function convectionResistanceCircularPipe
   "Thermal resistance from the fluid in pipes and the grout zones (Bauer et al. 2011)"
+  extends Modelica.Icons.Function;
 
   // Geometry of the borehole
-  input Modelica.SIunits.Height hSeg "Height of the element";
-  input Modelica.SIunits.Radius rTub "Tube radius";
-  input Modelica.SIunits.Length eTub "Tube thickness";
+  input Modelica.Units.SI.Height hSeg "Height of the element";
+  input Modelica.Units.SI.Radius rTub "Tube radius";
+  input Modelica.Units.SI.Length eTub "Tube thickness";
   // thermal properties
-  input Modelica.SIunits.ThermalConductivity kMed
+  input Modelica.Units.SI.ThermalConductivity kMed
     "Thermal conductivity of the fluid";
-  input Modelica.SIunits.DynamicViscosity muMed
+  input Modelica.Units.SI.DynamicViscosity muMed
     "Dynamic viscosity of the fluid";
-  input Modelica.SIunits.SpecificHeatCapacity cpMed
+  input Modelica.Units.SI.SpecificHeatCapacity cpMed
     "Specific heat capacity of the fluid";
-  input Modelica.SIunits.MassFlowRate m_flow "Mass flow rate";
-  input Modelica.SIunits.MassFlowRate m_flow_nominal "Nominal mass flow rate";
+  input Modelica.Units.SI.MassFlowRate m_flow "Mass flow rate";
+  input Modelica.Units.SI.MassFlowRate m_flow_nominal "Nominal mass flow rate";
 
   // Outputs
-  output Modelica.SIunits.ThermalResistance RFluPip
+  output Modelica.Units.SI.ThermalResistance RFluPip
     "Convection resistance (or conduction in fluid if no mass flow)";
 
 protected
-  parameter Modelica.SIunits.Radius rTub_in = rTub - eTub
-    "Pipe inner radius";
-  Modelica.SIunits.CoefficientOfHeatTransfer h
+  parameter Modelica.Units.SI.Radius rTub_in=rTub - eTub "Pipe inner radius";
+  Modelica.Units.SI.CoefficientOfHeatTransfer h
     "Convective heat transfer coefficient of the fluid";
 
   Real k(unit="s/kg")
     "Coefficient used in the computation of the convective heat transfer coefficient";
-  Modelica.SIunits.MassFlowRate m_flow_abs = IBPSA.Utilities.Math.Functions.spliceFunction(m_flow,-m_flow,m_flow,m_flow_nominal/30);
+  Modelica.Units.SI.MassFlowRate m_flow_abs=
+      IBPSA.Utilities.Math.Functions.spliceFunction(
+      m_flow,
+      -m_flow,
+      m_flow,
+      m_flow_nominal/30);
   Real Re "Reynolds number";
   Real NuTurb "Nusselt at Re=2400";
   Real Nu "Nusselt";
@@ -45,19 +50,19 @@ algorithm
     //    = m_flow/(pi r^2) * DTub/mue_f = 2*m_flow / ( mue*pi*rTub)
     Nu := 0.023*(cpMed*muMed/kMed)^(0.35)*
       IBPSA.Utilities.Math.Functions.regNonZeroPower(
-                      x=Re,
-                      n=0.8,
-                      delta=0.01*m_flow_nominal*k);
+      x=Re,
+      n=0.8,
+      delta=0.01*m_flow_nominal*k);
   else
     // Laminar, fully-developped flow in a smooth circular pipe with uniform
     // imposed temperature: Nu=3.66 for Re<=2300. For 2300<Re<2400, a smooth
     // transition is created with the splice function.
     NuTurb := 0.023*(cpMed*muMed/kMed)^(0.35)*(2400)^(0.8);
     Nu := IBPSA.Utilities.Math.Functions.spliceFunction(
-                      NuTurb,
-                      3.66,
-                      Re - (2300 + 2400)/2,
-                      ((2300 + 2400)/2) - 2300);
+      NuTurb,
+      3.66,
+      Re - (2300 + 2400)/2,
+      ((2300 + 2400)/2) - 2300);
   end if;
   h := Nu*kMed/(2*rTub_in);
 

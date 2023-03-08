@@ -1,18 +1,16 @@
 within BuildSysPro.IBPSA.Fluid.Sensors;
 model PPM
   "Ideal one port trace substances sensor outputting in parts per million"
-  extends IBPSA.Fluid.Sensors.BaseClasses.PartialAbsoluteSensor(port(
-        C_outflow(
+  extends IBPSA.Fluid.Sensors.BaseClasses.PartialAbsoluteSensor(port(C_outflow(
         each final quantity="MassFraction",
         each final unit="1",
         each min=0,
         each max=1)));
-  extends Modelica.Icons.RotationalSensor;
+  extends Modelica.Icons.RoundSensor;
 
   parameter String substanceName = "CO2" "Name of trace substance";
 
-  parameter Modelica.SIunits.MolarMass MM=
-    Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM
+  parameter Modelica.Units.SI.MolarMass MM=Modelica.Media.IdealGases.Common.SingleGasesData.CO2.MM
     "Molar mass of the trace substance";
 
   Modelica.Blocks.Interfaces.RealOutput ppm(min=0)
@@ -27,8 +25,8 @@ protected
     then 1 else 0 for i in 1:Medium.nC}
     "Vector with zero everywhere except where species is";
 
-  final parameter Modelica.SIunits.MolarMass MMBul=Medium.molarMass(
-    Medium.setState_phX(
+  final parameter Modelica.Units.SI.MolarMass MMBul=Medium.molarMass(
+      Medium.setState_phX(
       p=Medium.p_default,
       h=Medium.h_default,
       X=Medium.X_default)) "Molar mass of bulk medium";
@@ -61,12 +59,16 @@ annotation (defaultComponentName="senPPM",
         Text(
           extent={{-150,80},{150,120}},
           textString="%name",
-          lineColor={0,0,255}),
+          textColor={0,0,255}),
         Text(
           extent={{160,-30},{60,-60}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="ppm"),
-        Line(points={{70,0},{100,0}}, color={0,0,127})}),
+        Line(points={{70,0},{100,0}}, color={0,0,127}),
+        Text(
+          extent={{180,90},{60,40}},
+          textColor={0,0,0},
+          textString=DynamicSelect("", String(ppm, leftJustified=false, significantDigits=3)))}),
   Documentation(info="<html>
 <p>
 This model outputs the trace substance concentration in ppm contained in the fluid connected to its port.
@@ -82,10 +84,14 @@ and
 Modelica.Media.IdealGases.Common.FluidData</a>.
 </p>
 <p>
+To measure PPM in a duct or pipe, use
+<a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.PPMTwoPort\">IBPSA.Fluid.Sensors.PPMTwoPort</a>
+rather than this sensor.
 Read the
 <a href=\"modelica://BuildSysPro.IBPSA.Fluid.Sensors.UsersGuide\">
 IBPSA.Fluid.Sensors.UsersGuide</a>
-prior to using this model with one fluid port.
+prior to using this model to see about potential numerical problems if this sensor is used incorrectly
+in a system model.
 </p>
 <h4>Assumptions</h4>
 <p>
@@ -95,6 +101,18 @@ wrong.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+September 21, 2020, by Michael Wetter:<br/>
+Introduced parameter <code>warnAboutOnePortConnection</code> and updated documentation.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1399\">#1399</a>.
+</li>
+<li>
+February 25, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating state.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
 <li>
 December 16, 2015, by Michael Wetter:<br/>
 Revised implementation, corrected error in the molar fraction which

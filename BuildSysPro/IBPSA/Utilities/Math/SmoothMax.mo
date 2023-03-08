@@ -5,15 +5,15 @@ block SmoothMax
  parameter Real deltaX "Width of transition interval";
 equation
   y = IBPSA.Utilities.Math.Functions.smoothMax(
-          x1=u1,
-          x2=u2,
-          deltaX=deltaX);
+    x1=u1,
+    x2=u2,
+    deltaX=deltaX);
   annotation (Icon(graphics={Text(
           extent={{-88,40},{92,-32}},
-          lineColor={160,160,164},
+          textColor={160,160,164},
           textString="smoothMax()"), Text(
           extent={{-74,-44},{68,-114}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="dX=%deltaX%")}),
 Documentation(info="<html>
 <p>

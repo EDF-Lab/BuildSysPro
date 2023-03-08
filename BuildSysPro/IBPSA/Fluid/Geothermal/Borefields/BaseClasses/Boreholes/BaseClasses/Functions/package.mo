@@ -2,6 +2,12 @@ within BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.BaseC
 package Functions "Package with functions for evaluation of borehole thermal resistances"
 extends Modelica.Icons.VariantsPackage;
 
+
+
+
+
+
+
 annotation (
 Documentation(info="<html>
 <p>

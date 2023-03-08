@@ -1,7 +1,7 @@
 within BuildSysPro.IBPSA.Utilities.Math.Examples;
 model SmoothLimit "Test model for smooth limit"
   extends Modelica.Icons.Example;
-  Modelica.Blocks.Sources.Sine sine(freqHz=8)
+  Modelica.Blocks.Sources.Sine sine(f=8)
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   IBPSA.Utilities.Math.SmoothLimit smoLim(
     deltaX=0.001,
@@ -14,7 +14,7 @@ equation
       points={{-19,10},{-2,10}},
       color={0,0,127}));
   annotation(experiment(Tolerance=1e-6, StartTime=0, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Examples/SmoothLimit.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Examples/SmoothLimit.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

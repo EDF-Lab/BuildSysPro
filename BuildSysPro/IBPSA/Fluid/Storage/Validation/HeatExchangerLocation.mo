@@ -5,9 +5,10 @@ model HeatExchangerLocation
 
   package Medium = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.HeatFlowRate QHex_flow_nominal = 6000
+  parameter Modelica.Units.SI.HeatFlowRate QHex_flow_nominal=6000
     "Design heat flow rate of heat exchanger";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal= QHex_flow_nominal/4200/4;
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=QHex_flow_nominal/
+      4200/4;
 
   IBPSA.Fluid.Sources.Boundary_pT watInTan(
     redeclare package Medium = Medium,
@@ -56,8 +57,8 @@ model HeatExchangerLocation
     redeclare package Medium = Medium,
     T=273.15 + 30,
     p(displayUnit="Pa"),
-    nPorts=2) "Sink boundary condition" annotation (Placement(
-        transformation(extent={{-60,-32},{-40,-12}})));
+    nPorts=2) "Sink boundary condition"
+    annotation (Placement(transformation(extent={{-60,-32},{-40,-12}})));
 
   IBPSA.Fluid.Sensors.TemperatureTwoPort senTan_aTop(
     redeclare package Medium = Medium,
@@ -70,13 +71,11 @@ model HeatExchangerLocation
     m_flow_nominal=m_flow_nominal,
     tau=0) "Temperature sensor at tank outlet"
     annotation (Placement(transformation(extent={{10,-80},{-10,-60}})));
-  IBPSA.Fluid.Sources.MassFlowSource_T mWatTanSte_flow(redeclare package Medium
-      =                Medium, nPorts=1)
-    "Mass flow rate through the tank"
+  IBPSA.Fluid.Sources.MassFlowSource_T mWatTanSte_flow(redeclare package Medium =
+        Medium, nPorts=1) "Mass flow rate through the tank"
     annotation (Placement(transformation(extent={{92,-58},{72,-38}})));
-  IBPSA.Fluid.Sources.MassFlowSource_T mWatTanDyn_flow(redeclare package Medium
-      =                Medium, nPorts=1)
-    "Mass flow rate through the tank"
+  IBPSA.Fluid.Sources.MassFlowSource_T mWatTanDyn_flow(redeclare package Medium =
+        Medium, nPorts=1) "Mass flow rate through the tank"
     annotation (Placement(transformation(extent={{94,14},{74,34}})));
 equation
   connect(mHex_flow1.ports[1], tan_aTop.portHex_a) annotation (Line(points={{-20,22},
@@ -100,7 +99,7 @@ equation
   connect(tan_bTop.port_b, mWatTanSte_flow.ports[1])
     annotation (Line(points={{60,-48},{72,-48}}, color={0,127,255}));
   annotation (
-  __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Storage/Validation/HeatExchangerLocation.mos"
+  __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Storage/Validation/HeatExchangerLocation.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

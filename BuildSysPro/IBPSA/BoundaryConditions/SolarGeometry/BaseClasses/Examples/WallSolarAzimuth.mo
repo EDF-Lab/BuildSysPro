@@ -1,31 +1,30 @@
 within BuildSysPro.IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.Examples;
 model WallSolarAzimuth "Test model for wall solar azimuth angle"
 extends Modelica.Icons.Example;
-  IBPSA.BoundaryConditions.SolarGeometry.IncidenceAngle incAng(
-    azi=0,
-    lat=lat,
-    til=1.5707963267949) "solar incidence angle" annotation (
-      Placement(transformation(extent={{-20,-40},{0,-20}})));
+  IBPSA.BoundaryConditions.SolarGeometry.IncidenceAngle incAng(azi=0, til=
+        1.5707963267949) "solar incidence angle"
+    annotation (Placement(transformation(extent={{-20,-40},{0,-20}})));
   IBPSA.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
-    "Weather data" annotation (Placement(transformation(extent={{-100,
-            0},{-80,20}})));
+        Modelica.Utilities.Files.loadResource(
+        "modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+    "Weather data"
+    annotation (Placement(transformation(extent={{-100,0},{-80,20}})));
   IBPSA.BoundaryConditions.WeatherData.Bus weaBus "Weather bus"
     annotation (Placement(transformation(extent={{-72,-2},{-48,22}})));
-  IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.WallSolarAzimuth
-    walSolAzi "Vertical wall solar azimuth angle"
+  IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.WallSolarAzimuth walSolAzi
+    "Vertical wall solar azimuth angle"
     annotation (Placement(transformation(extent={{70,0},{90,20}})));
   IBPSA.BoundaryConditions.SolarGeometry.BaseClasses.AltitudeAngle altAng
     "Altitude angle"
     annotation (Placement(transformation(extent={{-20,20},{0,40}})));
-  parameter Modelica.SIunits.Angle lat=41.98*Modelica.Constants.pi/180
+  parameter Modelica.Units.SI.Angle lat=41.98*Modelica.Constants.pi/180
     "Latitude";
 equation
   connect(weaDat.weaBus, weaBus) annotation (Line(
       points={{-80,10},{-60,10}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%second",
+      textString="%second",
       index=1,
       extent={{6,3},{6,3}}));
   connect(weaDat.weaBus, incAng.weaBus) annotation (Line(
@@ -42,11 +41,11 @@ equation
       points={{-60,10},{-40,10},{-40,30},{-22,30}},
       color={255,204,51},
       thickness=0.5), Text(
-      string="%first",
+      textString="%first",
       index=-1,
       extent={{-6,3},{-6,3}}));
   annotation (experiment(Tolerance=1e-6, StopTime=86400),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/SolarGeometry/BaseClasses/Examples/WallSolarAzimuth.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/SolarGeometry/BaseClasses/Examples/WallSolarAzimuth.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

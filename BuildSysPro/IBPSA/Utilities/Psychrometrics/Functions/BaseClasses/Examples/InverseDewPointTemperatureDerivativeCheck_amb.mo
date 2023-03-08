@@ -6,18 +6,17 @@ model InverseDewPointTemperatureDerivativeCheck_amb
   Real y "Function value";
   Real y_comp "Function value for comparison";
   Real err(unit="K", displayUnit="K") "Integration error";
-  Modelica.SIunits.Pressure p_w "Water vapor partial pressure";
+  Modelica.Units.SI.Pressure p_w "Water vapor partial pressure";
 initial equation
   y=y_comp;
 equation
   p_w =  611 + (7383-661)/2 + (7383-661)/2 * time^3;
-  y = IBPSA.Utilities.Psychrometrics.Functions.TDewPoi_pW_amb(p_w=
-    p_w);
+  y = IBPSA.Utilities.Psychrometrics.Functions.TDewPoi_pW_amb(p_w=p_w);
   der(y) = der(y_comp);
   err = y-y_comp;
   assert(abs(err) < 1E-2, "Derivative implementation has an error or solver tolerance is too low.");
   annotation (
-    __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Functions/BaseClasses/Examples/InverseDewPointTemperatureDerivativeCheck_amb.mos"
+    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Functions/BaseClasses/Examples/InverseDewPointTemperatureDerivativeCheck_amb.mos"
         "Simulate and plot"),
     experiment(
       StartTime=-1,

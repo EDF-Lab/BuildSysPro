@@ -2,8 +2,10 @@ within BuildSysPro.IBPSA.Fluid.FMI.Adaptors;
 model Outlet "Adaptor for connecting a fluid outlet to the FMI interface"
 
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium "Medium model within the source"
-     annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air"),
+        choice(redeclare package Medium = IBPSA.Media.Water "Water")));
 
   parameter Boolean allowFlowReversal = true
     "= true to allow flow reversal, false restricts to design direction (inlet -> outlet)"
@@ -17,8 +19,8 @@ model Outlet "Adaptor for connecting a fluid outlet to the FMI interface"
     redeclare final package Medium = Medium,
     final allowFlowReversal=allowFlowReversal,
     final use_p_in=use_p_in) "Fluid outlet" annotation (Placement(
-        transformation(extent={{100,-10},{120,10}}), iconTransformation(
-          extent={{100,-10},{120,10}})));
+        transformation(extent={{100,-10},{120,10}}), iconTransformation(extent=
+            {{100,-10},{120,10}})));
 
   Modelica.Fluid.Interfaces.FluidPort_a port_a(
     redeclare final package Medium=Medium) "Fluid port"
@@ -27,14 +29,13 @@ model Outlet "Adaptor for connecting a fluid outlet to the FMI interface"
           iconTransformation(extent={{-110,
             -10},{-90,10}})));
   IBPSA.Fluid.FMI.Interfaces.PressureInput p if use_p_in
-    "Pressure to be sent to outlet" annotation (Placement(
-        transformation(
+    "Pressure to be sent to outlet" annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
         origin={0,-120})));
 protected
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package Medium =       Medium)
+      package Medium = Medium)
     "Internal connector for fluid properties for back flow";
   IBPSA.Fluid.FMI.Interfaces.PressureOutput p_in_internal
     "Internal connector for pressure";
@@ -106,7 +107,7 @@ equation
         Text(
           extent={{-150,110},{150,150}},
           textString="%name",
-          lineColor={0,0,255}),
+          textColor={0,0,255}),
         Line(
           points={{60,0},{100,0}},
           color={0,0,255}),
@@ -117,7 +118,7 @@ equation
           fillColor={0,127,255}),
         Text(
           extent={{66,40},{100,0}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="outlet"),
         Line(
           points={{0,-60},{0,-100}},
@@ -126,7 +127,7 @@ equation
           visible=use_p_in),
         Text(
           extent={{10,-64},{44,-104}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="p",
           visible=use_p_in)}),
     Documentation(info="<html>
@@ -149,6 +150,11 @@ for how to use this model.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air and water.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 November 8, 2016, by Michael Wetter:<br/>
 Corrected wrong argument type in function call of <code>Medium.temperature_phX</code>.

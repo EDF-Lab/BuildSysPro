@@ -14,8 +14,8 @@ model TwoWayValveTable
     use_p_in=false,
     p(displayUnit="Pa") = 306000,
     T=293.15,
-    nPorts=1) "Boundary condition for flow source" annotation (
-      Placement(transformation(extent={{-90,10},{-70,30}})));
+    nPorts=1) "Boundary condition for flow source"
+    annotation (Placement(transformation(extent={{-90,10},{-70,30}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     p(displayUnit="Pa") = 3E5,
@@ -86,7 +86,7 @@ equation
       points={{49,-36},{54,-36},{54,-76},{58,-76}},
       color={0,0,127}));
     annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Actuators/Valves/Examples/TwoWayValveTable.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Actuators/Valves/Examples/TwoWayValveTable.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>
@@ -112,7 +112,7 @@ Plotting the variables <code>kv.y</code> versus <code>y.y</code> shows that the 
 reproduces the <i>K<sub>v</sub></i> values shown in the above table.
 </p>
 <p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Actuators/Valves/Examples/TwoWayValveTable_kv.png\"/>
+<img alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Actuators/Valves/Examples/TwoWayValveTable_kv.png\"/>
 </p>
 <p>
 The parameter <code>filterOpening</code> is set to <code>false</code>,

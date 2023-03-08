@@ -1,27 +1,24 @@
 within BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.Examples;
 model GetHeaderElement "Test model to get header element"
   extends Modelica.Icons.Example;
-  parameter Modelica.SIunits.Angle longitude(fixed=false, displayUnit="deg")
+  parameter Modelica.Units.SI.Angle longitude(fixed=false, displayUnit="deg")
     "Longitude";
-  parameter Modelica.SIunits.Angle latitude(fixed=false, displayUnit="deg")
+  parameter Modelica.Units.SI.Angle latitude(fixed=false, displayUnit="deg")
     "Latitude";
-  parameter Modelica.SIunits.Time timeZone(fixed=false, displayUnit="h")
+  parameter Modelica.Units.SI.Time timeZone(fixed=false, displayUnit="h")
     "Time zone";
 
-  parameter String filNam = Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/Resources/IBPSA/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
+  parameter String filNam = Modelica.Utilities.Files.loadResource("modelica://BuildSysPro/IBPSA/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
     "Name of weather data file";
 
   final parameter String absFilNam = IBPSA.BoundaryConditions.WeatherData.BaseClasses.getAbsolutePath(filNam)
     "Absolute path of the file";
 initial equation
-  longitude =
-    IBPSA.BoundaryConditions.WeatherData.BaseClasses.getLongitudeTMY3(
+  longitude = IBPSA.BoundaryConditions.WeatherData.BaseClasses.getLongitudeTMY3(
      filNam=absFilNam);
-  latitude =
-    IBPSA.BoundaryConditions.WeatherData.BaseClasses.getLatitudeTMY3(
+  latitude = IBPSA.BoundaryConditions.WeatherData.BaseClasses.getLatitudeTMY3(
     filNam=absFilNam);
-  timeZone =
-    IBPSA.BoundaryConditions.WeatherData.BaseClasses.getTimeZoneTMY3(
+  timeZone = IBPSA.BoundaryConditions.WeatherData.BaseClasses.getTimeZoneTMY3(
     filNam=absFilNam);
   assert(abs(longitude*180/Modelica.Constants.pi+87.92) < 1,
       "Error when parsing longitude, longitude = " + String(longitude));
@@ -56,6 +53,6 @@ First implementation.
 </ul>
 </html>"),
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/GetHeaderElement.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/GetHeaderElement.mos"
         "Simulate and plot"));
 end GetHeaderElement;

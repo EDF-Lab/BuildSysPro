@@ -5,25 +5,25 @@ model ScrollWaterToWater_ScalingFactor
   package Medium1 = IBPSA.Media.Water "Medium model";
   package Medium2 = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m1_flow_nominal = 0.47
+  parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=0.47
     "Nominal mass flow rate on the condenser side";
-  parameter Modelica.SIunits.MassFlowRate m2_flow_nominal = 0.47
+  parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=0.47
     "Nominal mass flow rate on the evaporator side";
 
-  parameter Modelica.SIunits.MassFlowRate flowSource = 0.79
+  parameter Modelica.Units.SI.MassFlowRate flowSource=0.79
     "Mass flow rate on the condenser side";
-  parameter Modelica.SIunits.MassFlowRate flowLoad = 0.47
+  parameter Modelica.Units.SI.MassFlowRate flowLoad=0.47
     "Mass flow rate on the evaporator side";
 
   parameter Real scaling_factor = 2.41
     "Scaling factor for heat pump capacity";
 
-  IBPSA.Fluid.Sources.FixedBoundary sin2(redeclare package Medium =
-        Medium2, nPorts=2) "Source side sink" annotation (Placement(
-        transformation(extent={{-10,-10},{10,10}}, origin={-32,20})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
-        Medium1, nPorts=2) "Load side sink" annotation (Placement(
-        transformation(extent={{10,-10},{-10,10}}, origin={44,20})));
+  IBPSA.Fluid.Sources.Boundary_pT sin2(redeclare package Medium = Medium2,
+      nPorts=2) "Source side sink" annotation (Placement(transformation(extent=
+            {{-10,-10},{10,10}}, origin={-50,0})));
+  IBPSA.Fluid.Sources.Boundary_pT sin1(redeclare package Medium = Medium1,
+      nPorts=2) "Load side sink" annotation (Placement(transformation(extent={{
+            10,-10},{-10,10}}, origin={50,0})));
   Modelica.Fluid.Sources.MassFlowSource_T loa(
     redeclare package Medium = Medium1,
     m_flow=flowLoad,
@@ -57,8 +57,7 @@ model ScrollWaterToWater_ScalingFactor
       V_flow_nominal=0.003,
       leaCoe=0.01),
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    enable_temperature_protection=false)
-    "Scroll water to water heat pump"
+    enable_temperature_protection=false) "Scroll water to water heat pump"
     annotation (Placement(transformation(extent={{-10,42},{10,62}})));
   IBPSA.Fluid.HeatPumps.ScrollWaterToWater heaPum1(
     redeclare package Medium1 = Medium1,
@@ -128,15 +127,14 @@ model ScrollWaterToWater_ScalingFactor
 equation
   connect(heaPum.port_a2, sou.ports[1])
     annotation (Line(points={{10,46},{40,46}},           color={0,127,255}));
-  connect(heaPum.port_b1, sin1.ports[1]) annotation (Line(points={{10,58},{20,
-          58},{20,24},{26,24},{34,24},{34,22}},
-                            color={0,127,255}));
+  connect(heaPum.port_b1, sin1.ports[1]) annotation (Line(points={{10,58},{20,58},
+          {20,2},{40,2}},   color={0,127,255}));
   connect(heaPum.port_a1, loa.ports[1])
     annotation (Line(points={{-10,58},{-34,58},{-40,58}},color={0,127,255}));
-  connect(heaPum.port_b2, sin2.ports[1]) annotation (Line(points={{-10,46},{-22,
-          46},{-22,22}},            color={0,127,255}));
-  connect(sin2.ports[2], heaPum1.port_b2) annotation (Line(points={{-22,18},{-22,
-          18},{-22,-60},{-10,-60}}, color={0,127,255}));
+  connect(heaPum.port_b2, sin2.ports[1]) annotation (Line(points={{-10,46},{-20,
+          46},{-20,2},{-40,2}},     color={0,127,255}));
+  connect(sin2.ports[2], heaPum1.port_b2) annotation (Line(points={{-40,-2},{-20,
+          -2},{-20,-60},{-10,-60}}, color={0,127,255}));
   connect(sou1.ports[1], heaPum1.port_a2)
     annotation (Line(points={{40,-60},{26,-60},{10,-60}}, color={0,127,255}));
   connect(TSou.y, sou1.T_in) annotation (Line(points={{79,-80},{70,-80},{70,-56},
@@ -150,7 +148,7 @@ equation
   connect(loa1.ports[1], heaPum1.port_a1) annotation (Line(points={{-40,-48},{-10,
           -48}},               color={0,127,255}));
   connect(heaPum1.port_b1, sin1.ports[2]) annotation (Line(points={{10,-48},{20,
-          -48},{20,18},{34,18}}, color={0,127,255}));
+          -48},{20,-2},{40,-2}}, color={0,127,255}));
   connect(N.y, realToInteger.u)
     annotation (Line(points={{-77,80},{-42,80},{-42,80}}, color={0,0,127}));
   connect(realToInteger.y, heaPum.stage) annotation (Line(points={{-19,80},{-16,
@@ -165,7 +163,7 @@ equation
     annotation (Line(points={{79,54},{69.5,54},{60,54}}, color={0,0,127}));
   connect(mLoa1.y, loa.m_flow_in) annotation (Line(points={{-79,40},{-74,40},{-74,
           66},{-60,66}}, color={0,0,127}));
-  annotation (    __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Validation/ScrollWaterToWater_ScalingFactor.mos"
+  annotation (    __Dymola_Commands(file= "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatPumps/Validation/ScrollWaterToWater_ScalingFactor.mos"
         "Simulate and plot"),
     experiment(
       Tolerance=1e-6, StopTime=1000),
@@ -183,6 +181,11 @@ capacity of the non-scaled heat pump model.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for 
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 December 5, 2016, by Massimo Cimmino:<br/>
 First implementation.

@@ -6,41 +6,44 @@ partial model TwoWayFlowElement "Flow resistance that uses the power law"
     final allowFlowReversal1=true,
     final allowFlowReversal2=true,
     final m1_flow_nominal=10/3600*1.2,
-    final m2_flow_nominal=m1_flow_nominal);
+    final m2_flow_nominal=m1_flow_nominal,
+    final m1_flow_small=1E-4*abs(m1_flow_nominal),
+    final m2_flow_small=1E-4*abs(m2_flow_nominal));
   extends IBPSA.Airflow.Multizone.BaseClasses.ErrorControl;
 
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium
-    annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air")));
 
-  parameter Modelica.SIunits.Velocity vZer=0.001
+  parameter Modelica.Units.SI.Velocity vZer=0.001
     "Minimum velocity to prevent zero flow. Recommended: 0.001";
 
-  Modelica.SIunits.VolumeFlowRate VAB_flow(nominal=0.001)
+  Modelica.Units.SI.VolumeFlowRate VAB_flow(nominal=0.001)
     "Volume flow rate from A to B if positive";
-  Modelica.SIunits.VolumeFlowRate VBA_flow(nominal=0.001)
+  Modelica.Units.SI.VolumeFlowRate VBA_flow(nominal=0.001)
     "Volume flow rate from B to A if positive";
-  Modelica.SIunits.MassFlowRate mAB_flow(nominal=0.001)
+  Modelica.Units.SI.MassFlowRate mAB_flow(nominal=0.001)
     "Mass flow rate from A to B if positive";
-  Modelica.SIunits.MassFlowRate mBA_flow(nominal=0.001)
+  Modelica.Units.SI.MassFlowRate mBA_flow(nominal=0.001)
     "Mass flow rate from B to A if positive";
 
-  Modelica.SIunits.Velocity vAB(nominal=0.01) "Average velocity from A to B";
-  Modelica.SIunits.Velocity vBA(nominal=0.01) "Average velocity from B to A";
+  Modelica.Units.SI.Velocity vAB(nominal=0.01) "Average velocity from A to B";
+  Modelica.Units.SI.Velocity vBA(nominal=0.01) "Average velocity from B to A";
 
-  Modelica.SIunits.Density rho_a1_inflow
+  Modelica.Units.SI.Density rho_a1_inflow
     "Density of air flowing in from port_a1";
-  Modelica.SIunits.Density rho_a2_inflow
+  Modelica.Units.SI.Density rho_a2_inflow
     "Density of air flowing in from port_a2";
 
-  Modelica.SIunits.Area A "Face area";
+  Modelica.Units.SI.Area A "Face area";
 protected
-  Modelica.SIunits.VolumeFlowRate VZer_flow(fixed=false)
+  Modelica.Units.SI.VolumeFlowRate VZer_flow(fixed=false)
     "Minimum net volume flow rate to prevent zero flow";
 
-  Modelica.SIunits.Mass mExcAB(start=0, fixed=true)
+  Modelica.Units.SI.Mass mExcAB(start=0, fixed=true)
     "Air mass exchanged (for purpose of error control only)";
-  Modelica.SIunits.Mass mExcBA(start=0, fixed=true)
+  Modelica.Units.SI.Mass mExcBA(start=0, fixed=true)
     "Air mass exchanged (for purpose of error control only)";
 
   Medium.MassFraction Xi_a1_inflow[Medium1.nXi]
@@ -68,14 +71,14 @@ equation
   // as different media can have different datum for the enthalpy.
   Xi_a1_inflow = inStream(port_a1.Xi_outflow);
   rho_a1_inflow = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-            p=port_a1.p,
-            T=Medium1.temperature(state_a1_inflow),
-            X_w=if Medium1.nXi == 0 then 0 else Xi_a1_inflow[1]);
+    p=port_a1.p,
+    T=Medium1.temperature(state_a1_inflow),
+    X_w=if Medium1.nXi == 0 then 0 else Xi_a1_inflow[1]);
   Xi_a2_inflow = inStream(port_a2.Xi_outflow);
   rho_a2_inflow = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-            p=port_a2.p,
-            T=Medium2.temperature(state_a2_inflow),
-            X_w=if Medium2.nXi == 0 then 0 else Xi_a2_inflow[1]);
+    p=port_a2.p,
+    T=Medium2.temperature(state_a2_inflow),
+    X_w=if Medium2.nXi == 0 then 0 else Xi_a2_inflow[1]);
 
   VZer_flow = vZer*A;
 
@@ -131,6 +134,18 @@ for doors that can be open or closed as a function of an input signal.
 </html>",
 revisions="<html>
 <ul>
+<li>
+May 12, 2020, by Michael Wetter:<br/>
+Changed assignment of <code>m1_flow_small</code> and
+<code>m2_flow_small</code> to <code>final</code>.
+These quantities are not used in this model and models that extend from it.
+Hence there is no need for the user to change the value.
+</li>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air only.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 September 13, 2018, by Michael Wetter:<br/>
 Set <code>allowFlowReversal=true</code> as the flow can be slightly negative

@@ -2,18 +2,19 @@ within BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.Lo
 model TemporalSuperposition "This validation case applies temporal superposition with truncated vectors"
   extends Modelica.Icons.Example;
 
-  parameter Modelica.SIunits.TemperatureDifference supPos = IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.LoadAggregation.temporalSuperposition(
+  parameter Modelica.Units.SI.TemperatureDifference supPos=
+      IBPSA.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.LoadAggregation.temporalSuperposition(
       i=6,
       QAgg_flow={2,1e6,3,1e6,1e6},
       kappa={0.4,0,0.2,1,0},
       curCel=3) "Temporal superposition";
-  Modelica.SIunits.TemperatureDifference supPosErr;
+  Modelica.Units.SI.TemperatureDifference supPosErr;
 
 equation
   supPosErr = abs((2*0.4+3*0.2)-supPos);
 
 annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/TemporalSuperposition.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/HeatTransfer/LoadAggregation/Validation/TemporalSuperposition.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

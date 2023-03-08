@@ -5,26 +5,26 @@ model ReciprocatingWaterToWater_Static
   package Medium1 = IBPSA.Media.Water "Medium model";
   package Medium2 = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m1_flow_nominal = 0.47
+  parameter Modelica.Units.SI.MassFlowRate m1_flow_nominal=0.47
     "Nominal mass flow rate on the condenser side";
-  parameter Modelica.SIunits.MassFlowRate m2_flow_nominal = 0.47
+  parameter Modelica.Units.SI.MassFlowRate m2_flow_nominal=0.47
     "Nominal mass flow rate on the evaporator side";
 
-  parameter Modelica.SIunits.MassFlowRate flowSource = 0.79
+  parameter Modelica.Units.SI.MassFlowRate flowSource=0.79
     "Mass flow rate on the condenser side";
-  parameter Modelica.SIunits.MassFlowRate flowLoad = 0.47
+  parameter Modelica.Units.SI.MassFlowRate flowLoad=0.47
     "Mass flow rate on the evaporator side";
 
   IBPSA.Fluid.HeatPumps.ReciprocatingWaterToWater heaPum(
     per=Data.ReciprocatingWaterToWater.Generic(
-                etaEle=0.696,
-                PLos=100,
-                dTSup=9.82,
-                UACon=2210,
-                UAEva=1540,
-                pisDis=0.00162,
-                cleFac=0.069,
-                pDro=99290),
+        etaEle=0.696,
+        PLos=100,
+        dTSup=9.82,
+        UACon=2210,
+        UAEva=1540,
+        pisDis=0.00162,
+        cleFac=0.069,
+        pDro=99290),
     redeclare package Medium1 = Medium1,
     redeclare package Medium2 = Medium2,
     redeclare package ref = IBPSA.Media.Refrigerants.R410A,
@@ -38,12 +38,12 @@ model ReciprocatingWaterToWater_Static
     "Reciprocating water to water heat pump"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
-  IBPSA.Fluid.Sources.FixedBoundary sin2(redeclare package Medium =
-        Medium2, nPorts=1) "Source side sink" annotation (Placement(
-        transformation(extent={{-10,-10},{10,10}}, origin={-70,-40})));
-  IBPSA.Fluid.Sources.FixedBoundary sin1(redeclare package Medium =
-        Medium1, nPorts=1) "Load side sink" annotation (Placement(
-        transformation(extent={{10,-10},{-10,10}}, origin={58,20})));
+  IBPSA.Fluid.Sources.Boundary_pT sin2(redeclare package Medium = Medium2,
+      nPorts=1) "Source side sink" annotation (Placement(transformation(extent=
+            {{-10,-10},{10,10}}, origin={-70,-40})));
+  IBPSA.Fluid.Sources.Boundary_pT sin1(redeclare package Medium = Medium1,
+      nPorts=1) "Load side sink" annotation (Placement(transformation(extent={{
+            10,-10},{-10,10}}, origin={58,20})));
   Modelica.Fluid.Sources.MassFlowSource_T loa(
     redeclare package Medium = Medium1,
     m_flow=flowLoad,
@@ -100,7 +100,7 @@ equation
   connect(sin2.ports[1], heaPum.port_b2) annotation (Line(points={{-60,-40},{
           -20,-40},{-20,-6},{-10,-6}}, color={0,127,255}));
   annotation (    __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Validation/ReciprocatingWaterToWater_Static.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatPumps/Validation/ReciprocatingWaterToWater_Static.mos"
         "Simulate and plot"),
     experiment(
       Tolerance=1e-6, StopTime=1000),
@@ -117,6 +117,11 @@ evaporator and condenser sides.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for 
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 October 18, 2016, by Massimo Cimmino:<br/>
 First implementation.

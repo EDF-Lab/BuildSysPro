@@ -43,15 +43,16 @@ model PressureDropsParallel
     from_dp=true) "Flow resistance"
     annotation (Placement(transformation(extent={{-28,-10},{-8,10}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate masFlo2(redeclare package Medium =
-        Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate masFlo2(redeclare package Medium = Medium)
+    "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{0,-10},{20,10}})));
-  IBPSA.Utilities.Diagnostics.AssertEquality assEqu(message="Inputs differ, check that lossless pipe is correctly implemented.",
+  IBPSA.Utilities.Diagnostics.AssertEquality assEqu(message=
+        "Inputs differ, check that lossless pipe is correctly implemented.",
       threShold=1E-4) "Assert equality of the two mass flow rates"
     annotation (Placement(transformation(extent={{40,60},{60,80}})));
 
-  IBPSA.Fluid.Sensors.MassFlowRate masFlo1(redeclare package Medium =
-        Medium) "Mass flow rate sensor"
+  IBPSA.Fluid.Sensors.MassFlowRate masFlo1(redeclare package Medium = Medium)
+    "Mass flow rate sensor"
     annotation (Placement(transformation(extent={{20,30},{40,50}})));
 
 equation
@@ -82,7 +83,7 @@ equation
       color={0,0,127}));
 
 annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FixedResistances/Validation/PressureDropsParallel.mos" "Simulate and plot"),
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FixedResistances/Validation/PressureDropsParallel.mos" "Simulate and plot"),
     Documentation(info="<html>
 <p>
 This model tests two resistances in parallel.

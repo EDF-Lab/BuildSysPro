@@ -6,20 +6,20 @@ model BasicFlowFunction_dp_DerivativeCheck
   constant Real gain = 2 "Gain for computing the mass flow rate";
 
   parameter Real k = 0.35 "Flow coefficient";
-  parameter Modelica.SIunits.MassFlowRate m_flow_turbulent = 0.36
+  parameter Modelica.Units.SI.MassFlowRate m_flow_turbulent=0.36
     "Mass flow rate where transition to turbulent flow occurs";
-  Modelica.SIunits.MassFlowRate m_flow "Mass flow rate";
-  Modelica.SIunits.MassFlowRate m_flow_comp "Comparison value for m_flow";
-  Modelica.SIunits.PressureDifference dp "Pressure drop";
-  Modelica.SIunits.MassFlowRate err "Integration error";
+  Modelica.Units.SI.MassFlowRate m_flow "Mass flow rate";
+  Modelica.Units.SI.MassFlowRate m_flow_comp "Comparison value for m_flow";
+  Modelica.Units.SI.PressureDifference dp "Pressure drop";
+  Modelica.Units.SI.MassFlowRate err "Integration error";
 initial equation
  m_flow = m_flow_comp;
 equation
   dp = time*gain;
   m_flow = IBPSA.Fluid.BaseClasses.FlowModels.basicFlowFunction_dp(
-              dp=dp,
-              k=k,
-              m_flow_turbulent=m_flow_turbulent);
+    dp=dp,
+    k=k,
+    m_flow_turbulent=m_flow_turbulent);
   der(m_flow) = der(m_flow_comp);
   err = m_flow-m_flow_comp;
   assert(abs(err) < 1E-3, "Error in implementation.");
@@ -28,7 +28,7 @@ experiment(
       StartTime=-2,
       StopTime=2,
       Tolerance=1e-8),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/BaseClasses/FlowModels/Validation/BasicFlowFunction_dp_DerivativeCheck.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/BaseClasses/FlowModels/Validation/BasicFlowFunction_dp_DerivativeCheck.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p>

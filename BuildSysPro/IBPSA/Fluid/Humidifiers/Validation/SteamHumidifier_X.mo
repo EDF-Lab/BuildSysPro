@@ -1,12 +1,12 @@
 within BuildSysPro.IBPSA.Fluid.Humidifiers.Validation;
 model SteamHumidifier_X
   "Model that demonstrates the steam humidifier model, configured as steady-state model"
-  extends IBPSA.Fluid.Humidifiers.Validation.SprayAirWasher_X(
-      redeclare IBPSA.Fluid.Humidifiers.SteamHumidifier_X hum(
-        mWatMax_flow=mWat_flow_nominal, massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState));
+  extends IBPSA.Fluid.Humidifiers.Validation.SprayAirWasher_X(redeclare
+      IBPSA.Fluid.Humidifiers.SteamHumidifier_X hum(mWatMax_flow=
+          mWat_flow_nominal));
 
 annotation (
-    __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Humidifiers/Validation/SteamHumidifier_X.mos"
+    __Dymola_Commands(file= "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Humidifiers/Validation/SteamHumidifier_X.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

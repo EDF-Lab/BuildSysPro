@@ -2,14 +2,13 @@ within BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions;
 function sublimationPressureIce
   "Return sublimation pressure of water as a function of temperature T between 190 and 273.16 K"
   extends Modelica.Icons.Function;
-  input Modelica.SIunits.Temperature TSat(displayUnit="degC",
-                                          nominal=300) "Saturation temperature";
-  output Modelica.SIunits.AbsolutePressure pSat(
-                                      displayUnit="Pa",
-                                      nominal=1000) "Saturation pressure";
+  input Modelica.Units.SI.Temperature TSat(displayUnit="degC", nominal=300)
+    "Saturation temperature";
+  output Modelica.Units.SI.AbsolutePressure pSat(displayUnit="Pa", nominal=1000)
+    "Saturation pressure";
 protected
-  Modelica.SIunits.Temperature TTriple=273.16 "Triple point temperature";
-  Modelica.SIunits.AbsolutePressure pTriple=611.657 "Triple point pressure";
+  Modelica.Units.SI.Temperature TTriple=273.16 "Triple point temperature";
+  Modelica.Units.SI.AbsolutePressure pTriple=611.657 "Triple point pressure";
   Real r1=TSat/TTriple "Common subexpression";
   Real a[2]={-13.9281690,34.7078238} "Coefficients a[:]";
   Real n[2]={-1.5,-1.25} "Coefficients n[:]";
@@ -31,8 +30,8 @@ The range of validity is between
 Wagner W., A. Saul, A. Pruss.
  <i>International equations for the pressure along the melting and along the sublimation curve of ordinary water substance</i>,
 equation 3.5. 1993.
-<a href=\"http://www.nist.gov/data/PDFfiles/jpcrd477.pdf\">
-http://www.nist.gov/data/PDFfiles/jpcrd477.pdf</a>.
+<a href=\"http://aip.scitation.org/doi/pdf/10.1063/1.555947?class=pdf\">
+http://aip.scitation.org/doi/pdf/10.1063/1.555947?class=pdf</a>.
 </p>
 </html>",
 revisions="<html>

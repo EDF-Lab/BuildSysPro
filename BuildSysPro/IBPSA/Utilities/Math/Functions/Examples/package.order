@@ -19,6 +19,8 @@ RegNonZeroPowerDerivativeCheck
 RegNonZeroPowerDerivative_2_Check
 RegStep
 SmoothExponentialDerivativeCheck
+SmoothHeavisideDerivatives
+SmoothInterpolation
 SpliceFunction
 SpliceFunctionDerivativeCheck
 TrapezoidalIntegration

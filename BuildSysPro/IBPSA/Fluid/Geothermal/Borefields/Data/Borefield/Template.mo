@@ -2,12 +2,11 @@ within BuildSysPro.IBPSA.Fluid.Geothermal.Borefields.Data.Borefield;
 record Template
   "Template for borefield data records"
   extends Modelica.Icons.Record;
-  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Filling.Template
-    filDat "Filling data";
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Filling.Template filDat
+    "Filling data";
   parameter IBPSA.Fluid.Geothermal.Borefields.Data.Soil.Template soiDat
     "Soil data";
-  parameter
-    IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Template conDat
+  parameter IBPSA.Fluid.Geothermal.Borefields.Data.Configuration.Template conDat
     "Configuration data";
 
   annotation (

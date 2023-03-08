@@ -1,11 +1,11 @@
 ﻿within BuildSysPro.IBPSA.Fluid.FixedResistances.Validation.PlugFlowPipes.Data.BaseClasses;
 partial record PipeDataULg "Base class for ULg experimental data"
   extends PipeDataBaseDefinition;
-  parameter Modelica.SIunits.Temp_C T_start_in = 20
+  parameter Modelica.Units.NonSI.Temperature_degC T_start_in=20
     "Initial temperature at inlet";
-  parameter Modelica.SIunits.Temp_C T_start_out = 20
+  parameter Modelica.Units.NonSI.Temperature_degC T_start_out=20
     "Initial temperature at outlet";
-  parameter Modelica.SIunits.MassFlowRate m_flowIni = 0
+  parameter Modelica.Units.SI.MassFlowRate m_flowIni=0
     "Mass flow initialization";
   annotation (Documentation(info="<html>
 <p>
@@ -38,12 +38,12 @@ to supply the studied pipe in hot water.
 After the outlet pipe temperature is stabilized, the boiler is shut off.
 </p>
 <p>
-During the test, the ambient temperature is equal to <i>18</i>&circ;C and
+During the test, the ambient temperature is equal to <i>18</i>&deg;C and
 the mass flow rate is set to <i>1.245</i> kg/s.</p>
 
 <h4>Test bench schematic</h4>
 <p><img alt=\"Schematic of test rig at ULg\"
-src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Experimental/ULgTestBench.png\" border=\"1\"/></p>
+src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/FixedResistances/Validation/PlugFlowPipes/ULgTestBench.png\" border=\"1\"/></p>
 <p>Notice: length are approximate</p>
 
 <h4>Pipe characteristics</h4>

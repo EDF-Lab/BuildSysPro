@@ -1,9 +1,8 @@
 within BuildSysPro.IBPSA.Media.Refrigerants.R410A;
 function pressureSatVap_T
   "Function that calculates the pressure of saturated R410A vapor based on temperature"
-  input Modelica.SIunits.Temperature T
-    "Temperature of refrigerant";
-  output Modelica.SIunits.AbsolutePressure p
+  input Modelica.Units.SI.Temperature T "Temperature of refrigerant";
+  output Modelica.Units.SI.AbsolutePressure p
     "Pressure of saturated refrigerant vapor";
 
 protected
@@ -13,24 +12,18 @@ protected
   final Real x0 = 0.2086902
     "x0 for saturation pressure of refrigerant vapor";
 
-  final Modelica.SIunits.Temperature TCri = 345.25
-    "Critical temperature of refrigerant";
-
-  final Modelica.SIunits.AbsolutePressure pCri = 4925.1e3
-    "Critical pressure of refrigerant";
-
   Real x
     "Independent variable";
 
 algorithm
   // Independent variable
   x := IBPSA.Utilities.Math.Functions.smoothMax(
-            1 - T/TCri,
-            1e-4,
-            5e-3) - x0;
+    1 - T/TCri,
+    1e-4,
+    5e-3) - x0;
   // Pressure of saturated refrigerant vapor
-  p := pCri*Modelica.Math.exp(TCri/T*
-    IBPSA.Utilities.Math.Functions.polynomial(a=a, x=x));
+  p := pCri*Modelica.Math.exp(TCri/T*IBPSA.Utilities.Math.Functions.polynomial(
+    a=a, x=x));
 
 annotation (smoothOrder=1,
 preferredView="info",Documentation(info="<HTML>

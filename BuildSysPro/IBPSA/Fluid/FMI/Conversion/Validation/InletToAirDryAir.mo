@@ -1,9 +1,8 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Conversion.Validation;
 model InletToAirDryAir
   "Validation model for inlet to air with dry air medium"
-  extends IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir(
-      redeclare replaceable package Medium =
-        Modelica.Media.Air.SimpleAir);
+  extends IBPSA.Fluid.FMI.Conversion.Validation.InletToAirMoistAir(redeclare
+      replaceable package Medium = Modelica.Media.Air.SimpleAir);
   annotation (Documentation(info="<html>
 <p>
 This validation test is identical to
@@ -20,7 +19,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/Conversion/Validation/InletToAirDryAir.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/Conversion/Validation/InletToAirDryAir.mos"
         "Simulate and plot"),
     experiment(Tolerance=1e-6, StopTime=1.0));
 end InletToAirDryAir;

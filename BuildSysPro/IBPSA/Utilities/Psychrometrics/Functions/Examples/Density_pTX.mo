@@ -2,10 +2,10 @@ within BuildSysPro.IBPSA.Utilities.Psychrometrics.Functions.Examples;
 model Density_pTX "Model to test density_pTX"
   extends Modelica.Icons.Example;
 
-  parameter Modelica.SIunits.Pressure p = 101325 "Pressure of the medium";
-  Modelica.SIunits.Temperature T "Temperature";
-  Modelica.SIunits.MassFraction X_w "Mass fraction";
-  Modelica.SIunits.Density d "Mass density";
+  parameter Modelica.Units.SI.Pressure p=101325 "Pressure of the medium";
+  Modelica.Units.SI.Temperature T "Temperature";
+  Modelica.Units.SI.MassFraction X_w "Mass fraction";
+  Modelica.Units.SI.Density d "Mass density";
   constant Real convT(unit="1/s") = 0.999 "Conversion factor";
   constant Real convX(unit="1/s") = 0.02 "Conversion factor";
 equation
@@ -17,12 +17,12 @@ equation
     T = 293.15+convT*(time-0.5)*10;
   end if;
   d = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-              p=p,
-              T=T,
-              X_w=X_w);
+    p=p,
+    T=T,
+    X_w=X_w);
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Functions/Examples/Density_pTX.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Functions/Examples/Density_pTX.mos"
         "Simulate and plot"),
     Documentation(
 info="<html>

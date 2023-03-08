@@ -3,8 +3,9 @@ model ThermalZone
   "Adaptor for connecting a thermal zone to signal ports which then can be exposed at an FMI interface"
 
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium
-    "Medium model within the source" annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air")));
 
   // Don't use annotation(Dialog(connectorSizing=true)) for nPorts because
   // otherwise, in IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.HVACZones
@@ -30,21 +31,21 @@ model ThermalZone
 
 protected
   x_i_toX_w x_i_toX(
-    redeclare final package Medium = Medium) if
-    Medium.nXi > 0 "Conversion from x_i to X_w"
+    redeclare final package Medium = Medium)
+ if Medium.nXi > 0 "Conversion from x_i to X_w"
     annotation (Placement(transformation(extent={{-20,-30},{-40,-10}})));
 
   RealVectorExpression XiSup(
     final n=Medium.nXi,
-    final y=inStream(ports[1].Xi_outflow)) if
-       Medium.nXi > 0
+    final y=inStream(ports[1].Xi_outflow))
+    if Medium.nXi > 0
       "Water vapor concentration of supply air"
     annotation (Placement(transformation(extent={{20,-30},{0,-10}})));
 
   RealVectorExpression CSup(
     final n=Medium.nC,
-    final y=inStream(ports[1].C_outflow)) if
-    Medium.nC > 0 "Trace substance concentration of supply air"
+    final y=inStream(ports[1].C_outflow))
+ if Medium.nC > 0 "Trace substance concentration of supply air"
     annotation (Placement(transformation(extent={{20,-70},{0,-50}})));
 
   Sources.MassFlowSource_T bou[nPorts](
@@ -72,9 +73,9 @@ protected
         nPorts)) "Sum of air mass flow rates"
     annotation (Placement(transformation(extent={{4,72},{16,84}})));
 
-  IBPSA.Utilities.Diagnostics.AssertEquality assEqu(message="\"Mass flow rate does not balance. The sum needs to be zero.",
-      threShold=1E-4)
-    "Tests whether the mass flow rates balance to zero"
+  IBPSA.Utilities.Diagnostics.AssertEquality assEqu(message=
+        "\"Mass flow rate does not balance. The sum needs to be zero.",
+      threShold=1E-4) "Tests whether the mass flow rates balance to zero"
     annotation (Placement(transformation(extent={{70,56},{90,76}})));
   Modelica.Blocks.Sources.Constant const(final k=0) "Outputs zero"
     annotation (Placement(transformation(extent={{30,68},{50,88}})));
@@ -106,12 +107,12 @@ protected
           borderPattern=BorderPattern.Raised),
         Text(
           extent={{-96,15},{96,-15}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="%y"),
         Text(
           extent={{-150,90},{140,50}},
           textString="%name",
-          lineColor={0,0,255})}), Documentation(info="<html>
+          textColor={0,0,255})}), Documentation(info="<html>
 <p>
 The (time varying) vector <code>Real</code> output signal of this block can be defined in its
 parameter menu via variable <code>y</code>. The purpose is to support the
@@ -132,9 +133,10 @@ First implementation.
 
     replaceable package Medium =
       Modelica.Media.Interfaces.PartialMedium "Medium model within the source"
-     annotation (choicesAllMatching=true);
-    Modelica.Blocks.Interfaces.RealInput Xi[Medium.nXi](each final unit="kg/kg") if
-      Medium.nXi > 0 "Water vapor concentration in kg/kg total air"
+     annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air")));
+    Modelica.Blocks.Interfaces.RealInput Xi[Medium.nXi](each final unit="kg/kg")
+   if Medium.nXi > 0 "Water vapor concentration in kg/kg total air"
       annotation (Placement(transformation(extent={{-140,-20},{-100,20}}),
           iconTransformation(extent={{-140,-20},{-100,20}})));
 
@@ -160,7 +162,12 @@ First implementation.
   X_w_internal = sum(Xi_internal);
   connect( X_w, X_w_internal)
   annotation (Documentation(revisions="<html>
-<ul>
+  <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air only.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 November 8, 2016, by Michael Wetter:<br/>
 Removed wrong usage of <code>each</code> keyword.
@@ -251,7 +258,7 @@ equation
         Text(
           extent={{-146,104},{150,140}},
           textString="%name",
-          lineColor={0,0,255}),
+          textColor={0,0,255}),
         Polygon(
           points={{100,-100},{-102,100},{-102,-100},{100,-100}},
           lineColor={0,0,0},
@@ -259,9 +266,9 @@ equation
           fillPattern=FillPattern.Solid),
                  Bitmap(extent={{-96,-98},{-30,-50}},
                                                     fileName=
-            "modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/FMI/FMI_icon.png"),
+            "modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/FMI/FMI_icon.png"),
             Bitmap(extent={{0,50},{100,98}},   fileName=
-            "modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/FMI/modelica_icon.png"),
+            "modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/FMI/modelica_icon.png"),
         Rectangle(
           extent={{38,-22},{84,30}},
           lineColor={95,95,95},
@@ -321,7 +328,7 @@ equation
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-2,-20},{84,-76}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           horizontalAlignment=TextAlignment.Right,
           textString="[%nPorts]")}),
     Documentation(info="<html>
@@ -375,6 +382,11 @@ for a model that uses this model.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air only.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 June 29, 2016, by Michael Wetter:<br/>
 Revised implementation and documentation.

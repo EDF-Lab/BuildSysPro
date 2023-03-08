@@ -3,35 +3,33 @@ model ThreeElements "Thermal Zone with three elements for exterior walls,
   interior walls and floor plate"
     extends TwoElements(AArray={ATotExt,ATotWin,AInt,AFloor});
 
-  parameter Modelica.SIunits.Area AFloor "Area of floor plate"
-    annotation(Dialog(group="Floor plate"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer alphaFloor
+  parameter Modelica.Units.SI.Area AFloor "Area of floor plate"
+    annotation (Dialog(group="Floor plate"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer hConFloor
     "Convective coefficient of heat transfer of floor plate (indoor)"
-    annotation(Dialog(group="Floor plate"));
+    annotation (Dialog(group="Floor plate"));
   parameter Integer nFloor(min = 1) "Number of RC-elements of floor plate"
     annotation(Dialog(group="Floor plate"));
-  parameter Modelica.SIunits.ThermalResistance RFloor[nExt](
-    each min=Modelica.Constants.small)
+  parameter Modelica.Units.SI.ThermalResistance RFloor[nFloor](each min=
+        Modelica.Constants.small)
     "Vector of resistances of floor plate, from inside to outside"
-    annotation(Dialog(group="Floor plate"));
-  parameter Modelica.SIunits.ThermalResistance RFloorRem(
-    min=Modelica.Constants.small)
+    annotation (Dialog(group="Floor plate"));
+  parameter Modelica.Units.SI.ThermalResistance RFloorRem(min=Modelica.Constants.small)
     "Resistance of remaining resistor RFloorRem between capacity n and outside"
-    annotation(Dialog(group="Floor plate"));
-  parameter Modelica.SIunits.HeatCapacity CFloor[nExt](
-    each min=Modelica.Constants.small)
+    annotation (Dialog(group="Floor plate"));
+  parameter Modelica.Units.SI.HeatCapacity CFloor[nFloor](each min=Modelica.Constants.small)
     "Vector of heat capacities of floor plate, from inside to outside"
-    annotation(Dialog(group="Floor plate"));
+    annotation (Dialog(group="Floor plate"));
   parameter Boolean indoorPortFloor = false
     "Additional heat port at indoor surface of floor plate"
     annotation(Dialog(group="Floor plate"),choices(checkBox = true));
 
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a floor if  AFloor > 0
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a floor  if AFloor > 0
     "Ambient port for floor plate"
     annotation (Placement(transformation(extent={{-10,-190},{10,-170}}),
     iconTransformation(extent={{-10,-190},{10,-170}})));
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a floorIndoorSurface if
-    indoorPortFloor "Auxiliary port at indoor surface of floor plate"
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a floorIndoorSurface
+ if indoorPortFloor "Auxiliary port at indoor surface of floor plate"
     annotation (Placement(
     transformation(extent={{-90,-190},{-70,-170}}), iconTransformation(
     extent={{-90,-190},{-70,-170}})));
@@ -53,35 +51,35 @@ protected
     extent={{-8,8},{8,-8}},
     rotation=90,
     origin={-12,-116})));
-  Modelica.Blocks.Sources.Constant alphaFloorConst(final k=AFloor*alphaFloor) if
-    AFloor > 0 "Coefficient of convective heat transfer for floor"
+  Modelica.Blocks.Sources.Constant hConFloor_const(final k=AFloor*hConFloor)
+ if AFloor > 0 "Coefficient of convective heat transfer for floor"
     annotation (Placement(transformation(
-    extent={{-5,-5},{5,5}},
-    rotation=180,
-    origin={12,-116})));
+      extent={{-5,-5},{5,5}},
+      rotation=180,
+      origin={12,-116})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor resExtWallFloor(
-   final G=min(ATotExt, AFloor)*alphaRad) if  ATotExt > 0 and AFloor > 0
+      final G=min(ATotExt, AFloor)*hRad) if ATotExt > 0 and AFloor > 0
     "Resistor between exterior walls and floor"
     annotation (Placement(
-    transformation(
-    extent={{-10,-10},{10,10}},
-    rotation=-90,
-    origin={-144,-111})));
+      transformation(
+      extent={{-10,-10},{10,10}},
+      rotation=-90,
+      origin={-144,-111})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor resIntWallFloor(
-   final G=min(AFloor, AInt)*alphaRad) if  AInt > 0 and AFloor > 0
+      final G=min(AFloor, AInt)*hRad) if AInt > 0 and AFloor > 0
     "Resistor between interior walls and floor"
     annotation (Placement(
-    transformation(
-    extent={{-10,-10},{10,10}},
-    origin={204,-106})));
+        transformation(
+        extent={{-10,-10},{10,10}},
+        origin={204,-106})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor resFloorWin(
-   final G=min(ATotWin, AFloor)*alphaRad) if  ATotWin > 0 and AFloor > 0
+    final G=min(ATotWin, AFloor)*hRad) if ATotWin > 0 and AFloor > 0
     "Resistor between floor plate and windows"
     annotation (Placement(
-    transformation(
-    extent={{-10,-10},{10,10}},
-    rotation=-90,
-    origin={-80,-110})));
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=-90,
+        origin={-80,-110})));
 
 equation
   connect(floorRC.port_a, convFloor.solid)
@@ -146,8 +144,8 @@ equation
   connect(resExtWallFloor.port_a, convExtWall.solid)
     annotation (Line(
     points={{-144,-101},{-144,-40},{-114,-40}}, color={191,0,0}));
-  connect(alphaFloorConst.y, convFloor.Gc)
-    annotation (Line(points={{6.5,-116},{6,-116},{-4,-116}},
+  connect(hConFloor_const.y, convFloor.Gc)
+    annotation (Line(points={{6.5,-116},{-4,-116},{-4,-116}},
     color={0,0,127}));
   connect(convFloor.fluid, senTAir.port)
     annotation (Line(points={{-12,-108},{-12,-40},{66,-40},{66,0},{80,0}},
@@ -167,7 +165,7 @@ equation
     fillPattern=FillPattern.Solid),
   Text(
     extent={{6,-152},{48,-166}},
-    lineColor={0,0,255},
+    textColor={0,0,255},
     fillColor={215,215,215},
     fillPattern=FillPattern.Solid,
     textString="Floor Plate")}), Icon(coordinateSystem(extent={{-240,
@@ -177,22 +175,38 @@ equation
     fillColor={230,230,230},
     fillPattern=FillPattern.Solid), Text(
     extent={{-62,62},{62,-62}},
-    lineColor={0,0,0},
+    textColor={0,0,0},
     textString="3")}),
     Documentation(revisions="<html>
-  <ul>
-  <li>
-  August 31, 2018 by Moritz Lauster:<br/>
-  Updated schema in documentation to fix
-  <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/997\">
-  issue 997</a>.
-  </li>
-  <li>
-  July 15, 2015 by Moritz Lauster:<br/>
-  First Implementation.
-  </li>
-  </ul>
-  </html>", info="<html>
+<ul>
+<li>
+March 7, 2022, by Michael Wetter:<br/>
+Removed <code>massDynamics</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1542\">#1542</a>.
+</li>
+<li>
+December 9, 2019, by Moritz Lauster:<br/>
+Changes <code>nExt</code> to <code>nFloor</code> for
+<code>RFloor</code> and <code>CFloor</code>
+</li>
+<li>
+July 11, 2019, by Katharina Brinkmann:<br/>
+Renamed <code>alphaFloor</code> to <code>hConFloor</code>,
+<code>alphaFloorConst</code> to <code>hConFloor_const</code>
+</li>
+<li>
+August 31, 2018 by Moritz Lauster:<br/>
+Updated schema in documentation to fix
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/997\">
+issue 997</a>.
+</li>
+<li>
+July 15, 2015 by Moritz Lauster:<br/>
+First Implementation.
+</li>
+</ul>
+</html>",   info="<html>
   <p>This model adds one further element for
   the floor plate. Long-term effects dominate the excitation of the floor plate
   and thus the excitation fundamentally differs from excitation of outer walls.
@@ -208,7 +222,7 @@ equation
   The image below shows the RC-network of this model.
   </p>
   <p align=\"center\">
-  <img src=\"modelica://BuildSysPro/Resources/IBPSA/Images/ThermalZones/ReducedOrder/RC/ThreeElements.png\" alt=\"image\"/>
+  <img src=\"modelica://BuildSysPro/IBPSA/Resources/Images/ThermalZones/ReducedOrder/RC/ThreeElements.png\" alt=\"image\"/>
   </p>
   </html>"));
 end ThreeElements;

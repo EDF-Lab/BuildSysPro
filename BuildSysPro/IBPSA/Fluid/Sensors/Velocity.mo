@@ -1,23 +1,23 @@
 within BuildSysPro.IBPSA.Fluid.Sensors;
 model Velocity "Ideal sensor for flow velocity"
   extends IBPSA.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor;
-  extends Modelica.Icons.RotationalSensor;
+  extends Modelica.Icons.RoundSensor;
   parameter Medium.Density
     d_start=Medium.density(Medium.setState_pTX(p_start, T_start, X_start))
     "Initial or guess value of density"
     annotation (Dialog(group="Initialization"));
-  parameter Modelica.SIunits.Temperature T_start=Medium.T_default
+  parameter Modelica.Units.SI.Temperature T_start=Medium.T_default
     "Temperature used to compute d_start"
     annotation (Dialog(group="Initialization"));
-  parameter Modelica.SIunits.Pressure p_start=Medium.p_default
+  parameter Modelica.Units.SI.Pressure p_start=Medium.p_default
     "Pressure used to compute d_start"
     annotation (Dialog(group="Initialization"));
-  parameter Modelica.SIunits.MassFraction X_start[Medium.nX]=Medium.X_default
+  parameter Modelica.Units.SI.MassFraction X_start[Medium.nX]=Medium.X_default
     "Mass fraction used to compute d_start"
     annotation (Dialog(group="Initialization"));
 
-  parameter Modelica.SIunits.Area A "Cross sectional area of flow channel";
-  Modelica.SIunits.VolumeFlowRate V_flow
+  parameter Modelica.Units.SI.Area A "Cross sectional area of flow channel";
+  Modelica.Units.SI.VolumeFlowRate V_flow
     "Volume flow rate from port_a to port_b";
   Modelica.Blocks.Interfaces.RealOutput v(final quantity="Velocity",
                                           final unit="m/s")
@@ -79,11 +79,15 @@ annotation (defaultComponentName="senVel",
         graphics={
         Text(
           extent={{48,120},{8,78}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           textString="v"),
         Line(points={{0,100},{0,70}}, color={0,0,127}),
         Line(points={{-100,0},{-70,0}}, color={0,128,255}),
-        Line(points={{70,0},{100,0}}, color={0,128,255})}),
+        Line(points={{70,0},{100,0}}, color={0,128,255}),
+        Text(
+          extent={{180,90},{60,40}},
+          textColor={0,0,0},
+          textString=DynamicSelect("", String(v, format=".3g")))}),
   Documentation(info="<html>
 <p>
 This model outputs the flow velocity flowing from
@@ -111,6 +115,12 @@ with <code>diameter = 0.1</code>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+February 25, 2020, by Michael Wetter:<br/>
+Changed icon to display its operating state.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1294\">#1294</a>.
+</li>
 <li>
 May 20, 2016, by Marcus Fuchs:<br/>
 First implementation.

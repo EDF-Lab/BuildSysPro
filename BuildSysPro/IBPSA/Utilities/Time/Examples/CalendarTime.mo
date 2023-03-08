@@ -7,7 +7,7 @@ model CalendarTime "Example for the calendar time model"
 
 equation
 
-  annotation (    __Dymola_Commands(file="Resources/Scripts/Dymola/Utilities/Time/Examples/CalendarTime.mos"
+  annotation (    __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Time/Examples/CalendarTime.mos"
         "Simulate and plot"),
     Documentation(revisions="<html>
     <ul>

@@ -8,8 +8,8 @@ model ReciprocatingCompressor_ZeroInput
     etaEle=0.696,
     PLos=100,
     dTSup=9.82,
-    pDro=99290) "Reciprocating compressor" annotation (Placement(
-        transformation(extent={{-10,-10},{10,10}})));
+    pDro=99290) "Reciprocating compressor"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature eva(T=253.15)
     "Evaporating temprature"
     annotation (Placement(transformation(extent={{-82,-10},{-62,10}})));
@@ -35,7 +35,7 @@ equation
     annotation (Line(points={{48,0},{56,0},{64,0}}, color={191,0,0}));
   connect(on.y,com.y)
     annotation (Line(points={{-5,28},{6,28},{6,11}}, color={0,0,127}));
-  annotation (    __Dymola_Commands(file= "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatPumps/Compressors/Validation/ReciprocatingCompressor_ZeroInput.mos"
+  annotation (    __Dymola_Commands(file= "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatPumps/Compressors/Validation/ReciprocatingCompressor_ZeroInput.mos"
         "Simulate and plot"),
     experiment(
       Tolerance=1e-6, StopTime=100),

@@ -13,7 +13,7 @@ equation
       points={{-19,10},{-2,10}},
       color={255,0,255}));
 annotation (experiment(Tolerance=1e-6, StopTime=600),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Math/Examples/BooleanReplicator.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Math/Examples/BooleanReplicator.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

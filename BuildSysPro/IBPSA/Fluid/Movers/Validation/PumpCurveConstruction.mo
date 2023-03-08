@@ -5,12 +5,12 @@ model PumpCurveConstruction
 
   package Medium = IBPSA.Media.Water "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 1
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=1
     "Nominal mass flow rate at zero pump head";
-  parameter Modelica.SIunits.VolumeFlowRate V_flow_nominal = m_flow_nominal/1000
+  parameter Modelica.Units.SI.VolumeFlowRate V_flow_nominal=m_flow_nominal/1000
     "Nominal mass flow rate at zero pump head";
 
-  parameter Modelica.SIunits.PressureDifference dp_nominal = 10000
+  parameter Modelica.Units.SI.PressureDifference dp_nominal=10000
     "Nominal pump head at zero mass flow rate";
 
   Actuators.Valves.TwoWayLinear val1(
@@ -32,8 +32,8 @@ model PumpCurveConstruction
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
-    per(pressure(V_flow={0,0.5*V_flow_nominal,V_flow_nominal}, dp={
-            dp_nominal,0.5*dp_nominal,0})),
+    per(pressure(V_flow={0,0.5*V_flow_nominal,V_flow_nominal}, dp={dp_nominal,
+            0.5*dp_nominal,0})),
     inputType=IBPSA.Fluid.Types.InputType.Constant)
     "Pump with 3 data points for the pressure flow relation"
     annotation (Placement(transformation(extent={{40,70},{60,90}})));
@@ -42,8 +42,8 @@ model PumpCurveConstruction
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
-    per(pressure(V_flow={0.5*V_flow_nominal,0.75*V_flow_nominal,
-            V_flow_nominal}, dp={0.5*dp_nominal,0.25*dp_nominal,0})),
+    per(pressure(V_flow={0.5*V_flow_nominal,0.75*V_flow_nominal,V_flow_nominal},
+          dp={0.5*dp_nominal,0.25*dp_nominal,0})),
     inputType=IBPSA.Fluid.Types.InputType.Constant)
     "Pump with 2 data points for the pressure flow relation, with data at dp=0"
     annotation (Placement(transformation(extent={{40,20},{60,40}})));
@@ -63,8 +63,7 @@ model PumpCurveConstruction
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState,
     use_inputFilter=false,
     per(pressure(V_flow={0.25*V_flow_nominal,0.5*V_flow_nominal,0.75*
-            V_flow_nominal}, dp={0.75*dp_nominal,0.5*dp_nominal,0.25*
-            dp_nominal})),
+            V_flow_nominal}, dp={0.75*dp_nominal,0.5*dp_nominal,0.25*dp_nominal})),
     inputType=IBPSA.Fluid.Types.InputType.Constant)
     "Pump with 2 data points for the pressure flow relation, with no data at m_flow=0 and dp=0"
     annotation (Placement(transformation(extent={{40,-70},{60,-50}})));
@@ -152,7 +151,7 @@ equation
       color={0,127,255}));
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Movers/Validation/PumpCurveConstruction.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Movers/Validation/PumpCurveConstruction.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 <p>

@@ -9,8 +9,7 @@ model MassFraction_pTphi "Unit test for dew point temperature calculation"
     duration=0.5,
     height=1) "Relative humidity"
                  annotation (Placement(transformation(extent={{-80,-60},{-60,-40}})));
-  IBPSA.Utilities.Psychrometrics.X_pTphi masFra1
-    "Mass fraction computation"
+  IBPSA.Utilities.Psychrometrics.X_pTphi masFra1 "Mass fraction computation"
     annotation (Placement(transformation(extent={{-20,0},{0,20}})));
     Modelica.Blocks.Sources.Ramp T(
     height=10,
@@ -45,6 +44,6 @@ equation
       color={0,0,127}));
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Examples/MassFraction_pTphi.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Examples/MassFraction_pTphi.mos"
         "Simulate and plot"));
 end MassFraction_pTphi;

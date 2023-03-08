@@ -3,8 +3,9 @@ model Sink_T
   "Model of a sink with temperature for reverse flow as an input that can be exported as an FMU"
   extends Modelica.Blocks.Icons.Block;
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium "Medium in the component"
-      annotation (choicesAllMatching = true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air")));
 
   parameter Boolean use_p_in = true
     "= true to use a pressure from connector, false to output Medium.p_default"
@@ -19,8 +20,8 @@ model Sink_T
                                             min=0)
     "Prescribed boundary temperature"
     annotation (Placement(transformation(extent={{-140,60},{-100,100}})));
-  Modelica.Blocks.Interfaces.RealInput X_w_in(unit="1") if
-       Medium.nXi > 0 "Prescribed boundary composition"
+  Modelica.Blocks.Interfaces.RealInput X_w_in(unit="1")
+    if Medium.nXi > 0 "Prescribed boundary composition"
     annotation (Placement(transformation(extent={{-140,10},{-100,50}}),
         iconTransformation(extent={{-140,10},{-100,50}})));
 
@@ -44,7 +45,7 @@ model Sink_T
         origin={-120,-80})));
 protected
   IBPSA.Fluid.FMI.Interfaces.FluidProperties bacPro_internal(redeclare final
-      package Medium =       Medium)
+      package Medium = Medium)
     "Internal connector for fluid properties for back flow";
   IBPSA.Fluid.FMI.Interfaces.PressureOutput p_in_internal
     "Internal connector for pressure";
@@ -86,7 +87,7 @@ equation
           fillPattern=FillPattern.Solid,
           fillColor={255,255,255}), Text(
           extent={{-98,-90},{-62,-72}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="P",
           visible=use_p_in)}),
     Documentation(info="<html>
@@ -111,6 +112,11 @@ may be needed to iteratively solve for the mass flow rate.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air and water.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 April 29, 2015, by Michael Wetter:<br/>
 Redesigned to conditionally remove the pressure connector

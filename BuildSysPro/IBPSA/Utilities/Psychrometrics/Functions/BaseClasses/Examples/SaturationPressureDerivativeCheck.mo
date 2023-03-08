@@ -3,25 +3,24 @@ model SaturationPressureDerivativeCheck
   "Model to test correct implementation of derivative"
   extends Modelica.Icons.Example;
 
-  parameter Modelica.SIunits.Temperature TMin = 190 "Temperature";
-  parameter Modelica.SIunits.Temperature TMax = 373.16 "Temperature";
+  parameter Modelica.Units.SI.Temperature TMin=190 "Temperature";
+  parameter Modelica.Units.SI.Temperature TMax=373.16 "Temperature";
 
   Real y "Function value";
   Real y_comp "Function value for comparison";
   Real err "Integration error";
-  Modelica.SIunits.Temperature T "Temperature";
+  Modelica.Units.SI.Temperature T "Temperature";
 initial equation
   y=y_comp;
 equation
   T =  TMin + (TMax-TMin)/2 + (TMax-TMin)/2*time^3;
-  y = IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(
-    TSat=T);
+  y = IBPSA.Utilities.Psychrometrics.Functions.saturationPressure(TSat=T);
   der(y)=der(y_comp);
   err = y-y_comp;
   assert(abs(err)/max(1, abs(y)) < 1E-2, "Derivative implementation has an error or solver tolerance is too low.");
 
 annotation (
-  __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Utilities/Psychrometrics/Functions/BaseClasses/Examples/SaturationPressureDerivativeCheck.mos"
+  __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Utilities/Psychrometrics/Functions/BaseClasses/Examples/SaturationPressureDerivativeCheck.mos"
         "Simulate and plot"),
       experiment(
         StartTime=-1,

@@ -2,8 +2,9 @@ within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers;
 partial block ThermalZone
   "Partial block to export a model of a thermal zone as an FMU"
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium
-    "Medium model" annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air")));
 
   parameter Integer nPorts(min=2) "Number of fluid ports";
 
@@ -36,7 +37,7 @@ equation
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-64,270},{78,164}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="%name"),
         Rectangle(
           extent={{-62,100},{80,-62}},
@@ -97,11 +98,13 @@ The example
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZone</a>
 shows how a simple thermal zone can be implemented and exported as
 an FMU.
+<!-- @include_Buildings
 The example
 <a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
 IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC</a>
 shows how such an FMU can be connected
 to an HVAC system that has signal flow.
+-->
 </p>
 
 <p>
@@ -137,10 +140,13 @@ the port <code>fluPor</code> (which is negative if it is an exhaust),
 <i>T<sub>air,zon</sub></i> is the zone air temperature.
 Note that without the <i>max(&middot;, &middot;)</i>, the energy
 balance would be wrong.
-Models in the package
+For example,
+<!-- @include_Buildings
+models in the package
 <a href=\"modelica://BuildSysPro.IBPSA.ThermalZones.Detailed\">
-IBPSA.ThermalZones.Detailed</a>
-as well as the control volumes in
+IBPSA.ThermalZones.Detailed</a> as well as
+-->
+the control volumes in
 <a href=\"modelica://BuildSysPro.IBPSA.Fluid.MixingVolumes\">
 IBPSA.Fluid.MixingVolumes</a>
 implement such a <i>max(&middot;, &middot;)</i> function.
@@ -166,14 +172,21 @@ All <code>nPorts</code>
 IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs.ThermalZone</a>.
 </p>
 <p>
+<!-- @include_Buildings
 The example
 <a href=\"modelica://BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC\">
 IBPSA.Fluid.FMI.ExportContainers.Validation.RoomHVAC</a>
 shows conceptually how such an FMU can then be connected to a HVAC system
 that has signal flow.
+-->
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 September 20, 2016, by Thierry S. Nouidui:<br/>
 Revised documentation to explain the rationale

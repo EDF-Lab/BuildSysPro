@@ -1,11 +1,10 @@
 within BuildSysPro.IBPSA.BoundaryConditions.WeatherData.BaseClasses.Examples;
 model ConvertTime "Test model for converting time"
   extends Modelica.Icons.Example;
-  IBPSA.Utilities.Time.ModelTime modTim
-    "Block that outputs simulation time"
+  IBPSA.Utilities.Time.ModelTime modTim "Block that outputs simulation time"
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
-  IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim
-    "Block that converts time"
+  IBPSA.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim(
+      weaDatStaTim=0, weaDatEndTim=31536000) "Block that converts time"
     annotation (Placement(transformation(extent={{0,0},{20,20}})));
 equation
   connect(modTim.y, conTim.modTim) annotation (Line(
@@ -27,6 +26,6 @@ First implementation.
 </html>"),
   experiment(Tolerance=1e-6, StopTime=77760000),
 __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/ConvertTime.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/BoundaryConditions/WeatherData/BaseClasses/Examples/ConvertTime.mos"
         "Simulate and plot"));
 end ConvertTime;

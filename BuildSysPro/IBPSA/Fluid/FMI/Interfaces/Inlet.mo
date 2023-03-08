@@ -1,8 +1,15 @@
 within BuildSysPro.IBPSA.Fluid.FMI.Interfaces;
 connector Inlet "Connector for fluid inlet"
   replaceable package Medium =
-      Modelica.Media.Interfaces.PartialMedium
-    "Medium model" annotation (choicesAllMatching=true);
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air"),
+        choice(redeclare package Medium = IBPSA.Media.Water "Water"),
+        choice(redeclare package Medium =
+            IBPSA.Media.Antifreeze.PropyleneGlycolWater (
+          property_T=293.15,
+          X_a=0.40)
+          "Propylene glycol water, 40% mass fraction")));
 
   parameter Boolean use_p_in = true
     "= true to use a pressure from connector, false to output Medium.p_default"
@@ -18,10 +25,9 @@ connector Inlet "Connector for fluid inlet"
     "Thermodynamic pressure in the connection point";
 
   input IBPSA.Fluid.FMI.Interfaces.FluidProperties forward(redeclare final
-      package Medium =       Medium) "Inflowing properties";
+      package Medium = Medium) "Inflowing properties";
   output IBPSA.Fluid.FMI.Interfaces.FluidProperties backward(redeclare final
-      package Medium =       Medium) if allowFlowReversal
-    "Outflowing properties";
+      package Medium = Medium) if allowFlowReversal "Outflowing properties";
 
 annotation (defaultComponentName="inlet",
   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
@@ -33,7 +39,7 @@ annotation (defaultComponentName="inlet",
           fillColor={0,0,255}),
           Text(
           extent={{-58,134},{48,94}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="%name")}),
     Documentation(info="<html>
 <p>
@@ -91,6 +97,11 @@ If <code>allowFlowReversal = false</code>, then these outputs are not present.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 April 29, 2015, by Michael Wetter:<br/>
 Redesigned to conditionally remove the pressure connector

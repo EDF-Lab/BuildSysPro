@@ -4,8 +4,8 @@ model PropyleneGlycolWaterProperties
   extends Modelica.Icons.Example;
   extends IBPSA.Media.Examples.BaseClasses.FluidProperties(
     redeclare package Medium =
-        IBPSA.Media.Antifreeze.PropyleneGlycolWater (X_a=0.60, property_T=
-           293.15),
+        IBPSA.Media.Antifreeze.PropyleneGlycolWater (                       X_a=
+           0.60, property_T=293.15),
     TMin=273.15,
     TMax=373.15);
 equation
@@ -13,7 +13,7 @@ equation
   basPro.state.p=p;
   basPro.state.T=T;
    annotation(experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Media/Examples/PropyleneGlycolWaterProperties.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Media/Examples/PropyleneGlycolWaterProperties.mos"
         "Simulate and plot"),
       Documentation(info="<html>
 <p>

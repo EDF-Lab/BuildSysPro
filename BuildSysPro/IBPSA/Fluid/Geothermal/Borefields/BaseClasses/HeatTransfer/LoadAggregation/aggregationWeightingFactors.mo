@@ -5,22 +5,26 @@ function aggregationWeightingFactors
 
   input Integer i "Size of aggregation vector";
   input Integer nTimTot "Size of g-function time table";
-  input Modelica.SIunits.ThermalResistance TStep[nTimTot,2] "Time matrix with TStep";
-  input Modelica.SIunits.Time nu[i] "Aggregation time vector nu";
+  input Modelica.Units.SI.ThermalResistance TStep[nTimTot,2]
+    "Time matrix with TStep";
+  input Modelica.Units.SI.Time nu[i] "Aggregation time vector nu";
 
-  output Modelica.SIunits.ThermalResistance kappa[i] "Weighting factors vector";
+  output Modelica.Units.SI.ThermalResistance kappa[i]
+    "Weighting factors vector";
 
 protected
-  Modelica.SIunits.ThermalResistance prevT "Interpolated value of TStep at previous cell";
-  Modelica.SIunits.ThermalResistance curT "Interpolated value of TStep at current cell";
+  Modelica.Units.SI.ThermalResistance prevT
+    "Interpolated value of TStep at previous cell";
+  Modelica.Units.SI.ThermalResistance curT
+    "Interpolated value of TStep at current cell";
   Integer curInt "Integer to select data interval";
-  Real[size(TStep[:,1], 1)] d(unit="K/J") "Derivatives at the support points";
+  Real[size(TStep[:,1], 1)] d(each unit="K/J") "Derivatives at the support points";
 
 algorithm
   d := IBPSA.Utilities.Math.Functions.splineDerivatives(
-                  x=TStep[:, 1],
-                  y=TStep[:, 2],
-                  ensureMonotonicity=false);
+    x=TStep[:, 1],
+    y=TStep[:, 2],
+    ensureMonotonicity=false);
 
   for j in 1:i loop
     if j==1 then
@@ -33,15 +37,14 @@ algorithm
         end if;
       end for;
 
-      prevT :=
-        IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-                      x=nu[j - 1],
-                      x1=TStep[curInt, 1],
-                      x2=TStep[curInt + 1, 1],
-                      y1=TStep[curInt, 2],
-                      y2=TStep[curInt + 1, 2],
-                      y1d=d[curInt],
-                      y2d=d[curInt + 1]);
+      prevT := IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
+        x=nu[j - 1],
+        x1=TStep[curInt, 1],
+        x2=TStep[curInt + 1, 1],
+        y1=TStep[curInt, 2],
+        y2=TStep[curInt + 1, 2],
+        y1d=d[curInt],
+        y2d=d[curInt + 1]);
     end if;
 
     //Spline interpolation at nu[j]
@@ -51,15 +54,14 @@ algorithm
       end if;
     end for;
 
-    curT :=
-      IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
-                    x=nu[j],
-                    x1=TStep[curInt, 1],
-                    x2=TStep[curInt + 1, 1],
-                    y1=TStep[curInt, 2],
-                    y2=TStep[curInt + 1, 2],
-                    y1d=d[curInt],
-                    y2d=d[curInt + 1]);
+    curT := IBPSA.Utilities.Math.Functions.cubicHermiteLinearExtrapolation(
+      x=nu[j],
+      x1=TStep[curInt, 1],
+      x2=TStep[curInt + 1, 1],
+      y1=TStep[curInt, 2],
+      y2=TStep[curInt + 1, 2],
+      y1d=d[curInt],
+      y2d=d[curInt + 1]);
 
     kappa[j] := curT-prevT;
   end for;

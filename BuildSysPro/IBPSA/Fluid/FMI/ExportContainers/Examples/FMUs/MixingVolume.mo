@@ -1,21 +1,20 @@
 within BuildSysPro.IBPSA.Fluid.FMI.ExportContainers.Examples.FMUs;
 block MixingVolume "Declaration of an FMU that exports a control volume"
-  extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(
-      redeclare package Medium = IBPSA.Media.Air);
+  extends IBPSA.Fluid.FMI.ExportContainers.PartialTwoPort(redeclare package
+      Medium = IBPSA.Media.Air);
 
-  parameter Modelica.SIunits.Volume V=1 "Volume";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=0.01
+  parameter Modelica.Units.SI.Volume V=1 "Volume";
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.01
     "Nominal mass flow rate";
 
 protected
-  IBPSA.Fluid.FMI.Adaptors.Inlet bouIn(redeclare final package Medium =
-               Medium, final allowFlowReversal=allowFlowReversal)
-    "Boundary model for inlet" annotation (Placement(transformation(
-          extent={{-80,-10},{-60,10}})));
+  IBPSA.Fluid.FMI.Adaptors.Inlet bouIn(redeclare final package Medium = Medium,
+      final allowFlowReversal=allowFlowReversal) "Boundary model for inlet"
+    annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
   IBPSA.Fluid.FMI.Adaptors.Outlet bouOut(redeclare final package Medium =
-               Medium, final allowFlowReversal=allowFlowReversal)
-    "Boundary component for outlet" annotation (Placement(
-        transformation(extent={{60,-10},{80,10}})));
+        Medium, final allowFlowReversal=allowFlowReversal)
+    "Boundary component for outlet"
+    annotation (Placement(transformation(extent={{60,-10},{80,10}})));
 
   IBPSA.Fluid.MixingVolumes.MixingVolume vol(
     redeclare final package Medium = Medium,
@@ -24,9 +23,8 @@ protected
     final V=V,
     nPorts=2,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Control volume" annotation (Placement(transformation(extent={{-10,
-            0},{10,20}})));
+    massDynamics=Modelica.Fluid.Types.Dynamics.SteadyState) "Control volume"
+    annotation (Placement(transformation(extent={{-10,0},{10,20}})));
 equation
   connect(inlet, bouIn.inlet) annotation (Line(
       points={{-110,0},{-81,0}},
@@ -73,7 +71,7 @@ First implementation.
 </li>
 </ul>
 </html>"),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/MixingVolume.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/FMI/ExportContainers/Examples/FMUs/MixingVolume.mos"
         "Export FMU"),
     Icon(graphics={
         Rectangle(

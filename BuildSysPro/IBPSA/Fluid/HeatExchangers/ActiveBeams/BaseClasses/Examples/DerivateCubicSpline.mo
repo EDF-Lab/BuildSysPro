@@ -2,15 +2,15 @@ within BuildSysPro.IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.Examples;
 model DerivateCubicSpline
   extends Modelica.Icons.Example;
 
-  Modelica.Blocks.Sources.Clock clock "Clock"
+  Modelica.Blocks.Sources.ContinuousClock clock "Clock"
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
-  IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.DerivativesCubicSpline
-    cubSpl "Derivatives of cubic spline" annotation (Placement(
-        transformation(extent={{-10,-10},{10,10}})));
+  IBPSA.Fluid.HeatExchangers.ActiveBeams.BaseClasses.DerivativesCubicSpline cubSpl
+    "Derivatives of cubic spline"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 equation
   connect(clock.y, cubSpl.u)
     annotation (Line(points={{-39,0},{-12,0}},         color={0,0,127}));
-  annotation (experiment(Tolerance=1e-6, StopTime=1.0),__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/ActiveBeams/BaseClasses/Examples/DerivateCubicSpline.mos"
+  annotation (experiment(Tolerance=1e-6, StopTime=1.0),__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/ActiveBeams/BaseClasses/Examples/DerivateCubicSpline.mos"
         "Simulate and plot"),
         Documentation(info="<html>
 <p>

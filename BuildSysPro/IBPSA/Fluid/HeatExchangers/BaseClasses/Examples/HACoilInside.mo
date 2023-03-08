@@ -3,18 +3,17 @@ model HACoilInside "Test model for HACoilInside"
   extends Modelica.Icons.Example;
 
   Modelica.Blocks.Sources.Sine sine(
-    freqHz=0.1,
+    f=0.1,
     amplitude=0.063,
     offset=0.063) "Mass flow rate"
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
   Modelica.Blocks.Sources.Sine sine1(
     amplitude=10,
-    freqHz=0.1,
+    f=0.1,
     offset=273.15 + 50) "Temperature"
     annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
-  IBPSA.Fluid.HeatExchangers.BaseClasses.HACoilInside hASin(
-      hA_nominal=13*(0.5 + 1)/0.5, m_flow_nominal=0.063)
-    "Model for convection coefficient"
+  IBPSA.Fluid.HeatExchangers.BaseClasses.HACoilInside hASin(hA_nominal=13*(0.5
+         + 1)/0.5, m_flow_nominal=0.063) "Model for convection coefficient"
     annotation (Placement(transformation(extent={{-12,-6},{8,14}})));
 equation
   connect(sine1.y, hASin.T) annotation (Line(
@@ -26,7 +25,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation ( __Dymola_Commands(file=
-          "modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/HeatExchangers/BaseClasses/Examples/HACoilInside.mos"
+          "modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/HeatExchangers/BaseClasses/Examples/HACoilInside.mos"
         "Simulate and plot"),
         experiment(Tolerance=1e-6, StopTime=15),
         Documentation(info="<html>

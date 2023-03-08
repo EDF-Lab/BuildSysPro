@@ -2,10 +2,12 @@ within BuildSysPro.IBPSA.Airflow.Multizone;
 model MediumColumn
   "Vertical shaft with no friction and no storage of heat and mass"
 
-  replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
-    "Medium in the component" annotation (choicesAllMatching=true);
+  replaceable package Medium =
+    Modelica.Media.Interfaces.PartialMedium "Medium in the component"
+      annotation (choices(
+        choice(redeclare package Medium = IBPSA.Media.Air "Moist air")));
 
-  parameter Modelica.SIunits.Length h(min=0) = 3 "Height of shaft";
+  parameter Modelica.Units.SI.Length h(min=0) = 3 "Height of shaft";
   parameter IBPSA.Airflow.Multizone.Types.densitySelection densitySelection
     "Select how to pick density" annotation (Evaluate=true);
 
@@ -21,13 +23,13 @@ model MediumColumn
     "Fluid connector b (positive design flow direction is from port_a to port_b)"
     annotation (Placement(transformation(extent={{10,-110},{-10,-90}}), iconTransformation(extent={{10,-110},{-10,-90}})));
 
-  Modelica.SIunits.VolumeFlowRate V_flow
+  Modelica.Units.SI.VolumeFlowRate V_flow
     "Volume flow rate at inflowing port (positive when flow from port_a to port_b)";
-  Modelica.SIunits.MassFlowRate m_flow
+  Modelica.Units.SI.MassFlowRate m_flow
     "Mass flow rate from port_a to port_b (m_flow > 0 is design flow direction)";
-  Modelica.SIunits.PressureDifference dp(displayUnit="Pa")
+  Modelica.Units.SI.PressureDifference dp(displayUnit="Pa")
     "Pressure difference between port_a and port_b";
-  Modelica.SIunits.Density rho "Density in medium column";
+  Modelica.Units.SI.Density rho "Density in medium column";
 protected
   Medium.ThermodynamicState sta_a=Medium.setState_phX(
       port_a.p,
@@ -57,30 +59,30 @@ equation
   if (densitySelection == IBPSA.Airflow.Multizone.Types.densitySelection.fromTop) then
       Xi = inStream(port_a.Xi_outflow);
     rho = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-            p=Medium.p_default,
-            T=Medium.temperature(Medium.setState_phX(
-              port_a.p,
-              inStream(port_a.h_outflow),
-              Xi)),
-            X_w=if Medium.nXi == 0 then 0 else Xi[1]);
+      p=Medium.p_default,
+      T=Medium.temperature(Medium.setState_phX(
+        port_a.p,
+        inStream(port_a.h_outflow),
+        Xi)),
+      X_w=if Medium.nXi == 0 then 0 else Xi[1]);
   elseif (densitySelection == IBPSA.Airflow.Multizone.Types.densitySelection.fromBottom) then
       Xi = inStream(port_b.Xi_outflow);
     rho = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-            p=Medium.p_default,
-            T=Medium.temperature(Medium.setState_phX(
-              port_b.p,
-              inStream(port_b.h_outflow),
-              Xi)),
-            X_w=if Medium.nXi == 0 then 0 else Xi[1]);
+      p=Medium.p_default,
+      T=Medium.temperature(Medium.setState_phX(
+        port_b.p,
+        inStream(port_b.h_outflow),
+        Xi)),
+      X_w=if Medium.nXi == 0 then 0 else Xi[1]);
    else
       Xi = actualStream(port_a.Xi_outflow);
     rho = IBPSA.Utilities.Psychrometrics.Functions.density_pTX(
-            p=Medium.p_default,
-            T=Medium.temperature(Medium.setState_phX(
-              port_a.p,
-              actualStream(port_a.h_outflow),
-              Xi)),
-            X_w=if Medium.nXi == 0 then 0 else Xi[1]);
+      p=Medium.p_default,
+      T=Medium.temperature(Medium.setState_phX(
+        port_a.p,
+        actualStream(port_a.h_outflow),
+        Xi)),
+      X_w=if Medium.nXi == 0 then 0 else Xi[1]);
   end if;
 
   V_flow = m_flow/Medium.density(sta_a);
@@ -108,15 +110,15 @@ equation
           points={{0,100},{0,-100},{0,-98}}),
         Text(
           extent={{24,-78},{106,-100}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="Bottom"),
         Text(
           extent={{32,104},{98,70}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="Top"),
         Text(
           extent={{36,26},{88,-10}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           fillColor={255,0,0},
           fillPattern=FillPattern.Solid,
           textString="h=%h"),
@@ -209,6 +211,11 @@ IBPSA.Airflow.Multizone.MediumColumnDynamic</a> instead of this model.
 </html>",
 revisions="<html>
 <ul>
+<li>
+January 18, 2019, by Jianjun Hu:<br/>
+Limited the media choice to moist air only.
+See <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1050\">#1050</a>.
+</li>
 <li>
 May 1, 2018, by Filip Jorissen:<br/>
 Removed declaration of <code>allowFlowReversal</code>

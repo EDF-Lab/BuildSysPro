@@ -21,7 +21,7 @@ This is a model of a stratified storage tank as shown in the figure below.
 </p>
 <p align=\"center\">
 <img alt=\"Image of a storage tank\"
-src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Storage/Stratified.png\"
+src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Storage/Stratified.png\"
 width=\"387\" height=\"453\"/>
 </p>
 <p>
@@ -133,7 +133,7 @@ are connected.
 </p>
 <p align=\"center\">
 <img alt=\"Image of a storage tank\"
-src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/Storage/StratifiedHex.png\"
+src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/Storage/StratifiedHex.png\"
 width=\"458\" height=\"456\"/>
 </p>
 <p>

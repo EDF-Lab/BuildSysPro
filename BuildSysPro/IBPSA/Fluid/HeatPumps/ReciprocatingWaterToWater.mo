@@ -28,7 +28,7 @@ Model for a water to water heat pump with a reciprocating compressor, as
 described in Jin (2002). The thermodynamic heat pump cycle is represented below.
 </p>
 <p align=\"center\">
-<img  alt=\"image\" src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Fluid/HeatPumps/WaterToWater_Cycle.png\" border=\"1\"/>
+<img  alt=\"image\" src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Fluid/HeatPumps/WaterToWater_Cycle.png\" border=\"1\"/>
 </p>
 <p>
 The rate of heat transferred to the evaporator is given by:
@@ -81,7 +81,7 @@ H. Jin.
 <i>
 Parameter estimation based models of water source heat pumps.
 </i>
-PhD Thesis. Oklahoma State University. Stillwater, Oklahoma, USA. 2012.
+PhD Thesis. Oklahoma State University. Stillwater, Oklahoma, USA. 2002.
 </p>
 </html>", revisions="<html>
 <ul>

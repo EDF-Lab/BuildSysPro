@@ -5,11 +5,11 @@ partial model Heater "Base class for example model for the heater and cooler"
       Modelica.Media.Interfaces.PartialMedium
     "Medium model";
 
-  parameter Modelica.SIunits.Volume V = 6*6*2.7 "Volume";
+  parameter Modelica.Units.SI.Volume V=6*6*2.7 "Volume";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = V*1.2*6/3600
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=V*1.2*6/3600
     "Nominal mass flow rate";
-  parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = 30*6*6
+  parameter Modelica.Units.SI.HeatFlowRate Q_flow_nominal=30*6*6
     "Nominal heat loss of the room";
 
   IBPSA.Fluid.MixingVolumes.MixingVolume vol(
@@ -19,8 +19,7 @@ partial model Heater "Base class for example model for the heater and cooler"
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
     mSenFac=2,
-    nPorts=3)
-    annotation (Placement(transformation(extent={{40,-10},{60,10}})));
+    nPorts=3) annotation (Placement(transformation(extent={{40,-10},{60,10}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor theCon(
     G=Q_flow_nominal/20) "Thermal conductance to the outside"
     annotation (Placement(transformation(extent={{0,60},{20,80}})));
@@ -34,9 +33,8 @@ partial model Heater "Base class for example model for the heater and cooler"
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     addPowerToMedium=false,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
-    "Fan or pump" annotation (Placement(transformation(extent={{-70,-50},
-            {-50,-30}})));
+    energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState) "Fan or pump"
+    annotation (Placement(transformation(extent={{-70,-50},{-50,-30}})));
   Modelica.Blocks.Sources.RealExpression TOut(
     y(final unit="K", displayUnit="degC")=
       273.15 + 16 - 5*cos(time/86400*2*Modelica.Constants.pi))
@@ -50,7 +48,6 @@ partial model Heater "Base class for example model for the heater and cooler"
     y(final unit="K", displayUnit="degC")) "Setpoint for room temperature"
     annotation (Placement(transformation(extent={{-90,20},{-70,40}})));
   Controls.Continuous.LimPID conPI(
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
     k=1,
     yMax=1,
     yMin=0,
@@ -59,9 +56,8 @@ partial model Heater "Base class for example model for the heater and cooler"
   Modelica.Blocks.Sources.Constant mFan_flow(k=m_flow_nominal)
     "Mass flow rate of the fan"
     annotation (Placement(transformation(extent={{-90,-20},{-70,0}})));
-  Sources.FixedBoundary bou(
-    redeclare package Medium = Medium,
-    nPorts=1)
+  IBPSA.Fluid.Sources.Boundary_pT bou(redeclare package Medium = Medium, nPorts=
+       1)
     "Fixed pressure boundary condition, required to set a reference pressure"
     annotation (Placement(transformation(extent={{110,-30},{90,-10}})));
   Sensors.TemperatureTwoPort THeaOut(
@@ -133,6 +129,11 @@ and it also is required to account for a variation of density of the fluid.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+May 15, 2019, by Jianjun Hu:<br/>
+Replaced fluid source. This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1072\"> #1072</a>.
+</li>
 <li>
 May 8, 2017, by Michael Wetter:<br/>
 Updated model for new heater model.<br/>

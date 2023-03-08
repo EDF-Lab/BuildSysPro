@@ -22,7 +22,7 @@ equation
       color={255,0,255}));
  annotation (
 experiment(Tolerance=1e-6, StopTime=1),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Controls/Continuous/Examples/OffTimer.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Controls/Continuous/Examples/OffTimer.mos"
         "Simulate and plot"),
     Documentation(
 info="<html>
@@ -35,8 +35,8 @@ Whenever the input becomes <code>false(=0)</code>, the timer is reset.
 The figures below show the input and output of the blocks.
 </p>
 <p align=\"center\">
-<img src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Controls/Continuous/Examples/OffTimer1.png\" border=\"1\" alt=\"Input and output of the OffTimer offTim1.\"/><br/>
-<img src=\"modelica://BuildSysPro/Resources/IBPSA/Images/Controls/Continuous/Examples/OffTimer2.png\" border=\"1\" alt=\"Input and output of the OffTimer offTim1.\"/>
+<img src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Controls/Continuous/Examples/OffTimer1.png\" border=\"1\" alt=\"Input and output of the OffTimer offTim1.\"/><br/>
+<img src=\"modelica://BuildSysPro/IBPSA/Resources/Images/Controls/Continuous/Examples/OffTimer2.png\" border=\"1\" alt=\"Input and output of the OffTimer offTim1.\"/>
 </p>
 </html>",
 revisions="<html>

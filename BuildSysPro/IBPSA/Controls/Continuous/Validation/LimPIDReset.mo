@@ -3,7 +3,7 @@ model LimPIDReset
   "Test model for PID controller with optional intgerator reset"
   extends Modelica.Icons.Example;
 
-  Modelica.Blocks.Sources.Sine setPoi(freqHz=1) "Set point signal"
+  Modelica.Blocks.Sources.Sine setPoi(f=1) "Set point signal"
     annotation (Placement(transformation(extent={{-40,-20},{-20,0}})));
   IBPSA.Controls.Continuous.LimPID limPIDPar(
     yMax=1,
@@ -14,14 +14,13 @@ model LimPIDReset
     Td=10,
     k=0.2,
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
-    initType=Modelica.Blocks.Types.InitPID.InitialOutput,
-    y_start=0.3)
-    "PId controller with integrator reset to a parameter value"
+    initType=Modelica.Blocks.Types.Init.InitialOutput,
+    y_start=0.3) "PId controller with integrator reset to a parameter value"
     annotation (Placement(transformation(extent={{20,-20},{40,0}})));
   Modelica.Blocks.Sources.Constant mea(k=0.5) "Measured signal"
     annotation (Placement(transformation(extent={{-40,-50},{-20,-30}})));
   IBPSA.Controls.Continuous.LimPID limPIDDef(
-    initType=Modelica.Blocks.Types.InitPID.InitialState,
+    initType=Modelica.Blocks.Types.Init.InitialState,
     Td=10,
     k=1,
     Ti=1,
@@ -45,15 +44,14 @@ model LimPIDReset
     k=0.2,
     Ti=20,
     controllerType=Modelica.Blocks.Types.SimpleController.PID,
-    initType=Modelica.Blocks.Types.InitPID.InitialOutput,
-    y_start=0.3)
-    "PId controller with integrator reset to an input value"
+    initType=Modelica.Blocks.Types.Init.InitialOutput,
+    y_start=0.3) "PId controller with integrator reset to an input value"
     annotation (Placement(transformation(extent={{20,-80},{40,-60}})));
   Modelica.Blocks.Sources.Constant conRes(k=0.9)
     "Signal to which integrator will be reset to"
     annotation (Placement(transformation(extent={{-40,-90},{-20,-70}})));
   Modelica.Blocks.Continuous.LimPID limPIDOri(
-    initType=Modelica.Blocks.Types.InitPID.InitialState,
+    initType=Modelica.Blocks.Types.Init.InitialState,
     Td=10,
     k=1,
     Ti=1,
@@ -93,7 +91,7 @@ equation
   connect(limPIDDef.y, assEqu.u2) annotation (Line(points={{41,30},{48,30},{48,
           44},{58,44}}, color={0,0,127}));
  annotation (experiment(Tolerance=1e-6, StopTime=1.0),
-__Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Controls/Continuous/Validation/LimPIDReset.mos"
+__Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Controls/Continuous/Validation/LimPIDReset.mos"
         "Simulate and plot"),
     Documentation(revisions="<html>
 <ul>
@@ -112,7 +110,7 @@ First implementation.
 </ul>
 </html>", info="<html>
 <p>This model tests the implementation the
-<a href=\"modelica://BuildSysPro.IBPSA.Controls.Continuous.LimPID\">IBPSA.Controls.Continuous.LimPID</a>
+<a href=\"Modelica://IBPSA.Controls.Continuous.LimPID\">IBPSA.Controls.Continuous.LimPID</a>
 with integrator reset.
 </p>
 <p>

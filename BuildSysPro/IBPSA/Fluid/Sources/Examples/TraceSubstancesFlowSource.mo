@@ -39,8 +39,8 @@ model TraceSubstancesFlowSource
     nPorts=1)
     annotation (Placement(transformation(extent={{-46,70},{-26,90}})));
   IBPSA.Utilities.Diagnostics.AssertEquality assEqu(threShold=1E-4)
-    "Assert that both volumes have the same concentration" annotation (
-      Placement(transformation(extent={{210,128},{230,148}})));
+    "Assert that both volumes have the same concentration"
+    annotation (Placement(transformation(extent={{210,128},{230,148}})));
   MixingVolumes.MixingVolume vol2(
     redeclare package Medium = Medium,
     p_start=Medium.p_default,
@@ -80,14 +80,14 @@ model TraceSubstancesFlowSource
     redeclare package Medium = Medium,
     p=101325,
     nPorts=1,
-    T=293.15) annotation (Placement(transformation(extent={{-62,-80},{-42,
-            -60}})));
+    T=293.15)
+    annotation (Placement(transformation(extent={{-62,-80},{-42,-60}})));
   IBPSA.Fluid.Sources.Boundary_pT sin(
     redeclare package Medium = Medium,
     nPorts=2,
     p=101320,
-    T=293.15) "Sink boundary conditions" annotation (Placement(
-        transformation(extent={{188,-50},{168,-30}})));
+    T=293.15) "Sink boundary conditions"
+    annotation (Placement(transformation(extent={{188,-50},{168,-30}})));
   FixedResistances.PressureDrop res1(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
@@ -240,7 +240,7 @@ equation
     annotation (Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-100,
             -100},{240,180}}), graphics),
             experiment(Tolerance=1e-6, StopTime=600),
-             __Dymola_Commands(file="modelica://BuildSysPro/Resources/IBPSA/Scripts/Dymola/Fluid/Sources/Examples/TraceSubstancesFlowSource.mos"
+             __Dymola_Commands(file="modelica://BuildSysPro/IBPSA/Resources/Scripts/Dymola/Fluid/Sources/Examples/TraceSubstancesFlowSource.mos"
         "Simulate and plot"),
     Documentation(info="<html>
 This model demonstrates the use of trace substances that are added
