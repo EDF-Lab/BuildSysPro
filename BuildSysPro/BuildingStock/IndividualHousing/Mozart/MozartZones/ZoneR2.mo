@@ -221,14 +221,14 @@ public
         extent={{11,-11},{-11,11}},
         rotation=270,
         origin={71,-49})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true
     annotation (Placement(transformation(extent={{120,-98},{80,-58}}),
         iconTransformation(extent={{7,-7},{-7,7}},
         rotation=90,
         origin={-21,87})));
 
-  Modelica.Blocks.Interfaces.RealInput VENTEst if
-                                               useOuverturePF annotation (
+  Modelica.Blocks.Interfaces.RealInput VENTEst
+                                            if useOuverturePF annotation (
       Placement(transformation(extent={{-114,-26},{-86,2}}), iconTransformation(
           extent={{100,10},{80,30}})));
   Modelica.Blocks.Interfaces.BooleanInput ouvertureFenetres[1] if useOuverturePF
@@ -254,7 +254,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonC1 if not CLOintPlancher
     annotation (Placement(transformation(extent={{86,48},{106,68}}),
         iconTransformation(extent={{-60,10},{-80,30}})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree if   not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree   if not CLOintPlancher
     annotation (Placement(transformation(extent={{86,84},{106,104}}),
         iconTransformation(
         extent={{-10,-10},{10,10}},
@@ -532,8 +532,8 @@ graphics={
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

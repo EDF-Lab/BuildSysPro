@@ -185,8 +185,8 @@ double tab2(5,2)   # another comment line
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright © EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Hassan BOUIA, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

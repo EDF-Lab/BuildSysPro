@@ -52,7 +52,7 @@ model BuildingR2
     "Exterior temperature" annotation (Placement(transformation(extent={{20,80},
             {40,100}}), iconTransformation(extent={{-20,80},{0,100}})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if   GLOEXT
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky   if GLOEXT
     annotation (Placement(transformation(extent={{48,80},{68,100}}),
         iconTransformation(extent={{40,80},{60,100}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_Gauguin_R2
@@ -378,8 +378,8 @@ end if;
 <p>See note H-E13-2014-00591-FR for validation</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Frédéric GASTIGER, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));
 end BuildingR2;

@@ -3,6 +3,12 @@ model WaterTank
 
   //import SI=Modelica.SIunits;
 
+ // Outlet mixed water temperature
+  parameter Boolean mitigeur=true
+    "withdrawal after mixer = true ; before mixer = false";
+  parameter Modelica.Units.SI.Temperature Tmit=313.15
+    "Desired mixed water temperature at outlet (draw; default 40°C)";
+
   parameter Integer nc=10 "Number of layers of the tank" annotation (Dialog(tab="Tank parameters"));
   parameter Integer ncInj=9 "Layer number of the electric power injection" annotation (Dialog(tab="Tank parameters"));
   parameter Integer ncSol=2 "Layer number of the solar power injection"
@@ -52,6 +58,9 @@ protected
   Modelica.Units.SI.Power puis[nc](start=fill(0, nc));
   Modelica.Units.SI.Power perte[nc](start=fill(0, nc));
   Modelica.Units.SI.Energy Conso;
+  Modelica.Units.SI.MassFlowRate debit_reel
+    "actual drawing flow at DHW temperature";
+  Real pourcentage_eau_chaude;
   Real diametre=sqrt(4*Volume/(pi*Hauteur));
   Real dz=Hauteur/nc;
   //Integer ncInj=integer(hInj/dz)+1;
@@ -61,7 +70,7 @@ protected
   Real sint=pi*diametre*Hauteur+2*sbase;
   Real sbase=pi*diametre^2/4;
   Real rovcp= rho*dv*cp;
-  Real MCp=debit/3600*cp;
+  Real MCp;
   Boolean HC[3]={heure>=0 and heure<=6,heure>=12 and heure<=14, heure>=16 and heure<=18};
   //Integer OnOff=if HC[1] or HC[2] then 1 else 0;
   //Integer Mu=1;
@@ -72,7 +81,7 @@ protected
   parameter Real coef36=1/3.6e6;
 
 public
-  Modelica.Blocks.Interfaces.RealInput debit(start=0) "Drawing rate in kg/h"
+  Modelica.Blocks.Interfaces.RealInput debit_mitige(start=0) "Mixer flow in kg/h"
                                                                      annotation (
       Placement(transformation(extent={{-120,-90},{-80,-50}}),
         iconTransformation(extent={{-100,-70},{-80,-50}})));
@@ -121,6 +130,7 @@ public
         rotation=0,
         origin={90,90})));
 equation
+
   connect(T_cold, T_cold_internal);
   if not type_T_cold then
     T_cold_internal= T_cold_fixed;
@@ -128,7 +138,12 @@ equation
 
   T_out=T[nc];
 
-  delta_t=if debit>0 then Hauteur/(debit*coef36/sbase) else 0;
+  pourcentage_eau_chaude =if mitigeur then (if noEvent(T_out > Tmit) then (Tmit -
+    T_cold_internal)/(T_out - T_cold_internal) else 1) else 1;
+  debit_reel = pourcentage_eau_chaude*debit_mitige;
+  MCp = debit_reel*cp;
+
+  delta_t=if debit_reel>0 then Hauteur/(debit_reel*coef36/sbase) else 0;
   when initial() then
     if nc==1 then
       Slat[1]=sint;
@@ -248,8 +263,8 @@ equation
 <p>Validated model - Hubert Blervaque, Hassan Bouia 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Hubert BLERVAQUE, Hassan BOUIA, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

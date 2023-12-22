@@ -4,14 +4,13 @@ model StratifiedWaterTank
 
   // Initialization
   parameter Modelica.Units.SI.Temperature initialTemperature=10 + 273.15
-    "Initial water temperature in the tank";
+    "Initial water temperature in the tank [K]";
 
   // Tank geometry
-
-  parameter Modelica.Units.SI.Volume tankVolume=0.2 "Tank volume";
-  parameter Modelica.Units.SI.Height tankHeight=1.7 "Tank height";
+  parameter Modelica.Units.SI.Volume tankVolume=0.2 "Tank volume [m3]";
+  parameter Modelica.Units.SI.Height tankHeight=1.7 "Tank height [m]";
   parameter Modelica.Units.SI.ThermalConductance UA=10
-    "Insulating heat transfer coefficient";
+    "Insulating heat transfer coefficient [W/K]";
   parameter Integer nCells=10 "Number of cells";
   parameter Integer iHX_top=5 "Top condenser position";
   parameter Integer iHX_bottom=2 "Bottom condenser position";
@@ -20,45 +19,53 @@ model StratifiedWaterTank
   parameter Integer i_sensor=1 "Temperature sensor position";
 
   final parameter Modelica.Units.SI.Area tankSurface=tankVolume/tankHeight
-    "Floor surface of the tank";
+    "Floor surface of the tank in m2";
 
   // Boundary conditions
-
   parameter Modelica.Units.SI.Temperature T_amb=20 + 273.15
-    "Ambient temperature";
+    "Ambient temperature [K]";
 
   // Auxiliary element
   parameter Modelica.Units.SI.Power auxiliaryPower=1800
-    "Fixed heating power of the auxiliary heater";
+    "Fixed heating power of the auxiliary heater [W]";
 
   // Tank unknowns
-
-  Modelica.Units.SI.Temperature T_tank[nCells](each start=initialTemperature,
-      fixed=true);
-  Modelica.Units.SI.Energy E_stored(start=0);
-  Modelica.Units.SI.Power P_loss(start=0);
+  Modelica.Units.SI.Temperature T_tank[nCells](
+    each start=initialTemperature,
+    fixed=true)
+    "Vector containing the water temperature of each layer [K]";
+  Modelica.Units.SI.Energy E_stored(start=0)
+    "Energy stored in the tank [J]";
+  Modelica.Units.SI.Power P_loss(start=0)
+    "Power losses [W]";
 
   Modelica.Blocks.Interfaces.RealInput m_flow
+    "Inlet cold water mass flow rate [kg/s]"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},
         rotation=90,
-        origin={-22,-100}), iconTransformation(
+        origin={-20,-100}), iconTransformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
         origin={-40,-120})));
 
-  Modelica.Blocks.Interfaces.RealInput T_in annotation (Placement(
+  Modelica.Blocks.Interfaces.RealInput T_in "Inlet cold water temperature [K]"
+    annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
-        origin={32,-98}), iconTransformation(
+        origin={40,-100}),iconTransformation(
         extent={{-20,-20},{20,20}},
         rotation=90,
-        origin={50,-120})));
+        origin={60,-120})));
 
   Modelica.Blocks.Interfaces.BooleanInput onOffAuxiliary
-    annotation (Placement(transformation(extent={{-118,-60},{-78,-20}})));
+    "Boolean for switching on/off the auxiliaries"
+    annotation (Placement(transformation(extent={{-120,-60},{-80,-20}}),
+        iconTransformation(extent={{-120,-60},{-80,-20}})));
   Modelica.Blocks.Interfaces.RealOutput T_sensor
-    annotation (Placement(transformation(extent={{100,18},{120,38}})));
+    "Temperature of the sensor [K]"
+    annotation (Placement(transformation(extent={{100,20},{120,40}}),
+        iconTransformation(extent={{100,20},{120,40}})));
 
 protected
   Modelica.Units.SI.Power electricPower[nCells];
@@ -82,14 +89,16 @@ protected
   constant Modelica.Units.SI.Temperature T_en_base_tank=10 + 273.15
     "Base temperature for energy calculation";
 public
-  Modelica.Blocks.Interfaces.RealInput heatInput annotation (Placement(
+  Modelica.Blocks.Interfaces.RealInput heatInput
+    "Injected heat power [W]"
+    annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
         rotation=0,
-        origin={-98,14}), iconTransformation(
+        origin={-100,40}),iconTransformation(
         extent={{-20,-20},{20,20}},
         rotation=0,
-        origin={-100,38})));
+        origin={-100,40})));
 
   // Thermocline development model
   Integer i_thermocline(start=1);
@@ -104,7 +113,7 @@ algorithm
      elseif abs(heatInput)>100 and m_flow<1e-4 then
        i_thermocline:=iHX_top;
      else
-       i_thermocline:=1;
+       i_thermocline:=iHX_bottom;
      end if;
    end for;
 
@@ -187,8 +196,6 @@ equation
           color={255,85,85},
           thickness=0.5,
           smooth=Smooth.None)}),
-    experiment(StopTime=86400, Interval=60),
-    __Dymola_experimentSetupOutput,
     Documentation(info="<html>
 <p><u><b>Hypothesis and equations</b></u></p>
 <p>Model of a 1D stratified water tank using inversed gradient mixing coefficient and a power distribution model for MHW condenser tanks.</p>
@@ -203,8 +210,8 @@ equation
 <p>Validated model - Kévin Deutz 08/2017</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright © EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Kévin DEUTZ, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

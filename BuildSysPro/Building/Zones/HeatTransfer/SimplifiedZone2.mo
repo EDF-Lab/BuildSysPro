@@ -182,8 +182,8 @@ protected
         rotation=270,
         origin={28,-42})));
   Modelica.Blocks.Math.Gain gainTransmisPlancherIntermediaire(k=(NbNiveaux - 1)/
-        NbNiveaux) if
-               NbNiveaux>1 annotation (Placement(transformation(
+        NbNiveaux)
+            if NbNiveaux>1 annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=270,
         origin={38,-60})));
@@ -458,8 +458,8 @@ equation
 <p>Validated model - Gilles Plessis, Hassan Bouia 07/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

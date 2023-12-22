@@ -48,22 +48,22 @@ model PIDSingleOrDualMode
   BuildSysPro.BaseClasses.HeatTransfer.Sensors.TemperatureSensor measT_room
     annotation (Placement(transformation(extent={{60,76},{80,96}})));
 
-  Modelica.Blocks.Sources.Constant T_heat_param(k=T_heat_sp_degC) if
-    (heating_mode and not use_T_input)
+  Modelica.Blocks.Sources.Constant T_heat_param(k=T_heat_sp_degC)
+ if (heating_mode and not use_T_input)
     "Temperature setpoint for heating (parameter) [degC]"
     annotation (Placement(transformation(extent={{80,10},{60,30}})));
-  Modelica.Blocks.Sources.Constant T_cool_param(k=T_cool_sp_degC) if
-    (cooling_mode and not use_T_input)
+  Modelica.Blocks.Sources.Constant T_cool_param(k=T_cool_sp_degC)
+ if (cooling_mode and not use_T_input)
     "Temperature setpoint for cooling (parameter) [degC]"
     annotation (Placement(transformation(extent={{80,-30},{60,-10}})));
 
-  Modelica.Blocks.Interfaces.RealInput T_heat_sp_input_degC if
-    (heating_mode and use_T_input)
+  Modelica.Blocks.Interfaces.RealInput T_heat_sp_input_degC
+ if (heating_mode and use_T_input)
     "Temperature setpoint for heating (RealInput) [degC]"
     annotation (Placement(transformation(extent={{110,30},{70,70}}),
       iconTransformation(extent={{-50,30},{-30,50}})));
-  Modelica.Blocks.Interfaces.RealInput T_cool_sp_input_degC if
-    (cooling_mode and use_T_input)
+  Modelica.Blocks.Interfaces.RealInput T_cool_sp_input_degC
+ if (cooling_mode and use_T_input)
     "Temperature setpoint for cooling (RealInput) [degC]"
       annotation (Placement(transformation(extent={{110,-80},{70,-40}}),
         iconTransformation(extent={{-50,-50},{-30,-30}})));
@@ -106,19 +106,19 @@ model PIDSingleOrDualMode
     annotation (Placement(transformation(extent={{0,-60},{20,-40}}),
         iconTransformation(extent={{70,-30},{90,-10}})));
 
-  Modelica.Blocks.Continuous.Integrator integratorHeating(k=1/(1000*3600)) if
-    (heating_mode and use_power_integrators)
+  Modelica.Blocks.Continuous.Integrator integratorHeating(k=1/(1000*3600))
+ if (heating_mode and use_power_integrators)
     annotation (Placement(transformation(extent={{0,50},{20,70}})));
-  Modelica.Blocks.Continuous.Integrator integratorCooling(k=1/(1000*3600)) if
-    (cooling_mode and use_power_integrators)
+  Modelica.Blocks.Continuous.Integrator integratorCooling(k=1/(1000*3600))
+ if (cooling_mode and use_power_integrators)
     annotation (Placement(transformation(extent={{0,-90},{20,-70}})));
-  Modelica.Blocks.Interfaces.RealOutput heating_energy_kWh if
-    (heating_mode and use_power_integrators)
+  Modelica.Blocks.Interfaces.RealOutput heating_energy_kWh
+ if (heating_mode and use_power_integrators)
     "Heating Energy [kWh]"
     annotation (Placement(transformation(extent={{40,50},{60,70}}),
       iconTransformation(extent={{70,10},{90,30}})));
-  Modelica.Blocks.Interfaces.RealOutput cooling_energy_kWh if
-    (cooling_mode and use_power_integrators)
+  Modelica.Blocks.Interfaces.RealOutput cooling_energy_kWh
+ if (cooling_mode and use_power_integrators)
     "Cooling Energy [kWh]"
     annotation (Placement(transformation(extent={{40,-90},{60,-70}}),
       iconTransformation(extent={{70,-70},{90,-50}})));
@@ -255,7 +255,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2019<br>
-BuildSysPro version 3.5.0<br>
+BuildSysPro version 3.6.0<br>
 Author : Mathias BOUQUEREL, EDF (2019)<br>
 --------------------------------------------------------------</b></p>
 </html>",

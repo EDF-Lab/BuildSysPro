@@ -3,50 +3,50 @@ model WaterHeaterHeatPumpController
   "Simple Hysteresis control with Time of Use switch and Auto mode"
 
   parameter Modelica.Units.SI.Temperature T_set=55 + 273.15
-    "HPWH setpoint temperature";
+    "HPWH setpoint temperature [K]";
   parameter Boolean activateTOU=false
     "Activate time of use prioritization" annotation(choices(choice=true "True",choice=false "False",radioButtons=true));
   parameter Boolean HP_only=false
     "HP only mode (no auxiliary back up)" annotation(choices(choice=true "True",choice=false "False",radioButtons=true));
   parameter Boolean manualOnOff=false "Activate external manual on/off signal" annotation(choices(choice=true "True",choice=false "False",radioButtons=true));
   parameter Modelica.Units.SI.Temperature T_set_low=45 + 273.15
-    "HPWH setpoint temperature outside TOU period"
+    "HPWH setpoint temperature outside TOU period [K]"
     annotation (Dialog(enable=(activateTOU)));
   parameter Modelica.Units.SI.TemperatureDifference delta_T=10
-    "Temperature hysteresis";
+    "Temperature hysteresis [K]";
 
   parameter Modelica.Units.SI.Temperature T_min_HP=273.15 - 5
-    "Minimal HPWH operating condition";
+    "Minimal HPWH operating condition [K]";
 
-  parameter Real compSpeed=50 "Compressor operating speed";
+  parameter Real compSpeed=50 "Compressor operating speed [Hz]";
   final parameter Real compIddleSpeed=20.0;
 
   Modelica.Units.SI.Temperature T_set_cold(start=55 + 273.15)
-    "HP setpoint temperature at low external air temperatures";
+    "HP setpoint temperature at low external air temperatures [K]";
 
   Boolean minHP(start=false)
     "HP operating region for the heat pump";
 
   Modelica.Blocks.Interfaces.RealOutput freq(start=50,fixed=true)
-    "Freqeuncy output"
-    annotation (Placement(transformation(extent={{150,-130},{170,-110}}),
-        iconTransformation(extent={{150,-130},{170,-110}})));
+    "Compressor frequency [Hz]"
+    annotation (Placement(transformation(extent={{140,-100},{180,-60}}),
+        iconTransformation(extent={{140,-100},{180,-60}})));
 
   Modelica.Blocks.Interfaces.BooleanOutput OnOff "System on off signal"
     annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
-        origin={-42,-200}),
+        origin={-60,-200}),
                         iconTransformation(
-        extent={{-10,-10},{10,10}},
+        extent={{-20,-20},{20,20}},
         rotation=-90,
         origin={-40,-190})));
 
-  Modelica.Blocks.Interfaces.RealInput T_water "Water temperature"
+  Modelica.Blocks.Interfaces.RealInput T_water "Water temperature [K]"
     annotation (Placement(transformation(
-        extent={{-20,-20},{20,20}},
+        extent={{-30,-30},{30,30}},
         rotation=0,
-        origin={-168,52}),iconTransformation(extent={{-164,94},{-144,114}})));
+        origin={-170,50}),iconTransformation(extent={{-180,40},{-140,80}})));
 
 // protected
   Boolean Hyst(start=true,fixed=true) "Hysteresis signal";
@@ -57,30 +57,31 @@ model WaterHeaterHeatPumpController
   Integer day(start=1,fixed=true);
 
 public
-  Modelica.Blocks.Interfaces.RealInput T_air "External air temperature" annotation (Placement(
+  Modelica.Blocks.Interfaces.RealInput T_air "External air temperature [K]"
+    annotation (Placement(
         transformation(
-        extent={{-20,-20},{20,20}},
+        extent={{-30,-30},{30,30}},
         rotation=0,
-        origin={-166,-108}),iconTransformation(extent={{-166,-108},{-146,-88}})));
+        origin={-170,-70}), iconTransformation(extent={{-180,-80},{-140,-40}})));
 
   Modelica.Blocks.Interfaces.BooleanOutput OnOffAuxiliary
     "Auxiliary on off control"
     annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
-        origin={36,-200}), iconTransformation(
-        extent={{-10,-10},{10,10}},
+        origin={60,-200}), iconTransformation(
+        extent={{-19,-19},{19,19}},
         rotation=-90,
-        origin={48,-188})));
+        origin={41,-191})));
   Modelica.Blocks.Interfaces.BooleanInput onOffSwitch if manualOnOff
     "External on off switch"                                                   annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
-        origin={-46,160}), iconTransformation(
+        origin={0,160}),   iconTransformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
-        origin={2,152})));
+        origin={2,160})));
 
 protected
   Modelica.Blocks.Interfaces.BooleanInput onOffSwitch_internal;
@@ -139,7 +140,7 @@ equation
           fillColor={175,175,175},
           fillPattern=FillPattern.Solid),
         Rectangle(
-          extent={{-140,140},{138,-168}},
+          extent={{-140,140},{140,-170}},
           lineColor={0,0,255},
           fillColor={215,215,215},
           fillPattern=FillPattern.Solid),
@@ -162,8 +163,8 @@ equation
 <p>Validated model - Kévin Deutz 08/2017</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright © EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Kévin DEUTZ, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

@@ -68,7 +68,11 @@ Pdmax=min(technoBattOnd.Pmaxd,technoBattOnd.P_onduleur);
 if P_consigne < 0 then
   if (SOC/3600)<(Pdecharge*technoBattOnd.Cmax) then
     P = min(-R_charge*P_consigne,Pcmax);
-    P_vide = C0;
+    if SOC > 0 then
+      P_vide = C0;
+    else
+      P_vide = 0;
+    end if;
   else
       P=0;
       P_vide = 0;
@@ -76,7 +80,11 @@ if P_consigne < 0 then
 else
   if (SOC/3600)>((1-Pdecharge)*technoBattOnd.Cmax) then
       P = -min(R_decharge*R_c*P_consigne,Pdmax);
-      P_vide = C0;
+      if SOC > 0 then
+        P_vide = C0;
+      else
+        P_vide = 0;
+      end if;
   else
       P = 0;
       P_vide =0;

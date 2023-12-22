@@ -49,8 +49,8 @@ protected
     RadInterne=false,
     GLOext=GLOEXT,
     hs_int=paraMaisonRT.Hsint,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsPicasso.Surf_ParoiSousCombles) if
-    PositionEtage == 3
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsPicasso.Surf_ParoiSousCombles)
+ if PositionEtage == 3
     annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=-90,
@@ -64,8 +64,8 @@ protected
     InitType=InitType,
     hs_int=paraMaisonRT.Hsint,
     RadInterne=true,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsPicasso.Surf_PlancherBas) if
-    PositionEtage == 1                             annotation (Placement(
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsPicasso.Surf_PlancherBas)
+ if PositionEtage == 1                             annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
@@ -79,8 +79,8 @@ protected
     hs_int=paraMaisonRT.Hsint,
     RadInterne=true,
     caracParoi=paraMaisonRT.PlancherInterm,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsPicasso.Surf_PlancherInt) if
-    PositionEtage >= 2                             annotation (Placement(
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsPicasso.Surf_PlancherInt)
+ if PositionEtage >= 2                             annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
@@ -179,7 +179,7 @@ protected
         origin={23.5,39.5})));
   // Components for LW/SW radiations
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if   GLOEXT
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky   if GLOEXT
      == true annotation (Placement(transformation(extent={{100,40},{120,60}}),
         iconTransformation(extent={{100,40},{120,60}})));
 
@@ -453,8 +453,8 @@ Icon(coordinateSystem(preserveAspectRatio=false,
 <p>See note H-E13-2014-00591-FR for validation</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Frédéric GASTIGER, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));
 end PicassoAssemblyCH;

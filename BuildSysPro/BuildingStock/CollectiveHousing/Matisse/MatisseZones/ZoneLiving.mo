@@ -123,8 +123,8 @@ protected
     hs_ext=paraMaisonRT.hsExtHor,
     alpha_ext=paraMaisonRT.alphaExt,
     eps=paraMaisonRT.eps,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour) if
-    EmplacementHaut
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour)
+ if EmplacementHaut
     annotation (Placement(transformation(extent={{-7,70},{7,84}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PlancherBas(
@@ -159,8 +159,8 @@ protected
       mat=paraMaisonRT.PlancherImmeuble.mat,
       positionIsolant=paraMaisonRT.PlancherImmeuble.positionIsolant),
     InitType=InitType,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour) if
-    EmplacementBas    annotation (Placement(transformation(
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondSejour)
+ if EmplacementBas    annotation (Placement(transformation(
         extent={{-7,-7},{7,7}},
         rotation=90,
         origin={71,-92})));
@@ -200,8 +200,8 @@ protected
       e=paraMaisonRT.MurExt.e,
       mat=paraMaisonRT.MurExt.mat,
       positionIsolant=paraMaisonRT.MurExt.positionIsolant),
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurOuestSejour) if
-    EmplacementOuest
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurOuestSejour)
+ if EmplacementOuest
     annotation (Placement(transformation(extent={{-7,-20},{7,-6}})));
 
 // Internal vertical walls
@@ -317,12 +317,12 @@ public
         extent={{11,-11},{-11,11}},
         rotation=270,
         origin={71,-49})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true
     annotation (Placement(transformation(extent={{120,-98},{80,-58}}),
         iconTransformation(extent={{-54,-30},{-40,-16}})));
 
-  Modelica.Blocks.Interfaces.RealInput VENTNord if
-                                               useOuverture annotation (
+  Modelica.Blocks.Interfaces.RealInput VENTNord
+                                            if useOuverture annotation (
       Placement(transformation(extent={{-114,-28},{-86,0}}), iconTransformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
@@ -362,14 +362,14 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         extent={{-12,-12},{12,12}},
         rotation=-90,
         origin={-46,109})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonCuisine if
-                                                             not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonCuisine
+                                                          if not CLOintPlancher
     annotation (Placement(transformation(extent={{80,70},{100,90}}),
         iconTransformation(extent={{60,10},{80,30}})));
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonEntree if not CLOintPlancher
     annotation (Placement(transformation(extent={{80,50},{100,70}}),
         iconTransformation(extent={{60,-90},{80,-70}})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree if   not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree   if not CLOintPlancher
     annotation (Placement(transformation(extent={{80,92},{100,112}}),
         iconTransformation(extent={{60,-66},{80,-46}})));
 equation
@@ -743,8 +743,8 @@ graphics={
 <p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

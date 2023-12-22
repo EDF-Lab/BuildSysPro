@@ -47,7 +47,7 @@ model GenericFloor
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
     "Exterior temperature" annotation (Placement(transformation(extent={{180,
             120},{200,140}}), iconTransformation(extent={{180,120},{200,140}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if   GLOEXT
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky   if GLOEXT
     annotation (Placement(transformation(extent={{220,80},{240,100}}),
         iconTransformation(extent={{220,80},{240,100}})));
  Modelica.Blocks.Interfaces.RealInput G[10]
@@ -56,23 +56,23 @@ model GenericFloor
        iconTransformation(extent={{-320,108},{-296,132}})));
 
   // Housing temperatures
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_Gauguin_inf if
-                                                                             not (
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_Gauguin_inf
+                                                                          if not (
     PositionEtage == 1) "Lower Gauguin apartment temperature" annotation (
       Placement(transformation(extent={{-140,-152},{-120,-132}}),
         iconTransformation(extent={{-260,-140},{-240,-120}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_Matisse_inf if
-                                                                             not (
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_Matisse_inf
+                                                                          if not (
     PositionEtage == 1) "Lower Matisse apartment temperature" annotation (
       Placement(transformation(extent={{40,-20},{60,0}}), iconTransformation(
           extent={{20,-140},{40,-120}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_Picasso_inf if
-                                                                             not (
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_Picasso_inf
+                                                                          if not (
     PositionEtage == 1) "Lower Picasso apartment temperature" annotation (
       Placement(transformation(extent={{160,-140},{180,-120}}),
         iconTransformation(extent={{160,-140},{180,-120}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_landing_inf if
-                                                                             (not (
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_landing_inf
+                                                                          if (not (
     PositionEtage == 1) and ChoixModelePalier == 2)
     "Lower unheated room temperature" annotation (Placement(transformation(
           extent={{40,-176},{60,-156}}), iconTransformation(extent={{-120,-140},
@@ -92,8 +92,8 @@ model GenericFloor
     "Unheated room (landing) temperature" annotation (Placement(transformation(
           extent={{-100,-80},{-80,-60}}), iconTransformation(extent={{-26,-18},
             {-6,2}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_basement if
-    PositionEtage == 1 "Basement temperature" annotation (Placement(
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_basement
+ if PositionEtage == 1 "Basement temperature" annotation (Placement(
         transformation(extent={{-102,-154},{-82,-134}}), iconTransformation(
           extent={{-50,-120},{-30,-100}})));
   // Overall parameters
@@ -248,23 +248,23 @@ equation
       points={{6,-35.8},{8,-35.8},{8,130},{190,130}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(picasso.T_int_landing, LNC.T_int_unheated) annotation (Line(
+  connect(picasso.T_int_landing, LNC.T_int_landing) annotation (Line(
       points={{109,-44},{52.5,-44},{52.5,-46.24},{-3,-46.24}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(matisse.T_int_landing, LNC.T_int_unheated) annotation (Line(
+  connect(matisse.T_int_landing, LNC.T_int_landing) annotation (Line(
       points={{-26.6429,11},{-26.6429,-17.5},{-3,-17.5},{-3,-46.24}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(gauguin.T_int_landing, LNC.T_int_unheated) annotation (Line(
+  connect(gauguin.T_int_landing, LNC.T_int_landing) annotation (Line(
       points={{-128.8,-8.36},{-62,-8.36},{-62,-46.24},{-3,-46.24}},
       color={255,0,0},
       smooth=Smooth.None));
-  connect(sousSol.T_int_landing, LNC.T_int_unheated) annotation (Line(
+  connect(sousSol.T_int_landing, LNC.T_int_landing) annotation (Line(
       points={{-32,-96.9},{-32,-46.24},{-3,-46.24}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(T_int_landing, LNC.T_int_unheated) annotation (Line(
+  connect(T_int_landing, LNC.T_int_landing) annotation (Line(
       points={{-90,-70},{-3,-70},{-3,-46.24}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -473,8 +473,8 @@ equation
 <p>See note H-E13-2014-00591-FR for validation</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Frédéric GASTIGER, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));
 end GenericFloor;

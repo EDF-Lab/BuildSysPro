@@ -480,7 +480,7 @@ protected
 
 // Components for LW/SW radiations
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if                     GLOEXT==true
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky                     if GLOEXT==true
     annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{20,100},{40,120}})));
   BuildSysPro.BoundaryConditions.Radiation.PintRadDistrib PintdistriRad(
@@ -497,7 +497,7 @@ public
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurEst,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurOuest,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_PlancherBas,
-        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurLNC3}) if      not CLOintPlancher
+        BuildSysPro.BuildingStock.Utilities.Records.Geometry.IndividualHousing.SettingsMozart.Surf_MurLNC3})      if not CLOintPlancher
     annotation (Placement(transformation(extent={{-2,-92},{18,-72}})));
 
 // Base components
@@ -529,7 +529,7 @@ public
         extent={{11,-11},{-11,11}},
         rotation=270,
         origin={71,-49})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true "[m3/h]"
     annotation (Placement(transformation(extent={{120,-98},{80,-58}}),
         iconTransformation(extent={{140,-20},{100,20}})));
 
@@ -545,8 +545,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
     "Closing of north, south, east, west shutters (0 = open , 1 = closed)"
     annotation (Placement(transformation(extent={{-120,-100},{-80,-60}}),
         iconTransformation(extent={{8,-14},{-14,8}})));
-  BuildSysPro.BoundaryConditions.Weather.ZoneWind vENTzone(beta=beta) if
-                                                                  useOuverture or useOuverturePF
+  BuildSysPro.BoundaryConditions.Weather.ZoneWind vENTzone(beta=beta)
+                                                               if useOuverture or useOuverturePF
     annotation (Placement(transformation(extent={{-92,-26},{-72,-6}})));
 equation
   if CLOintPlancher==false then
@@ -1136,8 +1136,8 @@ graphics={
 <p>Validated model by comparison of GV with Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

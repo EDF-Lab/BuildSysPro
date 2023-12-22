@@ -168,8 +168,8 @@ Thus the equivalent luminous flux transmitted to the zone and the global natural
 <p>Validated model - Laura Sudries 05/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright © EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Laura SUDRIES, Vincent MAGNAUDEIX, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>",

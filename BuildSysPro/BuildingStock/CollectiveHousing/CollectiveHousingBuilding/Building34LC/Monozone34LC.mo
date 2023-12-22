@@ -406,11 +406,11 @@ parameter Real g=0.336 "glazing solar factor"
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int annotation (
       Placement(transformation(extent={{82,-6},{102,14}}), iconTransformation(
           extent={{70,-8},{90,12}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if
-    ChoixGLOext annotation (Placement(transformation(extent={{-120,0},{-100,20}}),
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky
+ if ChoixGLOext annotation (Placement(transformation(extent={{-120,0},{-100,20}}),
         iconTransformation(extent={{-88,20},{-68,40}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput Pint if
-    ChoixPint "Internal radiative gains"
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput Pint
+ if ChoixPint "Internal radiative gains"
                                  annotation (Placement(transformation(
           extent={{140,56},{100,96}}), iconTransformation(extent={{62,34},{
             50,46}})));
@@ -1018,8 +1018,8 @@ equation
 <p>Validated model - Céline Ilias 12/2016</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Vincent MAGNAUDEIX, EDF (2011)<br>
 --------------------------------------------------------------</b></p></html>",
           revisions="<html>

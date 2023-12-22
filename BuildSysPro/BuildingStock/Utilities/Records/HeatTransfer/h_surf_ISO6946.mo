@@ -33,7 +33,7 @@ record h_surf_ISO6946 "Set of surface heat transfer coefficients from ISO 6946"
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2019<br>
-BuildSysPro version 3.5.0<br>
+BuildSysPro version 3.6.0<br>
 Author : Mathias BOUQUEREL, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

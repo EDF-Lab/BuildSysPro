@@ -240,8 +240,8 @@ protected
     annotation (Placement(transformation(extent={{-116,4},{-96,24}})));
 
 public
-  BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tsol if
-                                         not
+  BaseClasses.HeatTransfer.Interfaces.HeatPort_a Tsol
+                                      if not
                                             (CLfixe) "Ground temperature"
     annotation (Placement(transformation(extent={{-80,-120},{-60,-100}}),
         iconTransformation(extent={{-120,-10},{-100,10}})));
@@ -256,16 +256,16 @@ public
         rotation=0,
         origin={-150,-76})));
 public
-  Modelica.Blocks.Interfaces.RealInput WaterIn[2] if   PlancherActif==2
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]   if PlancherActif==2
     "Vector containing  1-the fluid temperature (K), 2-the flow(kg/s)"
     annotation (Placement(transformation(extent={{-130,-94},{-110,-74}}),
         iconTransformation(extent={{-160,-86},{-140,-66}})));
-  Modelica.Blocks.Interfaces.RealOutput WaterOut[2] if  PlancherActif==2
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]  if PlancherActif==2
     "Vector containing  1-the fluid temperature (K), 2-the flow(kg/s)"
     annotation (Placement(transformation(extent={{20,-100},{40,-80}}),
         iconTransformation(extent={{60,-86},{80,-66}})));
-  BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if
-                                         ChoixGLOext annotation (Placement(
+  BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel
+                                      if ChoixGLOext annotation (Placement(
         transformation(extent={{-160,-40},{-140,-20}}), iconTransformation(
           extent={{-180,60},{-160,80}})));
 Modelica.Blocks.Interfaces.RealInput      Pint if ChoixPint
@@ -277,7 +277,7 @@ Modelica.Blocks.Interfaces.RealInput      Pint if ChoixPint
     np=6,
     nf=4,
     Sp={Splaf,Splanch,S1nv,S2nv,S3nv,S4nv},
-    Sf={1,1,1,1}) if         ChoixPint
+    Sf={1,1,1,1})         if ChoixPint
     "Distribution proportionally to surfaces of any radiative flux"
     annotation (Placement(transformation(
         extent={{-18,-15},{18,15}},
@@ -456,8 +456,8 @@ annotation (Documentation(info="<html>
 <p>Validated model - Ludovic Darnaud 07/2010 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Ludovic DARNAUD, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -122,9 +122,9 @@ public
         rotation=180,
         origin={-101,41}),iconTransformation(extent={{-8,-8},{8,8}}, origin=
            {-92,40})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput G[10]
+  Modelica.Blocks.Interfaces.RealInput                           G[10]
     "Solar flux: {DIFH, DIRN, DIRH, GLOH, t0, CosDir[1:3], Solar azimuth angle, Solar elevation angle}"
-    annotation (Placement(transformation(extent={{-116,-16},{-84,16}}),
+    annotation (Placement(transformation(extent={{-120,-14},{-88,18}}),
         iconTransformation(extent={{-100,-16},{-68,16}})));
 protected
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_ext2
@@ -404,17 +404,13 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   connect(realExpression.y, prescribedHeatFlow2.Q_flow);
-  connect(G, facteursTransmission.G) annotation (Line(
-      points={{-100,0},{-66,0}},
-      color={255,192,1},
-      smooth=Smooth.None));
-  connect(G, fLUXsurf.G) annotation (Line(
-      points={{-100,0},{-86,0},{-86,-19},{-82.7,-19}},
-      color={255,192,1},
-      smooth=Smooth.None));
+  connect(fLUXsurf.G, G) annotation (Line(points={{-82.7,-19},{-88,-19},{-88,2},
+          {-104,2}}, color={0,0,127}));
+  connect(G, facteursTransmission.G) annotation (Line(points={{-104,2},{-94,2},
+          {-94,8},{-84,8},{-84,0},{-66,0}}, color={0,0,127}));
   annotation (
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}}),  graphics),
+            100,100}})),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
                         graphics={Rectangle(extent={{-60,20},{60,-20}},
             lineColor={0,0,255}),
@@ -451,8 +447,8 @@ equation
 <p>Validated model - Amy Lindsay 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -81,8 +81,8 @@ protected
     alpha_ext=paraMaisonRT.alphaExt,
     eps=paraMaisonRT.eps,
     RadInterne=false,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondEntree) if
-    EmplacementHaut
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondEntree)
+ if EmplacementHaut
     annotation (Placement(transformation(extent={{-7,70},{7,84}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PlancherBas(
@@ -117,8 +117,8 @@ protected
       positionIsolant=paraMaisonRT.PlancherImmeuble.positionIsolant),
     InitType=InitType,
     RadInterne=false,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondEntree) if
-    EmplacementBas    annotation (Placement(transformation(
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondEntree)
+ if EmplacementBas    annotation (Placement(transformation(
         extent={{-7,-7},{7,7}},
         rotation=90,
         origin={71,-92})));
@@ -194,7 +194,7 @@ public
         extent={{11,-11},{-11,11}},
         rotation=270,
         origin={71,-49})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true
     annotation (Placement(transformation(extent={{120,-98},{80,-58}}),
         iconTransformation(extent={{8,-8},{-8,8}},
         rotation=-90,
@@ -415,8 +415,8 @@ graphics={
 <p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

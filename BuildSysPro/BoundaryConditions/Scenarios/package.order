@@ -6,7 +6,6 @@ ScenarioAliquote
 InternalGains
 OccupancySchedule
 ScenarioDHW
-DrawOffScenario
 StepFunctionMat
 StepFunctionMatPeriodic
 StepFunctionSimpleXY

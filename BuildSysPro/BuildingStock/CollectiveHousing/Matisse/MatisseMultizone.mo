@@ -890,7 +890,7 @@ protected
 
 // Components for LW/SW radiations
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if                     GLOEXT==true
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky                     if GLOEXT==true
     annotation (Placement(transformation(extent={{-100,-20},{-80,0}}),
         iconTransformation(extent={{-120,-40},{-100,-20}})));
 
@@ -1002,7 +1002,7 @@ public
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext annotation (
       Placement(transformation(extent={{-100,10},{-80,30}}), iconTransformation(
           extent={{-120,0},{-100,20}})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true "[m3/h]"
     annotation (Placement(transformation(extent={{-120,-100},{-80,-60}}),
         iconTransformation(extent={{-140,-100},{-100,-60}})));
 
@@ -1015,14 +1015,14 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
           extent={{-64,68},{-56,76}}), iconTransformation(extent={{-108,-60},{-100,
             -52}})));
 
-  Modelica.Blocks.Interfaces.BooleanInput ouvertureSejour[1] if   useOuverture
+  Modelica.Blocks.Interfaces.BooleanInput ouvertureSejour[1]   if useOuverture
     "Opening of north windows"           annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={-60,100}), iconTransformation(extent={{-5,-5},{5,5}},
         rotation=-90,
         origin={-65,51})));
-  Modelica.Blocks.Interfaces.BooleanInput ouvertureCuisine[1] if  useOuverture
+  Modelica.Blocks.Interfaces.BooleanInput ouvertureCuisine[1]  if useOuverture
     "Opening of north windows"     annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
@@ -1053,8 +1053,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         iconTransformation(extent={{-5,-5},{5,5}},
         rotation=-90,
         origin={-45,51})));
-  Modelica.Blocks.Interfaces.RealInput fermetureCuisine[1] if
-                                                             useVolet
+  Modelica.Blocks.Interfaces.RealInput fermetureCuisine[1]
+                                                          if useVolet
     "Closing of north shutters"  annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
@@ -1062,8 +1062,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         extent={{5,-5},{-5,5}},
         rotation=90,
         origin={-17,51})));
-  Modelica.Blocks.Interfaces.RealInput fermetureChambre1[1] if
-                                                             useVolet
+  Modelica.Blocks.Interfaces.RealInput fermetureChambre1[1]
+                                                          if useVolet
     "Closing of north shutters"  annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
@@ -1071,8 +1071,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         extent={{5,-5},{-5,5}},
         rotation=90,
         origin={19,51})));
-  Modelica.Blocks.Interfaces.RealInput fermetureChambre2[1] if
-                                                             useVolet
+  Modelica.Blocks.Interfaces.RealInput fermetureChambre2[1]
+                                                          if useVolet
     "Closing of north shutters" annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
@@ -1098,8 +1098,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_entrance
     annotation (Placement(transformation(extent={{20,-110},{30,-100}}),
         iconTransformation(extent={{-20,-28},{-12,-20}})));
-  BuildSysPro.BoundaryConditions.Weather.ZoneWind vENTzone(beta=beta) if
-                                                                  useOuverture
+  BuildSysPro.BoundaryConditions.Weather.ZoneWind vENTzone(beta=beta)
+                                                               if useOuverture
     annotation (Placement(transformation(extent={{-94,-50},{-74,-30}})));
 equation
   if CLOintPlancher == false then
@@ -1704,8 +1704,8 @@ graphics={
 <p>Validated model by comparison of GV with Clim 2000 - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>",
         revisions="<html>

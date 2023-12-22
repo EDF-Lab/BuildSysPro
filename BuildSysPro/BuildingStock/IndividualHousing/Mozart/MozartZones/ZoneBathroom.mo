@@ -200,7 +200,7 @@ public
         extent={{11,-11},{-11,11}},
         rotation=270,
         origin={71,-49})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true
     annotation (Placement(transformation(extent={{120,-98},{80,-58}}),
         iconTransformation(extent={{7,-7},{-7,7}},
         rotation=-90,
@@ -227,7 +227,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonC3 if not CLOintPlancher
     annotation (Placement(transformation(extent={{84,40},{104,60}}),
         iconTransformation(extent={{80,10},{100,30}})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree if   not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree   if not CLOintPlancher
     annotation (Placement(transformation(extent={{84,82},{104,102}}),
         iconTransformation(
         extent={{-10,-10},{10,10}},
@@ -473,8 +473,8 @@ graphics={
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

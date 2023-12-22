@@ -83,8 +83,8 @@ public
     e=eB,
     mat=matB,
     S=S) annotation (Placement(transformation(extent={{20,-20},{40,0}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedPelec if
-    TypeChauffage == 2
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedPelec
+ if TypeChauffage == 2
     annotation (Placement(transformation(extent={{-62,8},{-42,28}})));
   Modelica.Blocks.Interfaces.RealInput PelecIn if TypeChauffage==2
     "Electric power injected into the floor" annotation (
@@ -93,16 +93,16 @@ public
   BuildSysPro.BaseClasses.HeatTransfer.Components.HeatCapacitor Eau(C=CpEau*
         VEau*rhoEau) if TypeChauffage == 1
     annotation (Placement(transformation(extent={{-16,62},{6,84}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sensors.TemperatureSensor temperatureSensor if
-    TypeChauffage == 1 annotation (Placement(transformation(
+  BuildSysPro.BaseClasses.HeatTransfer.Sensors.TemperatureSensor temperatureSensor
+ if TypeChauffage == 1 annotation (Placement(transformation(
         extent={{5,-5},{-5,5}},
         rotation=270,
         origin={39,63})));
   Modelica.Blocks.Sources.RealExpression realExpression(y=WaterIn[2]*CpEau*(
         WaterIn[1] - Eau.port.T)) if TypeChauffage == 1
     annotation (Placement(transformation(extent={{-84,58},{-64,78}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1 if
-    TypeChauffage == 1
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1
+ if TypeChauffage == 1
     annotation (Placement(transformation(extent={{-42,48},{-22,68}})));
   BuildSysPro.BaseClasses.HeatTransfer.Components.ThermalConductor thermalConductor(G=lambdaT
         *surfaceT/eT) if TypeChauffage == 1 annotation (Placement(
@@ -110,13 +110,13 @@ public
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={-4,36})));
-  Modelica.Blocks.Interfaces.RealInput WaterIn[2] if
-                                                    TypeChauffage==1
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]
+                                                 if TypeChauffage==1
     "Vector containing 1- the inlet fluid temperature (K), 2- the inlet fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{-104,78},{-84,98}}),
         iconTransformation(extent={{-100,74},{-80,94}})));
-  Modelica.Blocks.Interfaces.RealOutput WaterOut[2] if
-                                                      TypeChauffage==1
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]
+                                                   if TypeChauffage==1
     "Vector containing 1- the outlet fluid temperature (K), 2- the outlet fluid flow rate (kg/s)"
     annotation (Placement(transformation(extent={{78,60},{98,80}}),
         iconTransformation(extent={{80,-96},{100,-76}})));
@@ -196,8 +196,8 @@ Documentation(info="<html>
 <p>Validated model - Hubert Blervaque 06/2012 </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Hubert BLERVAQUE, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",

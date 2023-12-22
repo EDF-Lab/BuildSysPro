@@ -70,8 +70,8 @@ model SimpleWall "Wall simple model"
     "Sky temperature"
     annotation (Placement(transformation(extent={{-100,-100},{-80,-80}}),
       iconTransformation(extent={{-100,-100},{-80,-80}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt if
-    RadExterne
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt
+ if RadExterne
     "SWR incident surface flux on the outer face"
     annotation (Placement(transformation(extent={{-120,10},{-80,50}}),
       iconTransformation(extent={{-40,40},{-20,60}})));
@@ -90,14 +90,14 @@ protected
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-60,30})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt if
-    RadExterne annotation (Placement(transformation(
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt
+ if RadExterne annotation (Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=90,
         origin={-30,10})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsInt if
-    RadInterne annotation (Placement(transformation(
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsInt
+ if RadInterne annotation (Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=90,
         origin={40,50})));
@@ -235,8 +235,8 @@ equation
 <p>Validated model - Gilles Plessis 03/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",

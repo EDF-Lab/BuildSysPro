@@ -60,8 +60,8 @@ parameter Integer chaud_froid=0 "0 - heating, 1 - cooling"
     tableName=nomTableau,
     fileName=nomFichier,
     columns={2},
-    extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) if
-                            saisieTableau
+    extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint)
+                         if saisieTableau
                       annotation (Placement(transformation(extent={{36.8,-92.5},
             {56.8,-72.5}})));
   Modelica.Blocks.Continuous.Integrator integrator annotation (Placement(
@@ -86,7 +86,7 @@ parameter Integer chaud_froid=0 "0 - heating, 1 - cooling"
         rotation=-90,
         origin={12,-93}), iconTransformation(extent={{80,-31},{100,-9}},
           rotation=0)));
-  Modelica.Blocks.Interfaces.RealInput T_sp if  not saisieTableau
+  Modelica.Blocks.Interfaces.RealInput T_sp  if not saisieTableau
     "Setpoint temperature [K]" annotation (Placement(transformation(
         extent={{20,20},{-20,-20}},
         rotation=-90,
@@ -195,8 +195,8 @@ equation
 <p>Validated model - Amy Lindsay 10/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Amy LINDSAY, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

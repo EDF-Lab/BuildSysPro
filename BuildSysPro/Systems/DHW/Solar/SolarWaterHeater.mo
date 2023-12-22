@@ -130,7 +130,7 @@ equation
       color={0,0,127},
       pattern=LinePattern.None,
       smooth=Smooth.None));
-  connect(debit, eCSThermoSol.debit) annotation (Line(
+  connect(debit, eCSThermoSol.debit_mitige) annotation (Line(
       points={{-100,-100},{-8,-100},{-8,-28},{4,-28}},
       color={0,0,127},
       pattern=LinePattern.None,
@@ -233,8 +233,8 @@ equation
 <p>Validated model - Hubert Blervaque 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright © EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Hubert BLERVAQUE, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -56,12 +56,12 @@ parameter Real eps=0.9 "Glazing emissivity in LWR" annotation(Dialog(enable=GLOe
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b T_int
     "Indoor temperature" annotation (Placement(transformation(extent={{80,
             -40},{100,-20}}), iconTransformation(extent={{80,-40},{100,-20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if  GLOext
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky  if GLOext
     "Sky temperature for LW radiation" annotation (Placement(transformation(
           extent={{-100,-100},{-80,-80}}), iconTransformation(extent={{-100,-100},
             {-80,-80}})));
 public
-  Modelica.Blocks.Interfaces.RealInput fermeture_volet if      useVolet==true
+  Modelica.Blocks.Interfaces.RealInput fermeture_volet      if useVolet==true
     "Closing rate of the shutter" annotation (Placement(transformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
@@ -241,8 +241,8 @@ equation
 <p>Validated model - Gilles Plessis 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Gilles PLESSIS, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

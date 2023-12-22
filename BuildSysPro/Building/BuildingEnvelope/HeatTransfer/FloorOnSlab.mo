@@ -85,12 +85,12 @@ model FloorOnSlab
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_b Ts_int annotation (
      Placement(transformation(extent={{20,-10},{40,10}}), iconTransformation(
           extent={{20,-10},{40,10}})));
-  Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
-    RadInterne "LWR/SWR flows absorbed by this floor on its inner face"
+  Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt
+ if RadInterne "LWR/SWR flows absorbed by this floor on its inner face"
     annotation (Placement(transformation(extent={{118,70},{80,108}}),
         iconTransformation(extent={{40,40},{20,60}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.FixedTemperature TemperatureSol(T=Ts) if
-    CLfixe annotation (Placement(transformation(extent={{-99,-9},{-81,9}})));
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.FixedTemperature TemperatureSol(T=Ts)
+ if CLfixe annotation (Placement(transformation(extent={{-99,-9},{-81,9}})));
 
 
 
@@ -99,8 +99,8 @@ protected
         S)
     annotation (Placement(transformation(extent={{51,22},{72,42}})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow2 if
-    RadInterne annotation (Placement(transformation(
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow2
+ if RadInterne annotation (Placement(transformation(
         extent={{7,-7},{-7,7}},
         rotation=0,
         origin={59,89})));
@@ -115,8 +115,8 @@ protected
     annotation (Placement(transformation(extent={{-56,6},{-36,26}})));
 
 public
-  BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ground if
-                                                         not (CLfixe)
+  BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ground
+                                                      if not (CLfixe)
     "Ground temperature" annotation (Placement(transformation(extent={{-100,-40},
             {-80,-20}}), iconTransformation(extent={{-120,-10},{-100,10}})));
 
@@ -153,14 +153,14 @@ public
     e=caracParoi.e,
     mat=caracParoi.mat) if ParoiActive == 1
     annotation (Placement(transformation(extent={{-14,32},{12,54}})));
-  Modelica.Blocks.Interfaces.RealInput WaterIn[2] if   ParoiActive==2
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]   if ParoiActive==2
     "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{-120,12},{-80,52}}),
         iconTransformation(
         extent={{10,-10},{-10,10}},
         rotation=-90,
         origin={6,-90})));
-  Modelica.Blocks.Interfaces.RealOutput WaterOut[2] if  ParoiActive==2
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]  if ParoiActive==2
     "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{84,-66},{116,-34}}),
         iconTransformation(
@@ -282,8 +282,8 @@ Documentation(info="<html>
 <p>Validated model - Gilles Plessis 06/2012</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

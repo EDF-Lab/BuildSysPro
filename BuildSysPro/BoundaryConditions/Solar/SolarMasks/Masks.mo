@@ -74,7 +74,7 @@ Real pi=Modelica.Constants.pi;
     annotation (Placement(transformation(extent={{50,-57},{84,-23}}),
         iconTransformation(extent={{70,-37},{84,-23}})));
   Modelica.Blocks.Sources.RealExpression CalculEclMasques[3](y={Ecl[1]*
-        FacMasqueDir*FE_dir,Ecl[2]*FacMasqueDif,Ecl[3]}) if              useEclairement
+        FacMasqueDir*FE_dir,Ecl[2]*FacMasqueDif,Ecl[3]})              if useEclairement
     "Lighting illuminations with close mask vector: direct, diffuse, reflected"
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
 algorithm
@@ -179,8 +179,8 @@ Following masks are considered:
 <p>Non validated model for distant masks - Laura Sudries 05/2015</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright © EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>

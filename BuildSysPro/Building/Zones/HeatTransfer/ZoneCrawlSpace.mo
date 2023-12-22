@@ -243,11 +243,11 @@ protected
       albedo=albedo)
     annotation (Placement(transformation(extent={{-116,4},{-96,24}})));
 public
-  Modelica.Blocks.Interfaces.RealInput WaterIn[2] if   PlancherActif==2
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]   if PlancherActif==2
     "Vector containing  1-the fluid temperature (K), 2-the flow(kg/s)"
     annotation (Placement(transformation(extent={{-110,-104},{-90,-84}}),
         iconTransformation(extent={{-160,-110},{-140,-90}})));
-  Modelica.Blocks.Interfaces.RealOutput WaterOut[2] if  PlancherActif==2
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]  if PlancherActif==2
     "Vector containing  1-the fluid temperature (K), 2-the flow(kg/s)"
     annotation (Placement(transformation(extent={{40,-110},{60,-90}}),
         iconTransformation(extent={{60,-110},{80,-90}})));
@@ -267,7 +267,7 @@ public
     np=6,
     nf=4,
     Sp={Splaf,Splanch,S1nv,S2nv,S3nv,S4nv},
-    Sf={1,1,1,1}) if         ChoixPint
+    Sf={1,1,1,1})         if ChoixPint
     "Distribution proportionally to surfaces of any radiative flux"
     annotation (Placement(transformation(
         extent={{-18,-15},{18,15}},
@@ -278,8 +278,8 @@ Modelica.Blocks.Interfaces.RealInput      Pint if ChoixPint
     annotation (Placement(
         transformation(extent={{120,60},{80,100}}),iconTransformation(extent={{60,-18},
             {40,2}})));
-  BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel if
-                                         ChoixGLOext annotation (Placement(
+  BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ciel
+                                      if ChoixGLOext annotation (Placement(
         transformation(extent={{-160,-40},{-140,-20}}), iconTransformation(
           extent={{-180,60},{-160,80}})));
 equation
@@ -464,8 +464,8 @@ annotation (Documentation(info="<html>
 <p>Validated model - Ludovic Darnaud 07/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Ludovic DARNAUD, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -584,13 +584,11 @@ equation
           fillColor={135,135,135},
           fillPattern=FillPattern.HorizontalCylinder,
           pattern=LinePattern.None,
-          lineColor={0,0,0}),
-                                                Rectangle(
+          lineColor={0,0,0}),                   Rectangle(
           extent={{-90,-14},{-32,-80}},
           fillColor={215,215,215},
           fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-                                     Rectangle(
+          pattern=LinePattern.None), Rectangle(
           extent={{-84,-22},{-38,-42}},
           pattern=LinePattern.None,
           fillColor={255,255,255},
@@ -614,8 +612,8 @@ equation
 <p>none</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright © EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

@@ -488,13 +488,11 @@ equation
           fillColor={154,95,0},
           fillPattern=FillPattern.Backward,
           pattern=LinePattern.None,
-          lineColor={0,0,0}),
-                                                Rectangle(
+          lineColor={0,0,0}),                   Rectangle(
           extent={{-72,-18},{-14,-84}},
           fillColor={215,215,215},
           fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-                                     Rectangle(
+          pattern=LinePattern.None), Rectangle(
           extent={{-66,-28},{-20,-48}},
           pattern=LinePattern.None,
           fillColor={255,255,255},
@@ -514,8 +512,8 @@ equation
 <p>Validated model - EIFER 08/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright © EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : EIFER, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

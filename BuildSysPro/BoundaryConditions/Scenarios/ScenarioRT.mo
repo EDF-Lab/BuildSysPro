@@ -92,17 +92,17 @@ Modelica.Blocks.Interfaces.RealOutput ConsoECS
         rotation=0), iconTransformation(extent={{80,110},{100,130}})));
 
 // Output connectors associated to various loads
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a ApportsThOccupants if
-    UtilApportThOcc "Heat gains from occupancy [W]"
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a ApportsThOccupants
+ if UtilApportThOcc "Heat gains from occupancy [W]"
     annotation (Placement(transformation(extent={{-80,180},{-60,200}})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a ApportsThUsageSpe if
-    UtilApportThUsageSpe
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a ApportsThUsageSpe
+ if UtilApportThUsageSpe
     "Heat gains from specific uses [W] (out of occupancy and lihghting)"
     annotation (Placement(transformation(extent={{-10,180},{10,200}})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a ApportsThEclairage if
-    UtilApportThEclairage "Heat gains from lighting [W]"
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a ApportsThEclairage
+ if UtilApportThEclairage "Heat gains from lighting [W]"
     annotation (Placement(transformation(extent={{60,180},{80,200}})));
 
 Modelica.Blocks.Interfaces.RealOutput ApportsHuOccupants
@@ -125,18 +125,18 @@ Modelica.Blocks.Interfaces.RealOutput ApportHuUsageSpe
 //Data table
 // Inner components
 protected
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow if
-    UtilApportThOcc annotation (Placement(transformation(
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
+ if UtilApportThOcc annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-70,160})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1 if
-    UtilApportThUsageSpe annotation (Placement(transformation(
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1
+ if UtilApportThUsageSpe annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={0,166})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow2 if
-    UtilApportThEclairage annotation (Placement(transformation(
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow2
+ if UtilApportThEclairage annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={68,156})));
@@ -549,7 +549,7 @@ To account for this time difference (switch between winter and summer time), the
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright &copy; EDF 2010 - 2015<br>
-BuildSysPro version 3.5.0<br>
+BuildSysPro version 3.6.0<br>
 Author : Gilles PLESSIS, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

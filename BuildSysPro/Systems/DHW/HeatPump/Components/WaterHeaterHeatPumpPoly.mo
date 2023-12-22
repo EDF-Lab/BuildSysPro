@@ -3,22 +3,24 @@ model WaterHeaterHeatPumpPoly
   "Polynomial model of air-source heat pump for water heating"
 
   parameter Modelica.Units.SI.Power Pe_max=670
-    "Maximum absorbed power by the heat pump unit at 7°C external air, 50Hz and a water temperature of 55°C";
+    "Maximum absorbed power by the heat pump unit at 7°C external air,
+    50Hz and a water temperature of 55°C [W]";
   parameter Modelica.Units.SI.Time t_heating=25750
-    "Heat-up time at 7°C external air for 10->55°C in tank";
+    "Heat-up time at 7°C external air for 10->55°C in tank [s]";
   parameter Modelica.Units.SI.Volume V_tank=0.2
-    "Heat-up time at 7°C external air for 10->55°C in tank";
+    "Heat-up time at 7°C external air for 10->55°C in tank [m3]";
    parameter Real n_inverter=0.95 "Inverter compressor efficiency";
 
    // Reference Model specifications
 protected
-  final constant Modelica.Units.SI.Power Pe_max_ref=670
-    "Maximum absorbed power by the heat pump unit at 7°C external air, 50Hz and a water temperature of 55°C";
-  final constant Modelica.Units.SI.Power Pe_fan_ref=67 "Fixed speed fan power";
-  final constant Modelica.Units.SI.Time t_heating_ref=25750
-    "Atlantic heat-up time at 7°C external air for 10->55°C in tank";
-  final constant Modelica.Units.SI.Volume V_tank_ref=0.2
-    "Heat-up time at 7°C external air for 10->55°C in tank";
+  constant Modelica.Units.SI.Power Pe_max_ref=670
+    "Maximum absorbed power by the heat pump unit at 7°C external air,
+    50Hz and a water temperature of 55°C [W]";
+  constant Modelica.Units.SI.Power Pe_fan_ref=67 "Fixed speed fan power [W]";
+  constant Modelica.Units.SI.Time t_heating_ref=25750
+    "Atlantic heat-up time at 7°C external air for 10->55°C in tank [s]";
+  constant Modelica.Units.SI.Volume V_tank_ref=0.2
+    "Heat-up time at 7°C external air for 10->55°C in tank [m3]";
 
 parameter Real[10] Pe_poly_coefs={3.83165093e+04,  -4.34394686e+01,   3.26439628e-02,
         -8.95488047e+01,   4.10985298e-02,  -1.76706502e+02,
@@ -33,29 +35,31 @@ parameter Real[10] Pq_poly_coefs={ -1.93054762e+04,  -9.62000742e+01,  -9.940348
 public
   Real Pe_fan(start=0);
 
-  Modelica.Blocks.Interfaces.RealInput T_water
-    annotation (Placement(transformation(extent={{-140,44},{-100,84}})));
-  Modelica.Blocks.Interfaces.RealInput T_air
+  Modelica.Blocks.Interfaces.RealInput T_water "Water temperature [K]"
+    annotation (Placement(transformation(extent={{-140,40},{-100,80}})));
+  Modelica.Blocks.Interfaces.RealInput T_air "External air temperature [K]"
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
-  Modelica.Blocks.Interfaces.RealInput speed
-    annotation (Placement(transformation(extent={{-140,-86},{-100,-46}})));
+  Modelica.Blocks.Interfaces.RealInput speed "Compressor speed [Hz]"
+    annotation (Placement(transformation(extent={{-140,-80},{-100,-40}})));
   Modelica.Blocks.Interfaces.BooleanInput OnOff annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
         rotation=-90,
-        origin={0,118})));
+        origin={0,120})));
 
   Modelica.Blocks.Interfaces.RealOutput Pe_comp
+    "Electrical power of the compressor [W]"
     annotation (Placement(transformation(extent={{100,30},{120,50}})));
-  Modelica.Blocks.Interfaces.RealOutput Pe_tot
+  Modelica.Blocks.Interfaces.RealOutput Pe_tot "Total electrical power [W]"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
-  Modelica.Blocks.Interfaces.RealOutput COP_comp
+  Modelica.Blocks.Interfaces.RealOutput COP_comp "COP of the compressor"
     annotation (Placement(transformation(extent={{100,-50},{120,-30}})));
-  Modelica.Blocks.Interfaces.RealOutput COP_tot
+  Modelica.Blocks.Interfaces.RealOutput COP_tot "Total COP"
     annotation (Placement(transformation(extent={{100,-90},{120,-70}})));
 
   Modelica.Blocks.Interfaces.RealOutput Pq_cond
-    annotation (Placement(transformation(extent={{100,62},{120,82}})));
+    "Heat power at the condensor [W]"
+    annotation (Placement(transformation(extent={{100,70},{120,90}})));
 equation
 
   Pe_comp=if (OnOff) then (Pe_max/Pe_max_ref)*(Pe_poly_coefs[1]+Pe_poly_coefs[2]*speed+Pe_poly_coefs[3]*speed^2+Pe_poly_coefs[4]*T_water+Pe_poly_coefs[5]*T_water^2+Pe_poly_coefs[6]*T_air+Pe_poly_coefs[7]*T_air^2+Pe_poly_coefs[8]*T_air*T_water+Pe_poly_coefs[9]*T_air*speed+Pe_poly_coefs[10]*T_water*speed) else -1e-4;
@@ -156,8 +160,8 @@ equation
 <p>Validated model - Kévin Deutz 08/2017</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright © EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Kévin DEUTZ, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

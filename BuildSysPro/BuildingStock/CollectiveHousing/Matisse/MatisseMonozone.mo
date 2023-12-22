@@ -136,7 +136,7 @@ protected
     ParoiInterne=false,
     hs_ext=paraMaisonRT.hsExtHor,
     alpha_ext=paraMaisonRT.alphaExt,
-    eps=paraMaisonRT.eps) if     EmplacementHaut
+    eps=paraMaisonRT.eps)     if EmplacementHaut
     annotation (Placement(transformation(extent={{-7,70},{7,84}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PlancherBas(
@@ -306,8 +306,8 @@ protected
       positionIsolant=paraMaisonRT.MurMitoyen.positionIsolant),
     ParoiInterne=true,
     GLOext=false,
-    hs_ext=paraMaisonRT.hsIntVert) if
-                     not EmplacementEst
+    hs_ext=paraMaisonRT.hsIntVert)
+                  if not EmplacementEst
     annotation (Placement(transformation(extent={{-7,52},{7,66}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall MurSudLNC(
@@ -345,8 +345,8 @@ protected
       positionIsolant=paraMaisonRT.MurMitoyen.positionIsolant),
     ParoiInterne=true,
     GLOext=false,
-    hs_ext=paraMaisonRT.hsIntVert) if
-                     not EmplacementOuest
+    hs_ext=paraMaisonRT.hsIntVert)
+                  if not EmplacementOuest
     annotation (Placement(transformation(extent={{-7,-2},{7,12}})));
 
 // Glazings
@@ -380,7 +380,7 @@ protected
 
 // Components for LW/SW radiations
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if                     GLOEXT==true
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky                     if GLOEXT==true
     annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{20,100},{40,120}})));
   BuildSysPro.BoundaryConditions.Radiation.PintRadDistrib PintdistriRad(
@@ -392,8 +392,8 @@ public
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_MurOuest,
         BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherBas},
     nf=1,
-    Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_VitrageNord}) if
-                                                                                            not CLOintPlancher
+    Sf={BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_VitrageNord})
+                                                                                         if not CLOintPlancher
     annotation (Placement(transformation(extent={{-2,-92},{18,-72}})));
 
   Modelica.Blocks.Math.MultiSum multiSum(nu=1)
@@ -427,7 +427,7 @@ public
         extent={{11,-11},{-11,11}},
         rotation=270,
         origin={71,-49})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true "[m3/h]"
     annotation (Placement(transformation(extent={{120,-98},{80,-58}}),
         iconTransformation(extent={{140,-16},{100,24}})));
 
@@ -447,8 +447,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
     "Temperature of adjacent housings" annotation (Placement(transformation(
           extent={{-64,88},{-56,96}}), iconTransformation(extent={{-4,34},{4,42}})));
 
-  BuildSysPro.BoundaryConditions.Weather.ZoneWind vENTzone(beta=beta) if
-                                                                  useOuverture
+  BuildSysPro.BoundaryConditions.Weather.ZoneWind vENTzone(beta=beta)
+                                                               if useOuverture
     annotation (Placement(transformation(extent={{-92,-26},{-72,-6}})));
 equation
   if CLOintPlancher == false then
@@ -1089,8 +1089,8 @@ graphics={
 <p>Validated model by comparison of GV with Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

@@ -174,8 +174,8 @@ parameter Real Umax=(Swin*Ug+Uplancher*b*Splancher+(Sop-Splancher)/(sum(paraParo
         rotation=270,
         origin={28,-42})));
   Modelica.Blocks.Math.Gain gainTransmisPlancherIntermediaire(k=(NbNiveau - 1)/
-        NbNiveau) if
-               NbNiveau>1 annotation (Placement(transformation(
+        NbNiveau)
+            if NbNiveau>1 annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=270,
         origin={38,-60})));
@@ -432,8 +432,8 @@ assert(Ubat<Umax and Ubat>Umin,"The value of Ubat depends on selected types of g
 <p>Validated model - Gilles Plessis, Hassan Bouia 03/2013</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Gilles PLESSIS, Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

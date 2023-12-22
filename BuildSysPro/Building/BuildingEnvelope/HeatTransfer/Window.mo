@@ -136,12 +136,12 @@ public
     DifDirOut "SW radiation transmitted inside [W]"
     annotation (Placement(transformation(extent={{60,50},{100,90}}),
         iconTransformation(extent={{80,40},{100,60}})));
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr2[3] if
-    DifDirOut "SW radiation transmitted inside 1-Diffuse [W], 2-Direct [W], 3-cosi"
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxOutput CLOTr2[3]
+ if DifDirOut "SW radiation transmitted inside 1-Diffuse [W], 2-Direct [W], 3-cosi"
     annotation (Placement(transformation(extent={{60,20},{100,60}}),
         iconTransformation(extent={{80,40},{100,60}})));
-  Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt if
-    RadInterne "Flux (LWR/SWR) absorbed by the glazing on its inner face [W]"
+  Modelica.Blocks.Interfaces.RealInput                            FluxAbsInt
+ if RadInterne "Flux (LWR/SWR) absorbed by the glazing on its inner face [W]"
     annotation (Placement(transformation(extent={{120,-10},{82,28}}),
         iconTransformation(extent={{40,10},{20,30}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_ext
@@ -160,11 +160,11 @@ public
     "Indoor temperature" annotation (Placement(transformation(
           extent={{80,-40},{100,-20}}), iconTransformation(extent={{80,
             -40},{100,-20}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if  GLOext
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky  if GLOext
     "Sky temperature" annotation (Placement(transformation(extent={{-100,-100},
             {-80,-80}}), iconTransformation(extent={{-100,-100},{-80,-80}})));
 
-  Modelica.Blocks.Interfaces.RealInput fermeture_volet if      useVolet
+  Modelica.Blocks.Interfaces.RealInput fermeture_volet      if useVolet
     "Shutters closing rate (0 opened, 1 closed)" annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
@@ -178,7 +178,7 @@ public
         rotation=-90,
         origin={-26,116}), iconTransformation(extent={{-40,-10},{-20,10}},
           rotation=0)));
-  Modelica.Blocks.Interfaces.RealInput V if    useOuverture
+  Modelica.Blocks.Interfaces.RealInput V    if useOuverture
     "Wind speed perpendicular to the glazing (m/s)" annotation (Placement(
         transformation(extent={{-120,60},{-80,100}}), iconTransformation(extent={{-100,
             -10},{-80,10}})));
@@ -623,8 +623,8 @@ equation
 <p>Validated model - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

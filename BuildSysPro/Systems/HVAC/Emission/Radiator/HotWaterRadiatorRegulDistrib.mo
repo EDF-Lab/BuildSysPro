@@ -259,13 +259,13 @@ equation
 <p><u><b>Instructions for use</b></u></p>
 <p>Setting of inertia is simplified thanks to a list of correlations by radiator type (cast iron, aluminium, steel) from manufactures data.</p>
 <p><u><b>Known limits / Use precautions</b></u></p>
-<p>none</p>
+<p><i><b><font style=\"color: #ff0000; \">The mass flow conservation is not respected, it's recommended to use &quot;RadiatorRoom&quot; model. </font></b></i></p>
 <p><u><b>Validations</b></u> </p>
 <p>Validated model - Hubert Blervaque, Sila Filfli 07/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",

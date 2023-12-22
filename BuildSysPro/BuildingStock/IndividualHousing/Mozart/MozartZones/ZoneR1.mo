@@ -204,14 +204,14 @@ public
         extent={{11,-11},{-11,11}},
         rotation=270,
         origin={71,-49})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true
     annotation (Placement(transformation(extent={{120,-98},{80,-58}}),
         iconTransformation(extent={{6,-6},{-6,6}},
         rotation=90,
         origin={28,66})));
 
-  Modelica.Blocks.Interfaces.RealInput VENTNord if
-                                               useOuverture annotation (
+  Modelica.Blocks.Interfaces.RealInput VENTNord
+                                            if useOuverture annotation (
       Placement(transformation(extent={{-112,-24},{-88,0}}), iconTransformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
@@ -243,11 +243,11 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonC2 if not CLOintPlancher
     annotation (Placement(transformation(extent={{84,60},{104,80}}),
         iconTransformation(extent={{60,-10},{80,10}})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonCuisine if
-                                                            not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonCuisine
+                                                         if not CLOintPlancher
     annotation (Placement(transformation(extent={{84,40},{104,60}}),
         iconTransformation(extent={{-60,-10},{-80,10}})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree if   not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree   if not CLOintPlancher
     annotation (Placement(transformation(extent={{84,100},{104,120}}),
         iconTransformation(
         extent={{-10,-10},{10,10}},
@@ -511,8 +511,8 @@ graphics={
 <p>Validated model - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

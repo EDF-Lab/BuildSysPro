@@ -103,8 +103,8 @@ model Wall
       iconTransformation(extent={{-100,-100},{-80,-80}})));
 
   // Solar irradiation
-  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3] if
-    not ParoiInterne
+  BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3]
+ if not ParoiInterne
     "Surface incident solar flux information 1-Diffuse Flux [W/m2], 2-Direct Flux [W/m2], 3-Cosi"
     annotation (Placement(transformation(extent={{-119,52},{-81,90}}),
         iconTransformation(extent={{-40,80},{-20,100}})));
@@ -116,14 +116,14 @@ model Wall
         extent={{-11,-11},{11,11}},
         rotation=0,
         origin={-35,71})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt if
-    not ParoiInterne
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt
+ if not ParoiInterne
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={-10,50})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsInt if
-    RadInterne
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsInt
+ if RadInterne
     annotation (Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=90,
@@ -136,8 +136,8 @@ model Wall
     "Flows (SWR/LWR) absorbed by this wall on its outer face [W]"
     annotation (Placement(transformation(extent={{-120,9},{-80,51}}),
         iconTransformation(extent={{-40,40},{-20,60}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt2 if
-    RadExterne and ParoiInterne
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCLOAbsExt2
+ if RadExterne and ParoiInterne
     annotation (Placement(transformation(
         extent={{8,8},{-8,-8}},
         rotation=180,
@@ -188,11 +188,11 @@ model Wall
     each InitType=InitType) if ParoiActive == 2
     "Wall surface divided into nD active walls with water circulation inside"
     annotation (Placement(transformation(extent={{-10,-40},{10,-20}})));
-  Modelica.Blocks.Interfaces.RealInput WaterIn[2] if   ParoiActive==2
+  Modelica.Blocks.Interfaces.RealInput WaterIn[2]   if ParoiActive==2
     "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}}),
         iconTransformation(extent={{-100,20},{-80,40}})));
-  Modelica.Blocks.Interfaces.RealOutput WaterOut[2] if  ParoiActive==2
+  Modelica.Blocks.Interfaces.RealOutput WaterOut[2]  if ParoiActive==2
     "Vector containing 1-the fluid temperature (K), 2-the flow (kg/s)"
     annotation (Placement(transformation(extent={{80,-80},{100,-60}}),
         iconTransformation(extent={{80,-80},{100,-60}})));
@@ -382,8 +382,8 @@ end if;
 <p>Validated model - Aurélie Kaemmerlen 12/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2010)<br>
 --------------------------------------------------------------</b></p>
 </html>",

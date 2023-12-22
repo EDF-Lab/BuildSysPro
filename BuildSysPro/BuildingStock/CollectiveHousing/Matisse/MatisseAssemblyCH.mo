@@ -47,8 +47,8 @@ protected
     RadInterne=false,
     GLOext=GLOEXT,
     hs_int=paraMaisonRT.hsIntVert,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlafondHaut) if
-    PositionEtage == 3
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlafondHaut)
+ if PositionEtage == 3
     annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=-90,
@@ -176,7 +176,7 @@ protected
         origin={17.5,39.5})));
   // Components for LW/SW radiations
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if   GLOEXT
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky   if GLOEXT
      == true annotation (Placement(transformation(extent={{120,26},{140,46}}),
         iconTransformation(extent={{120,20},{140,40}})));
 
@@ -425,8 +425,8 @@ Icon(coordinateSystem(preserveAspectRatio=false,
 <p>See note H-E13-2014-00591-FR for validation</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Frédéric GASTIGER, EDF (2014)<br>
 --------------------------------------------------------------</b></p></html>"));
 end MatisseAssemblyCH;

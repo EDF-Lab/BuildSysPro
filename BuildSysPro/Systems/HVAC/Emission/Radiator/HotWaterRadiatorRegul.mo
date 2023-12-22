@@ -252,12 +252,14 @@ end for;
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>For specific studies needing accuracy, it is possible to develop a pre-processor in order to determine the best value for the corrective coefficient <code>CoeffCorrectif</code>.</p>
 <p>In further modelling, if the radiative dissipation become sensitive in comparison with conductive dissipation, it would be good to refine <code>FracRad</code> parameter in order to make it dependent on radiator temperature.</p>
+<p><i><b><font style=\"color: #ff0000; \">The mass flow conservation is not respected, it's recommended to use &quot;RadiatorRoom&quot; model. </font></b></i></p>
+
 <p><u><b>Validations</b></u> </p>
 <p>Validated model - Hubert Blervaque, Sila Filfli 07/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Hubert BLERVAQUE, Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p></html>",
 revisions="<html>

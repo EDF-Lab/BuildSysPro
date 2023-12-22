@@ -998,7 +998,7 @@ protected
 
 // Components for LW/SW radiations
 public
-  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky if                     GLOEXT==true
+  BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_sky                     if GLOEXT==true
     annotation (Placement(transformation(extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{-120,-40},{-100,-20}})));
 
@@ -1020,7 +1020,7 @@ public
     "Wind speed (m/s) and  direction (from 0° - North, 90° - East, 180° - South, 270 ° - West)"
     annotation (Placement(transformation(extent={{-140,-40},{-100,0}}),
         iconTransformation(extent={{-140,30},{-100,70}})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true "[m3/h]"
     annotation (Placement(transformation(extent={{-120,-80},{-80,-40}}),
         iconTransformation(extent={{-140,-100},{-100,-60}})));
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_living
@@ -1044,13 +1044,13 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
   BuildSysPro.BaseClasses.HeatTransfer.Interfaces.HeatPort_a T_int_entrance
     annotation (Placement(transformation(extent={{40,-110},{50,-100}}),
         iconTransformation(extent={{6,-18},{14,-10}})));
-  Modelica.Blocks.Interfaces.BooleanInput ouvertureSejour[2] if   useOuverturePF
+  Modelica.Blocks.Interfaces.BooleanInput ouvertureSejour[2]   if useOuverturePF
     "Opening of south, west windows (true = open, false = closed)"
                                          annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={-60,100}), iconTransformation(extent={{-54,34},{-44,44}})));
-  Modelica.Blocks.Interfaces.BooleanInput ouvertureCuisine[1] if  useOuverture
+  Modelica.Blocks.Interfaces.BooleanInput ouvertureCuisine[1]  if useOuverture
     "Opening of north windows (true = open, false = closed)"
                                    annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
@@ -1089,8 +1089,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         iconTransformation(extent={{-5,-5},{5,5}},
         rotation=0,
         origin={-49,29})));
-  Modelica.Blocks.Interfaces.RealInput fermetureCuisine[1] if
-                                                             useVolet
+  Modelica.Blocks.Interfaces.RealInput fermetureCuisine[1]
+                                                          if useVolet
     "Closing of north shutters (0 - open, 1 - closed)"
                                 annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
@@ -1099,8 +1099,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         extent={{5,-5},{-5,5}},
         rotation=90,
         origin={19,51})));
-  Modelica.Blocks.Interfaces.RealInput fermetureChambre1[1] if
-                                                             useVolet
+  Modelica.Blocks.Interfaces.RealInput fermetureChambre1[1]
+                                                          if useVolet
     "Closing of north shutters (0 - open, 1 - closed)"
                                 annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
@@ -1109,15 +1109,15 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         extent={{5,-5},{-5,5}},
         rotation=90,
         origin={43,51})));
-  Modelica.Blocks.Interfaces.RealInput fermetureChambre2[1] if
-                                                             useVoletPF
+  Modelica.Blocks.Interfaces.RealInput fermetureChambre2[1]
+                                                          if useVoletPF
     "Closing of east shutters (0 - open, 1 - closed)"
                                annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
         rotation=-90,
         origin={10,100}), iconTransformation(extent={{92,16},{82,26}})));
-  Modelica.Blocks.Interfaces.RealInput fermetureChambre3[2] if
-                                                             useVoletPF
+  Modelica.Blocks.Interfaces.RealInput fermetureChambre3[2]
+                                                          if useVoletPF
     "Closing of south, east shutters (0 - open, 1 - closed)"
                                     annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
@@ -1126,7 +1126,7 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         extent={{5,-5},{-5,5}},
         rotation=-90,
         origin={67,-41})));
-  Modelica.Blocks.Interfaces.RealInput fermetureSDB[1] if    useVolet
+  Modelica.Blocks.Interfaces.RealInput fermetureSDB[1]    if useVolet
     "Closing of south shutters (0 - open, 1 - closed)"
                                annotation (Placement(transformation(
         extent={{-6,-6},{6,6}},
@@ -1135,8 +1135,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true "[m3/h]"
         extent={{5,-5},{-5,5}},
         rotation=-90,
         origin={33,-43})));
-  BuildSysPro.BoundaryConditions.Weather.ZoneWind vENTzone(beta=beta) if
-                                                                  useOuverture or useOuverturePF
+  BuildSysPro.BoundaryConditions.Weather.ZoneWind vENTzone(beta=beta)
+                                                               if useOuverture or useOuverturePF
     annotation (Placement(transformation(extent={{-96,-36},{-76,-16}})));
 equation
   if CLOintPlancher==false then
@@ -1790,8 +1790,8 @@ graphics={
 <p>Validated model by comparison of GV with Clim 2000 - Alexandre Hautefeuille, Gilles Plessis, Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Alexandre HAUTEFEUILLE, Gilles PLESSIS, Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

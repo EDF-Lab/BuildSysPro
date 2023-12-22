@@ -40,20 +40,20 @@ model PIDDualMode
   BuildSysPro.BaseClasses.HeatTransfer.Sensors.TemperatureSensor measT_room annotation (Placement(transformation(extent={{60,76},
       {80,96}})));
 
-  Modelica.Blocks.Sources.Constant T_heat_param(k=T_heat_sp) if  not use_T_input
+  Modelica.Blocks.Sources.Constant T_heat_param(k=T_heat_sp)  if not use_T_input
     "Temperature setpoint for heating (parameter) °C"
     annotation (Placement(transformation(extent={{80,30},{60,50}})));
-  Modelica.Blocks.Sources.Constant T_cool_param(k=T_cool_sp) if  not use_T_input
+  Modelica.Blocks.Sources.Constant T_cool_param(k=T_cool_sp)  if not use_T_input
     "Temperature setpoint for cooling (parameter) °C"
     annotation (Placement(transformation(extent={{80,-10},{60,10}})));
 
-  Modelica.Blocks.Interfaces.RealInput T_heat_sp_input if
-                                                        use_T_input
+  Modelica.Blocks.Interfaces.RealInput T_heat_sp_input
+                                                     if use_T_input
     "Temperature setpoint for heating (RealInput) °C" annotation (Placement(
         transformation(extent={{116,42},{80,78}}), iconTransformation(extent={{-50,
             29},{-28,51}})));
-  Modelica.Blocks.Interfaces.RealInput T_cool_sp_input if
-                                                        use_T_input
+  Modelica.Blocks.Interfaces.RealInput T_cool_sp_input
+                                                     if use_T_input
     "Temperature setpoint for cooling (RealInput) °C" annotation (Placement(
         transformation(extent={{116,-38},{80,-2}}), iconTransformation(extent={{
             -50,-53},{-28,-31}})));
@@ -81,15 +81,15 @@ model PIDDualMode
     initType=Modelica.Blocks.Types.Init.InitialState)
     annotation (Placement(transformation(extent={{0,10},{-20,-10}})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeating if
-    (use_T_input or twoDifferentSetpoints)
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeating
+ if (use_T_input or twoDifferentSetpoints)
     annotation (Placement(transformation(extent={{-30,30},{-50,50}})));
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCooling if
-    (use_T_input or twoDifferentSetpoints)
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedHeatFlow prescribedCooling
+ if (use_T_input or twoDifferentSetpoints)
     annotation (Placement(transformation(extent={{-30,-10},{-50,10}})));
 
-  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature if
-    (not use_T_input and not twoDifferentSetpoints)
+  BuildSysPro.BaseClasses.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature
+ if (not use_T_input and not twoDifferentSetpoints)
   annotation (Placement(transformation(extent={{-20,60},{-40,80}})));
 
   BuildSysPro.BaseClasses.HeatTransfer.Sensors.HeatFlowSensor heatFlux
@@ -115,12 +115,12 @@ model PIDDualMode
     annotation (Placement(transformation(extent={{40,-60},{60,-40}})));
   Modelica.Blocks.Continuous.Integrator integratorCooling(k=1/(1000*3600)) if use_power_integrators
     annotation (Placement(transformation(extent={{40,-90},{60,-70}})));
-  Modelica.Blocks.Interfaces.RealOutput heating_energy_kWh if
-                                                             use_power_integrators
+  Modelica.Blocks.Interfaces.RealOutput heating_energy_kWh
+                                                          if use_power_integrators
     "Heating Energy [kWh]" annotation (Placement(transformation(extent={{80,-60},
             {100,-40}}), iconTransformation(extent={{72,10},{92,30}})));
-  Modelica.Blocks.Interfaces.RealOutput cooling_energy_kWh if
-                                                             use_power_integrators
+  Modelica.Blocks.Interfaces.RealOutput cooling_energy_kWh
+                                                          if use_power_integrators
     "Cooling Energy [kWh]" annotation (Placement(transformation(extent={{80,-90},
             {100,-70}}), iconTransformation(extent={{72,-70},{92,-50}})));
 
@@ -290,8 +290,8 @@ equation
 <p>Validations through comparaison with PIDFixedDualMode and PIDPrescribedSingleMode and simulations within MERUBBI project - Mathias Bouquerel 01/2017<p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Mathias BOUQUEREL, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>",

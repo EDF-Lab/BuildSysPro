@@ -120,8 +120,8 @@ protected
     hs_ext=paraMaisonRT.hsExtHor,
     alpha_ext=paraMaisonRT.alphaExt,
     eps=paraMaisonRT.eps,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondCuisine) if
-    EmplacementHaut
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondCuisine)
+ if EmplacementHaut
     annotation (Placement(transformation(extent={{-7,70},{7,84}})));
 
   BuildSysPro.Building.BuildingEnvelope.HeatTransfer.Wall PlancherBas(
@@ -156,8 +156,8 @@ protected
       mat=paraMaisonRT.PlancherImmeuble.mat,
       positionIsolant=paraMaisonRT.PlancherImmeuble.positionIsolant),
     InitType=InitType,
-    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondCuisine) if
-    EmplacementBas    annotation (Placement(transformation(
+    S=BuildSysPro.BuildingStock.Utilities.Records.Geometry.CollectiveHousing.SettingsMatisse.Surf_PlancherPlafondCuisine)
+ if EmplacementBas    annotation (Placement(transformation(
         extent={{-7,-7},{7,7}},
         rotation=90,
         origin={71,-92})));
@@ -255,7 +255,7 @@ public
         extent={{11,-11},{-11,11}},
         rotation=270,
         origin={71,-49})));
-Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
+Modelica.Blocks.Interfaces.RealInput RenouvAir         if QVin==true
     annotation (Placement(transformation(extent={{120,-98},{80,-58}}),
         iconTransformation(extent={{7,-7},{-7,7}},
         rotation=90,
@@ -281,8 +281,8 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonSejour if not CLOintPlancher
     annotation (Placement(transformation(extent={{88,80},{108,100}}),
         iconTransformation(extent={{-74,-10},{-94,10}})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonChambre1 if
-                                                             not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXcloisonChambre1
+                                                          if not CLOintPlancher
     annotation (Placement(transformation(extent={{88,60},{108,80}}),
         iconTransformation(extent={{52,-10},{72,10}})));
   Modelica.Blocks.Interfaces.RealOutput FLUXcloisonEntree if not CLOintPlancher
@@ -302,13 +302,13 @@ Modelica.Blocks.Interfaces.RealInput RenouvAir if         QVin==true
         extent={{-12,-12},{12,12}},
         rotation=-90,
         origin={-38,109})));
-  Modelica.Blocks.Interfaces.RealInput VENTNord if
-                                               useOuverture annotation (
+  Modelica.Blocks.Interfaces.RealInput VENTNord
+                                            if useOuverture annotation (
       Placement(transformation(extent={{-114,-28},{-86,0}}), iconTransformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={-10,110})));
-  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree if   not CLOintPlancher
+  Modelica.Blocks.Interfaces.RealOutput FLUXporteEntree   if not CLOintPlancher
     annotation (Placement(transformation(extent={{88,102},{108,122}}),
         iconTransformation(
         extent={{-10,-10},{10,10}},
@@ -623,8 +623,8 @@ graphics={
 <p>Validated model - Amy Lindsay 04/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2021<br>
-BuildSysPro version 3.5.0<br>
+Copyright &copy; EDF 2009 - 2023<br>
+BuildSysPro version 3.6.0<br>
 Author : Amy LINDSAY, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>
