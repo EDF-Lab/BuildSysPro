@@ -170,8 +170,8 @@ annotation (
 <p>Validated model (analytical verification + verification of the coherence of the exchanged fluxes profile) - Aurélie Kaemmerlen 09/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 Initial model : <a href=\"Modelica.Thermal.HeatTransfer.Components.BodyRadiation\">BodyRadiation</a>, Anton Haumer, Copyright © Modelica Association, Michael Tiller and DLR.<br>
 --------------------------------------------------------------</b></p>

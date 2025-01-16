@@ -167,8 +167,8 @@ It corresponds to: Tli_sp, Tlid_sp, Tli_ap and Tlid_ap, used in direct, diffuse 
 <p>Non validated model - Laura Sudries 05/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright © EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Laura SUDRIES, Vincent MAGNAUDEIX, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>

@@ -255,7 +255,7 @@ equation
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
 Copyright © EDF 2009 - 2019<br>
-BuildSysPro version 3.6.0<br>
+BuildSysPro version 3.7.0<br>
 Author : Mathias BOUQUEREL, EDF (2019)<br>
 --------------------------------------------------------------</b></p>
 </html>",

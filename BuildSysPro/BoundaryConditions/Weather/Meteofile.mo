@@ -24,7 +24,7 @@ parameter Boolean HR=true "Relative humidity in data file" annotation(choices(
     annotation (Dialog(enable=TypeMeteo == 4));
 
 parameter Modelica.Blocks.Types.Smoothness Interpolation=Modelica.Blocks.Types.Smoothness.ContinuousDerivative
-    "Data interpolation method" annotation(Dialog(tab="Advanced parameters"));
+    "Data interpolation method" annotation(Dialog(tab="Advanced parameters"));                           // we recommand to use  linearSegments option
 
   parameter Modelica.Units.SI.Time Tbouclage=31536000
     "Weather data looped beyond Tbouclage if the simulation stop time is superior"
@@ -132,7 +132,7 @@ equation
 
 // Wind connector
  connect(combiTimeTable.y[8], V[1]) annotation (Line(
-      points={{-37,30},{-30,30},{-30,-73},{100,-73}},
+      points={{-37,30},{-30,30},{-30,-68.5},{100,-68.5}},
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -308,100 +308,119 @@ equation
 <p>none</p>
 <p><u><b>Instructions for use</b></u></p>
 <p>This model reads a data file containing the following columns:</p>
-<p><table cellspacing=\"2\" cellpadding=\"0\" border=\"1\"><tr>
+<table cellspacing=\"2\" cellpadding=\"0\" border=\"1\"><tr>
 <td><p>Time [s] </p></td>
-<td><p>Solar irradiance 1 [W/m²]</p><p>Direct normal (defaut)</p></td>
-<td><p>Solar irradiance 2 [W/m²]</p><p>Diffuse horizontal (defaut)</p></td>
-<td><p>T_dry [°C]</p><p>Dry bulb temperature </p></td>
-<td><p>T_dew [°C]</p><p>Dew point temperature</p></td>
-<td><p>T_sky [°C]</p><p>Sky temperature</p></td>
+<td><p>Solar irradiance 1 [W/m&sup2;]</p><p>Direct normal (defaut)</p></td>
+<td><p>Solar irradiance 2 [W/m&sup2;]</p><p>Diffuse horizontal (defaut)</p></td>
+<td><p>T_dry [&deg;C]</p><p>Dry bulb temperature </p></td>
+<td><p>T_dew [&deg;C]</p><p>Dew point temperature</p></td>
+<td><p>T_sky [&deg;C]</p><p>Sky temperature</p></td>
 <td><p>Patm [Pa]</p><p>Atmospheric pressure</p></td>
 <td><p>HR (between 0 and 1)</p><p>Relative humidity</p></td>
 <td><p>VitVent [m/s]</p><p>Wind speed</p></td>
-<td><p>DirVent [°]</p><p>Wind direction</p></td>
-<td><p>Latitude [°]</p></td>
-<td><p>Longitude [°]</p></td>
+<td><p>DirVent [&deg;]</p><p>Wind direction</p></td>
+<td><p>Latitude [&deg;]</p></td>
+<td><p>Longitude [&deg;]</p></td>
 </tr>
 </table></p>
 <p>By default weather file can be given either in universal time (UTC - h0 = 0) or in local time (TL - h0 = Time zone). The scenarios should be consistent with the time given in the weather file - there is no change to summer time.</p>
 <p>The weather data are repeated periodically. By default, a one year period is used (see advanced parameter <b>Tbouclage</b>). So that one can start simulations on heating season: for example, from October 1 (start time 23587200s) to May 1 (stop time 41904000s). The advanced parameter <b>Tbouclage</b> allows to loop from a longer period so that a data file larger than a year can be used.</p>
-<p><b>Default settings - link to the content of the folder  <u>file://BuildSysPro\\Resources\\Donnees\\Meteos</u></b>
+<p><b>Default settings - link to the content of the folder <u>file://BuildSysPro\\Resources\\Donnees\\Meteos</b></u> </p>
 <ol>
 <li>Irradiation data are DIRN and DIFH</li>
 <li>The beginning of the files is at 0:00 on January 1</li>
-<li>The longitude is given in ° East</li>
+<li>The longitude is given in &deg; East (positive at East, negative at West)</li>
 <li>The pressure (in Pa) is an absolute pressure, and is assumed to be a wet air total pressure (used as such in humidity calculation functions)</li>
 <li>The relative humidity is between 0 and 1</li>
-<li>For the wind direction, the World Weather Organization assumes that a wind coming from the north is coded 360°, the wind rose is graduated clockwise (an east wind will be coded 90°) - check in all weather files -</li>
-</ol></p>
-<p><b>Available files and their differences from default values are:</p></b>
+<li>For the wind direction, the World Weather Organization assumes that a wind coming from the north is coded 360&deg;, the wind rose is graduated clockwise (an east wind will be coded 90&deg;) - check in all weather files -</li>
+</ol>
+<h4>Available files and their differences from default values are:</h4>
 <ol>
-<li>Meteofrance: Average irradiation [t-dt/2;t+dt/2]. h0 = 0</li>
-<li>Meteonorm: Irradiation determined on the last hour and assigned in the middle of the hour to better match the sun's path. Local time (h0 = -1 in France).</li>
-<li>Weather file from the French building regulation RT2012: irradiation determined on the last hour and assigned in the middle of the hour to better match the sun's path. Local time (h0 = -1 in France).</li>
-<li>For user-defined weather data, fill in the parameters conditioning irradiation calculations thereafter. For example, for data starting May 11, at 15:30 (Universal Time) - indicate h0 = 15.5 and d0 = 135.</li>
-</ol></p>
-<p>This model returns as outputs:
+<li><b>Meteofrance</b>: Solar fluxes averaged over [t-dt/2;t+dt/2]. Data in Universel Time (UTC).</li>
+<li><b>Meteonorm</b>: Solar fluxes measured over the last hour and assigned to the middle of the hour to better match the sun's path. Data in legal time UTC+1 in France, during winter time.</li>
+<li><b>RT Weather Files</b>: Solar fluxes measured over the last hour and assigned to the middle of the hour to better match the sun's path. Data in legal time UTC+1 in France, during winter time.</p>
+<li><b>Personal Weather Files</b> (user-defined weather data): It is recommended to assign solar fluxes in the same way, i.e., to the middle of the hourly time step (not necessary if the time step is small).</p>
+<p>For <strong>personal weather data</strong>, the following guidelines apply:</p><ul><li><strong>Time column in the weather file</strong> (first column): By convention, 0 should correspond to 00:00:00 on the first day of the measured data: if the data, for example, starts at 3:00 PM (with no data before 3:00 PM), fill all values up to 54,000s (3:00 PM) with 0, and start the simulation from 3:00 PM. Thus, the value 1800 in the time column corresponds to 00:30 AM on the first day of the weather data.</li></ul>
+<p>There are 3 time systems:</p><ol>
+<li><strong>Universal Time (UTC)</strong>, given by the Greenwich Meridian (GMT),</li>
+<li><strong>Legal Time (LT)</strong>, the country’s local time,</li><li><strong>True Solar Time (TST)</strong>, given by a sundial.</li>
+</ol><p>It is important to know the time system used for measuring experimental data.</p>
+<p>The time system must be consistent between the weather data and scenarios (for example, all in universal time or all in legal time, but not a mix of both). In the absence of an automated conversion tool, it is recommended to use the local legal time for the location in question to avoid having to adjust the scenarios.</p>
+<p><strong>Legal Time (LT)</strong> takes into account the country's time zone (Fh) (e.g., +1 in France and -8 in Los Angeles), possibly corrected by a daylight-saving correction term (=1). Without correction (=0), the time defaults to winter time. The formula for converting legal time from universal time is:<br><strong>LT = UTC + (Fh + correction)</strong></p><p><strong>True Solar Time (TST)</strong> involves the Equation of Time (ET) (a function of the day of the year) and the location's longitude, expressed in decimal degrees (counted &gt;0 east of GMT and &lt;0 west). The formula for converting true solar time from universal time is:<br><strong>TST = UTC - ET + (longitude/15)</strong></p>
+<p>Sunrise and sunset times are calculated based on true solar time. For example, on July 1st:</p>
+<ul><li>Sunrise in Brest: 6:19 AM</li><li>Sunrise in Strasbourg: 5:29 AM</li><li>Sunset in Brest: 10:24 PM</li><li>Sunset in Strasbourg: 9:36 PM</li></ul>
+<p>To ensure the coherence of solar flux results for the given location, check that the solar fluxes (G[1] to G[4]) are within the time interval when the sun's elevation (G[10]) is &gt;0.<br>If necessary, verify sunrise and sunset times at <a rel=\"noopener\" target=\"_new\" href=\"https://calendriersolaire.com\"><span>https</span><span>://calendriersolaire</span><span>.com</span></a> and adjust the time zone, correction term, and longitude accordingly.</p>
+<p><strong>Example setup for personal weather data</strong>:<br>If data starts on May 11 at 3:30 PM in legal time in Los Angeles (longitude -118°15'), select UTC-8, correction = 0 (winter time), and d0 (day of the year) = 131 for a non-leap year.</p><p><strong>Note</strong>:</p>
+<ul><li>The model does not handle the transition from winter time to daylight saving time (last Sunday in March) or vice versa (last Sunday in October). The correction term must be properly set before starting the simulation.</li>
+<li>To correctly visualize weather data in Dymola, the restitution time step must be a divisor of the first time step in the weather file. For example, if the data starts at 1800s, use a restitution time step of 1800s (instead of 3600s). The result variables will be correctly calculated regardless (no impact on the restitution time step).</li></ul>
+<p>This model returns as outputs: </p>
 <ul>
+<li><ul>
 <li><b>G[10]</b> vector containing information for solar irradiance computation:</li>
-<ul>
- <li>(1) Horizontal diffuse flux</li>
- <li>(2) Normal direct flux</li>
- <li>(3) Horizontal direct flux</li>
- <li>(4) Horizontal global flux</li>
- <li>(5) Time in UTC at time t = 0 (start of the simulation)</li>
- <li>(6-7-8) Sun's direction cosines (6-sinH, 7-cosW, 8-cosS)</li>
- <li>(9) Solar azimuth angle</li>
- <li>(10) Solar elevation angle</li>
-</ul>
+<li><ul>
+<li>(1) Horizontal diffuse flux </li>
+<li>(2) Normal direct flux </li>
+<li>(3) Horizontal direct flux </li>
+<li>(4) Horizontal global flux </li>
+<li>(5) Time in UTC at time t = 0 (start of the simulation) </li>
+<li>(6-7-8) Sun&apos;s direction cosines (6-sinH, 7-cosW, 8-cosS) </li>
+<li>(9) Solar azimuth angle </li>
+<li>(10) Solar elevation angle</li>
+</ul></li>
 <li><b>V[2]</b> vector containing information about wind</li>
-<ol>
+<li><ol>
 <li>Wind speed</li>
 <li>Wind direction (origin)</li>
-</ol>
+</ol></li>
 <li><b>Hygro[3]</b> for hygro-thermal modelling</li>
-<ol>
+<li><ol>
 <li>Dry air temperature [K]</li>
 <li>Total pressure supposed to be wet (=Patm) [Pa]</li>
-<li>Relative humidity [0;1]</li>
+<li>Relative humidity [0;1] </li>
+</ol></li>
+</ol></li>
 </ol>
-</ul>
-</p>
+<li><strong>Advanced Parameters</strong>: we recommend to change the default interpolation method to <span style=\"font-family: Courier New;\">Smoothness.Linear.Segments</span> instead of <span style=\"font-family: Courier New;\">Smoothness.ContinuousDerivative</span> (continuous derivative looks nicer but could result in negative solar fluxes).</li>
 <p><u><b>Known limits / Use precautions</b></u></p>
 <p>The irradiation couple read by the weather reader is set via the choice of CoupleFlux. By default, the model reads the couple FDIRN / FDIFH</p>
 <p><u><b>Validations</b></u></p>
-<p>Validated model - Aurélie Kaemmerlen 2010</p>
+<p>Validated model - Aur&eacute;lie Kaemmerlen 2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
-Author : Aurélie KAEMMERLEN, EDF (2010)<br>
---------------------------------------------------------------</b></p>
-</html>
-",  revisions="<html>
-<p>Aurélie Kaemmerlen 02/2011 : Inversion des composants 1 et 2 du vecteur <b>G</b> pour garder le même ordre des flux solaires entre le fichier météo d'entrée et ce vecteur <b>G</b> en sortie du lecteur Météo - Pas d'impact sur le format des fichiers mais les modèles utilisant le vecteur <b>G</b> modifiés en conséquent </p>
-<p>Aurélie Kaemmerlen 05/2011 : Le vecteur<b> G</b> a été allongé avec 3 paramètres de plus : MoyFlux, dt et CoupleFlux permettant une plus grande réutilisabilité de ce lecteur Météo</p>
-<p>Gilles Plessis 02/2012: Modification du type du paramètre pth (<i>String</i> changé en <i>Filename</i>) permettant l'utilisation d'une fenêtre pour atteindre le fichier de données.</p>
-<p>Aurélie Kaemmerlen 03/2012 : Modification de la valeur par défaut de Est (=false pour Meteonorm qui est le fichier par défaut)</p>
-<p>Aurélie Kaemmerlen 06/2012 :</p>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
+Author : Aur&eacute;lie KAEMMERLEN, EDF (2010)<br>
+--------------------------------------------------------------</b></p></html>",
+    revisions="<html>
+<p>Aur&eacute;lie Kaemmerlen 02/2011 : Inversion of components 1 and 2 of the <b>G</b> vector to maintain the same order of solar fluxes between the input weather file and the <b>G</b>  vector output from the Weather Reader – No impact on file format, but models using the modified <b>G</b> vector are affected accordingly. </p>
+<p>Aur&eacute;lie Kaemmerlen 05/2011 : The <b>G</b> vector has been extended with 3 additional parameters: MoyFlux, dt, and CoupleFlux, enabling greater reusability of this Weather Reader.</p>
+<p>Gilles Plessis 02/2012: Modification of the pth parameter type (<i>String</i> changed to <i>Filename</i>) allowing the use of a window to access the data file.</p>
+<p>Aur&eacute;lie Kaemmerlen 03/2012 : Change of the default value of Est (=false for Meteonorm which is the default file)</p>
+<p>Aur&eacute;lie Kaemmerlen 06/2012 :</p>
 <ul>
-<li>Désactivation de la saisie du paramètre dt lorsque la moyenne est une moyenne classique,</li>
-<li>Ajout de documentation pour préciser le mode d'emploi du modèle</li>
-<li>Automatisation du choix des fichiers météo selon les données disponibles par défaut dans la documentation (par défaut, météo perso)</li>
-<li>Ajout du port Hygro permettant la connexion avec les modèles aérauliques</li>
-<li>Modification du type d'interpolation de la table : au lieu d'une interpolation linéaire, les données sont interpolées de sorte que leur dérivée reste continue</li>
+<li>Deactivation of the dt parameter entry when the average is a standard average.</li>
+<li>Added documentation to clarify the model's usage.</li>
+<li>Automation of weather file selection based on the data available by default in the documentation (default is personal weather).</li>
+<li>Addition of the Hygro port enabling connection to aerodynamics models.</li>
+<li>Modification of the table interpolation type: instead of linear interpolation, the data is interpolated in such a way that their derivative remains continuous.</li>
 </ul>
-<p>Hassan Bouia 03/2013 : Simplification des calculs solaires et modification du vecteur G</p>
-<p>Denis Covalet 04/2013 : Précisions sur le vecteur Hygro, variable pression et correction infos sur HR (entre 0 et 1 et non pas en &#37;)</p>
-<p>Aurélie Kaemmerlen 09/2013 : Ajout d'un choix du type d'interpolation des données météo, du choix du temps de bouclage du fichier météo et modulo sur la direction du vent qui sortait des bornes [0-360] avec une interpolation continue</p>
-<p>Amy Lindsay 01/2014 : Suppression du modulo sur la direction du vent qui posait des problèmes de résolution dans certains cas (non continuité des données), et interpolation linéaire obligatoire sur la direction du vent pour répondre à ce problème</p>
-<p>Amy Lindsay 03/2014 : Ajout de deux booléens permettant de 1- préciser si la température de ciel est déjà renseignée dans le fichier texte météo ou si'il faut la calculer 2- le cas échéant, préciser si l'humidité relative est connue ou non (la corrélation estimant la température de ciel dépend des données d'entrée disponibles)</p>
-<p>Amy Lindsay 04/2014 : Ajout de documentation pour rappeler l'importance des conventions d'angles qui sont différentes pour la direction du vent et pour l'orientation des parois !</p>
-<p>Amy Lindsay 11/2014 : <b>Changement important pour les fichiers météo Meteonorm et réglementaires</b> : pour mieux correspondre à la position du soleil à chaque instant, les flux moyennés sur l'heure écoulée sont affectés au milieu du pas de temps (demie-heure). </p>
-<p>Hassan Bouia, Amy Lindsay 12/2014 : Ajout de la possibilité d'utiliser des fonctions en escalier.</p>
-<p>Gilles Plessis 09/2015 : Utilisation de la fonction <code>Modelica.Utilities.Files.loadResource</code> pour le chargement de fichiers, pour une meilleure compatibilité avec le standard Modelica.</p>
-<p>Benoît Charrier 01/2016 : Ajout du paramètre avancé <code>table_column_number</code> pour éviter une déclaration croisée de variables et permettre la compatibilité avec OpenModelica.</p>
-<p>Benoît Charrier 01/2017 : Remplacement de la pression de vapeur par l'humidité relative comme troisième composante du vecteur <code>Hygro</code> pour coller aux entrées des modèles de conditions limites <code>WithoutWindEffect</code> et <code>WithWindEffect</code>.</p>
-<p>Benoît Charrier 01/2018 : Added <code>noEvent</code> on some <code>CosDir[1]>0</code> conditions to avoid division by zero errors. Changed <code>h0</code> value from <code>0</code> to <code>-1</code> in case of RT2012 meteo to fit with sun height.</p>
+<p>Hassan Bouia 03/2013 : Simplification of solar calculations and modification of the G vector.</p>
+<p>Denis Covalet 04/2013 : Clarification on the Hygro vector, pressure variable, and correction of HR information (between 0 and 1, not in %).</p>
+<p>Aur&eacute;lie Kaemmerlen 09/2013 : Added options for choosing the weather data interpolation type, loop time for the weather file, and modulo for wind direction which was out of bounds [0-360] with continuous interpolation.</p>
+<p>Amy Lindsay 01/2014 : Removed the modulo on wind direction that caused resolution problems in some cases (data continuity issues), and enforced linear interpolation for wind direction to resolve this.</p>
+<p>Amy Lindsay 03/2014 : Added two booleans to:<ol><li>Specify if the sky temperature is already provided in the weather text file or if it needs to be calculated.</li><li>If it needs to be calculated, specify whether the relative humidity is known or not (the correlation estimating the sky temperature depends on the available input data).</li></ol></p>
+<p>Amy Lindsay 04/2014 : Added documentation to remind the importance of angle conventions, which differ for wind direction and wall orientation!</p>
+<p>Amy Lindsay 11/2014 : <b>Major change for Meteonorm and regulatory weather files</b>: to better match the position of the sun at each moment, the hourly-averaged fluxes are assigned to the middle of the time step (half-hour). </p>
+<p>Hassan Bouia, Amy Lindsay 12/2014 : Added the option to use step functions.</p>
+<p>Gilles Plessis 09/2015 : Used the <span style=\"font-family: Courier New;\">Modelica.Utilities.Files.loadResource</span> function for file loading, improving compatibility with the Modelica standard.</p>
+<p>Beno&icirc;t Charrier 01/2016 : Added the advanced parameter <code>table_column_number</code> to avoid cross-declaration of variables and ensure compatibility with OpenModelica.</p>
+<p>Beno&icirc;t Charrier 01/2017 : Replaced vapor pressure with relative humidity as the third component of the <span style=\"font-family: Courier New;\">Hygro</span> vector to align with the input requirements of the <span style=\"font-family: Courier New;\">WithoutWindEffect</span> and <span style=\"font-family: Courier New;\">WithWindEffect</span> boundary condition models.</p>
+<p>Beno&icirc;t Charrier 01/2018 : Added <span style=\"font-family: Courier New;\">noEvent</span> on some <span style=\"font-family: Courier New;\">CosDir[1]&gt;0</span> conditions to avoid division by zero errors. Changed <span style=\"font-family: Courier New;\">h0</span> value from <span style=\"font-family: Courier New;\">0</span> to <span style=\"font-family: Courier New;\">-1</span> in case of RT2012 meteo to fit with sun height.</p>
+<p>Denis Covalet 10/2024 :</p>
+<ul>
+<li><strong>Personal Weather</strong>: Replaced the h0 parameter (weather hour offset for solar fluxes, a source of confusion) with time zone (Fh) and winter (0)/summer (1) correction, knowing that h0 = -(Fh + correction).</li>
+<li><strong>Personal Weather</strong>: By default, longitude is now counted positively to the east and negatively to the west (Est = true). It was the opposite before (Est = false by default).</li>
+<li>Added clarifications to the model documentation, particularly for personal weather data.</li>
+</ul>
 </html>"));
 end Meteofile;

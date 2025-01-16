@@ -9,3 +9,6 @@ FindMultiExtremum
 RealExpression
 IntegerExpression
 RoundingToNDecimalPlaces
+f_ratio_moderation
+Umax
+Upre

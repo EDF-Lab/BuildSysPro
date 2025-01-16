@@ -123,8 +123,8 @@ annotation (Placement(transformation(extent={{20,-4},{60,36}}),
 <p>Validated model - Sila Filfli - 01/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Sila FILFLI, EDF (2011)<br>
 --------------------------------------------------------------</b></p></html>"), Icon(graphics={
         Rectangle(

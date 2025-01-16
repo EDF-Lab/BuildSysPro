@@ -10,8 +10,8 @@ record RecentExtWall =
     positionIsolant={0,1,0}) "Recent external wall - 3 layers"    annotation (Documentation(info="<html>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Gilles PLESSIS, EDF (2012)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

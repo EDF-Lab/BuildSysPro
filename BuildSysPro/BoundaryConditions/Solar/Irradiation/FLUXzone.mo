@@ -1,5 +1,6 @@
 ﻿within BuildSysPro.BoundaryConditions.Solar.Irradiation;
-model FLUXzone "Calculation of irradiance and illuminance for a zone model"
+model FLUXzone
+  "Calculation of irradiance and illuminance for a zone model"
 
 parameter Real albedo=0.2 "Albedo of the environment";
 parameter Boolean ChoixAzimuth=false
@@ -141,7 +142,7 @@ equation
  //Computation of natural illuminance (French building regulation RT2012)
   Idn=DIRN;
   Idi=DIFH;
-  gamma=G[10]*pi/180;
+  gamma=G[10];//*pi/180
   Edn=Idn*(-1.0375321*10^(-8)*gamma^6+2.90312257*10^(-6)*gamma^5-3.31804423*10^(-4)*gamma^4+1.99283162*10^(-2)*gamma^3-6.72171072*10^(-1)*gamma^2+1.24650445*10*gamma+2.38954889);
   if Idn<1 then
     Edi=124*Idi;
@@ -155,10 +156,10 @@ algorithm
   // Computation of illuminance (direct, diffuse and reflected) without shading
   phi:=G[9]*pi/180;
   for i in 1:5 loop
-  teta[i]:=min(pi/2, acos(cos(gamma)*sin(incl[i]*pi/180)*cos(phi - azim[i]*pi/180)+ sin(gamma)*cos(incl[i]*pi/180)));
+  teta[i]:=min(pi/2, acos(cos(gamma*pi/180)*sin(incl[i]*pi/180)*cos(phi - azim[i]*pi/180)+ sin(gamma*pi/180)*cos(incl[i]*pi/180)));
   Erp[i]:=cos(teta[i])*Edn;
   Efp[i]:=Edi*0.5*(1 + cos(incl[i]*pi/180));
-  ERrp[i]:=(Edn*sin(gamma) + Edi)*albedo*0.5*(1 - abs(cos(incl[i]*pi/180)));
+  ERrp[i]:=(Edn*sin(gamma*pi/180) + Edi)*albedo*0.5*(1 - abs(cos(incl[i]*pi/180)));
   end for;
 
   IlluRoof := {Erp[1],Efp[1],ERrp[1]};
@@ -193,9 +194,9 @@ annotation (Documentation(info="<html>
 <p>Validated model (identical to the one used in the BESTEST except for the time base: UTC instead of true solar time (TST)) - Aurélie Kaemmerlen 09/2010</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
-Author : Aurélie KAEMMERLEN, EDF (2010)<br>
+Copyright © EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
+Author : Aurélie KAEMMERLEN, EDF (2010))<br>
 --------------------------------------------------------------</b></p>
 </html>",
       revisions="<html>

@@ -175,8 +175,8 @@ end if;
 <p>Not validated model - Laura Sudries 02/2014</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2019<br>
-BuildSysPro version 3.3.0<br>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Laura SUDRIES, Julien LHERMENAULT, Vincent MAGNAUDEIX, EDF (2014)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

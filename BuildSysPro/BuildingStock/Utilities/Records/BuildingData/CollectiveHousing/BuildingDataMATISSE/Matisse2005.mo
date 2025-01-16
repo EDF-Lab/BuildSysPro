@@ -74,8 +74,8 @@ record Matisse2005 =
 <p>Validated model - Benoît Charrier, Philippe Petiot 06/2017</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Benoît CHARRIER, Philippe PETIOT, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>",

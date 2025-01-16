@@ -69,8 +69,8 @@ info="<html>
 <p>Validated model</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Initial models : RadiationTemperature and InfraredRadiationGainDistribution, Michael Wetter, Buildings, Copyright © The Regents of the University of California, through Lawrence Berkeley National Laboratory.<br>
 --------------------------------------------------------------</b></p>
 </html>",

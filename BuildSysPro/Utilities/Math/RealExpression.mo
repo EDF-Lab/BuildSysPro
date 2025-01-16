@@ -48,8 +48,8 @@ block RealExpression "Set output signal to a time varying Real expression"
 <p>Validated model - Hassan Bouia 10/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Hassan BOUIA, EDF (2011)<br>
 Initial model : <a href=\"Modelica.Blocks.Sources.RealExpression\">RealExpression</a>, Martin Otter, Copyright © Modelica Association and DLR.<br>
 --------------------------------------------------------------</b></p>

@@ -50,7 +50,8 @@ algorithm
 <p><u><b>Validations</b></u></p><p>Validated model - Mathias BOUQUEREL 07/2019</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2019<br>
+Copyright © EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Mathias BOUQUEREL, EDF (2019)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

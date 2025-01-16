@@ -155,8 +155,8 @@ See <a href=\"modelica//BuildSysPro.Building.AirFlow.HeatTransfer.AirRenewal\">A
 <p>Validated model - Naixin Chen 07/2016</b></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright © EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Naixin CHEN, EDF (2016)<br>
 --------------------------------------------------------------</b></p>
 </html>", revisions="<html>

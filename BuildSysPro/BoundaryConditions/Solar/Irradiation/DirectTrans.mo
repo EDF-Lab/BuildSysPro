@@ -7,8 +7,10 @@ parameter Integer choix=2 "Formula used" annotation(choices(
         choice=1 "Fauconnier",
         choice=2 "RT",
         choice=3 "Cardonnel",
-        choice=4 "Weighting factor of cos i"));
+        choice=4 "Table formula",
+        choice=5 "Weighting factor of cos i"));
 parameter Real TrDir "Direct window transmittance at normal incidence";
+parameter Real table[10,2] = [0,0.441;10,0.444;20,0.438;30,0.429;40,0.418;50,0.396;60,0.348;70,0.256;80,0.122;90,0]; //exemple of table to interpolate
 
   BuildSysPro.BoundaryConditions.Solar.Interfaces.SolarFluxInput FluxIncExt[3]
     "Input connector for solar irradiation 1-Diffuse, 2-Direct, 3-Cos i"
@@ -22,6 +24,7 @@ parameter Real TrDir "Direct window transmittance at normal incidence";
 // Internal variables
 protected
 Real cosi;
+Real inc=acos(min(1., cosi))*180./Modelica.Constants.pi;
 Real PondTransDir;
 // Coefficients calculated for the Fauconnier formula
 parameter Real c0 = 0.0139 - 0.1093*TrDir - 0.0079*TrDir^2;
@@ -46,6 +49,13 @@ elseif choix ==2 then
 elseif choix ==3 then
  // Cardonnel formula
   PondTransDir := if noEvent(cosi>0) then (if noEvent(cosi>0.8) then TrDir else TrDir*2.5*cosi*(1-0.625*cosi)) else 0;
+elseif choix ==4 then
+ // Table formula
+  PondTransDir :=ObsoleteModelica4.Math.tempInterpol1(
+            inc,
+            table,
+            2);             //Modelica.Math.Vectors.interpolate
+
 else
   PondTransDir := if noEvent(cosi>0) then cosi*TrDir else 0;
 end if;
@@ -94,8 +104,8 @@ end if;
 <p>Validated model (excel sheet comparison) - Aurélie Kaemmerlen 06/2011</p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright © EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Aurélie KAEMMERLEN, EDF (2011)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

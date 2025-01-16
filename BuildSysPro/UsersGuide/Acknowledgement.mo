@@ -100,8 +100,8 @@ Alberto Tejeda, EDF R&amp;D, France
 </ul></p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : EDF (2015)<br>
 --------------------------------------------------------------</b></p>
 </html>"));

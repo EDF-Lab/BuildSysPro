@@ -36,15 +36,8 @@ algorithm
   CosDir[1]:=sin(phi)*sin(delta)+cos(phi)*cos(delta)*cos(AH) "=CosV=SinH";
   CosDir[2]:=cos(delta)*sin(AH) "=CosW";
   CosDir[3]:=cos(delta)*sin(phi)*cos(AH)-sin(delta)*cos(phi) "=CosS";
-  cosh:=if CosDir[1] > 0 then sqrt(1 - CosDir[1]*CosDir[1]) else 1;
-  sinAz:=CosDir[2]/cosh;
-  cosAz:=CosDir[3]/cosh;
   Haut:=asin(CosDir[1])/d2r;
-  if sinAz>=0 then
-      Az:=acos(cosAz*0.999)/d2r;
-  else
-      Az:=-acos(cosAz*0.999)/d2r;
-  end if;
+  Az :=atan2(CosDir[2], CosDir[3]) / d2r;
   annotation (Documentation(info="<html>
         <p><i><b>Function returning the sun's direction cosine, the solar elevation and azimuth angle</b></i></p>
 <p><u><b>Hypothesis and equations</b></u></p>
@@ -77,8 +70,8 @@ algorithm
 <p>Validated function - Hassan BOUIA 03/2013.  </p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright © EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright © EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Hassan BOUIA, EDF (2013)<br>
 --------------------------------------------------------------</b></p>
 </html>",                                                                    revisions="<html>

@@ -290,8 +290,8 @@ equation
 <p>Validations through comparaison with PIDFixedDualMode and PIDPrescribedSingleMode and simulations within MERUBBI project - Mathias Bouquerel 01/2017<p>
 <p><b>--------------------------------------------------------------<br>
 Licensed by EDF under a 3-clause BSD-license<br>
-Copyright &copy; EDF 2009 - 2023<br>
-BuildSysPro version 3.6.0<br>
+Copyright &copy; EDF2009 - 2024<br>
+BuildSysPro version 3.7.0<br>
 Author : Mathias BOUQUEREL, EDF (2017)<br>
 --------------------------------------------------------------</b></p>
 </html>",
