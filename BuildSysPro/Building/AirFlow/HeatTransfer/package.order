@@ -5,11 +5,6 @@ AirRenewal_DynProp
 EnthalpyFlow
 HeatRecoveryVentilation
 WindowNaturalVentilation
-WindowOverVentilation
 VentilationFlow3CL_DPE
 Ventilation3CL_DPE
 Permea3CL_DPE
-ManualOpeningRatio
-WeatherModerationRatio
-BayOpeningRatio
-WindowShutterRatio
